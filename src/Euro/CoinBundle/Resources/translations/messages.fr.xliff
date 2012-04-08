@@ -170,6 +170,166 @@
 				<source>Description</source>
 				<target>Description</target>
 			</trans-unit>
+			<trans-unit id="Allemagne">
+				<source>Allemagne</source>
+				<target>Allemagne</target>
+			</trans-unit>
+			<trans-unit id="Autriche">
+				<source>Autriche</source>
+				<target>Autriche</target>
+			</trans-unit>
+			<trans-unit id="Belgique">
+				<source>Belgique</source>
+				<target>Belgique</target>
+			</trans-unit>
+			<trans-unit id="Chypre">
+				<source>Chypre</source>
+				<target>Chypre</target>
+			</trans-unit>
+			<trans-unit id="Espagne">
+				<source>Espagne</source>
+				<target>Espagne</target>
+			</trans-unit>
+			<trans-unit id="Estonie">
+				<source>Estonie</source>
+				<target>Estonie</target>
+			</trans-unit>
+			<trans-unit id="Finlande">
+				<source>Finlande</source>
+				<target>Finlande</target>
+			</trans-unit>
+			<trans-unit id="France">
+				<source>France</source>
+				<target>France</target>
+			</trans-unit>
+			<trans-unit id="Grèce">
+				<source>Grèce</source>
+				<target>Grèce</target>
+			</trans-unit>
+			<trans-unit id="Irlande">
+				<source>Irlande</source>
+				<target>Irlande</target>
+			</trans-unit>
+			<trans-unit id="Italie">
+				<source>Italie</source>
+				<target>Italie</target>
+			</trans-unit>
+			<trans-unit id="Luxembourg">
+				<source>Luxembourg</source>
+				<target>Luxembourg</target>
+			</trans-unit>
+			<trans-unit id="Malte">
+				<source>Malte</source>
+				<target>Malte</target>
+			</trans-unit>
+			<trans-unit id="Monaco">
+				<source>Monaco</source>
+				<target>Monaco</target>
+			</trans-unit>
+			<trans-unit id="Pays-Bas">
+				<source>Pays-Bas</source>
+				<target>Pays-Bas</target>
+			</trans-unit>
+			<trans-unit id="Portugal">
+				<source>Portugal</source>
+				<target>Portugal</target>
+			</trans-unit>
+			<trans-unit id="Saint-Marin">
+				<source>Saint-Marin</source>
+				<target>Saint-Marin</target>
+			</trans-unit>
+			<trans-unit id="Slovaquie">
+				<source>Slovaquie</source>
+				<target>Slovaquie</target>
+			</trans-unit>
+			<trans-unit id="Slovénie">
+				<source>Slovénie</source>
+				<target>Slovénie</target>
+			</trans-unit>
+			<trans-unit id="Vatican">
+				<source>Vatican</source>
+				<target>Vatican</target>
+			</trans-unit>
+			<trans-unit id="Mark allemand">
+				<source>Mark allemand</source>
+				<target>Mark allemand</target>
+			</trans-unit>
+			<trans-unit id="Schilling autrichien">
+				<source>Schilling autrichien</source>
+				<target>Schilling autrichien</target>
+			</trans-unit>
+			<trans-unit id="Franc belge">
+				<source>Franc belge</source>
+				<target>Franc belge</target>
+			</trans-unit>
+			<trans-unit id="Livre chypriote">
+				<source>Livre chypriote</source>
+				<target>Livre chypriote</target>
+			</trans-unit>
+			<trans-unit id="Peseta espagnole">
+				<source>Peseta espagnole</source>
+				<target>Peseta espagnole</target>
+			</trans-unit>
+			<trans-unit id="Couronne estonienne">
+				<source>Couronne estonienne</source>
+				<target>Couronne estonienne</target>
+			</trans-unit>
+			<trans-unit id="Mark finlandais">
+				<source>Mark finlandais</source>
+				<target>Mark finlandais</target>
+			</trans-unit>
+			<trans-unit id="Franc français">
+				<source>Franc français</source>
+				<target>Franc français</target>
+			</trans-unit>
+			<trans-unit id="Drachme moderne grecque">
+				<source>Drachme moderne grecque</source>
+				<target>Drachme moderne grecque</target>
+			</trans-unit>
+			<trans-unit id="Livre irlandaise">
+				<source>Livre irlandaise</source>
+				<target>Livre irlandaise</target>
+			</trans-unit>
+			<trans-unit id="Lire italienne">
+				<source>Lire italienne</source>
+				<target>Lire italienne</target>
+			</trans-unit>
+			<trans-unit id="Franc luxembourgeois">
+				<source>Franc luxembourgeois</source>
+				<target>Franc luxembourgeois</target>
+			</trans-unit>
+			<trans-unit id="Lire maltaise">
+				<source>Lire maltaise</source>
+				<target>Lire maltaise</target>
+			</trans-unit>
+			<trans-unit id="Franc monégasque">
+				<source>Franc monégasque</source>
+				<target>Franc monégasque</target>
+			</trans-unit>
+			<trans-unit id="Florin néerlandais">
+				<source>Florin néerlandais</source>
+				<target>Florin néerlandais</target>
+			</trans-unit>
+			<trans-unit id="Escudo portugais">
+				<source>Escudo portugais</source>
+				<target>Escudo portugais</target>
+			</trans-unit>
+			<trans-unit id="Lire de Saint-Marin">
+				<source>Lire de Saint-Marin</source>
+				<target>Lire de Saint-Marin</target>
+			</trans-unit>
+			<trans-unit id="Couronne slovaque">
+				<source>Couronne slovaque</source>
+				<target>Couronne slovaque</target>
+			</trans-unit>
+			<trans-unit id="Tolar slovène">
+				<source>Tolar slovène</source>
+				<target>Tolar slovène</target>
+			</trans-unit>
+			<trans-unit id="Lire vaticane">
+				<source>Lire vaticane</source>
+				<target>Lire vaticane</target>
+			</trans-unit>
 		</body>
 	</file>
 </xliff>
