@@ -39,8 +39,11 @@ class CoinController extends Controller {
 			throw $this->createNotFoundException('Unable to find Coin entity.');
 		}
 
+		$deleteForm = $this->createDeleteForm($id);
+
 		return $this->render('EuroCoinBundle:Coin:show.html.twig', array(
 					'coin' => $coin,
+					'delete_form' => $deleteForm->createView(),
 				));
 	}
 
@@ -96,10 +99,12 @@ class CoinController extends Controller {
 		}
 
 		$editForm = $this->createForm(new CoinType(), $coin);
+		$deleteForm = $this->createDeleteForm($id);
 
 		return $this->render('EuroCoinBundle:Coin:edit.html.twig', array(
 					'coin' => $coin,
 					'edit_form' => $editForm->createView(),
+					'delete_form' => $deleteForm->createView(),
 				));
 	}
 
@@ -117,6 +122,7 @@ class CoinController extends Controller {
 		}
 
 		$editForm = $this->createForm(new CoinType(), $coin);
+		$deleteForm = $this->createDeleteForm($id);
 
 		$request = $this->getRequest();
 
@@ -132,6 +138,7 @@ class CoinController extends Controller {
 		return $this->render('EuroCoinBundle:Coin:edit.html.twig', array(
 					'coin' => $coin,
 					'edit_form' => $editForm->createView(),
+					'delete_form' => $deleteForm->createView(),
 				));
 	}
 

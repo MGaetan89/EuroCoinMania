@@ -8,10 +8,17 @@
 <form action="{{ path('country_update', { 'id': country.id }) }}" method="post" {{ form_enctype(edit_form) }}>
 	{{ form_widget(edit_form) }}
 
-	<div class="btn-group">
-		<button class="btn btn-primary" type="submit">{{ 'action.edit'|trans }}</button>
-		<a class="btn" href="{{ path('country') }}">{{ 'action.back_to_list'|trans }}</a>
-		<a class="btn btn-danger" href="{{ path('country_delete', { 'id': country.id }) }}">{{ 'action.delete'|trans }}</a>
+	<div class="form-actions">
+		<div class="pull-left">
+			<button class="btn btn-primary" type="submit"><i class="icon-white icon-pencil"></i> {{ 'action.edit'|trans }}</button>
+			<a class="btn" href="{{ path('country') }}"><i class="icon-arrow-left"></i> {{ 'action.back_to_list'|trans }}</a>
+		</div>
+
+		<form action="{{ path('country_delete', { 'id': country.id }) }}" method="post">
+            {{ form_widget(delete_form) }}
+
+            <button class="btn btn-danger pull-right" type="submit"><i class="icon-white icon-trash"></i> {{ 'action.delete'|trans }}</button>
+        </form>
 	</div>
 </form>
 {% endblock %}

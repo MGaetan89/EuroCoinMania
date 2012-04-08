@@ -105,9 +105,16 @@
 </div>
 {% endif %}
 
-<div class="btn-group">
-	<a class="btn btn-primary" href="{{ path('country_edit', { 'id': country.id }) }}">{{ 'action.edit'|trans }}</a>
-	<a class="btn" href="{{ path('country') }}">{{ 'action.back_to_list'|trans }}</a>
-	<a class="btn btn-danger" href="{{ path('country_delete', { 'id': country.id }) }}">{{ 'action.delete'|trans }}</a>
+<div class="form-actions">
+	<div class="pull-left">
+		<a class="btn btn-primary" href="{{ path('country_edit', { 'id': country.id }) }}"><i class="icon-white icon-pencil"></i> {{ 'action.edit'|trans }}</a>
+		<a class="btn" href="{{ path('country') }}"><i class="icon-arrow-left"></i> {{ 'action.back_to_list'|trans }}</a>
+	</div>
+
+	<form action="{{ path('country_delete', { 'id': country.id }) }}" method="post">
+		{{ form_widget(delete_form) }}
+
+		<button class="btn btn-danger pull-right" type="submit"><i class="icon-white icon-trash"></i> {{ 'action.delete'|trans }}</button>
+	</form>
 </div>
 {% endblock %}

@@ -8,9 +8,9 @@
 <form action="{{ path('coin_create') }}" method="post" {{ form_enctype(form) }}>
     {{ form_widget(form) }}
 
-	<div class="btn-group">
-		<button class="btn btn-primary" type="submit">{{ 'action.add'|trans }}</button>
-		<a class="btn" href="{{ path('coin') }}">{{ 'action.back_to_list'|trans }}</a>
+	<div class="form-actions">
+		<button class="btn btn-primary" type="submit"><i class="icon-white icon-plus"></i> {{ 'action.add'|trans }}</button>
+		<a class="btn" href="{{ path('coin') }}"><i class="icon-arrow-left"></i> {{ 'action.back_to_list'|trans }}</a>
 	</div>
 </form>
 {% endblock %}

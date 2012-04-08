@@ -55,12 +55,15 @@ class CountryController extends Controller {
 			}
 		}
 
+		$deleteForm = $this->createDeleteForm($id);
+
 		return $this->render('EuroCoinBundle:Country:show.html.twig', array(
 					'coins' => $coins,
 					'country' => $country,
 					'counts' => array_sum($counts['value']),
 					'counts_value' => $counts['value'],
 					'counts_year' => $counts['year'],
+					'delete_form' => $deleteForm->createView(),
 				));
 	}
 
@@ -116,10 +119,12 @@ class CountryController extends Controller {
 		}
 
 		$editForm = $this->createForm(new CountryType(), $country);
+		$deleteForm = $this->createDeleteForm($id);
 
 		return $this->render('EuroCoinBundle:Country:edit.html.twig', array(
 					'country' => $country,
 					'edit_form' => $editForm->createView(),
+					'delete_form' => $deleteForm->createView(),
 				));
 	}
 
@@ -137,6 +142,7 @@ class CountryController extends Controller {
 		}
 
 		$editForm = $this->createForm(new CountryType(), $country);
+		$deleteForm = $this->createDeleteForm($id);
 
 		$request = $this->getRequest();
 
@@ -152,6 +158,7 @@ class CountryController extends Controller {
 		return $this->render('EuroCoinBundle:Country:edit.html.twig', array(
 					'country' => $country,
 					'edit_form' => $editForm->createView(),
+					'delete_form' => $deleteForm->createView(),
 				));
 	}
 
