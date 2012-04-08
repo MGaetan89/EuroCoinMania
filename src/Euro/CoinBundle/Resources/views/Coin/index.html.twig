@@ -1,0 +1,45 @@
+{% extends 'EuroCoinBundle::base.html.twig' %}
+
+{% block title %}{{ 'coin.list'|trans }}{% endblock %}
+
+{% block tools %}
+<a class="btn pull-right" href="{{ path('coin_new') }}">{{ 'coin.add'|trans }}</a>
+{% endblock %}
+
+{% block body %}
+<h1 class="pull-left">{{ block('title') }}</h1>
+
+{{ block('tools') }}
+
+<table class="table table-bordered table-striped">
+<thead>
+	<tr>
+		<th>{{ 'coin.name'|trans }}</th>
+		<th>{{ 'coin.commemorative'|trans }}</th>
+		<th>{{ 'coin.mintage'|trans }}</th>
+		<th>{{ 'coin.description'|trans }}</th>
+		<th>{{ 'actions'|trans }}</th>
+	</tr>
+</thead>
+<tbody>
+{% for coin in coins %}
+	<tr>
+		<td>
+			<a href="{{ path('coin_show', { 'id': coin.id }) }}">
+				{{ coin.country|trans }} - {{ coin.year }} - {{ coin.value }} &euro;
+			</a>
+		</td>
+		<td>{{ coin.commemorative ? 'yes'|trans : 'no'|trans }}</td>
+		<td>{{ coin.mintage|number_format }}</td>
+		<td>{{ coin.description|trans }}</td>
+		<td>
+			<a href="{{ path('coin_show', { 'id': coin.id }) }}">{{ 'action.show'|trans }}</a> |
+			<a href="{{ path('coin_edit', { 'id': coin.id }) }}">{{ 'action.edit'|trans }}</a>
+		</td>
+	</tr>
+{% endfor %}
+</tbody>
+</table>
+
+{{ block('tools') }}
+{% endblock %}

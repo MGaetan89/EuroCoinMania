@@ -1,0 +1,131 @@
+<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+	<file source-language="fr" datatype="plaintext" original="file.ext">
+		<body>
+			<trans-unit id="sitename">
+				<source>sitename</source>
+				<target>Euro Collector</target>
+			</trans-unit>
+			<trans-unit id="yes">
+				<source>yes</source>
+				<target>Oui</target>
+			</trans-unit>
+			<trans-unit id="no">
+				<source>no</source>
+				<target>Non</target>
+			</trans-unit>
+			<trans-unit id="actions">
+				<source>actions</source>
+				<target>Actions</target>
+			</trans-unit>
+			<trans-unit id="action.add">
+				<source>action.add</source>
+				<target>Ajouter</target>
+			</trans-unit>
+			<trans-unit id="action.back_to_list">
+				<source>action.back_to_list</source>
+				<target>Retourner à la liste</target>
+			</trans-unit>
+			<trans-unit id="action.delete">
+				<source>action.delete</source>
+				<target>Supprimer</target>
+			</trans-unit>
+			<trans-unit id="action.edit">
+				<source>action.edit</source>
+				<target>Modifier</target>
+			</trans-unit>
+			<trans-unit id="action.show">
+				<source>action.show</source>
+				<target>Afficher</target>
+			</trans-unit>
+			<trans-unit id="coin.add">
+				<source>coin.add</source>
+				<target>Ajouter une pièce</target>
+			</trans-unit>
+			<trans-unit id="coin.adding">
+				<source>coin.adding</source>
+				<target>Ajout d'une pièce</target>
+			</trans-unit>
+			<trans-unit id="coin.commemorative">
+				<source>coin.commemorative</source>
+				<target>Commémorative</target>
+			</trans-unit>
+			<trans-unit id="coin.description">
+				<source>coin.description</source>
+				<target>Description</target>
+			</trans-unit>
+			<trans-unit id="coin.editing">
+				<source>coin.editing</source>
+				<target>Edition d'une pièce</target>
+			</trans-unit>
+			<trans-unit id="coin.list">
+				<source>coin.list</source>
+				<target>Liste des pièces</target>
+			</trans-unit>
+			<trans-unit id="coin.mintage">
+				<source>coin.mintage</source>
+				<target>Tirage</target>
+			</trans-unit>
+			<trans-unit id="coin.name">
+				<source>coin.name</source>
+				<target>Nom</target>
+			</trans-unit>
+			<trans-unit id="coin.none">
+				<source>coin.none</source>
+				<target>Aucune pièce n'a été enregistrée pour ce pays.</target>
+			</trans-unit>
+			<trans-unit id="coin.show">
+				<source>coin.show</source>
+				<target>Affichage d'une pièce</target>
+			</trans-unit>
+			<trans-unit id="coin.total">
+				<source>coin.total</source>
+				<target>Total</target>
+			</trans-unit>
+			<trans-unit id="coin.year">
+				<source>coin.year</source>
+				<target>Année</target>
+			</trans-unit>
+			<trans-unit id="countries">
+				<source>countries</source>
+				<target>Pays</target>
+			</trans-unit>
+			<trans-unit id="country.add">
+				<source>country.add</source>
+				<target>Ajouter un pays</target>
+			</trans-unit>
+			<trans-unit id="country.adding">
+				<source>country.adding</source>
+				<target>Ajout d'un pays</target>
+			</trans-unit>
+			<trans-unit id="country.change_rate">
+				<source>country.change_rate</source>
+				<target>Taux de change</target>
+			</trans-unit>
+			<trans-unit id="country.editing">
+				<source>country.editing</source>
+				<target>Modification de &quot;%name%&quot;</target>
+			</trans-unit>
+			<trans-unit id="country.fomercurrency">
+				<source>country.fomercurrency</source>
+				<target>Ancienne monnaie</target>
+			</trans-unit>
+			<trans-unit id="country.join_date">
+				<source>country.join_date</source>
+				<target>Date de mise en circulation</target>
+			</trans-unit>
+			<trans-unit id="country.list">
+				<source>country.list</source>
+				<target>Liste des pays</target>
+			</trans-unit>
+			<trans-unit id="country.name">
+				<source>country.name</source>
+				<target>Nom</target>
+			</trans-unit>
+			<trans-unit id="country.mintage_per_year">
+				<source>country.mintage_per_year</source>
+				<target>Tirage par année</target>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>

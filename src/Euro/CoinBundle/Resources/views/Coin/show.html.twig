@@ -1,0 +1,34 @@
+{% extends 'EuroCoinBundle::base.html.twig' %}
+
+{% block title %}{{ 'coin.show'|trans }}{% endblock %}
+
+{% block body %}
+<h1>{{ block('title') }}</h1>
+
+<table class="table table-bordered table-striped">
+<tbody>
+	<tr>
+		<th>{{ 'coin.name'|trans }}</th>
+		<td>{{ coin.country|trans }} - {{ coin.year }} - {{ coin.value }} &euro;</td>
+	</tr>
+	<tr>
+		<th>{{ 'coin.commemorative'|trans }}</th>
+		<td>{{ coin.commemorative ? 'yes'|trans : 'no'|trans }}</td>
+	</tr>
+	<tr>
+		<th>{{ 'coin.mintage'|trans }}</th>
+		<td>{{ coin.mintage|number_format }}</td>
+	</tr>
+	<tr>
+		<th>{{ 'coin.description'|trans }}</th>
+		<td>{{ coin.description|trans }}</td>
+	</tr>
+</tbody>
+</table>
+
+<div class="btn-group">
+	<a class="btn btn-primary" href="{{ path('coin_edit', { 'id': coin.id }) }}">{{ 'action.edit'|trans }}</a>
+	<a class="btn" href="{{ path('coin') }}">{{ 'action.back_to_list'|trans }}</a>
+	<a class="btn btn-danger" href="{{ path('coin_delete', { 'id': coin.id }) }}">{{ 'action.delete'|trans }}</a>
+</div>
+{% endblock %}

@@ -1,0 +1,16 @@
+{% extends 'EuroCoinBundle::base.html.twig' %}
+
+{% block title %}{{ 'coin.adding'|trans }}{% endblock %}
+
+{% block body %}
+<h1>{{ block('title') }}</h1>
+
+<form action="{{ path('coin_create') }}" method="post" {{ form_enctype(form) }}>
+    {{ form_widget(form) }}
+
+	<div class="btn-group">
+		<button class="btn btn-primary" type="submit">{{ 'action.add'|trans }}</button>
+		<a class="btn" href="{{ path('coin') }}">{{ 'action.back_to_list'|trans }}</a>
+	</div>
+</form>
+{% endblock %}

@@ -1,0 +1,9 @@
+parameters:
+    euro_coin.twig_extension.class: Euro\CoinBundle\Twig\Extension
+
+services:
+    twig.extension.country:
+        class: %euro_coin.twig_extension.class%
+        arguments: [@doctrine.orm.entity_manager]
+        tags:
+            - { name: twig.extension }

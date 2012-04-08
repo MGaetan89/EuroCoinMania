@@ -1,0 +1,170 @@
+<?php
+
+namespace Euro\CoinBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Euro\CoinBundle\Entity\Country
+ *
+ * @ORM\Table()
+ * @ORM\Entity(repositoryClass="Euro\CoinBundle\Entity\CountryRepository")
+ */
+class Country {
+	/**
+	 * @var integer $id
+	 *
+	 * @ORM\Column(name="id", type="integer")
+	 * @ORM\Id
+	 * @ORM\GeneratedValue(strategy="AUTO")
+	 */
+	private $id;
+
+	/**
+	 * @var string $name
+	 *
+	 * @ORM\Column(name="name", type="string", length=100)
+	 */
+	private $name;
+
+	/**
+	 * @var date $join_date
+	 *
+	 * @ORM\Column(name="join_date", type="date")
+	 */
+	private $join_date;
+
+	/**
+	 * @var string $fomer_currency
+	 *
+	 * @ORM\Column(name="fomer_currency", type="string", length=100)
+	 */
+	private $fomer_currency;
+
+	/**
+	 * @var string $fomer_currency_name
+	 *
+	 * @ORM\Column(name="fomer_currency_name", type="string", length=5)
+	 */
+	private $fomer_currency_name;
+
+	/**
+	 * @var float $exchange_rate
+	 *
+	 * @ORM\Column(name="exchange_rate", type="float")
+	 */
+	private $exchange_rate;
+
+	/**
+	 * @ORM\OneToMany(targetEntity="Coin", mappedBy="country")
+	 */
+	protected $coins;
+
+	public function __toString() {
+		return $this->getName();
+	}
+
+	/**
+	 * Get id
+	 *
+	 * @return integer
+	 */
+	public function getId() {
+		return $this->id;
+	}
+
+	/**
+	 * Set name
+	 *
+	 * @param string $name
+	 */
+	public function setName($name) {
+		$this->name = $name;
+	}
+
+	/**
+	 * Get name
+	 *
+	 * @return string
+	 */
+	public function getName() {
+		return $this->name;
+	}
+
+	/**
+	 * Set join_date
+	 *
+	 * @param date $joinDate
+	 */
+	public function setJoinDate($joinDate) {
+		$this->join_date = $joinDate;
+	}
+
+	/**
+	 * Get join_date
+	 *
+	 * @return date
+	 */
+	public function getJoinDate() {
+		return $this->join_date;
+	}
+
+	/**
+	 * Set fomer_currency
+	 *
+	 * @param string $fomerCurrency
+	 */
+	public function setFomerCurrency($fomerCurrency) {
+		$this->fomer_currency = $fomerCurrency;
+	}
+
+	/**
+	 * Get fomer_currency
+	 *
+	 * @return string
+	 */
+	public function getFomerCurrency() {
+		return $this->fomer_currency;
+	}
+
+	/**
+	 * Set exchange_rate
+	 *
+	 * @param float $exchangeRate
+	 */
+	public function setExchangeRate($exchangeRate) {
+		$this->exchange_rate = $exchangeRate;
+	}
+
+	/**
+	 * Get exchange_rate
+	 *
+	 * @return float
+	 */
+	public function getExchangeRate() {
+		return $this->exchange_rate;
+	}
+
+	public function __construct() {
+		$this->coins = new \Doctrine\Common\Collections\ArrayCollection();
+	}
+
+	/**
+	 * Add coins
+	 *
+	 * @param Euro\CoinBundle\Entity\Coin $coins
+	 */
+	public function addCoin(\Euro\CoinBundle\Entity\Coin $coins) {
+		$this->coins[] = $coins;
+	}
+
+	/**
+	 * Get coins
+	 *
+	 * @return Doctrine\Common\Collections\Collection
+	 */
+	public function getCoins() {
+		return $this->coins;
+	}
+
+}

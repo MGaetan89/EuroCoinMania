@@ -1,0 +1,11 @@
+EuroCoinBundle_homepage:
+    pattern:  /hello/{name}
+    defaults: { _controller: EuroCoinBundle:Default:index }
+
+EuroCoinBundle_country:
+    resource: "@EuroCoinBundle/Resources/config/routing/country.yml"
+    prefix:   /country
+
+EuroCoinBundle_coin:
+    resource: "@EuroCoinBundle/Resources/config/routing/coin.yml"
+    prefix:   /coin
