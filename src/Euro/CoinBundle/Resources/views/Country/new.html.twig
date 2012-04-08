@@ -3,7 +3,9 @@
 {% block title %}{{ 'country.adding'|trans }}{% endblock %}
 
 {% block body %}
-<h1>{{ block('title') }}</h1>
+<div class="page-header">
+	<h1>{{ block('title') }}</h1>
+</div>
 
 <form action="{{ path('country_create') }}" method="post" {{ form_enctype(form) }}>
     {{ form_widget(form) }}

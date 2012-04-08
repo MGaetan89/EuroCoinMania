@@ -34,10 +34,6 @@
 				<source>action.edit</source>
 				<target>Modifier</target>
 			</trans-unit>
-			<trans-unit id="action.show">
-				<source>action.show</source>
-				<target>Afficher</target>
-			</trans-unit>
 			<trans-unit id="coin.add">
 				<source>coin.add</source>
 				<target>Ajouter une pièce</target>

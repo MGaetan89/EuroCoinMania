@@ -3,28 +3,22 @@
 {% block title %}{{ 'coin.show'|trans }}{% endblock %}
 
 {% block body %}
-<h1>{{ block('title') }}</h1>
+<div class="page-header">
+	<h1>{{ block('title') }}</h1>
+</div>
 
-<table class="table table-bordered table-striped">
-<tbody>
-	<tr>
-		<th>{{ 'coin.name'|trans }}</th>
-		<td>{{ coin.country|trans }} - {{ coin.year }} - {{ coin.value }} &euro;</td>
-	</tr>
-	<tr>
-		<th>{{ 'coin.commemorative'|trans }}</th>
-		<td>{{ coin.commemorative ? 'yes'|trans : 'no'|trans }}</td>
-	</tr>
-	<tr>
-		<th>{{ 'coin.mintage'|trans }}</th>
-		<td>{{ coin.mintage|number_format }}</td>
-	</tr>
-	<tr>
-		<th>{{ 'coin.description'|trans }}</th>
-		<td>{{ coin.description|trans }}</td>
-	</tr>
-</tbody>
-</table>
+<dl>
+	<dt>{{ 'coin.name'|trans }}</dt>
+	<dd><a href="{{ path('country_edit', { 'id': coin.country.id }) }}">{{ coin.country|trans }}</a> - {{ coin.year }} - {{ coin.value }} &euro;</dd>
+	<dt>{{ 'coin.commemorative'|trans }}</dt>
+	<dd>{{ coin.commemorative ? 'yes'|trans : 'no'|trans }}</dd>
+	<dt>{{ 'coin.mintage'|trans }}</dt>
+	<dd>{{ coin.mintage|number_format }}</dd>
+	{% if coin.description %}
+	<dt>{{ 'coin.description'|trans }}</dt>
+	<dd>{{ coin.description|trans }}</dd>
+	{% endif %}
+</dl>
 
 <div class="form-actions">
 	<div class="pull-left">

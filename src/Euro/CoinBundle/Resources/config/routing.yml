@@ -1,5 +1,5 @@
 EuroCoinBundle_homepage:
-    pattern:  /hello/{name}
+    pattern:  /
     defaults: { _controller: EuroCoinBundle:Default:index }
 
 EuroCoinBundle_country:

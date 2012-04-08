@@ -2,14 +2,10 @@
 
 {% block title %}{{ 'country.list'|trans }}{% endblock %}
 
-{% block tools %}
-<a class="btn pull-right" href="{{ path('country_new') }}"><i class="icon-plus"></i> {{ 'country.add'|trans }}</a>
-{% endblock %}
-
 {% block body %}
-<h1 class="pull-left">{{ block('title') }}</h1>
-
-{{ block('tools') }}
+<div class="page-header">
+	<h1>{{ block('title') }} <small><a href="{{ path('country_new') }}">{{ 'country.add'|trans }}</a></small></h1>
+</div>
 
 <table class="table table-bordered table-striped">
 <thead>
@@ -28,14 +24,9 @@
 		<td>{{ country.joindate|date('d/m/Y') }}</td>
 		<td>{{ country.fomercurrency|trans }}</td>
 		<td>1 &euro; = {{ country.exchangerate }} {{ country.fomercurrencyiso }}</td>
-		<td>
-			<a href="{{ path('country_show', { 'id': country.id }) }}">{{ 'action.show'|trans }}</a> |
-			<a href="{{ path('country_edit', { 'id': country.id }) }}">{{ 'action.edit'|trans }}</a>
-		</td>
+		<td><a href="{{ path('country_edit', { 'id': country.id }) }}">{{ 'action.edit'|trans }}</a></td>
 	</tr>
 {% endfor %}
 </tbody>
 </table>
-
-{{ block('tools') }}
 {% endblock %}

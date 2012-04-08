@@ -3,7 +3,9 @@
 {% block title %}{{ 'coin.editing'|trans }}{% endblock %}
 
 {% block body %}
-<h1>{{ block('title') }}</h1>
+<div class="page-header">
+	<h1>{{ block('title') }}</h1>
+</div>
 
 <form action="{{ path('coin_update', { 'id': coin.id }) }}" method="post" {{ form_enctype(edit_form) }}>
     {{ form_widget(edit_form) }}

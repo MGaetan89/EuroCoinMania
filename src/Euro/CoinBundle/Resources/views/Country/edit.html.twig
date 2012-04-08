@@ -3,7 +3,9 @@
 {% block title %}{{ 'country.editing'|trans({ '%name%': country.name }) }}{% endblock %}
 
 {% block body %}
-<h1>{{ block('title') }}</h1>
+<div class="page-header">
+	<h1>{{ block('title') }}</h1>
+</div>
 
 <form action="{{ path('country_update', { 'id': country.id }) }}" method="post" {{ form_enctype(edit_form) }}>
 	{{ form_widget(edit_form) }}

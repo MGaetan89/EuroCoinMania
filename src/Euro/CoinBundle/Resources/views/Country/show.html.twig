@@ -5,26 +5,22 @@
 {% block empty_cell %}<td>-</td>{% endblock %}
 
 {% block body %}
-<h1>{{ block('title') }}</h1>
+<div class="page-header">
+	<h1>{{ block('title') }}</h1>
+</div>
 
-<table class="table table-bordered table-striped">
-<tbody>
-	<tr>
-		<th>{{ 'country.name'|trans }}</th>
-		<td>{{ country.name|trans }}</td>
-		<th>{{ 'country.join_date'|trans }}</th>
-		<td>{{ country.joindate|date('d/m/Y') }}</td>
-	</tr>
-	<tr>
-		<th>{{ 'country.fomercurrency'|trans }}</th>
-		<td>{{ country.fomercurrency|trans }}</td>
-		<th>{{ 'country.change_rate'|trans }}</th>
-		<td>1 &euro; = {{ country.exchangerate }} {{ country.fomercurrencyiso }}</td>
-	</tr>
-</tbody>
-</table>
+<dl>
+	<dt>{{ 'country.join_date'|trans }}</dt>
+	<dd>{{ country.joindate|date('d/m/Y') }}</dd>
+	<dt>{{ 'country.fomercurrency'|trans }}</dt>
+	<dd>{{ country.fomercurrency }}</dd>
+	<dt>{{ 'country.change_rate'|trans }}</dt>
+	<dd>1 &euro; = {{ country.exchangerate }} {{ country.fomercurrencyiso }}</dd>
+</dl>
 
-<h3>{{ 'country.mintage_per_year'|trans }}</h3>
+<div class="page-header">
+	<h3>{{ 'country.mintage_per_year'|trans }}</h3>
+</div>
 
 {% if coins %}
 {% set changed, columns, nbval, values, year = false, 0, counts_value|length - 1, counts_value|keys, 1990 %}

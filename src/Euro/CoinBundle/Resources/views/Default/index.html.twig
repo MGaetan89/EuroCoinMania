@@ -1,1 +1,9 @@
-Hello {{ name }}!
+{% extends 'EuroCoinBundle::base.html.twig' %}
+
+{% block body %}
+<div class="hero-unit">
+	<h1>{{ 'sitename'|trans }}</h1>
+
+	<p>{{ 'sitename_welcome'|trans }}</p>
+</div>
+{% endblock %}
