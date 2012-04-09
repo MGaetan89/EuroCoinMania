@@ -51,14 +51,17 @@ $(function () {
 		onLoad: function () {
 			{% for country in countries %}
 				{% if country.nameiso %}
-					$('#{{ country.nameiso }}', this).css('fill', '{{ startColor }}')
-					.attr('title', '{{ country.name|trans }}').click(function () {
-						location.href = '{{ path('country_show', { 'id': country.id }) }}';
-					}).hover(function () {
-						$(this).css('fill', '{{ endColor }}');
-					}, function () {
-						$(this).css('fill', '{{ startColor }}');
-					});
+					$('#{{ country.nameiso }}', this)
+						.css('fill', '{{ startColor }}')
+						.attr('title', '{{ country.name|trans }}')
+						.click(function () {
+							location.href = '{{ path('country_show', { 'id': country.id }) }}';
+						})
+						.hover(function () {
+							$(this).css('fill', '{{ endColor }}');
+						}, function () {
+							$(this).css('fill', '{{ startColor }}');
+						});
 				{% endif %}
 			{% endfor %}
 		}

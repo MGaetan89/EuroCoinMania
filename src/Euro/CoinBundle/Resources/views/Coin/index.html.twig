@@ -3,6 +3,8 @@
 {% block title %}{{ 'coin.list'|trans }}{% endblock %}
 
 {% block body %}
+{% set total_coins = 0 %}
+
 <div class="page-header">
 	<h1>{{ block('title') }} <small><a href="{{ path('coin_new') }}">{{ 'coin.add'|trans }}</a></small></h1>
 </div>
@@ -30,7 +32,16 @@
 		<td>{{ coin.description|trans }}</td>
 		<td><a href="{{ path('coin_edit', { 'id': coin.id }) }}">{{ 'action.edit'|trans }}</a></td>
 	</tr>
+
+	{% set total_coins = total_coins + coin.mintage %}
 {% endfor %}
 </tbody>
+<tfoot>
+	<th>{{ 'coin.total'|trans }}</th>
+	<th></th>
+	<th>{{ total_coins|number_format }}</th>
+	<th></th>
+	<th></th>
+</tfoot>
 </table>
 {% endblock %}
