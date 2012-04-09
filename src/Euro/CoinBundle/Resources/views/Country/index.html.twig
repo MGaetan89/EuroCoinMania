@@ -7,26 +7,62 @@
 	<h1>{{ block('title') }} <small><a href="{{ path('country_new') }}">{{ 'country.add'|trans }}</a></small></h1>
 </div>
 
-<table class="table table-bordered table-striped">
-<thead>
-	<tr>
-		<th>{{ 'country.name'|trans }}</th>
-		<th>{{ 'country.join_date'|trans }}</th>
-		<th>{{ 'country.fomercurrency'|trans }}</th>
-		<th>{{ 'country.change_rate'|trans }}</th>
-		<th>{{ 'actions'|trans }}</th>
-	</tr>
-</thead>
-<tbody>
-{% for country in countries %}
-	<tr>
-		<td><a href="{{ path('country_show', { 'id': country.id }) }}">{{ country.name|trans }}</a></td>
-		<td>{{ country.joindate|date('d/m/Y') }}</td>
-		<td>{{ country.fomercurrency|trans }}</td>
-		<td>1 &euro; = {{ country.exchangerate }} {{ country.fomercurrencyiso }}</td>
-		<td><a href="{{ path('country_edit', { 'id': country.id }) }}">{{ 'action.edit'|trans }}</a></td>
-	</tr>
-{% endfor %}
-</tbody>
-</table>
+<div class="row-fluid">
+	<div class="span6">
+		<div class="well">
+			<div id="map"></div>
+		</div>
+	</div>
+
+	<div class="span6">
+		<table class="table table-bordered table-striped">
+		<thead>
+			<tr>
+				<th>{{ 'country.name'|trans }}</th>
+				<th>{{ 'country.join_date'|trans }}</th>
+				<th>{{ 'country.fomercurrency'|trans }}</th>
+				<th>{{ 'country.change_rate'|trans }}</th>
+				<th>{{ 'actions'|trans }}</th>
+			</tr>
+		</thead>
+		<tbody>
+		{% for country in countries %}
+			<tr>
+				<td><a href="{{ path('country_show', { 'id': country.id }) }}">{{ country.name|trans }}</a></td>
+				<td>{{ country.joindate|date('d/m/Y') }}</td>
+				<td>{{ country.fomercurrency|trans }}</td>
+				<td>1 &euro; = {{ country.exchangerate }} {{ country.fomercurrencyiso }}</td>
+				<td><a href="{{ path('country_edit', { 'id': country.id }) }}">{{ 'action.edit'|trans }}</a></td>
+			</tr>
+		{% endfor %}
+		</tbody>
+		</table>
+	</div>
+</div>
+{% endblock %}
+
+{% block javascript %}
+{% set startColor, endColor = '#0088CC', '#005580' %}
+<script src="{{ asset('bundles/eurocoin/js/jquery.svg.js') }}" type="text/javascript"></script>
+<script type="text/javascript">
+$(function () {
+	$('#map').svg({
+		loadURL: '{{ asset('bundles/eurocoin/images/europe.svg') }}',
+		onLoad: function () {
+			{% for country in countries %}
+				{% if country.nameiso %}
+					$('#{{ country.nameiso }}', this).css('fill', '{{ startColor }}')
+					.attr('title', 'Test').click(function () {
+						location.href = '{{ path('country_show', { 'id': country.id }) }}';
+					}).hover(function () {
+						$(this).css('fill', '{{ endColor }}');
+					}, function () {
+						$(this).css('fill', '{{ startColor }}');
+					});
+				{% endif %}
+			{% endfor %}
+		}
+	});
+});
+</script>
 {% endblock %}

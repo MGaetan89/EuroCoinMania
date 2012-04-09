@@ -28,6 +28,13 @@ class Country {
 	private $name;
 
 	/**
+	 * @var string $nameiso
+	 *
+	 * @ORM\Column(name="nameiso", type="string", length=2)
+	 */
+	private $nameiso;
+
+	/**
 	 * @var date $join_date
 	 *
 	 * @ORM\Column(name="join_date", type="date")
@@ -89,6 +96,24 @@ class Country {
 	 */
 	public function getName() {
 		return $this->name;
+	}
+
+	/**
+	 * Set nameiso
+	 *
+	 * @param string $nameiso
+	 */
+	public function setNameiso($nameiso) {
+		$this->nameiso = $nameiso;
+	}
+
+	/**
+	 * Get nameiso
+	 *
+	 * @return string
+	 */
+	public function getNameiso() {
+		return $this->nameiso;
 	}
 
 	/**
