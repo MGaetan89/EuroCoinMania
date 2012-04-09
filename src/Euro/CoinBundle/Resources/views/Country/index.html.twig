@@ -52,7 +52,7 @@ $(function () {
 			{% for country in countries %}
 				{% if country.nameiso %}
 					$('#{{ country.nameiso }}', this).css('fill', '{{ startColor }}')
-					.attr('title', 'Test').click(function () {
+					.attr('title', '{{ country.name|trans }}').click(function () {
 						location.href = '{{ path('country_show', { 'id': country.id }) }}';
 					}).hover(function () {
 						$(this).css('fill', '{{ endColor }}');
