@@ -10,6 +10,7 @@ class CountryType extends AbstractType {
 	public function buildForm(FormBuilder $builder, array $options) {
 		$builder
 				->add('name')
+				->add('nameiso')
 				->add('join_date', null, array(
 					'years' => range('2002', date('Y'))
 				))

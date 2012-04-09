@@ -126,6 +126,10 @@
 				<source>Name</source>
 				<target>Nom</target>
 			</trans-unit>
+			<trans-unit id="Nameiso">
+				<source>Nameiso</source>
+				<target>Nom ISO</target>
+			</trans-unit>
 			<trans-unit id="Join date">
 				<source>Join date</source>
 				<target>Date de mise en circulation</target>
