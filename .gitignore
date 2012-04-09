@@ -1,3 +1,4 @@
 nbproject/
 app/cache/
-/app/logs/
+app/logs/
+web/bundles/
