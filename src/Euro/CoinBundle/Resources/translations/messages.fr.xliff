@@ -166,164 +166,164 @@
 				<source>Description</source>
 				<target>Description</target>
 			</trans-unit>
-			<trans-unit id="Allemagne">
-				<source>Allemagne</source>
-				<target>Allemagne</target>
-			</trans-unit>
-			<trans-unit id="Autriche">
-				<source>Autriche</source>
+			<trans-unit id="country.name.austria">
+				<source>country.name.austria</source>
 				<target>Autriche</target>
 			</trans-unit>
-			<trans-unit id="Belgique">
-				<source>Belgique</source>
+			<trans-unit id="country.name.belgium">
+				<source>country.name.belgium</source>
 				<target>Belgique</target>
 			</trans-unit>
-			<trans-unit id="Chypre">
-				<source>Chypre</source>
+			<trans-unit id="country.name.cyprus">
+				<source>country.name.cyprus</source>
 				<target>Chypre</target>
 			</trans-unit>
-			<trans-unit id="Espagne">
-				<source>Espagne</source>
-				<target>Espagne</target>
-			</trans-unit>
-			<trans-unit id="Estonie">
-				<source>Estonie</source>
+			<trans-unit id="country.name.estonia">
+				<source>country.name.estonia</source>
 				<target>Estonie</target>
 			</trans-unit>
-			<trans-unit id="Finlande">
-				<source>Finlande</source>
+			<trans-unit id="country.name.finland">
+				<source>country.name.finland</source>
 				<target>Finlande</target>
 			</trans-unit>
-			<trans-unit id="France">
-				<source>France</source>
+			<trans-unit id="country.name.france">
+				<source>country.name.france</source>
 				<target>France</target>
 			</trans-unit>
-			<trans-unit id="Grèce">
-				<source>Grèce</source>
+			<trans-unit id="country.name.germany">
+				<source>country.name.germany</source>
+				<target>Allemagne</target>
+			</trans-unit>
+			<trans-unit id="country.name.greece">
+				<source>country.name.greece</source>
 				<target>Grèce</target>
 			</trans-unit>
-			<trans-unit id="Irlande">
-				<source>Irlande</source>
+			<trans-unit id="country.name.ireland">
+				<source>country.name.ireland</source>
 				<target>Irlande</target>
 			</trans-unit>
-			<trans-unit id="Italie">
-				<source>Italie</source>
+			<trans-unit id="country.name.italy">
+				<source>country.name.italy</source>
 				<target>Italie</target>
 			</trans-unit>
-			<trans-unit id="Luxembourg">
-				<source>Luxembourg</source>
+			<trans-unit id="country.name.luxembourg">
+				<source>country.name.luxembourg</source>
 				<target>Luxembourg</target>
 			</trans-unit>
-			<trans-unit id="Malte">
-				<source>Malte</source>
+			<trans-unit id="country.name.malta">
+				<source>country.name.malta</source>
 				<target>Malte</target>
 			</trans-unit>
-			<trans-unit id="Monaco">
-				<source>Monaco</source>
+			<trans-unit id="country.name.monaco">
+				<source>country.name.monaco</source>
 				<target>Monaco</target>
 			</trans-unit>
-			<trans-unit id="Pays-Bas">
-				<source>Pays-Bas</source>
+			<trans-unit id="country.name.netherlands">
+				<source>country.name.netherlands</source>
 				<target>Pays-Bas</target>
 			</trans-unit>
-			<trans-unit id="Portugal">
-				<source>Portugal</source>
+			<trans-unit id="country.name.portugal">
+				<source>country.name.portugal</source>
 				<target>Portugal</target>
 			</trans-unit>
-			<trans-unit id="Saint-Marin">
-				<source>Saint-Marin</source>
+			<trans-unit id="country.name.san-marino">
+				<source>country.name.san-marino</source>
 				<target>Saint-Marin</target>
 			</trans-unit>
-			<trans-unit id="Slovaquie">
-				<source>Slovaquie</source>
+			<trans-unit id="country.name.slovakia">
+				<source>country.name.slovakia</source>
 				<target>Slovaquie</target>
 			</trans-unit>
-			<trans-unit id="Slovénie">
-				<source>Slovénie</source>
+			<trans-unit id="country.name.slovenia">
+				<source>country.name.slovenia</source>
 				<target>Slovénie</target>
 			</trans-unit>
-			<trans-unit id="Vatican">
-				<source>Vatican</source>
+			<trans-unit id="country.name.spain">
+				<source>country.name.spain</source>
+				<target>Espagne</target>
+			</trans-unit>
+			<trans-unit id="country.name.vatican">
+				<source>country.name.vatican</source>
 				<target>Vatican</target>
 			</trans-unit>
-			<trans-unit id="Mark allemand">
-				<source>Mark allemand</source>
-				<target>Mark allemand</target>
-			</trans-unit>
-			<trans-unit id="Schilling autrichien">
-				<source>Schilling autrichien</source>
+			<trans-unit id="country.currency.austria">
+				<source>country.currency.austria</source>
 				<target>Schilling autrichien</target>
 			</trans-unit>
-			<trans-unit id="Franc belge">
-				<source>Franc belge</source>
+			<trans-unit id="country.currency.belgium">
+				<source>country.currency.belgium</source>
 				<target>Franc belge</target>
 			</trans-unit>
-			<trans-unit id="Livre chypriote">
-				<source>Livre chypriote</source>
+			<trans-unit id="country.currency.cyprus">
+				<source>country.currency.cyprus</source>
 				<target>Livre chypriote</target>
 			</trans-unit>
-			<trans-unit id="Peseta espagnole">
-				<source>Peseta espagnole</source>
-				<target>Peseta espagnole</target>
-			</trans-unit>
-			<trans-unit id="Couronne estonienne">
-				<source>Couronne estonienne</source>
+			<trans-unit id="country.currency.estonia">
+				<source>country.currency.estonia</source>
 				<target>Couronne estonienne</target>
 			</trans-unit>
-			<trans-unit id="Mark finlandais">
-				<source>Mark finlandais</source>
+			<trans-unit id="country.currency.finland">
+				<source>country.currency.finland</source>
 				<target>Mark finlandais</target>
 			</trans-unit>
-			<trans-unit id="Franc français">
-				<source>Franc français</source>
+			<trans-unit id="country.currency.france">
+				<source>country.currency.france</source>
 				<target>Franc français</target>
 			</trans-unit>
-			<trans-unit id="Drachme moderne grecque">
-				<source>Drachme moderne grecque</source>
+			<trans-unit id="country.currency.germany">
+				<source>country.currency.germany</source>
+				<target>Mark allemand</target>
+			</trans-unit>
+			<trans-unit id="country.currency.greece">
+				<source>country.currency.greece</source>
 				<target>Drachme moderne grecque</target>
 			</trans-unit>
-			<trans-unit id="Livre irlandaise">
-				<source>Livre irlandaise</source>
+			<trans-unit id="country.currency.ireland">
+				<source>country.currency.irelandLivre irlandaise</source>
 				<target>Livre irlandaise</target>
 			</trans-unit>
-			<trans-unit id="Lire italienne">
-				<source>Lire italienne</source>
+			<trans-unit id="country.currency.italy">
+				<source>country.currency.italy</source>
 				<target>Lire italienne</target>
 			</trans-unit>
-			<trans-unit id="Franc luxembourgeois">
-				<source>Franc luxembourgeois</source>
+			<trans-unit id="country.currency.luxembourg">
+				<source>country.currency.luxembourg</source>
 				<target>Franc luxembourgeois</target>
 			</trans-unit>
-			<trans-unit id="Lire maltaise">
-				<source>Lire maltaise</source>
+			<trans-unit id="country.currency.malta">
+				<source>country.currency.malta</source>
 				<target>Lire maltaise</target>
 			</trans-unit>
-			<trans-unit id="Franc monégasque">
-				<source>Franc monégasque</source>
+			<trans-unit id="country.currency.monaco">
+				<source>country.currency.monaco</source>
 				<target>Franc monégasque</target>
 			</trans-unit>
-			<trans-unit id="Florin néerlandais">
-				<source>Florin néerlandais</source>
+			<trans-unit id="country.currency.netherlands">
+				<source>country.currency.netherlands</source>
 				<target>Florin néerlandais</target>
 			</trans-unit>
-			<trans-unit id="Escudo portugais">
-				<source>Escudo portugais</source>
+			<trans-unit id="country.currency.portugal">
+				<source>country.currency.portugal</source>
 				<target>Escudo portugais</target>
 			</trans-unit>
-			<trans-unit id="Lire de Saint-Marin">
-				<source>Lire de Saint-Marin</source>
+			<trans-unit id="country.currency.san-marino">
+				<source>country.currency.san-marino</source>
 				<target>Lire de Saint-Marin</target>
 			</trans-unit>
-			<trans-unit id="Couronne slovaque">
-				<source>Couronne slovaque</source>
+			<trans-unit id="country.currency.slovakia">
+				<source>country.currency.slovakia</source>
 				<target>Couronne slovaque</target>
 			</trans-unit>
-			<trans-unit id="Tolar slovène">
-				<source>Tolar slovène</source>
+			<trans-unit id="country.currency.slovenia">
+				<source>country.currency.slovenia</source>
 				<target>Tolar slovène</target>
 			</trans-unit>
-			<trans-unit id="Lire vaticane">
-				<source>Lire vaticane</source>
+			<trans-unit id="country.currency.spain">
+				<source>country.currency.spain</source>
+				<target>Peseta espagnole</target>
+			</trans-unit>
+			<trans-unit id="country.currency.vatican">
+				<source>country.currency.vatican</source>
 				<target>Lire vaticane</target>
 			</trans-unit>
 		</body>
