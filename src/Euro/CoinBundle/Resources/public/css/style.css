@@ -1,3 +1,8 @@
+.dropdown-menu a:hover [class^="icon-"],
+.dropdown-menu a:hover [class*="icon-"] {
+	background-image:url("../images/glyphicons-halflings-white.png");
+}
+
 body {
 	padding-top: 60px;
 }

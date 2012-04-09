@@ -128,7 +128,7 @@
 			</trans-unit>
 			<trans-unit id="Nameiso">
 				<source>Nameiso</source>
-				<target>Nom ISO</target>
+				<target>Nom (ISO)</target>
 			</trans-unit>
 			<trans-unit id="Join date">
 				<source>Join date</source>
