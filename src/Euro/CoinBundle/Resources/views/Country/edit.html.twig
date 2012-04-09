@@ -1,6 +1,6 @@
 {% extends 'EuroCoinBundle::base.html.twig' %}
 
-{% block title %}{{ 'country.editing'|trans({ '%name%': country.name }) }}{% endblock %}
+{% block title %}{{ 'country.editing'|trans({ '%name%': country.name|trans }) }}{% endblock %}
 
 {% block body %}
 <div class="page-header">
