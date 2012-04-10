@@ -170,6 +170,10 @@
 				<source>Description</source>
 				<target>Description</target>
 			</trans-unit>
+			<trans-unit id="Collector">
+				<source>Collector</source>
+				<target>Pièce de collection</target>
+			</trans-unit>
 			<trans-unit id="country.name.austria">
 				<source>country.name.austria</source>
 				<target>Autriche</target>
@@ -329,6 +333,30 @@
 			<trans-unit id="country.currency.vatican">
 				<source>country.currency.vatican</source>
 				<target>Lire vaticane</target>
+			</trans-unit>
+			<trans-unit id="value.add">
+				<source>value.add</source>
+				<target>Ajouter une valeur</target>
+			</trans-unit>
+			<trans-unit id="value.adding">
+				<source>value.adding</source>
+				<target>Ajout d'une valeur</target>
+			</trans-unit>
+			<trans-unit id="value.collector">
+				<source>value.collector</source>
+				<target>Pièce de collection</target>
+			</trans-unit>
+			<trans-unit id="value.editing">
+				<source>value.editing</source>
+				<target>Modification de &quot;%name% €&quot;</target>
+			</trans-unit>
+			<trans-unit id="value.list">
+				<source>value.list</source>
+				<target>Liste des valeurs</target>
+			</trans-unit>
+			<trans-unit id="value.value">
+				<source>value.value</source>
+				<target>Valeur</target>
 			</trans-unit>
 		</body>
 	</file>

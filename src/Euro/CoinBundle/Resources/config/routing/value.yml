@@ -1,0 +1,30 @@
+value:
+    pattern:  /
+    defaults: { _controller: "EuroCoinBundle:Value:index" }
+
+value_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "EuroCoinBundle:Value:show" }
+
+value_new:
+    pattern:  /new
+    defaults: { _controller: "EuroCoinBundle:Value:new" }
+
+value_create:
+    pattern:  /create
+    defaults: { _controller: "EuroCoinBundle:Value:create" }
+    requirements: { _method: post }
+
+value_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "EuroCoinBundle:Value:edit" }
+
+value_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "EuroCoinBundle:Value:update" }
+    requirements: { _method: post }
+
+value_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "EuroCoinBundle:Value:delete" }
+    requirements: { _method: post }

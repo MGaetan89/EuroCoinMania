@@ -21,9 +21,8 @@ class Coin {
 	private $id;
 
 	/**
-	 * @var float $value
-	 *
-	 * @ORM\Column(name="value", type="float")
+	 * @ORM\ManyToOne(targetEntity="Value", inversedBy="coins")
+	 * @ORM\JoinColumn(name="value_id", referencedColumnName="id")
 	 */
 	private $value;
 
@@ -73,16 +72,16 @@ class Coin {
 	/**
 	 * Set value
 	 *
-	 * @param float $value
+	 * @param Euro\CoinBundle\Entity\Value $value
 	 */
-	public function setValue($value) {
+	public function setValue(\Euro\CoinBundle\Entity\Value $value) {
 		$this->value = $value;
 	}
 
 	/**
 	 * Get value
 	 *
-	 * @return float
+	 * @return Euro\CoinBundle\Entity\Value
 	 */
 	public function getValue() {
 		return $this->value;

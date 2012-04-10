@@ -1,0 +1,28 @@
+{% extends 'EuroCoinBundle::base.html.twig' %}
+
+{% block title %}{{ 'value.list'|trans }}{% endblock %}
+
+{% block body %}
+<div class="page-header">
+	<h1>{{ block('title') }} <small><a href="{{ path('value_new') }}">{{ 'value.add'|trans }}</a></small></h1>
+</div>
+
+<table class="table table-bordered table-striped">
+<thead>
+	<tr>
+		<th>{{ 'value.value'|trans }}</th>
+		<th>{{ 'value.collector'|trans }}</th>
+		<th>{{ 'actions'|trans }}</th>
+	</tr>
+</thead>
+<tbody>
+{% for value in values %}
+	<tr>
+		<td><a href="{{ path('value_show', { 'id': value.id }) }}">{{ value.value }} &euro;</a></td>
+		<td>{{ value.collector ? 'yes'|trans : 'no'|trans }}</td>
+		<td><a href="{{ path('value_edit', { 'id': value.id }) }}">{{ 'action.edit'|trans }}</a></td>
+	</tr>
+{% endfor %}
+</tbody>
+</table>
+{% endblock %}

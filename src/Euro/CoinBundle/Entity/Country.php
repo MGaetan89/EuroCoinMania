@@ -67,6 +67,10 @@ class Country {
 	 */
 	protected $coins;
 
+	public function __construct() {
+		$this->coins = new \Doctrine\Common\Collections\ArrayCollection();
+	}
+
 	public function __toString() {
 		return $this->getName();
 	}
@@ -186,10 +190,6 @@ class Country {
 	 */
 	public function getExchangeRate() {
 		return $this->exchange_rate;
-	}
-
-	public function __construct() {
-		$this->coins = new \Doctrine\Common\Collections\ArrayCollection();
 	}
 
 	/**
