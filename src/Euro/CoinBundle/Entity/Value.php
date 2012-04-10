@@ -48,6 +48,10 @@ class Value {
 		return $this->id;
 	}
 
+	public function __construct() {
+		$this->coins = new \Doctrine\Common\Collections\ArrayCollection();
+	}
+
 	/**
 	 * Set value
 	 *
