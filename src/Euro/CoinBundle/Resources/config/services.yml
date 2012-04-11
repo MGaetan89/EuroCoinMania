@@ -4,6 +4,6 @@ parameters:
 services:
     twig.extension.country:
         class: %euro_coin.twig_extension.class%
-        arguments: [@doctrine.orm.entity_manager]
+        arguments: [@doctrine.orm.entity_manager, @translator]
         tags:
             - { name: twig.extension }
