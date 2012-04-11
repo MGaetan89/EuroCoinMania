@@ -10,18 +10,7 @@ class CoinType extends AbstractType {
 	public function buildForm(FormBuilder $builder, array $options) {
 		$builder
 				->add('country')
-				->add('value', 'choice', array(
-					'choices' => array(
-						'0.01' => '0.01 €',
-						'0.02' => '0.02 €',
-						'0.05' => '0.05 €',
-						'0.10' => '0.10 €',
-						'0.20' => '0.20 €',
-						'0.50' => '0.50 €',
-						'1.00' => '1.00 €',
-						'2.00' => '2.00 €',
-					)
-				))
+				->add('value')
 				->add('year')
 				->add('commemorative')
 				->add('mintage')

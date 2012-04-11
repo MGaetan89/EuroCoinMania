@@ -52,6 +52,10 @@ class Value {
 		$this->coins = new \Doctrine\Common\Collections\ArrayCollection();
 	}
 
+	public function __toString() {
+		return $this->value . ' €';
+	}
+
 	/**
 	 * Set value
 	 *
