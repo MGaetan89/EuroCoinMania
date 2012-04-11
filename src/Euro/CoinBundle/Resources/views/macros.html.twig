@@ -1,0 +1,9 @@
+{% macro bool(value) %}
+	{% if value %}
+		{% set class = 'success' %}
+	{% else %}
+		{% set class = 'danger' %}
+	{% endif %}
+
+	<btn class="btn btn-{{ class }} btn-mini"><i class="icon-white icon-remove"></i></span>
+{% endmacro %}

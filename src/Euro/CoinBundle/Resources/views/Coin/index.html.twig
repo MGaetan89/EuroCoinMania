@@ -28,7 +28,7 @@
 				{{ coin.country|trans }} - {{ coin.year }} - {{ coin.value }} &euro;
 			</a>
 		</td>
-		<td>{{ coin.commemorative ? 'yes'|trans : 'no'|trans }}</td>
+		<td>{{ macros.bool(coin.commemorative) }}</td>
 		<td>{{ coin.mintage|number_format }}</td>
 		<td>{{ coin.description|trans }}</td>
 		<td><a href="{{ path('coin_edit', { 'id': coin.id }) }}">{{ 'action.edit'|trans }}</a></td>

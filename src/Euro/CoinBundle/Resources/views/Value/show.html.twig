@@ -13,7 +13,7 @@
 	<dt>{{ 'value.value'|trans }}</dt>
 	<dd>{{ value.value }} &euro;</dd>
 	<dt>{{ 'value.collector'|trans }}</dt>
-	<dd>{{ value.collector ? 'yes'|trans : 'no'|trans }}</dd>
+	<dd>{{ macros.bool(value.collector) }}</dd>
 </dl>
 
 <div class="form-actions">

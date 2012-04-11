@@ -20,7 +20,7 @@
 {% for value in values %}
 	<tr>
 		<td><a href="{{ path('value_show', { 'id': value.id }) }}">{{ value.value }} &euro;</a></td>
-		<td>{{ value.collector ? 'yes'|trans : 'no'|trans }}</td>
+		<td>{{ macros.bool(value.collector) }}</td>
 		<td><a href="{{ path('value_edit', { 'id': value.id }) }}">{{ 'action.edit'|trans }}</a></td>
 	</tr>
 {% endfor %}
