@@ -17,11 +17,12 @@ class CoinRepository extends EntityRepository {
 		$expr = $queryBuiler->expr();
 
 		return $queryBuiler
+						->join('c.value', 'v')
 						->where(
 								$expr->eq('c.country', ':country')
 						)
 						->orderBy('c.year', 'ASC')
-						->addOrderBy('c.value', 'DESC')
+						->addOrderBy('v.value', 'DESC')
 						->setParameter('country', $country)
 						->getQuery()
 						->getResult();
