@@ -9,6 +9,7 @@
 	<h1>{{ block('title') }} <small><a href="{{ path('coin_new') }}">{{ 'coin.add'|trans }}</a></small></h1>
 </div>
 
+{% if coins %}
 <table class="table table-bordered table-condensed table-striped">
 <thead>
 	<tr>
@@ -44,4 +45,9 @@
 	<th></th>
 </tfoot>
 </table>
+{% else %}
+<div class="alert alert-info">
+	{{ 'coin.none'|trans }}
+</div>
+{% endif %}
 {% endblock %}

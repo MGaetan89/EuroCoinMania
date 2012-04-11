@@ -7,6 +7,7 @@
 	<h1>{{ block('title') }} <small><a href="{{ path('country_new') }}">{{ 'country.add'|trans }}</a></small></h1>
 </div>
 
+{% if countries %}
 <div class="row-fluid">
 	<div class="span5">
 		<div class="well">
@@ -39,6 +40,11 @@
 		</table>
 	</div>
 </div>
+{% else %}
+<div class="alert alert-info">
+	{{ 'country.none'|trans }}
+</div>
+{% endif %}
 {% endblock %}
 
 {% block javascript %}
