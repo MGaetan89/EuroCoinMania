@@ -1,9 +1,9 @@
 {% macro bool(value) %}
 	{% if value %}
-		{% set class, icon = 'success', 'ok' %}
+		{% set class, icon, title = 'success', 'ok', 'yes' %}
 	{% else %}
-		{% set class, icon = 'danger', 'remove' %}
+		{% set class, icon, title = 'danger', 'remove', 'no' %}
 	{% endif %}
 
-	<btn class="btn btn-{{ class }} btn-mini"><i class="icon-white icon-{{ icon }}"></i></span>
+	<btn class="btn btn-{{ class }} btn-mini" title="{{ title|trans }}"><i class="icon-white icon-{{ icon }}"></i></span>
 {% endmacro %}
