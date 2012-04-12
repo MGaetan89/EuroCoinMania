@@ -12,6 +12,17 @@ use Doctrine\ORM\EntityRepository;
  */
 class CoinRepository extends EntityRepository {
 
+	public function getAllYear() {
+		$queryBuiler = $this->createQueryBuilder('c');
+
+		return $queryBuiler
+						->select('c.year')
+						->distinct()
+						->orderBy('c.year', 'ASC')
+						->getQuery()
+						->getResult();
+	}
+
 	public function getCoinsByCountry($country) {
 		$queryBuiler = $this->createQueryBuilder('c');
 		$expr = $queryBuiler->expr();

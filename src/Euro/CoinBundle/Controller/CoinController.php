@@ -18,11 +18,16 @@ class CoinController extends Controller {
 	 */
 	public function indexAction() {
 		$em = $this->getDoctrine()->getEntityManager();
+		$repository = $em->getRepository('EuroCoinBundle:Coin');
 
-		$coins = $em->getRepository('EuroCoinBundle:Coin')->findAll();
+		$coins = $repository->findAll();
+		$values = $em->getRepository('EuroCoinBundle:Value')->findAll();
+		$years = $repository->getAllYear();
 
 		return $this->render('EuroCoinBundle:Coin:index.html.twig', array(
 					'coins' => $coins,
+					'values' => $values,
+					'years' => $years,
 				));
 	}
 

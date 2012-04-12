@@ -10,37 +10,108 @@
 </div>
 
 {% if coins %}
-<table class="table table-bordered table-condensed table-striped">
-<thead>
-	<tr>
-		<th>{{ 'coin.name'|trans }}</th>
-		<th>{{ 'coin.commemorative'|trans }}</th>
-		<th>{{ 'coin.mintage'|trans }}</th>
-		<th>{{ 'coin.description'|trans }}</th>
-		<th>{{ 'actions'|trans }}</th>
-	</tr>
-</thead>
-<tbody>
-{% for coin in coins %}
-	<tr>
-		<td><a href="{{ path('coin_show', { 'id': coin.id }) }}">{{ coin.country|trans }} - {{ coin.year }} - {{ coin.value }}</a></td>
-		<td>{{ macros.bool(coin.commemorative) }}</td>
-		<td>{{ coin.mintage|number_format }}</td>
-		<td>{{ coin.description|trans }}</td>
-		<td><a href="{{ path('coin_edit', { 'id': coin.id }) }}">{{ 'action.edit'|trans }}</a></td>
-	</tr>
+<div class="row-fluid">
+	<div class="span2">
+		<div class="nav nav-list">
+			<div class="nav-header">{{ 'filters'|trans }}</div>
+		</div>
 
-	{% set total_coins = total_coins + coin.mintage %}
-{% endfor %}
-</tbody>
-<tfoot>
-	<th>{{ 'coin.total'|trans }}</th>
-	<th></th>
-	<th>{{ total_coins|number_format }}</th>
-	<th></th>
-	<th></th>
-</tfoot>
-</table>
+		<div class="accordion" id="filters">
+			<div class="accordion-group">
+				<div class="accordion-heading">
+					<a class="accordion-toggle" data-parent="#filters" data-toggle="collapse" href="#filter_country">{{ 'countries'|trans }}</a>
+				</div>
+				<div class="accordion-body collapse" id="filter_country">
+					<div class="accordion-inner">
+						<ul>
+							{% for country in euro_countries %}
+							<li><a href="#">{{ country.name|trans }}</a></li>
+							{% endfor %}
+						</ul>
+					</div>
+				</div>
+			</div>
+
+			<div class="accordion-group">
+				<div class="accordion-heading">
+					<a class="accordion-toggle" data-parent="#filters" data-toggle="collapse" href="#filter_year">{{ 'coin.year'|trans }}</a>
+				</div>
+				<div class="accordion-body collapse" id="filter_year">
+					<div class="accordion-inner">
+						<ul>
+							{% for year in years %}
+							<li><a href="#">{{ year.year }}</a></li>
+							{% endfor %}
+						</ul>
+					</div>
+				</div>
+			</div>
+
+			<div class="accordion-group">
+				<div class="accordion-heading">
+					<a class="accordion-toggle" data-parent="#filters" data-toggle="collapse" href="#filter_value">{{ 'value.value'|trans }}</a>
+				</div>
+				<div class="accordion-body collapse" id="filter_value">
+					<div class="accordion-inner">
+						<ul>
+							{% for value in values %}
+							<li><a href="#">{{ value }}</a></li>
+							{% endfor %}
+						</ul>
+					</div>
+				</div>
+			</div>
+
+			<div class="accordion-group">
+				<div class="accordion-heading">
+					<a class="accordion-toggle" data-parent="#filters" data-toggle="collapse" href="#filter_commemorative">{{ 'coin.commemorative'|trans }}</a>
+				</div>
+				<div class="accordion-body collapse" id="filter_commemorative">
+					<div class="accordion-inner">
+						<ul>
+							<li><a href="#">{{ 'yes'|trans }}</a></li>
+							<li><a href="#">{{ 'no'|trans }}</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="span10">
+		<table class="table table-bordered table-condensed table-striped">
+		<thead>
+			<tr>
+				<th>{{ 'coin.name'|trans }}</th>
+				<th>{{ 'coin.commemorative'|trans }}</th>
+				<th>{{ 'coin.mintage'|trans }}</th>
+				<th>{{ 'coin.description'|trans }}</th>
+				<th>{{ 'actions'|trans }}</th>
+			</tr>
+		</thead>
+		<tbody>
+		{% for coin in coins %}
+			<tr>
+				<td><a href="{{ path('coin_show', { 'id': coin.id }) }}">{{ coin.country|trans }} - {{ coin.year }} - {{ coin.value }}</a></td>
+				<td>{{ macros.bool(coin.commemorative) }}</td>
+				<td>{{ coin.mintage|number_format }}</td>
+				<td>{{ coin.description|trans }}</td>
+				<td><a href="{{ path('coin_edit', { 'id': coin.id }) }}">{{ 'action.edit'|trans }}</a></td>
+			</tr>
+
+			{% set total_coins = total_coins + coin.mintage %}
+		{% endfor %}
+		</tbody>
+		<tfoot>
+			<th>{{ 'coin.total'|trans }}</th>
+			<th></th>
+			<th>{{ total_coins|number_format }}</th>
+			<th></th>
+			<th></th>
+		</tfoot>
+		</table>
+	</div>
+</div>
 {% else %}
 <div class="alert alert-info">
 	{{ 'coin.none'|trans }}

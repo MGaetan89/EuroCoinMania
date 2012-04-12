@@ -126,6 +126,10 @@
 				<source>country.none</source>
 				<target>Aucun pays n'a été enregistré</target>
 			</trans-unit>
+			<trans-unit id="filters">
+				<source>filters</source>
+				<target>Filtres</target>
+			</trans-unit>
 			<trans-unit id="Name">
 				<source>Name</source>
 				<target>Nom</target>
