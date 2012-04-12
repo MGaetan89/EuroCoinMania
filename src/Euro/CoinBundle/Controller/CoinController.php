@@ -21,13 +21,34 @@ class CoinController extends Controller {
 		$repository = $em->getRepository('EuroCoinBundle:Coin');
 
 		$coins = $repository->findAll();
-		$values = $em->getRepository('EuroCoinBundle:Value')->findAll();
-		$years = $repository->getAllYear();
+		$commemoratives = array();
+		$countries = array();
+		$values = array();
+		$years = array();
+		foreach ($coins as $coin) {
+			if (!in_array($coin->getCommemorative(), $commemoratives)) {
+				$commemoratives[] = $coin->getCommemorative();
+			}
+
+			if (!in_array($coin->getCountry(), $countries)) {
+				$countries[] = $coin->getCountry();
+			}
+
+			if (!in_array($coin->getValue(), $values)) {
+				$values[] = $coin->getValue();
+			}
+
+			if (!in_array($coin->getYear(), $years)) {
+				$years[] = $coin->getYear();
+			}
+		}
 
 		return $this->render('EuroCoinBundle:Coin:index.html.twig', array(
 					'coins' => $coins,
-					'values' => $values,
-					'years' => $years,
+					'commemoratives' => (count($commemoratives) > 1) ? $commemoratives : array(),
+					'countries' => (count($countries) > 1) ? $countries : array(),
+					'values' => (count($values) > 1) ? $values : array(),
+					'years' => (count($years) > 1) ? $years : array(),
 				));
 	}
 
