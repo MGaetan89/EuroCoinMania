@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Euro\CoinBundle\Entity\Value
  *
- * @ORM\Table(name="country")
+ * @ORM\Table(name="value")
  * @ORM\Entity(repositoryClass="Euro\CoinBundle\Entity\ValueRepository")
  */
 class Value {
@@ -39,6 +39,14 @@ class Value {
 	 */
 	protected $coins;
 
+	public function __construct() {
+		$this->coins = new \Doctrine\Common\Collections\ArrayCollection();
+	}
+
+	public function __toString() {
+		return $this->value . ' €';
+	}
+
 	/**
 	 * Get id
 	 *
@@ -46,14 +54,6 @@ class Value {
 	 */
 	public function getId() {
 		return $this->id;
-	}
-
-	public function __construct() {
-		$this->coins = new \Doctrine\Common\Collections\ArrayCollection();
-	}
-
-	public function __toString() {
-		return $this->value . ' €';
 	}
 
 	/**
