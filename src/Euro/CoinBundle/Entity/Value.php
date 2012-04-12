@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Euro\CoinBundle\Entity\Value
  *
- * @ORM\Table()
+ * @ORM\Table(name="country")
  * @ORM\Entity(repositoryClass="Euro\CoinBundle\Entity\ValueRepository")
  */
 class Value {

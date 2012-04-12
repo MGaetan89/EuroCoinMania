@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Euro\CoinBundle\Entity\Coin
  *
- * @ORM\Table()
+ * @ORM\Table(name="coin")
  * @ORM\Entity(repositoryClass="Euro\CoinBundle\Entity\CoinRepository")
  */
 class Coin {
