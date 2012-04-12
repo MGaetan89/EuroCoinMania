@@ -18,9 +18,8 @@ class CoinController extends Controller {
 	 */
 	public function indexAction() {
 		$em = $this->getDoctrine()->getEntityManager();
-		$repository = $em->getRepository('EuroCoinBundle:Coin');
 
-		$coins = $repository->findAll();
+		$coins = $em->getRepository('EuroCoinBundle:Coin')->findAll();
 		$commemoratives = array();
 		$countries = array();
 		$values = array();
