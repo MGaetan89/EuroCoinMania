@@ -9,7 +9,7 @@
 
 <dl>
 	<dt>{{ 'coin.name'|trans }}</dt>
-	<dd><a href="{{ path('country_edit', { 'id': coin.country.id }) }}">{{ coin.country|trans }}</a> - {{ coin.year }} - {{ coin.value }} &euro;</dd>
+	<dd><a href="{{ path('country_edit', { 'id': coin.country.id }) }}">{{ coin.country|trans }}</a> - {{ coin.year }} - {{ coin.value }}</dd>
 	<dt>{{ 'coin.commemorative'|trans }}</dt>
 	<dd>{{ macros.bool(coin.commemorative) }}</dd>
 	<dt>{{ 'coin.mintage'|trans }}</dt>
