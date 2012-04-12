@@ -21,7 +21,7 @@
 			<tr>
 				<th>{{ 'country.name'|trans }}</th>
 				<th>{{ 'country.join_date'|trans }}</th>
-				<th>{{ 'country.fomercurrency'|trans }}</th>
+				<th>{{ 'country.formercurrency'|trans }}</th>
 				<th>{{ 'country.change_rate'|trans }}</th>
 				<th>{{ 'actions'|trans }}</th>
 			</tr>
@@ -31,8 +31,8 @@
 			<tr>
 				<td><a href="{{ path('country_show', { 'id': country.id }) }}">{{ country.name|trans }}</a></td>
 				<td>{{ country.joindate|date('d/m/Y') }}</td>
-				<td>{{ country.fomercurrency|trans }}</td>
-				<td>1 &euro; = {{ country.exchangerate }} {{ country.fomercurrencyiso }}</td>
+				<td>{{ country.formercurrency|trans }}</td>
+				<td>1 &euro; = {{ country.exchangerate }} {{ country.formercurrencyiso }}</td>
 				<td><a href="{{ path('country_edit', { 'id': country.id }) }}">{{ 'action.edit'|trans }}</a></td>
 			</tr>
 		{% endfor %}

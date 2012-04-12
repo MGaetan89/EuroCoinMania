@@ -102,8 +102,8 @@
 				<source>country.editing</source>
 				<target>Modification de &quot;%name%&quot;</target>
 			</trans-unit>
-			<trans-unit id="country.fomercurrency">
-				<source>country.fomercurrency</source>
+			<trans-unit id="country.formercurrency">
+				<source>country.formercurrency</source>
 				<target>Ancienne monnaie</target>
 			</trans-unit>
 			<trans-unit id="country.join_date">
@@ -142,12 +142,12 @@
 				<source>Join date</source>
 				<target>Date de mise en circulation</target>
 			</trans-unit>
-			<trans-unit id="Fomer currency">
-				<source>Fomer currency</source>
+			<trans-unit id="Former currency">
+				<source>Former currency</source>
 				<target>Ancienne monnaie</target>
 			</trans-unit>
-			<trans-unit id="Fomer currency iso">
-				<source>Fomer currency iso</source>
+			<trans-unit id="Former currency iso">
+				<source>Former currency iso</source>
 				<target>Ancienne monnaie (ISO)</target>
 			</trans-unit>
 			<trans-unit id="Exchange rate">

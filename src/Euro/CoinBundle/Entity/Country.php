@@ -11,203 +11,204 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Entity(repositoryClass="Euro\CoinBundle\Entity\CountryRepository")
  */
 class Country {
-	/**
-	 * @var integer $id
-	 *
-	 * @ORM\Column(name="id", type="integer")
-	 * @ORM\Id
-	 * @ORM\GeneratedValue(strategy="AUTO")
-	 */
-	private $id;
 
-	/**
-	 * @var string $name
-	 *
-	 * @ORM\Column(name="name", type="string", length=100)
-	 */
-	private $name;
+    /**
+     * @var integer $id
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
 
-	/**
-	 * @var string $nameiso
-	 *
-	 * @ORM\Column(name="nameiso", type="string", length=2)
-	 */
-	private $nameiso;
+    /**
+     * @var string $name
+     *
+     * @ORM\Column(name="name", type="string", length=100)
+     */
+    private $name;
 
-	/**
-	 * @var date $join_date
-	 *
-	 * @ORM\Column(name="join_date", type="date")
-	 */
-	private $join_date;
+    /**
+     * @var string $nameiso
+     *
+     * @ORM\Column(name="nameiso", type="string", length=2)
+     */
+    private $nameiso;
 
-	/**
-	 * @var string $fomer_currency
-	 *
-	 * @ORM\Column(name="fomer_currency", type="string", length=100)
-	 */
-	private $fomer_currency;
+    /**
+     * @var date $join_date
+     *
+     * @ORM\Column(name="join_date", type="date")
+     */
+    private $join_date;
 
-	/**
-	 * @var string $fomer_currency_iso
-	 *
-	 * @ORM\Column(name="fomer_currency_iso", type="string", length=5)
-	 */
-	private $fomer_currency_iso;
+    /**
+     * @var string $former_currency
+     *
+     * @ORM\Column(name="former_currency", type="string", length=100)
+     */
+    private $former_currency;
 
-	/**
-	 * @var float $exchange_rate
-	 *
-	 * @ORM\Column(name="exchange_rate", type="float")
-	 */
-	private $exchange_rate;
+    /**
+     * @var string $former_currency_iso
+     *
+     * @ORM\Column(name="former_currency_iso", type="string", length=5)
+     */
+    private $former_currency_iso;
 
-	/**
-	 * @ORM\OneToMany(targetEntity="Coin", mappedBy="country")
-	 */
-	protected $coins;
+    /**
+     * @var float $exchange_rate
+     *
+     * @ORM\Column(name="exchange_rate", type="float")
+     */
+    private $exchange_rate;
 
-	public function __construct() {
-		$this->coins = new \Doctrine\Common\Collections\ArrayCollection();
-	}
+    /**
+     * @ORM\OneToMany(targetEntity="Coin", mappedBy="country")
+     */
+    protected $coins;
 
-	public function __toString() {
-		return $this->getName();
-	}
+    public function __construct() {
+        $this->coins = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
-	/**
-	 * Get id
-	 *
-	 * @return integer
-	 */
-	public function getId() {
-		return $this->id;
-	}
+    public function __toString() {
+        return $this->getName();
+    }
 
-	/**
-	 * Set name
-	 *
-	 * @param string $name
-	 */
-	public function setName($name) {
-		$this->name = $name;
-	}
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId() {
+        return $this->id;
+    }
 
-	/**
-	 * Get name
-	 *
-	 * @return string
-	 */
-	public function getName() {
-		return $this->name;
-	}
+    /**
+     * Set name
+     *
+     * @param string $name
+     */
+    public function setName($name) {
+        $this->name = $name;
+    }
 
-	/**
-	 * Set nameiso
-	 *
-	 * @param string $nameiso
-	 */
-	public function setNameiso($nameiso) {
-		$this->nameiso = $nameiso;
-	}
+    /**
+     * Get name
+     *
+     * @return string
+     */
+    public function getName() {
+        return 'country.name.' . $this->name;
+    }
 
-	/**
-	 * Get nameiso
-	 *
-	 * @return string
-	 */
-	public function getNameiso() {
-		return $this->nameiso;
-	}
+    /**
+     * Set nameiso
+     *
+     * @param string $nameiso
+     */
+    public function setNameiso($nameiso) {
+        $this->nameiso = $nameiso;
+    }
 
-	/**
-	 * Set join_date
-	 *
-	 * @param date $joinDate
-	 */
-	public function setJoinDate($joinDate) {
-		$this->join_date = $joinDate;
-	}
+    /**
+     * Get nameiso
+     *
+     * @return string
+     */
+    public function getNameiso() {
+        return $this->nameiso;
+    }
 
-	/**
-	 * Get join_date
-	 *
-	 * @return date
-	 */
-	public function getJoinDate() {
-		return $this->join_date;
-	}
+    /**
+     * Set join_date
+     *
+     * @param date $joinDate
+     */
+    public function setJoinDate($joinDate) {
+        $this->join_date = $joinDate;
+    }
 
-	/**
-	 * Set fomer_currency
-	 *
-	 * @param string $fomerCurrency
-	 */
-	public function setFomerCurrency($fomerCurrency) {
-		$this->fomer_currency = $fomerCurrency;
-	}
+    /**
+     * Get join_date
+     *
+     * @return date
+     */
+    public function getJoinDate() {
+        return $this->join_date;
+    }
 
-	/**
-	 * Get fomer_currency
-	 *
-	 * @return string
-	 */
-	public function getFomerCurrency() {
-		return $this->fomer_currency;
-	}
+    /**
+     * Set former_currency
+     *
+     * @param string $formerCurrency
+     */
+    public function setFormerCurrency($formerCurrency) {
+        $this->former_currency = $formerCurrency;
+    }
 
-	/**
-	 * Set fomer_currency_iso
-	 *
-	 * @param string $fomerCurrencyIso
-	 */
-	public function setFomerCurrencyIso($fomerCurrencyIso) {
-		$this->fomer_currency_iso = $fomerCurrencyIso;
-	}
+    /**
+     * Get former_currency
+     *
+     * @return string
+     */
+    public function getFormerCurrency() {
+        return 'country.currency.' . $this->former_currency;
+    }
 
-	/**
-	 * Get fomer_currency_iso
-	 *
-	 * @return string
-	 */
-	public function getFomerCurrencyIso() {
-		return $this->fomer_currency_iso;
-	}
+    /**
+     * Set former_currency_iso
+     *
+     * @param string $formerCurrencyIso
+     */
+    public function setFormerCurrencyIso($formerCurrencyIso) {
+        $this->former_currency_iso = $formerCurrencyIso;
+    }
 
-	/**
-	 * Set exchange_rate
-	 *
-	 * @param float $exchangeRate
-	 */
-	public function setExchangeRate($exchangeRate) {
-		$this->exchange_rate = $exchangeRate;
-	}
+    /**
+     * Get former_currency_iso
+     *
+     * @return string
+     */
+    public function getFormerCurrencyIso() {
+        return $this->former_currency_iso;
+    }
 
-	/**
-	 * Get exchange_rate
-	 *
-	 * @return float
-	 */
-	public function getExchangeRate() {
-		return $this->exchange_rate;
-	}
+    /**
+     * Set exchange_rate
+     *
+     * @param float $exchangeRate
+     */
+    public function setExchangeRate($exchangeRate) {
+        $this->exchange_rate = $exchangeRate;
+    }
 
-	/**
-	 * Add coins
-	 *
-	 * @param Euro\CoinBundle\Entity\Coin $coins
-	 */
-	public function addCoin(\Euro\CoinBundle\Entity\Coin $coins) {
-		$this->coins[] = $coins;
-	}
+    /**
+     * Get exchange_rate
+     *
+     * @return float
+     */
+    public function getExchangeRate() {
+        return $this->exchange_rate;
+    }
 
-	/**
-	 * Get coins
-	 *
-	 * @return Doctrine\Common\Collections\Collection
-	 */
-	public function getCoins() {
-		return $this->coins;
-	}
+    /**
+     * Add coins
+     *
+     * @param Euro\CoinBundle\Entity\Coin $coins
+     */
+    public function addCoin(\Euro\CoinBundle\Entity\Coin $coins) {
+        $this->coins[] = $coins;
+    }
+
+    /**
+     * Get coins
+     *
+     * @return Doctrine\Common\Collections\Collection
+     */
+    public function getCoins() {
+        return $this->coins;
+    }
 
 }
