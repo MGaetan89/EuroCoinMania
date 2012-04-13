@@ -1,6 +1,6 @@
 coin:
     pattern:  /
-    defaults: { _controller: "EuroCoinBundle:Coin:index" }
+    defaults: { _controller: "EuroCoinBundle:Coin:index", country: ' ', year: ' ', value: ' ', commemorative: ' ' }
 
 coin_show:
     pattern:  /{id}/show
@@ -28,3 +28,7 @@ coin_delete:
     pattern:  /{id}/delete
     defaults: { _controller: "EuroCoinBundle:Coin:delete" }
     requirements: { _method: post }
+
+coin_filter:
+    pattern:  /filter/country-{country}/year-{year}/value-{value}/commemorative-{commemorative}/
+    defaults: { _controller: "EuroCoinBundle:Coin:index", country: ' ', year: ' ', value: ' ', commemorative: ' ' }

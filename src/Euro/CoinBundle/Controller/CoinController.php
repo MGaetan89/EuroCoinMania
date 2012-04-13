@@ -16,10 +16,16 @@ class CoinController extends Controller {
 	 * Lists all Coin entities.
 	 *
 	 */
-	public function indexAction() {
+	public function indexAction($country, $year, $value, $commemorative) {
 		$em = $this->getDoctrine()->getEntityManager();
 
-		$coins = $em->getRepository('EuroCoinBundle:Coin')->findAll();
+		$filters = array(
+			'commemorative' => $commemorative,
+			'country' => $country,
+			'value' => $value,
+			'year' => $year,
+		);
+		$coins = $em->getRepository('EuroCoinBundle:Coin')->findBy(array_filter($filters, 'trim'));
 		$commemoratives = array();
 		$countries = array();
 		$values = array();
@@ -46,6 +52,7 @@ class CoinController extends Controller {
 					'coins' => $coins,
 					'commemoratives' => (count($commemoratives) > 1) ? $commemoratives : array(),
 					'countries' => (count($countries) > 1) ? $countries : array(),
+					'filters' => $filters,
 					'values' => (count($values) > 1) ? $values : array(),
 					'years' => (count($years) > 1) ? $years : array(),
 				));

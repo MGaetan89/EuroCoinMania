@@ -10,13 +10,14 @@
 </div>
 
 {% if coins %}
-{% if commemoratives or countries or values or years %}
+{% if commemoratives or countries or values or years or filters %}
 <div class="row-fluid">
 	<div class="span2">
 		<div class="nav nav-list">
 			<div class="nav-header">{{ 'filters'|trans }}</div>
 		</div>
 
+		{% if commemoratives or countries or values or years %}
 		<div class="accordion" id="filters">
 			{% if countries %}
 			<div class="accordion-group">
@@ -27,7 +28,7 @@
 					<div class="accordion-inner">
 						<ul>
 							{% for country in countries %}
-							<li><a href="#">{{ country.name|trans }}</a></li>
+							<li><a href="{{ path('coin_filter', filters|merge({ country: country.id })) }}">{{ country.name|trans }}</a></li>
 							{% endfor %}
 						</ul>
 					</div>
@@ -44,7 +45,7 @@
 					<div class="accordion-inner">
 						<ul>
 							{% for year in years %}
-							<li><a href="#">{{ year }}</a></li>
+							<li><a href="{{ path('coin_filter', filters|merge({ year: year })) }}">{{ year }}</a></li>
 							{% endfor %}
 						</ul>
 					</div>
@@ -61,7 +62,7 @@
 					<div class="accordion-inner">
 						<ul>
 							{% for value in values %}
-							<li><a href="#">{{ value }}</a></li>
+							<li><a href="{{ path('coin_filter', filters|merge({ value: value.id })) }}">{{ value }}</a></li>
 							{% endfor %}
 						</ul>
 					</div>
@@ -77,14 +78,32 @@
 				<div class="accordion-body collapse" id="filter_commemorative">
 					<div class="accordion-inner">
 						<ul>
-							<li><a href="#">{{ 'yes'|trans }}</a></li>
-							<li><a href="#">{{ 'no'|trans }}</a></li>
+							<li><a href="{{ path('coin_filter', filters|merge({ commemorative: 0 })) }}">{{ 'yes'|trans }}</a></li>
+							<li><a href="{{ path('coin_filter', filters|merge({ commemorative: 1 })) }}">{{ 'no'|trans }}</a></li>
 						</ul>
 					</div>
 				</div>
 			</div>
 			{% endif %}
 		</div>
+		{% endif %}
+
+		{% set has_filter = false %}
+		{% for name, value in filters %}
+			{% if value|trim %}
+				{% set has_filter = true %}
+
+				<div class="control-group">
+					<div class="input-append">
+						<span class="span1 uneditable-input">{{ name|capitalize|trans }}</span><a class="btn btn-danger" href="{{ path('coin_filter', filters) }}"><i class="icon-white icon-remove"></i></a>
+					</div>
+				</div>
+			{% endif %}
+		{% endfor %}
+
+		{% if has_filter %}
+		<a class="btn" href="{{ path('coin') }}">{{ 'action.reset'|trans }}</a>
+		{% endif %}
 	</div>
 
 	<div class="span10">
@@ -120,7 +139,7 @@
 			<th></th>
 		</tfoot>
 		</table>
-		{% if commemoratives or countries or values or years %}
+		{% if commemoratives or countries or values or years or filters %}
 	</div>
 </div>
 {% endif %}

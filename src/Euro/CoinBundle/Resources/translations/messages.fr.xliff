@@ -34,6 +34,10 @@
 				<source>action.edit</source>
 				<target>Modifier</target>
 			</trans-unit>
+			<trans-unit id="action.reset">
+				<source>action.reset</source>
+				<target>Réinitialiser</target>
+			</trans-unit>
 			<trans-unit id="coin.add">
 				<source>coin.add</source>
 				<target>Ajouter une pièce</target>
