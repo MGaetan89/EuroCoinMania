@@ -43,13 +43,6 @@ class Country {
 	private $join_date;
 
 	/**
-	 * @var string $former_currency
-	 *
-	 * @ORM\Column(name="former_currency", type="string", length=100)
-	 */
-	private $former_currency;
-
-	/**
 	 * @var string $former_currency_iso
 	 *
 	 * @ORM\Column(name="former_currency_iso", type="string", length=5)
@@ -140,21 +133,12 @@ class Country {
 	}
 
 	/**
-	 * Set former_currency
-	 *
-	 * @param string $formerCurrency
-	 */
-	public function setFormerCurrency($formerCurrency) {
-		$this->former_currency = $formerCurrency;
-	}
-
-	/**
 	 * Get former_currency
 	 *
 	 * @return string
 	 */
 	public function getFormerCurrency() {
-		return 'country.currency.' . $this->former_currency;
+		return 'country.currency.' . $this->name;
 	}
 
 	/**

@@ -14,7 +14,6 @@ class CountryType extends AbstractType {
 				->add('join_date', null, array(
 					'years' => range('2002', date('Y'))
 				))
-				->add('former_currency')
 				->add('former_currency_iso')
 				->add('exchange_rate', null, array(
 					'precision' => 10
