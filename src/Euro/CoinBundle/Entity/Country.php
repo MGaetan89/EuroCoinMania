@@ -93,7 +93,11 @@ class Country {
 	 * @return string
 	 */
 	public function getName() {
-		return 'country.name.' . $this->name;
+		if ($this->name) {
+			return 'country.name.' . $this->name;
+		}
+
+		return null;
 	}
 
 	/**
@@ -138,7 +142,11 @@ class Country {
 	 * @return string
 	 */
 	public function getFormerCurrency() {
-		return 'country.currency.' . $this->name;
+		if ($this->name) {
+			return 'country.currency.' . $this->name;
+		}
+
+		return null;
 	}
 
 	/**
