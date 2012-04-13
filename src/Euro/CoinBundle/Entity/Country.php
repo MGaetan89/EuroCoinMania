@@ -11,7 +11,6 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Entity(repositoryClass="Euro\CoinBundle\Entity\CountryRepository")
  */
 class Country {
-
 	/**
 	 * @var integer $id
 	 *
@@ -92,9 +91,13 @@ class Country {
 	 *
 	 * @return string
 	 */
-	public function getName() {
+	public function getName($prefix = true) {
 		if ($this->name) {
-			return 'country.name.' . $this->name;
+			if ($prefix) {
+				return 'country.name.' . $this->name;
+			}
+
+			return $this->name;
 		}
 
 		return null;
