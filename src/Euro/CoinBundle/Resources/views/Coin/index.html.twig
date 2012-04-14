@@ -95,14 +95,14 @@
 
 				<div class="control-group">
 					<div class="input-append">
-						<span class="span1 uneditable-input">{{ name|capitalize|trans }}</span><a class="btn btn-danger" href="{{ path('coin_filter', filters) }}"><i class="icon-white icon-remove"></i></a>
+						<span class="span1 uneditable-input">{{ name|capitalize|trans }}</span><a class="btn btn-info" href="{{ path('coin_filter', filters) }}" title="{{ 'action.reset'|trans }}"><i class="icon-white icon-remove"></i></a>
 					</div>
 				</div>
 			{% endif %}
 		{% endfor %}
 
 		{% if has_filter %}
-		<a class="btn" href="{{ path('coin') }}">{{ 'action.reset'|trans }}</a>
+		<a class="btn" href="{{ path('coin') }}">{{ 'action.reset_all'|trans }}</a>
 		{% endif %}
 	</div>
 

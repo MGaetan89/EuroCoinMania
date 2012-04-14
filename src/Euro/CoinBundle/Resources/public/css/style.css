@@ -1,5 +1,7 @@
 .dropdown-menu a:hover [class^="icon-"],
-.dropdown-menu a:hover [class*="icon-"] {
+.dropdown-menu a:hover [class*="icon-"],
+.dropdown-menu li.active a [class^="icon-"],
+.dropdown-menu li.active a [class*="icon-"] {
 	background-image:url("../images/glyphicons-halflings-white.png");
 }
 

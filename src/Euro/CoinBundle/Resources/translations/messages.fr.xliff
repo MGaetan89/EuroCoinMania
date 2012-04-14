@@ -38,6 +38,10 @@
 				<source>action.reset</source>
 				<target>Réinitialiser</target>
 			</trans-unit>
+			<trans-unit id="action.reset_all">
+				<source>action.reset_all</source>
+				<target>Tout réinitialiser</target>
+			</trans-unit>
 			<trans-unit id="coin.add">
 				<source>coin.add</source>
 				<target>Ajouter une pièce</target>
