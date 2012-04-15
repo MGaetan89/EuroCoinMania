@@ -14,7 +14,7 @@ class Coin {
 	/**
 	 * @var integer $id
 	 *
-	 * @ORM\Column(name="id", type="integer")
+	 * @ORM\Column(name="id", type="smallint")
 	 * @ORM\Id
 	 * @ORM\GeneratedValue(strategy="AUTO")
 	 */
@@ -27,17 +27,17 @@ class Coin {
 	private $value;
 
 	/**
+	 * @ORM\ManyToOne(targetEntity="Country", inversedBy="coins")
+	 * @ORM\JoinColumn(name="country_id", referencedColumnName="id")
+	 */
+	private $country;
+
+	/**
 	 * @var string $year
 	 *
 	 * @ORM\Column(name="year", type="string", length=5)
 	 */
 	private $year;
-
-	/**
-	 * @ORM\ManyToOne(targetEntity="Country", inversedBy="coins")
-	 * @ORM\JoinColumn(name="country_id", referencedColumnName="id")
-	 */
-	private $country;
 
 	/**
 	 * @var boolean $commemorative
@@ -49,7 +49,7 @@ class Coin {
 	/**
 	 * @var bigint $mintage
 	 *
-	 * @ORM\Column(name="mintage", type="bigint")
+	 * @ORM\Column(name="mintage", type="integer")
 	 */
 	private $mintage;
 

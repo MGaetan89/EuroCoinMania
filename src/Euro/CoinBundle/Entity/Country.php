@@ -14,7 +14,7 @@ class Country {
 	/**
 	 * @var integer $id
 	 *
-	 * @ORM\Column(name="id", type="integer")
+	 * @ORM\Column(name="id", type="smallint")
 	 * @ORM\Id
 	 * @ORM\GeneratedValue(strategy="AUTO")
 	 */
