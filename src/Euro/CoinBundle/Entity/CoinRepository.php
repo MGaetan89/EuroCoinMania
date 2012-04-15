@@ -39,4 +39,25 @@ class CoinRepository extends EntityRepository {
 						->getResult();
 	}
 
+	public function getCoinsByFilters(array $filters) {
+		$queryBuiler = $this->createQueryBuilder('c')
+				->join('c.value', 'v');
+		$filters = array_filter($filters, 'trim');
+		$expr = $queryBuiler->expr();
+
+		$and = $expr->andx();
+		foreach ($filters as $name => $value) {
+			$and->add($expr->eq('c.' . $name, $value));
+		}
+
+		if ($and->count()) {
+			$queryBuiler->where($and);
+		}
+
+		return $queryBuiler->orderBy('c.year', 'ASC')
+						->addOrderBy('v.value', 'DESC')
+						->getQuery()
+						->getResult();
+	}
+
 }

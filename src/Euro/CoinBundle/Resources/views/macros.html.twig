@@ -1,4 +1,5 @@
 {% macro bool(value) %}
+{% spaceless %}
 	{% if value %}
 		{% set class, icon, title = 'success', 'ok', 'yes' %}
 	{% else %}
@@ -6,4 +7,5 @@
 	{% endif %}
 
 	<btn class="btn btn-{{ class }} btn-mini" title="{{ title|trans }}"><i class="icon-white icon-{{ icon }}"></i></span>
+{% endspaceless %}
 {% endmacro %}

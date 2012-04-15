@@ -31,7 +31,7 @@ coin_delete:
 
 coin_filter:
     pattern:  /filter/country-{country}/year-{year}/value-{value}/commemorative-{commemorative}/
-    defaults: { _controller: "EuroCoinBundle:Coin:index", country: '', year: '', value: '', commemorative: '' }
+    defaults: { _controller: "EuroCoinBundle:Coin:index" }
     requirements:
         country: "\d*"
         year: "(\d{4}[A-Z]*)?"
