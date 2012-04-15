@@ -55,6 +55,8 @@ class CountryController extends Controller {
 			}
 		}
 
+		krsort($counts['value']);
+
 		$deleteForm = $this->createDeleteForm($id);
 
 		return $this->render('EuroCoinBundle:Country:show.html.twig', array(

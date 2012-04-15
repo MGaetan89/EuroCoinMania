@@ -43,17 +43,25 @@ class CoinController extends Controller {
 				$commemoratives[] = $coin->getCommemorative();
 			}
 
-			if (!in_array($coin->getCountry(), $countries)) {
-				$countries[] = $coin->getCountry();
+			if (!in_array($coin->getCountry()->getId(), $countries)) {
+				$countries[ $coin->getCountry()->getId() ] = (string) $coin->getCountry();
 			}
 
-			if (!in_array($coin->getValue(), $values)) {
-				$values[] = $coin->getValue();
+			if (!in_array($coin->getValue()->getId(), $values)) {
+				$values[ $coin->getValue()->getId() ] = (string) $coin->getValue();
 			}
 
 			if (!in_array($coin->getYear(), $years)) {
 				$years[] = $coin->getYear();
 			}
+		}
+
+		sort($commemoratives);
+		ksort($countries);
+		asort($values);
+		sort($years);
+		foreach ($coin_values as $country => &$val) {
+			rsort($val);
 		}
 
 		return $this->render('EuroCoinBundle:Coin:index.html.twig', array(
