@@ -32,28 +32,14 @@ class CoinController extends Controller {
 		$values = array();
 		$years = array();
 		foreach ($coins as $coin) {
-			$country = $coin->getCountry()->getId();
-			if (!isset($coin_values[ $country ])) {
-				$coin_values[ $country ] = array($coin->getValue());
-			} else if (!in_array($coin->getValue(), $coin_values[ $country ])) {
-				$coin_values[ $country ][] = $coin->getValue();
-			}
+			$country = $coin->getCountry();
+			$value = $coin->getValue();
 
-			if (!in_array($coin->getCommemorative(), $commemoratives)) {
-				$commemoratives[] = $coin->getCommemorative();
-			}
-
-			if (!in_array($coin->getCountry()->getId(), $countries)) {
-				$countries[ $coin->getCountry()->getId() ] = (string) $coin->getCountry();
-			}
-
-			if (!in_array($coin->getValue()->getId(), $values)) {
-				$values[ $coin->getValue()->getId() ] = (string) $coin->getValue();
-			}
-
-			if (!in_array($coin->getYear(), $years)) {
-				$years[] = $coin->getYear();
-			}
+			$coin_values[$country->getId()][$value->getId()] = (string) $value;
+			$commemoratives[$coin->getCommemorative()] = $coin->getCommemorative();
+			$countries[$country->getId()] = (string) $coin->getCountry();
+			$values[$value->getId()] = (string) $value;
+			$years[$coin->getYear()] = $coin->getYear();
 		}
 
 		sort($commemoratives);

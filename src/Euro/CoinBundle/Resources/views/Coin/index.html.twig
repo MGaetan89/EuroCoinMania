@@ -121,6 +121,10 @@
 			{% if country != coin.country %}
 				{% set country = coin.country %}
 				{% if not loop.first %}
+						{% for n in range(columns, nbval) if columns < nbval %}
+							{{ block('empty_cell') }}
+						{% endfor %}
+						</tr>
 					</tbody>
 					</table>
 				{% endif %}
