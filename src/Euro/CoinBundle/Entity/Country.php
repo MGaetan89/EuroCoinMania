@@ -44,7 +44,7 @@ class Country {
 	/**
 	 * @var string $former_currency_iso
 	 *
-	 * @ORM\Column(name="former_currency_iso", type="string", length=5)
+	 * @ORM\Column(name="former_currency_iso", type="string", length=3)
 	 */
 	private $former_currency_iso;
 
