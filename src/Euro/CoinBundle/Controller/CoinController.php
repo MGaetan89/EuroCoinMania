@@ -18,6 +18,7 @@ class CoinController extends Controller {
 	 */
 	public function indexAction($country, $year, $value, $commemorative) {
 		$em = $this->getDoctrine()->getEntityManager();
+		$translator = $this->get('translator');
 
 		$filters = array(
 			'commemorative' => $commemorative,
@@ -37,13 +38,12 @@ class CoinController extends Controller {
 
 			$coin_values[$country->getId()][$value->getId()] = (string) $value;
 			$commemoratives[$coin->getCommemorative()] = $coin->getCommemorative();
-			$countries[$country->getId()] = (string) $coin->getCountry();
+			$countries[$country->getId()] = $translator->trans($coin->getCountry());
 			$values[$value->getId()] = (string) $value;
 			$years[$coin->getYear()] = $coin->getYear();
 		}
 
-		sort($commemoratives);
-		ksort($countries);
+		asort($countries);
 		asort($values);
 		sort($years);
 		foreach ($coin_values as $country => &$val) {
@@ -53,7 +53,7 @@ class CoinController extends Controller {
 		return $this->render('EuroCoinBundle:Coin:index.html.twig', array(
 					'coin_values' => $coin_values,
 					'coins' => $coins,
-					'commemoratives' => (count($commemoratives) > 1) ? $commemoratives : array(),
+					'commemoratives' => count($commemoratives) > 1,
 					'countries' => (count($countries) > 1) ? $countries : array(),
 					'filters' => $filters,
 					'values' => (count($values) > 1) ? $values : array(),
