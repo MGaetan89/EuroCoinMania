@@ -11,6 +11,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Entity(repositoryClass="Euro\CoinBundle\Entity\CoinRepository")
  */
 class Coin {
+
 	/**
 	 * @var integer $id
 	 *
@@ -59,6 +60,15 @@ class Coin {
 	 * @ORM\Column(name="description", nullable=true, type="text")
 	 */
 	private $description;
+
+	/**
+	 * @ORM\OneToMany(targetEntity="UserCoin", mappedBy="coin")
+	 */
+	private $users;
+
+	public function __construct() {
+		$this->users = new \Doctrine\Common\Collections\ArrayCollection();
+	}
 
 	/**
 	 * Get id
@@ -175,6 +185,24 @@ class Coin {
 	 */
 	public function getDescription() {
 		return $this->description;
+	}
+
+	/**
+	 * Add users
+	 *
+	 * @param Euro\CoinBundle\Entity\User $users
+	 */
+	public function addUser(\Euro\CoinBundle\Entity\User $users) {
+		$this->users[] = $users;
+	}
+
+	/**
+	 * Get users
+	 *
+	 * @return Doctrine\Common\Collections\Collection 
+	 */
+	public function getUsers() {
+		return $this->users;
 	}
 
 }
