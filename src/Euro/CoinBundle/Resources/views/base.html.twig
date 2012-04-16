@@ -42,13 +42,27 @@
 					<li{% if route|slice(0, 4) == 'coin' %} class="active"{% endif %}><a href="{{ path('coin') }}">{{ 'coin.list'|trans }}</a></li>
 					<li{% if route|slice(0, 5) == 'value' %} class="active"{% endif %}><a href="{{ path('value') }}">{{ 'value.list'|trans }}</a></li>
 				</ul>
+
+				{% if app.user %}
+				<p class="navbar-text pull-right">
+					Connecté en tant que <a href="{{ path('fos_user_profile_show') }}">{{ app.user }}</a> -
+					<a href="{{ path('fos_user_security_logout') }}">Déconnexion</a>
+				</p>
+				{% else %}
+				<ul class="nav pull-right">
+					<li><a href="{{ path('fos_user_registration_register') }}">Inscription</a></li>
+					<li><a href="{{ path('fos_user_security_login') }}">Connexion</a></li>
+				</ul>
+				{% endif %}
 			</div>
 		</div>
 	</div>
 </div>
 
 <div class="container">
-	{% block body %}{% endblock %}
+	{% block body %}
+		{% block fos_user_content %}{% endblock %}
+	{% endblock %}
 </div>
 
 {% block javascript %}
