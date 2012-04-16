@@ -53,7 +53,7 @@ class CoinController extends Controller {
 		return $this->render('EuroCoinBundle:Coin:index.html.twig', array(
 					'coin_values' => $coin_values,
 					'coins' => $coins,
-					'commemoratives' => count($commemoratives) > 1,
+					'commemoratives' => count($commemoratives) === 2,
 					'countries' => (count($countries) > 1) ? $countries : array(),
 					'filters' => $filters,
 					'values' => (count($values) > 1) ? $values : array(),
