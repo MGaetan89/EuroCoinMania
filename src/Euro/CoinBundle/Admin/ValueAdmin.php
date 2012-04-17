@@ -26,8 +26,15 @@ class ValueAdmin extends Admin {
 
 	protected function configureListFields(ListMapper $listMapper) {
 		$listMapper
-				->addIdentifier('value')
-				->add('collector')
+				->addIdentifier('value', null, array('template' => 'EuroCoinBundle:Admin:Value/list_value.html.twig'))
+				->add('collector', null, array('editable' => true))
+				->add('_action', 'actions', array(
+					'actions' => array(
+						'view' => array(),
+						'edit' => array(),
+						'delete' => array(),
+					)
+				))
 		;
 	}
 

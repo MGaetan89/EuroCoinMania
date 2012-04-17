@@ -31,11 +31,16 @@ class CountryAdmin extends Admin {
 
 	protected function configureListFields(ListMapper $listMapper) {
 		$listMapper
-				->addIdentifier('name')
-				->add('nameiso')
+				->addIdentifier('name', null, array('template' => 'EuroCoinBundle:Admin:Country/list_name.html.twig'))
 				->add('join_date')
-				->add('former_currency_iso')
-				->add('exchange_rate')
+				->add('exchange_rate', null, array('template' => 'EuroCoinBundle:Admin:Country/list_exchangerate.html.twig'))
+				->add('_action', 'actions', array(
+					'actions' => array(
+						'view' => array(),
+						'edit' => array(),
+						'delete' => array(),
+					)
+				))
 		;
 	}
 

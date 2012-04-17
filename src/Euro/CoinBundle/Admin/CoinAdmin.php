@@ -12,8 +12,8 @@ class CoinAdmin extends Admin {
 
 	protected function configureFormFields(FormMapper $formMapper) {
 		$formMapper
-				->add('value')
-				->add('country')
+				->add('value', 'sonata_type_model')
+				->add('country', 'sonata_type_model')
 				->add('year')
 				->add('commemorative')
 				->add('mintage')
@@ -32,12 +32,20 @@ class CoinAdmin extends Admin {
 
 	protected function configureListFields(ListMapper $listMapper) {
 		$listMapper
+				->addIdentifier('id')
 				->add('value')
-				->add('country')
+				->add('country', null, array('template' => 'EuroCoinBundle:Admin:Coin/list_name.html.twig'))
 				->add('year')
-				->add('commemorative')
-				->add('mintage')
+				->add('commemorative', null, array('editable' => true))
+				->add('mintage', null, array('template' => 'EuroCoinBundle:Admin:Coin/list_mintage.html.twig'))
 				->add('description')
+				->add('_action', 'actions', array(
+					'actions' => array(
+						'view' => array(),
+						'edit' => array(),
+						'delete' => array(),
+					)
+				))
 		;
 	}
 
