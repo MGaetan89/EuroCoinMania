@@ -2,6 +2,21 @@ parameters:
     euro_coin.twig_extension.class: Euro\CoinBundle\Twig\Extension
 
 services:
+    euro.coin.admin.country:
+        class: Euro\CoinBundle\Admin\CountryAdmin
+        arguments: [null, Euro\CoinBundle\Entity\Country, SonataAdminBundle:CRUD]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "Euro", label: "Country" }
+    euro.coin.admin.value:
+        class: Euro\CoinBundle\Admin\ValueAdmin
+        arguments: [null, Euro\CoinBundle\Entity\Value, SonataAdminBundle:CRUD]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "Euro", label: "Value" }
+    euro.coin.admin.coin:
+        class: Euro\CoinBundle\Admin\CoinAdmin
+        arguments: [null, Euro\CoinBundle\Entity\Coin, SonataAdminBundle:CRUD]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "Euro", label: "Coin" }
     twig.extension.country:
         class: %euro_coin.twig_extension.class%
         arguments: [@doctrine.orm.entity_manager, @translator]
