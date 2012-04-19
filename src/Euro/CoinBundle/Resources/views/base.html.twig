@@ -10,6 +10,7 @@
 
 	<script src="{{ asset('bundles/eurocoin/js/jquery.js') }}" type="text/javascript"></script>
 	<script src="{{ asset('bundles/eurocoin/js/bootstrap.js') }}" type="text/javascript"></script>
+	<script src="{{ asset('bundles/eurocoin/js/app.js') }}" type="text/javascript"></script>
 
 	<title>{% block title %}{{ 'sitename'|trans }}{% endblock %}</title>
 </head>
@@ -29,7 +30,7 @@
 			<div class="nav-collapse">
 				<ul class="nav">
 					<li class="{% if route|slice(0, 7) == 'country' %}active {% endif %}dropdown">
-						<a href="{{ path('country') }}" class="dropdown-toggle" data-toggle="dropdown" data-target="#">{{ 'countries'|trans }}<b class="caret"></b></a>
+						<a href="{{ path('country') }}" class="dropdown-toggle" data-toggle="dropdown" data-target="#">{{ 'countries'|trans }} <b class="caret"></b></a>
 						<ul class="dropdown-menu">
 							<li{% if route == 'country' %} class="active"{% endif %}><a href="{{ path('country') }}"><i class="icon-list-alt"></i> {{ 'country.list'|trans }}</a></li>
 							<li{% if route == 'country_new' %} class="active"{% endif %}><a href="{{ path('country_new') }}"><i class="icon-plus"></i> {{ 'country.add'|trans }}</a></li>
@@ -50,8 +51,8 @@
 				</p>
 				{% else %}
 				<ul class="nav pull-right">
+					<li{% if route == 'fos_user_security_login' %} class="active"{% endif %}><a href="{{ path('fos_user_security_login') }}" id="login_toggle" title="Connexion">Connexion</a></li>
 					<li><a href="{{ path('fos_user_registration_register') }}">Inscription</a></li>
-					<li><a href="{{ path('fos_user_security_login') }}">Connexion</a></li>
 				</ul>
 				{% endif %}
 			</div>
@@ -64,6 +65,12 @@
 		{% block fos_user_content %}{% endblock %}
 	{% endblock %}
 </div>
+
+{% if not app.user and route != 'fos_user_security_login' %}
+<div class="hide" id="login_form">
+	{% include "FOSUserBundle:Security:login_form.html.twig" %}
+</div>
+{% endif %}
 
 {% block javascript %}
 {% endblock %}

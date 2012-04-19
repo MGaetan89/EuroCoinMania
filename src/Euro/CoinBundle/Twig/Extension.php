@@ -6,10 +6,12 @@ use Doctrine\ORM\EntityManager;
 use Symfony\Component\Translation\TranslatorInterface;
 
 class Extension extends \Twig_Extension {
+	private $csrf_provider;
 	private $em;
 	private $translator;
 
-	public function __construct(EntityManager $em, TranslatorInterface $translator) {
+	public function __construct(EntityManager $em, TranslatorInterface $translator, $csrf_provider) {
+		$this->csrf_provider = $csrf_provider;
 		$this->em = $em;
 		$this->translator = $translator;
 	}
@@ -28,7 +30,10 @@ class Extension extends \Twig_Extension {
 					return strcmp($translator->trans($a->getName()), $translator->trans($b->getName()));
 				});
 
+		$csrfToken = $this->csrf_provider->generateCsrfToken('authenticate');
+
 		return array(
+			'csrf_token' => $csrfToken,
 			'euro_countries' => $countries,
 		);
 	}
