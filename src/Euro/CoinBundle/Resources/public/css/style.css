@@ -1,3 +1,11 @@
+body {
+	padding-top: 60px;
+}
+
+#map {
+	height: 454px;
+}
+
 .accordion-inner {
 	max-height: 300px;
 	overflow: auto;
@@ -15,13 +23,5 @@
 .dropdown-menu a:hover [class*="icon-"],
 .dropdown-menu li.active a [class^="icon-"],
 .dropdown-menu li.active a [class*="icon-"] {
-	background-image:url("../images/glyphicons-halflings-white.png");
-}
-
-body {
-	padding-top: 60px;
-}
-
-#map {
-	height: 454px;
+	background-image: url("../images/glyphicons-halflings-white.png");
 }
