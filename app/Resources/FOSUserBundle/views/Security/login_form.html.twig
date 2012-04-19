@@ -2,7 +2,7 @@
 	<input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
 
 	<div class="control-group">
-		<label class="control-label" for="username">{{ 'security.login.username'|trans({}, 'FOSUserBundle') }}</label>
+		<label class="control-label" for="username">{{ 'user.login.username'|trans }} :</label>
 
 		<div class="controls">
 			<input id="username" name="_username" type="text"{% if last_username is defined %} value="{{ last_username }}"{% endif %} />
@@ -10,7 +10,7 @@
 	</div>
 
 	<div class="control-group">
-		<label class="control-label" for="password">{{ 'security.login.password'|trans({}, 'FOSUserBundle') }}</label>
+		<label class="control-label" for="password">{{ 'user.login.password'|trans }} :</label>
 
 		<div class="controls">
 			<input id="password" name="_password" type="password" />
@@ -21,12 +21,12 @@
 		<div class="controls">
 			<label class="checkbox">
 				<input id="remember_me" name="_remember_me" type="checkbox" value="on" />
-				{{ 'security.login.remember_me'|trans({}, 'FOSUserBundle') }}
+				{{ 'user.login.remember_me'|trans }}
 			</label>
 		</div>
 	</div>
 
 	<div class="form-actions">
-		<button class="btn btn-primary" type="submit"><i class="icon-white icon-ok"></i> Connexion</button>
+		<button class="btn btn-primary" type="submit"><i class="icon-white icon-ok"></i> {{ 'user.login.submit'|trans }}</button>
 	</div>
 </form>

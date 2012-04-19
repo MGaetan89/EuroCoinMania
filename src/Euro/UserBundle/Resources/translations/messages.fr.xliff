@@ -1,11 +1,51 @@
 <?xml version="1.0"?>
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
-    <file source-language="en" datatype="plaintext" original="file.ext">
-        <body>
-            <trans-unit id="1">
-                <source>Symfony2 is great</source>
-                <target>J'aime Symfony2</target>
-            </trans-unit>
-        </body>
-    </file>
+	<file source-language="fr" datatype="plaintext" original="file.ext">
+		<body>
+			<trans-unit id="user.profile">
+				<source>user.profile</source>
+				<target>Profil</target>
+			</trans-unit>
+			<trans-unit id="user.profile.show.username">
+				<source>user.profile.show.username</source>
+				<target>Nom d'utilisateur</target>
+			</trans-unit>
+			<trans-unit id="user.profile.show.email">
+				<source>user.profile.show.email</source>
+				<target>Adresse e-mail</target>
+			</trans-unit>
+			<trans-unit id="user.register">
+				<source>user.register</source>
+				<target>Inscription</target>
+			</trans-unit>
+			<trans-unit id="user.register.submit">
+				<source>user.register.submit</source>
+				<target>Créer mon compte</target>
+			</trans-unit>
+			<trans-unit id="user.login">
+				<source>user.login</source>
+				<target>Connexion</target>
+			</trans-unit>
+			<trans-unit id="user.logout">
+				<source>user.logout</source>
+				<target>Déconnexion</target>
+			</trans-unit>
+			<trans-unit id="user.login.username">
+				<source>user.login.username</source>
+				<target>Nom d'utilisateur</target>
+			</trans-unit>
+			<trans-unit id="user.login.password">
+				<source>user.login.password</source>
+				<target>Mot de passe</target>
+			</trans-unit>
+			<trans-unit id="user.login.remember_me">
+				<source>user.login.remember_me</source>
+				<target>Rester connecté</target>
+			</trans-unit>
+			<trans-unit id="user.login.submit">
+				<source>user.login.submit</source>
+				<target>Connexion</target>
+			</trans-unit>
+		</body>
+	</file>
 </xliff>
