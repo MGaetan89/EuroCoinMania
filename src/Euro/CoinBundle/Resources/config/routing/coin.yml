@@ -6,29 +6,6 @@ coin_show:
     pattern:  /{id}/show
     defaults: { _controller: "EuroCoinBundle:Coin:show" }
 
-coin_new:
-    pattern:  /new
-    defaults: { _controller: "EuroCoinBundle:Coin:new" }
-
-coin_create:
-    pattern:  /create
-    defaults: { _controller: "EuroCoinBundle:Coin:create" }
-    requirements: { _method: post }
-
-coin_edit:
-    pattern:  /{id}/edit
-    defaults: { _controller: "EuroCoinBundle:Coin:edit" }
-
-coin_update:
-    pattern:  /{id}/update
-    defaults: { _controller: "EuroCoinBundle:Coin:update" }
-    requirements: { _method: post }
-
-coin_delete:
-    pattern:  /{id}/delete
-    defaults: { _controller: "EuroCoinBundle:Coin:delete" }
-    requirements: { _method: post }
-
 coin_filter:
     pattern:  /filter/country-{country}/year-{year}/value-{value}/commemorative-{commemorative}/
     defaults: { _controller: "EuroCoinBundle:Coin:index" }

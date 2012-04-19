@@ -33,7 +33,6 @@
 						<a href="{{ path('country') }}" class="dropdown-toggle" data-toggle="dropdown" data-target="#">{{ 'countries'|trans }} <b class="caret"></b></a>
 						<ul class="dropdown-menu">
 							<li{% if route == 'country' %} class="active"{% endif %}><a href="{{ path('country') }}"><i class="icon-list-alt"></i> {{ 'country.list'|trans }}</a></li>
-							<li{% if route == 'country_new' %} class="active"{% endif %}><a href="{{ path('country_new') }}"><i class="icon-plus"></i> {{ 'country.add'|trans }}</a></li>
 							<li class="divider"></li>
 							{% for country in euro_countries %}
 							<li{% if route == 'country_show' and app.request.get('id') == country.id %} class="active"{% endif %}><a href="{{ path('country_show', { 'id': country.id }) }}">{{ country.name|trans }}</a></li>
@@ -41,7 +40,6 @@
 						</ul>
 					</li>
 					<li{% if route|slice(0, 4) == 'coin' %} class="active"{% endif %}><a href="{{ path('coin') }}">{{ 'coin.list'|trans }}</a></li>
-					<li{% if route|slice(0, 5) == 'value' %} class="active"{% endif %}><a href="{{ path('value') }}">{{ 'value.list'|trans }}</a></li>
 				</ul>
 
 				{% if app.user %}

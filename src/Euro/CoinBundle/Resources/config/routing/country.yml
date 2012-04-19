@@ -5,26 +5,3 @@ country:
 country_show:
     pattern:  /{id}/show
     defaults: { _controller: "EuroCoinBundle:Country:show" }
-
-country_new:
-    pattern:  /new
-    defaults: { _controller: "EuroCoinBundle:Country:new" }
-
-country_create:
-    pattern:  /create
-    defaults: { _controller: "EuroCoinBundle:Country:create" }
-    requirements: { _method: post }
-
-country_edit:
-    pattern:  /{id}/edit
-    defaults: { _controller: "EuroCoinBundle:Country:edit" }
-
-country_update:
-    pattern:  /{id}/update
-    defaults: { _controller: "EuroCoinBundle:Country:update" }
-    requirements: { _method: post }
-
-country_delete:
-    pattern:  /{id}/delete
-    defaults: { _controller: "EuroCoinBundle:Country:delete" }
-    requirements: { _method: post }

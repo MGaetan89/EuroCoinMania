@@ -9,7 +9,3 @@ EuroCoinBundle_country:
 EuroCoinBundle_coin:
     resource: "@EuroCoinBundle/Resources/config/routing/coin.yml"
     prefix:   /coin
-
-EuroCoinBundle_value:
-    resource: "@EuroCoinBundle/Resources/config/routing/value.yml"
-    prefix:   /value

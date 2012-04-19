@@ -12,7 +12,7 @@
 {% set total_coins = 0 %}
 
 <div class="page-header">
-	<h1>{{ block('title') }} <small><a href="{{ path('coin_new') }}">{{ 'coin.add'|trans }}</a></small></h1>
+	<h1>{{ block('title') }}</h1>
 </div>
 
 {% if coins %}
@@ -28,7 +28,7 @@
 			{% if countries %}
 			<div class="accordion-group">
 				<div class="accordion-heading">
-					<a class="accordion-toggle" data-parent="#filters" data-toggle="collapse" href="#filter_country">{{ 'countries'|trans }}</a>
+					<a class="accordion-toggle" data-parent="#filters" data-toggle="collapse" href="#filter_country">{{ 'coin.country'|trans }}</a>
 				</div>
 				<div class="accordion-body collapse" id="filter_country">
 					<div class="accordion-inner">
@@ -62,7 +62,7 @@
 			{% if values %}
 			<div class="accordion-group">
 				<div class="accordion-heading">
-					<a class="accordion-toggle" data-parent="#filters" data-toggle="collapse" href="#filter_value">{{ 'value.value'|trans }}</a>
+					<a class="accordion-toggle" data-parent="#filters" data-toggle="collapse" href="#filter_value">{{ 'coin.value'|trans }}</a>
 				</div>
 				<div class="accordion-body collapse" id="filter_value">
 					<div class="accordion-inner">
@@ -101,7 +101,7 @@
 
 				<div class="control-group">
 					<div class="input-append">
-						<span class="span1 uneditable-input">{{ name|capitalize|trans }}</span><a class="btn btn-info" href="{{ path('coin_filter', filters|reset(name)) }}" title="{{ 'action.reset'|trans }}"><i class="icon-white icon-remove"></i></a>
+						<span class="span1 uneditable-input">{{ ('coin.' ~ name)|trans }}</span><a class="btn btn-info" href="{{ path('coin_filter', filters|reset(name)) }}" title="{{ 'action.reset'|trans }}"><i class="icon-white icon-remove"></i></a>
 					</div>
 				</div>
 			{% endif %}
@@ -181,7 +181,7 @@
 					{{ block('commemorative') }}
 				{% endif %}
 
-				<a href="{{ path('coin_edit', { 'id': coin.id }) }}">{{ coin.mintage|number_format }}</a>
+				<a href="{{ path('coin_show', { 'id': coin.id }) }}">{{ coin.mintage|number_format }}</a>
 			</td>
 
 			{% if loop.last %}

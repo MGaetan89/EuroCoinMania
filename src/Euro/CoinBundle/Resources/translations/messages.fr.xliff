@@ -14,25 +14,9 @@
 				<source>no</source>
 				<target>Non</target>
 			</trans-unit>
-			<trans-unit id="actions">
-				<source>actions</source>
-				<target>Actions</target>
-			</trans-unit>
-			<trans-unit id="action.add">
-				<source>action.add</source>
-				<target>Ajouter</target>
-			</trans-unit>
 			<trans-unit id="action.back_to_list">
 				<source>action.back_to_list</source>
 				<target>Retourner à la liste</target>
-			</trans-unit>
-			<trans-unit id="action.delete">
-				<source>action.delete</source>
-				<target>Supprimer</target>
-			</trans-unit>
-			<trans-unit id="action.edit">
-				<source>action.edit</source>
-				<target>Modifier</target>
 			</trans-unit>
 			<trans-unit id="action.reset">
 				<source>action.reset</source>
@@ -42,25 +26,17 @@
 				<source>action.reset_all</source>
 				<target>Tout réinitialiser</target>
 			</trans-unit>
-			<trans-unit id="coin.add">
-				<source>coin.add</source>
-				<target>Ajouter une pièce</target>
-			</trans-unit>
-			<trans-unit id="coin.adding">
-				<source>coin.adding</source>
-				<target>Ajout d'une pièce</target>
-			</trans-unit>
 			<trans-unit id="coin.commemorative">
 				<source>coin.commemorative</source>
 				<target>Commémorative</target>
 			</trans-unit>
+			<trans-unit id="coin.country">
+				<source>coin.country</source>
+				<target>Pays</target>
+			</trans-unit>
 			<trans-unit id="coin.description">
 				<source>coin.description</source>
 				<target>Description</target>
-			</trans-unit>
-			<trans-unit id="coin.editing">
-				<source>coin.editing</source>
-				<target>Edition d'une pièce</target>
 			</trans-unit>
 			<trans-unit id="coin.list">
 				<source>coin.list</source>
@@ -86,6 +62,10 @@
 				<source>coin.total</source>
 				<target>Total</target>
 			</trans-unit>
+			<trans-unit id="coin.value">
+				<source>coin.value</source>
+				<target>Valeur</target>
+			</trans-unit>
 			<trans-unit id="coin.year">
 				<source>coin.year</source>
 				<target>Année</target>
@@ -94,21 +74,9 @@
 				<source>countries</source>
 				<target>Pays</target>
 			</trans-unit>
-			<trans-unit id="country.add">
-				<source>country.add</source>
-				<target>Ajouter un pays</target>
-			</trans-unit>
-			<trans-unit id="country.adding">
-				<source>country.adding</source>
-				<target>Ajout d'un pays</target>
-			</trans-unit>
 			<trans-unit id="country.change_rate">
 				<source>country.change_rate</source>
 				<target>Taux de change</target>
-			</trans-unit>
-			<trans-unit id="country.editing">
-				<source>country.editing</source>
-				<target>Modification de &quot;%name%&quot;</target>
 			</trans-unit>
 			<trans-unit id="country.formercurrency">
 				<source>country.formercurrency</source>
@@ -137,58 +105,6 @@
 			<trans-unit id="filters">
 				<source>filters</source>
 				<target>Filtres</target>
-			</trans-unit>
-			<trans-unit id="Name">
-				<source>Name</source>
-				<target>Nom</target>
-			</trans-unit>
-			<trans-unit id="Nameiso">
-				<source>Nameiso</source>
-				<target>Nom (ISO)</target>
-			</trans-unit>
-			<trans-unit id="Join date">
-				<source>Join date</source>
-				<target>Date de mise en circulation</target>
-			</trans-unit>
-			<trans-unit id="Former currency">
-				<source>Former currency</source>
-				<target>Ancienne monnaie</target>
-			</trans-unit>
-			<trans-unit id="Former currency iso">
-				<source>Former currency iso</source>
-				<target>Ancienne monnaie (ISO)</target>
-			</trans-unit>
-			<trans-unit id="Exchange rate">
-				<source>Exchange rate</source>
-				<target>Taux de change</target>
-			</trans-unit>
-			<trans-unit id="Country">
-				<source>Country</source>
-				<target>Pays</target>
-			</trans-unit>
-			<trans-unit id="Value">
-				<source>Value</source>
-				<target>Valeur</target>
-			</trans-unit>
-			<trans-unit id="Year">
-				<source>Year</source>
-				<target>Année</target>
-			</trans-unit>
-			<trans-unit id="Commemorative">
-				<source>Commemorative</source>
-				<target>Commémorative</target>
-			</trans-unit>
-			<trans-unit id="Mintage">
-				<source>Mintage</source>
-				<target>Tirage</target>
-			</trans-unit>
-			<trans-unit id="Description">
-				<source>Description</source>
-				<target>Description</target>
-			</trans-unit>
-			<trans-unit id="Collector">
-				<source>Collector</source>
-				<target>Pièce de collection</target>
 			</trans-unit>
 			<trans-unit id="country.name.austria">
 				<source>country.name.austria</source>
@@ -349,34 +265,6 @@
 			<trans-unit id="country.currency.vatican">
 				<source>country.currency.vatican</source>
 				<target>Lire vaticane</target>
-			</trans-unit>
-			<trans-unit id="value.add">
-				<source>value.add</source>
-				<target>Ajouter une valeur</target>
-			</trans-unit>
-			<trans-unit id="value.adding">
-				<source>value.adding</source>
-				<target>Ajout d'une valeur</target>
-			</trans-unit>
-			<trans-unit id="value.collector">
-				<source>value.collector</source>
-				<target>Pièce de collection</target>
-			</trans-unit>
-			<trans-unit id="value.editing">
-				<source>value.editing</source>
-				<target>Modification de &quot;%name% €&quot;</target>
-			</trans-unit>
-			<trans-unit id="value.list">
-				<source>value.list</source>
-				<target>Liste des valeurs</target>
-			</trans-unit>
-			<trans-unit id="value.none">
-				<source>value.none</source>
-				<target>Aucune valeur n'a été enregistrée</target>
-			</trans-unit>
-			<trans-unit id="value.value">
-				<source>value.value</source>
-				<target>Valeur</target>
 			</trans-unit>
 		</body>
 	</file>
