@@ -48,7 +48,7 @@ class CoinRepository extends EntityRepository {
 
 		$and = $expr->andx();
 		foreach ($filters as $name => $value) {
-			$and->add($expr->eq('c.' . $name, $value));
+			$and->add($expr->eq('c.' . $name, '\'' . $value . '\''));
 		}
 
 		if ($and->count()) {
