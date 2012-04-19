@@ -219,7 +219,7 @@
 				<target>Drachme moderne grecque</target>
 			</trans-unit>
 			<trans-unit id="country.currency.ireland">
-				<source>country.currency.irelandLivre irlandaise</source>
+				<source>country.currency.ireland</source>
 				<target>Livre irlandaise</target>
 			</trans-unit>
 			<trans-unit id="country.currency.italy">
