@@ -177,11 +177,31 @@
 			{% endif %}
 
 			<td>
-				{% if coin.commemorative %}
-					{{ block('commemorative') }}
-				{% endif %}
+				{% if app.user %}
+					<div class="pull-left">
+						<div class="btn-group">
+							<button class="btn btn-mini">-</button>
+							<button class="btn btn-mini" disabled="disabled">
+								{% for c in app.user.coins if c.id == coin.id %}
+									{{ c.quantity }}
+								{% else %}
+									0
+								{% endfor %}
+							</button>
+							<button class="btn btn-mini">+</button>
+						</div>
+					</div>
 
-				<a href="{{ path('coin_show', { 'id': coin.id }) }}">{{ coin.mintage|number_format }}</a>
+					<div class="pull-right">
+						<a href="{{ path('coin_show', { 'id': coin.id }) }}" id="coin-info-{{ coin.id }}" title="{{ 'information'|trans }}">?</a>
+					</div>
+				{% else %}
+					{% if coin.commemorative %}
+						{{ block('commemorative') }}
+					{% endif %}
+
+					<a href="{{ path('coin_show', { 'id': coin.id }) }}">{{ coin.mintage|number_format }}</a>
+				{% endif %}
 			</td>
 
 			{% if loop.last %}
@@ -196,6 +216,10 @@
 		{% if commemoratives or countries or values or years or filters %}
 	</div>
 </div>
+{% endif %}
+
+{% if app.user %}
+<script src="{{ asset('bundles/eurocoin/js/collection.js') }}" type="text/javascript"></script>
 {% endif %}
 {% else %}
 <div class="alert alert-info">

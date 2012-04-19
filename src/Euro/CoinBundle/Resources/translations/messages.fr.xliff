@@ -266,6 +266,10 @@
 				<source>country.currency.vatican</source>
 				<target>Lire vaticane</target>
 			</trans-unit>
+			<trans-unit id="information">
+				<source>information</source>
+				<target>Informations</target>
+			</trans-unit>
 		</body>
 	</file>
 </xliff>

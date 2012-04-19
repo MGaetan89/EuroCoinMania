@@ -3,6 +3,7 @@
 namespace Euro\CoinBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Response;
 use Euro\CoinBundle\Entity\Coin;
 use Euro\CoinBundle\Form\CoinType;
 
@@ -76,6 +77,21 @@ class CoinController extends Controller {
 
 		return $this->render('EuroCoinBundle:Coin:show.html.twig', array(
 					'coin' => $coin,
+				));
+	}
+
+	public function getAction($id) {
+		$em = $this->getDoctrine()->getEntityManager();
+
+		$coin = $em->getRepository('EuroCoinBundle:Coin')->find($id);
+
+		if (!$coin) {
+			throw $this->createNotFoundException('Unable to find Coin entity.');
+		}
+
+		return $this->render('EuroCoinBundle:Coin:popover.html.twig', array(
+					'coin' => $coin,
+					'popover' => true,
 				));
 	}
 

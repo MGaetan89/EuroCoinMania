@@ -7,16 +7,5 @@
 	<h1>{{ block('title') }} <small><a href="{{ path('coin') }}">{{ 'action.back_to_list'|trans }}</a></small></h1>
 </div>
 
-<dl>
-	<dt>{{ 'coin.name'|trans }}</dt>
-	<dd><a href="{{ path('country_show', { 'id': coin.country.id }) }}">{{ coin.country|trans }}</a> - {{ coin.year }} - {{ coin.value }}</dd>
-	<dt>{{ 'coin.commemorative'|trans }}</dt>
-	<dd>{{ macros.bool(coin.commemorative) }}</dd>
-	<dt>{{ 'coin.mintage'|trans }}</dt>
-	<dd>{{ coin.mintage|number_format }}</dd>
-	{% if coin.description %}
-	<dt>{{ 'coin.description'|trans }}</dt>
-	<dd>{{ coin.description|trans }}</dd>
-	{% endif %}
-</dl>
+{% include "EuroCoinBundle:Coin:popover.html.twig" with { 'popover': false } %}
 {% endblock %}
