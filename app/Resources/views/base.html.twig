@@ -46,8 +46,8 @@
 
 				{% if app.user %}
 				<p class="navbar-text pull-right">
-					Connecté en tant que <a href="{{ path('fos_user_profile_show') }}">{{ app.user }}</a> -
-					<a href="{{ path('fos_user_security_logout') }}">{{ 'user.logout'|trans }}</a>
+					{{ 'user.login.login_message'|trans({ '%name%': app.user, '%route%': path('fos_user_profile_show') })|raw }}
+					[<a href="{{ path('fos_user_security_logout') }}">{{ 'user.logout'|trans }}</a>]
 				</p>
 				{% else %}
 				<ul class="nav pull-right">

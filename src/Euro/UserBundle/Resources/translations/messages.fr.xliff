@@ -46,6 +46,10 @@
 				<source>user.login.submit</source>
 				<target>Connexion</target>
 			</trans-unit>
+			<trans-unit id="user.login.login_message">
+				<source>user.login.login_message</source>
+				<target><![CDATA[Connecté en tant que <a href="%route%">%name%</a>]]></target>
+			</trans-unit>
 		</body>
 	</file>
 </xliff>
