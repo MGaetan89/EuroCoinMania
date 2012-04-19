@@ -81,6 +81,11 @@ class CoinController extends Controller {
 	}
 
 	public function getAction($id) {
+		$user = $this->get('security.context')->getToken()->getUser();
+		if (!$user instanceof \FOS\UserBundle\Model\UserInterface) {
+			throw new \Exception('You are not allowed to access this page !');
+		}
+
 		$em = $this->getDoctrine()->getEntityManager();
 
 		$coin = $em->getRepository('EuroCoinBundle:Coin')->find($id);
