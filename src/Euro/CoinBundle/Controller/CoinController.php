@@ -39,6 +39,7 @@ class CoinController extends Controller {
 		$coin_values = array();
 		$commemoratives = array();
 		$countries = array();
+		$sorted = array();
 		$values = array();
 		$years = array();
 		foreach ($coins as $coin) {
@@ -48,15 +49,22 @@ class CoinController extends Controller {
 			$coin_values[$country->getId()][$value->getId()] = (string) $value;
 			$commemoratives[$coin->getCommemorative()] = $coin->getCommemorative();
 			$countries[$country->getId()] = $translator->trans($coin->getCountry());
+			$sorted[ $countries[$country->getId()] ][] = $coin;
 			$values[$value->getId()] = (string) $value;
 			$years[$coin->getYear()] = $coin->getYear();
 		}
 
 		asort($countries);
 		asort($values);
+		ksort($sorted);
 		sort($years);
 		foreach ($coin_values as $country => &$val) {
 			rsort($val);
+		}
+
+		$coins = array();
+		foreach ($sorted as $country) {
+			$coins = array_merge($coins, $country);
 		}
 
 		return $this->render('EuroCoinBundle:Coin:index.html.twig', array(

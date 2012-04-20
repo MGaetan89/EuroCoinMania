@@ -56,8 +56,7 @@ class CoinRepository extends EntityRepository {
 			$queryBuiler->where($and);
 		}
 
-		return $queryBuiler->orderBy('p.id', 'DESC')
-						->addOrderBy('c.year', 'ASC')
+		return $queryBuiler->orderBy('c.year', 'ASC')
 						->addOrderBy('v.value', 'DESC')
 						->getQuery()
 						->getResult();
