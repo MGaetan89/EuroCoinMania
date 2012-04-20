@@ -43,12 +43,13 @@ class CoinRepository extends EntityRepository {
 		$queryBuiler = $this->createQueryBuilder('c')
 				->join('c.country', 'p')
 				->join('c.value', 'v');
-		$filters = array_filter($filters, 'trim');
 		$expr = $queryBuiler->expr();
 
 		$and = $expr->andx();
 		foreach ($filters as $name => $value) {
-			$and->add($expr->eq('c.' . $name, '\'' . $value . '\''));
+			if ($value !== '') {
+				$and->add($expr->eq($name, '\'' . $value . '\''));
+			}
 		}
 
 		if ($and->count()) {

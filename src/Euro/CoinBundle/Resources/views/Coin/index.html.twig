@@ -12,11 +12,25 @@
 {% set total_coins = 0 %}
 
 <div class="page-header">
-	<h1>{{ block('title') }}</h1>
+	<h1>
+		{{ block('title') }}
+		<small>
+			{% if collector %}
+				<a href="{{ path('coin') }}">{{ 'coin.circulation'|trans }}</a>
+			{% else %}
+				<a href="{{ path('coin_collector') }}">{{ 'coin.collector'|trans }}</a>
+			{% endif %}
+		</small>
+	</h1>
 </div>
 
 {% if coins %}
-{% if commemoratives or countries or values or years or filters %}
+{% set has_filter = false %}
+{% for name, value in filters if value|trim %}
+	{% set has_filter = true %}
+{% endfor %}
+
+{% if commemoratives or countries or values or years or has_filter %}
 <div class="row-fluid">
 	<div class="span2">
 		<div class="nav nav-list">
@@ -94,17 +108,12 @@
 		</div>
 		{% endif %}
 
-		{% set has_filter = false %}
-		{% for name, value in filters %}
-			{% if value|trim %}
-				{% set has_filter = true %}
-
-				<div class="control-group">
-					<div class="input-append">
-						<span class="span1 uneditable-input">{{ ('coin.' ~ name)|trans }}</span><a class="btn btn-info" href="{{ path('coin_filter', filters|reset(name)) }}" title="{{ 'action.reset'|trans }}"><i class="icon-white icon-remove"></i></a>
-					</div>
+		{% for name, value in filters if value|trim %}
+			<div class="control-group">
+				<div class="input-append">
+					<span class="span1 uneditable-input">{{ ('coin.' ~ name)|trans }}</span><a class="btn btn-info" href="{{ path('coin_filter', filters|reset(name)) }}" title="{{ 'action.reset'|trans }}"><i class="icon-white icon-remove"></i></a>
 				</div>
-			{% endif %}
+			</div>
 		{% endfor %}
 
 		{% if has_filter %}
@@ -186,7 +195,7 @@
 					<div class="pull-left">
 						<div class="btn-group coin-collection"{% if uc %} data-uc="{{ uc.id }}"{% else %} data-coin="{{ coin.id }}"{% endif %}>
 							<button class="btn btn-mini coin-remove"{% if not uc or uc.quantity == 0 %} disabled="disabled"{% endif %}>-</button>
-							<button class="btn btn-mini coin-quantity" disabled="disabled"><b>{{ uc ? uc.quantity|number_format : 0 }}</b></button>
+							<button class="btn btn-mini coin-quantity" disabled="disabled">{{ uc ? uc.quantity|number_format : 0 }}</button>
 							<button class="btn btn-mini coin-add">+</button>
 						</div>
 					</div>
@@ -212,7 +221,7 @@
 				</table>
 			{% endif %}
 		{% endfor %}
-		{% if commemoratives or countries or values or years or filters %}
+		{% if commemoratives or countries or values or years or has_filter %}
 	</div>
 </div>
 {% endif %}

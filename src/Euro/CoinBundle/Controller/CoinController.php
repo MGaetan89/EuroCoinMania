@@ -18,7 +18,7 @@ class CoinController extends Controller {
 	 * Lists all Coin entities.
 	 *
 	 */
-	public function indexAction($country, $year, $value, $commemorative) {
+	public function indexAction($country, $year, $value, $commemorative, $collector) {
 		$em = $this->getDoctrine()->getEntityManager();
 		$translator = $this->get('translator');
 
@@ -28,7 +28,14 @@ class CoinController extends Controller {
 			'value' => $value,
 			'year' => $year,
 		);
-		$coins = $em->getRepository('EuroCoinBundle:Coin')->getCoinsByFilters($filters);
+		$db_filters = array(
+			'c.commemorative' => $commemorative,
+			'c.country' => $country,
+			'c.value' => $value,
+			'c.year' => $year,
+			'v.collector' => $collector,
+		);
+		$coins = $em->getRepository('EuroCoinBundle:Coin')->getCoinsByFilters($db_filters);
 		$coin_values = array();
 		$commemoratives = array();
 		$countries = array();
@@ -55,6 +62,7 @@ class CoinController extends Controller {
 		return $this->render('EuroCoinBundle:Coin:index.html.twig', array(
 					'coin_values' => $coin_values,
 					'coins' => $coins,
+					'collector' => $collector,
 					'commemoratives' => count($commemoratives) === 2,
 					'countries' => (count($countries) > 1) ? $countries : array(),
 					'filters' => $filters,

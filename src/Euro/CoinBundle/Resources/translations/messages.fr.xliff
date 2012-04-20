@@ -26,6 +26,14 @@
 				<source>action.reset_all</source>
 				<target>Tout réinitialiser</target>
 			</trans-unit>
+			<trans-unit id="coin.circulation">
+				<source>coin.circulation</source>
+				<target>Circulation</target>
+			</trans-unit>
+			<trans-unit id="coin.collector">
+				<source>coin.collector</source>
+				<target>Collector</target>
+			</trans-unit>
 			<trans-unit id="coin.commemorative">
 				<source>coin.commemorative</source>
 				<target>Commémorative</target>
