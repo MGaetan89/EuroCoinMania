@@ -1,15 +1,14 @@
 $(function () {
-	var body = $('body'), idPrefix = 'coin-info-';
+	var body = $('body');
 
-	body.on('mouseover', 'td a[id^="' + idPrefix + '"]', function () {
-		var $this = $(this),
-		id = parseInt($this.attr('id').replace(idPrefix, '')),
-		newId = idPrefix + id + '-popover';
+	// Manage Coin tooltip information
+	body.on('mouseover', 'td a.coin-info', function () {
+		var $this = $(this), coin = $this.data('coin'), id = 'coin-info' + coin;
 
-		if ($('#' + newId).length) {
-			$('#' + newId).popover('toggle');
+		if ($('#' + id).length) {
+			$('#' + id).popover('toggle');
 		} else {
-			$.post('/coin/' + id + '/get', function (data) {
+			$.post('/coin/' + coin + '/get', function (data) {
 				data = $(data).appendTo(body);
 
 				$this.popover({
