@@ -1,0 +1,57 @@
+{% set country = '' %}
+
+{% for coin in coins %}
+	{% if country != coin.country %}
+		{% set country = coin.country %}
+		{% if not loop.first %}
+				</tr>
+			</tbody>
+			</table>
+		{% endif %}
+
+		<table class="table table-bordered table-condensed table-striped">
+		<thead>
+			<tr>
+				<th>{{ coin.country|trans }}</th>
+				<th>{{ 'coin.value'|trans }}</th>
+				<th>{{ 'coin.description'|trans }}</th>
+				<th>{{ 'coin.collection'|trans }}</th>
+			</tr>
+		</thead>
+		<tbody>
+	{% endif %}
+
+	<tr>
+		<td>{{ coin.year }}</td>
+		<td>{{ coin.value }}</td>
+		<td>{{ coin.description|trans }}</td>
+		<td>
+			{% if app.user %}
+				{% set uc = 0 %}
+				{% for c in app.user.coins if c.coin.id == coin.id %}
+					{% set uc = c %}
+				{% endfor %}
+
+				<div class="pull-left">
+					<div class="btn-group coin-collection"{% if uc %} data-uc="{{ uc.id }}"{% else %} data-coin="{{ coin.id }}"{% endif %}>
+						<button class="btn btn-mini coin-remove"{% if not uc or uc.quantity == 0 %} disabled="disabled"{% endif %}>-</button>
+						<button class="btn btn-mini coin-quantity" disabled="disabled">{{ uc ? uc.quantity|number_format : 0 }}</button>
+						<button class="btn btn-mini coin-add">+</button>
+					</div>
+				</div>
+
+				<div class="pull-right">
+					<a class="coin-info wait" href="{{ path('coin_show', { 'id': coin.id }) }}" data-coin="{{ coin.id }}" title="{{ 'information'|trans }}">?</a>
+				</div>
+			{% else %}
+				<a href="{{ path('coin_show', { 'id': coin.id }) }}">{{ coin.mintage|number_format }}</a>
+			{% endif %}
+		</td>
+	</tr>
+
+	{% if loop.last %}
+			</tr>
+		</tbody>
+		</table>
+	{% endif %}
+{% endfor %}

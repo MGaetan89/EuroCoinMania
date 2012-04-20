@@ -124,103 +124,15 @@
 	<div class="span10">
 		{% endif %}
 
-		{% set country = '' %}
+		{% if collector %}
+			{% include "EuroCoinBundle:Coin:list_collector.html.twig" %}
+		{% else %}
+			{% include "EuroCoinBundle:Coin:list_coin.html.twig" with {
+				'commemorative': block('commemorative'),
+				'empty_cell': block('empty_cell')
+			} %}
+		{% endif %}
 
-		{% for coin in coins %}
-			{% if country != coin.country %}
-				{% set country = coin.country %}
-				{% if not loop.first %}
-						{% for n in range(columns + 1, nbval) if columns < nbval %}
-							{{ block('empty_cell') }}
-						{% endfor %}
-						</tr>
-					</tbody>
-					</table>
-				{% endif %}
-
-				<table class="table table-bordered table-condensed table-striped">
-				<thead>
-					<tr>
-						<th>{{ coin.country|trans }}</th>
-						{% for value in coin_values[coin.country.id] %}
-						<th>{{ value }}</th>
-						{% endfor %}
-
-						{% set changed, columns, year = false, 0, 1990 %}
-						{% set nbval, val = coin_values[coin.country.id]|length - 1, coin_values[coin.country.id] %}
-					</tr>
-				</thead>
-				<tbody>
-			{% endif %}
-
-			{% if year != coin.year %}
-				{% if not loop.first and year != 1990 %}
-					{% for n in range(columns + 1, nbval) if columns < nbval %}
-						{{ block('empty_cell') }}
-					{% endfor %}
-					</tr>
-				{% endif %}
-
-			<tr>
-				<td>{{ coin.year }}</td>
-				{% set changed, columns, year = false, 0, coin.year %}
-			{% endif %}
-
-			{% if val[columns] != coin.value %}
-				{% for n in range(columns + 1, nbval) %}
-					{% if not changed %}
-						{{ block('empty_cell') }}
-					{% endif %}
-
-					{% if val[n] == coin.value %}
-						{% set columns = n %}
-						{% set changed = true %}
-					{% endif %}
-
-					{% if changed and val[n] > coin.value %}
-						{{ block('empty_cell') }}
-					{% endif %}
-				{% endfor %}
-			{% else %}
-				{% set columns = columns + 1 %}
-			{% endif %}
-
-			<td>
-				{% if app.user %}
-					{% set uc = 0 %}
-					{% for c in app.user.coins if c.coin.id == coin.id %}
-						{% set uc = c %}
-					{% endfor %}
-
-					<div class="pull-left">
-						<div class="btn-group coin-collection"{% if uc %} data-uc="{{ uc.id }}"{% else %} data-coin="{{ coin.id }}"{% endif %}>
-							<button class="btn btn-mini coin-remove"{% if not uc or uc.quantity == 0 %} disabled="disabled"{% endif %}>-</button>
-							<button class="btn btn-mini coin-quantity" disabled="disabled">{{ uc ? uc.quantity|number_format : 0 }}</button>
-							<button class="btn btn-mini coin-add">+</button>
-						</div>
-					</div>
-
-					<div class="pull-right">
-						<a class="coin-info wait" href="{{ path('coin_show', { 'id': coin.id }) }}" data-coin="{{ coin.id }}" title="{{ 'information'|trans }}">?</a>
-					</div>
-				{% else %}
-					{% if coin.commemorative %}
-						{{ block('commemorative') }}
-					{% endif %}
-
-					<a href="{{ path('coin_show', { 'id': coin.id }) }}">{{ coin.mintage|number_format }}</a>
-				{% endif %}
-			</td>
-
-			{% if loop.last %}
-					{% for n in range(columns + 1, nbval) if columns < nbval %}
-						{{ block('empty_cell') }}
-					{% endfor %}
-					</tr>
-				</tbody>
-				</table>
-			{% endif %}
-		{% endfor %}
 		{% if commemoratives or countries or values or years or has_filter %}
 	</div>
 </div>

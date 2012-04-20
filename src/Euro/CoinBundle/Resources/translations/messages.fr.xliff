@@ -30,6 +30,10 @@
 				<source>coin.circulation</source>
 				<target>Circulation</target>
 			</trans-unit>
+			<trans-unit id="coin.collection">
+				<source>coin.collection</source>
+				<target>Collection</target>
+			</trans-unit>
 			<trans-unit id="coin.collector">
 				<source>coin.collector</source>
 				<target>Collector</target>
