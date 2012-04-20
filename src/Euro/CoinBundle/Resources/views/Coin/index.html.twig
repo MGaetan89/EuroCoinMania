@@ -186,7 +186,7 @@
 					<div class="pull-left">
 						<div class="btn-group coin-collection"{% if uc %} data-uc="{{ uc.id }}"{% else %} data-coin="{{ coin.id }}"{% endif %}>
 							<button class="btn btn-mini coin-remove"{% if not uc or uc.quantity == 0 %} disabled="disabled"{% endif %}>-</button>
-							<button class="btn btn-mini coin-quantity" disabled="disabled">{{ uc ? uc.quantity : 0 }}</button>
+							<button class="btn btn-mini coin-quantity" disabled="disabled"><b>{{ uc ? uc.quantity|number_format : 0 }}</b></button>
 							<button class="btn btn-mini coin-add">+</button>
 						</div>
 					</div>

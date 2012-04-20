@@ -101,7 +101,8 @@ class CoinController extends Controller {
 	}
 
 	public function removeAction($id) {
-		if (!$this->getUser() instanceof \FOS\UserBundle\Model\UserInterface) {
+		$user = $this->getUser();
+		if (!$user instanceof \FOS\UserBundle\Model\UserInterface) {
 			throw new \Exception('You are not allowed to access this page !');
 		}
 
@@ -110,6 +111,10 @@ class CoinController extends Controller {
 
 		if (!$uc) {
 			throw $this->createNotFoundException('Unable to find UserCoin entity.');
+		}
+
+		if ($user != $uc->getUser()) {
+			throw new \Exception('You are not allowed to access this page !');
 		}
 
 		if ($uc->getQuantity() > 0) {
@@ -146,6 +151,10 @@ class CoinController extends Controller {
 
 			$em->persist($uc);
 		} else {
+			if ($user != $uc->getUser()) {
+				throw new \Exception('You are not allowed to access this page !');
+			}
+
 			$uc->setQuantity($uc->getQuantity() + 1);
 		}
 
