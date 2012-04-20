@@ -1,7 +1,7 @@
 {% if popover %}
 {% import "EuroCoinBundle::macros.html.twig" as macros %}
 
-<div class="hide" id="coin-info-{{ coin.id }}-popover">
+<div class="hide" id="coin-info-{{ coin.id }}">
 {% endif %}
 	<dl{% if popover %} class="dl-horizontal"{% endif %}>
 		<dt>{{ 'coin.country'|trans }}</dt>

@@ -35,7 +35,7 @@ class Value {
 	private $collector;
 
 	/**
-	 * @ORM\OneToMany(targetEntity="Coin", mappedBy="country")
+	 * @ORM\OneToMany(targetEntity="Coin", mappedBy="value")
 	 */
 	protected $coins;
 

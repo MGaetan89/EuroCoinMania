@@ -32,7 +32,7 @@ class User extends BaseUser {
 	/**
 	 * Get id
 	 *
-	 * @return integer 
+	 * @return integer
 	 */
 	public function getId() {
 		return $this->id;
@@ -50,7 +50,7 @@ class User extends BaseUser {
 	/**
 	 * Get coins
 	 *
-	 * @return Doctrine\Common\Collections\Collection 
+	 * @return Doctrine\Common\Collections\Collection
 	 */
 	public function getCoins() {
 		return $this->coins;
