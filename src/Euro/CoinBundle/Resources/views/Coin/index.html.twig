@@ -193,7 +193,7 @@
 					</div>
 
 					<div class="pull-right">
-						<a href="{{ path('coin_show', { 'id': coin.id }) }}" id="coin-info-{{ coin.id }}" title="{{ 'information'|trans }}">?</a>
+						<a class="wait" href="{{ path('coin_show', { 'id': coin.id }) }}" id="coin-info-{{ coin.id }}" title="{{ 'information'|trans }}">?</a>
 					</div>
 				{% else %}
 					{% if coin.commemorative %}

@@ -15,7 +15,7 @@ $(function () {
 				$this.popover({
 					content: data.html(),
 					placement: 'left'
-				}).popover('show');
+				}).popover('show').removeClass('wait');
 			});
 		}
 	});
