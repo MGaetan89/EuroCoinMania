@@ -189,9 +189,9 @@ class Coin {
 	/**
 	 * Add users
 	 *
-	 * @param Euro\CoinBundle\Entity\User $users
+	 * @param Euro\UserBundle\Entity\User $users
 	 */
-	public function addUser(\Euro\CoinBundle\Entity\User $users) {
+	public function addUser(\Euro\UserBundle\Entity\User $users) {
 		$this->users[] = $users;
 	}
 

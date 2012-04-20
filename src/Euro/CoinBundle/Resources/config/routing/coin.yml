@@ -2,10 +2,6 @@ coin:
     pattern:  /
     defaults: { _controller: "EuroCoinBundle:Coin:index", country: '', year: '', value: '', commemorative: '' }
 
-coin_get:
-    pattern:  /{id}/get
-    defaults: { _controller: "EuroCoinBundle:Coin:get" }
-
 coin_show:
     pattern:  /{id}/show
     defaults: { _controller: "EuroCoinBundle:Coin:show" }
@@ -18,3 +14,21 @@ coin_filter:
         year: "(\d{4}[A-Z]*)?"
         value: "\d*"
         commemorative: "(0|1)*"
+
+coin_get:
+    pattern:  /{id}/get
+    defaults: { _controller: "EuroCoinBundle:Coin:get" }
+    requirements:
+        _method: POST
+
+coin_remove:
+    pattern:  /{id}/remove
+    defaults: { _controller: "EuroCoinBundle:Coin:remove" }
+    requirements:
+        _method: POST
+
+coin_add:
+    pattern:  /{id}/add
+    defaults: { _controller: "EuroCoinBundle:Coin:add" }
+    requirements:
+        _method: POST

@@ -178,15 +178,15 @@
 
 			<td>
 				{% if app.user %}
-					{% set quantity = 0 %}
+					{% set uc = 0 %}
 					{% for c in app.user.coins if c.coin.id == coin.id %}
-						{% set quantity = c.quantity %}
+						{% set uc = c %}
 					{% endfor %}
 
 					<div class="pull-left">
-						<div class="btn-group coin-collection">
-							<button class="btn btn-mini{% if quantity > 0 %} coin-remove"{% else %}" disabled="disabled"{% endif %}>-</button>
-							<button class="btn btn-mini" disabled="disabled">{{ quantity }}</button>
+						<div class="btn-group coin-collection"{% if uc %} data-uc="{{ uc.id }}"{% else %} data-coin="{{ coin.id }}"{% endif %}>
+							<button class="btn btn-mini coin-remove"{% if not uc or uc.quantity == 0 %} disabled="disabled"{% endif %}>-</button>
+							<button class="btn btn-mini coin-quantity" disabled="disabled">{{ uc ? uc.quantity : 0 }}</button>
 							<button class="btn btn-mini coin-add">+</button>
 						</div>
 					</div>
