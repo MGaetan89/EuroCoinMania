@@ -11,7 +11,6 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Entity(repositoryClass="Euro\CoinBundle\Entity\UserCoinRepository")
  */
 class UserCoin {
-
 	/**
 	 * @var integer $id
 	 *
@@ -43,7 +42,7 @@ class UserCoin {
 	/**
 	 * Get id
 	 *
-	 * @return integer 
+	 * @return integer
 	 */
 	public function getId() {
 		return $this->id;
@@ -61,7 +60,7 @@ class UserCoin {
 	/**
 	 * Get quantity
 	 *
-	 * @return integer 
+	 * @return integer
 	 */
 	public function getQuantity() {
 		return $this->quantity;
@@ -79,7 +78,7 @@ class UserCoin {
 	/**
 	 * Get user
 	 *
-	 * @return Euro\UserBundle\Entity\User 
+	 * @return Euro\UserBundle\Entity\User
 	 */
 	public function getUser() {
 		return $this->user;
@@ -97,7 +96,7 @@ class UserCoin {
 	/**
 	 * Get coin
 	 *
-	 * @return Euro\CoinBundle\Entity\Coin 
+	 * @return Euro\CoinBundle\Entity\Coin
 	 */
 	public function getCoin() {
 		return $this->coin;

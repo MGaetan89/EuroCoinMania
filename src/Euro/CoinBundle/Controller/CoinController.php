@@ -4,7 +4,6 @@ namespace Euro\CoinBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
-use Euro\CoinBundle\Entity\Coin;
 use Euro\CoinBundle\Entity\UserCoin;
 
 /**
@@ -48,7 +47,7 @@ class CoinController extends Controller {
 			$coin_values[$country->getId()][$value->getId()] = (string) $value;
 			$commemoratives[$coin->getCommemorative()] = $coin->getCommemorative();
 			$countries[$country->getId()] = $translator->trans($coin->getCountry());
-			$sorted[ $countries[$country->getId()] ][] = $coin;
+			$sorted[$countries[$country->getId()]][] = $coin;
 			$values[$value->getId()] = (string) $value;
 			$years[$coin->getYear()] = $coin->getYear();
 		}
