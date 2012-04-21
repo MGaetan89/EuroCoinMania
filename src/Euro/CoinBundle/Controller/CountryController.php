@@ -4,7 +4,6 @@ namespace Euro\CoinBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Euro\CoinBundle\Entity\Country;
-use Euro\CoinBundle\Form\CountryType;
 
 /**
  * Country controller.

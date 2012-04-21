@@ -6,7 +6,6 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
 use Euro\CoinBundle\Entity\Coin;
 use Euro\CoinBundle\Entity\UserCoin;
-use Euro\CoinBundle\Form\CoinType;
 
 /**
  * Coin controller.
