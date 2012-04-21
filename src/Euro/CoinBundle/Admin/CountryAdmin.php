@@ -10,6 +10,8 @@ use Sonata\AdminBundle\Form\FormMapper;
 
 class CountryAdmin extends Admin {
 
+	protected $translationDomain = 'admin';
+
 	protected function configureFormFields(FormMapper $formMapper) {
 		$formMapper
 				->add('name')
@@ -45,7 +47,7 @@ class CountryAdmin extends Admin {
 	}
 
 	public function validate(ErrorElement $errorElement, $object) {
-
+		
 	}
 
 }

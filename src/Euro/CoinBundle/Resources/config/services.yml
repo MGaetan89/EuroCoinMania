@@ -6,17 +6,17 @@ services:
         class: Euro\CoinBundle\Admin\CountryAdmin
         arguments: [null, Euro\CoinBundle\Entity\Country, SonataAdminBundle:CRUD]
         tags:
-            - { name: sonata.admin, manager_type: orm, group: "Euro", label: "Country" }
+            - { name: sonata.admin, manager_type: orm, group: "Euro", label: "Country", label_translator_strategy: "sonata.admin.label.strategy.underscore" }
     euro.coin.admin.value:
         class: Euro\CoinBundle\Admin\ValueAdmin
         arguments: [null, Euro\CoinBundle\Entity\Value, SonataAdminBundle:CRUD]
         tags:
-            - { name: sonata.admin, manager_type: orm, group: "Euro", label: "Value" }
+            - { name: sonata.admin, manager_type: orm, group: "Euro", label: "Value", label_translator_strategy: "sonata.admin.label.strategy.underscore" }
     euro.coin.admin.coin:
         class: Euro\CoinBundle\Admin\CoinAdmin
         arguments: [null, Euro\CoinBundle\Entity\Coin, SonataAdminBundle:CRUD]
         tags:
-            - { name: sonata.admin, manager_type: orm, group: "Euro", label: "Coin" }
+            - { name: sonata.admin, manager_type: orm, group: "Euro", label: "Coin", label_translator_strategy: "sonata.admin.label.strategy.underscore" }
     twig.extension.country:
         class: %euro_coin.twig_extension.class%
         arguments: [@doctrine.orm.entity_manager, @translator, @form.csrf_provider]

@@ -10,6 +10,8 @@ use Sonata\AdminBundle\Form\FormMapper;
 
 class CoinAdmin extends Admin {
 
+	protected $translationDomain = 'admin';
+
 	protected function configureFormFields(FormMapper $formMapper) {
 		$formMapper
 				->add('value', 'sonata_type_model')
@@ -50,7 +52,7 @@ class CoinAdmin extends Admin {
 	}
 
 	public function validate(ErrorElement $errorElement, $object) {
-
+		
 	}
 
 }

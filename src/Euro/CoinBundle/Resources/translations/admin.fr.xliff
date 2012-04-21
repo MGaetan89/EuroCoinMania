@@ -1,0 +1,199 @@
+<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+	<file source-language="fr" datatype="plaintext" original="file.ext">
+		<body>
+			<trans-unit id="Country">
+				<source>Country</source>
+				<target>Pays</target>
+			</trans-unit>
+			<trans-unit id="breadcrumb.link_country_list">
+				<source>breadcrumb.link_country_list</source>
+				<target>Liste des pays</target>
+			</trans-unit>
+			<trans-unit id="filter.label_name">
+				<source>filter.label_name</source>
+				<target>Nom</target>
+			</trans-unit>
+			<trans-unit id="filter.label_nameiso">
+				<source>filter.label_nameiso</source>
+				<target>Nom ISO</target>
+			</trans-unit>
+			<trans-unit id="filter.label_join_date">
+				<source>filter.label_join_date</source>
+				<target>Date de mise en circulation</target>
+			</trans-unit>
+			<trans-unit id="filter.label_former_currency_iso">
+				<source>filter.label_former_currency_iso</source>
+				<target>Ancienne monnaie</target>
+			</trans-unit>
+			<trans-unit id="list.label_name">
+				<source>list.label_name</source>
+				<target>Nom</target>
+			</trans-unit>
+			<trans-unit id="list.label_join_date">
+				<source>list.label_join_date</source>
+				<target>Date de mise en circulation</target>
+			</trans-unit>
+			<trans-unit id="list.label_exchange_rate">
+				<source>list.label_exchange_rate</source>
+				<target>Taux de change</target>
+			</trans-unit>
+			<trans-unit id="list.label__action">
+				<source>list.label__action</source>
+				<target>Actions</target>
+			</trans-unit>
+			<trans-unit id="breadcrumb.link_country_create">
+				<source>breadcrumb.link_country_create</source>
+				<target>Ajouter un pays</target>
+			</trans-unit>
+			<trans-unit id="form.label_name">
+				<source>form.label_name</source>
+				<target>Nom</target>
+			</trans-unit>
+			<trans-unit id="form.label_nameiso">
+				<source>form.label_nameiso</source>
+				<target>Nom ISO</target>
+			</trans-unit>
+			<trans-unit id="form.label_join_date">
+				<source>form.label_join_date</source>
+				<target>Date de mise en circulation</target>
+			</trans-unit>
+			<trans-unit id="form.label_former_currency_iso">
+				<source>form.label_former_currency_iso</source>
+				<target>Ancienne monnaie</target>
+			</trans-unit>
+			<trans-unit id="form.label_exchange_rate">
+				<source>form.label_exchange_rate</source>
+				<target>Taux de change</target>
+			</trans-unit>
+			<trans-unit id="breadcrumb.link_country_edit">
+				<source>breadcrumb.link_country_edit</source>
+				<target>Modification d'un pays</target>
+			</trans-unit>
+			<trans-unit id="breadcrumb.link_country_delete">
+				<source>breadcrumb.link_country_delete</source>
+				<target>Supprimer un pays</target>
+			</trans-unit>
+			<trans-unit id="Value">
+				<source>Value</source>
+				<target>Valeur</target>
+			</trans-unit>
+			<trans-unit id="breadcrumb.link_value_list">
+				<source>breadcrumb.link_value_list</source>
+				<target>Liste des valeurs</target>
+			</trans-unit>
+			<trans-unit id="filter.label_value">
+				<source>filter.label_value</source>
+				<target>Valeur</target>
+			</trans-unit>
+			<trans-unit id="filter.label_collector">
+				<source>filter.label_collector</source>
+				<target>Collector</target>
+			</trans-unit>
+			<trans-unit id="list.label_value">
+				<source>list.label_value</source>
+				<target>Valeur</target>
+			</trans-unit>
+			<trans-unit id="list.label_collector">
+				<source>list.label_collector</source>
+				<target>Collector</target>
+			</trans-unit>
+			<trans-unit id="breadcrumb.link_value_create">
+				<source>breadcrumb.link_value_create</source>
+				<target>Ajouter une valeur</target>
+			</trans-unit>
+			<trans-unit id="form.label_value">
+				<source>form.label_value</source>
+				<target>Valeur</target>
+			</trans-unit>
+			<trans-unit id="form.label_collector">
+				<source>form.label_collector</source>
+				<target>Collector</target>
+			</trans-unit>
+			<trans-unit id="breadcrumb.link_value_edit">
+				<source>breadcrumb.link_value_edit</source>
+				<target>Modifier une valeur</target>
+			</trans-unit>
+			<trans-unit id="breadcrumb.link_value_delete">
+				<source>breadcrumb.link_value_delete</source>
+				<target>Supprimer une valeur</target>
+			</trans-unit>
+			<trans-unit id="Coin">
+				<source>Coin</source>
+				<target>Pièce</target>
+			</trans-unit>
+			<trans-unit id="breadcrumb.link_coin_list">
+				<source>breadcrumb.link_coin_list</source>
+				<target>Liste des pièces</target>
+			</trans-unit>
+			<trans-unit id="filter.label_country">
+				<source>filter.label_country</source>
+				<target>Pays</target>
+			</trans-unit>
+			<trans-unit id="filter.label_year">
+				<source>filter.label_year</source>
+				<target>Année</target>
+			</trans-unit>
+			<trans-unit id="filter.label_commemorative">
+				<source>filter.label_commemorative</source>
+				<target>Commémorative</target>
+			</trans-unit>
+			<trans-unit id="list.label_id">
+				<source>list.label_id</source>
+				<target>#</target>
+			</trans-unit>
+			<trans-unit id="list.label_country">
+				<source>list.label_country</source>
+				<target>Pays</target>
+			</trans-unit>
+			<trans-unit id="list.label_year">
+				<source>list.label_year</source>
+				<target>Année</target>
+			</trans-unit>
+			<trans-unit id="list.label_commemorative">
+				<source>list.label_commemorative</source>
+				<target>Commémorative</target>
+			</trans-unit>
+			<trans-unit id="list.label_mintage">
+				<source>list.label_mintage</source>
+				<target>Tirage</target>
+			</trans-unit>
+			<trans-unit id="list.label_description">
+				<source>list.label_description</source>
+				<target>Description</target>
+			</trans-unit>
+			<trans-unit id="breadcrumb.link_coin_create">
+				<source>breadcrumb.link_coin_create</source>
+				<target>Ajouter une pièce</target>
+			</trans-unit>
+			<trans-unit id="form.label_country">
+				<source>form.label_country</source>
+				<target>Pays</target>
+			</trans-unit>
+			<trans-unit id="form.label_year">
+				<source>form.label_year</source>
+				<target>Année</target>
+			</trans-unit>
+			<trans-unit id="form.label_commemorative">
+				<source>form.label_commemorative</source>
+				<target>Commémorative</target>
+			</trans-unit>
+			<trans-unit id="form.label_mintage">
+				<source>form.label_mintage</source>
+				<target>Tirage</target>
+			</trans-unit>
+			<trans-unit id="form.label_description">
+				<source>form.label_description</source>
+				<target>Description</target>
+			</trans-unit>
+			<trans-unit id="breadcrumb.link_coin_edit">
+				<source>breadcrumb.link_coin_edit</source>
+				<target>Modifier une pièce</target>
+			</trans-unit>
+			<trans-unit id="breadcrumb.link_coin_delete">
+				<source>breadcrumb.link_coin_delete</source>
+				<target>Supprimer une pièce</target>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>
