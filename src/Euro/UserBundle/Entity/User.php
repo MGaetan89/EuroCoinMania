@@ -12,7 +12,6 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Entity(repositoryClass="Euro\UserBundle\Entity\UserRepository")
  */
 class User extends BaseUser {
-
 	/**
 	 * @ORM\Id
 	 * @ORM\Column(type="integer")
