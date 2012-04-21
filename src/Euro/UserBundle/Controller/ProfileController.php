@@ -2,7 +2,7 @@
 
 namespace Euro\UserBundle\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use FOS\UserBundle\Controller\ProfileController as Controller;
 
 class ProfileController extends Controller {
 
