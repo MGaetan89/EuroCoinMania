@@ -1,6 +1,6 @@
 EuroUserBundle:
     resource: "@EuroUserBundle/Resources/config/routing.yml"
-    prefix:   /member
+    prefix:   /
 
 EuroCoinBundle:
     resource: "@EuroCoinBundle/Resources/config/routing.yml"
