@@ -11,5 +11,20 @@ use Doctrine\ORM\EntityRepository;
  * repository methods below.
  */
 class UserCoinRepository extends EntityRepository {
-	
+
+	public function getByUser($user) {
+		$queryBuiler = $this->createQueryBuilder('uc');
+		$expr = $queryBuiler->expr();
+
+		return $queryBuiler
+						->join('uc.coin', 'c')
+						->join('c.value', 'v')
+						->where($expr->eq('uc.user', ':user'))
+						->orderBy('c.year', 'ASC')
+						->addOrderBy('v.value', 'DESC')
+						->setParameter('user', $user)
+						->getQuery()
+						->getResult();
+	}
+
 }

@@ -13,9 +13,7 @@ use Doctrine\ORM\EntityRepository;
 class CoinRepository extends EntityRepository {
 
 	public function getAllYear() {
-		$queryBuiler = $this->createQueryBuilder('c');
-
-		return $queryBuiler
+		return $this->createQueryBuilder('c')
 						->select('c.year')
 						->distinct()
 						->orderBy('c.year', 'ASC')
@@ -41,7 +39,6 @@ class CoinRepository extends EntityRepository {
 
 	public function getCoinsByFilters(array $filters) {
 		$queryBuiler = $this->createQueryBuilder('c')
-				->join('c.country', 'p')
 				->join('c.value', 'v');
 		$expr = $queryBuiler->expr();
 
