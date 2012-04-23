@@ -66,11 +66,13 @@
 				{% set uc = c %}
 			{% endfor %}
 
+			{% set quantity = uc ? uc.quantity : 0 %}
+
 			<div class="pull-left">
 				<div class="btn-group coin-collection"{% if uc %} data-uc="{{ uc.id }}"{% else %} data-coin="{{ coin.id }}"{% endif %}>
-					<button class="btn btn-mini coin-remove"{% if not uc or uc.quantity == 0 %} disabled="disabled"{% endif %}>-</button>
-					<button class="btn btn-mini coin-quantity" disabled="disabled">{{ uc ? uc.quantity|number_format : 0 }}</button>
-					<button class="btn btn-mini coin-add">+</button>
+					<button class="btn btn-mini{% if quantity %} btn-danger{% endif %} coin-remove"{% if not uc or uc.quantity == 0 %} disabled="disabled"{% endif %}>-</button>
+					<button class="btn btn-mini coin-quantity" disabled="disabled">{{ quantity|number_format }}</button>
+					<button class="btn btn-mini btn-success coin-add">+</button>
 				</div>
 			</div>
 

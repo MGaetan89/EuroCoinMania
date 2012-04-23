@@ -21,12 +21,14 @@ class ProfileController extends Controller {
 		$translator = $this->container->get('translator');
 		$user_coins = $em->getRepository('EuroCoinBundle:UserCoin')->getByUser($user);
 		foreach ($user_coins as $uc) {
-			$coin = $uc->getCoin();
-			$country = $coin->getCountry();
-			$value = $coin->getValue();
+			if ($uc->getQuantity() > 0) {
+				$coin = $uc->getCoin();
+				$country = $coin->getCountry();
+				$value = $coin->getValue();
 
-			$coin_values[$country->getId()][$value->getId()] = (string) $value;
-			$sorted[$translator->trans($country)][] = $uc;
+				$coin_values[$country->getId()][$value->getId()] = (string) $value;
+				$sorted[$translator->trans($country)][] = $uc;
+			}
 		}
 
 		ksort($sorted);
