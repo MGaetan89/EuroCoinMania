@@ -4,7 +4,7 @@
 	{% if country != coin.country %}
 		{% set country = coin.country %}
 		{% if not loop.first %}
-				{% for n in range(columns + 1, nbval) if columns < nbval %}
+				{% for n in range(column + 1, nbval) if column < nbval %}
 					{{ empty_cell|raw }}
 				{% endfor %}
 				</tr>
@@ -20,7 +20,7 @@
 				<th>{{ value }}</th>
 				{% endfor %}
 
-				{% set changed, columns, year = false, 0, 1990 %}
+				{% set changed, column, year = false, 0, 1990 %}
 				{% set nbval, val = coin_values[coin.country.id]|length - 1, coin_values[coin.country.id] %}
 			</tr>
 		</thead>
@@ -29,7 +29,7 @@
 
 	{% if year != coin.year %}
 		{% if not loop.first and year != 1990 %}
-			{% for n in range(columns + 1, nbval) if columns < nbval %}
+			{% for n in range(column + 1, nbval) if column < nbval %}
 				{{ empty_cell|raw }}
 			{% endfor %}
 			</tr>
@@ -37,17 +37,17 @@
 
 	<tr>
 		<td>{{ coin.year }}</td>
-		{% set changed, columns, year = false, 0, coin.year %}
+		{% set changed, column, year = false, 0, coin.year %}
 	{% endif %}
 
-	{% if val[columns] != coin.value %}
-		{% for n in range(columns + 1, nbval) %}
+	{% if val[column] != coin.value %}
+		{% for n in range(column + 1, nbval) %}
 			{% if not changed %}
 				{{ empty_cell|raw }}
 			{% endif %}
 
 			{% if val[n] == coin.value %}
-				{% set columns = n %}
+				{% set column = n %}
 				{% set changed = true %}
 			{% endif %}
 
@@ -56,7 +56,7 @@
 			{% endif %}
 		{% endfor %}
 	{% else %}
-		{% set columns = columns + 1 %}
+		{% set column = column + 1 %}
 	{% endif %}
 
 	<td>
@@ -87,7 +87,7 @@
 	</td>
 
 	{% if loop.last %}
-			{% for n in range(columns + 1, nbval) if columns < nbval %}
+			{% for n in range(column + 1, nbval) if column < nbval %}
 				{{ empty_cell|raw }}
 			{% endfor %}
 			</tr>
