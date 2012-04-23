@@ -177,6 +177,34 @@ class CoinController extends Controller {
 		return new Response($uc->getQuantity());
 	}
 
+	public function doublesAction() {
+		$user = $this->getUser();
+		if (!$user instanceof \FOS\UserBundle\Model\UserInterface) {
+			throw new \Exception('You are not allowed to access this page !');
+		}
+
+		$em = $this->getDoctrine()->getEntityManager();
+		$uc = $em->getRepository('EuroCoinBundle:UserCoin')->getDoublesByUser($user);
+
+		$coin_values = array();
+		foreach ($uc as $coin) {
+			$coin = $coin->getCoin();
+			$country = $coin->getCountry();
+			$value = $coin->getValue();
+
+			$coin_values[$country->getId()][$value->getId()] = (string) $value;
+		}
+
+		foreach ($coin_values as $country => &$cv) {
+			rsort($cv);
+		}
+
+		return $this->render('EuroCoinBundle:Coin:doubles.html.twig', array(
+					'coins' => $uc,
+					'coin_values' => $coin_values,
+				));
+	}
+
 	private function getUser() {
 		return $this->get('security.context')->getToken()->getUser();
 	}

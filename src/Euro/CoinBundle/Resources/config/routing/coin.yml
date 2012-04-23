@@ -6,6 +6,10 @@ coin_collector:
     pattern:  /collector
     defaults: { _controller: "EuroCoinBundle:Coin:index", country: '', year: '', value: '', commemorative: '', collector: true }
 
+coin_doubles:
+    pattern:  /doubles
+    defaults: { _controller: "EuroCoinBundle:Coin:doubles" }
+
 coin_show:
     pattern:  /{id}/show
     defaults: { _controller: "EuroCoinBundle:Coin:show" }

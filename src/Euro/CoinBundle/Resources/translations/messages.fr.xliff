@@ -50,6 +50,14 @@
 				<source>coin.description</source>
 				<target>Description</target>
 			</trans-unit>
+			<trans-unit id="coin.doubles">
+				<source>coin.doubles</source>
+				<target>Doubles</target>
+			</trans-unit>
+			<trans-unit id="coin.doubles.none">
+				<source>coin.doubles.none</source>
+				<target>Vous ne possédez pas de pièces en double</target>
+			</trans-unit>
 			<trans-unit id="coin.list_coin">
 				<source>coin.list_coin</source>
 				<target>Liste des pièces en circulation</target>
@@ -57,6 +65,10 @@
 			<trans-unit id="coin.list_collector">
 				<source>coin.list_collector</source>
 				<target>Liste des pièces collector</target>
+			</trans-unit>
+			<trans-unit id="coin.list_doubles">
+				<source>coin.list_doubles</source>
+				<target>Liste de vos doubles</target>
 			</trans-unit>
 			<trans-unit id="coin.mintage">
 				<source>coin.mintage</source>
@@ -69,6 +81,10 @@
 			<trans-unit id="coin.none">
 				<source>coin.none</source>
 				<target>Aucune pièce n'a été enregistrée</target>
+			</trans-unit>
+			<trans-unit id="coin.share">
+				<source>coin.share</source>
+				<target>Partager</target>
 			</trans-unit>
 			<trans-unit id="coin.show">
 				<source>coin.show</source>

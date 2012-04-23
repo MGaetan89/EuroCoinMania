@@ -27,4 +27,20 @@ class UserCoinRepository extends EntityRepository {
 						->getResult();
 	}
 
+	public function getDoublesByUser($user) {
+		$queryBuiler = $this->createQueryBuilder('uc');
+		$expr = $queryBuiler->expr();
+
+		return $queryBuiler
+						->join('uc.coin', 'c')
+						->join('c.value', 'v')
+						->where($expr->eq('uc.user', ':user'))
+						->andWhere($expr->gt('uc.quantity', 1))
+						->orderBy('c.year', 'ASC')
+						->addOrderBy('v.value', 'DESC')
+						->setParameter('user', $user)
+						->getQuery()
+						->getResult();
+	}
+
 }

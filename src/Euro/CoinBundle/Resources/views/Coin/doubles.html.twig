@@ -1,0 +1,109 @@
+{% extends '::base.html.twig' %}
+
+{% block title %}{{ 'coin.list_doubles'|trans }}{% endblock %}
+
+{% block empty_cell %}<td>-</td>{% endblock %}
+
+{% block commemorative %}
+<span class="badge-valid badge-success" title="{{ 'coin.commemorative'|trans }}"><i class="icon-white icon-ok"></i></span>
+{% endblock %}
+
+{% block body %}
+<div class="page-header">
+	<h1>{{ block('title') }}</h1>
+</div>
+
+{% if coins %}
+	{% set country = '' %}
+
+	{% for coin in coins %}
+		{% set quantity = coin.quantity %}
+		{% set coin = coin.coin %}
+
+		{% if country != coin.country %}
+			{% set country = coin.country %}
+			{% if not loop.first %}
+					{% for n in range(column + 1, nbval) if column < nbval %}
+						{{ block('empty_cell') }}
+					{% endfor %}
+					</tr>
+				</tbody>
+				</table>
+			{% endif %}
+
+			<table class="table table-bordered table-condensed table-striped">
+			<thead>
+				<tr>
+					<th>{{ coin.country|trans }}</th>
+					{% for value in coin_values[coin.country.id] %}
+					<th>{{ value }}</th>
+					{% endfor %}
+
+					{% set changed, column, year = false, 0, 1990 %}
+					{% set nbval, val = coin_values[coin.country.id]|length - 1, coin_values[coin.country.id] %}
+				</tr>
+			</thead>
+			<tbody>
+		{% endif %}
+
+		{% if year != coin.year %}
+			{% if not loop.first and year != 1990 %}
+				{% for n in range(column + 1, nbval) if column < nbval %}
+					{{ block('empty_cell') }}
+				{% endfor %}
+				</tr>
+			{% endif %}
+
+		<tr>
+			<td>{{ coin.year }}</td>
+			{% set changed, column, year = false, 0, coin.year %}
+		{% endif %}
+
+		{% if val[column] != coin.value %}
+			{% for n in range(column + 1, nbval) %}
+				{% if not changed %}
+					{{ block('empty_cell') }}
+				{% endif %}
+
+				{% if val[n] == coin.value %}
+					{% set column = n %}
+					{% set changed = true %}
+				{% endif %}
+
+				{% if changed and val[n] > coin.value %}
+					{{ block('empty_cell') }}
+				{% endif %}
+			{% endfor %}
+		{% else %}
+			{% set column = column + 1 %}
+		{% endif %}
+
+		<td>
+			<div class="pull-left">
+				{{ quantity }}
+			</div>
+
+			<div class="pull-right">
+				<a href="" title="{{ 'coin.share'|trans }}"><i class="icon-share"></i></a>
+			</div>
+		</td>
+
+		{% if loop.last %}
+				{% for n in range(column + 1, nbval) if column < nbval %}
+					{{ block('empty_cell') }}
+				{% endfor %}
+				</tr>
+			</tbody>
+			</table>
+		{% endif %}
+	{% else %}
+	<div class="alert alert-info">
+		{{ 'user.coin.none'|trans }}
+	</div>
+	{% endfor %}
+{% else %}
+<div class="alert alert-info">
+	{{ 'coin.doubles.none'|trans }}
+</div>
+{% endif %}
+{% endblock %}

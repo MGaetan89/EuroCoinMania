@@ -39,7 +39,7 @@
 							{% endfor %}
 						</ul>
 					</li>
-					<li{% if route|slice(0, 4) == 'coin' %} class="active"{% endif %}>
+					<li{% if route != 'coin_doubles' and route|slice(0, 4) == 'coin' %} class="active"{% endif %}>
 						<a href="{{ path('coin') }}">
 							{% if app.user %}
 								{{ 'coin.collection'|trans }}
@@ -48,6 +48,9 @@
 							{% endif %}
 						</a>
 					</li>
+					{% if app.user %}
+					<li{% if route == 'coin_doubles' %} class="active"{% endif %}><a href="{{ path('coin_doubles') }}">{{ 'coin.doubles'|trans }}</a></li>
+					{% endif %}
 				</ul>
 
 				<ul class="nav pull-right">
