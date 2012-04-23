@@ -1,6 +1,12 @@
 {% extends '::base.html.twig' %}
 
-{% block title %}{{ 'coin.list'|trans }}{% endblock %}
+{% block title %}
+	{% if collector %}
+		{{ 'coin.list_collector'|trans }}
+	{% else %}
+		{{ 'coin.list_coin'|trans }}
+	{% endif %}
+{% endblock %}
 
 {% block empty_cell %}<td>-</td>{% endblock %}
 

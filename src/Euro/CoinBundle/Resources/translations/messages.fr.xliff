@@ -50,9 +50,13 @@
 				<source>coin.description</source>
 				<target>Description</target>
 			</trans-unit>
-			<trans-unit id="coin.list">
-				<source>coin.list</source>
-				<target>Liste des pièces</target>
+			<trans-unit id="coin.list_coin">
+				<source>coin.list_coin</source>
+				<target>Liste des pièces en circulation</target>
+			</trans-unit>
+			<trans-unit id="coin.list_collector">
+				<source>coin.list_collector</source>
+				<target>Liste des pièces collector</target>
 			</trans-unit>
 			<trans-unit id="coin.mintage">
 				<source>coin.mintage</source>
