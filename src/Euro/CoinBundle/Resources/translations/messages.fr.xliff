@@ -58,6 +58,10 @@
 				<source>coin.doubles.none</source>
 				<target>Vous ne possédez pas de pièces en double</target>
 			</trans-unit>
+			<trans-unit id="coin.list">
+				<source>coin.list</source>
+				<target>Pièces</target>
+			</trans-unit>
 			<trans-unit id="coin.list_coin">
 				<source>coin.list_coin</source>
 				<target>Liste des pièces en circulation</target>
