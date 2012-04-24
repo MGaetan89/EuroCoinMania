@@ -41,7 +41,7 @@
 				</div>
 
 				<div class="pull-right">
-					<a class="coin-info wait" href="{{ path('coin_show', { 'id': coin.id }) }}" data-coin="{{ coin.id }}" title="{{ 'information'|trans }}">?</a>
+					<a class="coin-info" href="{{ path('coin_show', { 'id': coin.id }) }}" data-coin="{{ coin.id }}" title="{{ 'information'|trans }}">?</a>
 				</div>
 			{% else %}
 				<a href="{{ path('coin_show', { 'id': coin.id }) }}">{{ coin.mintage|number_format }}</a>

@@ -2,21 +2,25 @@ $(function () {
 	var body = $('body');
 
 	// Manage Coin tooltip information
-	body.on('mouseover', 'td a.coin-info', function () {
+	body.on('click', 'td a.coin-info', function () {
 		var $this = $(this), coin = $this.data('coin'), id = 'coin-info-' + coin;
 
 		if ($('#' + id).length) {
-			$('#' + id).popover('toggle');
+			$this.popover('toggle');
 		} else {
+			$this.addClass('wait');
 			$.post('/coin/' + coin + '/get', function (data) {
 				data = $(data).appendTo(body);
 
 				$this.popover({
 					content: data.html(),
-					placement: 'left'
-				}).popover('show').removeClass('wait');
+					placement: 'left',
+					trigger: 'manual'
+				}).popover('toggle').removeClass('wait');
 			});
 		}
+
+		return false;
 	}).on('click', 'td div.coin-collection button:enabled', function () {
 		var $this = $(this), quantity = $this.siblings('button.coin-quantity'),
 		id = $this.parent('.coin-collection').data('uc') || 0;
@@ -29,7 +33,7 @@ $(function () {
 
 					$this.siblings('button.coin-add').prop('disabled', false);
 					$this.prop('disabled', data <= 0)
-						.toggleClass('btn-danger', data != 0);
+					.toggleClass('btn-danger', data != 0);
 				} else {
 				// Display error message
 				}
