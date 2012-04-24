@@ -205,6 +205,10 @@ class CoinController extends Controller {
 				));
 	}
 
+	public function doublesShareAction($id) {
+		var_dump($id);
+	}
+
 	private function getUser() {
 		return $this->get('security.context')->getToken()->getUser();
 	}

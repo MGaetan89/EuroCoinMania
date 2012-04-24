@@ -10,6 +10,10 @@ coin_doubles:
     pattern:  /doubles
     defaults: { _controller: "EuroCoinBundle:Coin:doubles" }
 
+coin_doubles_share:
+    pattern:  /doubles/{id}
+    defaults: { _controller: "EuroCoinBundle:Coin:doublesShare" }
+
 coin_show:
     pattern:  /{id}/show
     defaults: { _controller: "EuroCoinBundle:Coin:show" }
