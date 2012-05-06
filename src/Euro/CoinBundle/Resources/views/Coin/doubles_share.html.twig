@@ -1,0 +1,33 @@
+{% extends '::base.html.twig' %}
+
+{% block title %}{{ 'coin.list_doubles_share'|trans }}{% endblock %}
+
+{% block empty_cell %}<td>-</td>{% endblock %}
+
+{% block body %}
+<div class="page-header">
+	<h1>{{ block('title') }}</h1>
+</div>
+
+{% if doubles %}
+	{% set user = '' %}
+	{% for double in doubles %}
+		{% if user != double.user %}
+			{% set user = double.user %}
+
+			{% if not loop.first %}
+				</ul>
+			{% endif %}
+
+			<strong>{{ double.user.username }}</strong>
+			<ul>
+		{% endif %}
+
+		<li>{{ double.coin.value }} {{ double.coin.country|trans }} {{ double.coin.year }}</li>
+	{% endfor %}
+{% else %}
+<div class="alert alert-info">
+	{{ 'coin.doubles.user.none'|trans }}
+</div>
+{% endif %}
+{% endblock %}

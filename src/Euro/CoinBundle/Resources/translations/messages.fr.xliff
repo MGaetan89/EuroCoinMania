@@ -58,6 +58,10 @@
 				<source>coin.doubles.none</source>
 				<target>Vous ne possédez pas de pièces en double</target>
 			</trans-unit>
+			<trans-unit id="coin.doubles.user.none">
+				<source>coin.doubles.user.none</source>
+				<target>Aucun membre n'a de doubles à vous proposer.</target>
+			</trans-unit>
 			<trans-unit id="coin.list">
 				<source>coin.list</source>
 				<target>Pièces</target>
@@ -73,6 +77,10 @@
 			<trans-unit id="coin.list_doubles">
 				<source>coin.list_doubles</source>
 				<target>Liste de vos doubles</target>
+			</trans-unit>
+			<trans-unit id="coin.list_doubles_share">
+				<source>coin.list_doubles_share</source>
+				<target>Liste des doubles disponibles</target>
 			</trans-unit>
 			<trans-unit id="coin.mintage">
 				<source>coin.mintage</source>

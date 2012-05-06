@@ -3,6 +3,7 @@
 namespace Euro\CoinBundle\Entity;
 
 use Doctrine\ORM\EntityRepository;
+use Doctrine\ORM\Query\Expr;
 
 /**
  * UserCoinRepository
@@ -23,6 +24,29 @@ class UserCoinRepository extends EntityRepository {
 						->orderBy('c.year', 'ASC')
 						->addOrderBy('v.value', 'DESC')
 						->setParameter('user', $user)
+						->getQuery()
+						->getResult();
+	}
+
+	public function getDifferentDoublesByUserAndCoin($user, $coin) {
+		$queryBuiler = $this->createQueryBuilder('uc');
+		$expr = $queryBuiler->expr();
+
+		/*
+		  SELECT DISTINCT uc.*
+		  FROM user_coin uc
+		  LEFT JOIN user_coin uc2 ON uc2.user_id = 1
+		  WHERE uc.coin_id <> uc2.coin_id
+		  AND uc.user_id <> uc2.user_id
+		  AND uc.quantity > 1
+		 */
+
+		return $queryBuiler
+						->join('uc.coin', 'c')
+						->where($expr->neq('uc.user', ':user'))
+						->andWhere($expr->neq('c.id', ':coin'))
+						->setParameter('user', $user)
+						->setParameter('coin', $coin)
 						->getQuery()
 						->getResult();
 	}

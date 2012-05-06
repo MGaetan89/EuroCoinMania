@@ -206,7 +206,17 @@ class CoinController extends Controller {
 	}
 
 	public function doublesShareAction($id) {
-		var_dump($id);
+		$user = $this->getUser();
+		if (!$user instanceof \FOS\UserBundle\Model\UserInterface) {
+			throw new \Exception('You are not allowed to access this page !');
+		}
+
+		$em = $this->getDoctrine()->getEntityManager();
+		$doubles = $em->getRepository('EuroCoinBundle:UserCoin')->getDifferentDoublesByUserAndCoin($user, $id);
+
+		return $this->render('EuroCoinBundle:Coin:doubles_share.html.twig', array(
+					'doubles' => $doubles,
+				));
 	}
 
 	private function getUser() {
