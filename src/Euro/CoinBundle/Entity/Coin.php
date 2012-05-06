@@ -56,7 +56,7 @@ class Coin {
 	/**
 	 * @var text $description
 	 *
-	 * @ORM\Column(name="description", nullable=true, type="text")
+	 * @ORM\Column(name="description", nullable=true, type="string")
 	 */
 	private $description;
 
