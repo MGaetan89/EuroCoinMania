@@ -76,6 +76,12 @@
 	{% block body %}
 		{% block fos_user_content %}{% endblock %}
 	{% endblock %}
+
+	<hr>
+
+	<footer>
+		<p>&copy; {{ 'sitename'|trans }} 2012</p>
+	</footer>
 </div>
 
 {% if not app.user and route != 'fos_user_security_login' %}
