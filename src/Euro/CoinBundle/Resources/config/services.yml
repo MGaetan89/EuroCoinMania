@@ -1,6 +1,3 @@
-parameters:
-    euro_coin.twig_extension.class: Euro\CoinBundle\Twig\Extension
-
 services:
     euro.coin.admin.country:
         class: Euro\CoinBundle\Admin\CountryAdmin
@@ -18,7 +15,7 @@ services:
         tags:
             - { name: sonata.admin, manager_type: orm, group: "Euro", label: "Coin", label_translator_strategy: "sonata.admin.label.strategy.underscore" }
     twig.extension.country:
-        class: %euro_coin.twig_extension.class%
-        arguments: [@doctrine.orm.entity_manager, @translator, @form.csrf_provider]
+        class: Euro\CoinBundle\Twig\Extension
+        arguments: [@form.csrf_provider]
         tags:
             - { name: twig.extension }

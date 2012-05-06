@@ -2,18 +2,11 @@
 
 namespace Euro\CoinBundle\Twig;
 
-use Doctrine\ORM\EntityManager;
-use Symfony\Component\Translation\TranslatorInterface;
-
 class Extension extends \Twig_Extension {
 	private $csrf_provider;
-	private $em;
-	private $translator;
 
-	public function __construct(EntityManager $em, TranslatorInterface $translator, $csrf_provider) {
+	public function __construct($csrf_provider) {
 		$this->csrf_provider = $csrf_provider;
-		$this->em = $em;
-		$this->translator = $translator;
 	}
 
 	public function getFilters() {
@@ -23,18 +16,8 @@ class Extension extends \Twig_Extension {
 	}
 
 	public function getGlobals() {
-		$countries = $this->em->getRepository('EuroCoinBundle:Country')->findAll();
-		$translator = $this->translator;
-
-		usort($countries, function ($a, $b) use ($translator) {
-					return strcmp($translator->trans($a->getName()), $translator->trans($b->getName()));
-				});
-
-		$csrfToken = $this->csrf_provider->generateCsrfToken('authenticate');
-
 		return array(
-			'csrf_token' => $csrfToken,
-			'euro_countries' => $countries,
+			'csrf_token' => $this->csrf_provider->generateCsrfToken('authenticate'),
 		);
 	}
 

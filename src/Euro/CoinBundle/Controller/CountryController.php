@@ -24,6 +24,21 @@ class CountryController extends Controller {
 				));
 	}
 
+	public function menuListAction() {
+		$em = $this->getDoctrine()->getEntityManager();
+
+		$countries = $em->getRepository('EuroCoinBundle:Country')->findAll();
+		$translator = $this->get('translator');
+
+		usort($countries, function ($a, $b) use ($translator) {
+					return strcmp($translator->trans($a->getName()), $translator->trans($b->getName()));
+				});
+
+		return $this->render('EuroCoinBundle:Country:menu_list.html.twig', array(
+					'countries' => $countries,
+				));
+	}
+
 	/**
 	 * Finds and displays a Country entity.
 	 *
