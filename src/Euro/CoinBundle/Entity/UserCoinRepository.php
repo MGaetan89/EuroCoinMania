@@ -3,7 +3,7 @@
 namespace Euro\CoinBundle\Entity;
 
 use Doctrine\ORM\EntityRepository;
-use Doctrine\ORM\Query\Expr;
+use Doctrine\ORM\Query\ResultSetMapping;
 
 /**
  * UserCoinRepository
@@ -29,25 +29,45 @@ class UserCoinRepository extends EntityRepository {
 	}
 
 	public function getDifferentDoublesByUserAndCoin($user, $coin) {
-		$queryBuiler = $this->createQueryBuilder('uc');
-		$expr = $queryBuiler->expr();
+		$rsm = new ResultSetMapping;
+		$rsm->addEntityResult('Euro\CoinBundle\Entity\UserCoin', 'uc');
+		$rsm->addJoinedEntityResult('Euro\UserBundle\Entity\User', 'u', 'uc', 'user');
+		$rsm->addJoinedEntityResult('Euro\CoinBundle\Entity\Coin', 'c', 'uc', 'coin');
+		$rsm->addJoinedEntityResult('Euro\CoinBundle\Entity\Value', 'v', 'c', 'value');
+		$rsm->addJoinedEntityResult('Euro\CoinBundle\Entity\Country', 'ct', 'c', 'country');
 
-		/*
-		  SELECT DISTINCT uc.*
-		  FROM user_coin uc
-		  LEFT JOIN user_coin uc2 ON uc2.user_id = 1
-		  WHERE uc.coin_id <> uc2.coin_id
-		  AND uc.user_id <> uc2.user_id
-		  AND uc.quantity > 1
-		 */
+		$rsm->addFieldResult('uc', 'id', 'id');
+		$rsm->addFieldResult('uc', 'quantity', 'quantity');
+		$rsm->addFieldResult('u', 'user_id', 'id');
+		$rsm->addFieldResult('u', 'username', 'username');
+		$rsm->addFieldResult('c', 'coin_id', 'id');
+		$rsm->addFieldResult('c', 'year', 'year');
+		$rsm->addFieldResult('c', 'commemorative', 'commemorative');
+		$rsm->addFieldResult('c', 'mintage', 'mintage');
+		$rsm->addFieldResult('c', 'description', 'description');
+		$rsm->addFieldResult('v', 'value_id', 'id');
+		$rsm->addFieldResult('v', 'value', 'value');
+		$rsm->addFieldResult('v', 'collector', 'collector');
+		$rsm->addFieldResult('ct', 'country_id', 'id');
+		$rsm->addFieldResult('ct', 'name', 'name');
+		$rsm->addFieldResult('ct', 'nameiso', 'nameiso');
+		$rsm->addFieldResult('ct', 'join_date', 'join_date');
+		$rsm->addFieldResult('ct', 'former_currency_iso', 'former_currency_iso');
+		$rsm->addFieldResult('ct', 'exchange_rate', 'exchange_rate');
 
-		return $queryBuiler
-						->join('uc.coin', 'c')
-						->where($expr->neq('uc.user', ':user'))
-						->andWhere($expr->neq('c.id', ':coin'))
-						->setParameter('user', $user)
+		return $this->getEntityManager()->createNativeQuery('SELECT DISTINCT uc.*, c.*, v.*, ct.*, m.*
+			FROM user_coin uc
+			JOIN coin c ON c.id = uc.coin_id
+			JOIN value v ON v.id = c.value_id
+			JOIN country ct ON ct.id = c.country_id
+			JOIN member m ON m.id = uc.user_id
+			JOIN user_coin uc2 ON uc2.user_id = :user
+			WHERE uc.coin_id <> uc2.coin_id
+				AND uc.coin_id <> :coin
+				AND uc.user_id <> uc2.user_id
+				AND uc.quantity > 1', $rsm)
+						->setParameter('user', $user->getId())
 						->setParameter('coin', $coin)
-						->getQuery()
 						->getResult();
 	}
 

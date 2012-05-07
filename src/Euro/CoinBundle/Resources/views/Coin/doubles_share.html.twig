@@ -23,7 +23,7 @@
 			<ul>
 		{% endif %}
 
-		<li>{{ double.coin.value }} {{ double.coin.country|trans }} {{ double.coin.year }}</li>
+		<li>{{ double.coin.value }} {{ double.coin.country|trans }} {{ double.coin.year }} ({{ double.quantity }} unités)</li>
 	{% endfor %}
 {% else %}
 <div class="alert alert-info">
