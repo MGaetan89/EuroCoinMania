@@ -56,7 +56,7 @@ class UserCoinRepository extends EntityRepository {
 		$rsm->addFieldResult('ct', 'former_currency_iso', 'former_currency_iso');
 		$rsm->addFieldResult('ct', 'exchange_rate', 'exchange_rate');
 
-		$a = $this->getEntityManager()->createNativeQuery('SELECT uc.*, c.*, ct.*, m.*, v.*
+		return $this->getEntityManager()->createNativeQuery('SELECT uc.*, c.*, ct.*, m.*, v.*
 			FROM user_coin uc
 			JOIN coin c ON c.id = uc.coin_id
 			JOIN country ct ON ct.id = c.country_id
@@ -69,9 +69,8 @@ class UserCoinRepository extends EntityRepository {
 				AND uc.quantity > 1
 			ORDER BY m.username ASC, c.year ASC, v.value DESC', $rsm)
 						->setParameter('user', $user->getId())
-						->setParameter('coin', $coin);
-
-		return $a->getResult();
+						->setParameter('coin', $coin)
+						->getResult();
 	}
 
 	public function getDoublesByUser($user) {
