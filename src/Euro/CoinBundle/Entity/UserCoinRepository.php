@@ -31,6 +31,7 @@ class UserCoinRepository extends EntityRepository {
 	public function getDifferentDoublesByUserAndCoin($user, $coin) {
 		$rsm = new ResultSetMapping;
 		$rsm->addEntityResult('Euro\CoinBundle\Entity\UserCoin', 'uc');
+
 		$rsm->addJoinedEntityResult('Euro\UserBundle\Entity\User', 'u', 'uc', 'user');
 		$rsm->addJoinedEntityResult('Euro\CoinBundle\Entity\Coin', 'c', 'uc', 'coin');
 		$rsm->addJoinedEntityResult('Euro\CoinBundle\Entity\Value', 'v', 'c', 'value');
@@ -55,20 +56,22 @@ class UserCoinRepository extends EntityRepository {
 		$rsm->addFieldResult('ct', 'former_currency_iso', 'former_currency_iso');
 		$rsm->addFieldResult('ct', 'exchange_rate', 'exchange_rate');
 
-		return $this->getEntityManager()->createNativeQuery('SELECT DISTINCT uc.*, c.*, v.*, ct.*, m.*
+		$a = $this->getEntityManager()->createNativeQuery('SELECT uc.*, c.*, ct.*, m.*, v.*
 			FROM user_coin uc
 			JOIN coin c ON c.id = uc.coin_id
-			JOIN value v ON v.id = c.value_id
 			JOIN country ct ON ct.id = c.country_id
+			JOIN value v ON v.id = c.value_id
 			JOIN member m ON m.id = uc.user_id
 			JOIN user_coin uc2 ON uc2.user_id = :user
 			WHERE uc.coin_id <> uc2.coin_id
 				AND uc.coin_id <> :coin
 				AND uc.user_id <> uc2.user_id
-				AND uc.quantity > 1', $rsm)
+				AND uc.quantity > 1
+			ORDER BY m.username ASC, c.year ASC, v.value DESC', $rsm)
 						->setParameter('user', $user->getId())
-						->setParameter('coin', $coin)
-						->getResult();
+						->setParameter('coin', $coin);
+
+		return $a->getResult();
 	}
 
 	public function getDoublesByUser($user) {
