@@ -177,8 +177,8 @@ class CoinController extends Controller {
 		}
 
 		$em = $this->getDoctrine()->getEntityManager();
+		$coin = $em->getRepository('EuroCoinBundle:Coin')->find($id);
 		$doubles = $em->getRepository('EuroCoinBundle:UserCoin')->getDifferentDoublesByUserAndCoin($user, $id);
-
 		$vars = $this->buildVars($doubles);
 
 		$users = array();
@@ -187,6 +187,7 @@ class CoinController extends Controller {
 		}
 
 		return $this->render('EuroCoinBundle:Coin:doubles_share.html.twig', array(
+					'coin' => $coin,
 					'coin_values' => $vars['coin_values'],
 					'coins' => $vars['coins'],
 					'commemoratives' => count($vars['commemoratives']) === 2,

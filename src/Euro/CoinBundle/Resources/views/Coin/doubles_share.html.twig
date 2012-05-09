@@ -18,12 +18,16 @@
 	<span class="badge-valid badge-success" title="{{ 'coin.commemorative'|trans }}"><i class="icon-white icon-ok"></i></span>
 	{% endset %}
 
+	<div class="alert alert-info">
+		{{ 'double.share.coin'|trans({ '%value%': coin.value, '%country%': coin.country|trans, '%year%': coin.year })|raw }}
+	</div>
+
 	{% for coin in coins %}
 		{% if user != users[coin.id] %}
 			{% set user = users[coin.id] %}
 
 			<div class="page-header">
-				<h3>{{ user.username }}</h3>
+				<h3><a href="{{ path('user_view', { id: user.id }) }}">{{ user.username }}</a></h3>
 			</div>
 		{% endif %}
 
