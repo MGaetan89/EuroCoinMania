@@ -310,6 +310,10 @@
 				<source>country.currency.vatican</source>
 				<target>Lire vaticane</target>
 			</trans-unit>
+			<trans-unit id="double.share">
+				<source>double.share</source>
+				<target>Echanger</target>
+			</trans-unit>
 			<trans-unit id="information">
 				<source>information</source>
 				<target>Informations</target>

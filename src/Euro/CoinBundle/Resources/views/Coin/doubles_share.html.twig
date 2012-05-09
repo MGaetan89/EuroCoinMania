@@ -2,28 +2,99 @@
 
 {% block title %}{{ 'coin.list_doubles_share'|trans }}{% endblock %}
 
-{% block empty_cell %}<td>-</td>{% endblock %}
-
 {% block body %}
 <div class="page-header">
 	<h1>{{ block('title') }}</h1>
 </div>
 
-{% if doubles %}
-	{% set user = '' %}
-	{% for double in doubles %}
-		{% if user != double.user %}
-			{% set user = double.user %}
+{% if coins %}
+	{% set country, user = '', '' %}
 
-			{% if not loop.first %}
-				</ul>
-			{% endif %}
+	{% set empty_cell %}
+	<td>-</td>
+	{% endset %}
 
-			<strong>{{ double.user.username }}</strong>
-			<ul>
+	{% set commemorative %}
+	<span class="badge-valid badge-success" title="{{ 'coin.commemorative'|trans }}"><i class="icon-white icon-ok"></i></span>
+	{% endset %}
+
+	{% for coin in coins %}
+		{% if user != users[coin.id] %}
+			{% set user = users[coin.id] %}
+
+			<div class="page-header">
+				<h3>{{ user.username }}</h3>
+			</div>
 		{% endif %}
 
-		<li>{{ double.coin.value }} {{ double.coin.country|trans }} {{ double.coin.year }} ({{ double.quantity }} unités)</li>
+		{% if country != coin.country %}
+			{% set country = coin.country %}
+			{% if not loop.first %}
+					{% for n in range(column + 1, nbval) if column < nbval %}
+						{{ empty_cell }}
+					{% endfor %}
+					</tr>
+				</tbody>
+				</table>
+			{% endif %}
+
+			<table class="table table-bordered table-condensed table-striped">
+			<thead>
+				<tr>
+					<th>{{ coin.country|trans }}</th>
+					{% for value in coin_values[coin.country.id] %}
+					<th>{{ value }}</th>
+					{% endfor %}
+
+					{% set changed, column, year = false, 0, 1990 %}
+					{% set nbval, val = coin_values[coin.country.id]|length - 1, coin_values[coin.country.id] %}
+				</tr>
+			</thead>
+			<tbody>
+		{% endif %}
+
+		{% if year != coin.year %}
+			{% if not loop.first and year != 1990 %}
+				{% for n in range(column + 1, nbval) if column < nbval %}
+					{{ empty_cell }}
+				{% endfor %}
+				</tr>
+			{% endif %}
+
+		<tr>
+			<td>{{ coin.year }}</td>
+			{% set changed, column, year = false, 0, coin.year %}
+		{% endif %}
+
+		{% if val[column] != coin.value %}
+			{% for n in range(column + 1, nbval) %}
+				{% if not changed %}
+					{{ empty_cell }}
+				{% endif %}
+
+				{% if val[n] == coin.value %}
+					{% set column = n %}
+					{% set changed = true %}
+				{% endif %}
+
+				{% if changed and val[n] > coin.value %}
+					{{ empty_cell }}
+				{% endif %}
+			{% endfor %}
+		{% else %}
+			{% set column = column + 1 %}
+		{% endif %}
+
+		<td><a href="#">{{ 'double.share'|trans }}</a></td>
+
+		{% if loop.last %}
+				{% for n in range(column + 1, nbval) if column < nbval %}
+					{{ empty_cell }}
+				{% endfor %}
+				</tr>
+			</tbody>
+			</table>
+		{% endif %}
 	{% endfor %}
 {% else %}
 <div class="alert alert-info">

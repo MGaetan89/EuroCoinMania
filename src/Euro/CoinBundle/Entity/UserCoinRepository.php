@@ -63,11 +63,13 @@ class UserCoinRepository extends EntityRepository {
 			JOIN value v ON v.id = c.value_id
 			JOIN member m ON m.id = uc.user_id
 			JOIN user_coin uc2 ON uc2.user_id = :user
-			WHERE uc.coin_id <> uc2.coin_id
+			WHERE uc.user_id <> uc2.user_id
 				AND uc.coin_id <> :coin
-				AND uc.user_id <> uc2.user_id
 				AND uc.quantity > 1
-			ORDER BY m.username ASC, c.year ASC, v.value DESC', $rsm)
+				AND uc2.quantity > 0
+			ORDER BY m.username ASC,
+				c.year ASC,
+				v.value DESC', $rsm)
 						->setParameter('user', $user->getId())
 						->setParameter('coin', $coin)
 						->getResult();

@@ -1,11 +1,19 @@
 {% set country = '' %}
 
+{% set empty_cell %}
+<td>-</td>
+{% endset %}
+
+{% set commemorative %}
+<span class="badge-valid badge-success" title="{{ 'coin.commemorative'|trans }}"><i class="icon-white icon-ok"></i></span>
+{% endset %}
+
 {% for coin in coins %}
 	{% if country != coin.country %}
 		{% set country = coin.country %}
 		{% if not loop.first %}
 				{% for n in range(column + 1, nbval) if column < nbval %}
-					{{ empty_cell|raw }}
+					{{ empty_cell }}
 				{% endfor %}
 				</tr>
 			</tbody>
@@ -30,7 +38,7 @@
 	{% if year != coin.year %}
 		{% if not loop.first and year != 1990 %}
 			{% for n in range(column + 1, nbval) if column < nbval %}
-				{{ empty_cell|raw }}
+				{{ empty_cell }}
 			{% endfor %}
 			</tr>
 		{% endif %}
@@ -43,7 +51,7 @@
 	{% if val[column] != coin.value %}
 		{% for n in range(column + 1, nbval) %}
 			{% if not changed %}
-				{{ empty_cell|raw }}
+				{{ empty_cell }}
 			{% endif %}
 
 			{% if val[n] == coin.value %}
@@ -52,7 +60,7 @@
 			{% endif %}
 
 			{% if changed and val[n] > coin.value %}
-				{{ empty_cell|raw }}
+				{{ empty_cell }}
 			{% endif %}
 		{% endfor %}
 	{% else %}
@@ -81,7 +89,7 @@
 			</div>
 		{% else %}
 			{% if coin.commemorative %}
-				{{ commemorative|raw }}
+				{{ commemorative }}
 			{% endif %}
 
 			<a href="{{ path('coin_show', { 'id': coin.id }) }}">{{ coin.mintage|number_format }}</a>
@@ -90,7 +98,7 @@
 
 	{% if loop.last %}
 			{% for n in range(column + 1, nbval) if column < nbval %}
-				{{ empty_cell|raw }}
+				{{ empty_cell }}
 			{% endfor %}
 			</tr>
 		</tbody>

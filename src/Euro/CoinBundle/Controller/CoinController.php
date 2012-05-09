@@ -18,7 +18,6 @@ class CoinController extends Controller {
 	 */
 	public function indexAction($country, $year, $value, $commemorative, $collector) {
 		$em = $this->getDoctrine()->getEntityManager();
-		$translator = $this->get('translator');
 
 		$filters = array(
 			'commemorative' => $commemorative,
@@ -34,46 +33,17 @@ class CoinController extends Controller {
 			'v.collector' => $collector,
 		);
 		$coins = $em->getRepository('EuroCoinBundle:Coin')->getCoinsByFilters($db_filters);
-		$coin_values = array();
-		$commemoratives = array();
-		$countries = array();
-		$sorted = array();
-		$values = array();
-		$years = array();
-		foreach ($coins as $coin) {
-			$country = $coin->getCountry();
-			$value = $coin->getValue();
-
-			$coin_values[$country->getId()][$value->getId()] = (string) $value;
-			$commemoratives[$coin->getCommemorative()] = $coin->getCommemorative();
-			$countries[$country->getId()] = $translator->trans($coin->getCountry());
-			$sorted[$countries[$country->getId()]][] = $coin;
-			$values[$value->getId()] = (string) $value;
-			$years[$coin->getYear()] = $coin->getYear();
-		}
-
-		asort($countries);
-		asort($values);
-		ksort($sorted);
-		sort($years);
-		foreach ($coin_values as $country => &$val) {
-			rsort($val);
-		}
-
-		$coins = array();
-		foreach ($sorted as $country) {
-			$coins = array_merge($coins, $country);
-		}
+		$vars = $this->buildVars($coins);
 
 		return $this->render('EuroCoinBundle:Coin:index.html.twig', array(
-					'coin_values' => $coin_values,
-					'coins' => $coins,
+					'coin_values' => $vars['coin_values'],
+					'coins' => $vars['coins'],
 					'collector' => $collector,
-					'commemoratives' => count($commemoratives) === 2,
-					'countries' => (count($countries) > 1) ? $countries : array(),
+					'commemoratives' => count($vars['commemoratives']) === 2,
+					'countries' => (count($vars['countries']) > 1) ? $vars['countries'] : array(),
 					'filters' => $filters,
-					'values' => (count($values) > 1) ? $values : array(),
-					'years' => (count($years) > 1) ? $years : array(),
+					'values' => (count($vars['values']) > 1) ? $vars['values'] : array(),
+					'years' => (count($vars['years']) > 1) ? $vars['years'] : array(),
 				));
 	}
 
@@ -185,23 +155,17 @@ class CoinController extends Controller {
 
 		$em = $this->getDoctrine()->getEntityManager();
 		$uc = $em->getRepository('EuroCoinBundle:UserCoin')->getDoublesByUser($user);
+		$vars = $this->buildVars($uc);
 
-		$coin_values = array();
-		foreach ($uc as $coin) {
-			$coin = $coin->getCoin();
-			$country = $coin->getCountry();
-			$value = $coin->getValue();
-
-			$coin_values[$country->getId()][$value->getId()] = (string) $value;
-		}
-
-		foreach ($coin_values as $country => &$cv) {
-			rsort($cv);
+		$quantity = array();
+		foreach ($uc as $ucoin) {
+			$quantity[$ucoin->getCoin()->getId()] = $ucoin->getQuantity();
 		}
 
 		return $this->render('EuroCoinBundle:Coin:doubles.html.twig', array(
-					'coins' => $uc,
-					'coin_values' => $coin_values,
+					'coin_values' => $vars['coin_values'],
+					'coins' => $vars['coins'],
+					'quantity' => $quantity,
 				));
 	}
 
@@ -213,10 +177,71 @@ class CoinController extends Controller {
 
 		$em = $this->getDoctrine()->getEntityManager();
 		$doubles = $em->getRepository('EuroCoinBundle:UserCoin')->getDifferentDoublesByUserAndCoin($user, $id);
+		$vars = $this->buildVars($doubles);
+
+		$users = array();
+		foreach ($doubles as $double) {
+			$users[$double->getCoin()->getId()] = $double->getUser();
+		}
 
 		return $this->render('EuroCoinBundle:Coin:doubles_share.html.twig', array(
-					'doubles' => $doubles,
+					'coin_values' => $vars['coin_values'],
+					'coins' => $vars['coins'],
+					'commemoratives' => count($vars['commemoratives']) === 2,
+					'countries' => (count($vars['countries']) > 1) ? $vars['countries'] : array(),
+					'users' => $users,
+					'values' => (count($vars['values']) > 1) ? $vars['values'] : array(),
+					'years' => (count($vars['years']) > 1) ? $vars['years'] : array(),
 				));
+	}
+
+	private function buildVars(array $coins) {
+		$translator = $this->get('translator');
+
+		$coin_values = array();
+		$commemoratives = array();
+		$countries = array();
+		$sorted = array();
+		$values = array();
+		$years = array();
+		foreach ($coins as $coin) {
+			if ($coin instanceof UserCoin) {
+				$coin = $coin->getCoin();
+			}
+
+			$country = $coin->getCountry();
+			$value = $coin->getValue();
+
+			$coin_values[$country->getId()][$value->getId()] = (string) $value;
+			$commemoratives[$coin->getCommemorative()] = $coin->getCommemorative();
+			$countries[$country->getId()] = $translator->trans($coin->getCountry());
+			$sorted[$countries[$country->getId()]][] = $coin;
+			$values[$value->getId()] = (string) $value;
+			$years[$coin->getYear()] = $coin->getYear();
+		}
+
+		asort($countries);
+		asort($values);
+		ksort($sorted);
+		sort($years);
+		foreach ($coin_values as $country => &$val) {
+			rsort($val);
+		}
+
+		$coins = array();
+		foreach ($sorted as $country) {
+			$coins = array_merge($coins, $country);
+		}
+
+		return array(
+			'coin_values' => $coin_values,
+			'coins' => $coins,
+			'commemoratives' => $commemoratives,
+			'countries' => $countries,
+			'sorted' => $sorted,
+			'values' => $values,
+			'years' => $years,
+		);
 	}
 
 	private function getUser() {

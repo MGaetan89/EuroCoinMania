@@ -17,9 +17,6 @@
 	{% set country = '' %}
 
 	{% for coin in coins %}
-		{% set quantity = coin.quantity %}
-		{% set coin = coin.coin %}
-
 		{% if country != coin.country %}
 			{% set country = coin.country %}
 			{% if not loop.first %}
@@ -80,7 +77,7 @@
 
 		<td>
 			<div class="pull-left">
-				{{ quantity|number_format }}
+				{{ quantity[coin.id]|number_format }}
 			</div>
 
 			<div class="pull-right">
@@ -96,10 +93,6 @@
 			</tbody>
 			</table>
 		{% endif %}
-	{% else %}
-	<div class="alert alert-info">
-		{{ 'user.coin.none'|trans }}
-	</div>
 	{% endfor %}
 {% else %}
 <div class="alert alert-info">
