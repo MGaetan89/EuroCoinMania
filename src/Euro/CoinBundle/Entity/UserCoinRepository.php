@@ -56,7 +56,11 @@ class UserCoinRepository extends EntityRepository {
 		$rsm->addFieldResult('ct', 'former_currency_iso', 'former_currency_iso');
 		$rsm->addFieldResult('ct', 'exchange_rate', 'exchange_rate');
 
-		return $this->getEntityManager()->createNativeQuery('SELECT DISTINCT uc.*, c.*, ct.*, m.id, m.username, v.*
+		return $this->getEntityManager()->createNativeQuery('SELECT uc.id, uc.quantity,
+				m.id AS user_id, m.username,
+				c.id AS coin_id, c.year, c.commemorative, c.mintage, c.description,
+				v.id AS value_id, v.value, v.collector,
+				ct.id AS country_id, ct.name, ct.nameiso, ct.join_date, ct.former_currency_iso, ct.exchange_rate
 			FROM user_coin uc
 			JOIN coin c ON c.id = uc.coin_id
 			JOIN country ct ON ct.id = c.country_id

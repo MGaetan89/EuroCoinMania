@@ -2,6 +2,7 @@
 
 namespace Euro\CoinBundle\Controller;
 
+use FOS\UserBundle\Model\UserInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
 use Euro\CoinBundle\Entity\UserCoin;
@@ -66,7 +67,7 @@ class CoinController extends Controller {
 	}
 
 	public function getAction($id) {
-		if (!$this->getUser() instanceof \FOS\UserBundle\Model\UserInterface) {
+		if (!$this->getUser() instanceof UserInterface) {
 			throw new \Exception('You are not allowed to access this page !');
 		}
 
@@ -86,7 +87,7 @@ class CoinController extends Controller {
 
 	public function removeAction($id) {
 		$user = $this->getUser();
-		if (!$user instanceof \FOS\UserBundle\Model\UserInterface) {
+		if (!$user instanceof UserInterface) {
 			throw new \Exception('You are not allowed to access this page !');
 		}
 
@@ -111,7 +112,7 @@ class CoinController extends Controller {
 
 	public function addAction($id) {
 		$user = $this->getUser();
-		if (!$user instanceof \FOS\UserBundle\Model\UserInterface) {
+		if (!$user instanceof UserInterface) {
 			throw new \Exception('You are not allowed to access this page !');
 		}
 
@@ -149,7 +150,7 @@ class CoinController extends Controller {
 
 	public function doublesAction() {
 		$user = $this->getUser();
-		if (!$user instanceof \FOS\UserBundle\Model\UserInterface) {
+		if (!$user instanceof UserInterface) {
 			throw new \Exception('You are not allowed to access this page !');
 		}
 
@@ -171,12 +172,13 @@ class CoinController extends Controller {
 
 	public function doublesShareAction($id) {
 		$user = $this->getUser();
-		if (!$user instanceof \FOS\UserBundle\Model\UserInterface) {
+		if (!$user instanceof UserInterface) {
 			throw new \Exception('You are not allowed to access this page !');
 		}
 
 		$em = $this->getDoctrine()->getEntityManager();
 		$doubles = $em->getRepository('EuroCoinBundle:UserCoin')->getDifferentDoublesByUserAndCoin($user, $id);
+
 		$vars = $this->buildVars($doubles);
 
 		$users = array();
