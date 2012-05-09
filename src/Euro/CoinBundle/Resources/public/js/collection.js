@@ -49,6 +49,8 @@ $(function () {
 
 					$this.siblings('button.coin-add,button.coin-remove').andSelf().prop('disabled', false);
 					$this.siblings('button.coin-remove').toggleClass('btn-danger', data > 0);
+
+					$this.parent('.coin-collection').data('uc', data);
 				} else {
 				// Display error message
 				}
