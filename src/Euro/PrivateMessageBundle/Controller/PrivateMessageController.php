@@ -51,17 +51,19 @@ class PrivateMessageController extends Controller {
 		if ($request->getMethod() === 'POST') {
 			$form->bindRequest($request);
 
-			$pm->setConversation(uniqid());
-			$pm->setFromUser($user);
-			$pm->setPostDate(new \DateTime());
-			$pm->setIsRead(false);
+			if ($form->isValid()) {
+				$pm->setConversation(uniqid());
+				$pm->setFromUser($user);
+				$pm->setPostDate(new \DateTime());
+				$pm->setIsRead(false);
 
-			$em->persist($pm);
-			$em->flush();
+				$em->persist($pm);
+				$em->flush();
 
-			$this->get('session')->setFlash('notice', $this->get('translator')->trans('pm.message_sent'));
+				$this->get('session')->setFlash('notice', $this->get('translator')->trans('pm.message_sent'));
 
-			return $this->redirect($this->generateUrl('pm_index'));
+				return $this->redirect($this->generateUrl('pm_index'));
+			}
 		}
 
 		return $this->render('EuroPrivateMessageBundle:PrivateMessage:new.html.twig', array(
