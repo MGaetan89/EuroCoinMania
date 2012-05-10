@@ -16,7 +16,7 @@
 			</trans-unit>
 			<trans-unit id="pm.new">
 				<source>pm.new</source>
-				<target>Nouveau</target>
+				<target>Nouveau message</target>
 			</trans-unit>
 			<trans-unit id="pm.on">
 				<source>pm.on</source>
@@ -25,6 +25,10 @@
 			<trans-unit id="pm.title">
 				<source>pm.title</source>
 				<target>Titre du message</target>
+			</trans-unit>
+			<trans-unit id="pm.unread">
+				<source>pm.unread</source>
+				<target>Nouveau</target>
 			</trans-unit>
 			<trans-unit id="pm.with">
 				<source>pm.with</source>

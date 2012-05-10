@@ -4,6 +4,7 @@ namespace Euro\PrivateMessageBundle\Controller;
 
 use FOS\UserBundle\Model\UserInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Euro\PrivateMessageBundle\Form\PrivateMessageType;
 
 class PrivateMessageController extends Controller {
 
@@ -33,6 +34,19 @@ class PrivateMessageController extends Controller {
 		return $this->render('EuroPrivateMessageBundle:PrivateMessage:index.html.twig', array(
 					'conversations' => $conversations,
 				));
+	}
+
+	public function newAction() {
+		$user = $this->getUser();
+		if (!$user instanceof UserInterface) {
+			throw new \Exception('You are not allowed to access this page !');
+		}
+
+		$form = $this->createForm(new PrivateMessageType());
+
+		return $this->render('EuroPrivateMessageBundle:PrivateMessage:new.html.twig', array(
+			'form' => $form->createView(),
+		));
 	}
 
 	private function getUser() {

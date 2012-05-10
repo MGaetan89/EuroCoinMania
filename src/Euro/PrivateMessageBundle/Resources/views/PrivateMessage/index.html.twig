@@ -5,7 +5,7 @@
 {% block body %}
 <div class="page-header">
 	<h1>
-		{{ block('title') }} <small><a href="{{ path('pm_new') }}">Nouveau message</a></small>
+		{{ block('title') }} <small><a href="{{ path('pm_new') }}">{{ 'pm.new'|trans }}</a></small>
 	</h1>
 </div>
 
@@ -30,7 +30,7 @@
 				<a href="{{ path('pm_read', { id: conversation.conversation }) }}">{{ conversation.title }}</a>
 
 				{% if not conversation.isread %}
-					<span class="label label-success pull-right">{{ 'pm.new'|trans }}</span>
+					<span class="label label-success pull-right">{{ 'pm.unread'|trans }}</span>
 				{% endif %}
 			</td>
 			<td><a href="{{ path('user_view', { id: user.id }) }}">{{ user.username }}</a></td>
