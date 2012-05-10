@@ -8,7 +8,7 @@
 			</trans-unit>
 			<trans-unit id="pm.has_new">
 				<source>pm.has_new</source>
-				<target>none_or_one: Vous avez %count% message|some: Vous avez %count% messages</target>
+				<target>none_or_one: Vous avez %count% message non lu|some: Vous avez %count% messages non lu</target>
 			</trans-unit>
 		</body>
 	</file>
