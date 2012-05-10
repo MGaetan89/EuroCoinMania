@@ -49,7 +49,7 @@
 				<ul class="nav pull-right">
 					{% if app.user %}
 					{% render "EuroPrivateMessageBundle:PrivateMessage:hasNewMessage" %}
-					<li class="{% if route|slice(0, 8) == 'fos_user' %}active {% endif %}dropdown">
+					<li class="{% if route|slice(0, 8) == 'fos_user' or route|slice(0, 3) == 'pm_' %}active {% endif %}dropdown">
 						<a href="{{ path('fos_user_profile_show') }}" class="dropdown-toggle" data-toggle="dropdown" data-target="#">
 							{{ app.user }}
 							<b class="caret"></b>
