@@ -20,27 +20,24 @@
 	<tr>
 		<th>{{ 'pm.title'|trans }}</th>
 		<th>{{ 'pm.with'|trans }}</th>
+		<th>{{ 'pm.on'|trans }}</th>
 	</tr>
 </thead>
 <tbody>
-
-{% set current = '' %}
 {% for conversation in conversations %}
 	{% set user = conversation.fromuser.id != app.user.id ? conversation.fromuser : conversation.touser %}
-	{% if current != conversation.conversation %}
-		{% set current = conversation.conversation %}
 
-		<tr>
-			<td>
-				<a href="{{ path('pm_read', { id: conversation.conversation }) }}">{{ conversation.title }}</a>
+	<tr>
+		<td>
+			<a href="{{ path('pm_read', { id: conversation.conversation }) }}">{{ titles[conversation.conversation] }}</a>
 
-				{% if not conversation.isread and conversation.touser == app.user %}
-					<span class="label label-success pull-right">{{ 'pm.unread'|trans }}</span>
-				{% endif %}
-			</td>
-			<td><a href="{{ path('user_view', { id: user.id }) }}">{{ user.username }}</a></td>
-		</tr>
-	{% endif %}
+			{% if not conversation.isread and conversation.touser.id == app.user.id %}
+				<span class="label label-success pull-right">{{ 'pm.unread'|trans }}</span>
+			{% endif %}
+		</td>
+		<td><a href="{{ path('user_view', { id: user.id }) }}">{{ user.username }}</a></td>
+		<td>{{ conversation.postdate|date }}</td>
+	</tr>
 {% endfor %}
 </table>
 </tbody>

@@ -4,7 +4,17 @@
 
 {% block body %}
 <div class="page-header">
-	<h1>{{ block('title') }}</h1>
+	<h1>
+		{{ block('title') }}
+		<small><a data-toggle="collapse" data-target="#answer_form">{{ 'pm.answer'|trans }}</a></smal>
+	</h1>
+</div>
+
+<div class="collapse" id="answer_form">
+	{% include "EuroPrivateMessageBundle:PrivateMessage:form.html.twig" with {
+		mode: 'answer',
+		path: path('pm_read', { id: messages[0].conversation })
+	} %}
 </div>
 
 {% for message in messages %}
@@ -23,4 +33,6 @@
 		</div>
 	</div>
 {% endfor %}
+
+<script src="{{ asset('bundles/europrivatemessage/js/pm.js') }}" type="text/javascript"></script>
 {% endblock %}

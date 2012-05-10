@@ -32,9 +32,16 @@ class PrivateMessageController extends Controller {
 
 		$em = $this->getDoctrine()->getEntityManager();
 		$conversations = $em->getRepository('EuroPrivateMessageBundle:PrivateMessage')->getConversationsByUser($user);
+		$titles = $em->getRepository('EuroPrivateMessageBundle:PrivateMessage')->getConversationsTitleByUser($user);
+
+		$list = array();
+		foreach ($titles as $title) {
+			$list[$title['conversation']] = $title['title'];
+		}
 
 		return $this->render('EuroPrivateMessageBundle:PrivateMessage:index.html.twig', array(
 					'conversations' => $conversations,
+					'titles' => $list,
 				));
 	}
 
@@ -71,7 +78,7 @@ class PrivateMessageController extends Controller {
 				));
 	}
 
-	public function readAction($id) {
+	public function readAction($id, Request $request) {
 		$user = $this->getUser();
 		if (!$user instanceof UserInterface) {
 			throw new \Exception('You are not allowed to access this page !');
@@ -81,10 +88,36 @@ class PrivateMessageController extends Controller {
 		$repository = $em->getRepository('EuroPrivateMessageBundle:PrivateMessage');
 		$messages = $repository->getConversationById($id);
 
+		$pm = new PrivateMessage();
+		$form = $this->createForm(new PrivateMessageType($em, $user), $pm);
+
+		if ($request->getMethod() === 'POST') {
+			$form->bindRequest($request);
+
+			if ($form->isValid()) {
+				$to_user = $messages[0]->getToUser();
+				if ($to_user->getId() == $user->getId()) {
+					$to_user = $messages[0]->getFromUser();
+				}
+
+				$pm->setConversation($messages[0]->getConversation());
+				$pm->setFromUser($user);
+				$pm->setToUser($to_user);
+				$pm->setPostDate(new \DateTime());
+				$pm->setIsRead(false);
+
+				$em->persist($pm);
+				$em->flush();
+
+				return $this->redirect($this->generateUrl('pm_read', array('id' => $messages[0]->getConversation())));
+			}
+		}
+
 		$repository->setConversationRead($id, $user);
 
 		return $this->render('EuroPrivateMessageBundle:PrivateMessage:read.html.twig', array(
 					'messages' => $messages,
+					'form' => $form->createView(),
 				));
 	}
 

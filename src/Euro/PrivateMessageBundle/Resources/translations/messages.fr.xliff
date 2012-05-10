@@ -6,6 +6,10 @@
 				<source>pm</source>
 				<target>Messages privés</target>
 			</trans-unit>
+			<trans-unit id="pm.answer">
+				<source>pm.answer</source>
+				<target>Répondre</target>
+			</trans-unit>
 			<trans-unit id="pm.editor.bold">
 				<source>pm.editor.bold</source>
 				<target>Gras</target>
