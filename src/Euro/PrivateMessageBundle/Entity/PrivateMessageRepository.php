@@ -12,6 +12,18 @@ use Doctrine\ORM\EntityRepository;
  */
 class PrivateMessageRepository extends EntityRepository {
 
+	public function getConversationById($id) {
+		$queryBuiler = $this->createQueryBuilder('pm');
+		$expr = $queryBuiler->expr();
+
+		return $queryBuiler
+						->where($expr->eq('pm.conversation', ':conversation'))
+						->orderBy('pm.post_date', 'DESC')
+						->setParameter('conversation', $id)
+						->getQuery()
+						->getResult();
+	}
+
 	public function getConversationsByUser($user) {
 		$queryBuiler = $this->createQueryBuilder('pm');
 		$expr = $queryBuiler->expr();

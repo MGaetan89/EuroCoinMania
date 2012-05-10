@@ -1,0 +1,26 @@
+{% extends '::base.html.twig' %}
+
+{% block title %}{{ messages[0].title }}{% endblock %}
+
+{% block body %}
+<div class="page-header">
+	<h1>{{ block('title') }}</h1>
+</div>
+
+{% for message in messages %}
+	<div class="well">
+		<div class="row-fluid">
+			<div class="span2">
+				<strong><a href="{{ path('user_view', { id: message.fromuser.id }) }}">{{ message.fromuser.username }}</a></strong>,<br />
+				{{ 'pm.on'|trans }} {{ message.postdate|date }}
+			</div>
+
+			<div class="span10">
+				{% if message.title %}<h3>{{ message.title }}</h3>{% endif %}
+
+				{{ message.text }}
+			</div>
+		</div>
+	</div>
+{% endfor %}
+{% endblock %}
