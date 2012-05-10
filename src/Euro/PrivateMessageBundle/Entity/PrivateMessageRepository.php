@@ -12,6 +12,19 @@ use Doctrine\ORM\EntityRepository;
  */
 class PrivateMessageRepository extends EntityRepository {
 
+	public function getConversationsByUser($user) {
+		$queryBuiler = $this->createQueryBuilder('pm');
+		$expr = $queryBuiler->expr();
+
+		return $queryBuiler
+						->where($expr->eq('pm.from_user', ':user'))
+						->orWhere($expr->eq('pm.to_user', ':user'))
+						->orderBy('pm.post_date', 'DESC')
+						->setParameter('user', $user)
+						->getQuery()
+						->getResult();
+	}
+
 	public function getNewMessageCount($user) {
 		$queryBuiler = $this->createQueryBuilder('pm');
 		$expr = $queryBuiler->expr();

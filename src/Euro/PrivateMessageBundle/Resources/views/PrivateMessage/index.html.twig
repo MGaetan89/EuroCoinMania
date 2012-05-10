@@ -1,0 +1,43 @@
+{% extends '::base.html.twig' %}
+
+{% block title %}{{ 'pm.list'|trans }}{% endblock %}
+
+{% block body %}
+<div class="page-header">
+	<h1>
+		{{ block('title') }} <small><a href="{{ path('pm_new') }}">Nouveau message</a></small>
+	</h1>
+</div>
+
+<table class="table table-bordered table-condensed table-striped">
+<thead>
+	<tr>
+		<th>{{ 'pm.title'|trans }}</th>
+		<th>{{ 'pm.with'|trans }}</th>
+		<th>{{ 'pm.on'|trans }}</th>
+	</tr>
+</thead>
+<tbody>
+
+{% set current = '' %}
+{% for conversation in conversations %}
+	{% set user = conversation.fromuser.id != app.user.id ? conversation.fromuser : conversation.touser %}
+	{% if current != conversation.conversation %}
+		{% set current = conversation.conversation %}
+
+		<tr>
+			<td>
+				<a href="{{ path('pm_read', { id: conversation.conversation }) }}">{{ conversation.title }}</a>
+
+				{% if not conversation.isread %}
+					<span class="label label-success pull-right">{{ 'pm.new'|trans }}</span>
+				{% endif %}
+			</td>
+			<td><a href="{{ path('user_view', { id: user.id }) }}">{{ user.username }}</a></td>
+			<td>{{ conversation.postdate|date }}</td>
+		</tr>
+	{% endif %}
+{% endfor %}
+</table>
+</tbody>
+{% endblock %}

@@ -10,6 +10,26 @@
 				<source>pm.has_new</source>
 				<target>none_or_one: Vous avez %count% message non lu|some: Vous avez %count% messages non lu</target>
 			</trans-unit>
+			<trans-unit id="pm.list">
+				<source>pm.list</source>
+				<target>Liste de vos conversations</target>
+			</trans-unit>
+			<trans-unit id="pm.new">
+				<source>pm.new</source>
+				<target>Nouveau</target>
+			</trans-unit>
+			<trans-unit id="pm.on">
+				<source>pm.on</source>
+				<target>Le</target>
+			</trans-unit>
+			<trans-unit id="pm.title">
+				<source>pm.title</source>
+				<target>Titre du message</target>
+			</trans-unit>
+			<trans-unit id="pm.with">
+				<source>pm.with</source>
+				<target>Avec</target>
+			</trans-unit>
 		</body>
 	</file>
 </xliff>

@@ -1,3 +1,11 @@
 pm_index:
     pattern:  /pm
     defaults: { _controller: EuroPrivateMessageBundle:PrivateMessage:index }
+
+pm_new:
+    pattern:  /pm/new
+    defaults: { _controller: EuroPrivateMessageBundle:PrivateMessage:new }
+
+pm_read:
+    pattern:  /pm/{id}/read
+    defaults: { _controller: EuroPrivateMessageBundle:PrivateMessage:read }

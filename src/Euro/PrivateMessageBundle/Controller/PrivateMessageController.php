@@ -21,6 +21,20 @@ class PrivateMessageController extends Controller {
 				));
 	}
 
+	public function indexAction() {
+		$user = $this->getUser();
+		if (!$user instanceof UserInterface) {
+			throw new \Exception('You are not allowed to access this page !');
+		}
+
+		$em = $this->getDoctrine()->getEntityManager();
+		$conversations = $em->getRepository('EuroPrivateMessageBundle:PrivateMessage')->getConversationsByUser($user);
+
+		return $this->render('EuroPrivateMessageBundle:PrivateMessage:index.html.twig', array(
+					'conversations' => $conversations,
+				));
+	}
+
 	private function getUser() {
 		return $this->get('security.context')->getToken()->getUser();
 	}
