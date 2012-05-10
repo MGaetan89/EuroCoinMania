@@ -1,3 +1,3 @@
-EuroPrivateMessageBundle_homepage:
-    pattern:  /hello/{name}
+pm_index:
+    pattern:  /pm
     defaults: { _controller: EuroPrivateMessageBundle:PrivateMessage:index }
