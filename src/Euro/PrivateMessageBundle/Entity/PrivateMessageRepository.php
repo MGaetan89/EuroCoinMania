@@ -31,8 +31,7 @@ class PrivateMessageRepository extends EntityRepository {
 		return $queryBuiler
 						->where($expr->eq('pm.from_user', ':user'))
 						->orWhere($expr->eq('pm.to_user', ':user'))
-						->orderBy('pm.conversation', 'ASC')
-						->addOrderBy('pm.post_date', 'DESC')
+						->orderBy('pm.post_date', 'DESC')
 						->setParameter('user', $user)
 						->getQuery()
 						->getResult();
@@ -49,6 +48,20 @@ class PrivateMessageRepository extends EntityRepository {
 						->setParameter('user', $user)
 						->getQuery()
 						->getSingleScalarResult();
+	}
+
+	public function setConversationRead($conversation, $user) {
+		$queryBuiler = $this->createQueryBuilder('pm');
+		$expr = $queryBuiler->expr();
+
+		$queryBuiler->update()
+				->set('pm.is_read', '1')
+				->where($expr->eq('pm.conversation', ':conversation'))
+				->andWhere($expr->eq('pm.to_user', ':user'))
+				->setParameter('conversation', $conversation)
+				->setParameter('user', $user)
+				->getQuery()
+				->getResult();
 	}
 
 }

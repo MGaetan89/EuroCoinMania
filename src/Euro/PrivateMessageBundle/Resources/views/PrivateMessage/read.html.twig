@@ -1,6 +1,6 @@
 {% extends '::base.html.twig' %}
 
-{% block title %}{{ messages[0].title }}{% endblock %}
+{% block title %}{{ messages[messages|length - 1].title }}{% endblock %}
 
 {% block body %}
 <div class="page-header">

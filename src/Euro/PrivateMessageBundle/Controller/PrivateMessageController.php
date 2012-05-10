@@ -78,7 +78,10 @@ class PrivateMessageController extends Controller {
 		}
 
 		$em = $this->getDoctrine()->getEntityManager();
-		$messages = $em->getRepository('EuroPrivateMessageBundle:PrivateMessage')->getConversationById($id);
+		$repository = $em->getRepository('EuroPrivateMessageBundle:PrivateMessage');
+		$messages = $repository->getConversationById($id);
+
+		$repository->setConversationRead($id, $user);
 
 		return $this->render('EuroPrivateMessageBundle:PrivateMessage:read.html.twig', array(
 					'messages' => $messages,

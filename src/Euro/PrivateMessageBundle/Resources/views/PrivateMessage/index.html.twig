@@ -20,7 +20,6 @@
 	<tr>
 		<th>{{ 'pm.title'|trans }}</th>
 		<th>{{ 'pm.with'|trans }}</th>
-		<th>{{ 'pm.on'|trans }}</th>
 	</tr>
 </thead>
 <tbody>
@@ -40,7 +39,6 @@
 				{% endif %}
 			</td>
 			<td><a href="{{ path('user_view', { id: user.id }) }}">{{ user.username }}</a></td>
-			<td>{{ conversation.postdate|date }}</td>
 		</tr>
 	{% endif %}
 {% endfor %}
