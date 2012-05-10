@@ -9,6 +9,12 @@
 	</h1>
 </div>
 
+{% if app.session.hasFlash('notice') %}
+<div class="alert alert-info">
+	{{ app.session.flash('notice') }}
+</div>
+{% endif %}
+
 <table class="table table-bordered table-condensed table-striped">
 <thead>
 	<tr>
@@ -29,7 +35,7 @@
 			<td>
 				<a href="{{ path('pm_read', { id: conversation.conversation }) }}">{{ conversation.title }}</a>
 
-				{% if not conversation.isread %}
+				{% if not conversation.isread and conversation.touser == app.user %}
 					<span class="label label-success pull-right">{{ 'pm.unread'|trans }}</span>
 				{% endif %}
 			</td>

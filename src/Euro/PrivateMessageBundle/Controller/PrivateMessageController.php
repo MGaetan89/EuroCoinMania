@@ -4,6 +4,8 @@ namespace Euro\PrivateMessageBundle\Controller;
 
 use FOS\UserBundle\Model\UserInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
+use Euro\PrivateMessageBundle\Entity\PrivateMessage;
 use Euro\PrivateMessageBundle\Form\PrivateMessageType;
 
 class PrivateMessageController extends Controller {
@@ -36,17 +38,35 @@ class PrivateMessageController extends Controller {
 				));
 	}
 
-	public function newAction() {
+	public function newAction(Request $request) {
 		$user = $this->getUser();
 		if (!$user instanceof UserInterface) {
 			throw new \Exception('You are not allowed to access this page !');
 		}
 
-		$form = $this->createForm(new PrivateMessageType());
+		$pm = new PrivateMessage();
+		$em = $this->getDoctrine()->getEntityManager();
+		$form = $this->createForm(new PrivateMessageType($em, $user), $pm);
+
+		if ($request->getMethod() === 'POST') {
+			$form->bindRequest($request);
+
+			$pm->setConversation(uniqid());
+			$pm->setFromUser($user);
+			$pm->setPostDate(new \DateTime());
+			$pm->setIsRead(false);
+
+			$em->persist($pm);
+			$em->flush();
+
+			$this->get('session')->setFlash('notice', $this->get('translator')->trans('pm.message_sent'));
+
+			return $this->redirect($this->generateUrl('pm_index'));
+		}
 
 		return $this->render('EuroPrivateMessageBundle:PrivateMessage:new.html.twig', array(
-			'form' => $form->createView(),
-		));
+					'form' => $form->createView(),
+				));
 	}
 
 	private function getUser() {

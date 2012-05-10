@@ -6,6 +6,50 @@
 				<source>pm</source>
 				<target>Messages privés</target>
 			</trans-unit>
+			<trans-unit id="pm.editor.bold">
+				<source>pm.editor.bold</source>
+				<target>Gras</target>
+			</trans-unit>
+			<trans-unit id="pm.editor.bold.short">
+				<source>pm.editor.bold.short</source>
+				<target>G</target>
+			</trans-unit>
+			<trans-unit id="pm.editor.image">
+				<source>pm.editor.image</source>
+				<target>Insérer une image</target>
+			</trans-unit>
+			<trans-unit id="pm.editor.italic">
+				<source>pm.editor.italic</source>
+				<target>Italique</target>
+			</trans-unit>
+			<trans-unit id="pm.editor.italic.short">
+				<source>pm.editor.italic.short</source>
+				<target>I</target>
+			</trans-unit>
+			<trans-unit id="pm.editor.link">
+				<source>pm.editor.link</source>
+				<target>Insérer un lien</target>
+			</trans-unit>
+			<trans-unit id="pm.editor.quote">
+				<source>pm.editor.quote</source>
+				<target>Insérer une citation</target>
+			</trans-unit>
+			<trans-unit id="pm.editor.strike">
+				<source>pm.editor.strike</source>
+				<target>Barré</target>
+			</trans-unit>
+			<trans-unit id="pm.editor.strike.short">
+				<source>pm.editor.strike.short</source>
+				<target>B</target>
+			</trans-unit>
+			<trans-unit id="pm.editor.underline">
+				<source>pm.editor.underline</source>
+				<target>Souligné</target>
+			</trans-unit>
+			<trans-unit id="pm.editor.underline.short">
+				<source>pm.editor.underline.short</source>
+				<target>S</target>
+			</trans-unit>
 			<trans-unit id="pm.has_new">
 				<source>pm.has_new</source>
 				<target>none_or_one: Vous avez %count% message non lu|some: Vous avez %count% messages non lu</target>
@@ -14,6 +58,10 @@
 				<source>pm.list</source>
 				<target>Liste de vos conversations</target>
 			</trans-unit>
+			<trans-unit id="pm.message_sent">
+				<source>pm.message_sent</source>
+				<target>Votre message a bien été envoyé !</target>
+			</trans-unit>
 			<trans-unit id="pm.new">
 				<source>pm.new</source>
 				<target>Nouveau message</target>
@@ -21,6 +69,10 @@
 			<trans-unit id="pm.on">
 				<source>pm.on</source>
 				<target>Le</target>
+			</trans-unit>
+			<trans-unit id="pm.send">
+				<source>pm.send</source>
+				<target>Envoyer</target>
 			</trans-unit>
 			<trans-unit id="pm.title">
 				<source>pm.title</source>
