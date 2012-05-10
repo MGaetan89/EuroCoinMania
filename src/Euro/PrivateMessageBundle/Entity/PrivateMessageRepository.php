@@ -31,7 +31,8 @@ class PrivateMessageRepository extends EntityRepository {
 		return $queryBuiler
 						->where($expr->eq('pm.from_user', ':user'))
 						->orWhere($expr->eq('pm.to_user', ':user'))
-						->orderBy('pm.post_date', 'DESC')
+						->orderBy('pm.conversation', 'ASC')
+						->addOrderBy('pm.post_date', 'DESC')
 						->setParameter('user', $user)
 						->getQuery()
 						->getResult();
