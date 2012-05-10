@@ -28,7 +28,7 @@
 			<div class="span10">
 				{% if message.title %}<h3>{{ message.title }}</h3>{% endif %}
 
-				{{ message.text }}
+				{{ message.text|markdown|raw }}
 			</div>
 		</div>
 	</div>

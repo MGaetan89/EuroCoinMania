@@ -12,7 +12,7 @@ $(function () {
 				break;
 
 			case 'italic' :
-				markup = ' *message* ';
+				markup = ' //message// ';
 				break;
 
 			case 'link' :
@@ -24,11 +24,11 @@ $(function () {
 				break;
 
 			case 'strike' :
-				markup = ' -message- ';
+				markup = ' --message-- ';
 				break;
 
 			case 'underline' :
-				markup = ' _message_ ';
+				markup = ' __message__ ';
 				break;
 		}
 

@@ -1,7 +1,5 @@
-parameters:
-#    euro_private_message.example.class: Euro\PrivateMessageBundle\Example
-
 services:
-#    euro_private_message.example:
-#        class: %euro_private_message.example.class%
-#        arguments: [@service_id, "plain_value", %parameter%]
+    twig.extension.country:
+        class: Euro\PrivateMessageBundle\Twig\Extension
+        tags:
+            - { name: twig.extension }
