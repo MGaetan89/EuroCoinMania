@@ -55,7 +55,7 @@
 							<b class="caret"></b>
 						</a>
 						<ul class="dropdown-menu">
-							<li {% if route == 'pm_index' %} class="active"{% endif %}><a href="{{ path('pm_index') }}">{{ 'pm'|trans }}</a></li>
+							<li {% if route|slice(0, 3) == 'pm_' %} class="active"{% endif %}><a href="{{ path('pm_index') }}">{{ 'pm'|trans }}</a></li>
 							<li{% if route == 'fos_user_profile_show' %} class="active"{% endif %}><a href="{{ path('fos_user_profile_show') }}">{{ 'user.profile'|trans }}</a></li>
 							<li><a href="{{ path('fos_user_security_logout') }}">{{ 'user.logout'|trans }}</a></li>
 						</ul>
