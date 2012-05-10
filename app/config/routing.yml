@@ -1,3 +1,7 @@
+EuroPrivateMessageBundle:
+    resource: "@EuroPrivateMessageBundle/Resources/config/routing.yml"
+    prefix:   /
+
 EuroUserBundle:
     resource: "@EuroUserBundle/Resources/config/routing.yml"
     prefix:   /

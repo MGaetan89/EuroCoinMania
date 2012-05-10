@@ -26,6 +26,7 @@ class AppKernel extends Kernel
 			new Sonata\DoctrineORMAdminBundle\SonataDoctrineORMAdminBundle(),
             new Euro\CoinBundle\EuroCoinBundle(),
             new Euro\UserBundle\EuroUserBundle(),
+            new Euro\PrivateMessageBundle\EuroPrivateMessageBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
