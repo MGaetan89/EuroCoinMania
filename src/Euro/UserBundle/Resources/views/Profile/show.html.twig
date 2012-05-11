@@ -1,10 +1,12 @@
 {% extends "::base.html.twig" %}
 
+{% block title %}{{ 'user.profile.view'|trans({ '%name%': user.username }) }}{% endblock %}
+
 {% block empty_cell %}<td>-</td>{% endblock %}
 
 {% block fos_user_content %}
 <div class="page-header">
-	<h1>{{ 'user.profile'|trans }}</h1>
+	<h1>{{ block('title') }}</h1>
 </div>
 
 {% include "FOSUserBundle:Profile:show_content.html.twig" %}

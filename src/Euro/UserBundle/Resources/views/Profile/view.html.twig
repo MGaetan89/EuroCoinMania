@@ -1,1 +1,11 @@
-Hello {{ name }}!
+{% extends "::base.html.twig" %}
+
+{% block title %}{{ 'user.profile.view'|trans({ '%name%': user.username }) }}{% endblock %}
+
+{% block fos_user_content %}
+<div class="page-header">
+	<h1>{{ block('title') }}</h1>
+</div>
+
+{{ user.id }}
+{% endblock %}

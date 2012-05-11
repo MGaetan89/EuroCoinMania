@@ -18,6 +18,10 @@
 				<source>user.profile.show.email</source>
 				<target>Adresse e-mail</target>
 			</trans-unit>
+			<trans-unit id="user.profile.view">
+				<source>user.profile.view</source>
+				<target>Profil de %name%</target>
+			</trans-unit>
 			<trans-unit id="user.register">
 				<source>user.register</source>
 				<target>Inscription</target>

@@ -34,4 +34,5 @@ class SecurityController extends Controller {
 					'csrf_token' => $csrfToken,
 				));
 	}
+
 }

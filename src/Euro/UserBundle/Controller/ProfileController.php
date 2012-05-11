@@ -50,7 +50,17 @@ class ProfileController extends Controller {
 	}
 
 	public function viewAction($id) {
-		// Generate other member profil page
+		$user = $this->container->get('security.context')->getToken()->getUser();
+		if (!is_object($user) || !$user instanceof UserInterface) {
+			throw new AccessDeniedException('This user does not have access to this section.');
+		}
+
+		$em = $this->container->get('doctrine')->getEntityManager();
+		$user = $em->getRepository('EuroUserBundle:User')->find($id);
+
+		return $this->container->get('templating')->renderResponse('EuroUserBundle:Profile:view.html.' . $this->container->getParameter('fos_user.template.engine'), array(
+					'user' => $user,
+				));
 	}
 
 }
