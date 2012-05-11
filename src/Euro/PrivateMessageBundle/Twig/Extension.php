@@ -34,12 +34,14 @@ class Extension extends \Twig_Extension {
 		$text = preg_replace('`\[([^]]+)\]\(([^)]+)\)`U', '<a href="\\2">\\1</a>', $text);
 
 		// Quote
-		$text = preg_replace('` > (.+)(?:\n|$)`U', '<blockquote><p>\\1</p></blockquote>', $text);
+		$text = preg_replace('`( > .+)(?:\n|$)`U', '<blockquote>\\1</blockquote>', $text);
+		$text = str_replace('</blockquote><blockquote>', '', $text);
+		$text = preg_replace('` > (.+)`U', '\\1', $text);
 
 		// Headers
-		$text = preg_replace('`### (.+)(?:\n|$)`U', '<h3>\\1</h3>', $text);
-		$text = preg_replace('`## (.+)(?:\n|$)`U', '<h2>\\1</h2>', $text);
-		$text = preg_replace('`# (.+)(?:\n|$)`U', '<h1>\\1</h1>', $text);
+		$text = preg_replace('`### (.+)(?:\n|$)`U', '<h5>\\1</h5>', $text);
+		$text = preg_replace('`## (.+)(?:\n|$)`U', '<h4>\\1</h4>', $text);
+		$text = preg_replace('`# (.+)(?:\n|$)`U', '<h3>\\1</h3>', $text);
 
 		// Line break
 		$text = nl2br($text);
