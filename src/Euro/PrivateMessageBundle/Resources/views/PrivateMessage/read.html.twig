@@ -26,7 +26,11 @@
 			</div>
 
 			<div class="span10">
-				{% if message.title %}<h3>{{ message.title }}</h3>{% endif %}
+				{% if message.title %}
+					<div class="page-header">
+						<h3>{{ message.title }}</h3>
+					</div>
+				{% endif %}
 
 				{{ message.text|markdown|raw }}
 			</div>
