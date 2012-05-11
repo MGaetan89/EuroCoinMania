@@ -15,6 +15,7 @@
 </div>
 {% endif %}
 
+{% if conversations %}
 <table class="table table-bordered table-condensed table-striped">
 <thead>
 	<tr>
@@ -41,4 +42,9 @@
 {% endfor %}
 </table>
 </tbody>
+{% else %}
+<div class="alert alert-info">
+	{{ 'pm.none'|trans }}
+</div>
+{% endif %}
 {% endblock %}

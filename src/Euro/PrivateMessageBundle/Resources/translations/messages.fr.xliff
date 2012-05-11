@@ -70,6 +70,10 @@
 				<source>pm.new</source>
 				<target>Nouveau message</target>
 			</trans-unit>
+			<trans-unit id="pm.none">
+				<source>pm.none</source>
+				<target>Vous n'avez aucun message privé. Cliquez sur le lien ci-dessus pour en rédiger un.</target>
+			</trans-unit>
 			<trans-unit id="pm.on">
 				<source>pm.on</source>
 				<target>Le</target>
