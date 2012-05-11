@@ -1,15 +1,15 @@
 $(function () {
 	$('.btn-toolbar').on('click', 'button', function () {
 		var $this = $(this), action = $this.data('markup'),
-		textarea = $('#euro_privatemessagetype_text'), markup,
+		textarea = $('#euro_privatemessagetype_text'),
 		markdown = {
 			bold: ' **message** ',
 			image: ' ![message](url) ',
-			italic: ' //message// ',
+			italic: ' *message* ',
 			link: ' [message](url) ',
 			quote: "\n" + ' > message ',
-			strike: ' --message-- ',
-			underline: ' __message__ ',
+			strike: ' <s>message</s> ',
+			underline: ' <u>message</u> ',
 			header1: '# message ' + "\n",
 			header2: '## message ' + "\n",
 			header3: '### message ' + "\n"

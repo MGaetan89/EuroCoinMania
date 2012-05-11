@@ -1,5 +1,0 @@
-services:
-    twig.extension.pm:
-        class: Euro\PrivateMessageBundle\Twig\Extension
-        tags:
-            - { name: twig.extension }

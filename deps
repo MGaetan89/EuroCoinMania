@@ -106,3 +106,7 @@
     git=http://github.com/sonata-project/SonataDoctrineORMAdminBundle.git
     target=/bundles/Sonata/DoctrineORMAdminBundle
     version=origin/2.0
+
+[KnpMarkdownBundle]
+    git=http://github.com/KnpLabs/KnpMarkdownBundle.git
+    target=/bundles/Knp/Bundle/MarkdownBundle
