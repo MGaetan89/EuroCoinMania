@@ -1,38 +1,21 @@
 $(function () {
 	$('.btn-toolbar').on('click', 'button', function () {
-		var $this = $(this), action = $this.data('markup'), textarea = $('#euro_privatemessagetype_text'), markup;
+		var $this = $(this), action = $this.data('markup'),
+		textarea = $('#euro_privatemessagetype_text'), markup,
+		markdown = {
+			bold: ' **message** ',
+			image: ' ![message](url) ',
+			italic: ' //message// ',
+			link: ' [message](url) ',
+			quote: "\n" + ' > message ',
+			strike: ' --message-- ',
+			underline: ' __message__ ',
+			header1: '# message ' + "\n",
+			header2: '## message ' + "\n",
+			header3: '### message ' + "\n"
+		};
 
-		switch (action) {
-			case 'bold' :
-				markup = ' **message** ';
-				break;
-
-			case 'image' :
-				markup = ' ![message](url) ';
-				break;
-
-			case 'italic' :
-				markup = ' //message// ';
-				break;
-
-			case 'link' :
-				markup = ' [message](url) ';
-				break;
-
-			case 'quote' :
-				markup = "\n" + ' > message ';
-				break;
-
-			case 'strike' :
-				markup = ' --message-- ';
-				break;
-
-			case 'underline' :
-				markup = ' __message__ ';
-				break;
-		}
-
-		textarea.html(textarea.html() + markup);
+		textarea.val(textarea.val() + markdown[action]).focus();
 
 		return false;
 	});

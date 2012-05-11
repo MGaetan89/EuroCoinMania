@@ -18,6 +18,30 @@
 				<source>pm.editor.bold.short</source>
 				<target>G</target>
 			</trans-unit>
+			<trans-unit id="pm.editor.header1">
+				<source>pm.editor.header1</source>
+				<target>Titre de niveau 1</target>
+			</trans-unit>
+			<trans-unit id="pm.editor.header1.short">
+				<source>pm.editor.header1.short</source>
+				<target>H1</target>
+			</trans-unit>
+			<trans-unit id="pm.editor.header2">
+				<source>pm.editor.header2</source>
+				<target>Titre de niveau 2</target>
+			</trans-unit>
+			<trans-unit id="pm.editor.header2.short">
+				<source>pm.editor.header2.short</source>
+				<target>H2</target>
+			</trans-unit>
+			<trans-unit id="pm.editor.header3">
+				<source>pm.editor.header3</source>
+				<target>Titre de niveau 3</target>
+			</trans-unit>
+			<trans-unit id="pm.editor.header3.short">
+				<source>pm.editor.header3.short</source>
+				<target>H3</target>
+			</trans-unit>
 			<trans-unit id="pm.editor.image">
 				<source>pm.editor.image</source>
 				<target>Insérer une image</target>

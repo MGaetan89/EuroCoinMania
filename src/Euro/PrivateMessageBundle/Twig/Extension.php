@@ -16,25 +16,30 @@ class Extension extends \Twig_Extension {
 
 	public function markdownFilter($text) {
 		// Bold
-		$text = preg_replace('#\*\*(.+)\*\*#U', '<b>\\1</b>', $text);
+		$text = preg_replace('`\*\*(.+)\*\*`U', '<b>\\1</b>', $text);
 
 		// Italic
-		$text = preg_replace('#//(.+)//#U', '<i>\\1</i>', $text);
+		$text = preg_replace('`//(.+)//`U', '<i>\\1</i>', $text);
 
 		// Strike
-		$text = preg_replace('#--(.+)--#U', '<s>\\1</s>', $text);
+		$text = preg_replace('`--(.+)--`U', '<s>\\1</s>', $text);
 
 		// Underline
-		$text = preg_replace('#__(.+)__#U', '<u>\\1</u>', $text);
+		$text = preg_replace('`__(.+)__`U', '<u>\\1</u>', $text);
 
 		// Image
-		$text = preg_replace('#!\[([^]]+)\]\(([^)]+)\)#U', '<img alt="\\1" src="\\2" title="\\1" />', $text);
+		$text = preg_replace('`!\[([^]]+)\]\(([^)]+)\)`U', '<img alt="\\1" src="\\2" title="\\1" />', $text);
 
 		// Link
-		$text = preg_replace('#\[([^]]+)\]\(([^)]+)\)#U', '<a href="\\2">\\1</a>', $text);
+		$text = preg_replace('`\[([^]]+)\]\(([^)]+)\)`U', '<a href="\\2">\\1</a>', $text);
 
 		// Quote
-		$text = preg_replace('# > (.+)(?:\n|$)#U', '<blockquote><p>\\1</p></blockquote>', $text);
+		$text = preg_replace('` > (.+)(?:\n|$)`U', '<blockquote><p>\\1</p></blockquote>', $text);
+
+		// Headers
+		$text = preg_replace('`### (.+)(?:\n|$)`U', '<h3>\\1</h3>', $text);
+		$text = preg_replace('`## (.+)(?:\n|$)`U', '<h2>\\1</h2>', $text);
+		$text = preg_replace('`# (.+)(?:\n|$)`U', '<h1>\\1</h1>', $text);
 
 		// Line break
 		$text = nl2br($text);
