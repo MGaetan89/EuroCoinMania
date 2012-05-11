@@ -6,7 +6,9 @@
 </div>
 
 {% if error %}
-	<div>{{ error|trans({}, 'FOSUserBundle') }}</div>
+<div class="alert alert-error">
+	{{ error|trans({}, 'FOSUserBundle') }}
+</div>
 {% endif %}
 
 {% include "FOSUserBundle:Security:login_form.html.twig" %}

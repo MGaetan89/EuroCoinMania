@@ -14,8 +14,7 @@ services:
         arguments: [null, Euro\CoinBundle\Entity\Coin, SonataAdminBundle:CRUD]
         tags:
             - { name: sonata.admin, manager_type: orm, group: "Euro", label: "Coin", label_translator_strategy: "sonata.admin.label.strategy.underscore" }
-    twig.extension.country:
+    twig.extension.coin:
         class: Euro\CoinBundle\Twig\Extension
-        arguments: [@form.csrf_provider]
         tags:
             - { name: twig.extension }
