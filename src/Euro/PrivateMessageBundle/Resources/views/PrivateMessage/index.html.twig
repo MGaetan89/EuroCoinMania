@@ -37,7 +37,7 @@
 			{% endif %}
 		</td>
 		<td><a href="{{ path('user_view', { id: user.id }) }}">{{ user.username }}</a></td>
-		<td>{{ conversation.postdate|date }}</td>
+		<td>{{ conversation.postdate|localizeddate }}</td>
 	</tr>
 {% endfor %}
 </table>

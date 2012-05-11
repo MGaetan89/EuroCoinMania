@@ -29,7 +29,7 @@
 		{% for country in countries %}
 			<tr>
 				<td><a href="{{ path('country_show', { 'id': country.id }) }}">{{ country.name|trans }}</a></td>
-				<td>{{ country.joindate|date('d/m/Y') }}</td>
+				<td>{{ country.joindate|localizeddate('long', 'none') }}</td>
 				<td>{{ country.formercurrency|trans }}</td>
 				<td>1 &euro; = {{ country.exchangerate }} {{ country.formercurrencyiso }}</td>
 			</tr>

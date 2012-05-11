@@ -11,7 +11,7 @@
 
 <dl>
 	<dt>{{ 'country.join_date'|trans }}</dt>
-	<dd>{{ country.joindate|date('d/m/Y') }}</dd>
+	<dd>{{ country.joindate|localizeddate('long', 'none') }}</dd>
 	<dt>{{ 'country.formercurrency'|trans }}</dt>
 	<dd>{{ country.formercurrency|trans }}</dd>
 	<dt>{{ 'country.change_rate'|trans }}</dt>

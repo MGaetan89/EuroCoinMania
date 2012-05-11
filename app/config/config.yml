@@ -72,3 +72,9 @@ sonata_block:
     blocks:
         sonata.admin.block.admin_list:
             contexts: [cms]
+
+services:
+    twig.extension.intl:
+       class: Twig_Extensions_Extension_Intl
+       tags:
+           - { name: twig.extension }

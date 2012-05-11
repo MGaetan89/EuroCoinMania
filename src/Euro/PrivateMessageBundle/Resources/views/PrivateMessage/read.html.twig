@@ -22,7 +22,7 @@
 		<div class="row-fluid">
 			<div class="span2">
 				<strong><a href="{{ path('user_view', { id: message.fromuser.id }) }}">{{ message.fromuser.username }}</a></strong>,<br />
-				{{ 'pm.on'|trans }} {{ message.postdate|date }}
+				{{ 'pm.on'|trans }} {{ message.postdate|localizeddate }}
 			</div>
 
 			<div class="span10">
