@@ -28,7 +28,7 @@ class Extension extends \Twig_Extension {
 		$text = preg_replace('`__(.+)__`U', '<u>\\1</u>', $text);
 
 		// Image
-		$text = preg_replace('`!\[([^]]+)\]\(([^)]+)\)`U', '<img alt="\\1" src="\\2" title="\\1" />', $text);
+		$text = preg_replace('`!\[([^]]+)\]\(([^)]+)\)`U', '<a href="\\2" class="thumbnail span4" target="_blank"><img alt="\\1" src="\\2" title="\\1" /></a>', $text);
 
 		// Link
 		$text = preg_replace('`\[([^]]+)\]\(([^)]+)\)`U', '<a href="\\2">\\1</a>', $text);
