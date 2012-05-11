@@ -45,7 +45,7 @@ class PrivateMessageController extends Controller {
 				));
 	}
 
-	public function newAction(Request $request) {
+	public function newAction($to, Request $request) {
 		$user = $this->getUser();
 		if (!$user instanceof UserInterface) {
 			throw new \Exception('You are not allowed to access this page !');
@@ -53,7 +53,7 @@ class PrivateMessageController extends Controller {
 
 		$pm = new PrivateMessage();
 		$em = $this->getDoctrine()->getEntityManager();
-		$form = $this->createForm(new PrivateMessageType($em, $user), $pm);
+		$form = $this->createForm(new PrivateMessageType($em, $user, $to), $pm);
 
 		if ($request->getMethod() === 'POST') {
 			$form->bindRequest($request);

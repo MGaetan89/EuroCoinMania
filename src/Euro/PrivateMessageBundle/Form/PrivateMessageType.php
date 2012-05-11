@@ -9,25 +9,30 @@ use Symfony\Component\Form\FormBuilder;
 
 class PrivateMessageType extends AbstractType {
 	private $em;
+	private $to;
 	private $user;
 
-	public function __construct(EntityManager $em, UserInterface $user) {
+	public function __construct(EntityManager $em, UserInterface $user, $to) {
 		$this->em = $em;
+		$this->to = $to;
 		$this->user = $user;
 	}
 
 	public function buildForm(FormBuilder $builder, array $options) {
 		$em = $this->em;
+		$to = $this->to;
 		$user = $this->user;
 		$builder
 				->add('to_user', 'entity', array(
 					'class' => 'EuroPrivateMessageBundle:PrivateMessage',
-					'query_builder' => function() use ($em, $user) {
+					'query_builder' => function() use ($em, $user, $to) {
 						return $em->getRepository('EuroUserBundle:User')
 								->createQueryBuilder('u')
 								->where('u <> :user')
+								->andWhere('u = :to')
 								->orderBy('u.username', 'ASC')
-								->setParameter('user', $user);
+								->setParameter('user', $user)
+								->setParameter('to', $to);
 					}))
 				->add('title')
 				->add('text', 'textarea');
