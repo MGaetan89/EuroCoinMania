@@ -3,7 +3,10 @@
 namespace Euro\UserBundle\Entity;
 
 use FOS\UserBundle\Entity\User as BaseUser;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Euro\CoinBundle\Entity\Coin;
 
 /**
  * Euro\UserBundle\Entity\User
@@ -20,12 +23,22 @@ class User extends BaseUser {
 	protected $id;
 
 	/**
+	 * @var datetime $registration_date
+	 *
+	 * @ORM\Column(name="registration_date", type="datetime")
+	 */
+	protected $registration_date;
+
+	/**
 	 * @ORM\OneToMany(targetEntity="Euro\CoinBundle\Entity\UserCoin", mappedBy="user")
 	 */
 	protected $coins;
 
 	public function __construct() {
-		$this->coins = new \Doctrine\Common\Collections\ArrayCollection();
+		parent::__construct();
+
+		$this->coins = new ArrayCollection();
+		$this->registration_date = new \DateTime();
 	}
 
 	/**
@@ -37,19 +50,39 @@ class User extends BaseUser {
 		return $this->id;
 	}
 
+    /**
+     * Get registration_date
+     *
+     * @return \DateTime
+     */
+    public function getRegistrationDate()
+    {
+        return $this->registration_date;
+    }
+
+    /**
+     * Set registration_date
+     *
+     * @param \DateTime $registration_date
+     */
+    public function setRegistrationDate(\DateTime $registration_date)
+    {
+        $this->registration_date = $registration_date;
+    }
+
 	/**
 	 * Add coins
 	 *
-	 * @param \Euro\CoinBundle\Entity\Coin $coins
+	 * @param Coin $coins
 	 */
-	public function addCoin(\Euro\CoinBundle\Entity\Coin $coins) {
+	public function addCoin(Coin $coins) {
 		$this->coins[] = $coins;
 	}
 
 	/**
 	 * Get coins
 	 *
-	 * @return Doctrine\Common\Collections\Collection
+	 * @return Collection
 	 */
 	public function getCoins() {
 		return $this->coins;

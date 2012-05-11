@@ -7,5 +7,22 @@
 	<h1>{{ block('title') }}</h1>
 </div>
 
-{{ user.id }}
+<div class="row-fluid">
+	<div class="span6 well">
+		<dl class="dl-horizontal">
+			<dt>Inscrit depuis le</dt>
+			<dd>{{ user.registrationdate|localizeddate }}</dd>
+
+			<dt>Dernière visite le</dt>
+			<dd>{{ user.lastlogin|localizeddate }}</dd>
+		<dl>
+	</div>
+
+	<div class="span6 well">
+		<dl class="dl-horizontal">
+			<dt>Nombre de pièces</dt>
+			<dd>{{ user.coins|length|number_format }}</dd>
+		<dl>
+	</div>
+</div>
 {% endblock %}
