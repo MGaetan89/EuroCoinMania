@@ -3,6 +3,8 @@
 namespace Euro\CoinBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Euro\CoinBundle\Entity\Coin;
+use Euro\UserBundle\Entity\User;
 
 /**
  * Euro\CoinBundle\Entity\UserCoin
@@ -39,6 +41,10 @@ class UserCoin {
 	 */
 	private $quantity;
 
+	public function __construct() {
+		$this->quantity = 1;
+	}
+
 	/**
 	 * Get id
 	 *
@@ -69,16 +75,16 @@ class UserCoin {
 	/**
 	 * Set user
 	 *
-	 * @param Euro\UserBundle\Entity\User $user
+	 * @param User $user
 	 */
-	public function setUser(\Euro\UserBundle\Entity\User $user) {
+	public function setUser(User $user) {
 		$this->user = $user;
 	}
 
 	/**
 	 * Get user
 	 *
-	 * @return Euro\UserBundle\Entity\User
+	 * @return User
 	 */
 	public function getUser() {
 		return $this->user;
@@ -87,16 +93,16 @@ class UserCoin {
 	/**
 	 * Set coin
 	 *
-	 * @param Euro\CoinBundle\Entity\Coin $coin
+	 * @param Coin $coin
 	 */
-	public function setCoin(\Euro\CoinBundle\Entity\Coin $coin) {
+	public function setCoin(Coin $coin) {
 		$this->coin = $coin;
 	}
 
 	/**
 	 * Get coin
 	 *
-	 * @return Euro\CoinBundle\Entity\Coin
+	 * @return Coin
 	 */
 	public function getCoin() {
 		return $this->coin;

@@ -2,8 +2,8 @@
 
 namespace Euro\UserBundle\Controller;
 
-use FOS\UserBundle\Model\UserInterface;
 use FOS\UserBundle\Controller\ProfileController as Controller;
+use FOS\UserBundle\Model\UserInterface;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 class ProfileController extends Controller {

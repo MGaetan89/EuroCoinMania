@@ -2,11 +2,11 @@
 
 namespace Euro\PrivateMessageBundle\Controller;
 
+use Euro\PrivateMessageBundle\Entity\PrivateMessage;
+use Euro\PrivateMessageBundle\Form\PrivateMessageType;
 use FOS\UserBundle\Model\UserInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
-use Euro\PrivateMessageBundle\Entity\PrivateMessage;
-use Euro\PrivateMessageBundle\Form\PrivateMessageType;
 
 class PrivateMessageController extends Controller {
 
@@ -59,10 +59,7 @@ class PrivateMessageController extends Controller {
 			$form->bindRequest($request);
 
 			if ($form->isValid()) {
-				$pm->setConversation(uniqid());
 				$pm->setFromUser($user);
-				$pm->setPostDate(new \DateTime());
-				$pm->setIsRead(false);
 
 				$em->persist($pm);
 				$em->flush();
@@ -103,8 +100,6 @@ class PrivateMessageController extends Controller {
 				$pm->setConversation($messages[0]->getConversation());
 				$pm->setFromUser($user);
 				$pm->setToUser($to_user);
-				$pm->setPostDate(new \DateTime());
-				$pm->setIsRead(false);
 
 				$em->persist($pm);
 				$em->flush();

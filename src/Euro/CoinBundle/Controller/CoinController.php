@@ -2,10 +2,10 @@
 
 namespace Euro\CoinBundle\Controller;
 
+use Euro\CoinBundle\Entity\UserCoin;
 use FOS\UserBundle\Model\UserInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
-use Euro\CoinBundle\Entity\UserCoin;
 
 /**
  * Coin controller.
@@ -132,7 +132,6 @@ class CoinController extends Controller {
 			$uc = new UserCoin();
 			$uc->setUser($user);
 			$uc->setCoin($coin);
-			$uc->setQuantity(1);
 
 			$em->persist($uc);
 		} else {

@@ -3,6 +3,7 @@
 namespace Euro\PrivateMessageBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Euro\UserBundle\Entity\User;
 
 /**
  * Euro\PrivateMessageBundle\Entity\PrivateMessage
@@ -67,6 +68,12 @@ class PrivateMessage {
 	 */
 	private $is_read;
 
+	public function __construct() {
+		$this->conversation = uniqid();
+		$this->post_date = new \DateTime();
+		$this->is_read = false;
+	}
+
 	/**
 	 * Get id
 	 *
@@ -97,16 +104,16 @@ class PrivateMessage {
 	/**
 	 * Set from_user
 	 *
-	 * @param Euro\UserBundle\Entity\User $from_user
+	 * @param User $from_user
 	 */
-	public function setFromUser(\Euro\UserBundle\Entity\User $from_user) {
+	public function setFromUser(User $from_user) {
 		$this->from_user = $from_user;
 	}
 
 	/**
 	 * Get from_user
 	 *
-	 * @return Euro\UserBundle\Entity\User
+	 * @return User
 	 */
 	public function getFromUser() {
 		return $this->from_user;
@@ -115,16 +122,16 @@ class PrivateMessage {
 	/**
 	 * Set to_user
 	 *
-	 * @param Euro\UserBundle\Entity\User $to_user
+	 * @param User $to_user
 	 */
-	public function setToUser(\Euro\UserBundle\Entity\User $to_user) {
+	public function setToUser(User $to_user) {
 		$this->to_user = $to_user;
 	}
 
 	/**
 	 * Get to_user
 	 *
-	 * @return Euro\UserBundle\Entity\User
+	 * @return User
 	 */
 	public function getToUser() {
 		return $this->to_user;

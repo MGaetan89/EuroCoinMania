@@ -2,11 +2,11 @@
 
 namespace Euro\UserBundle\Entity;
 
-use FOS\UserBundle\Entity\User as BaseUser;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Euro\CoinBundle\Entity\Coin;
+use FOS\UserBundle\Entity\User as BaseUser;
 
 /**
  * Euro\UserBundle\Entity\User
@@ -50,25 +50,23 @@ class User extends BaseUser {
 		return $this->id;
 	}
 
-    /**
-     * Get registration_date
-     *
-     * @return \DateTime
-     */
-    public function getRegistrationDate()
-    {
-        return $this->registration_date;
-    }
+	/**
+	 * Get registration_date
+	 *
+	 * @return \DateTime
+	 */
+	public function getRegistrationDate() {
+		return $this->registration_date;
+	}
 
-    /**
-     * Set registration_date
-     *
-     * @param \DateTime $registration_date
-     */
-    public function setRegistrationDate(\DateTime $registration_date)
-    {
-        $this->registration_date = $registration_date;
-    }
+	/**
+	 * Set registration_date
+	 *
+	 * @param \DateTime $registration_date
+	 */
+	public function setRegistrationDate(\DateTime $registration_date) {
+		$this->registration_date = $registration_date;
+	}
 
 	/**
 	 * Add coins

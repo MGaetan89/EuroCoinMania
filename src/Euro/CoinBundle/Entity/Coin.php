@@ -2,7 +2,12 @@
 
 namespace Euro\CoinBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Euro\CoinBundle\Entity\Country;
+use Euro\CoinBundle\Entity\Value;
+use Euro\UserBundle\Entity\User;
 
 /**
  * Euro\CoinBundle\Entity\Coin
@@ -66,7 +71,7 @@ class Coin {
 	private $users;
 
 	public function __construct() {
-		$this->users = new \Doctrine\Common\Collections\ArrayCollection();
+		$this->users = new ArrayCollection();
 	}
 
 	/**
@@ -81,16 +86,16 @@ class Coin {
 	/**
 	 * Set value
 	 *
-	 * @param Euro\CoinBundle\Entity\Value $value
+	 * @param Value $value
 	 */
-	public function setValue(\Euro\CoinBundle\Entity\Value $value) {
+	public function setValue(Value $value) {
 		$this->value = $value;
 	}
 
 	/**
 	 * Get value
 	 *
-	 * @return Euro\CoinBundle\Entity\Value
+	 * @return Value
 	 */
 	public function getValue() {
 		return $this->value;
@@ -117,16 +122,16 @@ class Coin {
 	/**
 	 * Set country
 	 *
-	 * @param Euro\CoinBundle\Entity\Country $country
+	 * @param Country $country
 	 */
-	public function setCountry(\Euro\CoinBundle\Entity\Country $country) {
+	public function setCountry(Country $country) {
 		$this->country = $country;
 	}
 
 	/**
 	 * Get country
 	 *
-	 * @return Euro\CoinBundle\Entity\Country
+	 * @return Country
 	 */
 	public function getCountry() {
 		return $this->country;
@@ -189,16 +194,16 @@ class Coin {
 	/**
 	 * Add users
 	 *
-	 * @param Euro\UserBundle\Entity\User $users
+	 * @param User $users
 	 */
-	public function addUser(\Euro\UserBundle\Entity\User $users) {
+	public function addUser(User $users) {
 		$this->users[] = $users;
 	}
 
 	/**
 	 * Get users
 	 *
-	 * @return Doctrine\Common\Collections\Collection
+	 * @return Collection
 	 */
 	public function getUsers() {
 		return $this->users;

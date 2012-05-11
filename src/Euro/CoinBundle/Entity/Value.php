@@ -2,7 +2,10 @@
 
 namespace Euro\CoinBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Euro\CoinBundle\Entity\Coin;
 
 /**
  * Euro\CoinBundle\Entity\Value
@@ -40,7 +43,7 @@ class Value {
 	protected $coins;
 
 	public function __construct() {
-		$this->coins = new \Doctrine\Common\Collections\ArrayCollection();
+		$this->coins = new ArrayCollection();
 	}
 
 	public function __toString() {
@@ -95,16 +98,16 @@ class Value {
 	/**
 	 * Add coins
 	 *
-	 * @param Euro\CoinBundle\Entity\Coin $coins
+	 * @param Coin $coins
 	 */
-	public function addCoin(\Euro\CoinBundle\Entity\Coin $coins) {
+	public function addCoin(Coin $coins) {
 		$this->coins[] = $coins;
 	}
 
 	/**
 	 * Get coins
 	 *
-	 * @return Doctrine\Common\Collections\Collection
+	 * @return Collection
 	 */
 	public function getCoins() {
 		return $this->coins;
