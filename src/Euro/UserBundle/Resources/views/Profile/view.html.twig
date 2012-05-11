@@ -2,27 +2,124 @@
 
 {% block title %}{{ 'user.profile.view'|trans({ '%name%': user.username }) }}{% endblock %}
 
+{% block empty_cell %}<td>-</td>{% endblock %}
+
 {% block fos_user_content %}
 <div class="page-header">
 	<h1>{{ block('title') }}</h1>
 </div>
 
 <div class="row-fluid">
-	<div class="span6 well">
-		<dl class="dl-horizontal">
-			<dt>Inscrit depuis le</dt>
-			<dd>{{ user.registrationdate|localizeddate }}</dd>
+	<div class="span2">
+		<div class="well">
+			<dl>
+				<dt>Date d'inscription</dt>
+				<dd>{{ user.registrationdate|localizeddate }}</dd>
 
-			<dt>Dernière visite le</dt>
-			<dd>{{ user.lastlogin|localizeddate }}</dd>
-		<dl>
+				<dt>Dernière visite</dt>
+				<dd>{{ user.lastlogin|localizeddate }}</dd>
+
+				{% if app.user.id != user.id %}
+				<dt>Contacter</dt>
+				<dd><a href="{{ path('pm_new', { to: user.id }) }}">Message privé</a></dd>
+				{% endif %}
+			<dl>
+		</div>
+
+		<div class="well">
+			<dl>
+				<dt>Nombre de pièces</dt>
+				<dd>{{ total.coins|number_format }}</dd>
+
+				<dt>Nombre de doubles</dt>
+				<dd>{{ total.doubles|number_format }}</dd>
+
+				<dt>Nombre de pays</dt>
+				<dd>{{ total.countries|number_format }}</dd>
+			<dl>
+		</div>
 	</div>
 
-	<div class="span6 well">
-		<dl class="dl-horizontal">
-			<dt>Nombre de pièces</dt>
-			<dd>{{ user.coins|length|number_format }}</dd>
-		<dl>
+	<div class="span10">
+		{% set country = '' %}
+
+		{% for coin in coins %}
+			{% set quantity = coin.quantity %}
+			{% set coin = coin.coin %}
+
+			{% if country != coin.country %}
+				{% set country = coin.country %}
+				{% if not loop.first %}
+						{% for n in range(column + 1, nbval) if column < nbval %}
+							{{ block('empty_cell') }}
+						{% endfor %}
+						</tr>
+					</tbody>
+					</table>
+				{% endif %}
+
+				<table class="table table-bordered table-condensed table-striped">
+				<thead>
+					<tr>
+						<th>{{ coin.country|trans }}</th>
+						{% for value in coin_values[coin.country.id] %}
+						<th>{{ value }}</th>
+						{% endfor %}
+
+						{% set changed, column, year = false, 0, 1990 %}
+						{% set nbval, val = coin_values[coin.country.id]|length - 1, coin_values[coin.country.id] %}
+					</tr>
+				</thead>
+				<tbody>
+			{% endif %}
+
+			{% if year != coin.year %}
+				{% if not loop.first and year != 1990 %}
+					{% for n in range(column + 1, nbval) if column < nbval %}
+						{{ block('empty_cell') }}
+					{% endfor %}
+					</tr>
+				{% endif %}
+
+			<tr>
+				<td>{{ coin.year }}</td>
+				{% set changed, column, year = false, 0, coin.year %}
+			{% endif %}
+
+			{% if val[column] != coin.value %}
+				{% for n in range(column + 1, nbval) %}
+					{% if not changed %}
+						{{ block('empty_cell') }}
+					{% endif %}
+
+					{% if val[n] == coin.value %}
+						{% set column = n %}
+						{% set changed = true %}
+					{% endif %}
+
+					{% if changed and val[n] > coin.value %}
+						{{ block('empty_cell') }}
+					{% endif %}
+				{% endfor %}
+			{% else %}
+				{% set column = column + 1 %}
+			{% endif %}
+
+			<td>{{ quantity }}</td>
+
+			{% if loop.last %}
+					{% for n in range(column + 1, nbval) if column < nbval %}
+						{{ block('empty_cell') }}
+					{% endfor %}
+					</tr>
+				</tbody>
+				</table>
+			{% endif %}
+		{% else %}
+		<div class="alert alert-info">
+			{{ 'user.coin.none'|trans }}
+		</div>
+		{% endfor %}
 	</div>
 </div>
 {% endblock %}

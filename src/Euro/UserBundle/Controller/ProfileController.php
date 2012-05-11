@@ -8,13 +8,31 @@ use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 class ProfileController extends Controller {
 
-	public function showAction() {
+	public function viewAction($id) {
 		$user = $this->container->get('security.context')->getToken()->getUser();
 		if (!is_object($user) || !$user instanceof UserInterface) {
 			throw new AccessDeniedException('This user does not have access to this section.');
 		}
 
 		$em = $this->container->get('doctrine')->getEntityManager();
+		if ($user->getId() != $id) {
+			$user = $em->getRepository('EuroUserBundle:User')->find($id);
+		}
+
+		$total = array(
+			'coins' => 0,
+			'countries' => array(),
+			'doubles' => 0,
+		);
+		foreach ($user->getCoins() as $coin) {
+			$total['coins']++;
+			$total['countries'][$coin->getCoin()->getCountry()->getId()] = null;
+			if ($coin->getQuantity() > 1) {
+				$total['doubles']++;
+			}
+		}
+
+		$total['countries'] = count($total['countries']);
 
 		$coin_values = array();
 		$sorted = array();
@@ -42,23 +60,10 @@ class ProfileController extends Controller {
 			rsort($cv);
 		}
 
-		return $this->container->get('templating')->renderResponse('FOSUserBundle:Profile:show.html.' . $this->container->getParameter('fos_user.template.engine'), array(
+		return $this->container->get('templating')->renderResponse('EuroUserBundle:Profile:view.html.' . $this->container->getParameter('fos_user.template.engine'), array(
 					'coins' => $coins,
 					'coin_values' => $coin_values,
-					'user' => $user,
-				));
-	}
-
-	public function viewAction($id) {
-		$user = $this->container->get('security.context')->getToken()->getUser();
-		if (!is_object($user) || !$user instanceof UserInterface) {
-			throw new AccessDeniedException('This user does not have access to this section.');
-		}
-
-		$em = $this->container->get('doctrine')->getEntityManager();
-		$user = $em->getRepository('EuroUserBundle:User')->find($id);
-
-		return $this->container->get('templating')->renderResponse('EuroUserBundle:Profile:view.html.' . $this->container->getParameter('fos_user.template.engine'), array(
+					'total' => $total,
 					'user' => $user,
 				));
 	}

@@ -10,14 +10,6 @@
 				<source>user.profile</source>
 				<target>Profil</target>
 			</trans-unit>
-			<trans-unit id="user.profile.show.username">
-				<source>user.profile.show.username</source>
-				<target>Nom d'utilisateur</target>
-			</trans-unit>
-			<trans-unit id="user.profile.show.email">
-				<source>user.profile.show.email</source>
-				<target>Adresse e-mail</target>
-			</trans-unit>
 			<trans-unit id="user.profile.view">
 				<source>user.profile.view</source>
 				<target>Profil de %name%</target>
