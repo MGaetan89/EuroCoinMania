@@ -50,14 +50,14 @@
 					{% if app.user %}
 					{% render "EuroPrivateMessageBundle:PrivateMessage:hasNewMessage" %}
 					<li class="{% if route|slice(0, 8) == 'fos_user' or route|slice(0, 3) == 'pm_' %}active {% endif %}dropdown">
-						<a href="{{ path('fos_user_profile_show') }}" class="dropdown-toggle" data-toggle="dropdown" data-target="#">
+						<a href="{{ path('user_view', { id: app.user.id }) }}" class="dropdown-toggle" data-toggle="dropdown" data-target="#">
 							{{ app.user }}
 							<b class="caret"></b>
 						</a>
 						<ul class="dropdown-menu">
-							<li{% if route|slice(0, 3) == 'pm_' %} class="active"{% endif %}><a href="{{ path('pm_index') }}">{{ 'pm'|trans }}</a></li>
-							<li{% if route == 'user_view' and app.request.get('id') == app.user.id %} class="active"{% endif %}><a href="{{ path('user_view', { id: app.user.id }) }}">{{ 'user.profile'|trans }}</a></li>
-							<li><a href="{{ path('fos_user_security_logout') }}">{{ 'user.logout'|trans }}</a></li>
+							<li{% if route|slice(0, 3) == 'pm_' %} class="active"{% endif %}><a href="{{ path('pm_index') }}"><i class="icon icon-envelope"></i> {{ 'pm'|trans }}</a></li>
+							<li{% if route == 'user_view' and app.request.get('id') == app.user.id %} class="active"{% endif %}><a href="{{ path('user_view', { id: app.user.id }) }}"><i class="icon icon-user"></i> {{ 'user.profile'|trans }}</a></li>
+							<li><a href="{{ path('fos_user_security_logout') }}"><i class="icon icon-off"></i> {{ 'user.logout'|trans }}</a></li>
 						</ul>
 					</li>
 					{% else %}

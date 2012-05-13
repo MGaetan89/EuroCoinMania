@@ -6,6 +6,10 @@ user_view:
     pattern: /member/{id}/view
     defaults: { _controller: "EuroUserBundle:Profile:view" }
 
+user_edit:
+    pattern: /member/edit
+    defaults: { _controller: "FOSUserBundle:Profile:edit" }
+
 fos_user_change_password:
     resource: "@FOSUserBundle/Resources/config/routing/change_password.xml"
     prefix: /member/password

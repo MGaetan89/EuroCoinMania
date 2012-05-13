@@ -6,38 +6,53 @@
 
 {% block fos_user_content %}
 <div class="page-header">
-	<h1>{{ block('title') }}</h1>
+	<h1>
+		{{ block('title') }}
+		{% if app.user.id == user.id %}
+			<small><a href="{{ path('user_edit') }}">{{ 'user.profile.edit'|trans }}</a></small>
+		{% endif %}
+	</h1>
 </div>
 
 <div class="row-fluid">
 	<div class="span2">
 		<div class="well">
 			<dl>
-				<dt>Date d'inscription</dt>
+				<dt>{{ 'user.profile.registration_date'|trans }}</dt>
 				<dd>{{ user.registrationdate|localizeddate }}</dd>
 
-				<dt>Dernière visite</dt>
+				<dt>{{ 'user.profile.last_login'|trans }}</dt>
 				<dd>{{ user.lastlogin|localizeddate }}</dd>
 
 				{% if app.user.id != user.id %}
-				<dt>Contacter</dt>
-				<dd><a href="{{ path('pm_new', { to: user.id }) }}">Message privé</a></dd>
+				<dt>{{ 'user.contact'|trans }}</dt>
+				<dd><a href="{{ path('pm_new', { to: user.id }) }}">{{ 'user.contact.pm'|trans }}</a></dd>
 				{% endif %}
 			<dl>
 		</div>
 
 		<div class="well">
 			<dl>
-				<dt>Nombre de pièces</dt>
+				<dt>{{ 'user.total.coins'|trans }}</dt>
 				<dd>{{ total.coins|number_format }}</dd>
 
-				<dt>Nombre de doubles</dt>
+				<dt>{{ 'user.total.doubles'|trans }}</dt>
 				<dd>{{ total.doubles|number_format }}</dd>
 
-				<dt>Nombre de pays</dt>
+				<dt>{{ 'user.total.countries'|trans }}</dt>
 				<dd>{{ total.countries|number_format }}</dd>
 			<dl>
 		</div>
+
+		{% if app.user.id == user.id %}
+		<div class="well" style="padding: 8px 0;">
+			<ul class="nav nav-list">
+				<li class="nav-header">Actions</li>
+				<li><a href="{{ path('pm_index') }}"><i class="icon icon-envelope"></i> {{ 'pm'|trans }}</a></li>
+				<li><a href="{{ path('fos_user_security_logout') }}"><i class="icon icon-off"></i> {{ 'user.logout'|trans }}</a></li>
+			</ul>
+		</div>
+		{% endif %}
 	</div>
 
 	<div class="span10">

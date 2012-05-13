@@ -6,9 +6,37 @@
 				<source>user.coin.none</source>
 				<target>Ce membre ne possède pas de pièces</target>
 			</trans-unit>
+			<trans-unit id="user.contact">
+				<source>user.contact</source>
+				<target>Contacter</target>
+			</trans-unit>
+			<trans-unit id="user.contact.pm">
+				<source>user.contact.pm</source>
+				<target>Message privé</target>
+			</trans-unit>
 			<trans-unit id="user.profile">
 				<source>user.profile</source>
 				<target>Profil</target>
+			</trans-unit>
+			<trans-unit id="user.profile.edit">
+				<source>user.profile.edit</source>
+				<target>Modifier</target>
+			</trans-unit>
+			<trans-unit id="user.profile.edit.submit">
+				<source>user.profile.edit.submit</source>
+				<target>Mettre à jour</target>
+			</trans-unit>
+			<trans-unit id="user.profile.editing">
+				<source>user.profile.editing</source>
+				<target>Modification de votre profil</target>
+			</trans-unit>
+			<trans-unit id="user.profile.last_login">
+				<source>user.profile.last_login</source>
+				<target>Dernière visite</target>
+			</trans-unit>
+			<trans-unit id="user.profile.registration_date">
+				<source>user.profile.registration_date</source>
+				<target>Date d'inscription</target>
 			</trans-unit>
 			<trans-unit id="user.profile.view">
 				<source>user.profile.view</source>
@@ -21,6 +49,18 @@
 			<trans-unit id="user.register.submit">
 				<source>user.register.submit</source>
 				<target>Créer mon compte</target>
+			</trans-unit>
+			<trans-unit id="user.total.coins">
+				<source>user.total.coins</source>
+				<target>Nombre de pièces</target>
+			</trans-unit>
+			<trans-unit id="user.total.countries">
+				<source>user.total.countries</source>
+				<target>Nombre de pays</target>
+			</trans-unit>
+			<trans-unit id="user.total.doubles">
+				<source>user.total.doubles</source>
+				<target>Nombre de pièces</target>
 			</trans-unit>
 			<trans-unit id="user.login">
 				<source>user.login</source>

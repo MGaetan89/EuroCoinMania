@@ -1,0 +1,17 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}{{ 'user.profile.editing'|trans }}{% endblock %}
+
+{% block fos_user_content %}
+<div class="page-header">
+	<h1>{{ block('title') }}</h1>
+</div>
+
+<form action="{{ path('fos_user_profile_edit') }}" {{ form_enctype(form) }} method="post">
+	{{ form_widget(form) }}
+
+	<div class="form-actions">
+		<button class="btn btn-primary" type="submit"><i class="icon-white icon-ok"></i> {{ 'user.profile.edit.submit'|trans }}</button>
+	</div>
+</form>
+{% endblock %}

@@ -12,7 +12,7 @@ class PrivateMessageType extends AbstractType {
 	private $to;
 	private $user;
 
-	public function __construct(EntityManager $em, UserInterface $user, $to) {
+	public function __construct(EntityManager $em, UserInterface $user, $to = 0) {
 		$this->em = $em;
 		$this->to = $to;
 		$this->user = $user;
