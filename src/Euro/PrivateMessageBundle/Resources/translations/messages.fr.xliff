@@ -78,6 +78,14 @@
 				<source>pm.editor.underline.short</source>
 				<target>S</target>
 			</trans-unit>
+			<trans-unit id="pm.close">
+				<source>pm.close</source>
+				<target>Fermer</target>
+			</trans-unit>
+			<trans-unit id="pm.closed">
+				<source>pm.closed</source>
+				<target>Conversation fermée</target>
+			</trans-unit>
 			<trans-unit id="pm.has_new">
 				<source>pm.has_new</source>
 				<target>none_or_one: Vous avez %count% message non lu|some: Vous avez %count% messages non lu</target>

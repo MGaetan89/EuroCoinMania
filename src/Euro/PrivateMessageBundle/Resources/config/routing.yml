@@ -1,3 +1,7 @@
+pm_close:
+    pattern:  /pm/{id}/close
+    defaults: { _controller: EuroPrivateMessageBundle:PrivateMessage:close }
+
 pm_index:
     pattern:  /pm
     defaults: { _controller: EuroPrivateMessageBundle:PrivateMessage:index }

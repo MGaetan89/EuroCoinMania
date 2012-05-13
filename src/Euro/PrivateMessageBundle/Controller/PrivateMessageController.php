@@ -10,6 +10,18 @@ use Symfony\Component\HttpFoundation\Request;
 
 class PrivateMessageController extends Controller {
 
+	public function closeAction($id) {
+		$user = $this->getUser();
+		if (!$user instanceof UserInterface) {
+			throw new \Exception('You are not allowed to access this page !');
+		}
+
+		$em = $this->getDoctrine()->getEntityManager();
+		$em->getRepository('EuroPrivateMessageBundle:PrivateMessage')->closeConversation($id, $user);
+
+		return $this->redirect($this->generateUrl('pm_read', array('id' => $id)));
+	}
+
 	public function hasNewMessageAction() {
 		$user = $this->getUser();
 		if (!$user instanceof UserInterface) {
@@ -84,6 +96,10 @@ class PrivateMessageController extends Controller {
 		$em = $this->getDoctrine()->getEntityManager();
 		$repository = $em->getRepository('EuroPrivateMessageBundle:PrivateMessage');
 		$messages = $repository->getConversationById($id);
+
+		if (!$messages) {
+			throw $this->createNotFoundException('Unable to find PrivateMessage entity.');
+		}
 
 		$pm = new PrivateMessage();
 		$form = $this->createForm(new PrivateMessageType($em, $user), $pm);

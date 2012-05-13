@@ -6,7 +6,18 @@
 <div class="page-header">
 	<h1>
 		{{ block('title') }}
-		<small><a data-toggle="collapse" data-target="#answer_form">{{ 'pm.answer'|trans }}</a></smal>
+
+		<small>
+			{% if messages[0].isopen %}
+				<a data-toggle="collapse" data-target="#answer_form">{{ 'pm.answer'|trans }}</a>
+
+				<a class="btn btn-mini pull-right" href="{{ path('pm_close', { id: messages[0].conversation }) }}">
+					<i class="icon icon-remove" title="{{ 'pm.close'|trans }}"></i>
+				</a>
+			{% else %}
+				<em>{{ 'pm.closed'|trans }}</em>
+			{% endif %}
+		</smal>
 	</h1>
 </div>
 

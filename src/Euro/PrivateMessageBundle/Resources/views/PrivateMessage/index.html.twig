@@ -30,6 +30,10 @@
 
 	<tr>
 		<td>
+			{% if not conversation.isopen %}
+				<i class="icon icon-ban-circle" title="{{ 'pm.closed'|trans }}"></i>
+			{% endif %}
+
 			<a href="{{ path('pm_read', { id: conversation.conversation }) }}">{{ titles[conversation.conversation] }}</a>
 
 			{% if not conversation.isread and conversation.touser.id == app.user.id %}

@@ -68,10 +68,18 @@ class PrivateMessage {
 	 */
 	private $is_read;
 
+	/**
+	 * @var boolean $is_open
+	 *
+	 * @ORM\Column(name="is_open", type="boolean")
+	 */
+	private $is_open;
+
 	public function __construct() {
 		$this->conversation = uniqid();
 		$this->post_date = new \DateTime();
 		$this->is_read = false;
+		$this->is_open = true;
 	}
 
 	/**
@@ -207,6 +215,24 @@ class PrivateMessage {
 	 */
 	public function getIsRead() {
 		return $this->is_read;
+	}
+
+	/**
+	 * Set is_open
+	 *
+	 * @param boolean $isOpen
+	 */
+	public function setIsOpen($isOpen) {
+		$this->is_open = $isOpen;
+	}
+
+	/**
+	 * Get is_open
+	 *
+	 * @return boolean
+	 */
+	public function getIsOpen() {
+		return $this->is_open;
 	}
 
 }

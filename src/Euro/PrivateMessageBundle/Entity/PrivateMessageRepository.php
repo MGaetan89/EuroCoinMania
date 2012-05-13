@@ -13,6 +13,22 @@ use Doctrine\ORM\Query\ResultSetMapping;
  */
 class PrivateMessageRepository extends EntityRepository {
 
+	public function closeConversation($conversation, $user) {
+		$queryBuiler = $this->createQueryBuilder('pm');
+		$expr = $queryBuiler->expr();
+
+		$queryBuiler->update()
+				->set('pm.is_open', '0')
+				->where($expr->eq('pm.conversation', ':conversation'))
+				->andWhere(
+						$expr->orX($expr->eq('pm.from_user', ':user'), $expr->eq('pm.to_user', ':user'))
+				)
+				->setParameter('conversation', $user)
+				->setParameter('user', $conversation)
+				->getQuery()
+				->getResult();
+	}
+
 	public function getConversationById($id) {
 		$queryBuiler = $this->createQueryBuilder('pm');
 		$expr = $queryBuiler->expr();
@@ -38,12 +54,13 @@ class PrivateMessageRepository extends EntityRepository {
 		$rsm->addFieldResult('pm', 'title', 'title');
 		$rsm->addFieldResult('pm', 'text', 'text');
 		$rsm->addFieldResult('pm', 'is_read', 'is_read');
+		$rsm->addFieldResult('pm', 'is_open', 'is_open');
 		$rsm->addFieldResult('fromuser', 'from_user_id', 'id');
 		$rsm->addFieldResult('fromuser', 'from_username', 'username');
 		$rsm->addFieldResult('touser', 'to_user_id', 'id');
 		$rsm->addFieldResult('touser', 'to_username', 'username');
 
-		return $this->getEntityManager()->createNativeQuery('SELECT pm.id, pm.conversation, pm.post_date, pm.title, pm.text, pm.is_read,
+		return $this->getEntityManager()->createNativeQuery('SELECT pm.id, pm.conversation, pm.post_date, pm.title, pm.text, pm.is_read, pm.is_open,
 				fromuser.id AS from_user_id, fromuser.username AS from_username,
 				touser.id AS to_user_id, touser.username AS to_username
 			FROM (
