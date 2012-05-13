@@ -51,6 +51,17 @@ class User extends BaseUser {
 	}
 
 	/**
+	 * Set registration_date
+	 *
+	 * @param \DateTime $registration_date
+	 */
+	public function setRegistrationDate(\DateTime $registration_date) {
+		$this->registration_date = $registration_date;
+
+		return $this;
+	}
+
+	/**
 	 * Get registration_date
 	 *
 	 * @return \DateTime
@@ -60,21 +71,14 @@ class User extends BaseUser {
 	}
 
 	/**
-	 * Set registration_date
-	 *
-	 * @param \DateTime $registration_date
-	 */
-	public function setRegistrationDate(\DateTime $registration_date) {
-		$this->registration_date = $registration_date;
-	}
-
-	/**
 	 * Add coins
 	 *
 	 * @param Coin $coins
 	 */
 	public function addCoin(Coin $coins) {
 		$this->coins[] = $coins;
+
+		return $this;
 	}
 
 	/**

@@ -66,6 +66,8 @@ class Value {
 	 */
 	public function setValue($value) {
 		$this->value = $value;
+
+		return $this;
 	}
 
 	/**
@@ -84,6 +86,8 @@ class Value {
 	 */
 	public function setCollector($collector) {
 		$this->collector = $collector;
+
+		return $this;
 	}
 
 	/**
@@ -102,6 +106,8 @@ class Value {
 	 */
 	public function addCoin(Coin $coins) {
 		$this->coins[] = $coins;
+
+		return $this;
 	}
 
 	/**

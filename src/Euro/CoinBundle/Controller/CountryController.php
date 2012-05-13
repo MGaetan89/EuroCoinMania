@@ -6,17 +6,14 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 /**
  * Country controller.
- *
  */
 class CountryController extends Controller {
 
 	/**
 	 * Lists all Country entities.
-	 *
 	 */
 	public function indexAction() {
 		$em = $this->getDoctrine()->getEntityManager();
-
 		$countries = $em->getRepository('EuroCoinBundle:Country')->findAll();
 
 		return $this->render('EuroCoinBundle:Country:index.html.twig', array(
@@ -41,11 +38,9 @@ class CountryController extends Controller {
 
 	/**
 	 * Finds and displays a Country entity.
-	 *
 	 */
 	public function showAction($id) {
 		$em = $this->getDoctrine()->getEntityManager();
-
 		$country = $em->getRepository('EuroCoinBundle:Country')->find($id);
 
 		if (!$country) {

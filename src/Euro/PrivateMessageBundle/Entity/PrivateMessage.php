@@ -78,6 +78,7 @@ class PrivateMessage {
 	public function __construct() {
 		$this->conversation = uniqid();
 		$this->post_date = new \DateTime();
+		$this->title = '';
 		$this->is_read = false;
 		$this->is_open = true;
 	}
@@ -98,6 +99,8 @@ class PrivateMessage {
 	 */
 	public function setConversation($conversation) {
 		$this->conversation = $conversation;
+
+		return $this;
 	}
 
 	/**
@@ -116,6 +119,8 @@ class PrivateMessage {
 	 */
 	public function setFromUser(User $from_user) {
 		$this->from_user = $from_user;
+
+		return $this;
 	}
 
 	/**
@@ -134,6 +139,8 @@ class PrivateMessage {
 	 */
 	public function setToUser(User $to_user) {
 		$this->to_user = $to_user;
+
+		return $this;
 	}
 
 	/**
@@ -152,6 +159,8 @@ class PrivateMessage {
 	 */
 	public function setPostDate($postDate) {
 		$this->post_date = $postDate;
+
+		return $this;
 	}
 
 	/**
@@ -170,6 +179,8 @@ class PrivateMessage {
 	 */
 	public function setTitle($title) {
 		$this->title = $title;
+
+		return $this;
 	}
 
 	/**
@@ -188,6 +199,8 @@ class PrivateMessage {
 	 */
 	public function setText($text) {
 		$this->text = $text;
+
+		return $this;
 	}
 
 	/**
@@ -206,6 +219,8 @@ class PrivateMessage {
 	 */
 	public function setIsRead($isRead) {
 		$this->is_read = $isRead;
+
+		return $this;
 	}
 
 	/**
@@ -224,6 +239,8 @@ class PrivateMessage {
 	 */
 	public function setIsOpen($isOpen) {
 		$this->is_open = $isOpen;
+
+		return $this;
 	}
 
 	/**

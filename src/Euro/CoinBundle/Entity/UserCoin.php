@@ -61,6 +61,8 @@ class UserCoin {
 	 */
 	public function setQuantity($quantity) {
 		$this->quantity = $quantity;
+
+		return $this;
 	}
 
 	/**
@@ -79,6 +81,8 @@ class UserCoin {
 	 */
 	public function setUser(User $user) {
 		$this->user = $user;
+
+		return $this;
 	}
 
 	/**
@@ -106,6 +110,8 @@ class UserCoin {
 	 */
 	public function getCoin() {
 		return $this->coin;
+
+		return $this;
 	}
 
 }

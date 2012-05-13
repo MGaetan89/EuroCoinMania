@@ -87,6 +87,8 @@ class Country {
 	 */
 	public function setName($name) {
 		$this->name = $name;
+
+		return $this;
 	}
 
 	/**
@@ -113,6 +115,8 @@ class Country {
 	 */
 	public function setNameiso($nameiso) {
 		$this->nameiso = $nameiso;
+
+		return $this;
 	}
 
 	/**
@@ -131,6 +135,8 @@ class Country {
 	 */
 	public function setJoinDate($joinDate) {
 		$this->join_date = $joinDate;
+
+		return $this;
 	}
 
 	/**
@@ -140,6 +146,17 @@ class Country {
 	 */
 	public function getJoinDate() {
 		return $this->join_date;
+	}
+
+	/**
+	 * Set former_currency
+	 *
+	 * @param string $formerCurrency
+	 */
+	public function setFormerCurrency($formerCurrency) {
+		$this->former_currency = $formerCurrency;
+
+		return $this;
 	}
 
 	/**
@@ -162,6 +179,8 @@ class Country {
 	 */
 	public function setFormerCurrencyIso($formerCurrencyIso) {
 		$this->former_currency_iso = $formerCurrencyIso;
+
+		return $this;
 	}
 
 	/**
@@ -180,6 +199,8 @@ class Country {
 	 */
 	public function setExchangeRate($exchangeRate) {
 		$this->exchange_rate = $exchangeRate;
+
+		return $this;
 	}
 
 	/**
@@ -198,6 +219,8 @@ class Country {
 	 */
 	public function addCoin(Coin $coins) {
 		$this->coins[] = $coins;
+
+		return $this;
 	}
 
 	/**

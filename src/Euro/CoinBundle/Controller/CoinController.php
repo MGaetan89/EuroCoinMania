@@ -9,13 +9,11 @@ use Symfony\Component\HttpFoundation\Response;
 
 /**
  * Coin controller.
- *
  */
 class CoinController extends Controller {
 
 	/**
 	 * Lists all Coin entities.
-	 *
 	 */
 	public function indexAction($country, $year, $value, $commemorative, $collector) {
 		$em = $this->getDoctrine()->getEntityManager();
@@ -50,11 +48,9 @@ class CoinController extends Controller {
 
 	/**
 	 * Finds and displays a Coin entity.
-	 *
 	 */
 	public function showAction($id) {
 		$em = $this->getDoctrine()->getEntityManager();
-
 		$coin = $em->getRepository('EuroCoinBundle:Coin')->find($id);
 
 		if (!$coin) {
@@ -72,7 +68,6 @@ class CoinController extends Controller {
 		}
 
 		$em = $this->getDoctrine()->getEntityManager();
-
 		$coin = $em->getRepository('EuroCoinBundle:Coin')->find($id);
 
 		if (!$coin) {

@@ -90,6 +90,8 @@ class Coin {
 	 */
 	public function setValue(Value $value) {
 		$this->value = $value;
+
+		return $this;
 	}
 
 	/**
@@ -108,6 +110,8 @@ class Coin {
 	 */
 	public function setYear($year) {
 		$this->year = $year;
+
+		return $this;
 	}
 
 	/**
@@ -126,6 +130,8 @@ class Coin {
 	 */
 	public function setCountry(Country $country) {
 		$this->country = $country;
+
+		return $this;
 	}
 
 	/**
@@ -144,6 +150,8 @@ class Coin {
 	 */
 	public function setCommemorative($commemorative) {
 		$this->commemorative = $commemorative;
+
+		return $this;
 	}
 
 	/**
@@ -162,6 +170,8 @@ class Coin {
 	 */
 	public function setMintage($mintage) {
 		$this->mintage = $mintage;
+
+		return $this;
 	}
 
 	/**
@@ -180,6 +190,8 @@ class Coin {
 	 */
 	public function setDescription($description) {
 		$this->description = $description;
+
+		return $this;
 	}
 
 	/**
@@ -198,6 +210,8 @@ class Coin {
 	 */
 	public function addUser(User $users) {
 		$this->users[] = $users;
+
+		return $this;
 	}
 
 	/**
