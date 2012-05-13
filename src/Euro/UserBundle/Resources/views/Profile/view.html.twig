@@ -26,7 +26,7 @@
 
 				{% if app.user.id != user.id %}
 				<dt>{{ 'user.contact'|trans }}</dt>
-				<dd><a href="{{ path('pm_new', { to: user.id }) }}">{{ 'user.contact.pm'|trans }}</a></dd>
+				<dd><a href="{{ path('pm_new_to', { to: user.id }) }}">{{ 'user.contact.pm'|trans }}</a></dd>
 				{% endif %}
 			<dl>
 		</div>
