@@ -9,95 +9,102 @@
 	<h1>{{ block('title') }} <small><a href="{{ path('country') }}">{{ 'action.back_to_list'|trans }}</a></small></h1>
 </div>
 
-<dl>
-	<dt>{{ 'country.join_date'|trans }}</dt>
-	<dd>{{ country.joindate|localizeddate('long', 'none') }}</dd>
-	<dt>{{ 'country.formercurrency'|trans }}</dt>
-	<dd>{{ country.formercurrency|trans }}</dd>
-	<dt>{{ 'country.change_rate'|trans }}</dt>
-	<dd>1 &euro; = {{ country.exchangerate }} {{ country.formercurrencyiso }}</dd>
-</dl>
 
-<div class="page-header">
-	<h3>{{ 'country.mintage_per_year'|trans }}</h3>
-</div>
+<div class="row-fluid">
+	<div class="span2">
+		<div class="well">
+			<dl>
+				<dt>{{ 'country.join_date'|trans }}</dt>
+				<dd>{{ country.joindate|localizeddate('long', 'none') }}</dd>
 
-{% if coins %}
-{% set changed, columns, nbval, values, year = false, 0, counts_value|length - 1, counts_value|keys, 1990 %}
+				<dt>{{ 'country.formercurrency'|trans }}</dt>
+				<dd>{{ country.formercurrency|trans }}</dd>
 
-<table class="table table-bordered table-condensed table-striped">
-<thead>
-	<tr>
-		<th>{{ 'coin.year'|trans }}</th>
-		{% for value in values %}
-		<th>{{ value }}</th>
-		{% endfor %}
-		<th>{{ 'coin.total'|trans }}</th>
-	</tr>
-</thead>
-<tbody>
-{% for coin in coins %}
-	{% if year != coin.year %}
-		{% if not loop.first %}
-			{% for n in range(columns + 1, nbval) if columns < nbval %}
-				{{ block('empty_cell') }}
-			{% endfor %}
+				<dt>{{ 'country.change_rate'|trans }}</dt>
+				<dd>1 &euro; = {{ country.exchangerate }} {{ country.formercurrencyiso }}</dd>
+			</dl>
+		</div>
+	</div>
 
-				<td>{{ counts_year[year]|number_format }}</td>
+	<div class="span10">
+		{% if coins %}
+		{% set changed, columns, nbval, values, year = false, 0, counts_value|length - 1, counts_value|keys, 1990 %}
+
+		<table class="table table-bordered table-condensed table-striped">
+		<thead>
+			<tr>
+				<th>{{ 'coin.year'|trans }}</th>
+				{% for value in values %}
+				<th>{{ value }}</th>
+				{% endfor %}
+				<th>{{ 'coin.total'|trans }}</th>
 			</tr>
+		</thead>
+		<tbody>
+		{% for coin in coins %}
+			{% if year != coin.year %}
+				{% if not loop.first %}
+					{% for n in range(columns + 1, nbval) if columns < nbval %}
+						{{ block('empty_cell') }}
+					{% endfor %}
+
+						<td>{{ counts_year[year]|number_format }}</td>
+					</tr>
+				{% endif %}
+
+			<tr>
+				<td>{{ coin.year }}</td>
+				{% set changed, columns, year = false, 0, coin.year %}
+			{% endif %}
+
+			{% if values[columns] != coin.value %}
+				{% for n in range(columns + 1, nbval) %}
+					{% if not changed %}
+						{{ block('empty_cell') }}
+					{% endif %}
+
+					{% if values[n] == coin.value %}
+						{% set columns = n %}
+						{% set changed = true %}
+					{% endif %}
+
+					{% if changed and values[n] > coin.value %}
+						{{ block('empty_cell') }}
+					{% endif %}
+				{% endfor %}
+			{% else %}
+				{% set columns = columns + 1 %}
+			{% endif %}
+
+			<td>
+				<a href="{{ path('coin_show', { 'id': coin.id }) }}">{{ coin.mintage|number_format }}</a>
+			</td>
+
+			{% if loop.last %}
+				{% for n in range(columns + 1, nbval) if columns < nbval %}
+					{{ block('empty_cell') }}
+				{% endfor %}
+
+					<td>{{ counts_year[year]|number_format }}</td>
+				</tr>
+			{% endif %}
+		{% endfor %}
+		</tbody>
+		<tfoot>
+			<tr>
+				<th>{{ 'coin.total'|trans }}</th>
+				{% for count in counts_value %}
+					<th>{{ count|number_format }}</th>
+				{% endfor %}
+				<th>{{ counts|number_format }}</th>
+			</tr>
+		</tfoot>
+		</table>
+		{% else %}
+		<div class="alert alert-info">
+			{{ 'coin.none'|trans }}
+		</div>
 		{% endif %}
-
-	<tr>
-		<td>{{ coin.year }}</td>
-		{% set changed, columns, year = false, 0, coin.year %}
-	{% endif %}
-
-	{% if values[columns] != coin.value %}
-		{% for n in range(columns + 1, nbval) %}
-			{% if not changed %}
-				{{ block('empty_cell') }}
-			{% endif %}
-
-			{% if values[n] == coin.value %}
-				{% set columns = n %}
-				{% set changed = true %}
-			{% endif %}
-
-			{% if changed and values[n] > coin.value %}
-				{{ block('empty_cell') }}
-			{% endif %}
-		{% endfor %}
-	{% else %}
-		{% set columns = columns + 1 %}
-	{% endif %}
-
-	<td>
-		<a href="{{ path('coin_show', { 'id': coin.id }) }}">{{ coin.mintage|number_format }}</a>
-	</td>
-
-	{% if loop.last %}
-		{% for n in range(columns + 1, nbval) if columns < nbval %}
-			{{ block('empty_cell') }}
-		{% endfor %}
-
-			<td>{{ counts_year[year]|number_format }}</td>
-		</tr>
-	{% endif %}
-{% endfor %}
-</tbody>
-<tfoot>
-	<tr>
-		<th>{{ 'coin.total'|trans }}</th>
-		{% for count in counts_value %}
-			<th>{{ count|number_format }}</th>
-		{% endfor %}
-		<th>{{ counts|number_format }}</th>
-	</tr>
-</tfoot>
-</table>
-{% else %}
-<div class="alert alert-info">
-	{{ 'coin.none'|trans }}
+	</div>
 </div>
-{% endif %}
 {% endblock %}
