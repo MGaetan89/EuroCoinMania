@@ -60,7 +60,7 @@
 			</trans-unit>
 			<trans-unit id="user.total.doubles">
 				<source>user.total.doubles</source>
-				<target>Nombre de pièces</target>
+				<target>Nombre de doubles</target>
 			</trans-unit>
 			<trans-unit id="user.login">
 				<source>user.login</source>
