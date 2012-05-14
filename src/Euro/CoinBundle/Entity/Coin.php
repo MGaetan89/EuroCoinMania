@@ -40,7 +40,7 @@ class Coin {
 	/**
 	 * @var string $year
 	 *
-	 * @ORM\Column(name="year", type="string", length=5)
+	 * @ORM\Column(name="year", type="string", length=10)
 	 */
 	private $year;
 
