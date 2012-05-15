@@ -71,6 +71,8 @@ class Year {
 	 */
 	public function setYear($year) {
 		$this->year = $year;
+
+		return $this;
 	}
 
 	/**
@@ -89,6 +91,8 @@ class Year {
 	 */
 	public function setWorkshop(Workshop $workshop) {
 		$this->workshop = $workshop;
+
+		return $this;
 	}
 
 	/**

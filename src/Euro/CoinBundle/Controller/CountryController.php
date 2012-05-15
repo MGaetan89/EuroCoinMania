@@ -56,10 +56,10 @@ class CountryController extends Controller {
 				$counts['value'][(string) $coin->getValue()] += $coin->getMintage();
 			}
 
-			if (!isset($counts['year'][$coin->getYear()])) {
-				$counts['year'][$coin->getYear()] = $coin->getMintage();
+			if (!isset($counts['year'][(string) $coin->getYear()])) {
+				$counts['year'][(string) $coin->getYear()] = $coin->getMintage();
 			} else {
-				$counts['year'][$coin->getYear()] += $coin->getMintage();
+				$counts['year'][(string) $coin->getYear()] += $coin->getMintage();
 			}
 		}
 

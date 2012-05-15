@@ -7,8 +7,8 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Euro\CoinBundle\Entity\Country;
 use Euro\CoinBundle\Entity\Value;
+use Euro\CoinBundle\Entity\Year;
 use Euro\UserBundle\Entity\User;
-use Euro\UserBundle\Entity\Year;
 
 /**
  * Euro\CoinBundle\Entity\Coin

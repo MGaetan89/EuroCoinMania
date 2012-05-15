@@ -50,6 +50,8 @@ class Workshop {
 	 */
 	public function setShortName($shortName) {
 		$this->short_name = $shortName;
+
+		return $this;
 	}
 
 	/**
@@ -68,6 +70,8 @@ class Workshop {
 	 */
 	public function setName($name) {
 		$this->name = $name;
+
+		return $this;
 	}
 
 	/**
