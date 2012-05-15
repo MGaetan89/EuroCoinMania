@@ -8,6 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Euro\CoinBundle\Entity\Country;
 use Euro\CoinBundle\Entity\Value;
 use Euro\UserBundle\Entity\User;
+use Euro\UserBundle\Entity\Year;
 
 /**
  * Euro\CoinBundle\Entity\Coin
@@ -38,9 +39,8 @@ class Coin {
 	private $country;
 
 	/**
-	 * @var string $year
-	 *
-	 * @ORM\Column(name="year", type="string", length=10)
+	 * @ORM\ManyToOne(targetEntity="Year", inversedBy="coins")
+	 * @ORM\JoinColumn(name="year_id", referencedColumnName="id")
 	 */
 	private $year;
 
@@ -104,26 +104,6 @@ class Coin {
 	}
 
 	/**
-	 * Set year
-	 *
-	 * @param string $year
-	 */
-	public function setYear($year) {
-		$this->year = $year;
-
-		return $this;
-	}
-
-	/**
-	 * Get year
-	 *
-	 * @return string
-	 */
-	public function getYear() {
-		return $this->year;
-	}
-
-	/**
 	 * Set country
 	 *
 	 * @param Country $country
@@ -141,6 +121,26 @@ class Coin {
 	 */
 	public function getCountry() {
 		return $this->country;
+	}
+
+	/**
+	 * Set year
+	 *
+	 * @param Year $year
+	 */
+	public function setYear(Year $year) {
+		$this->year = $year;
+
+		return $this;
+	}
+
+	/**
+	 * Get year
+	 *
+	 * @return Year
+	 */
+	public function getYear() {
+		return $this->year;
 	}
 
 	/**

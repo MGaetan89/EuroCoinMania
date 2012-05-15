@@ -20,8 +20,11 @@ class UserCoinRepository extends EntityRepository {
 		return $queryBuiler
 						->join('uc.coin', 'c')
 						->join('c.value', 'v')
+						->join('c.year', 'y')
+						->leftJoin('y.workshop', 'w')
 						->where($expr->eq('uc.user', ':user'))
-						->orderBy('c.year', 'ASC')
+						->orderBy('y.year', 'ASC')
+						->addOrderBy('w.short_name', 'ASC')
 						->addOrderBy('v.value', 'DESC')
 						->setParameter('user', $user)
 						->getQuery()
@@ -35,6 +38,8 @@ class UserCoinRepository extends EntityRepository {
 		$rsm->addJoinedEntityResult('Euro\UserBundle\Entity\User', 'u', 'uc', 'user');
 		$rsm->addJoinedEntityResult('Euro\CoinBundle\Entity\Coin', 'c', 'uc', 'coin');
 		$rsm->addJoinedEntityResult('Euro\CoinBundle\Entity\Value', 'v', 'c', 'value');
+		$rsm->addJoinedEntityResult('Euro\CoinBundle\Entity\Year', 'y', 'c', 'year');
+		$rsm->addJoinedEntityResult('Euro\CoinBundle\Entity\Workshop', 'w', 'y', 'workshop');
 		$rsm->addJoinedEntityResult('Euro\CoinBundle\Entity\Country', 'ct', 'c', 'country');
 
 		$rsm->addFieldResult('uc', 'id', 'id');
@@ -49,6 +54,11 @@ class UserCoinRepository extends EntityRepository {
 		$rsm->addFieldResult('v', 'value_id', 'id');
 		$rsm->addFieldResult('v', 'value', 'value');
 		$rsm->addFieldResult('v', 'collector', 'collector');
+		$rsm->addFieldResult('y', 'year_id', 'id');
+		$rsm->addFieldResult('y', 'year', 'year');
+		$rsm->addFieldResult('w', 'workshop_id', 'id');
+		$rsm->addFieldResult('w', 'short_name', 'short_name');
+		$rsm->addFieldResult('w', 'name', 'name');
 		$rsm->addFieldResult('ct', 'country_id', 'id');
 		$rsm->addFieldResult('ct', 'name', 'name');
 		$rsm->addFieldResult('ct', 'nameiso', 'nameiso');
@@ -60,11 +70,15 @@ class UserCoinRepository extends EntityRepository {
 				m.id AS user_id, m.username,
 				c.id AS coin_id, c.year, c.commemorative, c.mintage, c.description,
 				v.id AS value_id, v.value, v.collector,
+				y.id AS year_id, y.year,
+				w.id AS workshop_id, w.short_name, w.name,
 				ct.id AS country_id, ct.name, ct.nameiso, ct.join_date, ct.former_currency_iso, ct.exchange_rate
 			FROM user_coin uc
 			JOIN coin c ON c.id = uc.coin_id
 			JOIN country ct ON ct.id = c.country_id
 			JOIN value v ON v.id = c.value_id
+			JOIN year y ON y.id = c.year_id
+			JOIN workshop w ON w.id = y.workshop_id
 			JOIN member m ON m.id = uc.user_id
 			JOIN user_coin uc2 ON uc2.user_id = :user
 			WHERE uc.user_id <> uc2.user_id
@@ -73,7 +87,8 @@ class UserCoinRepository extends EntityRepository {
 				AND uc.quantity > 1
 				AND uc2.quantity > 0
 			ORDER BY m.username ASC,
-				c.year ASC,
+				y.year ASC,
+				w.short_name ASC,
 				v.value DESC', $rsm)
 						->setParameter('user', $user->getId())
 						->setParameter('coin', $coin)
@@ -87,9 +102,12 @@ class UserCoinRepository extends EntityRepository {
 		return $queryBuiler
 						->join('uc.coin', 'c')
 						->join('c.value', 'v')
+						->join('c.year', 'y')
+						->leftJoin('y.workshop', 'w')
 						->where($expr->eq('uc.user', ':user'))
 						->andWhere($expr->gt('uc.quantity', 1))
-						->orderBy('c.year', 'ASC')
+						->orderBy('y.year', 'ASC')
+						->addOrderBy('w.short_name', 'ASC')
 						->addOrderBy('v.value', 'DESC')
 						->setParameter('user', $user)
 						->getQuery()

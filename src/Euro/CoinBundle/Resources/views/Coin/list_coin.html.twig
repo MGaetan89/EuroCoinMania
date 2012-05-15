@@ -28,7 +28,7 @@
 				<th>{{ value }}</th>
 				{% endfor %}
 
-				{% set changed, column, year = false, 0, 1990 %}
+				{% set changed, column, year = false, 0, '1990' %}
 				{% set nbval, val = coin_values[coin.country.id]|length - 1, coin_values[coin.country.id] %}
 			</tr>
 		</thead>
@@ -36,7 +36,7 @@
 	{% endif %}
 
 	{% if year != coin.year %}
-		{% if not loop.first and year != 1990 %}
+		{% if not loop.first and year != '1990' %}
 			{% for n in range(column + 1, nbval) if column < nbval %}
 				{{ empty_cell }}
 			{% endfor %}

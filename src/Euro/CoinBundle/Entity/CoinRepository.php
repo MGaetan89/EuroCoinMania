@@ -14,9 +14,12 @@ class CoinRepository extends EntityRepository {
 
 	public function getAllYear() {
 		return $this->createQueryBuilder('c')
-						->select('c.year')
+						->join('c.year', 'y')
+						->leftJoin('y.workshop', 'w')
+						->select('y')
 						->distinct()
-						->orderBy('c.year', 'ASC')
+						->orderBy('y.year', 'ASC')
+						->addOrderBy('w.short_name', 'ASC')
 						->getQuery()
 						->getResult();
 	}
@@ -27,10 +30,13 @@ class CoinRepository extends EntityRepository {
 
 		return $queryBuiler
 						->join('c.value', 'v')
+						->join('c.year', 'y')
+						->leftJoin('y.workshop', 'w')
 						->where(
 								$expr->eq('c.country', ':country')
 						)
-						->orderBy('c.year', 'ASC')
+						->orderBy('y.year', 'ASC')
+						->addOrderBy('w.short_name', 'ASC')
 						->addOrderBy('v.value', 'DESC')
 						->setParameter('country', $country)
 						->getQuery()
@@ -39,7 +45,9 @@ class CoinRepository extends EntityRepository {
 
 	public function getCoinsByFilters(array $filters) {
 		$queryBuiler = $this->createQueryBuilder('c')
-				->join('c.value', 'v');
+				->join('c.value', 'v')
+				->join('c.year', 'y')
+				->leftJoin('y.workshop', 'w');
 		$expr = $queryBuiler->expr();
 
 		$and = $expr->andx();
@@ -53,7 +61,8 @@ class CoinRepository extends EntityRepository {
 			$queryBuiler->where($and);
 		}
 
-		return $queryBuiler->orderBy('c.year', 'ASC')
+		return $queryBuiler->orderBy('y.year', 'ASC')
+						->addOrderBy('w.short_name', 'ASC')
 						->addOrderBy('v.value', 'DESC')
 						->getQuery()
 						->getResult();

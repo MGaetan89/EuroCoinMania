@@ -208,19 +208,20 @@ class CoinController extends Controller {
 
 			$country = $coin->getCountry();
 			$value = $coin->getValue();
+			$year = $coin->getYear();
 
 			$coin_values[$country->getId()][$value->getId()] = (string) $value;
 			$commemoratives[$coin->getCommemorative()] = $coin->getCommemorative();
-			$countries[$country->getId()] = $translator->trans($coin->getCountry());
+			$countries[$country->getId()] = $translator->trans($country);
 			$sorted[$countries[$country->getId()]][] = $coin;
 			$values[$value->getId()] = (string) $value;
-			$years[$coin->getYear()] = $coin->getYear();
+			$years[$year->getId()] = (string) $year;
 		}
 
 		asort($countries);
 		asort($values);
+		asort($years);
 		ksort($sorted);
-		sort($years);
 		foreach ($coin_values as $country => &$val) {
 			rsort($val);
 		}
