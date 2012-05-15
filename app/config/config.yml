@@ -74,7 +74,13 @@ sonata_block:
             contexts: [cms]
 
 services:
+    euro.pm.markdown:
+        class: Euro\PrivateMessageBundle\Parser\MarkdownParser
     twig.extension.intl:
        class: Twig_Extensions_Extension_Intl
        tags:
            - { name: twig.extension }
+
+knp_markdown:
+    parser:
+       service: euro.pm.markdown
