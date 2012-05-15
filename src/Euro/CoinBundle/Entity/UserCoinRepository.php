@@ -47,7 +47,6 @@ class UserCoinRepository extends EntityRepository {
 		$rsm->addFieldResult('u', 'user_id', 'id');
 		$rsm->addFieldResult('u', 'username', 'username');
 		$rsm->addFieldResult('c', 'coin_id', 'id');
-		$rsm->addFieldResult('c', 'year', 'year');
 		$rsm->addFieldResult('c', 'commemorative', 'commemorative');
 		$rsm->addFieldResult('c', 'mintage', 'mintage');
 		$rsm->addFieldResult('c', 'description', 'description');
@@ -68,7 +67,7 @@ class UserCoinRepository extends EntityRepository {
 
 		return $this->getEntityManager()->createNativeQuery('SELECT uc.id, uc.quantity,
 				m.id AS user_id, m.username,
-				c.id AS coin_id, c.year, c.commemorative, c.mintage, c.description,
+				c.id AS coin_id, c.commemorative, c.mintage, c.description,
 				v.id AS value_id, v.value, v.collector,
 				y.id AS year_id, y.year,
 				w.id AS workshop_id, w.short_name, w.name,
