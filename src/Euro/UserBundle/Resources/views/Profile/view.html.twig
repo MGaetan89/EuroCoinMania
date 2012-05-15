@@ -76,7 +76,7 @@
 				<table class="table table-bordered table-condensed table-striped">
 				<thead>
 					<tr>
-						<th>{{ coin.country|trans }}</th>
+						<th><a href="{{ path('country_show', { id: coin.country.id }) }}">{{ coin.country|trans }}</a></th>
 						{% for value in coin_values[coin.country.id] %}
 						<th>{{ value }}</th>
 						{% endfor %}
