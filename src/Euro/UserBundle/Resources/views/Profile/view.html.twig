@@ -6,12 +6,7 @@
 
 {% block fos_user_content %}
 <div class="page-header">
-	<h1>
-		{{ block('title') }}
-		{% if app.user.id == user.id %}
-			<small><a href="{{ path('user_edit') }}">{{ 'user.profile.edit'|trans }}</a></small>
-		{% endif %}
-	</h1>
+	<h1>{{ block('title') }}</h1>
 </div>
 
 <div class="row-fluid">
@@ -49,6 +44,7 @@
 			<ul class="nav nav-list">
 				<li class="nav-header">Actions</li>
 				<li><a href="{{ path('pm_index') }}"><i class="icon icon-envelope"></i> {{ 'pm'|trans }}</a></li>
+				<li><a href="{{ path('user_edit') }}"><i class="icon icon-user"></i> {{ 'user.profile.edit'|trans }}</a>
 				<li><a href="{{ path('fos_user_security_logout') }}"><i class="icon icon-off"></i> {{ 'user.logout'|trans }}</a></li>
 			</ul>
 		</div>
