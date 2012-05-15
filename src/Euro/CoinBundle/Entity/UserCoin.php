@@ -3,7 +3,6 @@
 namespace Euro\CoinBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Euro\CoinBundle\Entity\Coin;
 use Euro\UserBundle\Entity\User;
 
 /**

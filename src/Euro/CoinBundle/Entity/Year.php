@@ -5,8 +5,6 @@ namespace Euro\CoinBundle\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
-use Euro\CoinBundle\Entity\Coin;
-use Euro\CoinBundle\Entity\Workshop;
 
 /**
  * Euro\CoinBundle\Entity\Year
