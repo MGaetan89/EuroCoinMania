@@ -3,6 +3,7 @@
 namespace Euro\PrivateMessageBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Euro\CoinBundle\Entity\Share;
 use Euro\UserBundle\Entity\User;
 
 /**
@@ -74,6 +75,12 @@ class PrivateMessage {
 	 * @ORM\Column(name="is_open", type="boolean")
 	 */
 	private $is_open;
+
+	/**
+	 * @ORM\OneToOne(targetEntity="Euro\CoinBundle\Entity\Share", inversedBy="pm")
+	 * @ORM\JoinColumn(name="share_id", referencedColumnName="id")
+	 */
+	private $share;
 
 	public function __construct() {
 		$this->conversation = uniqid();
@@ -250,6 +257,26 @@ class PrivateMessage {
 	 */
 	public function getIsOpen() {
 		return $this->is_open;
+	}
+
+	/**
+	 * Set share
+	 *
+	 * @param Share $share
+	 */
+	public function setShare(Share $share) {
+		$this->share = $share;
+
+		return $this;
+	}
+
+	/**
+	 * Get share
+	 *
+	 * @return Share
+	 */
+	public function getShare() {
+		return $this->share;
 	}
 
 }

@@ -52,7 +52,7 @@ class Share {
 	private $date;
 
 	/**
-	 * @ORM\ManyToOne(targetEntity="Euro\PrivateMessageBundle\Entity\PrivateMessage")
+	 * @ORM\OneToOne(targetEntity="Euro\PrivateMessageBundle\Entity\PrivateMessage", inversedBy="share")
 	 * @ORM\JoinColumn(name="pm_id", referencedColumnName="id")
 	 */
 	private $pm;

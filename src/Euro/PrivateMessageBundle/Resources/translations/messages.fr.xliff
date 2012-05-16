@@ -6,9 +6,21 @@
 				<source>pm</source>
 				<target>Messages privés</target>
 			</trans-unit>
+			<trans-unit id="pm.accept">
+				<source>pm.accept</source>
+				<target>Accepter</target>
+			</trans-unit>
 			<trans-unit id="pm.answer">
 				<source>pm.answer</source>
 				<target>Répondre</target>
+			</trans-unit>
+			<trans-unit id="pm.close">
+				<source>pm.close</source>
+				<target>Fermer</target>
+			</trans-unit>
+			<trans-unit id="pm.closed">
+				<source>pm.closed</source>
+				<target>Conversation fermée</target>
 			</trans-unit>
 			<trans-unit id="pm.editor.bold">
 				<source>pm.editor.bold</source>
@@ -78,14 +90,6 @@
 				<source>pm.editor.underline.short</source>
 				<target>S</target>
 			</trans-unit>
-			<trans-unit id="pm.close">
-				<source>pm.close</source>
-				<target>Fermer</target>
-			</trans-unit>
-			<trans-unit id="pm.closed">
-				<source>pm.closed</source>
-				<target>Conversation fermée</target>
-			</trans-unit>
 			<trans-unit id="pm.has_new">
 				<source>pm.has_new</source>
 				<target>none_or_one: Vous avez %count% message non lu|some: Vous avez %count% messages non lu</target>
@@ -109,6 +113,10 @@
 			<trans-unit id="pm.on">
 				<source>pm.on</source>
 				<target>Le</target>
+			</trans-unit>
+			<trans-unit id="pm.reject">
+				<source>pm.reject</source>
+				<target>Refuser</target>
 			</trans-unit>
 			<trans-unit id="pm.send">
 				<source>pm.send</source>
