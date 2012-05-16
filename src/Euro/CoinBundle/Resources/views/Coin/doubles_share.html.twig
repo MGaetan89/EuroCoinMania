@@ -19,7 +19,7 @@
 	{% endset %}
 
 	<div class="alert alert-info">
-		{{ 'double.share.coin'|trans({ '%coin%': macros.coin(coin) })|raw }}
+		{{ 'double.share.coin'|trans({ '%coin%': macros.coin(from.coin) })|raw }}
 	</div>
 
 	{% for coin in coins %}
@@ -89,7 +89,7 @@
 			{% set column = column + 1 %}
 		{% endif %}
 
-		<td><a href="#">{{ 'double.share'|trans }}</a></td>
+		<td><a href="{{ path('coin_doubles_share_propose', { from: from.id, to: uc[coin.id].id }) }}">{{ 'double.share'|trans }}</a></td>
 
 		{% if loop.last %}
 				{% for n in range(column + 1, nbval) if column < nbval %}

@@ -2,10 +2,12 @@
 
 namespace Euro\CoinBundle\Controller;
 
-use Euro\CoinBundle\Entity\UserCoin;
 use FOS\UserBundle\Model\UserInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
+use Euro\CoinBundle\Entity\Share;
+use Euro\CoinBundle\Entity\UserCoin;
+use Euro\PrivateMessageBundle\Entity\PrivateMessage;
 
 /**
  * Coin controller.
@@ -15,17 +17,17 @@ class CoinController extends Controller {
 	/**
 	 * Lists all Coin entities.
 	 */
-	public function indexAction($country, $year, $value, $commemorative, $collector) {
+	public function indexAction($country, $year, $value, $collector) {
 		$em = $this->getDoctrine()->getEntityManager();
 
 		$filters = array(
-			'commemorative' => $commemorative,
+			'commemorative' => $collector,
 			'country' => $country,
 			'value' => $value,
 			'year' => $year,
 		);
 		$db_filters = array(
-			'c.commemorative' => $commemorative,
+			'c.commemorative' => $collector,
 			'c.country' => $country,
 			'c.value' => $value,
 			'c.year' => $year,
@@ -153,14 +155,18 @@ class CoinController extends Controller {
 		$vars = $this->buildVars($uc);
 
 		$quantity = array();
+		$from_uc = array();
 		foreach ($uc as $ucoin) {
-			$quantity[$ucoin->getCoin()->getId()] = $ucoin->getQuantity();
+			$coin_id = $ucoin->getCoin()->getId();
+			$quantity[$coin_id] = $ucoin->getQuantity();
+			$from_uc[$coin_id] = $ucoin;
 		}
 
 		return $this->render('EuroCoinBundle:Coin:doubles.html.twig', array(
 					'coin_values' => $vars['coin_values'],
 					'coins' => $vars['coins'],
 					'quantity' => $quantity,
+					'uc' => $from_uc,
 				));
 	}
 
@@ -171,25 +177,70 @@ class CoinController extends Controller {
 		}
 
 		$em = $this->getDoctrine()->getEntityManager();
-		$coin = $em->getRepository('EuroCoinBundle:Coin')->find($id);
-		$doubles = $em->getRepository('EuroCoinBundle:UserCoin')->getDifferentDoublesByUserAndCoin($user, $id);
+		$from = $em->getRepository('EuroCoinBundle:UserCoin')->find($id);
+		$doubles = $em->getRepository('EuroCoinBundle:UserCoin')->getDifferentDoublesByUserAndCoin($user, $from->getCoin()->getId());
 		$vars = $this->buildVars($doubles);
 
 		$users = array();
+		$from_uc = array();
 		foreach ($doubles as $double) {
-			$users[$double->getCoin()->getId()] = $double->getUser();
+			$coin_id = $double->getCoin()->getId();
+			$users[$coin_id] = $double->getUser();
+			$from_uc[$coin_id] = $double;
 		}
 
 		return $this->render('EuroCoinBundle:Coin:doubles_share.html.twig', array(
-					'coin' => $coin,
+					'from' => $from,
 					'coin_values' => $vars['coin_values'],
 					'coins' => $vars['coins'],
 					'commemoratives' => count($vars['commemoratives']) === 2,
 					'countries' => (count($vars['countries']) > 1) ? $vars['countries'] : array(),
+					'uc' => $from_uc,
 					'users' => $users,
 					'values' => (count($vars['values']) > 1) ? $vars['values'] : array(),
 					'years' => (count($vars['years']) > 1) ? $vars['years'] : array(),
 				));
+	}
+
+	public function doublesShareProposeAction($from, $to) {
+		$user = $this->getUser();
+		if (!$user instanceof UserInterface) {
+			throw new \Exception('You are not allowed to access this page !');
+		}
+
+		$em = $this->getDoctrine()->getEntityManager();
+		$repository = $em->getRepository('EuroCoinBundle:UserCoin');
+		$from = $repository->find($from);
+		$to = $repository->find($to);
+
+		if ($from->getUser() !== $user && $to->getUser() !== $user) {
+			throw new \Exception('You are not allowed to access this page !');
+		}
+
+		if ($from->getQuantity() < 2 || $to->getQuantity() < 2) {
+			throw new \Exception('The quantity does not allow a share !');
+		}
+
+		// Create conversation
+		$pm = new PrivateMessage();
+		$pm
+				->setFromUser($from->getUser())
+				->setToUser($to->getUser())
+				->setTitle('Echange avec ' . $to->getUser()->getUsername())
+				->setText('Foobar');
+
+		// Register share
+		$share = new Share();
+		$share
+				->setFromUserCoin($from)
+				->setToUserCoin($to)
+				->setPm($pm);
+
+		$em->persist($pm);
+		$em->persist($share);
+		$em->flush();
+
+		return $this->redirect($this->generateUrl('coin_shares'));
 	}
 
 	public function sharesAction() {

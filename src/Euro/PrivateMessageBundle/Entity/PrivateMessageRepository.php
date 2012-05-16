@@ -17,16 +17,16 @@ class PrivateMessageRepository extends EntityRepository {
 		$queryBuiler = $this->createQueryBuilder('pm');
 		$expr = $queryBuiler->expr();
 
-		$queryBuiler->update()
-				->set('pm.is_open', '0')
-				->where($expr->eq('pm.conversation', ':conversation'))
-				->andWhere(
-						$expr->orX($expr->eq('pm.from_user', ':user'), $expr->eq('pm.to_user', ':user'))
-				)
-				->setParameter('conversation', $user)
-				->setParameter('user', $conversation)
-				->getQuery()
-				->getResult();
+		return $queryBuiler->update()
+						->set('pm.is_open', '0')
+						->where($expr->eq('pm.conversation', ':conversation'))
+						->andWhere(
+								$expr->orX($expr->eq('pm.from_user', ':user'), $expr->eq('pm.to_user', ':user'))
+						)
+						->setParameter('conversation', $conversation)
+						->setParameter('user', $user)
+						->getQuery()
+						->getResult();
 	}
 
 	public function getConversationById($id) {

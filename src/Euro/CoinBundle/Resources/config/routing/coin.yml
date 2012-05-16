@@ -13,6 +13,15 @@ coin_doubles:
 coin_doubles_share:
     pattern:  /doubles/{id}
     defaults: { _controller: "EuroCoinBundle:Coin:doublesShare" }
+    requirements:
+        id: "\d+"
+
+coin_doubles_share_propose:
+    pattern:  /doubles/{from}/propose/{to}
+    defaults: { _controller: "EuroCoinBundle:Coin:doublesSharePropose" }
+    requirements:
+        from: "\d+"
+        to: "\d+"
 
 coin_shares:
     pattern:  /shares
@@ -21,39 +30,42 @@ coin_shares:
 coin_show:
     pattern:  /{id}/show
     defaults: { _controller: "EuroCoinBundle:Coin:show" }
+    requirements:
+        id: "\d+"
 
 coin_filter:
-    pattern:  /filter/country-{country}/year-{year}/value-{value}/commemorative-{commemorative}/
+    pattern:  /filter/country-{country}/year-{year}/value-{value}
     defaults: { _controller: "EuroCoinBundle:Coin:index", collector: false }
     requirements:
         country: "\d*"
         year: "\d*"
         value: "\d*"
-        commemorative: "(0|1)*"
 
 coin_collector_filter:
-    pattern:  /collector/filter/country-{country}/year-{year}/value-{value}/commemorative-{commemorative}/
+    pattern:  /collector/filter/country-{country}/year-{year}/value-{value}
     defaults: { _controller: "EuroCoinBundle:Coin:index", collector: true }
     requirements:
         country: "\d*"
         year: "\d*"
         value: "\d*"
-        commemorative: "(0|1)*"
 
 coin_get:
     pattern:  /{id}/get
     defaults: { _controller: "EuroCoinBundle:Coin:get" }
     requirements:
+        id: "\d+"
         _method: POST
 
 coin_remove:
     pattern:  /{id}/remove
     defaults: { _controller: "EuroCoinBundle:Coin:remove" }
     requirements:
+        id: "\d+"
         _method: POST
 
 coin_add:
     pattern:  /{id}/add
     defaults: { _controller: "EuroCoinBundle:Coin:add" }
     requirements:
+        id: "\d+"
         _method: POST

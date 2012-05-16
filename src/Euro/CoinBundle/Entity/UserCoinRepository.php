@@ -84,7 +84,7 @@ class UserCoinRepository extends EntityRepository {
 				AND uc.coin_id <> uc2.coin_id
 				AND uc.coin_id <> :coin
 				AND uc.quantity > 1
-				AND uc2.quantity > 0
+				AND uc2.quantity > 1
 			ORDER BY m.username ASC,
 				y.year ASC,
 				w.short_name ASC,

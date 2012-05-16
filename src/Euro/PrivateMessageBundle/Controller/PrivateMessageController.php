@@ -17,7 +17,11 @@ class PrivateMessageController extends Controller {
 		}
 
 		$em = $this->getDoctrine()->getEntityManager();
-		$em->getRepository('EuroPrivateMessageBundle:PrivateMessage')->closeConversation($id, $user);
+		$repository = $em->getRepository('EuroPrivateMessageBundle:PrivateMessage');
+		$pm = $repository->findByConversation($id);
+		if ($repository->closeConversation($id, $user)) {
+			$em->getRepository('EuroCoinBundle:Share')->cancelShare($pm);
+		}
 
 		return $this->redirect($this->generateUrl('pm_read', array('id' => $id)));
 	}

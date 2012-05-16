@@ -12,6 +12,18 @@ use Doctrine\ORM\EntityRepository;
  */
 class ShareRepository extends EntityRepository {
 
+	public function cancelShare($conversation) {
+		$queryBuiler = $this->createQueryBuilder('s');
+		$expr = $queryBuiler->expr();
+
+		return $queryBuiler->update()
+				->set('s.status', Share::STATUS_CANCELED)
+				->where($expr->eq('s.pm', ':conversation'))
+				->setParameter('conversation', $conversation)
+				->getQuery()
+				->getResult();
+	}
+
 	public function getSharesByUser($user) {
 		$queryBuiler = $this->createQueryBuilder('s');
 		$expr = $queryBuiler->expr();
