@@ -16,6 +16,12 @@ coin_doubles_share:
     requirements:
         id: "\d+"
 
+coin_doubles_share_accept:
+    pattern:  /doubles/{id}/accept
+    defaults: { _controller: "EuroCoinBundle:Coin:doublesShareAccept" }
+    requirements:
+        id: "\d+"
+
 coin_doubles_share_propose:
     pattern:  /doubles/{from}/propose/{to}
     defaults: { _controller: "EuroCoinBundle:Coin:doublesSharePropose" }

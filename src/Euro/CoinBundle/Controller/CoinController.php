@@ -202,6 +202,18 @@ class CoinController extends Controller {
 				));
 	}
 
+	public function doublesShareAcceptAction($id) {
+		$user = $this->getUser();
+		if (!$user instanceof UserInterface) {
+			throw new \Exception('You are not allowed to access this page !');
+		}
+
+		$em = $this->getDoctrine()->getEntityManager();
+		$em->getRepository('EuroCoinBundle:Share')->setAccepted($id);
+
+		return $this->redirect($this->generateUrl('coin_shares'));
+	}
+
 	public function doublesShareProposeAction($from, $to) {
 		$user = $this->getUser();
 		if (!$user instanceof UserInterface) {

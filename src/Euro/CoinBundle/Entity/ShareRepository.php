@@ -17,11 +17,11 @@ class ShareRepository extends EntityRepository {
 		$expr = $queryBuiler->expr();
 
 		return $queryBuiler->update()
-				->set('s.status', Share::STATUS_CANCELED)
-				->where($expr->eq('s.pm', ':conversation'))
-				->setParameter('conversation', $conversation)
-				->getQuery()
-				->getResult();
+						->set('s.status', Share::STATUS_CANCELED)
+						->where($expr->eq('s.pm', ':conversation'))
+						->setParameter('conversation', $conversation)
+						->getQuery()
+						->getResult();
 	}
 
 	public function getSharesByUser($user) {
@@ -37,6 +37,18 @@ class ShareRepository extends EntityRepository {
 						->setParameter('user', $user)
 						->getQuery()
 						->getResult();
+	}
+
+	public function setAccepted($id) {
+		$queryBuiler = $this->createQueryBuilder('s');
+		$expr = $queryBuiler->expr();
+
+		$queryBuiler->update()
+				->set('s.status', Share::STATUS_VALIDATED)
+				->where($expr->eq('s.id', ':id'))
+				->setParameter('id', $id)
+				->getQuery()
+				->getResult();
 	}
 
 }
