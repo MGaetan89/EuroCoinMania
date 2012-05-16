@@ -114,6 +114,10 @@
 				<source>coin.shares.from_coin</source>
 				<target>Votre pièce</target>
 			</trans-unit>
+			<trans-unit id="coin.shares.none">
+				<source>coin.shares.none</source>
+				<target>Vous n'avez participé à aucun échange</target>
+			</trans-unit>
 			<trans-unit id="coin.shares.pm">
 				<source>coin.shares.pm</source>
 				<target>Conversation</target>
