@@ -210,6 +210,7 @@ class CoinController extends Controller {
 
 		$em = $this->getDoctrine()->getEntityManager();
 		$repository = $em->getRepository('EuroCoinBundle:UserCoin');
+		$translator = $this->get('translator');
 		$from = $repository->find($from);
 		$to = $repository->find($to);
 
@@ -222,12 +223,25 @@ class CoinController extends Controller {
 		}
 
 		// Create conversation
+		$from_coin = $from->getCoin();
+		$to_coin = $to->getCoin();
 		$pm = new PrivateMessage();
 		$pm
 				->setFromUser($from->getUser())
 				->setToUser($to->getUser())
-				->setTitle('Echange avec ' . $to->getUser()->getUsername())
-				->setText('Foobar');
+				->setTitle($translator->trans('coin.shares.pm.title', array(
+							'%name%' => $from->getUser()->getUsername()
+						)))
+				->setText($translator->trans('coin.shares.pm.text', array(
+							'%from.country%' => $translator->trans($from_coin->getCountry()),
+							'%from.name%' => $from->getUser()->getUsername(),
+							'%from.value%' => (string) $from_coin->getValue(),
+							'%from.year%' => (string) $from_coin->getYear(),
+							'%to.country%' => $translator->trans($to_coin->getCountry()),
+							'%to.name%' => $to->getUser()->getUsername(),
+							'%to.value%' => (string) $to_coin->getValue(),
+							'%to.year%' => (string) $to_coin->getYear(),
+						)));
 
 		// Register share
 		$share = new Share();

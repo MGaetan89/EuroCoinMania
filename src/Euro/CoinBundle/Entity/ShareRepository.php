@@ -33,7 +33,7 @@ class ShareRepository extends EntityRepository {
 						->join('s.to_user_coin', 'to_uc')
 						->where($expr->eq('from_uc.user', ':user'))
 						->orWhere($expr->eq('to_uc.user', ':user'))
-						->orderBy('s.date', 'ASC')
+						->orderBy('s.date', 'DESC')
 						->setParameter('user', $user)
 						->getQuery()
 						->getResult();

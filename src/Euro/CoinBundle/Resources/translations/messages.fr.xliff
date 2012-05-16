@@ -122,6 +122,21 @@
 				<source>coin.shares.pm</source>
 				<target>Conversation</target>
 			</trans-unit>
+			<trans-unit id="coin.shares.pm.text">
+				<source>coin.shares.pm.text</source>
+				<target><![CDATA[
+Bonjour %to.name%,
+
+Je souhaiterais échanger ma pièce de **%from.value% %from.country% %from.year%** contre ta pièce de **%to.value% %to.country% %to.year%**
+Qu'en penses-tu ?
+
+%from.name%
+				]]></target>
+			</trans-unit>
+			<trans-unit id="coin.shares.pm.title">
+				<source>coin.shares.pm.title</source>
+				<target>Echange avec %name%</target>
+			</trans-unit>
 			<trans-unit id="coin.shares.status">
 				<source>coin.shares.status</source>
 				<target>Statut</target>
