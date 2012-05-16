@@ -43,6 +43,7 @@
 					</li>
 					{% if app.user %}
 					<li{% if route in ['coin_doubles', 'coin_doubles_share'] %} class="active"{% endif %}><a href="{{ path('coin_doubles') }}">{{ 'coin.doubles'|trans }}</a></li>
+					<li{% if route == 'coin_shares' %} class="active"{% endif %}><a href="{{ path('coin_shares') }}">Echanges</a></li>
 					{% endif %}
 				</ul>
 

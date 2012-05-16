@@ -96,7 +96,11 @@
 			</trans-unit>
 			<trans-unit id="coin.share">
 				<source>coin.share</source>
-				<target>Partager</target>
+				<target>Echanger</target>
+			</trans-unit>
+			<trans-unit id="coin.shares">
+				<source>coin.shares</source>
+				<target>Echanges</target>
 			</trans-unit>
 			<trans-unit id="coin.show">
 				<source>coin.show</source>
