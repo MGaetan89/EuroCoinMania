@@ -22,7 +22,7 @@
 	{% endif %}
 
 	<tr>
-		<td>{{ coin.year }}</td>
+		<td>{{ macros.year(coin.year) }}</td>
 		<td>{{ coin.value }}</td>
 		<td>{{ coin.description|trans }}</td>
 		<td>

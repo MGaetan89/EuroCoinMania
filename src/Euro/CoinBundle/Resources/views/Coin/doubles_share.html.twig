@@ -19,7 +19,7 @@
 	{% endset %}
 
 	<div class="alert alert-info">
-		{{ 'double.share.coin'|trans({ '%value%': coin.value, '%country%': coin.country|trans, '%year%': coin.year })|raw }}
+		{{ 'double.share.coin'|trans({ '%coin%': macros.coin(coin) })|raw }}
 	</div>
 
 	{% for coin in coins %}
@@ -66,7 +66,7 @@
 			{% endif %}
 
 		<tr>
-			<td>{{ coin.year }}</td>
+			<td>{{ macros.year(coin.year) }}</td>
 			{% set changed, column, year = false, 0, coin.year %}
 		{% endif %}
 

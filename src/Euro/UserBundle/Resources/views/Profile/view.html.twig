@@ -93,7 +93,7 @@
 				{% endif %}
 
 			<tr>
-				<td>{{ coin.year }}</td>
+				<td>{{ macros.year(coin.year) }}</td>
 				{% set changed, column, year = false, 0, coin.year %}
 			{% endif %}
 

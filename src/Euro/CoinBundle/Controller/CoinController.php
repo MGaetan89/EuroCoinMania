@@ -201,7 +201,9 @@ class CoinController extends Controller {
 		$em = $this->getDoctrine()->getEntityManager();
 		$shares = $em->getRepository('EuroCoinBundle:Share')->getSharesByUser($user);
 
-		var_dump($shares);
+		return $this->render('EuroCoinBundle:Coin:shares.html.twig', array(
+					'shares' => $shares,
+				));
 	}
 
 	private function buildVars(array $coins) {
@@ -227,7 +229,7 @@ class CoinController extends Controller {
 			$countries[$country->getId()] = $translator->trans($country);
 			$sorted[$countries[$country->getId()]][] = $coin;
 			$values[$value->getId()] = (string) $value;
-			$years[$year->getId()] = (string) $year;
+			$years[$year->getId()] = $year;
 		}
 
 		asort($countries);

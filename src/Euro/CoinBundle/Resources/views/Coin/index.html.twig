@@ -65,7 +65,7 @@
 					<div class="accordion-inner">
 						<ul>
 							{% for id, year in years %}
-							<li><a href="{{ path('coin_filter', filters|merge({ year: id })) }}">{{ year }}</a></li>
+							<li><a href="{{ path('coin_filter', filters|merge({ year: id })) }}">{{ macros.year(year) }}</a></li>
 							{% endfor %}
 						</ul>
 					</div>

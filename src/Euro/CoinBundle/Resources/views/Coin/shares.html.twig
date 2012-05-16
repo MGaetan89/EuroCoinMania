@@ -1,0 +1,37 @@
+{% extends '::base.html.twig' %}
+
+{% block title %}{{ 'coin.list_shares'|trans }}{% endblock %}
+
+{% block body %}
+<div class="page-header">
+	<h1>{{ block('title') }}</h1>
+</div>
+
+{% if shares %}
+	<table class="table table-bordered table-condensed table-striped">
+	<thead>
+		<tr>
+			<th>{{ 'coin.shares.status'|trans }}</th>
+			<th>{{ 'coin.shares.from_coin'|trans }}</th>
+			<th>{{ 'coin.shares.with'|trans }}</th>
+			<th>{{ 'coin.shares.to_coin'|trans }}</th>
+			<th>{{ 'coin.shares.date'|trans }}</th>
+			<th>{{ 'coin.shares.pm'|trans }}</th>
+		</tr>
+	</thead>
+	<tbody>
+		{% for share in shares %}
+			<tr>
+				<td>{{ macros.share_status(share.status) }}</td>
+				<td>{{ macros.coin(share.fromusercoin.coin) }}</td>
+				<td><a href="{{ path('user_view', { id: share.tousercoin.user.id }) }}">{{ share.tousercoin.user.username }}</a></td>
+				<td>{{ macros.coin(share.tousercoin.coin) }}</td>
+				<td>{{ share.date|localizeddate }}</td>
+				<td><a href="{{ path('pm_read', { id: share.pm.conversation }) }}">{{ share.pm.title }}</a></td>
+			</tr>
+		{% endfor %}
+	</tbody>
+	</table>
+{% else %}
+{% endif %}
+{% endblock %}

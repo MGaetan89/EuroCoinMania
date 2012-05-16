@@ -3,6 +3,7 @@
 namespace Euro\CoinBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Euro\PrivateMessageBundle\Entity\PrivateMessage;
 
 /**
  * Euro\CoinBundle\Entity\Share
@@ -49,6 +50,12 @@ class Share {
 	 * @ORM\Column(name="date", type="datetime")
 	 */
 	private $date;
+
+	/**
+	 * @ORM\ManyToOne(targetEntity="Euro\PrivateMessageBundle\Entity\PrivateMessage")
+	 * @ORM\JoinColumn(name="pm_id", referencedColumnName="id")
+	 */
+	private $pm;
 
 	public function __construct() {
 		$this->status = self::STATUS_PENDING;
@@ -142,6 +149,26 @@ class Share {
 	 */
 	public function getDate() {
 		return $this->date;
+	}
+
+	/**
+	 * Set pm
+	 *
+	 * @param PrivateMessage $pm
+	 */
+	public function setPm(PrivateMessage $pm) {
+		$this->pm = $pm;
+
+		return $this;
+	}
+
+	/**
+	 * Get pm
+	 *
+	 * @return PrivateMessage
+	 */
+	public function getPm() {
+		return $this->pm;
 	}
 
 }

@@ -82,6 +82,10 @@
 				<source>coin.list_doubles_share</source>
 				<target>Liste des doubles disponibles</target>
 			</trans-unit>
+			<trans-unit id="coin.list_shares">
+				<source>coin.list_shares</source>
+				<target>Liste de vos échanges</target>
+			</trans-unit>
 			<trans-unit id="coin.mintage">
 				<source>coin.mintage</source>
 				<target>Tirage</target>
@@ -101,6 +105,42 @@
 			<trans-unit id="coin.shares">
 				<source>coin.shares</source>
 				<target>Echanges</target>
+			</trans-unit>
+			<trans-unit id="coin.shares.date">
+				<source>coin.shares.date</source>
+				<target>Date</target>
+			</trans-unit>
+			<trans-unit id="coin.shares.from_coin">
+				<source>coin.shares.from_coin</source>
+				<target>Votre pièce</target>
+			</trans-unit>
+			<trans-unit id="coin.shares.pm">
+				<source>coin.shares.pm</source>
+				<target>Conversation</target>
+			</trans-unit>
+			<trans-unit id="coin.shares.status">
+				<source>coin.shares.status</source>
+				<target>Statut</target>
+			</trans-unit>
+			<trans-unit id="coin.shares.to_coin">
+				<source>coin.shares.to_coin</source>
+				<target>Contre</target>
+			</trans-unit>
+			<trans-unit id="coin.shares.with">
+				<source>coin.shares.with</source>
+				<target>Avec</target>
+			</trans-unit>
+			<trans-unit id="coin.shares.status.canceled">
+				<source>coin.shares.status.canceled</source>
+				<target>Annulé</target>
+			</trans-unit>
+			<trans-unit id="coin.shares.status.pending">
+				<source>coin.shares.status.pending</source>
+				<target>En cours</target>
+			</trans-unit>
+			<trans-unit id="coin.shares.status.validated">
+				<source>coin.shares.status.validated</source>
+				<target>Terminé</target>
 			</trans-unit>
 			<trans-unit id="coin.show">
 				<source>coin.show</source>
@@ -321,7 +361,7 @@
 			<trans-unit id="double.share.coin">
 				<source>double.share.coin</source>
 				<target><![CDATA[
-					Vous souhaitez échanger votre pièce de <strong>%value% %country% %year%</strong>.
+					Vous souhaitez échanger votre pièce de <strong>%coin%</strong>.
 				]]></target>
 			</trans-unit>
 			<trans-unit id="information">
