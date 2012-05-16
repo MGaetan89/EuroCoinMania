@@ -13,7 +13,7 @@
 
 				<div class="pull-right">
 					{% set close_text = 'pm.close' %}
-					{% if messages[0].share %}
+					{% if messages[0].share and messages[0].share.fromusercoin.user.id != app.user.id %}
 						{% set close_text = 'pm.reject' %}
 
 						<a class="btn btn-success" href="{{ path('pm_close', { id: messages[0].conversation }) }}">
