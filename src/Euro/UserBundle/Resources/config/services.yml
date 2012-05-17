@@ -1,0 +1,6 @@
+services:
+    euro_user.profile.form.type:
+        class: Euro\UserBundle\Form\Type\ProfileFormType
+        arguments: [%fos_user.model.user.class%]
+        tags:
+            - { name: form.type, alias: euro_user_profile }

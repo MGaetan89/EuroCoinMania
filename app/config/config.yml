@@ -63,6 +63,9 @@ fos_user:
     db_driver: orm
     firewall_name: main
     user_class: Euro\UserBundle\Entity\User
+    profile:
+        form:
+            type: euro_user_profile
 
 sonata_admin:
     dashboard:
