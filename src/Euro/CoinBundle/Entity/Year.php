@@ -9,7 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Euro\CoinBundle\Entity\Year
  *
- * @ORM\Table()
+ * @ORM\Table(name="year")
  * @ORM\Entity(repositoryClass="Euro\CoinBundle\Entity\YearRepository")
  */
 class Year {

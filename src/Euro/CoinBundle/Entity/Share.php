@@ -8,7 +8,7 @@ use Euro\PrivateMessageBundle\Entity\PrivateMessage;
 /**
  * Euro\CoinBundle\Entity\Share
  *
- * @ORM\Table()
+ * @ORM\Table(name="share")
  * @ORM\Entity(repositoryClass="Euro\CoinBundle\Entity\ShareRepository")
  */
 class Share {
