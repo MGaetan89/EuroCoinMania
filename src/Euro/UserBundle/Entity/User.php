@@ -30,6 +30,13 @@ class User extends BaseUser {
 	protected $registration_date;
 
 	/**
+	 * @var date $birthday
+	 *
+	 * @ORM\Column(name="birthday", type="date")
+	 */
+	protected $birthday;
+
+	/**
 	 * @ORM\OneToMany(targetEntity="Euro\CoinBundle\Entity\UserCoin", mappedBy="user")
 	 */
 	protected $coins;
@@ -82,12 +89,39 @@ class User extends BaseUser {
 	}
 
 	/**
+	 * Set birthday
+	 *
+	 * @param date $birthday
+	 */
+	public function setBirthday($birthday) {
+		$this->birthday = $birthday;
+	}
+
+	/**
+	 * Get birthday
+	 *
+	 * @return date
+	 */
+	public function getBirthday() {
+		return $this->birthday;
+	}
+
+	/**
 	 * Get coins
 	 *
 	 * @return Collection
 	 */
 	public function getCoins() {
 		return $this->coins;
+	}
+
+	/**
+	 * Add coins
+	 *
+	 * @param Euro\CoinBundle\Entity\UserCoin $coins
+	 */
+	public function addUserCoin(\Euro\CoinBundle\Entity\UserCoin $coins) {
+		$this->coins[] = $coins;
 	}
 
 }

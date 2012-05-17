@@ -19,6 +19,11 @@
 				<dt>{{ 'user.profile.last_login'|trans }}</dt>
 				<dd>{{ user.lastlogin|localizeddate }}</dd>
 
+				{% if user.birthday.timestamp %}
+				<dt>{{ 'user.profile.birthday'|trans }}</dt>
+				<dd>{{ user.birthday|localizeddate('long', 'none') }}</dd>
+				{% endif %}
+
 				{% if app.user.id != user.id %}
 				<dt>{{ 'user.contact'|trans }}</dt>
 				<dd><a href="{{ path('pm_new_to', { to: user.id }) }}">{{ 'user.contact.pm'|trans }}</a></dd>

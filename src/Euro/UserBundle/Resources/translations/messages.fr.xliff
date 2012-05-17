@@ -18,6 +18,10 @@
 				<source>user.profile</source>
 				<target>Profil</target>
 			</trans-unit>
+			<trans-unit id="user.profile.birthday">
+				<source>user.profile.birthday</source>
+				<target>Anniversaire</target>
+			</trans-unit>
 			<trans-unit id="user.profile.edit">
 				<source>user.profile.edit</source>
 				<target>Modifier</target>
