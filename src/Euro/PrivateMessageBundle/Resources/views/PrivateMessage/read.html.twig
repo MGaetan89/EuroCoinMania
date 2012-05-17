@@ -12,8 +12,8 @@
 				<a data-toggle="collapse" data-target="#answer_form">{{ 'pm.answer'|trans }}</a>
 
 				<div class="pull-right">
-					{% set close_text, share = 'pm.close', messages[0].share %}
-					{% if share and share.fromusercoin.user.id != app.user.id and share.status == 1 %}
+					{% set close_text, share = 'pm.close', messages[messages|length - 1].share %}
+					{% if share and share.tousercoin.user.id == app.user.id and share.status == 1 %}
 						{% set close_text = 'pm.reject' %}
 
 						<a class="btn btn-success" href="{{ path('coin_doubles_share_accept', { id: share.id }) }}">

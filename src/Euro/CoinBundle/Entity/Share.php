@@ -14,7 +14,8 @@ use Euro\PrivateMessageBundle\Entity\PrivateMessage;
 class Share {
 	const STATUS_PENDING = 1;
 	const STATUS_VALIDATED = 2;
-	const STATUS_CANCELED = 3;
+	const STATUS_REFUSED = 3;
+	const STATUS_CANCELED = 4;
 
 	/**
 	 * @var integer $id

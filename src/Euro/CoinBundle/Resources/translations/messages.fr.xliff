@@ -157,6 +157,10 @@ Qu'en penses-tu ?
 				<source>coin.shares.status.pending</source>
 				<target>En cours</target>
 			</trans-unit>
+			<trans-unit id="coin.shares.status.refused">
+				<source>coin.shares.status.refused</source>
+				<target>Refusé</target>
+			</trans-unit>
 			<trans-unit id="coin.shares.status.validated">
 				<source>coin.shares.status.validated</source>
 				<target>Terminé</target>

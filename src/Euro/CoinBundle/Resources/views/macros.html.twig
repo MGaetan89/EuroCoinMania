@@ -22,6 +22,8 @@
 		<span class="label label-warning btn-mini">{{ 'coin.shares.status.pending'|trans }}</span>
 	{% elseif status == 2 %}
 		<span class="label label-success btn-mini">{{ 'coin.shares.status.validated'|trans }}</span>
+	{% elseif status == 3 %}
+		<span class="label label-important btn-mini">{{ 'coin.shares.status.refused'|trans }}</span>
 	{% else %}
 		<span class="label label-important btn-mini">{{ 'coin.shares.status.canceled'|trans }}</span>
 	{% endif %}
