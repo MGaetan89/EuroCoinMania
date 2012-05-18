@@ -23,7 +23,7 @@
 
 	<tr>
 		<td>{{ macros.year(coin.year) }}</td>
-		<td>{{ coin.value }}</td>
+		<td>{{ macros.value(coin.value)}}</td>
 		<td>{{ coin.description|trans }}</td>
 		<td>
 			{% if app.user %}

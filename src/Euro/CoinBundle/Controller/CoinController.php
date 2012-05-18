@@ -301,11 +301,11 @@ class CoinController extends Controller {
 			$value = $coin->getValue();
 			$year = $coin->getYear();
 
-			$coin_values[$country->getId()][$value->getId()] = (string) $value;
+			$coin_values[$country->getId()][$value->getId()] = $value;
 			$commemoratives[$coin->getCommemorative()] = $coin->getCommemorative();
 			$countries[$country->getId()] = $translator->trans($country);
 			$sorted[$countries[$country->getId()]][] = $coin;
-			$values[$value->getId()] = (string) $value;
+			$values[$value->getId()] = $value;
 			$years[$year->getId()] = $year;
 		}
 
@@ -314,7 +314,19 @@ class CoinController extends Controller {
 		asort($years);
 		ksort($sorted);
 		foreach ($coin_values as $country => &$val) {
-			rsort($val);
+			usort($val, function ($a, $b) {
+				$a = $a->getValue();
+				$b = $b->getValue();
+				if ($a < $b) {
+					return 1;
+				}
+
+				if ($a > $b) {
+					return -1;
+				}
+
+				return 0;
+			});
 		}
 
 		$coins = array();

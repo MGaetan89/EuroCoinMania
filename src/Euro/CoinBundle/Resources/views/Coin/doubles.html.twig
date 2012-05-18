@@ -33,7 +33,7 @@
 				<tr>
 					<th><a href="{{ path('country_show', { id: coin.country.id }) }}">{{ coin.country|trans }}</a></th>
 					{% for value in coin_values[coin.country.id] %}
-					<th>{{ value }}</th>
+					<th>{{ macros.value(value) }}</th>
 					{% endfor %}
 
 					{% set changed, column, year = false, 0, '1990' %}

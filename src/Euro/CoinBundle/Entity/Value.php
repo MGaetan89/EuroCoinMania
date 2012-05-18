@@ -45,10 +45,6 @@ class Value {
 		$this->coins = new ArrayCollection();
 	}
 
-	public function __toString() {
-		return $this->value . ' €';
-	}
-
 	/**
 	 * Get id
 	 *

@@ -35,7 +35,7 @@
 			<tr>
 				<th>{{ 'coin.year'|trans }}</th>
 				{% for value in values %}
-				<th>{{ value }}</th>
+				<th>{{ macros.value(value) }}</th>
 				{% endfor %}
 				<th>{{ 'coin.total'|trans }}</th>
 			</tr>

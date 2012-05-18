@@ -12,7 +12,7 @@
 
 {% macro coin(coin) %}
 {% spaceless %}
-	{{ coin.value }} {{ coin.country|trans }} {{ _self.year(coin.year) }}
+	{{ _self.value(coin.value) }} {{ coin.country|trans }} {{ _self.year(coin.year) }}
 {% endspaceless %}
 {% endmacro %}
 
@@ -26,6 +26,16 @@
 		<span class="label label-important btn-mini">{{ 'coin.shares.status.refused'|trans }}</span>
 	{% else %}
 		<span class="label label-important btn-mini">{{ 'coin.shares.status.canceled'|trans }}</span>
+	{% endif %}
+{% endspaceless %}
+{% endmacro %}
+
+{% macro value(value) %}
+{% spaceless %}
+	{% if value.value < 1 %}
+		{{ value.value * 100 }} {{ 'cent'|trans }}
+	{% else %}
+		{{ value.value }} {{ 'euro'|trans }}
 	{% endif %}
 {% endspaceless %}
 {% endmacro %}

@@ -82,7 +82,7 @@
 					<div class="accordion-inner">
 						<ul>
 							{% for id, value in values %}
-							<li><a href="{{ path('coin_filter', filters|merge({ value: id })) }}">{{ value }}</a></li>
+							<li><a href="{{ path('coin_filter', filters|merge({ value: id })) }}">{{ macros.value(value) }}</a></li>
 							{% endfor %}
 						</ul>
 					</div>

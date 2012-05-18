@@ -6,6 +6,14 @@
 				<source>sitename</source>
 				<target>Euro Collector</target>
 			</trans-unit>
+			<trans-unit id="cent">
+				<source>cent</source>
+				<target>cent</target>
+			</trans-unit>
+			<trans-unit id="euro">
+				<source>euro</source>
+				<target>€</target>
+			</trans-unit>
 			<trans-unit id="yes">
 				<source>yes</source>
 				<target>Oui</target>
