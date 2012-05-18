@@ -29,7 +29,7 @@ class UrlGenerator implements UrlGeneratorInterface
 {
     protected $context;
     protected $decodedChars = array(
-        // %2F is not valid in a URL, so we don't encode it (which is fine as the requirements explicitely allowed it)
+        // %2F is not valid in a URL, so we don't encode it (which is fine as the requirements explicitly allowed it)
         '%2F' => '/',
     );
 
@@ -76,9 +76,9 @@ class UrlGenerator implements UrlGeneratorInterface
     /**
      * Generates a URL from the given parameters.
      *
-     * @param  string  $name       The name of the route
-     * @param  mixed   $parameters An array of parameters
-     * @param  Boolean $absolute   Whether to generate an absolute URL
+     * @param string  $name       The name of the route
+     * @param mixed   $parameters An array of parameters
+     * @param Boolean $absolute   Whether to generate an absolute URL
      *
      * @return string The generated URL
      *

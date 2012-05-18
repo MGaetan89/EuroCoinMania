@@ -57,7 +57,12 @@ abstract class Kernel implements KernelInterface
     protected $startTime;
     protected $classes;
 
-    const VERSION = '2.0.13';
+    const VERSION         = '2.0.14';
+    const VERSION_ID      = '20014';
+    const MAJOR_VERSION   = '2';
+    const MINOR_VERSION   = '0';
+    const RELEASE_VERSION = '14';
+    const EXTRA_VERSION   = '';
 
     /**
      * Constructor.
@@ -391,8 +396,8 @@ abstract class Kernel implements KernelInterface
     /**
      * Loads the PHP class cache.
      *
-     * @param string  $name      The cache name prefix
-     * @param string  $extension File extension of the resulting file
+     * @param string $name      The cache name prefix
+     * @param string $extension File extension of the resulting file
      */
     public function loadClassCache($name = 'classes', $extension = '.php')
     {
