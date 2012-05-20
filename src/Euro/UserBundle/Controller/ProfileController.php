@@ -44,7 +44,7 @@ class ProfileController extends Controller {
 				$country = $coin->getCountry();
 				$value = $coin->getValue();
 
-				$coin_values[$country->getId()][$value->getId()] = (string) $value;
+				$coin_values[$country->getId()][$value->getId()] = $value;
 				$sorted[$translator->trans($country)][] = $uc;
 			}
 		}
