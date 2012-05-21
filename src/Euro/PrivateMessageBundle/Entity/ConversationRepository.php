@@ -43,31 +43,4 @@ class ConversationRepository extends EntityRepository {
 						->getResult();
 	}
 
-	public function getNewMessageCount($user) {
-		$queryBuiler = $this->createQueryBuilder('c');
-		$expr = $queryBuiler->expr();
-
-		return (int) $queryBuiler
-						->select($expr->count('DISTINCT c.id'))
-						->where($expr->eq('c.to_user', ':user'))
-						->andWhere($expr->eq('c.is_read', '0'))
-						->setParameter('user', $user)
-						->getQuery()
-						->getSingleScalarResult();
-	}
-
-	public function setConversationRead($conversation, $user) {
-		$queryBuiler = $this->createQueryBuilder('c');
-		$expr = $queryBuiler->expr();
-
-		$queryBuiler->update()
-				->set('c.is_read', '1')
-				->where($expr->eq('c.id', ':conversation'))
-				->andWhere($expr->eq('c.to_user', ':user'))
-				->setParameter('conversation', $conversation)
-				->setParameter('user', $user)
-				->getQuery()
-				->getResult();
-	}
-
 }

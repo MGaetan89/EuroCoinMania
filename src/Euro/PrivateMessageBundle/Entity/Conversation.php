@@ -51,13 +51,6 @@ class Conversation {
 	private $is_open;
 
 	/**
-	 * @var boolean $is_read
-	 *
-	 * @ORM\Column(name="is_read", type="boolean")
-	 */
-	private $is_read;
-
-	/**
 	 * @ORM\OneToOne(targetEntity="Euro\CoinBundle\Entity\Share", inversedBy="pm")
 	 * @ORM\JoinColumn(name="share_id", referencedColumnName="id")
 	 */
@@ -72,7 +65,6 @@ class Conversation {
 	public function __construct() {
 		$this->pm = new ArrayCollection();
 		$this->is_open = true;
-		$this->is_read = false;
 	}
 
 	/**
@@ -162,26 +154,6 @@ class Conversation {
 	 */
 	public function getIsOpen() {
 		return $this->is_open;
-	}
-
-	/**
-	 * Set is_read
-	 *
-	 * @param boolean $isRead
-	 */
-	public function setIsRead($isRead) {
-		$this->is_read = $isRead;
-
-		return $this;
-	}
-
-	/**
-	 * Get is_read
-	 *
-	 * @return boolean
-	 */
-	public function getIsRead() {
-		return $this->is_read;
 	}
 
 	/**

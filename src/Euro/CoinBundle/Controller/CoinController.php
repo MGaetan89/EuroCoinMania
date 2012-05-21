@@ -5,6 +5,7 @@ namespace Euro\CoinBundle\Controller;
 use FOS\UserBundle\Model\UserInterface;
 use Euro\CoinBundle\Entity\Share;
 use Euro\CoinBundle\Entity\UserCoin;
+use Euro\PrivateMessageBundle\Entity\Conversation;
 use Euro\PrivateMessageBundle\Entity\PrivateMessage;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
@@ -241,13 +242,18 @@ class CoinController extends Controller {
 		// Create conversation
 		$from_coin = $from->getCoin();
 		$to_coin = $to->getCoin();
-		$pm = new PrivateMessage();
-		$pm
+
+		$conversation = new Conversation();
+		$conversation
 				->setFromUser($from->getUser())
 				->setToUser($to->getUser())
 				->setTitle($translator->trans('coin.shares.pm.title', array(
 							'%name%' => $from->getUser()->getUsername()
-						)))
+						)));
+
+		$pm = new PrivateMessage();
+		$pm
+				->setConversation($conversation)
 				->setText($translator->trans('coin.shares.pm.text', array(
 							'%from.country%' => $translator->trans($from_coin->getCountry()),
 							'%from.name%' => $from->getUser()->getUsername(),
@@ -257,15 +263,19 @@ class CoinController extends Controller {
 							'%to.name%' => $to->getUser()->getUsername(),
 							'%to.value%' => (string) $to_coin->getValue(),
 							'%to.year%' => (string) $to_coin->getYear(),
-						)));
+						)))
+				->setDirection(PrivateMessage::DIRECTION_FROM_TO);
 
 		// Register share
 		$share = new Share();
 		$share
 				->setFromUserCoin($from)
 				->setToUserCoin($to)
-				->setPm($pm);
+				->setPm($conversation);
 
+		$conversation->setShare($share);
+
+		$em->persist($conversation);
 		$em->persist($pm);
 		$em->persist($share);
 		$em->flush();

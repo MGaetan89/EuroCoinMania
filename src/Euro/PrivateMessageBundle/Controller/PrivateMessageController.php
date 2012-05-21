@@ -35,7 +35,7 @@ class PrivateMessageController extends Controller {
 		}
 
 		$em = $this->getDoctrine()->getEntityManager();
-		$new_pm = $em->getRepository('EuroPrivateMessageBundle:Conversation')->getNewMessageCount($user);
+		$new_pm = $em->getRepository('EuroPrivateMessageBundle:PrivateMessage')->getNewMessageCount($user);
 
 		return $this->render('EuroPrivateMessageBundle:PrivateMessage:has_new_message.html.twig', array(
 					'new_pm' => $new_pm,
@@ -48,17 +48,33 @@ class PrivateMessageController extends Controller {
 			throw new \Exception('You are not allowed to access this page !');
 		}
 
+		$user_id = $user->getId();
 		$em = $this->getDoctrine()->getEntityManager();
 		$conversations = $em->getRepository('EuroPrivateMessageBundle:Conversation')->getConversationsByUser($user);
 
+		$unread = array();
+		foreach ($conversations as $conversation) {
+			$from = $conversation->getFromUser()->getId();
+			$to = $conversation->getToUser()->getId();
+			foreach ($conversation->getPm() as $pm) {
+				if (!$pm->getIsRead()) {
+					$direction = $pm->getDirection();
+					if (
+							($to === $user_id && $direction === PrivateMessage::DIRECTION_FROM_TO) ||
+							($from === $user_id && $direction === PrivateMessage::DIRECTION_TO_FROM)
+					) {
+						$unread[$conversation->getId()] = true;
+					}
+				}
+			}
+		}
+
 		return $this->render('EuroPrivateMessageBundle:PrivateMessage:index.html.twig', array(
 					'conversations' => $conversations,
+					'unread' => $unread,
 				));
 	}
 
-	/**
-	 * @todo Refactoring
-	 */
 	public function newAction($to, Request $request) {
 		$user = $this->getUser();
 		if (!$user instanceof UserInterface) {
@@ -72,14 +88,16 @@ class PrivateMessageController extends Controller {
 			$form->bindRequest($request);
 
 			if ($form->isValid()) {
+				$data = (object) $form->getData();
+
 				$conversation = new Conversation();
 				$conversation->setFromUser($user);
-				$conversation->setToUser($form->get('to_user'));
-				$conversation->setTitle($form->get('title'));
+				$conversation->setToUser($data->to_user);
+				$conversation->setTitle($data->title);
 
 				$pm = new PrivateMessage();
 				$pm->setConversation($conversation);
-				$pm->setText($form->getText());
+				$pm->setText($data->text);
 				$pm->setDirection(PrivateMessage::DIRECTION_FROM_TO);
 
 				$em->persist($conversation);
@@ -104,8 +122,7 @@ class PrivateMessageController extends Controller {
 		}
 
 		$em = $this->getDoctrine()->getEntityManager();
-		$repository = $em->getRepository('EuroPrivateMessageBundle:Conversation');
-		$conversation = $repository->find($id);
+		$conversation = $em->getRepository('EuroPrivateMessageBundle:Conversation')->find($id);
 		$user_id = $user->getId();
 		if ($conversation->getFromUser()->getId() !== $user_id && $conversation->getToUser()->getId() !== $user_id) {
 			throw new \Exception('You are not allowed to access this page !');
@@ -132,7 +149,20 @@ class PrivateMessageController extends Controller {
 			}
 		}
 
-		$repository->setConversationRead($id, $user);
+		if ($conversation) {
+			$pm = $conversation->getPm();
+			$from = $conversation->getFromUser()->getId();
+			$to = $conversation->getToUser()->getId();
+			if (!$pm[0]->getIsRead()) {
+				$direction = $pm[0]->getDirection();
+				if (
+						($direction === PrivateMessage::DIRECTION_FROM_TO && $to === $user_id) ||
+						($direction === PrivateMessage::DIRECTION_TO_FROM && $from === $user_id)
+				) {
+					$em->getRepository('EuroPrivateMessageBundle:PrivateMessage')->setConversationRead($conversation);
+				}
+			}
+		}
 
 		return $this->render('EuroPrivateMessageBundle:PrivateMessage:read.html.twig', array(
 					'conversation' => $conversation,

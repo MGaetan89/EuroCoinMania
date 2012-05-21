@@ -3,7 +3,7 @@
 namespace Euro\CoinBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Euro\PrivateMessageBundle\Entity\PrivateMessage;
+use Euro\PrivateMessageBundle\Entity\Conversation;
 
 /**
  * Euro\CoinBundle\Entity\Share
@@ -53,8 +53,8 @@ class Share {
 	private $date;
 
 	/**
-	 * @ORM\OneToOne(targetEntity="Euro\PrivateMessageBundle\Entity\PrivateMessage", inversedBy="share")
-	 * @ORM\JoinColumn(name="pm_id", referencedColumnName="id")
+	 * @ORM\OneToOne(targetEntity="Euro\PrivateMessageBundle\Entity\Conversation", inversedBy="share")
+	 * @ORM\JoinColumn(name="conversation_id", referencedColumnName="id")
 	 */
 	private $pm;
 
@@ -155,9 +155,9 @@ class Share {
 	/**
 	 * Set pm
 	 *
-	 * @param PrivateMessage $pm
+	 * @param Conversation $pm
 	 */
-	public function setPm(PrivateMessage $pm) {
+	public function setPm(Conversation $pm) {
 		$this->pm = $pm;
 
 		return $this;
@@ -166,7 +166,7 @@ class Share {
 	/**
 	 * Get pm
 	 *
-	 * @return PrivateMessage
+	 * @return Conversation
 	 */
 	public function getPm() {
 		return $this->pm;

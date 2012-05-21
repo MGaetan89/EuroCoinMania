@@ -34,7 +34,7 @@
 			<a href="{{ path('pm_read', { id: conversation.id }) }}">{{ conversation.title }}</a>
 			{% if not conversation.isopen %}</s>{% endif %}
 
-			{% if not conversation.isread and conversation.touser.id == app.user.id %}
+			{% if unread[conversation.id] is defined %}
 				<span class="label label-success pull-right">{{ 'pm.unread'|trans }}</span>
 			{% endif %}
 		</td>

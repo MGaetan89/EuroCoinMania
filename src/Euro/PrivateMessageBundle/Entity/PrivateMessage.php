@@ -50,7 +50,15 @@ class PrivateMessage {
 	 */
 	private $direction;
 
+	/**
+	 * @var boolean $is_read
+	 *
+	 * @ORM\Column(name="is_read", type="boolean")
+	 */
+	private $is_read;
+
 	public function __construct() {
+		$this->is_read = false;
 		$this->post_date = new \DateTime();
 	}
 
@@ -141,6 +149,26 @@ class PrivateMessage {
 	 */
 	public function getDirection() {
 		return $this->direction;
+	}
+
+	/**
+	 * Set is_read
+	 *
+	 * @param boolean $isRead
+	 */
+	public function setIsRead($isRead) {
+		$this->is_read = $isRead;
+
+		return $this;
+	}
+
+	/**
+	 * Get is_read
+	 *
+	 * @return boolean
+	 */
+	public function getIsRead() {
+		return $this->is_read;
 	}
 
 }

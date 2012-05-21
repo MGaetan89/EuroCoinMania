@@ -12,4 +12,38 @@ use Doctrine\ORM\EntityRepository;
  */
 class PrivateMessageRepository extends EntityRepository {
 
+	public function getNewMessageCount($user) {
+		$queryBuiler = $this->createQueryBuilder('pm');
+		$expr = $queryBuiler->expr();
+
+		return (int) $queryBuiler
+						->select($expr->count('DISTINCT pm.conversation'))
+						->join('pm.conversation', 'c')
+						->where(
+								$expr->orX(
+										$expr->andX(
+												$expr->eq('c.to_user', ':user'), $expr->eq('pm.direction', '1')
+										), $expr->andX(
+												$expr->eq('c.from_user', ':user'), $expr->eq('pm.direction', '0')
+										)
+								)
+						)
+						->andWhere($expr->eq('pm.is_read', '0'))
+						->setParameter('user', $user)
+						->getQuery()
+						->getSingleScalarResult();
+	}
+
+	public function setConversationRead($conversation) {
+		$queryBuiler = $this->createQueryBuilder('pm');
+		$expr = $queryBuiler->expr();
+
+		$queryBuiler->update()
+				->set('pm.is_read', '1')
+				->where($expr->eq('pm.conversation', ':conversation'))
+				->setParameter('conversation', $conversation)
+				->getQuery()
+				->getResult();
+	}
+
 }
