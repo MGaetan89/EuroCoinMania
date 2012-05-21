@@ -105,6 +105,7 @@ class CoinController extends Controller {
 		}
 
 		$em = $this->getDoctrine()->getEntityManager();
+		$update = false;
 		$uc = null;
 		if ($id[0] !== 'c') {
 			$uc = $em->getRepository('EuroCoinBundle:UserCoin')->find($id);
@@ -118,6 +119,7 @@ class CoinController extends Controller {
 			$coin = $uc->getCoin();
 			if ($coin->getMemberTotal() < $coin->getMintage()) {
 				$uc->setQuantity($uc->getQuantity() + 1);
+				$update = true;
 			}
 		} else {
 			$coin = $em->getRepository('EuroCoinBundle:Coin')->find(substr($id, 1));
@@ -126,15 +128,20 @@ class CoinController extends Controller {
 				throw $this->createNotFoundException('Unable to find Coin entity.');
 			}
 
-			$uc = new UserCoin();
-			$uc->setUser($user);
-			$uc->setCoin($coin);
+			if ($coin->getMemberTotal() < $coin->getMintage()) {
+				$uc = new UserCoin();
+				$uc->setUser($user);
+				$uc->setCoin($coin);
 
-			$em->persist($uc);
+				$em->persist($uc);
+				$update = true;
+			}
 		}
 
-		$coin->setMemberTotal($coin->getMemberTotal() + 1);
-		$em->flush();
+		if ($update) {
+			$coin->setMemberTotal($coin->getMemberTotal() + 1);
+			$em->flush();
+		}
 
 		return new Response($uc->getQuantity());
 	}
@@ -169,6 +176,10 @@ class CoinController extends Controller {
 
 		$em = $this->getDoctrine()->getEntityManager();
 		$from = $em->getRepository('EuroCoinBundle:UserCoin')->find($id);
+		if ($from->getUser()->getId() !== $user->getId()) {
+			throw new \Exception('You are not allowed to access this page !');
+		}
+
 		$doubles = $em->getRepository('EuroCoinBundle:UserCoin')->getDifferentDoublesByUserAndCoin($user, $from->getCoin()->getId());
 		$vars = $this->buildVars($doubles);
 
@@ -196,7 +207,12 @@ class CoinController extends Controller {
 		}
 
 		$em = $this->getDoctrine()->getEntityManager();
-		$em->getRepository('EuroCoinBundle:Share')->setAccepted($id);
+		$repository = $em->getRepository('EuroCoinBundle:Share');
+		if ($repository->find($id)->getToUserCoin()->getUser()->getId() !== $user->getId()) {
+			throw new \Exception('You are not allowed to access this page !');
+		}
+
+		$repository->setAccepted($id);
 
 		return $this->redirect($this->generateUrl('coin_shares'));
 	}

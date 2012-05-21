@@ -80,7 +80,7 @@
 				<div class="btn-group coin-collection"{% if uc %} data-uc="{{ uc.id }}"{% else %} data-coin="{{ coin.id }}"{% endif %}>
 					<button class="btn btn-mini{% if quantity %} btn-danger{% endif %} coin-remove"{% if not uc or uc.quantity == 0 %} disabled="disabled"{% endif %}>-</button>
 					<button class="btn btn-mini coin-quantity" disabled="disabled">{{ quantity|number_format }}</button>
-					<button class="btn btn-mini btn-success coin-add">+</button>
+					<button class="btn btn-mini{% if coin.membertotal < coin.mintage %} btn-success coin-add{% else %}" disabled="disabled{% endif %}">+</button>
 				</div>
 			</div>
 
