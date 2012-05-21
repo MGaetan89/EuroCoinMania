@@ -106,6 +106,10 @@
 				<source>coin.none</source>
 				<target>Aucune pièce n'a été enregistrée</target>
 			</trans-unit>
+			<trans-unit id="coin.not_found">
+				<source>coin.not_found</source>
+				<target>La pièce que vous avez demandé n'existe pas</target>
+			</trans-unit>
 			<trans-unit id="coin.share">
 				<source>coin.share</source>
 				<target>Echanger</target>
@@ -220,6 +224,10 @@ Qu'en penses-tu ?
 			<trans-unit id="country.none">
 				<source>country.none</source>
 				<target>Aucun pays n'a été enregistré</target>
+			</trans-unit>
+			<trans-unit id="country.not_found">
+				<source>country.not_found</source>
+				<target>Le pays que vous avez demandé n'existe pas</target>
 			</trans-unit>
 			<trans-unit id="filters">
 				<source>filters</source>

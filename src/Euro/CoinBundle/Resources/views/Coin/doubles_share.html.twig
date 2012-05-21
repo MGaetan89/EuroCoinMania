@@ -34,8 +34,8 @@
 				</table>
 			{% endif %}
 
-			{% if user != users[coin.id] %}
-				{% set user = users[coin.id] %}
+			{% if user != uc[coin.id].user %}
+				{% set user = uc[coin.id].user %}
 
 				<div class="page-header">
 					<h3><a href="{{ path('user_view', { id: user.id }) }}">{{ user.username }}</a></h3>

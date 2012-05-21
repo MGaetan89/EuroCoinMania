@@ -3,6 +3,8 @@
 
 <div class="hide" id="coin-info-{{ coin.id }}">
 {% endif %}
+
+{% if coin %}
 	<dl{% if popover %} class="dl-horizontal"{% endif %}>
 		<dt>{{ 'coin.country'|trans }}</dt>
 		<dd>
@@ -27,6 +29,12 @@
 		<dd>{{ coin.description|trans }}</dd>
 		{% endif %}
 	</dl>
+{% else %}
+	<div class="alert alert-info">
+		{{ 'coin.not_found'|trans }}
+	</div>
+{% endif %}
+
 {% if popover %}
 </div>
 {% endif %}

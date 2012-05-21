@@ -14,10 +14,9 @@ class CountryController extends Controller {
 	 */
 	public function indexAction() {
 		$em = $this->getDoctrine()->getEntityManager();
-		$countries = $em->getRepository('EuroCoinBundle:Country')->findAll();
 
 		return $this->render('EuroCoinBundle:Country:index.html.twig', array(
-					'countries' => $countries,
+					'countries' => $em->getRepository('EuroCoinBundle:Country')->findAll(),
 				));
 	}
 

@@ -10,6 +10,7 @@
 </div>
 
 
+{% if country %}
 <div class="row-fluid">
 	<div class="span2">
 		<div class="well">
@@ -107,4 +108,9 @@
 		{% endif %}
 	</div>
 </div>
+{% else %}
+	<div class="alert alert-info">
+		{{ 'country.not_found'|trans }}
+	</div>
+{% endif %}
 {% endblock %}
