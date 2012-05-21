@@ -73,5 +73,5 @@ coin_add:
     pattern:  /{id}/add
     defaults: { _controller: "EuroCoinBundle:Coin:add" }
     requirements:
-        id: "\d+"
+        id: "c?\d+"
         _method: POST

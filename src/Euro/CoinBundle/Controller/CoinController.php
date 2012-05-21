@@ -79,7 +79,6 @@ class CoinController extends Controller {
 
 		$em = $this->getDoctrine()->getEntityManager();
 		$uc = $em->getRepository('EuroCoinBundle:UserCoin')->find($id);
-
 		if (!$uc) {
 			throw $this->createNotFoundException('Unable to find UserCoin entity.');
 		}
@@ -89,6 +88,9 @@ class CoinController extends Controller {
 		}
 
 		if ($uc->getQuantity() > 0) {
+			$coin = $uc->getCoin();
+			$coin->setMemberTotal($coin->getMemberTotal() - 1);
+
 			$uc->setQuantity($uc->getQuantity() - 1);
 			$em->flush();
 		}
@@ -103,11 +105,21 @@ class CoinController extends Controller {
 		}
 
 		$em = $this->getDoctrine()->getEntityManager();
+		$uc = null;
 		if ($id[0] !== 'c') {
 			$uc = $em->getRepository('EuroCoinBundle:UserCoin')->find($id);
 		}
 
-		if (!$uc) {
+		if ($uc) {
+			if ($user->getId() !== $uc->getUser()->getId()) {
+				throw new \Exception('You are not allowed to access this page !');
+			}
+
+			$coin = $uc->getCoin();
+			if ($coin->getMemberTotal() < $coin->getMintage()) {
+				$uc->setQuantity($uc->getQuantity() + 1);
+			}
+		} else {
 			$coin = $em->getRepository('EuroCoinBundle:Coin')->find(substr($id, 1));
 
 			if (!$coin) {
@@ -121,14 +133,7 @@ class CoinController extends Controller {
 			$em->persist($uc);
 		}
 
-		if ($uc) {
-			if ($user->getId() !== $uc->getUser()->getId()) {
-				throw new \Exception('You are not allowed to access this page !');
-			}
-
-			$uc->setQuantity($uc->getQuantity() + 1);
-		}
-
+		$coin->setMemberTotal($coin->getMemberTotal() + 1);
 		$em->flush();
 
 		return new Response($uc->getQuantity());

@@ -56,6 +56,13 @@ class Coin {
 	private $mintage;
 
 	/**
+	 * @var bigint $member_total
+	 *
+	 * @ORM\Column(name="member_total", type="integer")
+	 */
+	private $member_total;
+
+	/**
 	 * @var text $description
 	 *
 	 * @ORM\Column(name="description", nullable=true, type="string")
@@ -68,6 +75,7 @@ class Coin {
 	private $users;
 
 	public function __construct() {
+		$this->member_total = 0;
 		$this->users = new ArrayCollection();
 	}
 
@@ -178,6 +186,26 @@ class Coin {
 	 */
 	public function getMintage() {
 		return $this->mintage;
+	}
+
+	/**
+	 * Set member_total
+	 *
+	 * @param bigint $mintagemember_total
+	 */
+	public function setMemberTotal($member_total) {
+		$this->member_total = $member_total;
+
+		return $this;
+	}
+
+	/**
+	 * Get member_total
+	 *
+	 * @return bigint
+	 */
+	public function getMemberTotal() {
+		return $this->member_total;
 	}
 
 	/**
