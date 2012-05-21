@@ -65,6 +65,7 @@ class Conversation {
 
 	/**
 	 * @ORM\OneToMany(targetEntity="PrivateMessage", mappedBy="conversation")
+	 * @ORM\OrderBy({"post_date" = "DESC"})
 	 */
 	protected $pm;
 

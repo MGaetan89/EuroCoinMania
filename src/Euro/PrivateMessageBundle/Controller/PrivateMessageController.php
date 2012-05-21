@@ -2,7 +2,9 @@
 
 namespace Euro\PrivateMessageBundle\Controller;
 
+use Euro\PrivateMessageBundle\Entity\Conversation;
 use Euro\PrivateMessageBundle\Entity\PrivateMessage;
+use Euro\PrivateMessageBundle\Form\ConversationType;
 use Euro\PrivateMessageBundle\Form\PrivateMessageType;
 use FOS\UserBundle\Model\UserInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -63,16 +65,24 @@ class PrivateMessageController extends Controller {
 			throw new \Exception('You are not allowed to access this page !');
 		}
 
-		$pm = new PrivateMessage();
 		$em = $this->getDoctrine()->getEntityManager();
-		$form = $this->createForm(new PrivateMessageType($em, $user, $to), $pm);
+		$form = $this->createForm(new ConversationType($em, $user, $to));
 
 		if ($request->getMethod() === 'POST') {
 			$form->bindRequest($request);
 
 			if ($form->isValid()) {
-				$pm->setFromUser($user);
+				$conversation = new Conversation();
+				$conversation->setFromUser($user);
+				$conversation->setToUser($form->get('to_user'));
+				$conversation->setTitle($form->get('title'));
 
+				$pm = new PrivateMessage();
+				$pm->setConversation($conversation);
+				$pm->setText($form->getText());
+				$pm->setDirection(PrivateMessage::DIRECTION_FROM_TO);
+
+				$em->persist($conversation);
 				$em->persist($pm);
 				$em->flush();
 
@@ -87,9 +97,6 @@ class PrivateMessageController extends Controller {
 				));
 	}
 
-	/**
-	 * @todo Refactoring
-	 */
 	public function readAction($id, Request $request) {
 		$user = $this->getUser();
 		if (!$user instanceof UserInterface) {
@@ -99,27 +106,29 @@ class PrivateMessageController extends Controller {
 		$em = $this->getDoctrine()->getEntityManager();
 		$repository = $em->getRepository('EuroPrivateMessageBundle:Conversation');
 		$conversation = $repository->find($id);
+		$user_id = $user->getId();
+		if ($conversation->getFromUser()->getId() !== $user_id && $conversation->getToUser()->getId() !== $user_id) {
+			throw new \Exception('You are not allowed to access this page !');
+		}
 
 		$pm = new PrivateMessage();
-		$form = $this->createForm(new PrivateMessageType($em, $user), $pm);
+		$form = $this->createForm(new PrivateMessageType(), $pm);
 
 		if ($request->getMethod() === 'POST') {
 			$form->bindRequest($request);
 
 			if ($form->isValid()) {
-				$to_user = $conversation->getToUser();
-				if ($to_user->getId() == $user->getId()) {
-					$to_user = $conversation->getFromUser();
+				$pm->setConversation($conversation);
+				if ($conversation->getFromUser()->getId() === $user->getId()) {
+					$pm->setDirection(PrivateMessage::DIRECTION_FROM_TO);
+				} else {
+					$pm->setDirection(PrivateMessage::DIRECTION_TO_FROM);
 				}
-
-				$pm->setConversation($conversation->getConversation());
-				$pm->setFromUser($user);
-				$pm->setToUser($to_user);
 
 				$em->persist($pm);
 				$em->flush();
 
-				return $this->redirect($this->generateUrl('pm_read', array('id' => $conversation->getConversation())));
+				return $this->redirect($this->generateUrl('pm_read', array('id' => $id)));
 			}
 		}
 
