@@ -1,16 +1,21 @@
 {% extends '::base.html.twig' %}
 
-{% block title %}{{ country.name|trans }}{% endblock %}
-
-{% block empty_cell %}<td>-</td>{% endblock %}
+{% block title %}
+	{% if country %}
+		{{ country.name|trans }}
+	{% else %}
+		{{ 'country.show'|trans }}
+	{% endif %}
+{% endblock %}
 
 {% block body %}
 <div class="page-header">
 	<h1>{{ block('title') }} <small><a href="{{ path('country') }}">{{ 'action.back_to_list'|trans }}</a></small></h1>
 </div>
 
-
 {% if country %}
+{% block empty_cell %}<td>-</td>{% endblock %}
+
 <div class="row-fluid">
 	<div class="span2">
 		<div class="well">

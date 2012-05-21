@@ -393,6 +393,10 @@ Qu'en penses-tu ?
 				<source>country.currency.vatican</source>
 				<target>Lire vaticane</target>
 			</trans-unit>
+			<trans-unit id="country.show">
+				<source>country.show</source>
+				<target>Affichage d'un pays</target>
+			</trans-unit>
 			<trans-unit id="double.share">
 				<source>double.share</source>
 				<target>Echanger</target>

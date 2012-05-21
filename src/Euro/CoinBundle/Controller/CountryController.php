@@ -42,27 +42,26 @@ class CountryController extends Controller {
 		$em = $this->getDoctrine()->getEntityManager();
 		$country = $em->getRepository('EuroCoinBundle:Country')->find($id);
 
-		if (!$country) {
-			throw $this->createNotFoundException('Unable to find Country entity.');
-		}
-
-		$coins = $em->getRepository('EuroCoinBundle:Coin')->getCoinsByCountry($country);
+		$coins = null;
 		$counts = array('value' => array(), 'year' => array());
-		foreach ($coins as $coin) {
-			if (!isset($counts['value'][(string) $coin->getValue()])) {
-				$counts['value'][(string) $coin->getValue()] = $coin->getMintage();
-			} else {
-				$counts['value'][(string) $coin->getValue()] += $coin->getMintage();
+		if ($country) {
+			$coins = $em->getRepository('EuroCoinBundle:Coin')->getCoinsByCountry($country);
+			foreach ($coins as $coin) {
+				if (!isset($counts['value'][(string) $coin->getValue()])) {
+					$counts['value'][(string) $coin->getValue()] = $coin->getMintage();
+				} else {
+					$counts['value'][(string) $coin->getValue()] += $coin->getMintage();
+				}
+
+				if (!isset($counts['year'][(string) $coin->getYear()])) {
+					$counts['year'][(string) $coin->getYear()] = $coin->getMintage();
+				} else {
+					$counts['year'][(string) $coin->getYear()] += $coin->getMintage();
+				}
 			}
 
-			if (!isset($counts['year'][(string) $coin->getYear()])) {
-				$counts['year'][(string) $coin->getYear()] = $coin->getMintage();
-			} else {
-				$counts['year'][(string) $coin->getYear()] += $coin->getMintage();
-			}
+			krsort($counts['value']);
 		}
-
-		krsort($counts['value']);
 
 		return $this->render('EuroCoinBundle:Country:show.html.twig', array(
 					'coins' => $coins,
