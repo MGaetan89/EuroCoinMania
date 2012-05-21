@@ -17,10 +17,10 @@ class PrivateMessageController extends Controller {
 		}
 
 		$em = $this->getDoctrine()->getEntityManager();
-		$repository = $em->getRepository('EuroPrivateMessageBundle:PrivateMessage');
-		$pm = $repository->findByConversation($id);
+		$repository = $em->getRepository('EuroPrivateMessageBundle:Conversation');
+		$conversation = $repository->find($id);
 		if ($repository->closeConversation($id, $user)) {
-			$em->getRepository('EuroCoinBundle:Share')->cancelShare($pm[0], $user);
+			$em->getRepository('EuroCoinBundle:Share')->cancelShare($conversation, $user);
 		}
 
 		return $this->redirect($this->generateUrl('pm_read', array('id' => $id)));
@@ -33,7 +33,7 @@ class PrivateMessageController extends Controller {
 		}
 
 		$em = $this->getDoctrine()->getEntityManager();
-		$new_pm = $em->getRepository('EuroPrivateMessageBundle:PrivateMessage')->getNewMessageCount($user);
+		$new_pm = $em->getRepository('EuroPrivateMessageBundle:Conversation')->getNewMessageCount($user);
 
 		return $this->render('EuroPrivateMessageBundle:PrivateMessage:has_new_message.html.twig', array(
 					'new_pm' => $new_pm,
@@ -47,20 +47,16 @@ class PrivateMessageController extends Controller {
 		}
 
 		$em = $this->getDoctrine()->getEntityManager();
-		$conversations = $em->getRepository('EuroPrivateMessageBundle:PrivateMessage')->getConversationsByUser($user);
-		$titles = $em->getRepository('EuroPrivateMessageBundle:PrivateMessage')->getConversationsTitleByUser($user);
-
-		$list = array();
-		foreach ($titles as $title) {
-			$list[$title['conversation']] = $title['title'];
-		}
+		$conversations = $em->getRepository('EuroPrivateMessageBundle:Conversation')->getConversationsByUser($user);
 
 		return $this->render('EuroPrivateMessageBundle:PrivateMessage:index.html.twig', array(
 					'conversations' => $conversations,
-					'titles' => $list,
 				));
 	}
 
+	/**
+	 * @todo Refactoring
+	 */
 	public function newAction($to, Request $request) {
 		$user = $this->getUser();
 		if (!$user instanceof UserInterface) {
@@ -91,6 +87,9 @@ class PrivateMessageController extends Controller {
 				));
 	}
 
+	/**
+	 * @todo Refactoring
+	 */
 	public function readAction($id, Request $request) {
 		$user = $this->getUser();
 		if (!$user instanceof UserInterface) {
@@ -98,12 +97,8 @@ class PrivateMessageController extends Controller {
 		}
 
 		$em = $this->getDoctrine()->getEntityManager();
-		$repository = $em->getRepository('EuroPrivateMessageBundle:PrivateMessage');
-		$messages = $repository->getConversationById($id);
-
-		if (!$messages) {
-			throw $this->createNotFoundException('Unable to find PrivateMessage entity.');
-		}
+		$repository = $em->getRepository('EuroPrivateMessageBundle:Conversation');
+		$conversation = $repository->find($id);
 
 		$pm = new PrivateMessage();
 		$form = $this->createForm(new PrivateMessageType($em, $user), $pm);
@@ -112,26 +107,26 @@ class PrivateMessageController extends Controller {
 			$form->bindRequest($request);
 
 			if ($form->isValid()) {
-				$to_user = $messages[0]->getToUser();
+				$to_user = $conversation->getToUser();
 				if ($to_user->getId() == $user->getId()) {
-					$to_user = $messages[0]->getFromUser();
+					$to_user = $conversation->getFromUser();
 				}
 
-				$pm->setConversation($messages[0]->getConversation());
+				$pm->setConversation($conversation->getConversation());
 				$pm->setFromUser($user);
 				$pm->setToUser($to_user);
 
 				$em->persist($pm);
 				$em->flush();
 
-				return $this->redirect($this->generateUrl('pm_read', array('id' => $messages[0]->getConversation())));
+				return $this->redirect($this->generateUrl('pm_read', array('id' => $conversation->getConversation())));
 			}
 		}
 
 		$repository->setConversationRead($id, $user);
 
 		return $this->render('EuroPrivateMessageBundle:PrivateMessage:read.html.twig', array(
-					'messages' => $messages,
+					'conversation' => $conversation,
 					'form' => $form->createView(),
 				));
 	}

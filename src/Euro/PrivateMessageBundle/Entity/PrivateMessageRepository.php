@@ -3,7 +3,6 @@
 namespace Euro\PrivateMessageBundle\Entity;
 
 use Doctrine\ORM\EntityRepository;
-use Doctrine\ORM\Query\ResultSetMapping;
 
 /**
  * PrivateMessageRepository
@@ -12,110 +11,5 @@ use Doctrine\ORM\Query\ResultSetMapping;
  * repository methods below.
  */
 class PrivateMessageRepository extends EntityRepository {
-
-	public function closeConversation($conversation, $user) {
-		$queryBuiler = $this->createQueryBuilder('pm');
-		$expr = $queryBuiler->expr();
-
-		return $queryBuiler->update()
-						->set('pm.is_open', '0')
-						->where($expr->eq('pm.conversation', ':conversation'))
-						->andWhere(
-								$expr->orX($expr->eq('pm.from_user', ':user'), $expr->eq('pm.to_user', ':user'))
-						)
-						->setParameter('conversation', $conversation)
-						->setParameter('user', $user)
-						->getQuery()
-						->getResult();
-	}
-
-	public function getConversationById($id) {
-		$queryBuiler = $this->createQueryBuilder('pm');
-		$expr = $queryBuiler->expr();
-
-		return $queryBuiler
-						->where($expr->eq('pm.conversation', ':conversation'))
-						->orderBy('pm.post_date', 'DESC')
-						->setParameter('conversation', $id)
-						->getQuery()
-						->getResult();
-	}
-
-	public function getConversationsByUser($user) {
-		$rsm = new ResultSetMapping;
-		$rsm->addEntityResult('Euro\PrivateMessageBundle\Entity\PrivateMessage', 'pm');
-
-		$rsm->addJoinedEntityResult('Euro\UserBundle\Entity\User', 'fromuser', 'pm', 'from_user');
-		$rsm->addJoinedEntityResult('Euro\UserBundle\Entity\User', 'touser', 'pm', 'to_user');
-
-		$rsm->addFieldResult('pm', 'id', 'id');
-		$rsm->addFieldResult('pm', 'conversation', 'conversation');
-		$rsm->addFieldResult('pm', 'post_date', 'post_date');
-		$rsm->addFieldResult('pm', 'title', 'title');
-		$rsm->addFieldResult('pm', 'text', 'text');
-		$rsm->addFieldResult('pm', 'is_read', 'is_read');
-		$rsm->addFieldResult('pm', 'is_open', 'is_open');
-		$rsm->addFieldResult('fromuser', 'from_user_id', 'id');
-		$rsm->addFieldResult('fromuser', 'from_username', 'username');
-		$rsm->addFieldResult('touser', 'to_user_id', 'id');
-		$rsm->addFieldResult('touser', 'to_username', 'username');
-
-		return $this->getEntityManager()->createNativeQuery('SELECT pm.id, pm.conversation, pm.post_date, pm.title, pm.text, pm.is_read, pm.is_open,
-				fromuser.id AS from_user_id, fromuser.username AS from_username,
-				touser.id AS to_user_id, touser.username AS to_username
-			FROM (
-				SELECT *
-				FROM private_message
-				ORDER BY post_date DESC
-				) AS pm
-			JOIN member fromuser ON fromuser.id = pm.from_user_id
-			JOIN member touser ON touser.id = pm.to_user_id
-			WHERE pm.from_user_id = :user
-				OR pm.to_user_id = :user
-			GROUP BY pm.conversation', $rsm)
-						->setParameter('user', $user->getId())
-						->getResult();
-	}
-
-	public function getConversationsTitleByUser($user) {
-		$queryBuiler = $this->createQueryBuilder('pm');
-		$expr = $queryBuiler->expr();
-
-		return $queryBuiler
-						->select('pm.conversation, pm.title')
-						->where($expr->eq('pm.from_user', ':user'))
-						->orWhere($expr->eq('pm.to_user', ':user'))
-						->groupBy('pm.conversation')
-						->setParameter('user', $user)
-						->getQuery()
-						->getResult();
-	}
-
-	public function getNewMessageCount($user) {
-		$queryBuiler = $this->createQueryBuilder('pm');
-		$expr = $queryBuiler->expr();
-
-		return (int) $queryBuiler
-						->select($expr->count('DISTINCT pm.conversation'))
-						->where($expr->eq('pm.to_user', ':user'))
-						->andWhere($expr->eq('pm.is_read', '0'))
-						->setParameter('user', $user)
-						->getQuery()
-						->getSingleScalarResult();
-	}
-
-	public function setConversationRead($conversation, $user) {
-		$queryBuiler = $this->createQueryBuilder('pm');
-		$expr = $queryBuiler->expr();
-
-		$queryBuiler->update()
-				->set('pm.is_read', '1')
-				->where($expr->eq('pm.conversation', ':conversation'))
-				->andWhere($expr->eq('pm.to_user', ':user'))
-				->setParameter('conversation', $conversation)
-				->setParameter('user', $user)
-				->getQuery()
-				->getResult();
-	}
 
 }

@@ -110,6 +110,10 @@
 				<source>pm.none</source>
 				<target>Vous n'avez aucun message privé. Cliquez sur le lien ci-dessus pour en rédiger un.</target>
 			</trans-unit>
+			<trans-unit id="pm.not_found">
+				<source>pm.not_found</source>
+				<target>La conversation que vous souhaitez lire n'existe pas</target>
+			</trans-unit>
 			<trans-unit id="pm.on">
 				<source>pm.on</source>
 				<target>Le</target>

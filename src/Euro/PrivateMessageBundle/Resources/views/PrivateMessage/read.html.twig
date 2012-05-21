@@ -1,18 +1,19 @@
 {% extends '::base.html.twig' %}
 
-{% block title %}{{ messages[messages|length - 1].title }}{% endblock %}
+{% block title %}{{ conversation.title }}{% endblock %}
 
 {% block body %}
 <div class="page-header">
 	<h1>
 		{{ block('title') }}
 
+		{% if conversation %}
 		<small>
-			{% if messages[0].isopen %}
+			{% if conversation.isopen %}
 				<a data-toggle="collapse" data-target="#answer_form">{{ 'pm.answer'|trans }}</a>
 
 				<div class="pull-right">
-					{% set close_text, share = 'pm.close', messages[messages|length - 1].share %}
+					{% set close_text, share = 'pm.close', conversation.share %}
 					{% if share and share.tousercoin.user.id == app.user.id and share.status == 1 %}
 						{% set close_text = 'pm.reject' %}
 
@@ -21,7 +22,7 @@
 						</a>
 					{% endif %}
 
-					<a class="btn btn-danger" href="{{ path('pm_close', { id: messages[0].conversation }) }}">
+					<a class="btn btn-danger" href="{{ path('pm_close', { id: conversation.id }) }}">
 						<i class="icon icon-white icon-remove"></i> {{ close_text|trans }}
 					</a>
 				</div>
@@ -29,31 +30,33 @@
 				<em>{{ 'pm.closed'|trans }}</em>
 			{% endif %}
 		</smal>
+		{% endif %}
 	</h1>
 </div>
 
+{% if conversation %}
 <div class="collapse" id="answer_form">
 	{% include "EuroPrivateMessageBundle:PrivateMessage:form.html.twig" with {
 		mode: 'answer',
-		path: path('pm_read', { id: messages[0].conversation })
+		path: path('pm_read', { id: conversation.id })
 	} %}
 </div>
 
-{% for message in messages %}
+{% for message in conversation.pm %}
 	<div class="well">
 		<div class="row-fluid">
 			<div class="span2">
-				<strong><a href="{{ path('user_view', { id: message.fromuser.id }) }}">{{ message.fromuser.username }}</a></strong>,<br />
+				{% if message.direction %}
+					{% set user = conversation.fromuser %}
+				{% else %}
+					{% set user = conversation.touser %}
+				{% endif %}
+
+				<strong><a href="{{ path('user_view', { id: user.id }) }}">{{ user.username }}</a></strong>,<br />
 				{{ 'pm.on'|trans }} {{ message.postdate|localizeddate }}
 			</div>
 
 			<div class="span10">
-				{% if message.title %}
-					<div class="page-header">
-						<h3>{{ message.title }}</h3>
-					</div>
-				{% endif %}
-
 				{{ message.text|markdown|nl2br }}
 			</div>
 		</div>
@@ -61,4 +64,9 @@
 {% endfor %}
 
 <script src="{{ asset('bundles/europrivatemessage/js/pm.js') }}" type="text/javascript"></script>
+{% else %}
+<div class="alert alert-info">
+	{{ 'pm.not_found'|trans }}
+</div>
+{% endif %}
 {% endblock %}

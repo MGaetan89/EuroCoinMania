@@ -31,7 +31,7 @@
 	<tr>
 		<td>
 			{% if not conversation.isopen %}<s>{% endif %}
-			<a href="{{ path('pm_read', { id: conversation.conversation }) }}">{{ titles[conversation.conversation] }}</a>
+			<a href="{{ path('pm_read', { id: conversation.id }) }}">{{ conversation.title }}</a>
 			{% if not conversation.isopen %}</s>{% endif %}
 
 			{% if not conversation.isread and conversation.touser.id == app.user.id %}
@@ -39,7 +39,7 @@
 			{% endif %}
 		</td>
 		<td><a href="{{ path('user_view', { id: user.id }) }}">{{ user.username }}</a></td>
-		<td>{{ conversation.postdate|localizeddate }}</td>
+		<td>{{ conversation.pm[0].postdate|localizeddate }}</td>
 	</tr>
 {% endfor %}
 </table>

@@ -3,8 +3,6 @@
 namespace Euro\PrivateMessageBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Euro\CoinBundle\Entity\Share;
-use Euro\UserBundle\Entity\User;
 
 /**
  * Euro\PrivateMessageBundle\Entity\PrivateMessage
@@ -13,6 +11,9 @@ use Euro\UserBundle\Entity\User;
  * @ORM\Entity(repositoryClass="Euro\PrivateMessageBundle\Entity\PrivateMessageRepository")
  */
 class PrivateMessage {
+	const DIRECTION_FROM_TO = true;
+	const DIRECTION_TO_FROM = false;
+
 	/**
 	 * @var integer $id
 	 *
@@ -23,23 +24,10 @@ class PrivateMessage {
 	private $id;
 
 	/**
-	 * @var string $conversation
-	 *
-	 * @ORM\Column(name="conversation", type="string", length=16)
+	 * @ORM\ManyToOne(targetEntity="Conversation")
+	 * @ORM\JoinColumn(name="conversation_id", referencedColumnName="id")
 	 */
 	private $conversation;
-
-	/**
-	 * @ORM\ManyToOne(targetEntity="Euro\UserBundle\Entity\User")
-	 * @ORM\JoinColumn(name="from_user_id", referencedColumnName="id")
-	 */
-	private $from_user;
-
-	/**
-	 * @ORM\ManyToOne(targetEntity="Euro\UserBundle\Entity\User")
-	 * @ORM\JoinColumn(name="to_user_id", referencedColumnName="id")
-	 */
-	private $to_user;
 
 	/**
 	 * @var datetime $post_date
@@ -49,13 +37,6 @@ class PrivateMessage {
 	private $post_date;
 
 	/**
-	 * @var string $title
-	 *
-	 * @ORM\Column(name="title", type="string", length=255, nullable=true)
-	 */
-	private $title;
-
-	/**
 	 * @var text $text
 	 *
 	 * @ORM\Column(name="text", type="text")
@@ -63,31 +44,14 @@ class PrivateMessage {
 	private $text;
 
 	/**
-	 * @var boolean $is_read
+	 * @var boolean $direction
 	 *
-	 * @ORM\Column(name="is_read", type="boolean")
+	 * @ORM\Column(name="direction", type="boolean")
 	 */
-	private $is_read;
-
-	/**
-	 * @var boolean $is_open
-	 *
-	 * @ORM\Column(name="is_open", type="boolean")
-	 */
-	private $is_open;
-
-	/**
-	 * @ORM\OneToOne(targetEntity="Euro\CoinBundle\Entity\Share", inversedBy="pm")
-	 * @ORM\JoinColumn(name="share_id", referencedColumnName="id")
-	 */
-	private $share;
+	private $direction;
 
 	public function __construct() {
-		$this->conversation = uniqid();
 		$this->post_date = new \DateTime();
-		$this->title = '';
-		$this->is_read = false;
-		$this->is_open = true;
 	}
 
 	/**
@@ -102,9 +66,9 @@ class PrivateMessage {
 	/**
 	 * Set conversation
 	 *
-	 * @param string $conversation
+	 * @param Conversation $conversation
 	 */
-	public function setConversation($conversation) {
+	public function setConversation(Conversation $conversation) {
 		$this->conversation = $conversation;
 
 		return $this;
@@ -113,50 +77,10 @@ class PrivateMessage {
 	/**
 	 * Get conversation
 	 *
-	 * @return string
+	 * @return Conversation
 	 */
 	public function getConversation() {
 		return $this->conversation;
-	}
-
-	/**
-	 * Set from_user
-	 *
-	 * @param User $from_user
-	 */
-	public function setFromUser(User $from_user) {
-		$this->from_user = $from_user;
-
-		return $this;
-	}
-
-	/**
-	 * Get from_user
-	 *
-	 * @return User
-	 */
-	public function getFromUser() {
-		return $this->from_user;
-	}
-
-	/**
-	 * Set to_user
-	 *
-	 * @param User $to_user
-	 */
-	public function setToUser(User $to_user) {
-		$this->to_user = $to_user;
-
-		return $this;
-	}
-
-	/**
-	 * Get to_user
-	 *
-	 * @return User
-	 */
-	public function getToUser() {
-		return $this->to_user;
 	}
 
 	/**
@@ -180,26 +104,6 @@ class PrivateMessage {
 	}
 
 	/**
-	 * Set title
-	 *
-	 * @param string $title
-	 */
-	public function setTitle($title) {
-		$this->title = $title;
-
-		return $this;
-	}
-
-	/**
-	 * Get title
-	 *
-	 * @return string
-	 */
-	public function getTitle() {
-		return $this->title;
-	}
-
-	/**
 	 * Set text
 	 *
 	 * @param text $text
@@ -220,63 +124,23 @@ class PrivateMessage {
 	}
 
 	/**
-	 * Set is_read
+	 * Set direction
 	 *
-	 * @param boolean $isRead
+	 * @param boolean $direction
 	 */
-	public function setIsRead($isRead) {
-		$this->is_read = $isRead;
+	public function setDirection($direction) {
+		$this->direction = $direction;
 
 		return $this;
 	}
 
 	/**
-	 * Get is_read
+	 * Get direction
 	 *
 	 * @return boolean
 	 */
-	public function getIsRead() {
-		return $this->is_read;
-	}
-
-	/**
-	 * Set is_open
-	 *
-	 * @param boolean $isOpen
-	 */
-	public function setIsOpen($isOpen) {
-		$this->is_open = $isOpen;
-
-		return $this;
-	}
-
-	/**
-	 * Get is_open
-	 *
-	 * @return boolean
-	 */
-	public function getIsOpen() {
-		return $this->is_open;
-	}
-
-	/**
-	 * Set share
-	 *
-	 * @param Share $share
-	 */
-	public function setShare(Share $share) {
-		$this->share = $share;
-
-		return $this;
-	}
-
-	/**
-	 * Get share
-	 *
-	 * @return Share
-	 */
-	public function getShare() {
-		return $this->share;
+	public function getDirection() {
+		return $this->direction;
 	}
 
 }
