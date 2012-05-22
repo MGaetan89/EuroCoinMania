@@ -111,15 +111,13 @@
 		{% endif %}
 
 		{% for name, value in filters if value|trim %}
-			<div class="control-group">
-				<div class="input-append">
-					<span class="span1 uneditable-input">{{ ('coin.' ~ name)|trans }}</span><a class="btn btn-info" href="{{ path(filter_path, filters|reset(name)) }}" title="{{ 'action.reset'|trans }}"><i class="icon-white icon-remove"></i></a>
-				</div>
-			</div>
+		<div class="input-append">
+			<span class="input-mini uneditable-input">{{ ('coin.' ~ name)|trans }}</span><a class="btn btn-info" href="{{ path(filter_path, filters|reset(name)) }}" title="{{ 'action.reset'|trans }}"><i class="icon-white icon-remove"></i></a>
+		</div>
 		{% endfor %}
 
 		{% if has_filter %}
-		<a class="btn" href="{{ path('coin') }}">{{ 'action.reset_all'|trans }}</a>
+		<a class="btn" href="{{ path(collector ? 'coin_collector' : 'coin') }}">{{ 'action.reset_all'|trans }}</a>
 		{% endif %}
 	</div>
 
