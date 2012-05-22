@@ -94,6 +94,10 @@
 				<source>coin.list_shares</source>
 				<target>Liste de vos échanges</target>
 			</trans-unit>
+			<trans-unit id="coin.membertotal">
+				<source>coin.membertotal</source>
+				<target>Enregistrées</target>
+			</trans-unit>
 			<trans-unit id="coin.mintage">
 				<source>coin.mintage</source>
 				<target>Tirage</target>
