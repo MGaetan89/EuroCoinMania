@@ -14,7 +14,9 @@
 </div>
 
 {% if country %}
-{% block empty_cell %}<td>-</td>{% endblock %}
+{% set empty_cell %}
+<td>-</td>
+{% endset %}
 
 <div class="row-fluid">
 	<div class="span2">
@@ -34,7 +36,7 @@
 
 	<div class="span10">
 		{% if coins %}
-		{% set changed, columns, nbval, values, year = false, 0, counts_value|length - 1, counts_value|keys, '1990' %}
+		{% set changed, columns, nbval, year = false, 0, values|length - 1, '1990' %}
 
 		<table class="table table-bordered table-condensed table-striped">
 		<thead>
@@ -51,7 +53,7 @@
 			{% if year != coin.year %}
 				{% if not loop.first %}
 					{% for n in range(columns + 1, nbval) if columns < nbval %}
-						{{ block('empty_cell') }}
+						{{ empty_cell }}
 					{% endfor %}
 
 						<td>{{ counts_year[year]|number_format }}</td>
@@ -63,19 +65,19 @@
 				{% set changed, columns, year = false, 0, coin.year %}
 			{% endif %}
 
-			{% if values[columns] != coin.value %}
+			{% if values[columns].id != coin.value.id %}
 				{% for n in range(columns + 1, nbval) %}
 					{% if not changed %}
-						{{ block('empty_cell') }}
+						{{ empty_cell }}
 					{% endif %}
 
-					{% if values[n] == coin.value %}
+					{% if values[n].id == coin.value.id %}
 						{% set columns = n %}
 						{% set changed = true %}
 					{% endif %}
 
-					{% if changed and values[n] > coin.value %}
-						{{ block('empty_cell') }}
+					{% if changed and values[n].value > coin.value.value %}
+						{{ empty_cell }}
 					{% endif %}
 				{% endfor %}
 			{% else %}
@@ -88,7 +90,7 @@
 
 			{% if loop.last %}
 				{% for n in range(columns + 1, nbval) if columns < nbval %}
-					{{ block('empty_cell') }}
+					{{ empty_cell }}
 				{% endfor %}
 
 					<td>{{ counts_year[year]|number_format }}</td>

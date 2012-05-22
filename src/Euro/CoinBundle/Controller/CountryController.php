@@ -44,23 +44,34 @@ class CountryController extends Controller {
 
 		$coins = null;
 		$counts = array('value' => array(), 'year' => array());
+		$values = array();
 		if ($country) {
 			$coins = $em->getRepository('EuroCoinBundle:Coin')->getCoinsByCountry($country);
 			foreach ($coins as $coin) {
-				if (!isset($counts['value'][(string) $coin->getValue()])) {
-					$counts['value'][(string) $coin->getValue()] = $coin->getMintage();
-				} else {
-					$counts['value'][(string) $coin->getValue()] += $coin->getMintage();
+				$coin_mintage = $coin->getMintage();
+				$coin_year = (string) $coin->getYear();
+				$value = $coin->getValue();
+				$value_value = sprintf('%.02f', $value->getValue());
+
+				if (!in_array($value, $values)) {
+					$values[] = $value;
 				}
 
-				if (!isset($counts['year'][(string) $coin->getYear()])) {
-					$counts['year'][(string) $coin->getYear()] = $coin->getMintage();
+				if (!isset($counts['value'][$value_value])) {
+					$counts['value'][$value_value] = $coin_mintage;
 				} else {
-					$counts['year'][(string) $coin->getYear()] += $coin->getMintage();
+					$counts['value'][$value_value] += $coin_mintage;
+				}
+
+				if (!isset($counts['year'][$coin_year])) {
+					$counts['year'][$coin_year] = $coin_mintage;
+				} else {
+					$counts['year'][$coin_year] += $coin_mintage;
 				}
 			}
 
 			krsort($counts['value']);
+			rsort($values);
 		}
 
 		return $this->render('EuroCoinBundle:Country:show.html.twig', array(
@@ -69,6 +80,7 @@ class CountryController extends Controller {
 					'counts' => array_sum($counts['value']),
 					'counts_value' => $counts['value'],
 					'counts_year' => $counts['year'],
+					'values' => $values,
 				));
 	}
 
