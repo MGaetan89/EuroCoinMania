@@ -8,33 +8,27 @@ use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Validator\ErrorElement;
 
-class CountryAdmin extends Admin {
+class WorkshopAdmin extends Admin {
 	protected $translationDomain = 'admin';
 
 	protected function configureFormFields(FormMapper $formMapper) {
 		$formMapper
+				->add('short_name')
 				->add('name')
-				->add('nameiso')
-				->add('join_date')
-				->add('former_currency_iso')
-				->add('exchange_rate')
 		;
 	}
 
 	protected function configureDatagridFilters(DatagridMapper $datagridMapper) {
 		$datagridMapper
+				->add('short_name')
 				->add('name')
-				->add('nameiso')
-				->add('join_date')
-				->add('former_currency_iso')
 		;
 	}
 
 	protected function configureListFields(ListMapper $listMapper) {
 		$listMapper
-				->addIdentifier('name', null, array('template' => 'EuroCoinBundle:Admin:Country/list_name.html.twig'))
-				->add('join_date')
-				->add('exchange_rate', null, array('template' => 'EuroCoinBundle:Admin:Country/list_exchangerate.html.twig'))
+				->addIdentifier('short_name')
+				->add('name')
 				->add('_action', 'actions', array(
 					'actions' => array(
 						'view' => array(),
@@ -46,12 +40,7 @@ class CountryAdmin extends Admin {
 	}
 
 	public function validate(ErrorElement $errorElement, $object) {
-		$errorElement
-				->with('name_iso')
-				->assertMinLength(array('limit' => 3))
-				->assertMaxLength(array('limit' => 3))
-				->end()
-		;
+
 	}
 
 }

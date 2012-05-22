@@ -15,7 +15,7 @@ class CoinAdmin extends Admin {
 		$formMapper
 				->add('value', 'sonata_type_model')
 				->add('country', 'sonata_type_model')
-				->add('year')
+				->add('year', 'sonata_type_model')
 				->add('commemorative')
 				->add('mintage')
 				->add('description')
@@ -36,7 +36,7 @@ class CoinAdmin extends Admin {
 				->addIdentifier('id')
 				->add('value')
 				->add('country', null, array('template' => 'EuroCoinBundle:Admin:Coin/list_name.html.twig'))
-				->add('year')
+				->add('year', null, array('template' => 'EuroCoinBundle:Admin:Coin/list_year.html.twig'))
 				->add('commemorative', null, array('editable' => true))
 				->add('mintage', null, array('template' => 'EuroCoinBundle:Admin:Coin/list_mintage.html.twig'))
 				->add('description')
@@ -51,7 +51,11 @@ class CoinAdmin extends Admin {
 	}
 
 	public function validate(ErrorElement $errorElement, $object) {
-
+		$errorElement
+				->with('mintage')
+				->assertMin(array('limit' => 0))
+				->end()
+		;
 	}
 
 }

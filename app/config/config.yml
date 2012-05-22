@@ -68,13 +68,23 @@ fos_user:
             type: euro_user_profile
 
 sonata_admin:
+    title: Administration
     dashboard:
+        groups:
+            euro:
+                label: Euro
+                items:
+                    - euro.coin.admin.coin
+                    - euro.coin.admin.year
+                    - euro.coin.admin.country
+                    - euro.coin.admin.value
+                    - euro.coin.admin.workshop
 
 sonata_block:
-    default_contexts: [cms]
+    default_contexts: [admin]
     blocks:
         sonata.admin.block.admin_list:
-            contexts: [cms]
+            contexts: [admin]
 
 services:
     euro.pm.markdown:

@@ -3,17 +3,27 @@ services:
         class: Euro\CoinBundle\Admin\CountryAdmin
         arguments: [null, Euro\CoinBundle\Entity\Country, SonataAdminBundle:CRUD]
         tags:
-            - { name: sonata.admin, manager_type: orm, group: "Euro", label: "Country", label_translator_strategy: "sonata.admin.label.strategy.underscore" }
+            - { name: sonata.admin, manager_type: orm, label: "Country", label_translator_strategy: "sonata.admin.label.strategy.underscore" }
     euro.coin.admin.value:
         class: Euro\CoinBundle\Admin\ValueAdmin
         arguments: [null, Euro\CoinBundle\Entity\Value, SonataAdminBundle:CRUD]
         tags:
-            - { name: sonata.admin, manager_type: orm, group: "Euro", label: "Value", label_translator_strategy: "sonata.admin.label.strategy.underscore" }
+            - { name: sonata.admin, manager_type: orm, label: "Value", label_translator_strategy: "sonata.admin.label.strategy.underscore" }
     euro.coin.admin.coin:
         class: Euro\CoinBundle\Admin\CoinAdmin
         arguments: [null, Euro\CoinBundle\Entity\Coin, SonataAdminBundle:CRUD]
         tags:
-            - { name: sonata.admin, manager_type: orm, group: "Euro", label: "Coin", label_translator_strategy: "sonata.admin.label.strategy.underscore" }
+            - { name: sonata.admin, manager_type: orm, label: "Coin", label_translator_strategy: "sonata.admin.label.strategy.underscore" }
+    euro.coin.admin.year:
+        class: Euro\CoinBundle\Admin\YearAdmin
+        arguments: [null, Euro\CoinBundle\Entity\Year, SonataAdminBundle:CRUD]
+        tags:
+            - { name: sonata.admin, manager_type: orm, label: "Year", label_translator_strategy: "sonata.admin.label.strategy.underscore" }
+    euro.coin.admin.workshop:
+        class: Euro\CoinBundle\Admin\WorkshopAdmin
+        arguments: [null, Euro\CoinBundle\Entity\Workshop, SonataAdminBundle:CRUD]
+        tags:
+            - { name: sonata.admin, manager_type: orm, label: "Workshop", label_translator_strategy: "sonata.admin.label.strategy.underscore" }
     twig.extension.coin:
         class: Euro\CoinBundle\Twig\Extension
         tags:

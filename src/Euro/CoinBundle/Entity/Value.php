@@ -45,6 +45,15 @@ class Value {
 		$this->coins = new ArrayCollection();
 	}
 
+	public function __toString() {
+		if ($this->value < 1) {
+			return ($this->value * 100) . ' cent';
+		}
+
+		return $this->value . ' €';
+	}
+
+
 	/**
 	 * Get id
 	 *

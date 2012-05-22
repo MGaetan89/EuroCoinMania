@@ -40,7 +40,11 @@ class ValueAdmin extends Admin {
 	}
 
 	public function validate(ErrorElement $errorElement, $object) {
-
+		$errorElement
+				->with('value')
+				->assertMin(array('limit' => 0))
+				->end()
+		;
 	}
 
 }

@@ -194,6 +194,30 @@
 				<source>breadcrumb.link_coin_delete</source>
 				<target>Supprimer une pièce</target>
 			</trans-unit>
+			<trans-unit id="Workshop">
+				<source>Workshop</source>
+				<target>Atelier</target>
+			</trans-unit>
+			<trans-unit id="form.label_short_name">
+				<source>form.label_short_name</source>
+				<target>Initial</target>
+			</trans-unit>
+			<trans-unit id="list.label_short_name">
+				<source>list.label_short_name</source>
+				<target>Initial</target>
+			</trans-unit>
+			<trans-unit id="Year">
+				<source>Year</source>
+				<target>Année</target>
+			</trans-unit>
+			<trans-unit id="form.label_workshop">
+				<source>form.label_workshop</source>
+				<target>Atelier</target>
+			</trans-unit>
+			<trans-unit id="list.label_workshop">
+				<source>list.label_workshop</source>
+				<target>Atelier</target>
+			</trans-unit>
 		</body>
 	</file>
 </xliff>

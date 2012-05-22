@@ -43,6 +43,10 @@ class Workshop {
 		return $this->id;
 	}
 
+	public function __toString() {
+		return $this->getName();
+	}
+
 	/**
 	 * Set short_name
 	 *
