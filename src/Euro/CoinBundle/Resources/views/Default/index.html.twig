@@ -6,4 +6,42 @@
 
 	<p>{{ 'sitename_welcome'|trans }}</p>
 </div>
+
+<div class="accordion" id="news">
+	<div class="accordion-group">
+		<div class="accordion-heading">
+			<a class="accordion-toggle" data-parent="#news" data-toggle="collapse" href="#news_3">Titre news 3</a>
+		</div>
+
+		<div class="accordion-body collapse in" id="news_3">
+			<div class="accordion-inner">
+				Contenu de la news 3
+			</div>
+		</div>
+	</div>
+
+	<div class="accordion-group">
+		<div class="accordion-heading">
+			<a class="accordion-toggle" data-parent="#news" data-toggle="collapse" href="#news_2">Titre news 2</a>
+		</div>
+
+		<div class="accordion-body collapse" id="news_2">
+			<div class="accordion-inner">
+				Contenu de la news 2
+			</div>
+		</div>
+	</div>
+
+	<div class="accordion-group">
+		<div class="accordion-heading">
+			<a class="accordion-toggle" data-parent="#news" data-toggle="collapse" href="#news_1">Titre news 1</a>
+		</div>
+
+		<div class="accordion-body collapse" id="news_1">
+			<div class="accordion-inner">
+				Contenu de la news 1
+			</div>
+		</div>
+	</div>
+</div>
 {% endblock %}
