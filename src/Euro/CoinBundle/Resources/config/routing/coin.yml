@@ -1,10 +1,10 @@
 coin:
     pattern:  /
-    defaults: { _controller: "EuroCoinBundle:Coin:index", country: '', year: '', value: '', commemorative: '', collector: false }
+    defaults: { _controller: "EuroCoinBundle:Coin:index", country: '', year: '', value: '', collector: false }
 
 coin_collector:
     pattern:  /collector
-    defaults: { _controller: "EuroCoinBundle:Coin:index", country: '', year: '', value: '', commemorative: '', collector: true }
+    defaults: { _controller: "EuroCoinBundle:Coin:index", country: '', year: '', value: '', collector: true }
 
 coin_doubles:
     pattern:  /doubles
@@ -41,7 +41,7 @@ coin_show:
 
 coin_filter:
     pattern:  /filter/country-{country}/year-{year}/value-{value}
-    defaults: { _controller: "EuroCoinBundle:Coin:index", collector: false }
+    defaults: { _controller: "EuroCoinBundle:Coin:index", country: '', year: '', value: '', collector: false }
     requirements:
         country: "\d*"
         year: "\d*"
@@ -49,7 +49,7 @@ coin_filter:
 
 coin_collector_filter:
     pattern:  /collector/filter/country-{country}/year-{year}/value-{value}
-    defaults: { _controller: "EuroCoinBundle:Coin:index", collector: true }
+    defaults: { _controller: "EuroCoinBundle:Coin:index", country: '', year: '', value: '', collector: true }
     requirements:
         country: "\d*"
         year: "\d*"

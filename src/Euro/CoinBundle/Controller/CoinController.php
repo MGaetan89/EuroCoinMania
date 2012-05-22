@@ -20,7 +20,6 @@ class CoinController extends Controller {
 	 */
 	public function indexAction($country, $year, $value, $collector) {
 		$filters = array(
-			'commemorative' => $collector,
 			'country' => $country,
 			'value' => $value,
 			'year' => $year,
