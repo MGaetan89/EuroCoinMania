@@ -23,11 +23,18 @@ class ProfileController extends Controller {
 			'coins' => 0,
 			'countries' => array(),
 			'doubles' => 0,
+			'uniques' => 0,
+			'value' => 0,
 		);
-		foreach ($user->getCoins() as $coin) {
-			$total['coins']++;
-			$total['countries'][$coin->getCoin()->getCountry()->getId()] = null;
-			if ($coin->getQuantity() > 1) {
+		foreach ($user->getCoins() as $uc) {
+			$coin = $uc->getCoin();
+			$quantity = $uc->getQuantity();
+
+			$total['coins'] += $quantity;
+			$total['countries'][$coin->getCountry()->getId()] = null;
+			$total['uniques']++;
+			$total['value'] += $quantity * $coin->getValue()->getValue();
+			if ($quantity > 1) {
 				$total['doubles']++;
 			}
 		}

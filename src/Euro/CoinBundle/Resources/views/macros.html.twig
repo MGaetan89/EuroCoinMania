@@ -32,10 +32,14 @@
 
 {% macro value(value) %}
 {% spaceless %}
-	{% if value.value < 1 %}
-		{{ value.value * 100 }} {{ 'cent'|trans }}
+	{% if value.value is defined %}
+		{% set value = value.value %}
+	{% endif %}
+
+	{% if value < 1 %}
+		{{ value * 100 }} {{ 'cent'|trans }}
 	{% else %}
-		{{ value.value }} {{ 'euro'|trans }}
+		{{ value }} {{ 'euro'|trans }}
 	{% endif %}
 {% endspaceless %}
 {% endmacro %}

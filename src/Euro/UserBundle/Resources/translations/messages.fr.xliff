@@ -60,7 +60,7 @@
 			</trans-unit>
 			<trans-unit id="user.total.coins">
 				<source>user.total.coins</source>
-				<target>Nombre de pièces</target>
+				<target>Nombre total de pièces</target>
 			</trans-unit>
 			<trans-unit id="user.total.countries">
 				<source>user.total.countries</source>
@@ -69,6 +69,14 @@
 			<trans-unit id="user.total.doubles">
 				<source>user.total.doubles</source>
 				<target>Nombre de doubles</target>
+			</trans-unit>
+			<trans-unit id="user.total.uniques">
+				<source>user.total.uniques</source>
+				<target>Nombre de pièces uniques</target>
+			</trans-unit>
+			<trans-unit id="user.total.value">
+				<source>user.total.value</source>
+				<target>Valeur de la collection</target>
 			</trans-unit>
 			<trans-unit id="user.login">
 				<source>user.login</source>
