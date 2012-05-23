@@ -20,7 +20,7 @@ class CountryController extends Controller {
 				));
 	}
 
-	public function menuListAction() {
+	public function menuListAction($request) {
 		$em = $this->getDoctrine()->getEntityManager();
 
 		$countries = $em->getRepository('EuroCoinBundle:Country')->findAll();
@@ -32,6 +32,7 @@ class CountryController extends Controller {
 
 		return $this->render('EuroCoinBundle:Country:menu_list.html.twig', array(
 					'countries' => $countries,
+					'request' => $request,
 				));
 	}
 

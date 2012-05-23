@@ -30,7 +30,7 @@
 			<div class="nav-collapse">
 				<ul class="nav">
 					<li class="{% if route|slice(0, 7) == 'country' %}active {% endif %}dropdown">
-						{% render "EuroCoinBundle:Country:menuList" %}
+						{% render "EuroCoinBundle:Country:menuList" with { 'request': app.request } %}
 					</li>
 					<li{% if route not in ['coin_doubles', 'coin_doubles_share', 'coin_shares'] and route|slice(0, 4) == 'coin' %} class="active"{% endif %}>
 						<a href="{{ path('coin') }}">

@@ -1,10 +1,10 @@
-{% set route = app.request.get('_route') %}
+{% set route = request.get('_route') %}
 
 <a href="{{ path('country') }}" class="dropdown-toggle" data-toggle="dropdown" data-target="#">{{ 'countries'|trans }} <b class="caret"></b></a>
 <ul class="dropdown-menu">
 	<li{% if route == 'country' %} class="active"{% endif %}><a href="{{ path('country') }}"><i class="icon-list-alt"></i> {{ 'country.list'|trans }}</a></li>
 	<li class="divider"></li>
 	{% for country in countries %}
-	<li{% if route == 'country_show' and app.request.get('id') == country.id %} class="active"{% endif %}><a href="{{ path('country_show', { 'id': country.id }) }}">{{ country.name|trans }}</a></li>
+	<li{% if route == 'country_show' and request.get('id') == country.id %} class="active"{% endif %}><a href="{{ path('country_show', { 'id': country.id }) }}">{{ country.name|trans }}</a></li>
 	{% endfor %}
 </ul>
