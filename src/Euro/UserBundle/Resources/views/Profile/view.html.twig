@@ -133,7 +133,11 @@
 			{% endif %}
 		{% else %}
 		<div class="alert alert-info">
-			{{ 'user.coin.none'|trans }}
+			{% if app.user.id != user.id %}
+				{{ 'user.coin.none'|trans }}
+			{% else %}
+				{{ 'user.coin.none.self'|trans }}
+			{% endif %}
 		</div>
 		{% endfor %}
 	</div>
