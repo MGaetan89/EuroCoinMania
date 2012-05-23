@@ -143,7 +143,10 @@ class CoinController extends Controller {
 			$em->flush();
 		}
 
-		return new Response($uc->getQuantity());
+		return new Response(json_encode(array(
+							'quantity' => $uc->getQuantity(),
+							'uc' => $uc->getId(),
+						)));
 	}
 
 	public function doublesAction() {

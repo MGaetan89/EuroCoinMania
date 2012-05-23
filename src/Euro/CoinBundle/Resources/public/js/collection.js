@@ -44,13 +44,14 @@ $(function () {
 			}
 
 			$.post('/coin/' + id + '/add', function (data) {
-				if (data != quantity.text()) {
-					quantity.text(data);
+				data = $.parseJSON(data);
+				if (data.quantity != quantity.text()) {
+					quantity.text(data.quantity);
 
 					$this.siblings('button.coin-add,button.coin-remove').andSelf().prop('disabled', false);
-					$this.siblings('button.coin-remove').toggleClass('btn-danger', data > 0);
+					$this.siblings('button.coin-remove').toggleClass('btn-danger', data.quantity > 0);
 
-					$this.parent('.coin-collection').data('uc', data);
+					$this.parent('.coin-collection').data('uc', data.uc);
 				} else {
 				// Display error message
 				}
