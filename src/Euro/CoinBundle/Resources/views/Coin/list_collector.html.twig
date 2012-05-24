@@ -1,8 +1,14 @@
 {% set country = '' %}
 
+{% set line, year = 0, '1990' %}
 {% for coin in coins %}
-	{% if country != coin.country %}
-		{% set country = coin.country %}
+	{% if year != coin.year %}
+		{% set line = line + 1 %}
+	{% endif %}
+
+	{% if country != coin.country or line % 6 == 5 %}
+		{% set country, line = coin.country, 0 %}
+
 		{% if not loop.first %}
 				</tr>
 			</tbody>
