@@ -305,7 +305,7 @@ class FrameworkExtension extends Extension
     /**
      * Loads the templating configuration.
      *
-     * @param array $config A templating configuration array
+     * @param array            $config    A templating configuration array
      * @param string           $ide
      * @param ContainerBuilder $container A ContainerBuilder instance
      * @param XmlFileLoader    $loader    An XmlFileLoader instance
@@ -604,7 +604,7 @@ class FrameworkExtension extends Extension
                 ->replaceArgument(2, $config['debug'])
             ;
             $container->setAlias('annotation_reader', 'annotations.file_cache_reader');
-        } else if('none' !== $config['cache']) {
+        } elseif ('none' !== $config['cache']) {
             $container
                 ->getDefinition('annotations.cached_reader')
                 ->replaceArgument(1, new Reference($config['cache']))

@@ -240,7 +240,7 @@ class FormHelper extends Helper
 
                 return $html;
             }
-        }  while (--$typeIndex >= 0);
+        } while (--$typeIndex >= 0);
 
         throw new FormException(sprintf(
             'Unable to render the form as none of the following blocks exist: "%s".',
@@ -252,7 +252,7 @@ class FormHelper extends Helper
      * Render a block from a form element.
      *
      * @param string $name
-     * @param array $variables Additional variables (those would override the current context)
+     * @param array  $variables Additional variables (those would override the current context)
      *
      * @throws FormException if the block is not found
      * @throws FormException if the method is called out of a form element (no context)
