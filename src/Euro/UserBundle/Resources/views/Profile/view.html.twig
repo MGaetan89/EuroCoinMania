@@ -47,7 +47,7 @@
 				<dd>{{ total.countries|number_format }}</dd>
 
 				<dt>{{ 'user.total.value'|trans }}</dt>
-				<dd>{{ macros.value(total.value) }}</dd>
+				<dd>{{ macros.value(total.value, true) }}</dd>
 			<dl>
 		</div>
 		{% endif %}

@@ -30,7 +30,7 @@
 {% endspaceless %}
 {% endmacro %}
 
-{% macro value(value) %}
+{% macro value(value, format) %}
 {% spaceless %}
 	{% if value.value is defined %}
 		{% set value = value.value %}
@@ -39,7 +39,11 @@
 	{% if value < 1 %}
 		{{ value * 100 }} {{ 'cent'|trans }}
 	{% else %}
-		{{ value }} {{ 'euro'|trans }}
+		{% if format|default(false) %}
+			{{ value|number_format(2) }} {{ 'euro'|trans }}
+		{% else %}
+			{{ value }} {{ 'euro'|trans }}
+		{% endif %}
 	{% endif %}
 {% endspaceless %}
 {% endmacro %}
