@@ -18,12 +18,12 @@
 						{% set close_text = 'pm.reject' %}
 
 						<a class="btn btn-success" href="{{ path('coin_doubles_share_accept', { id: share.id }) }}">
-							<i class="icon icon-white icon-ok"></i> {{ 'pm.accept'|trans }}
+							<i class="icon-white icon-ok"></i> {{ 'pm.accept'|trans }}
 						</a>
 					{% endif %}
 
 					<a class="btn btn-danger" href="{{ path('pm_close', { id: conversation.id }) }}">
-						<i class="icon icon-white icon-remove"></i> {{ close_text|trans }}
+						<i class="icon-white icon-remove"></i> {{ close_text|trans }}
 					</a>
 				</div>
 			{% else %}

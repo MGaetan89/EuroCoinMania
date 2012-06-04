@@ -57,9 +57,9 @@
 							<b class="caret"></b>
 						</a>
 						<ul class="dropdown-menu">
-							<li{% if route|slice(0, 3) == 'pm_' %} class="active"{% endif %}><a href="{{ path('pm_index') }}"><i class="icon icon-envelope"></i> {{ 'pm'|trans }}</a></li>
-							<li{% if own_profile %} class="active"{% endif %}><a href="{{ path('user_view', { id: app.user.id }) }}"><i class="icon icon-user"></i> {{ 'user.profile'|trans }}</a></li>
-							<li><a href="{{ path('fos_user_security_logout') }}"><i class="icon icon-off"></i> {{ 'user.logout'|trans }}</a></li>
+							<li{% if route|slice(0, 3) == 'pm_' %} class="active"{% endif %}><a href="{{ path('pm_index') }}"><i class="icon-envelope"></i> {{ 'pm'|trans }}</a></li>
+							<li{% if own_profile %} class="active"{% endif %}><a href="{{ path('user_view', { id: app.user.id }) }}"><i class="icon-user"></i> {{ 'user.profile'|trans }}</a></li>
+							<li><a href="{{ path('fos_user_security_logout') }}"><i class="icon-off"></i> {{ 'user.logout'|trans }}</a></li>
 						</ul>
 					</li>
 					{% else %}
