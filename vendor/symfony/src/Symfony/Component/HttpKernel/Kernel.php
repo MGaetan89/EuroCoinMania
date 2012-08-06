@@ -56,11 +56,11 @@ abstract class Kernel implements KernelInterface
     protected $startTime;
     protected $classes;
 
-    const VERSION         = '2.0.15';
-    const VERSION_ID      = '20015';
+    const VERSION         = '2.0.16';
+    const VERSION_ID      = '20016';
     const MAJOR_VERSION   = '2';
     const MINOR_VERSION   = '0';
-    const RELEASE_VERSION = '15';
+    const RELEASE_VERSION = '16';
     const EXTRA_VERSION   = '';
 
     /**
@@ -706,7 +706,7 @@ abstract class Kernel implements KernelInterface
      *
      * @return string The PHP string with the comments removed
      */
-    static public function stripComments($source)
+    public static function stripComments($source)
     {
         if (!function_exists('token_get_all')) {
             return $source;
