@@ -45,7 +45,7 @@ class Year {
 	}
 
 	public function __toString() {
-		$year = (string) $this->year;
+		$year = (string) $this->year . ' ';
 		if ($this->getWorkshop()) {
 			$year .= $this->getWorkshop()->getShortName();
 		}
