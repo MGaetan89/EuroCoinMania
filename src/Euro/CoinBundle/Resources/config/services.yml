@@ -1,30 +1,27 @@
 services:
-    euro.coin.admin.country:
-        class: Euro\CoinBundle\Admin\CountryAdmin
-        arguments: [null, Euro\CoinBundle\Entity\Country, SonataAdminBundle:CRUD]
-        tags:
-            - { name: sonata.admin, manager_type: orm, label: "Country", label_translator_strategy: "sonata.admin.label.strategy.underscore" }
-    euro.coin.admin.value:
-        class: Euro\CoinBundle\Admin\ValueAdmin
-        arguments: [null, Euro\CoinBundle\Entity\Value, SonataAdminBundle:CRUD]
-        tags:
-            - { name: sonata.admin, manager_type: orm, label: "Value", label_translator_strategy: "sonata.admin.label.strategy.underscore" }
-    euro.coin.admin.coin:
+    euro_coin.admin.coin:
         class: Euro\CoinBundle\Admin\CoinAdmin
         arguments: [null, Euro\CoinBundle\Entity\Coin, SonataAdminBundle:CRUD]
         tags:
-            - { name: sonata.admin, manager_type: orm, label: "Coin", label_translator_strategy: "sonata.admin.label.strategy.underscore" }
-    euro.coin.admin.year:
+            - { name: sonata.admin, manager_type: orm, group: Collection, label: euro_coin.menu_coin, label_translator_strategy: sonata.admin.label.strategy.underscore }
+
+    euro_coin.admin.country:
+        class: Euro\CoinBundle\Admin\CountryAdmin
+        arguments: [null, Euro\CoinBundle\Entity\Country, SonataAdminBundle:CRUD]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: Collection, label: euro_coin.menu_country, label_translator_strategy: sonata.admin.label.strategy.underscore }
+    euro_coin.admin.value:
+        class: Euro\CoinBundle\Admin\ValueAdmin
+        arguments: [null, Euro\CoinBundle\Entity\Value, SonataAdminBundle:CRUD]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: Collection, label: euro_coin.menu_value, label_translator_strategy: sonata.admin.label.strategy.underscore }
+    euro_coin.admin.year:
         class: Euro\CoinBundle\Admin\YearAdmin
         arguments: [null, Euro\CoinBundle\Entity\Year, SonataAdminBundle:CRUD]
         tags:
-            - { name: sonata.admin, manager_type: orm, label: "Year", label_translator_strategy: "sonata.admin.label.strategy.underscore" }
-    euro.coin.admin.workshop:
+            - { name: sonata.admin, manager_type: orm, group: Collection, label: euro_coin.menu_year, label_translator_strategy: sonata.admin.label.strategy.underscore }
+    euro_coin.admin.workshop:
         class: Euro\CoinBundle\Admin\WorkshopAdmin
         arguments: [null, Euro\CoinBundle\Entity\Workshop, SonataAdminBundle:CRUD]
         tags:
-            - { name: sonata.admin, manager_type: orm, label: "Workshop", label_translator_strategy: "sonata.admin.label.strategy.underscore" }
-    twig.extension.coin:
-        class: Euro\CoinBundle\Twig\Extension
-        tags:
-            - { name: twig.extension }
+            - { name: sonata.admin, manager_type: orm, group: Collection, label: euro_coin.menu_workshop, label_translator_strategy: sonata.admin.label.strategy.underscore }

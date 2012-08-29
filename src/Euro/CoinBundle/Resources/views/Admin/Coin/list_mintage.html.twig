@@ -1,5 +1,6 @@
 {% extends 'SonataAdminBundle:CRUD:base_list_field.html.twig' %}
 
 {% block field %}
-	{{ object.mintage|number_format }}
+	{{ object.mintage|number_format_duration }}
+	<span class="muted pull-right">{{ object.membertotal|number_format_duration }}</span>
 {% endblock %}

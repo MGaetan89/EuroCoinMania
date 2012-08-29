@@ -2,21 +2,20 @@
 
 namespace Euro\CoinBundle\Entity;
 
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * Euro\CoinBundle\Entity\Country
  *
- * @ORM\Table(name="country")
+ * @ORM\Table()
  * @ORM\Entity(repositoryClass="Euro\CoinBundle\Entity\CountryRepository")
  */
 class Country {
+
 	/**
 	 * @var integer $id
 	 *
-	 * @ORM\Column(name="id", type="smallint")
+	 * @ORM\Column(name="id", type="integer")
 	 * @ORM\Id
 	 * @ORM\GeneratedValue(strategy="AUTO")
 	 */
@@ -25,19 +24,19 @@ class Country {
 	/**
 	 * @var string $name
 	 *
-	 * @ORM\Column(name="name", type="string", length=100)
+	 * @ORM\Column(name="name", type="string", length=25)
 	 */
 	private $name;
 
 	/**
-	 * @var string $nameiso
+	 * @var string $name_iso
 	 *
-	 * @ORM\Column(name="nameiso", type="string", length=2)
+	 * @ORM\Column(name="name_iso", type="string", length=2)
 	 */
-	private $nameiso;
+	private $name_iso;
 
 	/**
-	 * @var date $join_date
+	 * @var \DateTime $join_date
 	 *
 	 * @ORM\Column(name="join_date", type="date")
 	 */
@@ -57,23 +56,14 @@ class Country {
 	 */
 	private $exchange_rate;
 
-	/**
-	 * @ORM\OneToMany(targetEntity="Coin", mappedBy="country")
-	 */
-	protected $coins;
-
-	public function __construct() {
-		$this->coins = new ArrayCollection();
-	}
-
 	public function __toString() {
-		return $this->getName();
+		return 'country.name.' . $this->getName();
 	}
 
 	/**
 	 * Get id
 	 *
-	 * @return integer
+	 * @return integer 
 	 */
 	public function getId() {
 		return $this->id;
@@ -83,6 +73,7 @@ class Country {
 	 * Set name
 	 *
 	 * @param string $name
+	 * @return Country
 	 */
 	public function setName($name) {
 		$this->name = $name;
@@ -93,44 +84,38 @@ class Country {
 	/**
 	 * Get name
 	 *
-	 * @return string
+	 * @return string 
 	 */
-	public function getName($prefix = true) {
-		if ($this->name) {
-			if ($prefix) {
-				return 'country.name.' . $this->name;
-			}
-
-			return $this->name;
-		}
-
-		return null;
+	public function getName() {
+		return $this->name;
 	}
 
 	/**
-	 * Set nameiso
+	 * Set name_iso
 	 *
-	 * @param string $nameiso
+	 * @param string $nameIso
+	 * @return Country
 	 */
-	public function setNameiso($nameiso) {
-		$this->nameiso = $nameiso;
+	public function setNameIso($nameIso) {
+		$this->name_iso = $nameIso;
 
 		return $this;
 	}
 
 	/**
-	 * Get nameiso
+	 * Get name_iso
 	 *
-	 * @return string
+	 * @return string 
 	 */
-	public function getNameiso() {
-		return $this->nameiso;
+	public function getNameIso() {
+		return $this->name_iso;
 	}
 
 	/**
 	 * Set join_date
 	 *
-	 * @param date $joinDate
+	 * @param \DateTime $joinDate
+	 * @return Country
 	 */
 	public function setJoinDate($joinDate) {
 		$this->join_date = $joinDate;
@@ -141,40 +126,17 @@ class Country {
 	/**
 	 * Get join_date
 	 *
-	 * @return date
+	 * @return \DateTime 
 	 */
 	public function getJoinDate() {
 		return $this->join_date;
 	}
 
 	/**
-	 * Set former_currency
-	 *
-	 * @param string $formerCurrency
-	 */
-	public function setFormerCurrency($formerCurrency) {
-		$this->former_currency = $formerCurrency;
-
-		return $this;
-	}
-
-	/**
-	 * Get former_currency
-	 *
-	 * @return string
-	 */
-	public function getFormerCurrency() {
-		if ($this->name) {
-			return 'country.currency.' . $this->name;
-		}
-
-		return null;
-	}
-
-	/**
 	 * Set former_currency_iso
 	 *
 	 * @param string $formerCurrencyIso
+	 * @return Country
 	 */
 	public function setFormerCurrencyIso($formerCurrencyIso) {
 		$this->former_currency_iso = $formerCurrencyIso;
@@ -185,7 +147,7 @@ class Country {
 	/**
 	 * Get former_currency_iso
 	 *
-	 * @return string
+	 * @return string 
 	 */
 	public function getFormerCurrencyIso() {
 		return $this->former_currency_iso;
@@ -195,6 +157,7 @@ class Country {
 	 * Set exchange_rate
 	 *
 	 * @param float $exchangeRate
+	 * @return Country
 	 */
 	public function setExchangeRate($exchangeRate) {
 		$this->exchange_rate = $exchangeRate;
@@ -205,30 +168,10 @@ class Country {
 	/**
 	 * Get exchange_rate
 	 *
-	 * @return float
+	 * @return float 
 	 */
 	public function getExchangeRate() {
 		return $this->exchange_rate;
-	}
-
-	/**
-	 * Add coins
-	 *
-	 * @param Coin $coins
-	 */
-	public function addCoin(Coin $coins) {
-		$this->coins[] = $coins;
-
-		return $this;
-	}
-
-	/**
-	 * Get coins
-	 *
-	 * @return Collection
-	 */
-	public function getCoins() {
-		return $this->coins;
 	}
 
 }

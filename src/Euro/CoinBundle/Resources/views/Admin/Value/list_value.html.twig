@@ -1,7 +1,5 @@
 {% extends 'SonataAdminBundle:CRUD:base_list_field.html.twig' %}
 
-{% from "EuroCoinBundle::macros.html.twig" import value %}
-
-{% block field%}
-	{{ value(object.value) }}
+{% block field %}
+	{{ object.value|number_format_currency('EUR') }}
 {% endblock %}

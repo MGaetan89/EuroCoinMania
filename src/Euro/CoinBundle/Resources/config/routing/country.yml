@@ -1,7 +1,0 @@
-country:
-    pattern:  /
-    defaults: { _controller: "EuroCoinBundle:Country:index" }
-
-country_show:
-    pattern:  /{id}/show
-    defaults: { _controller: "EuroCoinBundle:Country:show" }

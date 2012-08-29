@@ -3,6 +3,7 @@
 namespace Euro\CoinBundle\Entity;
 
 use Doctrine\ORM\EntityRepository;
+use Sonata\UserBundle\Model\UserInterface;
 
 /**
  * ShareRepository
@@ -12,49 +13,26 @@ use Doctrine\ORM\EntityRepository;
  */
 class ShareRepository extends EntityRepository {
 
-	public function cancelShare($conversation, $user) {
-		$queryBuiler = $this->createQueryBuilder('s');
-		$expr = $queryBuiler->expr();
+	public function findForUser(UserInterface $user, $all) {
+		$queryBuilder = $this->createQueryBuilder('s');
+		$expr = $queryBuilder->expr();
 
-		$status = Share::STATUS_REFUSED;
-		if ($conversation->getFromUser()->getId() == $user->getId()) {
-			$status = Share::STATUS_CANCELED;
+		$queryBuilder
+				->where($expr->eq('s.from_user', ':user'))
+				->orWhere($expr->eq('s.to_user', ':user'));
+
+		if (!$all) {
+			$queryBuilder
+					->andWhere($expr->eq('s.status', Share::STATUS_PENDING));
+		} else {
+			$queryBuilder
+					->orderBy('s.status', 'ASC');
 		}
 
-		return $queryBuiler->update()
-						->set('s.status', ':status')
-						->where($expr->eq('s.pm', ':conversation'))
-						->setParameter('status', $status)
-						->setParameter('conversation', $conversation)
-						->getQuery()
-						->getResult();
-	}
-
-	public function getSharesByUser($user) {
-		$queryBuiler = $this->createQueryBuilder('s');
-		$expr = $queryBuiler->expr();
-
-		return $queryBuiler
-						->join('s.from_user_coin', 'from_uc')
-						->join('s.to_user_coin', 'to_uc')
-						->where($expr->eq('from_uc.user', ':user'))
-						->orWhere($expr->eq('to_uc.user', ':user'))
-						->orderBy('s.date', 'DESC')
+		return $queryBuilder->addOrderBy('s.date', 'DESC')
 						->setParameter('user', $user)
 						->getQuery()
 						->getResult();
-	}
-
-	public function setAccepted($id) {
-		$queryBuiler = $this->createQueryBuilder('s');
-		$expr = $queryBuiler->expr();
-
-		$queryBuiler->update()
-				->set('s.status', Share::STATUS_VALIDATED)
-				->where($expr->eq('s.id', ':id'))
-				->setParameter('id', $id)
-				->getQuery()
-				->getResult();
 	}
 
 }

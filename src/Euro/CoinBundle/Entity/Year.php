@@ -2,17 +2,16 @@
 
 namespace Euro\CoinBundle\Entity;
 
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * Euro\CoinBundle\Entity\Year
  *
- * @ORM\Table(name="year")
+ * @ORM\Table()
  * @ORM\Entity(repositoryClass="Euro\CoinBundle\Entity\YearRepository")
  */
 class Year {
+
 	/**
 	 * @var integer $id
 	 *
@@ -35,28 +34,18 @@ class Year {
 	 */
 	private $workshop;
 
-	/**
-	 * @ORM\OneToMany(targetEntity="Coin", mappedBy="country")
-	 */
-	protected $coins;
-
-	public function __construct() {
-		$this->coins = new ArrayCollection();
-	}
-
 	public function __toString() {
-		$year = (string) $this->year . ' ';
 		if ($this->getWorkshop()) {
-			$year .= $this->getWorkshop()->getShortName();
+			return $this->getYear() . ' ' . $this->getWorkshop();
 		}
 
-		return $year;
+		return (string) $this->getYear();
 	}
 
 	/**
 	 * Get id
 	 *
-	 * @return integer
+	 * @return integer 
 	 */
 	public function getId() {
 		return $this->id;
@@ -65,7 +54,8 @@ class Year {
 	/**
 	 * Set year
 	 *
-	 * @param smallint $year
+	 * @param integer $year
+	 * @return Year
 	 */
 	public function setYear($year) {
 		$this->year = $year;
@@ -76,7 +66,7 @@ class Year {
 	/**
 	 * Get year
 	 *
-	 * @return smallint
+	 * @return integer 
 	 */
 	public function getYear() {
 		return $this->year;
@@ -100,26 +90,6 @@ class Year {
 	 */
 	public function getWorkshop() {
 		return $this->workshop;
-	}
-
-	/**
-	 * Add coins
-	 *
-	 * @param Coin $coins
-	 */
-	public function addCoin(Coin $coins) {
-		$this->coins[] = $coins;
-
-		return $this;
-	}
-
-	/**
-	 * Get coins
-	 *
-	 * @return Collection
-	 */
-	public function getCoins() {
-		return $this->coins;
 	}
 
 }

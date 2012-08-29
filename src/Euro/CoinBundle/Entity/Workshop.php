@@ -7,10 +7,11 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Euro\CoinBundle\Entity\Workshop
  *
- * @ORM\Table(name="workshop")
+ * @ORM\Table()
  * @ORM\Entity(repositoryClass="Euro\CoinBundle\Entity\WorkshopRepository")
  */
 class Workshop {
+
 	/**
 	 * @var integer $id
 	 *
@@ -34,23 +35,24 @@ class Workshop {
 	 */
 	private $name;
 
+	public function __toString() {
+		return $this->getShortName() . ' - ' . $this->getName();
+	}
+
 	/**
 	 * Get id
 	 *
-	 * @return integer
+	 * @return integer 
 	 */
 	public function getId() {
 		return $this->id;
-	}
-
-	public function __toString() {
-		return $this->getName();
 	}
 
 	/**
 	 * Set short_name
 	 *
 	 * @param string $shortName
+	 * @return Workshop
 	 */
 	public function setShortName($shortName) {
 		$this->short_name = $shortName;
@@ -61,7 +63,7 @@ class Workshop {
 	/**
 	 * Get short_name
 	 *
-	 * @return string
+	 * @return string 
 	 */
 	public function getShortName() {
 		return $this->short_name;
@@ -71,6 +73,7 @@ class Workshop {
 	 * Set name
 	 *
 	 * @param string $name
+	 * @return Workshop
 	 */
 	public function setName($name) {
 		$this->name = $name;
@@ -81,7 +84,7 @@ class Workshop {
 	/**
 	 * Get name
 	 *
-	 * @return string
+	 * @return string 
 	 */
 	public function getName() {
 		return $this->name;

@@ -1,65 +1,19 @@
-{% extends '::base.html.twig' %}
+{% extends "::base.html.twig" %}
 
 {% block body %}
-<div class="hero-unit">
-	<h1>{{ 'sitename'|trans }}</h1>
-
-	<p>{{ 'sitename_welcome'|trans }}</p>
-</div>
-
-<div class="page-header">
-	<h1>Actualités</h1>
-</div>
-
-<div class="accordion" id="news">
-	<div class="accordion-group">
-		<div class="accordion-heading">
-			<a class="accordion-toggle" data-parent="#news" data-toggle="collapse" href="#news_3">Titre news 3</a>
-		</div>
-
-		<div class="accordion-body collapse in" id="news_3">
-			<div class="accordion-inner">
-				Contenu de la news 3
+<div class="row-fluid">
+	{% for i in 0..7 %}
+		{% if i % 3 == 0 %}
 			</div>
-		</div>
+			<div class="row-fluid">
+		{% endif %}
+
+	<div class="span4">
+		<h2>Heading</h2>
+
+		<p>Contenu ...</p>
+		<p><a class="btn" href="#">Lire la suite &raquo;</a></p>
 	</div>
-
-	<div class="accordion-group">
-		<div class="accordion-heading">
-			<a class="accordion-toggle" data-parent="#news" data-toggle="collapse" href="#news_2">Titre news 2</a>
-		</div>
-
-		<div class="accordion-body collapse" id="news_2">
-			<div class="accordion-inner">
-				Contenu de la news 2
-			</div>
-		</div>
-	</div>
-
-	<div class="accordion-group">
-		<div class="accordion-heading">
-			<a class="accordion-toggle" data-parent="#news" data-toggle="collapse" href="#news_1">Titre news 1</a>
-		</div>
-
-		<div class="accordion-body collapse" id="news_1">
-			<div class="accordion-inner">
-				Contenu de la news 1
-			</div>
-		</div>
-	</div>
-</div>
-
-<div class="pagination pagination-centered">
-	<ul>
-		<li><a href="#">&laquo;</a></li>
-
-		<li class="active"><a href="#">1</a></li>
-		<li><a href="#">2</a></li>
-		<li><a href="#">&hellip;</a></li>
-		<li><a href="#">13</a></li>
-		<li><a href="#">14</a></li>
-
-		<li><a href="#">&raquo;</a></li>
-	</ul>
+	{% endfor %}
 </div>
 {% endblock %}

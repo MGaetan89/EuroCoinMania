@@ -2,21 +2,20 @@
 
 namespace Euro\CoinBundle\Entity;
 
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * Euro\CoinBundle\Entity\Value
  *
- * @ORM\Table(name="value")
+ * @ORM\Table()
  * @ORM\Entity(repositoryClass="Euro\CoinBundle\Entity\ValueRepository")
  */
 class Value {
+
 	/**
 	 * @var integer $id
 	 *
-	 * @ORM\Column(name="id", type="smallint")
+	 * @ORM\Column(name="id", type="integer")
 	 * @ORM\Id
 	 * @ORM\GeneratedValue(strategy="AUTO")
 	 */
@@ -32,32 +31,18 @@ class Value {
 	/**
 	 * @var boolean $collector
 	 *
-	 * @ORM\Column(name="collector", nullable=true, type="boolean")
+	 * @ORM\Column(name="collector", type="boolean")
 	 */
 	private $collector;
 
-	/**
-	 * @ORM\OneToMany(targetEntity="Coin", mappedBy="value")
-	 */
-	protected $coins;
-
-	public function __construct() {
-		$this->coins = new ArrayCollection();
-	}
-
 	public function __toString() {
-		if ($this->value < 1) {
-			return ($this->value * 100) . ' cent';
-		}
-
-		return $this->value . ' €';
+		return $this->getValue() . ' €';
 	}
-
 
 	/**
 	 * Get id
 	 *
-	 * @return integer
+	 * @return integer 
 	 */
 	public function getId() {
 		return $this->id;
@@ -67,6 +52,7 @@ class Value {
 	 * Set value
 	 *
 	 * @param float $value
+	 * @return Value
 	 */
 	public function setValue($value) {
 		$this->value = $value;
@@ -77,7 +63,7 @@ class Value {
 	/**
 	 * Get value
 	 *
-	 * @return float
+	 * @return float 
 	 */
 	public function getValue() {
 		return $this->value;
@@ -87,6 +73,7 @@ class Value {
 	 * Set collector
 	 *
 	 * @param boolean $collector
+	 * @return Value
 	 */
 	public function setCollector($collector) {
 		$this->collector = $collector;
@@ -97,30 +84,10 @@ class Value {
 	/**
 	 * Get collector
 	 *
-	 * @return boolean
+	 * @return boolean 
 	 */
-	public function getCollector() {
+	public function isCollector() {
 		return $this->collector;
-	}
-
-	/**
-	 * Add coins
-	 *
-	 * @param Coin $coins
-	 */
-	public function addCoin(Coin $coins) {
-		$this->coins[] = $coins;
-
-		return $this;
-	}
-
-	/**
-	 * Get coins
-	 *
-	 * @return Collection
-	 */
-	public function getCoins() {
-		return $this->coins;
 	}
 
 }

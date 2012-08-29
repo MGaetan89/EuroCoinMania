@@ -2,16 +2,17 @@
 
 namespace Euro\CoinBundle\Entity;
 
+use Application\Sonata\UserBundle\Entity\User;
 use Doctrine\ORM\Mapping as ORM;
-use Euro\UserBundle\Entity\User;
 
 /**
  * Euro\CoinBundle\Entity\UserCoin
  *
- * @ORM\Table(name="user_coin")
+ * @ORM\Table()
  * @ORM\Entity(repositoryClass="Euro\CoinBundle\Entity\UserCoinRepository")
  */
 class UserCoin {
+
 	/**
 	 * @var integer $id
 	 *
@@ -22,13 +23,13 @@ class UserCoin {
 	private $id;
 
 	/**
-	 * @ORM\ManyToOne(targetEntity="Euro\UserBundle\Entity\User", inversedBy="coins")
+	 * @ORM\ManyToOne(targetEntity="Application\Sonata\UserBundle\Entity\User")
 	 * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
 	 */
 	private $user;
 
 	/**
-	 * @ORM\ManyToOne(targetEntity="Coin", inversedBy="users")
+	 * @ORM\ManyToOne(targetEntity="Coin")
 	 * @ORM\JoinColumn(name="coin_id", referencedColumnName="id")
 	 */
 	private $coin;
@@ -40,43 +41,32 @@ class UserCoin {
 	 */
 	private $quantity;
 
+	/**
+	 * @var integer $sharing
+	 *
+	 * @ORM\Column(name="sharing", type="integer")
+	 */
+	private $sharing;
+
 	public function __construct() {
 		$this->quantity = 1;
+		$this->sharing = 0;
 	}
 
 	/**
 	 * Get id
 	 *
-	 * @return integer
+	 * @return integer 
 	 */
 	public function getId() {
 		return $this->id;
 	}
 
 	/**
-	 * Set quantity
-	 *
-	 * @param integer $quantity
-	 */
-	public function setQuantity($quantity) {
-		$this->quantity = $quantity;
-
-		return $this;
-	}
-
-	/**
-	 * Get quantity
-	 *
-	 * @return integer
-	 */
-	public function getQuantity() {
-		return $this->quantity;
-	}
-
-	/**
 	 * Set user
 	 *
 	 * @param User $user
+	 * @return UserCoin
 	 */
 	public function setUser(User $user) {
 		$this->user = $user;
@@ -97,9 +87,12 @@ class UserCoin {
 	 * Set coin
 	 *
 	 * @param Coin $coin
+	 * @return UserCoin
 	 */
 	public function setCoin(Coin $coin) {
 		$this->coin = $coin;
+
+		return $this;
 	}
 
 	/**
@@ -109,8 +102,92 @@ class UserCoin {
 	 */
 	public function getCoin() {
 		return $this->coin;
+	}
+
+	/**
+	 * Add one coin
+	 *
+	 * @return UserCoin
+	 */
+	public function addUnit() {
+		$this->quantity++;
 
 		return $this;
+	}
+
+	/**
+	 * Remove one coin
+	 *
+	 * @return UserCoin
+	 */
+	public function removeUnit() {
+		$this->quantity--;
+
+		return $this;
+	}
+
+	/**
+	 * Set quantity
+	 *
+	 * @param integer $quantity
+	 * @return UserCoin
+	 */
+	public function setQuantity($quantity) {
+		$this->quantity = $quantity;
+
+		return $this;
+	}
+
+	/**
+	 * Get quantity
+	 *
+	 * @return integer 
+	 */
+	public function getQuantity() {
+		return $this->quantity;
+	}
+
+	/**
+	 * Add one share
+	 *
+	 * @return UserCoin
+	 */
+	public function addShare() {
+		$this->sharing++;
+
+		return $this;
+	}
+
+	/**
+	 * Remove one share
+	 *
+	 * @return UserCoin
+	 */
+	public function removeShare() {
+		$this->sharing--;
+
+		return $this;
+	}
+
+	/**
+	 * Set sharing
+	 *
+	 * @param integer $sharing
+	 * @return UserCoin
+	 */
+	public function setSharing($sharing) {
+		$this->sharing = $sharing;
+
+		return $this;
+	}
+
+	/**
+	 * Get sharing
+	 *
+	 * @return integer 
+	 */
+	public function getSharing() {
+		return $this->sharing;
 	}
 
 }

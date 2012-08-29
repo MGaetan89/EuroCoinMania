@@ -2,41 +2,39 @@
 
 namespace Euro\CoinBundle\Entity;
 
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
-use Euro\UserBundle\Entity\User;
 
 /**
  * Euro\CoinBundle\Entity\Coin
  *
- * @ORM\Table(name="coin")
+ * @ORM\Table()
  * @ORM\Entity(repositoryClass="Euro\CoinBundle\Entity\CoinRepository")
  */
 class Coin {
+
 	/**
 	 * @var integer $id
 	 *
-	 * @ORM\Column(name="id", type="smallint")
+	 * @ORM\Column(name="id", type="integer")
 	 * @ORM\Id
 	 * @ORM\GeneratedValue(strategy="AUTO")
 	 */
 	private $id;
 
 	/**
-	 * @ORM\ManyToOne(targetEntity="Value", inversedBy="coins")
-	 * @ORM\JoinColumn(name="value_id", referencedColumnName="id")
-	 */
-	private $value;
-
-	/**
-	 * @ORM\ManyToOne(targetEntity="Country", inversedBy="coins")
+	 * @ORM\ManyToOne(targetEntity="Country")
 	 * @ORM\JoinColumn(name="country_id", referencedColumnName="id")
 	 */
 	private $country;
 
 	/**
-	 * @ORM\ManyToOne(targetEntity="Year", inversedBy="coins")
+	 * @ORM\ManyToOne(targetEntity="Value")
+	 * @ORM\JoinColumn(name="value_id", referencedColumnName="id")
+	 */
+	private $value;
+
+	/**
+	 * @ORM\ManyToOne(targetEntity="Year")
 	 * @ORM\JoinColumn(name="year_id", referencedColumnName="id")
 	 */
 	private $year;
@@ -44,68 +42,144 @@ class Coin {
 	/**
 	 * @var boolean $commemorative
 	 *
-	 * @ORM\Column(name="commemorative", nullable=true, type="boolean")
+	 * @ORM\Column(name="commemorative", type="boolean")
 	 */
 	private $commemorative;
 
 	/**
-	 * @var bigint $mintage
+	 * @var string $description
+	 *
+	 * @ORM\Column(name="description", type="text", nullable=true)
+	 */
+	private $description;
+
+	/**
+	 * @var integer $mintage
 	 *
 	 * @ORM\Column(name="mintage", type="integer")
 	 */
 	private $mintage;
 
 	/**
-	 * @var bigint $member_total
+	 * @var integer $member_total
 	 *
 	 * @ORM\Column(name="member_total", type="integer")
 	 */
 	private $member_total;
 
 	/**
-	 * @var text $description
-	 *
-	 * @ORM\Column(name="description", nullable=true, type="string")
-	 */
-	private $description;
-
-	/**
-	 * @ORM\OneToMany(targetEntity="UserCoin", mappedBy="coin")
-	 */
-	private $users;
-
-	public function __construct() {
-		$this->member_total = 0;
-		$this->users = new ArrayCollection();
-	}
-
-	/**
 	 * Get id
 	 *
-	 * @return integer
+	 * @return integer 
 	 */
 	public function getId() {
 		return $this->id;
 	}
 
 	/**
-	 * Set value
+	 * Set commemorative
 	 *
-	 * @param Value $value
+	 * @param boolean $commemorative
+	 * @return Coin
 	 */
-	public function setValue(Value $value) {
-		$this->value = $value;
+	public function setCommemorative($commemorative) {
+		$this->commemorative = $commemorative;
 
 		return $this;
 	}
 
 	/**
-	 * Get value
+	 * Get commemorative
 	 *
-	 * @return Value
+	 * @return boolean 
 	 */
-	public function getValue() {
-		return $this->value;
+	public function isCommemorative() {
+		return $this->commemorative;
+	}
+
+	/**
+	 * Set description
+	 *
+	 * @param string $description
+	 * @return Coin
+	 */
+	public function setDescription($description) {
+		$this->description = $description;
+
+		return $this;
+	}
+
+	/**
+	 * Get description
+	 *
+	 * @return string 
+	 */
+	public function getDescription() {
+		return $this->description;
+	}
+
+	/**
+	 * Set mintage
+	 *
+	 * @param integer $mintage
+	 * @return Coin
+	 */
+	public function setMintage($mintage) {
+		$this->mintage = $mintage;
+
+		return $this;
+	}
+
+	/**
+	 * Get mintage
+	 *
+	 * @return integer 
+	 */
+	public function getMintage() {
+		return $this->mintage;
+	}
+
+	/**
+	 * Add one coin
+	 *
+	 * @return Coin
+	 */
+	public function addUnit() {
+		$this->member_total++;
+
+		return $this;
+	}
+
+	/**
+	 * Remove one coin
+	 *
+	 * @return Coin
+	 */
+	public function removeUnit() {
+		$this->member_total--;
+
+		return $this;
+	}
+
+	/**
+	 * Set member_total
+	 *
+	 * @param integer $memberTotal
+	 * @return Coin
+	 */
+	public function setMemberTotal($memberTotal) {
+		$this->member_total = $memberTotal;
+
+		return $this;
+	}
+
+	/**
+	 * Get member_total
+	 *
+	 * @return integer 
+	 */
+	public function getMemberTotal() {
+		return $this->member_total;
 	}
 
 	/**
@@ -129,6 +203,26 @@ class Coin {
 	}
 
 	/**
+	 * Set value
+	 *
+	 * @param Value $value
+	 */
+	public function setValue(Value $value) {
+		$this->value = $value;
+
+		return $this;
+	}
+
+	/**
+	 * Get value
+	 *
+	 * @return Value
+	 */
+	public function getValue() {
+		return $this->value;
+	}
+
+	/**
 	 * Set year
 	 *
 	 * @param Year $year
@@ -146,106 +240,6 @@ class Coin {
 	 */
 	public function getYear() {
 		return $this->year;
-	}
-
-	/**
-	 * Set commemorative
-	 *
-	 * @param boolean $commemorative
-	 */
-	public function setCommemorative($commemorative) {
-		$this->commemorative = $commemorative;
-
-		return $this;
-	}
-
-	/**
-	 * Get commemorative
-	 *
-	 * @return boolean
-	 */
-	public function getCommemorative() {
-		return $this->commemorative;
-	}
-
-	/**
-	 * Set mintage
-	 *
-	 * @param bigint $mintage
-	 */
-	public function setMintage($mintage) {
-		$this->mintage = $mintage;
-
-		return $this;
-	}
-
-	/**
-	 * Get mintage
-	 *
-	 * @return bigint
-	 */
-	public function getMintage() {
-		return $this->mintage;
-	}
-
-	/**
-	 * Set member_total
-	 *
-	 * @param bigint $mintagemember_total
-	 */
-	public function setMemberTotal($member_total) {
-		$this->member_total = $member_total;
-
-		return $this;
-	}
-
-	/**
-	 * Get member_total
-	 *
-	 * @return bigint
-	 */
-	public function getMemberTotal() {
-		return $this->member_total;
-	}
-
-	/**
-	 * Set description
-	 *
-	 * @param text $description
-	 */
-	public function setDescription($description) {
-		$this->description = $description;
-
-		return $this;
-	}
-
-	/**
-	 * Get description
-	 *
-	 * @return text
-	 */
-	public function getDescription() {
-		return $this->description;
-	}
-
-	/**
-	 * Add users
-	 *
-	 * @param User $users
-	 */
-	public function addUser(User $users) {
-		$this->users[] = $users;
-
-		return $this;
-	}
-
-	/**
-	 * Get users
-	 *
-	 * @return Collection
-	 */
-	public function getUsers() {
-		return $this->users;
 	}
 
 }

@@ -1,5 +1,5 @@
 {% extends 'SonataAdminBundle:CRUD:base_list_field.html.twig' %}
 
-{% block field%}
-	{{ object.name|trans }}<sub> {{ object.nameiso }}</sub>
+{% block field %}
+	{{ ('country.name.' ~ object.name)|trans }} [{{ object.nameiso }}]
 {% endblock %}

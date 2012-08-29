@@ -1,11 +1,66 @@
-EuroCoinBundle_homepage:
+welcome:
     pattern:  /
     defaults: { _controller: EuroCoinBundle:Default:index }
 
-EuroCoinBundle_country:
-    resource: "@EuroCoinBundle/Resources/config/routing/country.yml"
-    prefix:   /country
+coin_add:
+    pattern: /coin/{id}/add
+    defaults: { _controller: EuroCoinBundle:Coin:addRemove, type: add }
+    requirements:
+        id: "\d+"
+        _method: POST
 
-EuroCoinBundle_coin:
-    resource: "@EuroCoinBundle/Resources/config/routing/coin.yml"
-    prefix:   /coin
+coin_collection:
+    pattern: /collection/{id}/{country}
+    defaults: { _controller: EuroCoinBundle:Coin:collection, country: null, id: null }
+    requirements:
+        id: "\d*"
+
+coin_get:
+    pattern: /coin/{id}/get
+    defaults: { _controller: EuroCoinBundle:Coin:get }
+    requirements:
+        id: "\d+"
+        _method: POST
+
+coin_remove:
+    pattern: /coin/{id}/remove
+    defaults: { _controller: EuroCoinBundle:Coin:addRemove, type: remove }
+    requirements:
+        id: "\d+"
+        _method: POST
+
+countries_list:
+    pattern:  /countries
+    defaults: { _controller: EuroCoinBundle:Country:list }
+        
+exchange_choose_user:
+    pattern: /collection/doubles/users
+    defaults: { _controller: EuroCoinBundle:Exchange:chooseUser }
+
+exchange_coins_request:
+    pattern: /collection/doubles/user/{id}/{name}
+    defaults: { _controller: EuroCoinBundle:Exchange:chooseCoins }
+    requirements:
+        id: "\d+"
+
+exchange_coins_suggest:
+    pattern: /collection/doubles/user/{id}/{name}/suggest
+    defaults: { _controller: EuroCoinBundle:Exchange:proposeCoins }
+    requirements:
+        id: "\d+"
+        _method: POST
+
+exchange_list:
+    pattern: /coin/exchanges
+    defaults: { _controller: EuroCoinBundle:Exchange:listExchange, all: false }
+
+exchange_list_all:
+    pattern: /coin/exchanges/all
+    defaults: { _controller: EuroCoinBundle:Exchange:listExchange, all: true }
+
+exchange_save:
+    pattern: /collection/doubles/user/{id}/{name}/save
+    defaults: { _controller: EuroCoinBundle:Exchange:saveExchange }
+    requirements:
+        id: "\d+"
+        _method: POST

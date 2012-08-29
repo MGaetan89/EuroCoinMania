@@ -2,20 +2,21 @@
 
 namespace Euro\CoinBundle\Entity;
 
+use Application\Sonata\UserBundle\Entity\User;
 use Doctrine\ORM\Mapping as ORM;
-use Euro\PrivateMessageBundle\Entity\Conversation;
 
 /**
  * Euro\CoinBundle\Entity\Share
  *
- * @ORM\Table(name="share")
+ * @ORM\Table()
  * @ORM\Entity(repositoryClass="Euro\CoinBundle\Entity\ShareRepository")
  */
 class Share {
+
 	const STATUS_PENDING = 1;
-	const STATUS_VALIDATED = 2;
-	const STATUS_REFUSED = 3;
-	const STATUS_CANCELED = 4;
+	const STATUS_ACCEPTED = 2;
+	const STATUS_CANCELED = 3;
+	const STATUS_REFUSED = 4;
 
 	/**
 	 * @var integer $id
@@ -27,95 +28,88 @@ class Share {
 	private $id;
 
 	/**
-	 * @ORM\ManyToOne(targetEntity="UserCoin")
-	 * @ORM\JoinColumn(name="from_user_coin_id", referencedColumnName="id")
-	 */
-	private $from_user_coin;
-
-	/**
-	 * @ORM\ManyToOne(targetEntity="UserCoin")
-	 * @ORM\JoinColumn(name="to_user_coin_id", referencedColumnName="id")
-	 */
-	private $to_user_coin;
-
-	/**
-	 * @var smallint $status
-	 *
-	 * @ORM\Column(name="status", type="smallint")
-	 */
-	private $status;
-
-	/**
-	 * @var datetime $date
+	 * @var \DateTime $date
 	 *
 	 * @ORM\Column(name="date", type="datetime")
 	 */
 	private $date;
 
 	/**
-	 * @ORM\OneToOne(targetEntity="Euro\PrivateMessageBundle\Entity\Conversation", inversedBy="share")
-	 * @ORM\JoinColumn(name="conversation_id", referencedColumnName="id")
+	 * @var integer $status
+	 *
+	 * @ORM\Column(name="status", type="smallint")
 	 */
-	private $pm;
+	private $status;
+
+	/**
+	 * @var integer $from_user
+	 *
+	 * @ORM\ManyToOne(targetEntity="Application\Sonata\UserBundle\Entity\User")
+	 * @ORM\JoinColumn(name="from_user_id", referencedColumnName="id")
+	 */
+	private $from_user;
+
+	/**
+	 * @var integer $to_user
+	 *
+	 * @ORM\ManyToOne(targetEntity="Application\Sonata\UserBundle\Entity\User")
+	 * @ORM\JoinColumn(name="to_user_id", referencedColumnName="id")
+	 */
+	private $to_user;
+
+	/**
+	 * @var array $coins_requested
+	 *
+	 * @ORM\Column(name="coins_requested", type="array")
+	 */
+	private $coins_requested;
+
+	/**
+	 * @var array $coins_suggested
+	 *
+	 * @ORM\Column(name="coins_suggested", type="array")
+	 */
+	private $coins_suggested;
 
 	public function __construct() {
-		$this->status = self::STATUS_PENDING;
 		$this->date = new \DateTime();
 	}
 
 	/**
 	 * Get id
 	 *
-	 * @return integer
+	 * @return integer 
 	 */
 	public function getId() {
 		return $this->id;
 	}
 
 	/**
-	 * Set from_user_coin
+	 * Set date
 	 *
-	 * @param UserCoin $fromUserCoin
+	 * @param \DateTime $date
+	 * @return Share
 	 */
-	public function setFromUserCoin(UserCoin $fromUserCoin) {
-		$this->from_user_coin = $fromUserCoin;
+	public function setDate($date) {
+		$this->date = $date;
 
 		return $this;
 	}
 
 	/**
-	 * Get from_user_coin
+	 * Get date
 	 *
-	 * @return UserCoin
+	 * @return \DateTime 
 	 */
-	public function getFromUserCoin() {
-		return $this->from_user_coin;
-	}
-
-	/**
-	 * Set to_user_coin
-	 *
-	 * @param UserCoin $toUserCoin
-	 */
-	public function setToUserCoin(UserCoin $toUserCoin) {
-		$this->to_user_coin = $toUserCoin;
-
-		return $this;
-	}
-
-	/**
-	 * Get to_user_coin
-	 *
-	 * @return UserCoin
-	 */
-	public function getToUserCoin() {
-		return $this->to_user_coin;
+	public function getDate() {
+		return $this->date;
 	}
 
 	/**
 	 * Set status
 	 *
-	 * @param smallint $status
+	 * @param integer $status
+	 * @return Share
 	 */
 	public function setStatus($status) {
 		$this->status = $status;
@@ -126,50 +120,94 @@ class Share {
 	/**
 	 * Get status
 	 *
-	 * @return smallint
+	 * @return integer 
 	 */
 	public function getStatus() {
 		return $this->status;
 	}
 
 	/**
-	 * Set date
+	 * Set from_user
 	 *
-	 * @param \DateTime $date
+	 * @param User $fromUser
+	 * @return Share
 	 */
-	public function setDate(\DateTime $date) {
-		$this->date = $date;
+	public function setFromUser(User $fromUser) {
+		$this->from_user = $fromUser;
 
 		return $this;
 	}
 
 	/**
-	 * Get date
+	 * Get from_user
 	 *
-	 * @return \DateTime
+	 * @return User 
 	 */
-	public function getDate() {
-		return $this->date;
+	public function getFromUser() {
+		return $this->from_user;
 	}
 
 	/**
-	 * Set pm
+	 * Set to_user
 	 *
-	 * @param Conversation $pm
+	 * @param User $toUser
+	 * @return Share
 	 */
-	public function setPm(Conversation $pm) {
-		$this->pm = $pm;
+	public function setToUser(User $toUser) {
+		$this->to_user = $toUser;
 
 		return $this;
 	}
 
 	/**
-	 * Get pm
+	 * Get to_user
 	 *
-	 * @return Conversation
+	 * @return User 
 	 */
-	public function getPm() {
-		return $this->pm;
+	public function getToUser() {
+		return $this->to_user;
+	}
+
+	/**
+	 * Set coins_requested
+	 *
+	 * @param array $coinsRequested
+	 * @return Share
+	 */
+	public function setCoinsRequested(array $coinsRequested) {
+		$this->coins_requested = $coinsRequested;
+
+		return $this;
+	}
+
+	/**
+	 * Get coins_requested
+	 *
+	 * @return array 
+	 */
+	public function getCoinsRequested() {
+		return $this->coins_requested;
+	}
+
+	/**
+	 * Set coins_suggested
+	 *
+	 * @param array $coinsSuggested
+	 * @return Share
+	 */
+	public function setCoinsSuggested(array $coinsSuggested) {
+		$this->coins_suggested = $coinsSuggested;
+
+		return $this;
+	}
+
+	/**
+	 * Get coins_suggested
+	 *
+	 * @return array 
+	 */
+	public function getCoinsSuggested() {
+		return $this->coins_suggested;
 	}
 
 }

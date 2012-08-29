@@ -12,58 +12,19 @@ use Doctrine\ORM\EntityRepository;
  */
 class CoinRepository extends EntityRepository {
 
-	public function getAllYear() {
-		return $this->createQueryBuilder('c')
-						->join('c.year', 'y')
-						->leftJoin('y.workshop', 'w')
-						->select('y')
-						->distinct()
-						->orderBy('y.year', 'ASC')
-						->addOrderBy('w.short_name', 'ASC')
-						->getQuery()
-						->getResult();
-	}
+	public function findCoinsByCountry(Country $country) {
+		$queryBuidler = $this->createQueryBuilder('c');
+		$expr = $queryBuidler->expr();
 
-	public function getCoinsByCountry($country) {
-		$queryBuiler = $this->createQueryBuilder('c');
-		$expr = $queryBuiler->expr();
-
-		return $queryBuiler
+		return $queryBuidler
 						->join('c.value', 'v')
 						->join('c.year', 'y')
 						->leftJoin('y.workshop', 'w')
-						->where(
-								$expr->eq('c.country', ':country')
-						)
+						->where($expr->eq('c.country', ':country'))
 						->orderBy('y.year', 'ASC')
 						->addOrderBy('w.short_name', 'ASC')
 						->addOrderBy('v.value', 'DESC')
 						->setParameter('country', $country)
-						->getQuery()
-						->getResult();
-	}
-
-	public function getCoinsByFilters(array $filters) {
-		$queryBuiler = $this->createQueryBuilder('c')
-				->join('c.value', 'v')
-				->join('c.year', 'y')
-				->leftJoin('y.workshop', 'w');
-		$expr = $queryBuiler->expr();
-
-		$and = $expr->andx();
-		foreach ($filters as $name => $value) {
-			if ($value !== '') {
-				$and->add($expr->eq($name, '\'' . $value . '\''));
-			}
-		}
-
-		if ($and->count()) {
-			$queryBuiler->where($and);
-		}
-
-		return $queryBuiler->orderBy('y.year', 'ASC')
-						->addOrderBy('w.short_name', 'ASC')
-						->addOrderBy('v.value', 'DESC')
 						->getQuery()
 						->getResult();
 	}

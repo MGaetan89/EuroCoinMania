@@ -6,23 +6,23 @@ use Sonata\AdminBundle\Admin\Admin;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
+use Sonata\AdminBundle\Show\ShowMapper;
 use Sonata\AdminBundle\Validator\ErrorElement;
 
 class ValueAdmin extends Admin {
-	protected $translationDomain = 'admin';
 
-	protected function configureFormFields(FormMapper $formMapper) {
-		$formMapper
+	protected $translationDomain = 'ValueAdmin';
+
+	protected function configureDatagridFilters(DatagridMapper $filter) {
+		$filter
 				->add('value')
-				->add('collector')
-		;
+				->add('collector');
 	}
 
-	protected function configureDatagridFilters(DatagridMapper $datagridMapper) {
-		$datagridMapper
+	protected function configureFormFields(FormMapper $form) {
+		$form
 				->add('value')
-				->add('collector')
-		;
+				->add('collector', null, array('required' => false));
 	}
 
 	protected function configureListFields(ListMapper $listMapper) {
@@ -34,17 +34,14 @@ class ValueAdmin extends Admin {
 						'view' => array(),
 						'edit' => array(),
 						'delete' => array(),
-					)
-				))
-		;
+					),
+				));
 	}
 
-	public function validate(ErrorElement $errorElement, $object) {
-		$errorElement
-				->with('value')
-				->assertMin(array('limit' => 0))
-				->end()
-		;
+	protected function configureShowFields(ShowMapper $show) {
+		$show
+				->add('value', null, array('template' => 'EuroCoinBundle:Admin:Value/show_value.html.twig'))
+				->add('collector');
 	}
 
 }

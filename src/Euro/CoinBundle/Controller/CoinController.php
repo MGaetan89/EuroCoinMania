@@ -2,366 +2,137 @@
 
 namespace Euro\CoinBundle\Controller;
 
-use FOS\UserBundle\Model\UserInterface;
-use Euro\CoinBundle\Entity\Share;
 use Euro\CoinBundle\Entity\UserCoin;
-use Euro\PrivateMessageBundle\Entity\Conversation;
-use Euro\PrivateMessageBundle\Entity\PrivateMessage;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
 
-/**
- * Coin controller.
- */
-class CoinController extends Controller {
+class CoinController extends BaseController {
 
-	/**
-	 * Lists all Coin entities.
-	 */
-	public function indexAction($country, $year, $value, $collector) {
-		$filters = array(
-			'country' => $country,
-			'value' => $value,
-			'year' => $year,
-		);
-		$db_filters = array(
-			'c.commemorative' => $collector,
-			'c.country' => $country,
-			'c.value' => $value,
-			'c.year' => $year,
-			'v.collector' => $collector,
-		);
-		$em = $this->getDoctrine()->getEntityManager();
-		$coins = $em->getRepository('EuroCoinBundle:Coin')->getCoinsByFilters($db_filters);
-		$vars = $this->buildVars($coins);
+	public function addRemoveAction($id, $type) {
+		$translator = $this->get('translator');
 
-		return $this->render('EuroCoinBundle:Coin:index.html.twig', array(
-					'coin_values' => $vars->coin_values,
-					'coins' => $vars->coins,
-					'collector' => $collector,
-					'commemoratives' => count($vars->commemoratives) === 2,
-					'countries' => (count($vars->countries) > 1) ? $vars->countries : array(),
-					'filters' => $filters,
-					'values' => (count($vars->values) > 1) ? $vars->values : array(),
-					'years' => (count($vars->years) > 1) ? $vars->years : array(),
+		if (!$user = $this->getUser()) {
+			throw $this->createNotFoundException($translator->trans('user.login_required'));
+		}
+
+		$em = $this->getDoctrine()->getManager();
+		$uc = $em->getRepository('EuroCoinBundle:UserCoin')->findOneBy(array(
+			'coin' => $id,
+			'user' => $user,
 				));
-	}
 
-	/**
-	 * Finds and displays a Coin entity.
-	 */
-	public function showAction($id) {
-		$em = $this->getDoctrine()->getEntityManager();
-
-		return $this->render('EuroCoinBundle:Coin:show.html.twig', array(
-					'coin' => $em->getRepository('EuroCoinBundle:Coin')->find($id),
-				));
-	}
-
-	public function getAction($id) {
-		if (!$this->getUser() instanceof UserInterface) {
-			throw new \Exception('You are not allowed to access this page !');
-		}
-
-		$em = $this->getDoctrine()->getEntityManager();
-
-		return $this->render('EuroCoinBundle:Coin:popover.html.twig', array(
-					'coin' => $em->getRepository('EuroCoinBundle:Coin')->find($id),
-					'popover' => true,
-				));
-	}
-
-	public function removeAction($id) {
-		$user = $this->getUser();
-		if (!$user instanceof UserInterface) {
-			throw new \Exception('You are not allowed to access this page !');
-		}
-
-		$em = $this->getDoctrine()->getEntityManager();
-		$uc = $em->getRepository('EuroCoinBundle:UserCoin')->find($id);
-		if (!$uc) {
-			throw $this->createNotFoundException('Unable to find UserCoin entity.');
-		}
-
-		if ($user->getId() !== $uc->getUser()->getId()) {
-			throw new \Exception('You are not allowed to access this page !');
-		}
-
-		if ($uc->getQuantity() > 0) {
-			$coin = $uc->getCoin();
-			$coin->setMemberTotal($coin->getMemberTotal() - 1);
-
-			$uc->setQuantity($uc->getQuantity() - 1);
-			$em->flush();
-		}
-
-		return new Response($uc->getQuantity());
-	}
-
-	public function addAction($id) {
-		$user = $this->getUser();
-		if (!$user instanceof UserInterface) {
-			throw new \Exception('You are not allowed to access this page !');
-		}
-
-		$em = $this->getDoctrine()->getEntityManager();
-		$update = false;
-		$uc = null;
-		if ($id[0] !== 'c') {
-			$uc = $em->getRepository('EuroCoinBundle:UserCoin')->find($id);
-		}
-
-		if ($uc) {
-			if ($user->getId() !== $uc->getUser()->getId()) {
-				throw new \Exception('You are not allowed to access this page !');
-			}
-
-			$coin = $uc->getCoin();
-			if ($coin->getMemberTotal() < $coin->getMintage()) {
-				$uc->setQuantity($uc->getQuantity() + 1);
-				$update = true;
-			}
-		} else {
-			$coin = $em->getRepository('EuroCoinBundle:Coin')->find(substr($id, 1));
+		if ($type === 'add') {
+			$coin = $em->getRepository('EuroCoinBundle:Coin')->find($id);
 
 			if (!$coin) {
-				throw $this->createNotFoundException('Unable to find Coin entity.');
+				throw $this->createNotFoundException($translator->trans('coin.not_found'));
 			}
 
-			if ($coin->getMemberTotal() < $coin->getMintage()) {
+			if ($coin->getMemberTotal() === $coin->getMintage()) {
+				throw $this->createNotFoundException($translator->trans('coin.not_available'));
+			}
+
+			if (!$uc) {
 				$uc = new UserCoin();
 				$uc->setUser($user);
 				$uc->setCoin($coin);
 
 				$em->persist($uc);
-				$update = true;
+			} else {
+				$uc->addUnit();
 			}
+
+			$coin->addUnit();
+		} else if ($type === 'remove') {
+			if (!$uc || $uc->getQuantity() === 0) {
+				throw $this->createNotFoundException($translator->trans('user.coin_not_found'));
+			}
+
+			if ($uc->getUser()->getId() !== $user->getId()) {
+				throw $this->createNotFoundException($translator->trans('user.not_allowed'));
+			}
+
+			$coin = $em->getRepository('EuroCoinBundle:Coin')->find($id);
+
+			if (!$coin) {
+				throw $this->createNotFoundException($translator->trans('coin.not_found'));
+			}
+
+			$coin->removeUnit();
+			$uc->removeUnit();
 		}
 
-		if ($update) {
-			$coin->setMemberTotal($coin->getMemberTotal() + 1);
-			$em->flush();
-		}
-
-		return new Response(json_encode(array(
-							'quantity' => $uc->getQuantity(),
-							'uc' => $uc->getId(),
-						)));
-	}
-
-	public function doublesAction() {
-		$user = $this->getUser();
-		if (!$user instanceof UserInterface) {
-			throw new \Exception('You are not allowed to access this page !');
-		}
-
-		$em = $this->getDoctrine()->getEntityManager();
-		$uc = $em->getRepository('EuroCoinBundle:UserCoin')->getDoublesByUser($user);
-		$vars = $this->buildVars($uc);
-
-		$from_uc = array();
-		foreach ($uc as $ucoin) {
-			$from_uc[$ucoin->getCoin()->getId()] = $ucoin;
-		}
-
-		return $this->render('EuroCoinBundle:Coin:doubles.html.twig', array(
-					'coin_values' => $vars->coin_values,
-					'coins' => $vars->coins,
-					'uc' => $from_uc,
-				));
-	}
-
-	public function doublesShareAction($id) {
-		$user = $this->getUser();
-		if (!$user instanceof UserInterface) {
-			throw new \Exception('You are not allowed to access this page !');
-		}
-
-		$em = $this->getDoctrine()->getEntityManager();
-		$from = $em->getRepository('EuroCoinBundle:UserCoin')->find($id);
-		if ($from->getUser()->getId() !== $user->getId()) {
-			throw new \Exception('You are not allowed to access this page !');
-		}
-
-		$doubles = $em->getRepository('EuroCoinBundle:UserCoin')->getDifferentDoublesByUserAndCoin($user, $from->getCoin()->getId());
-		$vars = $this->buildVars($doubles);
-
-		$from_uc = array();
-		foreach ($doubles as $double) {
-			$from_uc[$double->getCoin()->getId()] = $double;
-		}
-
-		return $this->render('EuroCoinBundle:Coin:doubles_share.html.twig', array(
-					'from' => $from,
-					'coin_values' => $vars->coin_values,
-					'coins' => $vars->coins,
-					'commemoratives' => count($vars->commemoratives) === 2,
-					'countries' => (count($vars->countries) > 1) ? $vars->countries : array(),
-					'uc' => $from_uc,
-					'values' => (count($vars->values) > 1) ? $vars->values : array(),
-					'years' => (count($vars->years) > 1) ? $vars->years : array(),
-				));
-	}
-
-	public function doublesShareAcceptAction($id) {
-		$user = $this->getUser();
-		if (!$user instanceof UserInterface) {
-			throw new \Exception('You are not allowed to access this page !');
-		}
-
-		$em = $this->getDoctrine()->getEntityManager();
-		$repository = $em->getRepository('EuroCoinBundle:Share');
-		if ($repository->find($id)->getToUserCoin()->getUser()->getId() !== $user->getId()) {
-			throw new \Exception('You are not allowed to access this page !');
-		}
-
-		$repository->setAccepted($id);
-
-		return $this->redirect($this->generateUrl('coin_shares'));
-	}
-
-	public function doublesShareProposeAction($from, $to) {
-		$user = $this->getUser();
-		if (!$user instanceof UserInterface) {
-			throw new \Exception('You are not allowed to access this page !');
-		}
-
-		$em = $this->getDoctrine()->getEntityManager();
-		$repository = $em->getRepository('EuroCoinBundle:UserCoin');
-		$translator = $this->get('translator');
-		$from = $repository->find($from);
-		$to = $repository->find($to);
-		$user_id = $user->getId();
-
-		if ($from->getUser()->getId() !== $user_id && $to->getUser()->getId() !== $user_id) {
-			throw new \Exception('You are not allowed to access this page !');
-		}
-
-		if ($from->getQuantity() < 2 || $to->getQuantity() < 2) {
-			throw new \Exception('The quantity does not allow a share !');
-		}
-
-		// Create conversation
-		$from_coin = $from->getCoin();
-		$to_coin = $to->getCoin();
-
-		$conversation = new Conversation();
-		$conversation
-				->setFromUser($from->getUser())
-				->setToUser($to->getUser())
-				->setTitle($translator->trans('coin.shares.pm.title', array(
-							'%name%' => $from->getUser()->getUsername()
-						)));
-
-		$pm = new PrivateMessage();
-		$pm
-				->setConversation($conversation)
-				->setText($translator->trans('coin.shares.pm.text', array(
-							'%from.country%' => $translator->trans($from_coin->getCountry()),
-							'%from.name%' => $from->getUser()->getUsername(),
-							'%from.value%' => (string) $from_coin->getValue(),
-							'%from.year%' => (string) $from_coin->getYear(),
-							'%to.country%' => $translator->trans($to_coin->getCountry()),
-							'%to.name%' => $to->getUser()->getUsername(),
-							'%to.value%' => (string) $to_coin->getValue(),
-							'%to.year%' => (string) $to_coin->getYear(),
-						)))
-				->setDirection(PrivateMessage::DIRECTION_FROM_TO);
-
-		// Register share
-		$share = new Share();
-		$share
-				->setFromUserCoin($from)
-				->setToUserCoin($to)
-				->setPm($conversation);
-
-		$conversation->setShare($share);
-
-		$em->persist($conversation);
-		$em->persist($pm);
-		$em->persist($share);
 		$em->flush();
 
-		return $this->redirect($this->generateUrl('coin_shares'));
+		return new Response($uc->getQuantity());
 	}
 
-	public function sharesAction() {
-		$user = $this->getUser();
-		if (!$user instanceof UserInterface) {
-			throw new \Exception('You are not allowed to access this page !');
-		}
-
-		$em = $this->getDoctrine()->getEntityManager();
-
-		return $this->render('EuroCoinBundle:Coin:shares.html.twig', array(
-					'shares' => $em->getRepository('EuroCoinBundle:Share')->getSharesByUser($user),
-				));
-	}
-
-	private function buildVars(array $coins) {
+	public function collectionAction($id) {
+		$doctrine = $this->getDoctrine();
 		$translator = $this->get('translator');
+		$countries = $doctrine->getRepository('EuroCoinBundle:Country')->findBy(array(), array('join_date' => 'ASC'));
+		$country = null;
 
-		$coin_values = array();
-		$commemoratives = array();
-		$countries = array();
-		$sorted = array();
-		$values = array();
-		$years = array();
-		foreach ($coins as $coin) {
-			if ($coin instanceof UserCoin) {
-				$coin = $coin->getCoin();
+		usort($countries, function ($a, $b) use (&$country, $id, $translator) {
+					$a_name = $translator->trans((string) $a->getName());
+					$b_name = $translator->trans((string) $b->getName());
+
+					if ($id == $a->getId()) {
+						$country = $a;
+					}
+
+					return strcmp($a_name, $b_name);
+				});
+
+		if (!$country && $countries) {
+			$country = $countries[0];
+
+			if (!$id) {
+				return $this->redirect($this->generateUrl('coin_collection', array(
+									'country' => $translator->trans((string) $country),
+									'id' => $country->getId(),
+								)));
 			}
-
-			$country = $coin->getCountry();
-			$value = $coin->getValue();
-			$year = $coin->getYear();
-
-			$coin_values[$country->getId()][$value->getId()] = $value;
-			$commemoratives[$coin->getCommemorative()] = $coin->getCommemorative();
-			$countries[$country->getId()] = $translator->trans($country);
-			$sorted[$countries[$country->getId()]][] = $coin;
-			$values[$value->getId()] = $value;
-			$years[$year->getId()] = $year;
-		}
-
-		asort($countries);
-		asort($values);
-		asort($years);
-		ksort($sorted);
-		foreach ($coin_values as $country => &$val) {
-			usort($val, function ($a, $b) {
-						$a = $a->getValue();
-						$b = $b->getValue();
-						if ($a < $b) {
-							return 1;
-						}
-
-						if ($a > $b) {
-							return -1;
-						}
-
-						return 0;
-					});
 		}
 
 		$coins = array();
-		foreach ($sorted as $country) {
-			$coins = array_merge($coins, $country);
+		$values = array();
+		$uc = array();
+
+		if ($country) {
+			$coins = $doctrine->getRepository('EuroCoinBundle:Coin')->findCoinsByCountry($country);
+
+			list($coins, $values) = $this->_buildVars($coins);
+
+			$coins = array_shift($coins);
+			$values = array_shift($values);
+
+			$user_coins = array();
+			if ($this->getUser()) {
+				$doctrine->getRepository('EuroCoinBundle:UserCoin')->findBy(array('user' => $this->getUser()));
+
+				foreach ($user_coins as $user_coin) {
+					if ($user_coin->getQuantity() > 0) {
+						$uc[$user_coin->getCoin()->getId()] = $user_coin->getQuantity();
+					}
+				}
+			}
 		}
 
-		return (object) array(
-					'coin_values' => $coin_values,
+		return $this->render('EuroCoinBundle:Coin:collection.html.twig', array(
 					'coins' => $coins,
-					'commemoratives' => $commemoratives,
 					'countries' => $countries,
-					'sorted' => $sorted,
-					'values' => $values,
-					'years' => $years,
-		);
+					'current' => $country,
+					'uc' => $uc,
+					'all_values' => $values,
+				));
 	}
 
-	private function getUser() {
-		return $this->get('security.context')->getToken()->getUser();
+	public function getAction($id) {
+		$coin = $this->getDoctrine()->getRepository('EuroCoinBundle:Coin')->find($id);
+
+		return $this->render('EuroCoinBundle:Coin:coin_data.html.twig', array(
+					'coin' => $coin,
+				));
 	}
 
 }
