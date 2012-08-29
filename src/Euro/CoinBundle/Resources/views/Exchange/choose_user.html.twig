@@ -1,23 +1,52 @@
 {% extends '::base.html.twig' %}
 
 {% block body %}
-<h2 class="page-header">{{ 'coin.exchange'|trans }} <small><a href="{{ path('exchange_list') }}">{{ 'coin.exchange_list'|trans }}</a></small></h2>
+<h2 class="page-header">{{ 'coin.exchange'|trans }}</h2>
 
-<p>{{ 'coin.exchange_explain'|trans }}</p>
+<p>{{ 'coin.exchange_explain'|trans|raw }}</p>
 
-<ul class="thumbnails">
-	{% for user in users %}
-	{% set amount = user['total'] %}
-	<li class="span2">
-		<a class="thumbnail" href="{{ path('exchange_coins_request', { id: user['id'], name: user['username'] }) }}">
-			<img src="http://fakeimg.pl/160x160/?text=Pas%20d'avatar" />
+<div class="row-fluid">
+	<div class="span2">
+		<div class="dropdown">
+			<ul class="dropdown-menu" style="display: block;">
+				<li class="nav-header">{{ 'exchange.actions'|trans }}</li>
+				<li class="active">
+					<a href="{{ path('exchange_choose_user') }}">
+						<i class="icon-chevron-right"></i> 
+						{{ 'exchange.new'|trans }}
+					</a>
+				</li>
+				<li>
+					<a href="{{ path('exchange_list') }}">
+						<i class="icon-chevron-right"></i> 
+						{{ 'exchanges.pending'|trans }}
+					</a>
+				</li>
+				<li>
+					<a href="{{ path('exchange_list_all') }}">
+						<i class="icon-chevron-right"></i> 
+						{{ 'exchanges.all'|trans }}
+					</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+	<div class="span10">
+		<ul class="thumbnails">
+			{% for user in users %}
+			{% set amount = user['total'] %}
+			<li class="span2">
+				<a class="thumbnail" href="{{ path('exchange_coins_request', { id: user['id'], name: user['username'] }) }}">
+					<img src="http://fakeimg.pl/160x160/?text=Pas%20d'avatar" />
 
-			<div class="caption">
-				<h4>{{ user['username'] }}</h4>
-				<small>{{ 'coin.doubles'|transchoice(amount, { '%amount%': amount }) }}</small>
-			</div>
-		</a>
-	</li>
-	{% endfor %}
-</ul>
+					<div class="caption">
+						<h4>{{ user['username'] }}</h4>
+						<small>{{ 'coin.doubles'|transchoice(amount, { '%amount%': amount }) }}</small>
+					</div>
+				</a>
+			</li>
+			{% endfor %}
+		</ul>
+	</div>
+</div>
 {% endblock %}
