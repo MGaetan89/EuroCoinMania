@@ -322,6 +322,10 @@
 				<source>exchange.cancel</source>
 				<target>Annuler</target>
 			</trans-unit>
+			<trans-unit id="exchange.canceled">
+				<source>exchange.canceled</source>
+				<target>Votre échange a bien été annulé</target>
+			</trans-unit>
 			<trans-unit id="exchange.coins_requested">
 				<source>exchange.coins_requested</source>
 				<target>Pièces demandées</target>
@@ -345,6 +349,14 @@
 			<trans-unit id="exchange.new">
 				<source>exchange.new</source>
 				<target>Nouvel échange</target>
+			</trans-unit>
+			<trans-unit id="exchange.not_found">
+				<source>exchange.not_found</source>
+				<target>Cet échange n'existe pas</target>
+			</trans-unit>
+			<trans-unit id="exchange.not_own">
+				<source>exchange.not_own</source>
+				<target>Cet échange ne vous appartient pas</target>
 			</trans-unit>
 			<trans-unit id="exchange.proposed_on">
 				<source>exchange.proposed_on</source>

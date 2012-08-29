@@ -6,6 +6,57 @@ use Euro\CoinBundle\Entity\Share;
 
 class ExchangeController extends BaseController {
 
+	public function cancelAction($id) {
+		$flashBag = $this->get('session')->getFlashBag();
+		if (!$user = $this->getUser()) {
+			$flashBag->add('error', 'user.login_required');
+
+			return $this->redirect($this->generateUrl('exchange_list'));
+		}
+
+		$doctrine = $this->getDoctrine();
+		$share = $doctrine->getRepository('EuroCoinBundle:Share')->find($id);
+
+		if (!$share) {
+			$flashBag->add('error', 'exchange.not_found');
+
+			return $this->redirect($this->generateUrl('exchange_list'));
+		}
+
+		if ($share->getFromUser()->getId() !== $user->getId()) {
+			$flashBag->add('error', 'exchange.not_own');
+
+			return $this->redirect($this->generateUrl('exchange_list'));
+		}
+
+		$share->setStatus(Share::STATUS_CANCELED);
+
+		$user_coin = $doctrine->getRepository('EuroCoinBundle:UserCoin');
+		$coins = $user_coin->findBy(array(
+			'coin' => $share->getCoinsSuggested(),
+			'user' => $user,
+				));
+
+		foreach ($coins as $uc) {
+			$uc->removeShare();
+		}
+
+		$coins = $user_coin->findBy(array(
+			'coin' => $share->getCoinsRequested(),
+			'user' => $share->getToUser(),
+				));
+
+		foreach ($coins as $uc) {
+			$uc->removeShare();
+		}
+
+		$doctrine->getManager()->flush();
+
+		$flashBag->add('success', 'exchange.canceled');
+
+		return $this->redirect($this->generateUrl('exchange_list'));
+	}
+
 	public function chooseCoinsAction($id) {
 		$flashBag = $this->get('session')->getFlashBag();
 		if (!$user = $this->getUser()) {

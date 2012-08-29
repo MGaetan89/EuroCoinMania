@@ -32,6 +32,12 @@ coin_remove:
 countries_list:
     pattern:  /countries
     defaults: { _controller: EuroCoinBundle:Country:list }
+
+exchange_cancel:
+    pattern: /exchange/{id}/cancel
+    defaults: { _controller: EuroCoinBundle:Exchange:cancel }
+    requirements:
+        id: "\d+"
         
 exchange_choose_user:
     pattern: /collection/doubles/users
