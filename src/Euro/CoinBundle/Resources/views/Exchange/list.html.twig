@@ -10,19 +10,32 @@
 </h2>
 
 <div class="row-fluid">
-	<div class="span3 well well-small" style="padding: 8px 0;">
-		<ul class="nav nav-list" id="coins_list">
-			<li class="nav-header">Actions</li>
-			<li><a href="{{ path('exchange_choose_user') }}">{{ 'exchange.new'|trans }}</a></li>
-
-			{% if all %}
-				<li><a href="{{ path('exchange_list') }}">{{ 'exchanges.pending'|trans }}</a></li>
-			{% else %}
-				<li><a href="{{ path('exchange_list_all') }}">{{ 'exchanges.all'|trans }}</a></li>
-			{% endif %}
-		</ul>
+	<div class="span2">
+		<div class="dropdown">
+			<ul class="dropdown-menu" style="display: block;">
+				<li class="nav-header">{{ 'exchange.actions'|trans }}</li>
+				<li>
+					<a href="{{ path('exchange_choose_user') }}">
+						<i class="icon-chevron-right"></i> 
+						{{ 'exchange.new'|trans }}
+					</a>
+				</li>
+				<li{% if not all %} class="active"{% endif %}>
+					<a href="{{ path('exchange_list') }}">
+						<i class="icon-chevron-right"></i> 
+						{{ 'exchanges.pending'|trans }}
+					</a>
+				</li>
+				<li{% if all %} class="active"{% endif %}>
+					<a href="{{ path('exchange_list_all') }}">
+						<i class="icon-chevron-right"></i> 
+						{{ 'exchanges.all'|trans }}
+					</a>
+				</li>
+			</ul>
+		</div>
 	</div>
-	<div class="span9">
+	<div class="span10">
 		<table class="table table-bordered table-hover table-striped">
 		<thead>
 			<tr>

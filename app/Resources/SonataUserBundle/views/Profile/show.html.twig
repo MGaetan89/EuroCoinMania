@@ -5,4 +5,29 @@
 	{{ app.user.username }}
 	<small>{{ app.user.fullname }}</small>
 </h2>
+
+<div class="row-fluid">
+	<div class="span2">
+		<div class="dropdown">
+			<ul class="dropdown-menu" style="display: block;">
+				<li class="nav-header">{{ 'countries.list'|trans }}</li>
+
+				<li>
+					<a href="{{ path('sonata_user_profile_edit') }}">
+						<i class="icon-chevron-right"></i>
+						{{ 'link_edit_profile'|trans }}
+					</a>
+				</li>
+				<li>
+					<a href="{{ path('sonata_user_profile_edit_authentication') }}">
+						<i class="icon-chevron-right"></i>
+						{{ 'link_edit_authentication'|trans }}
+					</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+	<div class="span10">
+	</div>
+</div>
 {% endblock %}
