@@ -56,11 +56,15 @@
 			</trans-unit>
 			<trans-unit id="coin.exchange_explain">
 				<source>coin.exchange_explain</source>
-				<target>Pour commencer, veuillez choisir l'utilisateur avec lequel vous souhaitez faire un échange.</target>
-			</trans-unit>
-			<trans-unit id="coin.exchange_list">
-				<source>coin.exchange_list</source>
-				<target>Liste de vos échanges</target>
+				<target><![CDATA[
+Afin de faire une demande d'échange, veuillez suivre les étapes suivantes :
+<ol>
+	<li>Choisissez l'utilisateur avec lequel vous souhaitez échanger vos pièces</li>
+	<li>Choisissez les pièces qui vous intéressent parmi les doubles de sa collection</li>
+	<li>Choisissez les pièces que vous souhaitez donner contre celles que vous avez sélectionné</li>
+</ol>
+Si l'échange est accepté par l'autre utilisateur, vos inventaires respectifs sont automatiquement mis à jour afin de prendre en compte cet échange.
+				]]></target>
 			</trans-unit>
 			<trans-unit id="coin.exchange_request">
 				<source>coin.exchange_request</source>

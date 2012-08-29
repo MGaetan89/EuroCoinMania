@@ -3,8 +3,6 @@
 {% block body %}
 <h2 class="page-header">{{ 'coin.exchange'|trans }}</h2>
 
-<p>{{ 'coin.exchange_explain'|trans|raw }}</p>
-
 <div class="row-fluid">
 	<div class="span2">
 		<div class="dropdown">
@@ -32,6 +30,14 @@
 		</div>
 	</div>
 	<div class="span10">
+		<div class="alert alert-block alert-info fade in">
+			<button type="button" class="close" data-dismiss="alert">×</button>
+
+			<h4>{{ 'information'|trans }}</h4>
+
+			{{ 'coin.exchange_explain'|trans|raw }}
+		</div>
+
 		<ul class="thumbnails">
 			{% for user in users %}
 			{% set amount = user['total'] %}
