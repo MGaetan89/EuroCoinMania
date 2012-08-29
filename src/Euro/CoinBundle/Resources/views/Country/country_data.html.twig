@@ -1,0 +1,14 @@
+{% set content %}{% spaceless %}
+<dl class="dl-horizontal">
+	<dt>{{ 'country.join_date'|trans  }}</dt>
+	<dd>{{ country.joindate|format_date }}</dd>
+
+	<dt>{{ 'country.former_currency'|trans }}</dt>
+	<dd>{{ macros.currency(country) }}</dd>
+
+	<dt>{{ 'country.exchange_rate'|trans }}</dt>
+	<dd>{{ macros.value(1) ~ ' = ' ~ macros.value(country.exchangerate, country.formercurrencyiso) }}</dd>
+</dl>
+{% endspaceless %}{% endset %}
+
+{{ content|e }}

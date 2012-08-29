@@ -1,0 +1,91 @@
+<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+	<file source-language="fr" datatype="plaintext" original="file.ext">
+		<body>
+			<trans-unit id="breadcrumb.link_coin_create">
+				<source>breadcrumb.link_coin_create</source>
+				<target>Ajout d'une pièce</target>
+			</trans-unit>
+			<trans-unit id="breadcrumb.link_coin_delete">
+				<source>breadcrumb.link_coin_delete</source>
+				<target>Suppresion d'une pièce</target>
+			</trans-unit>
+			<trans-unit id="breadcrumb.link_coin_edit">
+				<source>breadcrumb.link_coin_edit</source>
+				<target>Modification d'une pièce</target>
+			</trans-unit>
+			<trans-unit id="breadcrumb.link_coin_list">
+				<source>breadcrumb.link_coin_list</source>
+				<target>Liste des pièces</target>
+			</trans-unit>
+			<trans-unit id="breadcrumb.link_coin_show">
+				<source>breadcrumb.link_coin_show</source>
+				<target>Affichage d'une pièce</target>
+			</trans-unit>
+			<trans-unit id="euro_coin.menu_coin">
+				<source>euro_coin.menu_coin</source>
+				<target>Pièce</target>
+			</trans-unit>
+			<trans-unit id="filter.label_commemorative">
+				<source>filter.label_commemorative</source>
+				<target>Commémorative ?</target>
+			</trans-unit>
+			<trans-unit id="filter.label_country">
+				<source>filter.label_country</source>
+				<target>Pays</target>
+			</trans-unit>
+			<trans-unit id="filter.label_value">
+				<source>filter.label_value</source>
+				<target>Valeur</target>
+			</trans-unit>
+			<trans-unit id="filter.label_year">
+				<source>filter.label_year</source>
+				<target>Année</target>
+			</trans-unit>
+			<trans-unit id="form.label_commemorative">
+				<source>form.label_commemorative</source>
+				<target>Commémorative ?</target>
+			</trans-unit>
+			<trans-unit id="form.label_country">
+				<source>form.label_country</source>
+				<target>Pays</target>
+			</trans-unit>
+			<trans-unit id="form.label_description">
+				<source>form.label_description</source>
+				<target>Description</target>
+			</trans-unit>
+			<trans-unit id="form.label_mintage">
+				<source>form.label_mintage</source>
+				<target>Tirage</target>
+			</trans-unit>
+			<trans-unit id="form.label_value">
+				<source>form.label_value</source>
+				<target>Valeur</target>
+			</trans-unit>
+			<trans-unit id="form.label_year">
+				<source>form.label_year</source>
+				<target>Année</target>
+			</trans-unit>
+			<trans-unit id="list.label__action">
+				<source>list.label__action</source>
+				<target>Actions</target>
+			</trans-unit>
+			<trans-unit id="list.label_coin">
+				<source>list.label_coin</source>
+				<target>Pièce</target>
+			</trans-unit>
+			<trans-unit id="list.label_commemorative">
+				<source>list.label_commemorative</source>
+				<target>Commémorative ?</target>
+			</trans-unit>
+			<trans-unit id="list.label_description">
+				<source>list.label_description</source>
+				<target>Description</target>
+			</trans-unit>
+			<trans-unit id="list.label_mintage">
+				<source>list.label_mintage</source>
+				<target>Quantité tirée — enregistrée</target>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>

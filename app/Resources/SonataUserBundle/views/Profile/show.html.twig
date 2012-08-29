@@ -1,0 +1,8 @@
+{% extends '::base.html.twig' %}
+
+{% block body %}
+<h2 class="page-header">
+	{{ app.user.username }}
+	<small>{{ app.user.fullname }}</small>
+</h2>
+{% endblock %}

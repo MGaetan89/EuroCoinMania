@@ -1,0 +1,49 @@
+{% macro coin(coin) %}
+{% spaceless %}
+	{{ _self.name(coin.country) }} {{ _self.year(coin.year) }} {{ _self.value(coin.value) }}
+{% endspaceless %}
+{% endmacro %}
+
+{% macro currency(country) %}
+{% spaceless %}
+	{{ ('country.currency.' ~ country.name)|trans }}
+{% endspaceless %}
+{% endmacro %}
+
+{% macro is_active(routes, class) %}
+	{% spaceless %}
+		{% if app.request.get('_route') in routes %}
+			{% if class|default(true) %}
+				class="active"
+			{% else %}
+				active
+			{% endif %}
+		{% endif %}
+	{% endspaceless %}
+{% endmacro %}
+
+{% macro name(country) %}
+{% spaceless %}
+	{{ ('country.name.' ~ country.name)|trans }}
+{% endspaceless %}
+{% endmacro %}
+
+{% macro value(value, currency) %}
+{% spaceless %}
+	{% if value.value is defined %}
+		{% set value = value.value %}
+	{% endif %}
+
+	{{ value|number_format_currency(currency|default('EUR')) }}
+{% endspaceless %}
+{% endmacro %}
+
+{% macro year(year) %}
+{% spaceless %}
+	{{ year.year }}
+
+	{% if year.workshop %}
+		<abbr title="{{ year.workshop.name }}">{{ year.workshop.shortname }}</abbr>
+	{% endif %}
+{% endspaceless %}
+{% endmacro %}

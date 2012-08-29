@@ -1,0 +1,29 @@
+{% import "::macros.html.twig" as macros %}
+
+<div class="hide" id="coin-info-{{ coin.id }}">
+	<dl class="dl-horizontal">
+		<dt>{{ 'coin.country'|trans }}</dt>
+			<dd>{{ coin.country|trans }}</dd>
+
+		<dt>{{ 'coin.year'|trans }}</dt>
+			<dd>{{ macros.year(coin.year) }}</dd>
+
+		<dt>{{ 'coin.value'|trans }}</dt>
+			<dd>{{ macros.value(coin.value) }}</dd>
+
+		<dt>{{ 'coin.commemorative'|trans }}</dt>
+			<dd>
+				{% if coin.commemorative %}
+					<i class="icon-ok"></i> {{ 'yes'|trans }}
+				{% else %}
+					<i class="icon-remove"></i> {{ 'no'|trans }}
+				{% endif %}
+			</dd>
+
+		<dt>{{ 'coin.mintage'|trans }}</dt>
+			<dd>{{ coin.mintage|number_format_duration }}</dd>
+
+		<dt>{{ 'coin.registered_quantity'|trans }}</dt>
+			<dd>{{ coin.membertotal|number_format_duration }}</dd>
+	</dl>
+</div>

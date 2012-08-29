@@ -1,0 +1,6 @@
+sonata_admin:
+    title: Administration
+    dashboard:
+        blocks:
+            - { position: left,  type: sonata.admin.block.admin_list, settings: { groups: [sonata_user] } }
+            - { position: right, type: sonata.admin.block.admin_list, settings: { groups: [Collection] } }

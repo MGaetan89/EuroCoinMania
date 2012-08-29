@@ -1,6 +1,6 @@
 nbproject/
-app/cache/*
-app/logs/*
+app/cache/
+app/logs/
 web/bundles/
 app/bootstrap.php.cache
 composer.phar

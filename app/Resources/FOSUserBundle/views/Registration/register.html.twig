@@ -1,0 +1,7 @@
+{% extends 'FOSUserBundle::layout.html.twig' %}
+
+{% block fos_user_content %}
+<h2 class="page-header">{{ 'user.register'|trans }}</h2>
+
+{% include 'FOSUserBundle:Registration:register_content.html.twig' %}
+{% endblock fos_user_content %}

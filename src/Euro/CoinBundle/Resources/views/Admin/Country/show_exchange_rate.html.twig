@@ -1,0 +1,6 @@
+{% extends 'SonataAdminBundle:CRUD:base_show_field.html.twig' %}
+
+{% block field %}
+	{{ 1|number_format_currency('EUR') ~ ' = ' ~ object.exchangerate|number_format_currency(object.formercurrencyiso) }}
+	&nbsp;&mdash;&nbsp;<span class="muted">{{ ('country.currency.' ~ object.name)|trans }}</span>
+{% endblock %}

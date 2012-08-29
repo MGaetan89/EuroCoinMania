@@ -1,0 +1,15 @@
+{% extends 'SonataAdminBundle:CRUD:base_list_field.html.twig' %}
+
+{% block field %}
+	{% set year = object.year %}
+
+	{{ object.country|trans }} &mdash;
+
+	{{ year.year }}
+
+	{% if year.workshop %}
+		<abbr title="{{ year.workshop.name }}">{{ year.workshop.shortname }}</abbr>
+	{% endif %} &mdash;
+
+	{{ object.value.value|number_format_currency('EUR') }}
+{% endblock %}

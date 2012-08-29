@@ -1,0 +1,16 @@
+parameters:
+    database_driver:   pdo_mysql
+    database_host:     localhost
+    database_port:     ~
+    database_name:     euro2
+    database_user:     root
+    database_password: ~
+    database_path:     ~
+
+    mailer_transport:  smtp
+    mailer_host:       localhost
+    mailer_user:       ~
+    mailer_password:   ~
+
+    locale:            fr
+    secret:            d6103a76bf071c49945ae4d9fd69e98fc

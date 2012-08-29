@@ -1,0 +1,396 @@
+<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+	<file source-language="fr" datatype="plaintext" original="file.ext">
+		<body>
+			<trans-unit id="coin.add">
+				<source>coin.add</source>
+				<target>Ajouter</target>
+			</trans-unit>
+			<trans-unit id="coin.collection">
+				<source>coin.collection</source>
+				<target>Collection</target>
+			</trans-unit>
+			<trans-unit id="coin.commemorative">
+				<source>coin.commemorative</source>
+				<target>Commémorative ?</target>
+			</trans-unit>
+			<trans-unit id="coin.country">
+				<source>coin.country</source>
+				<target>Pays</target>
+			</trans-unit>
+			<trans-unit id="coin.doubles">
+				<source>coin.doubles</source>
+				<target>%amount% double|%amount% doubles</target>
+			</trans-unit>
+			<trans-unit id="coin.doubles.no_self_exchange">
+				<source>coin.doubles.no_self_exchange</source>
+				<target>Vous ne pouvez pas faire un échange avec vous-même</target>
+			</trans-unit>
+			<trans-unit id="coin.doubles.none">
+				<source>coin.doubles.none</source>
+				<target>Aucun membre n'a de doubles à vous échanger</target>
+			</trans-unit>
+			<trans-unit id="coin.doubles.none_selected">
+				<source>coin.doubles.none_selected</source>
+				<target>Vous devez sélectionner au moins une pièce</target>
+			</trans-unit>
+			<trans-unit id="coin.doubles.save_successfull">
+				<source>coin.doubles.save_successfull</source>
+				<target>Votre demande d'échange a bien été enregistré</target>
+			</trans-unit>
+			<trans-unit id="coin.doubles.some_not_found">
+				<source>coin.doubles.some_not_found</source>
+				<target>Certaines des pièces que vous avez sélectionné n'appartiennent pas à l'utilisateur</target>
+			</trans-unit>
+			<trans-unit id="coin.doubles.user_no_doubles">
+				<source>coin.doubles.user_no_doubles</source>
+				<target>Cet utilisateur ne possède pas de doubles</target>
+			</trans-unit>
+			<trans-unit id="coin.doubles.user_not_found">
+				<source>coin.doubles.user_not_found</source>
+				<target>L'utilisateur spécifié n'existe pas</target>
+			</trans-unit>
+			<trans-unit id="coin.exchange">
+				<source>coin.exchange</source>
+				<target>Echanger</target>
+			</trans-unit>
+			<trans-unit id="coin.exchange_explain">
+				<source>coin.exchange_explain</source>
+				<target>Pour commencer, veuillez choisir l'utilisateur avec lequel vous souhaitez faire un échange.</target>
+			</trans-unit>
+			<trans-unit id="coin.exchange_list">
+				<source>coin.exchange_list</source>
+				<target>Liste de vos échanges</target>
+			</trans-unit>
+			<trans-unit id="coin.exchange_request">
+				<source>coin.exchange_request</source>
+				<target>Demander ces pièces</target>
+			</trans-unit>
+			<trans-unit id="coin.exchange_suggest">
+				<source>coin.exchange_suggest</source>
+				<target>Proposer ces pièces</target>
+			</trans-unit>
+			<trans-unit id="coin.information">
+				<source>coin.information</source>
+				<target>Informations</target>
+			</trans-unit>
+			<trans-unit id="coin.mintage">
+				<source>coin.mintage</source>
+				<target>Tirage</target>
+			</trans-unit>
+			<trans-unit id="coin.no_mintage">
+				<source>coin.no_mintage</source>
+				<target>Aucun tirage</target>
+			</trans-unit>
+			<trans-unit id="coin.none">
+				<source>coin.none</source>
+				<target>Aucune pièce n'a été enregistré pour ce pays.</target>
+			</trans-unit>
+			<trans-unit id="coin.not_available">
+				<source>coin.not_available</source>
+				<target>La pièce que vous recherchez n'est plus disponible</target>
+			</trans-unit>
+			<trans-unit id="coin.not_found">
+				<source>coin.not_found</source>
+				<target>La pièce que vous recherchez n'existe pas</target>
+			</trans-unit>
+			<trans-unit id="coin.registered_quantity">
+				<source>coin.registered_quantity</source>
+				<target>Quantité enregistrée</target>
+			</trans-unit>
+			<trans-unit id="coin.remove">
+				<source>coin.remove</source>
+				<target>Retirer</target>
+			</trans-unit>
+			<trans-unit id="coin.self_quantity">
+				<source>coin.self_quantity</source>
+				<target>Quantité possédée</target>
+			</trans-unit>
+			<trans-unit id="coin.unavailable">
+				<source>coin.unavailable</source>
+				<target>Non disponible</target>
+			</trans-unit>
+			<trans-unit id="coin.value">
+				<source>coin.value</source>
+				<target>Valeur</target>
+			</trans-unit>
+			<trans-unit id="coin.year">
+				<source>coin.year</source>
+				<target>Année</target>
+			</trans-unit>
+			<trans-unit id="coins.requested_coins">
+				<source>coins.requested_coins</source>
+				<target>Pièces demandées</target>
+			</trans-unit>
+			<trans-unit id="coins.suggested_coins">
+				<source>coins.suggested_coins</source>
+				<target>Pièces proposées</target>
+			</trans-unit>
+			<trans-unit id="countries.list">
+				<source>countries.list</source>
+				<target>Liste des pays</target>
+			</trans-unit>
+			<trans-unit id="country.currency.austria">
+				<source>country.currency.austria</source>
+				<target>Schilling autrichien</target>
+			</trans-unit>
+			<trans-unit id="country.currency.belgium">
+				<source>country.currency.belgium</source>
+				<target>Franc belge</target>
+			</trans-unit>
+			<trans-unit id="country.currency.cyprus">
+				<source>country.currency.cyprus</source>
+				<target>Livre chypriote</target>
+			</trans-unit>
+			<trans-unit id="country.currency.estonia">
+				<source>country.currency.estonia</source>
+				<target>Couronne estonienne</target>
+			</trans-unit>
+			<trans-unit id="country.currency.finland">
+				<source>country.currency.finland</source>
+				<target>Mark finlandais</target>
+			</trans-unit>
+			<trans-unit id="country.currency.france">
+				<source>country.currency.france</source>
+				<target>Franc français</target>
+			</trans-unit>
+			<trans-unit id="country.currency.germany">
+				<source>country.currency.germany</source>
+				<target>Mark allemand</target>
+			</trans-unit>
+			<trans-unit id="country.currency.greece">
+				<source>country.currency.greece</source>
+				<target>Drachme moderne grecque</target>
+			</trans-unit>
+			<trans-unit id="country.currency.ireland">
+				<source>country.currency.ireland</source>
+				<target>Livre irlandaise</target>
+			</trans-unit>
+			<trans-unit id="country.currency.italy">
+				<source>country.currency.italy</source>
+				<target>Lire italienne</target>
+			</trans-unit>
+			<trans-unit id="country.currency.luxembourg">
+				<source>country.currency.luxembourg</source>
+				<target>Franc luxembourgeois</target>
+			</trans-unit>
+			<trans-unit id="country.currency.malta">
+				<source>country.currency.malta</source>
+				<target>Lire maltaise</target>
+			</trans-unit>
+			<trans-unit id="country.currency.monaco">
+				<source>country.currency.monaco</source>
+				<target>Franc monégasque</target>
+			</trans-unit>
+			<trans-unit id="country.currency.netherlands">
+				<source>country.currency.netherlands</source>
+				<target>Florin néerlandais</target>
+			</trans-unit>
+			<trans-unit id="country.currency.portugal">
+				<source>country.currency.portugal</source>
+				<target>Escudo portugais</target>
+			</trans-unit>
+			<trans-unit id="country.currency.san-marino">
+				<source>country.currency.san-marino</source>
+				<target>Lire de Saint-Marin</target>
+			</trans-unit>
+			<trans-unit id="country.currency.slovakia">
+				<source>country.currency.slovakia</source>
+				<target>Couronne slovaque</target>
+			</trans-unit>
+			<trans-unit id="country.currency.slovenia">
+				<source>country.currency.slovenia</source>
+				<target>Tolar slovène</target>
+			</trans-unit>
+			<trans-unit id="country.currency.spain">
+				<source>country.currency.spain</source>
+				<target>Peseta espagnole</target>
+			</trans-unit>
+			<trans-unit id="country.currency.vatican">
+				<source>country.currency.vatican</source>
+				<target>Lire vaticane</target>
+			</trans-unit>
+			<trans-unit id="country.exchange_rate">
+				<source>country.exchange_rate</source>
+				<target>Taux de change</target>
+			</trans-unit>
+			<trans-unit id="country.former_currency">
+				<source>country.former_currency</source>
+				<target>Ancienne monnaie</target>
+			</trans-unit>
+			<trans-unit id="country.join_date">
+				<source>country.join_date</source>
+				<target>Date d'adoption</target>
+			</trans-unit>
+			<trans-unit id="country.name">
+				<source>country.name</source>
+				<target>Nom</target>
+			</trans-unit>
+			<trans-unit id="country.name.austria">
+				<source>country.name.austria</source>
+				<target>Autriche</target>
+			</trans-unit>
+			<trans-unit id="country.name.belgium">
+				<source>country.name.belgium</source>
+				<target>Belgique</target>
+			</trans-unit>
+			<trans-unit id="country.name.cyprus">
+				<source>country.name.cyprus</source>
+				<target>Chypre</target>
+			</trans-unit>
+			<trans-unit id="country.name.estonia">
+				<source>country.name.estonia</source>
+				<target>Estonie</target>
+			</trans-unit>
+			<trans-unit id="country.name.finland">
+				<source>country.name.finland</source>
+				<target>Finlande</target>
+			</trans-unit>
+			<trans-unit id="country.name.france">
+				<source>country.name.france</source>
+				<target>France</target>
+			</trans-unit>
+			<trans-unit id="country.name.germany">
+				<source>country.name.germany</source>
+				<target>Allemagne</target>
+			</trans-unit>
+			<trans-unit id="country.name.greece">
+				<source>country.name.greece</source>
+				<target>Grèce</target>
+			</trans-unit>
+			<trans-unit id="country.name.ireland">
+				<source>country.name.ireland</source>
+				<target>Irelande</target>
+			</trans-unit>
+			<trans-unit id="country.name.italy">
+				<source>country.name.italy</source>
+				<target>Italie</target>
+			</trans-unit>
+			<trans-unit id="country.name.luxembourg">
+				<source>country.name.luxembourg</source>
+				<target>Luxembourg</target>
+			</trans-unit>
+			<trans-unit id="country.name.malta">
+				<source>country.name.malta</source>
+				<target>Malte</target>
+			</trans-unit>
+			<trans-unit id="country.name.monaco">
+				<source>country.name.monaco</source>
+				<target>Monaco</target>
+			</trans-unit>
+			<trans-unit id="country.name.netherlands">
+				<source>country.name.netherlands</source>
+				<target>Pays-Bas</target>
+			</trans-unit>
+			<trans-unit id="country.name.portugal">
+				<source>country.name.portugal</source>
+				<target>Portugal</target>
+			</trans-unit>
+			<trans-unit id="country.name.san-marino">
+				<source>country.name.san-marino</source>
+				<target>Saint-Marin</target>
+			</trans-unit>
+			<trans-unit id="country.name.slovakia">
+				<source>country.name.slovakia</source>
+				<target>Slovaquie</target>
+			</trans-unit>
+			<trans-unit id="country.name.slovenia">
+				<source>country.name.slovenia</source>
+				<target>Slovénie</target>
+			</trans-unit>
+			<trans-unit id="country.name.spain">
+				<source>country.name.spain</source>
+				<target>Espagne</target>
+			</trans-unit>
+			<trans-unit id="country.name.vatican">
+				<source>country.name.vatican</source>
+				<target>Vatican</target>
+			</trans-unit>
+			<trans-unit id="country.none">
+				<source>country.none</source>
+				<target>Aucun pays n'est disponible pour le moment.</target>
+			</trans-unit>
+			<trans-unit id="exchange.accept">
+				<source>exchange.accept</source>
+				<target>Accepter</target>
+			</trans-unit>
+			<trans-unit id="exchange.actions">
+				<source>exchange.actions</source>
+				<target>Actions</target>
+			</trans-unit>
+			<trans-unit id="exchange.cancel">
+				<source>exchange.cancel</source>
+				<target>Annuler</target>
+			</trans-unit>
+			<trans-unit id="exchange.coins_requested">
+				<source>exchange.coins_requested</source>
+				<target>Pièces demandées</target>
+			</trans-unit>
+			<trans-unit id="exchange.coins_suggested">
+				<source>exchange.coins_suggested</source>
+				<target>Pièces proposées</target>
+			</trans-unit>
+			<trans-unit id="exchange.direction">
+				<source>exchange.direction</source>
+				<target>Sens de l'échange</target>
+			</trans-unit>
+			<trans-unit id="exchange.list_all">
+				<source>exchange.list_all</source>
+				<target>Liste de tous vos échanges</target>
+			</trans-unit>
+			<trans-unit id="exchange.list_pending">
+				<source>exchange.list_pending</source>
+				<target>Liste de vos échanges en cours</target>
+			</trans-unit>
+			<trans-unit id="exchange.new">
+				<source>exchange.new</source>
+				<target>Nouvel échange</target>
+			</trans-unit>
+			<trans-unit id="exchange.proposed_on">
+				<source>exchange.proposed_on</source>
+				<target>Proposé le</target>
+			</trans-unit>
+			<trans-unit id="exchange.refuse">
+				<source>exchange.refuse</source>
+				<target>Refuser</target>
+			</trans-unit>
+			<trans-unit id="exchange.status">
+				<source>exchange.status</source>
+				<target>Statut</target>
+			</trans-unit>
+			<trans-unit id="exchange.status1">
+				<source>exchange.status1</source>
+				<target>En cours</target>
+			</trans-unit>
+			<trans-unit id="exchange.status2">
+				<source>exchange.status2</source>
+				<target>Accepté</target>
+			</trans-unit>
+			<trans-unit id="exchange.status3">
+				<source>exchange.status3</source>
+				<target>Annulé</target>
+			</trans-unit>
+			<trans-unit id="exchange.status4">
+				<source>exchange.status4</source>
+				<target>Refusé</target>
+			</trans-unit>
+			<trans-unit id="exchanges">
+				<source>exchanges</source>
+				<target>Echanges</target>
+			</trans-unit>
+			<trans-unit id="exchanges.all">
+				<source>exchanges.all</source>
+				<target>Tous vos échanges</target>
+			</trans-unit>
+			<trans-unit id="exchanges.pending">
+				<source>exchanges.pending</source>
+				<target>Echanges en cours</target>
+			</trans-unit>
+			<trans-unit id="user.coin_not_found">
+				<source>user.coin_not_found</source>
+				<target>Vous ne possédez pas encore cette pièce</target>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>
+

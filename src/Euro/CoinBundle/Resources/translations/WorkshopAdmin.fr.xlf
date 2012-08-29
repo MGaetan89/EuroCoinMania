@@ -1,0 +1,83 @@
+<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+	<file source-language="fr" datatype="plaintext" original="file.ext">
+		<body>
+			<trans-unit id="breadcrumb.link_workshop_create">
+				<source>breadcrumb.link_workshop_create</source>
+				<target>Ajout d'un atelier</target>
+			</trans-unit>
+			<trans-unit id="breadcrumb.link_workshop_delete">
+				<source>breadcrumb.link_workshop_delete</source>
+				<target>Suppression d'un atelier</target>
+			</trans-unit>
+			<trans-unit id="breadcrumb.link_workshop_edit">
+				<source>breadcrumb.link_workshop_edit</source>
+				<target>Modification d'un atelier</target>
+			</trans-unit>
+			<trans-unit id="breadcrumb.link_workshop_list">
+				<source>breadcrumb.link_workshop_list</source>
+				<target>Liste des ateliers</target>
+			</trans-unit>
+			<trans-unit id="breadcrumb.link_workshop_show">
+				<source>breadcrumb.link_workshop_show</source>
+				<target>Affichage d'un atelier</target>
+			</trans-unit>
+			<trans-unit id="euro_coin.menu_workshop">
+				<source>euro_coin.menu_workshop</source>
+				<target>Atelier</target>
+			</trans-unit>
+			<trans-unit id="filter.label_country">
+				<source>filter.label_country</source>
+				<target>Pays</target>
+			</trans-unit>
+			<trans-unit id="filter.label_name">
+				<source>filter.label_name</source>
+				<target>Nom</target>
+			</trans-unit>
+			<trans-unit id="filter.label_short_name">
+				<source>filter.label_short_name</source>
+				<target>Identifiant</target>
+			</trans-unit>
+			<trans-unit id="form.label_country">
+				<source>form.label_country</source>
+				<target>Pays</target>
+			</trans-unit>
+			<trans-unit id="form.label_name">
+				<source>form.label_name</source>
+				<target>Nom</target>
+			</trans-unit>
+			<trans-unit id="form.label_short_name">
+				<source>form.label_short_name</source>
+				<target>Identifiant</target>
+			</trans-unit>
+			<trans-unit id="list.label__action">
+				<source>list.label__action</source>
+				<target>Actions</target>
+			</trans-unit>
+			<trans-unit id="list.label_country">
+				<source>list.label_country</source>
+				<target>Pays</target>
+			</trans-unit>
+			<trans-unit id="list.label_name">
+				<source>list.label_name</source>
+				<target>Nom</target>
+			</trans-unit>
+			<trans-unit id="list.label_short_name">
+				<source>list.label_short_name</source>
+				<target>Identifiant</target>
+			</trans-unit>
+			<trans-unit id="show.label_country">
+				<source>show.label_country</source>
+				<target>Pays</target>
+			</trans-unit>
+			<trans-unit id="show.label_name">
+				<source>show.label_name</source>
+				<target>Nom</target>
+			</trans-unit>
+			<trans-unit id="show.label_short_name">
+				<source>show.label_short_name</source>
+				<target>Identifiant</target>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>

@@ -1,0 +1,93 @@
+{% extends "::base.html.twig" %}
+
+{% block body %}
+<h2 class="page-header">{{ 'countries.list'|trans }}</h2>
+
+{% if countries %}
+<div class="row-fluid">
+	<div class="span5">
+		<div class="well well-small">
+			<div id="map"></div>
+		</div>
+	</div>
+	<div class="span7">
+		<table class="table table-condensed table-striped">
+		<thead>
+			<tr>
+				<th>{{ 'country.name'|trans }}</th>
+				<th>{{ 'country.join_date'|trans }}</th>
+				<th>
+					{{ 'country.exchange_rate'|trans }}
+					<span class="pull-right">{{ 'country.former_currency'|trans }}</span>
+				</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for country in countries %}
+			{% set base, name = macros.value(1), macros.name(country) %}
+			<tr id="{{ country.nameiso }}-list">
+				<td>
+					<a href="{{ path('coin_collection', { id: country.id, country: name }) }}">
+						<img alt="{{ name }}" src="{{ asset('bundles/eurocoin/images/flags/' ~ country.nameiso ~ '.png') }}" title="{{ name }}" />
+						{{ name }}
+					</a>
+				</td>
+				<td>{{ country.joindate|format_date }}</td>
+				<td>
+					{{ base ~ ' = ' ~ macros.value(country.exchangerate, country.formercurrencyiso) }}
+					<span class="muted pull-right">{{ macros.currency(country) }}</span>
+				</td>
+			</tr>
+			{% endfor %}
+		</tbody>
+		</table>
+	</div>
+</div>
+{% else %}
+<div class="alert">{{ 'country.none'|trans }}</div>
+{% endif %}
+{% endblock %}
+
+{% block javascript %}
+{% set startColor, endColor = '#0088CC', '#005580' %}
+<script src="{{ asset('bundles/eurocoin/js/jquery-svg.js') }}" type="text/javascript"></script>
+<script type="text/javascript">
+$(function () {
+	function onHover() {
+		$(this).css('fill', '{{ endColor }}');
+		$('#' + this.id + '-list').addClass('success');
+	}
+
+	function outHover() {
+		$(this).css('fill', '{{ startColor }}');
+		$('#' + this.id + '-list').removeClass('success');
+	}
+
+	$('table tbody').on('mouseenter', 'tr', function () {
+		var id = $(this).attr('id').substr(0, 2);
+
+		$('#' + id).css('fill', '{{ endColor }}');
+	}).on('mouseleave', 'tr', function () {
+		var id = $(this).attr('id').substr(0, 2);
+
+		$('#' + id).css('fill', '{{ startColor }}');
+	});
+
+	$('#map').svg({
+		loadURL: '{{ asset('bundles/eurocoin/images/europe.svg') }}',
+		onLoad: function () {
+			var that = this;
+			$.each({{ countries_js|raw }}, function (index, country) {
+				$('#' + country.nameiso, that)
+					.attr('title', country.name)
+					.click(function () {
+						location.href = country.path;
+					})
+					.css('fill', '{{ startColor }}')
+					.hover(onHover, outHover);
+			});
+		}
+	});
+});
+</script>
+{% endblock %}

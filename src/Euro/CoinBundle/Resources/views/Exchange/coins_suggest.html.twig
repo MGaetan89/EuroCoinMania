@@ -1,0 +1,96 @@
+{% extends '::base.html.twig' %}
+
+{% block body %}
+<h2 class="page-header">{{ app.user.username }} &rarr; {{ from.username }}</h2>
+
+<div class="row-fluid">
+	<div class="span3">
+		<div class="well well-small" style="padding: 8px 0;">
+			<ul class="nav nav-list" id="coins_list">
+				<li class="nav-header">{{ 'coins.suggested_coins'|trans }}</li>
+				<li class="divider"></li>
+				<li class="nav-header pull-right">Total : <span>0</span> €</li>
+			</ul>
+
+			<div class="clearfix"></div>
+		</div>
+
+		<div class="well well-small" style="padding: 8px 0;">
+			<ul class="nav nav-list">
+				<li class="nav-header">{{ 'coins.requested_coins'|trans }}</li>
+				{% for uc in from_coins %}
+				{% set coin = uc.coin %}
+				<li><a>{{ macros.name(coin.country) }} {{ macros.year(coin.year) }} {{ macros.value(coin.value) }}</a></li>
+				{% endfor %}
+				<li class="divider"></li>
+				<li class="nav-header pull-right">Total : {{ macros.value(total_requested) }}</li>
+			</ul>
+
+			<div class="clearfix"></div>
+		</div>
+	</div>
+	<div class="span9">
+		{% set empty_cell %}
+		<td style="text-align: center;">{{ 'coin.unavailable'|trans }}</td>
+		{% endset %}
+
+		{% for country, years in coins %}
+			{% set _values, pos = all_values[country], 0 %}
+
+			{% set header %}
+			<tr>
+				<th>{{ country }}</th>
+				{% for value in _values %}
+				<th>{{ macros.value(value) }}</th>
+				{% endfor %}
+			</tr>
+			{% endset %}
+
+			<table class="table table-bordered table-condensed table-hover table-striped">
+			<tbody>
+				{{ header }}
+
+				{% for year, values in years %}
+					{% if loop.index0 > 0 and loop.index0 % 5 == 0 %}
+						{{ header }}
+					{% endif %}
+
+					<tr>
+						{% set has_year = false %}
+						{% for value in _values if values[value] is defined and not has_year %}
+							{% set has_year = true %}
+
+							<td>{{ macros.year(values[value].year) }}</td>
+						{% endfor %}
+
+						{% for value in _values %}
+							{% if values[value] is defined %}
+								{% set coin = values[value] %}
+
+								<td>
+									<button class="btn btn-info btn-mini" data-coin="{{ coin.id }}" data-desc="{{ macros.coin(coin) }}" data-toggle="button" data-value="{{ coin.value.value }}">
+										<i class="icon-white icon-ok"></i>
+									</button>
+								</td>
+							{% else %}
+								{{ empty_cell }}
+							{% endif %}
+						{% endfor %}
+					</tr>
+				{% endfor %}
+			</tbody>
+			</table>
+		{% endfor %}
+
+		<form action="{{ path('exchange_save', { id: from.id, name: from.username }) }}" method="post">
+			<input id="coins" name="coins" type="hidden" value="" />
+
+			<button class="btn btn-primary disabled pull-right" disabled="disabled" id="exchange">{{ 'coin.exchange_suggest'|trans }}</button>
+		</form>
+	</div>
+</div>
+{% endblock %}
+
+{% block javascript %}
+<script src="{{ asset('bundles/eurocoin/js/coins_request.js') }}" type="text/javascript"></script>
+{% endblock %}

@@ -1,0 +1,5 @@
+{% extends 'SonataAdminBundle:CRUD:base_show_field.html.twig' %}
+
+{% block field %}
+	{{ object.value|number_format_currency('EUR') }}
+{% endblock %}
