@@ -108,7 +108,7 @@ class CoinController extends BaseController {
 
 			$user_coins = array();
 			if ($this->getUser()) {
-				$doctrine->getRepository('EuroCoinBundle:UserCoin')->findBy(array('user' => $this->getUser()));
+				$user_coins = $doctrine->getRepository('EuroCoinBundle:UserCoin')->findBy(array('user' => $this->getUser()));
 
 				foreach ($user_coins as $user_coin) {
 					if ($user_coin->getQuantity() > 0) {
