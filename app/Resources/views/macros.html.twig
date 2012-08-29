@@ -13,7 +13,7 @@
 {% macro is_active(routes, class) %}
 	{% spaceless %}
 		{% if app.request.get('_route') in routes %}
-			{% if class|default(true) %}
+			{% if class|default('true') == 'true' %}
 				class="active"
 			{% else %}
 				active
