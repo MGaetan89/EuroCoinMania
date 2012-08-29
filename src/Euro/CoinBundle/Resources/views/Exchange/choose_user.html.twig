@@ -3,7 +3,6 @@
 {% block body %}
 <h2 class="page-header">{{ 'coin.exchange'|trans }} <small><a href="{{ path('exchange_list') }}">{{ 'coin.exchange_list'|trans }}</a></small></h2>
 
-{% if users %}
 <p>{{ 'coin.exchange_explain'|trans }}</p>
 
 <ul class="thumbnails">
@@ -21,7 +20,4 @@
 	</li>
 	{% endfor %}
 </ul>
-{% else %}
-<div class="alert">{{ 'coin.doubles.none'|trans }}</div>
-{% endif %}
 {% endblock %}

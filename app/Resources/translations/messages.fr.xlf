@@ -10,6 +10,10 @@
 				<source>error</source>
 				<target>Erreur !</target>
 			</trans-unit>
+			<trans-unit id="information">
+				<source>information</source>
+				<target>Information !</target>
+			</trans-unit>
 			<trans-unit id="no">
 				<source>no</source>
 				<target>Non</target>

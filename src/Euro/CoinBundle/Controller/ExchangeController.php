@@ -53,6 +53,12 @@ class ExchangeController extends BaseController {
 
 		$users = $this->getDoctrine()->getRepository('EuroCoinBundle:UserCoin')->findDoublesForUser($user);
 
+		if (!$users) {
+			$this->get('session')->getFlashBag()->add('info', 'coin.doubles.none');
+
+			return $this->redirect($this->generateUrl('exchange_list'));
+		}
+
 		return $this->render('EuroCoinBundle:Exchange:choose_user.html.twig', array(
 					'users' => $users,
 				));

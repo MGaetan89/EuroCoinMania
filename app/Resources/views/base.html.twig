@@ -69,6 +69,14 @@
 	</div>
 	{% endfor %}
 
+	{% for message in app.session.flashbag.get('info') %}
+	<div class="alert alert-info fade in">
+		<button class="close" type="button" data-dismiss="alert">×</button>
+
+		<strong>{{ 'information'|trans }}</strong> {{ message|trans }}
+	</div>
+	{% endfor %}
+
 	{% for message in app.session.flashbag.get('error') %}
 	<div class="alert alert-error fade in">
 		<button class="close" type="button" data-dismiss="alert">×</button>
