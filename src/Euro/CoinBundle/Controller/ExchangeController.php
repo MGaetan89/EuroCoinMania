@@ -6,7 +6,7 @@ use Euro\CoinBundle\Entity\Share;
 
 class ExchangeController extends BaseController {
 
-	public function cancelAction($id) {
+	public function cancelRefuseAction($id, $refuse) {
 		$flashBag = $this->get('session')->getFlashBag();
 		if (!$user = $this->getUser()) {
 			$flashBag->add('error', 'user.login_required');
@@ -23,18 +23,26 @@ class ExchangeController extends BaseController {
 			return $this->redirect($this->generateUrl('exchange_list'));
 		}
 
-		if ($share->getFromUser()->getId() !== $user->getId()) {
-			$flashBag->add('error', 'exchange.not_own');
+		if ($refuse) {
+			$condition = $share->getToUser()->getId() !== $user->getId();
+			$error = 'exchange.not_intended';
+		} else {
+			$condition = $share->getFromUser()->getId() !== $user->getId();
+			$error = 'exchange.not_own';
+		}
+
+		if ($condition) {
+			$flashBag->add('error', $error);
 
 			return $this->redirect($this->generateUrl('exchange_list'));
 		}
 
-		$share->setStatus(Share::STATUS_CANCELED);
+		$share->setStatus($refuse ? Share::STATUS_REFUSED : Share::STATUS_CANCELED);
 
 		$user_coin = $doctrine->getRepository('EuroCoinBundle:UserCoin');
 		$coins = $user_coin->findBy(array(
 			'coin' => $share->getCoinsSuggested(),
-			'user' => $user,
+			'user' => $share->getFromUser(),
 				));
 
 		foreach ($coins as $uc) {
@@ -52,7 +60,11 @@ class ExchangeController extends BaseController {
 
 		$doctrine->getManager()->flush();
 
-		$flashBag->add('success', 'exchange.canceled');
+		if ($refuse) {
+			$flashBag->add('success', 'exchange.refused');
+		} else {
+			$flashBag->add('success', 'exchange.canceled');
+		}
 
 		return $this->redirect($this->generateUrl('exchange_list'));
 	}
@@ -115,9 +127,10 @@ class ExchangeController extends BaseController {
 				));
 	}
 
-	public function listExchangeAction($all) {
+	public function listAction($all) {
+		$flashBag = $this->get('session')->getFlashBag();
 		if (!$user = $this->getUser()) {
-			$this->get('session')->getFlashBag()->add('error', 'user.login_required');
+			$flashBag->add('error', 'user.login_required');
 
 			return $this->redirect($this->generateUrl('coin_collection'));
 		}
@@ -135,6 +148,14 @@ class ExchangeController extends BaseController {
 		}
 
 		if (!$shares) {
+			if (!$all) {
+				$flashBag->add('info', 'exchange.none_pending');
+
+				return $this->redirect($this->generateUrl('exchange_list_all'));
+			}
+
+			$flashBag->add('info', 'exchange.none');
+
 			return $this->redirect($this->generateUrl('exchange_choose_user'));
 		}
 
@@ -203,7 +224,7 @@ class ExchangeController extends BaseController {
 				));
 	}
 
-	public function saveExchangeAction($id) {
+	public function saveAction($id) {
 		$translator = $this->get('translator');
 
 		if (!$user = $this->getUser()) {

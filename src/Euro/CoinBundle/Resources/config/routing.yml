@@ -35,7 +35,7 @@ countries_list:
 
 exchange_cancel:
     pattern: /exchange/{id}/cancel
-    defaults: { _controller: EuroCoinBundle:Exchange:cancel }
+    defaults: { _controller: EuroCoinBundle:Exchange:cancelRefuse, refuse: false }
     requirements:
         id: "\d+"
         
@@ -58,15 +58,21 @@ exchange_coins_suggest:
 
 exchange_list:
     pattern: /coin/exchanges
-    defaults: { _controller: EuroCoinBundle:Exchange:listExchange, all: false }
+    defaults: { _controller: EuroCoinBundle:Exchange:list, all: false }
 
 exchange_list_all:
     pattern: /coin/exchanges/all
-    defaults: { _controller: EuroCoinBundle:Exchange:listExchange, all: true }
+    defaults: { _controller: EuroCoinBundle:Exchange:list, all: true }
+
+exchange_refuse:
+    pattern: /exchange/{id}/refuse
+    defaults: { _controller: EuroCoinBundle:Exchange:cancelRefuse, refuse: true }
+    requirements:
+        id: "\d+"
 
 exchange_save:
     pattern: /collection/doubles/user/{id}/{name}/save
-    defaults: { _controller: EuroCoinBundle:Exchange:saveExchange }
+    defaults: { _controller: EuroCoinBundle:Exchange:save }
     requirements:
         id: "\d+"
         _method: POST

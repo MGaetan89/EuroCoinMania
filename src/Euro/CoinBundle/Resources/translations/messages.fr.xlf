@@ -350,9 +350,21 @@
 				<source>exchange.new</source>
 				<target>Nouvel échange</target>
 			</trans-unit>
+			<trans-unit id="exchange.none">
+				<source>exchange.none</source>
+				<target>Vous n'avez pas d'échange</target>
+			</trans-unit>
+			<trans-unit id="exchange.none_pending">
+				<source>exchange.none_pending</source>
+				<target>Vous n'avez pas d'échange en cours</target>
+			</trans-unit>
 			<trans-unit id="exchange.not_found">
 				<source>exchange.not_found</source>
 				<target>Cet échange n'existe pas</target>
+			</trans-unit>
+			<trans-unit id="exchange.not_intended">
+				<source>exchange.not_intended</source>
+				<target>Cet échange ne vous est pas destiné</target>
 			</trans-unit>
 			<trans-unit id="exchange.not_own">
 				<source>exchange.not_own</source>
@@ -365,6 +377,10 @@
 			<trans-unit id="exchange.refuse">
 				<source>exchange.refuse</source>
 				<target>Refuser</target>
+			</trans-unit>
+			<trans-unit id="exchange.refused">
+				<source>exchange.refused</source>
+				<target>L'échange a bien été refusé</target>
 			</trans-unit>
 			<trans-unit id="exchange.status">
 				<source>exchange.status</source>

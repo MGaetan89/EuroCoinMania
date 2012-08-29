@@ -91,7 +91,7 @@
 								<a class="btn btn-small btn-warning" href="{{ path('exchange_cancel', { id: share.id }) }}" title="{{ 'exchange.cancel'|trans }}"><i class="icon-minus-sign"></i></a>
 							{% else %}
 								<a class="btn btn-small btn-success" title="{{ 'exchange.accept'|trans }}"><i class="icon-ok"></i></a>
-								<a class="btn btn-small btn-danger" title="{{ 'exchange.refuse'|trans }}"><i class="icon-remove"></i></a>
+								<a class="btn btn-small btn-danger" href="{{ path('exchange_refuse', { id: share.id }) }}" title="{{ 'exchange.refuse'|trans }}"><i class="icon-remove"></i></a>
 							{% endif %}
 						</div>
 					</td>
