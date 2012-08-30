@@ -23,34 +23,30 @@
 		</div>
 	</div>
 	<div class="span10">
-		<div class="well">
-			<em>{{ post.abstract }}</em>
+		<ul class="nav nav-tabs">
+			<li class="active"><a href="#news" data-toggle="tab">{{ 'news.content'|trans }}</a></li>
+			<li><a href="#comments" data-toggle="tab">{{ 'news.comments.count'|transchoice(post.commentsCount, { '%count%': post.commentsCount }) }}</a></li>
+		</ul>
 
-			<hr />
+		<div class="tab-content">
+			<div class="tab-pane active" id="news">
+				<em>{{ post.abstract }}</em>
 
-			{{ post.content|raw }}
-		</div>
+				<hr />
 
-		<div class="accordion" id="post-comment">
-			<div class="accordion-group">
-				<div class="accordion-heading">
-					<a class="accordion-toggle" href="#comments" data-parent="#post-comment" data-toggle="collapse">{{ 'news.comments.count'|transchoice(post.commentsCount, { '%count%': post.commentsCount }) }}</a>
-				</div>
+				{{ post.content|raw }}
+			</div>
+			<div class="tab-pane" id="comments">
+				{% render 'SonataNewsBundle:Post:comments' with { postId: post.id} %}
 
-				<div class="accordion-body collapse" id="comments">
-					<div class="accordion-inner">
-						{% render 'SonataNewsBundle:Post:comments' with { postId: post.id} %}
-
-						{% if post.iscommentable %}
-							{% render 'SonataNewsBundle:Post:addCommentForm' with {
-								postId: post.id,
-								form: form
-							} %}
-						{% else %}
-							<div class="alert">{{ 'news.comments.closed'|trans }}</div>
-						{% endif %}
-					</div>
-				</div>
+				{% if post.iscommentable %}
+					{% render 'SonataNewsBundle:Post:addCommentForm' with {
+						postId: post.id,
+						form: form
+					} %}
+				{% else %}
+					<div class="alert">{{ 'news.comments.closed'|trans }}</div>
+				{% endif %}
 			</div>
 		</div>
 	</div>

@@ -1,8 +1,8 @@
-<form action="{{ path('fos_user_registration_register') }}" {{ form_enctype(form) }} method="POST">
+<form action="{{ path('fos_user_registration_register') }}" method="post">
 	{{ form_widget(form) }}
 
 	<div class="form-actions">
-		<input class="btn btn-primary" type="submit" value="{{ 'user.register_action'|trans }}" />
+		<button class="btn btn-primary" type="submit">{{ 'user.register_action'|trans }}</button>
 
 		<a class="btn" href="{{ path('fos_user_security_login') }}">{{ 'user.login'|trans }}</a>
 	</div>

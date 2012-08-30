@@ -6,80 +6,20 @@
 <form action="{{ path('sonata_user_profile_edit') }}" method="post">
 	<div class="row-fluid">
 		<div class="span6">
-			<div class="control-group">
-				{{ form_label(form.firstname, 'user.firstname'|trans) }}
-				<div class="controls">
-					{{ form_widget(form.firstname) }}
-				</div>
-				{{ form_errors(form.firstname) }}
-			</div>
-
-			<div class="control-group">
-				{{ form_label(form.lastname, 'user.lastname'|trans) }}
-				<div class="controls">
-					{{ form_widget(form.lastname) }}
-				</div>
-				{{ form_errors(form.lastname) }}
-			</div>
-
-			<div class="control-group">
-				{{ form_label(form.dateOfBirth, 'user.date_of_birth'|trans) }}
-				<div class="controls">
-					{{ form_widget(form.dateOfBirth) }}
-				</div>
-				{{ form_errors(form.dateOfBirth) }}
-			</div>
-
-			<div class="control-group">
-				{{ form_label(form.phone, 'user.phone'|trans) }}
-				<div class="controls">
-					{{ form_widget(form.phone) }}
-				</div>
-				{{ form_errors(form.phone) }}
-			</div>
+			{{ form_row(form.firstname, { label: 'user.firstname'|trans }) }}
+			{{ form_row(form.lastname, { label: 'user.lastname'|trans }) }}
+			{{ form_row(form.dateOfBirth, { label: 'user.date_of_birth'|trans }) }}
+			{{ form_row(form.phone, { label: 'user.phone'|trans }) }}
 		</div>
 		<div class="span6">
-			<div class="control-group">
-				{{ form_label(form.gender, 'user.gender'|trans) }}
-				<div class="controls">
-					{{ form_widget(form.gender) }}
-				</div>
-				{{ form_errors(form.gender) }}
-			</div>
-
-			<div class="control-group">
-				{{ form_label(form.website, 'user.website'|trans) }}
-				<div class="controls">
-					{{ form_widget(form.website) }}
-				</div>
-				{{ form_errors(form.website) }}
-			</div>
-
-			<div class="control-group">
-				{{ form_label(form.locale, 'user.locale'|trans) }}
-				<div class="controls">
-					{{ form_widget(form.locale) }}
-				</div>
-				{{ form_errors(form.locale) }}
-			</div>
-
-			<div class="control-group">
-				{{ form_label(form.timezone, 'user.timezone'|trans) }}
-				<div class="controls">
-					{{ form_widget(form.timezone) }}
-				</div>
-				{{ form_errors(form.timezone) }}
-			</div>
+			{{ form_row(form.gender, { label: 'user.gender'|trans }) }}
+			{{ form_row(form.website, { label: 'user.website'|trans }) }}
+			{{ form_row(form.locale, { label: 'user.locale'|trans }) }}
+			{{ form_row(form.timezone, { label: 'user.timezone'|trans }) }}
 		</div>
 	</div>
 
-	<div class="control-group">
-		{{ form_label(form.biography, 'user.biography'|trans) }}
-		<div class="controls">
-			{{ form_widget(form.biography, { attr: { class: 'span12' } }) }}
-		</div>
-		{{ form_errors(form.biography) }}
-	</div>
+	{{ form_row(form.biography, { label: 'user.biography'|trans, attr: { class: 'span12', rows: 7 } }) }}
 
 	{{ form_rest(form) }}
 
