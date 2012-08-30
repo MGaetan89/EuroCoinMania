@@ -1,0 +1,58 @@
+{% extends '::base.html.twig' %}
+
+{% block body %}
+<h2 class="page-header">{{ post.title }}</h2>
+
+<div class="row-fluid">
+	<div class="span2">
+		<div class="dropdown">
+			<ul class="dropdown-menu" style="display: block;">
+				<li class="nav-header">{{ 'news.information'|trans }}</li>
+
+				<li title="{{ 'news.author'|trans }}"><a><i class="icon-pencil"></i> {{ post.author }}</a></li>
+				<li title="{{ 'news.publication_date'|trans }}"><a><i class="icon-time"></i> {{ post.publicationDateStart|format_date }}</a></li>
+
+				<li class="divider"></li>
+
+				<li class="nav-header">{{ 'news.tags'|trans }}</li>
+
+				{% for tag in post.tags %}
+					<li><a href="{{ url('sonata_news_tag', { tag: tag.slug } ) }}"><i class="icon-tag"></i> {{ tag.name }}</a></li>
+				{% endfor %}
+			</ul>
+		</div>
+	</div>
+	<div class="span10">
+		<div class="well">
+			<em>{{ post.abstract }}</em>
+
+			<hr />
+
+			{{ post.content|raw }}
+		</div>
+
+		<div class="accordion" id="post-comment">
+			<div class="accordion-group">
+				<div class="accordion-heading">
+					<a class="accordion-toggle" href="#comments" data-parent="#post-comment" data-toggle="collapse">{{ 'news.comments.count'|transchoice(post.commentsCount, { '%count%': post.commentsCount }) }}</a>
+				</div>
+
+				<div class="accordion-body collapse" id="comments">
+					<div class="accordion-inner">
+						{% render 'SonataNewsBundle:Post:comments' with { postId: post.id} %}
+
+						{% if post.iscommentable %}
+							{% render 'SonataNewsBundle:Post:addCommentForm' with {
+								postId: post.id,
+								form: form
+							} %}
+						{% else %}
+							<div class="alert">{{ 'news.comments.closed'|trans }}</div>
+						{% endif %}
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock %}

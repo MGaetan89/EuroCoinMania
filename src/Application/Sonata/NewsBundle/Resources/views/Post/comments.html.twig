@@ -1,0 +1,21 @@
+{% set comments = pager.results %}
+
+{% if comments %}
+<table class="table table-hover table-striped">
+{% endif %}
+
+{% for comment in comments %}
+<tr>
+	<td>
+		<i class="icon-time" title="{{ comment.createdAt|format_datetime }}"></i>
+		<a href="#">{{ comment.name }}</a>
+	</td>
+	<td>{{ comment.message }}</td>
+</tr>
+{% else %}
+	<div class="alert alert-info">{{ 'news.comments.none'|trans }}</div>
+{% endfor %}
+
+{% if comments %}
+</table>
+{% endif %}

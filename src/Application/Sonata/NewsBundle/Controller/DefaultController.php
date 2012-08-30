@@ -1,6 +1,6 @@
 <?php
 
-namespace Euro\CoinBundle\Controller;
+namespace Application\Sonata\NewsBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
@@ -11,9 +11,9 @@ class DefaultController extends Controller {
 				array(), 1, 9
 		);
 
-		return $this->render('EuroCoinBundle:Default:index.html.twig', array(
-			'posts' => $posts,
-		));
+		return $this->render('ApplicationSonataNewsBundle:Default:index.html.twig', array(
+					'posts' => $posts,
+				));
 	}
 
 }

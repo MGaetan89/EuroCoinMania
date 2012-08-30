@@ -1,0 +1,60 @@
+<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+	<file source-language="fr" datatype="plaintext" original="file.ext">
+		<body>
+			<trans-unit id="news">
+				<source>news</source>
+				<target>Actualités</target>
+			</trans-unit>
+			<trans-unit id="news.archives">
+				<source>news.archives</source>
+				<target>Archives</target>
+			</trans-unit>
+			<trans-unit id="news.author">
+				<source>news.author</source>
+				<target>Auteur</target>
+			</trans-unit>
+			<trans-unit id="news.comment.add">
+				<source>news.comment.add</source>
+				<target>Poster un commentaire</target>
+			</trans-unit>
+			<trans-unit id="news.comment.post">
+				<source>news.comment.post</source>
+				<target>Poster le commentaire</target>
+			</trans-unit>
+			<trans-unit id="news.comments">
+				<source>news.comments</source>
+				<target>Commentaires</target>
+			</trans-unit>
+			<trans-unit id="news.comments.closed">
+				<source>news.comments.closed</source>
+				<target>Les commentaires sont désactivés sur cette news</target>
+			</trans-unit>
+			<trans-unit id="news.comments.none">
+				<source>news.comments.none</source>
+				<target>Soyez le premier à commenter cette actualité !</target>
+			</trans-unit>
+			<trans-unit id="news.information">
+				<source>news.information</source>
+				<target>Informations</target>
+			</trans-unit>
+			<trans-unit id="news.none">
+				<source>news.none</source>
+				<target>Aucune news n'a été publié pour le moment</target>
+			</trans-unit>
+			<trans-unit id="news.posted_by_on">
+				<source>news.posted_by_on</source>
+				<target>Posté par %author% le %date%</target>
+			</trans-unit>
+			<trans-unit id="news.publication_date">
+				<source>news.publication_date</source>
+				<target>Date de publication</target>
+			</trans-unit>
+			<trans-unit id="news.tags">
+				<source>news.tags</source>
+				<target>Tags</target>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>
+

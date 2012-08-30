@@ -1,0 +1,39 @@
+<h4>{{ 'news.comment.add'|trans }}</h4>
+
+<form action="{{ url('sonata_news_add_comment', { id: post_id }) }}" method="post">
+	<div class="control-group">
+		{{ form_label(form.name) }}
+		<div class="controls">
+			{{ form_widget(form.name) }}
+		</div>
+		{{ form_errors(form.name) }}
+	</div>
+
+	<div class="control-group">
+		{{ form_label(form.email) }}
+		<div class="controls">
+			{{ form_widget(form.email) }}
+		</div>
+		{{ form_errors(form.email) }}
+	</div>
+
+	<div class="control-group">
+		{{ form_label(form.url) }}
+		<div class="controls">
+			{{ form_widget(form.url) }}
+		</div>
+		{{ form_errors(form.url) }}
+	</div>
+
+	<div class="control-group">
+		{{ form_label(form.message) }}
+		<div class="controls">
+			{{ form_widget(form.message) }}
+		</div>
+		{{ form_errors(form.message) }}
+	</div>
+
+	{{ form_rest(form) }}
+
+	<button class="btn" type="submit">{{ 'news.comment.post'|trans }}</button>
+</form>

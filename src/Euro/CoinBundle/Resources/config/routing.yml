@@ -1,7 +1,3 @@
-welcome:
-    pattern:  /
-    defaults: { _controller: EuroCoinBundle:Default:index }
-
 coin_add:
     pattern: /coin/{id}/add
     defaults: { _controller: EuroCoinBundle:Coin:addRemove, type: add }
