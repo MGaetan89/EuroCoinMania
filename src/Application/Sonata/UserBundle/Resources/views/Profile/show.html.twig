@@ -45,7 +45,7 @@
 
 			{% if user.website %}
 			<dt>{{ 'user.website'|trans }}</dt>
-				<dd><a href="{{ user.website }}">Site web</a></dd>
+				<dd><a href="{{ user.website }}">{{ user.website }}</a></dd>
 			{% endif %}
 
 			{% if user.facebookuid %}

@@ -1,0 +1,11 @@
+{% extends '::base.html.twig' %}
+
+{% block body %}
+<h2 class="page-header">{{ 'user.editing_authentication'|trans }}</h2>
+
+<form action="{{ path('sonata_user_profile_edit') }}" method="post">
+	{{ form_rest(form) }}
+
+	<button class="btn" name="submit" type="submit">{{ 'user.update_profile'|trans }}</button>
+</form>
+{% endblock %}
