@@ -1,0 +1,39 @@
+{% extends '::base.html.twig' %}
+
+{% block body %}
+<h2 class="page-header">{{ post.title }}</h2>
+
+<div class="row-fluid">
+	<div class="span2">
+		<div class="dropdown">
+			<ul class="dropdown-menu" style="display: block;">
+				<li class="nav-header">Informations</li>
+
+				<li title="Auteur"><a><i class="icon-pencil"></i> {{ post.author }}</a></li>
+				<li title="Date de publication"><a><i class="icon-time"></i> {{ post.publicationDateStart|format_date }}</a></li>
+
+				<li class="divider"></li>
+
+				<li class="nav-header">Tags</li>
+
+				{% for tag in post.tags %}
+					<li><a href="{{ url('sonata_news_tag', { tag: tag.slug } ) }}"><i class="icon-tag"></i> {{ tag.name }}</a></li>
+				{% endfor %}
+			</ul>
+		</div>
+	</div>
+	<div class="span10">
+		<div class="well">
+			<em>{{ post.abstract }}</em>
+
+			<hr />
+
+			{{ post.content|raw }}
+		</div>
+
+		<div class="well">
+			Commentaires
+		</div>
+	</div>
+</div>
+{% endblock %}

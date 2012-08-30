@@ -6,11 +6,16 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 class CountryController extends Controller {
 
+	/**
+	 * List all the countries
+	 * @return \Symfony\Component\HttpFoundation\Response 
+	 */
 	public function listAction() {
 		$repository = $this->getDoctrine()->getRepository('EuroCoinBundle:Country');
 		$translator = $this->get('translator');
 		$countries = $repository->findBy(array(), array('join_date' => 'ASC'));
 
+		// Sort the countries by translated name
 		usort($countries, function ($a, $b) use ($translator) {
 					$a_date = $a->getJoinDate();
 					$b_date = $b->getJoinDate();

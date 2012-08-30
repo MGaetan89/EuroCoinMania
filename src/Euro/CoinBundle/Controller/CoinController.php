@@ -7,6 +7,13 @@ use Symfony\Component\HttpFoundation\Response;
 
 class CoinController extends BaseController {
 
+	/**
+	 * Add or remove one coin in the user collection
+	 * @param integer $id The coin id to add/remove in the collection
+	 * @param string $type The action to perform (either 'add' or 'remove')
+	 * @return \Symfony\Component\HttpFoundation\Response
+	 * @throws type 
+	 */
 	public function addRemoveAction($id, $type) {
 		$translator = $this->get('translator');
 
@@ -47,10 +54,6 @@ class CoinController extends BaseController {
 				throw $this->createNotFoundException($translator->trans('user.coin_not_found'));
 			}
 
-			if ($uc->getUser()->getId() !== $user->getId()) {
-				throw $this->createNotFoundException($translator->trans('user.not_allowed'));
-			}
-
 			$coin = $em->getRepository('EuroCoinBundle:Coin')->find($id);
 
 			if (!$coin) {
@@ -66,12 +69,18 @@ class CoinController extends BaseController {
 		return new Response($uc->getQuantity());
 	}
 
+	/**
+	 * Display all the coins available for a given country
+	 * @param integer $id The country id for the collection to display
+	 * @return \Symfony\Component\HttpFoundation\Response 
+	 */
 	public function collectionAction($id) {
 		$doctrine = $this->getDoctrine();
 		$translator = $this->get('translator');
 		$countries = $doctrine->getRepository('EuroCoinBundle:Country')->findBy(array(), array('join_date' => 'ASC'));
 		$country = null;
 
+		// Sort the countries by translated name
 		usort($countries, function ($a, $b) use (&$country, $id, $translator) {
 					$a_name = $translator->trans((string) $a->getName());
 					$b_name = $translator->trans((string) $b->getName());
@@ -127,6 +136,11 @@ class CoinController extends BaseController {
 				));
 	}
 
+	/**
+	 * Retrieve data for a given coin
+	 * @param integer $id The coin id
+	 * @return \Symfony\Component\HttpFoundation\Response 
+	 */
 	public function getAction($id) {
 		$coin = $this->getDoctrine()->getRepository('EuroCoinBundle:Coin')->find($id);
 
