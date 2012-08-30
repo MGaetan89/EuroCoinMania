@@ -52,8 +52,8 @@
 							</ul>
 						</li>
 					{% else %}
-						<li><a href="{{ path('fos_user_security_login') }}">{{ 'user.login'|trans }}</a></li>
-						<li><a href="{{ path('fos_user_registration_register') }}">{{ 'user.register'|trans }}</a></li>
+						<li{{ macros.is_active('fos_user_security_login') }}><a href="{{ path('fos_user_security_login') }}">{{ 'user.login'|trans }}</a></li>
+						<li{{ macros.is_active('fos_user_registration_register') }}><a href="{{ path('fos_user_registration_register') }}">{{ 'user.register'|trans }}</a></li>
 					{% endif %}
 				</ul>
 			</div>
