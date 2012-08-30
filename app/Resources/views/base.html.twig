@@ -88,6 +88,17 @@
 	{% block body %}{% endblock %}
 </div>
 
+<div class="navbar navbar-fixed-bottom">
+	<div class="navbar-inner">
+		<div class="container-fluid">
+			<p class="muted navbar-text pull-right">
+				{{ 'site_created_by'|trans }} <a href="#">M.Gaetan89</a> &mdash;
+				{{ 'coin_data_provider'|trans }} <a href="http://euro-auflagen.de/">Euro Auflagen</a>
+			</p>
+		</div>
+	</div>
+</div>
+
 <script src="{{ asset('bundles/eurocoin/js/jquery.js') }}" type="text/javascript"></script>
 <script src="{{ asset('bundles/eurocoin/js/bootstrap.js') }}" type="text/javascript"></script>
 {% block javascript %}{% endblock %}

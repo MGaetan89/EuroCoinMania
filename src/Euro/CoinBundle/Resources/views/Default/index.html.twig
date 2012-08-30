@@ -2,8 +2,8 @@
 
 {% block body %}
 <div class="row-fluid">
-	{% for i in 0..7 %}
-		{% if i % 3 == 0 %}
+	{% for i in 0..8 %}
+		{% if i > 0 and i % 3 == 0 %}
 			</div>
 			<div class="row-fluid">
 		{% endif %}

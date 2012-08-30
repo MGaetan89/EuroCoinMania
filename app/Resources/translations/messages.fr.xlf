@@ -2,6 +2,10 @@
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
 	<file source-language="fr" datatype="plaintext" original="file.ext">
 		<body>
+			<trans-unit id="coin_data_provider">
+				<source>coin_data_provider</source>
+				<target>Informations sur les pièces fournies par</target>
+			</trans-unit>
 			<trans-unit id="congratulation">
 				<source>congratulation</source>
 				<target>Félicitation !</target>
@@ -17,6 +21,10 @@
 			<trans-unit id="no">
 				<source>no</source>
 				<target>Non</target>
+			</trans-unit>
+			<trans-unit id="site_created_by">
+				<source>site_created_by</source>
+				<target>Site crée par</target>
 			</trans-unit>
 			<trans-unit id="sitename">
 				<source>sitename</source>
