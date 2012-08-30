@@ -2,9 +2,13 @@ EuroCoinBundle:
     resource: "@EuroCoinBundle/Resources/config/routing.yml"
     prefix:   /
 
-welcome:
-    pattern:  /
-    defaults: { _controller: ApplicationSonataNewsBundle:Default:index }
+ApplicationSonataUserBundle:
+    resource: "@ApplicationSonataUserBundle/Resources/config/routing.yml"
+    prefix:   /profile
+
+ApplicationSonataNewsBundle:
+    resource: "@ApplicationSonataNewsBundle/Resources/config/routing.yml"
+    prefix:   /
 
 fos_user_security:
     resource: "@FOSUserBundle/Resources/config/routing/security.xml"

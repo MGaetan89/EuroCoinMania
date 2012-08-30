@@ -30,6 +30,10 @@
 				<source>news.comments.closed</source>
 				<target>Les commentaires sont désactivés sur cette news</target>
 			</trans-unit>
+			<trans-unit id="news.comments.count">
+				<source>news.comments.count</source>
+				<target>%count% commentaire|%count% commentaires</target>
+			</trans-unit>
 			<trans-unit id="news.comments.none">
 				<source>news.comments.none</source>
 				<target>Soyez le premier à commenter cette actualité !</target>
@@ -57,4 +61,3 @@
 		</body>
 	</file>
 </xliff>
-

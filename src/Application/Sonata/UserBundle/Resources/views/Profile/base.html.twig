@@ -1,0 +1,63 @@
+{% extends '::base.html.twig' %}
+
+{% block body %}
+<h2 class="page-header">
+	{{ user.username }}
+
+	{% if user.fullname %}
+		<small>{{ user.fullname }}</small>
+	{% endif %}
+</h2>
+
+<div class="row-fluid">
+	<div class="span3">
+		<div class="dropdown">
+			<ul class="dropdown-menu" style="display: block;">
+				<li class="nav-header">{{ 'actions'|trans }}</li>
+
+				{% if app.request.get('_route') == 'show_user_collection' %}
+					<li>
+						<a href="{{ path('show_profile', { id: user.id }) }}">
+							<i class="icon-chevron-right"></i>
+							{{ 'user.show_profile'|trans }}
+						</a>
+					</li>
+				{% else %}
+					<li>
+						<a href="{{ path('show_user_collection', { id: user.id }) }}">
+							<i class="icon-chevron-right"></i>
+							{{ 'user.show_collection'|trans }}
+						</a>
+					</li>
+				{% endif %}
+
+				{% if app.user.id == user.id %}
+					<li class="divider">
+
+					<li{{ macros.is_active('sonata_user_profile_edit') }}>
+						<a href="{{ path('sonata_user_profile_edit') }}">
+							<i class="icon-chevron-right"></i>
+							{{ 'user.edit_profile'|trans }}
+						</a>
+					</li>
+					<li{{ macros.is_active('sonata_user_profile_edit_authentication') }}>
+						<a href="{{ path('sonata_user_profile_edit_authentication') }}">
+							<i class="icon-chevron-right"></i>
+							{{ 'user.edit_authentication'|trans }}
+						</a>
+					</li>
+					<li>
+						<a href="{{ path('fos_user_security_logout') }}">
+							<i class="icon-chevron-right"></i>
+							{{ 'user.logout'|trans }}
+						</a>
+					</li>
+				{% endif %}
+			</ul>
+		</div>
+	</div>
+	<div class="span9">
+		{% block content %}{% endblock %}
+	</div>
+</div>
+{% endblock %}

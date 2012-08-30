@@ -22,7 +22,7 @@
 				{% endfor %}
 			</p>
 			<p>
-				<span class="muted">{{ 'news.posted_by_on'|trans({ '%author%' : post.author, '%date%': post.publicationDateStart|format_datetime }) }}</span>
+				<span class="muted">{{ 'news.posted_by_on'|trans({ '%author%': post.author, '%date%': post.publicationDateStart|format_datetime }) }}</span>
 			</p>
 		</div>
 	{% else %}

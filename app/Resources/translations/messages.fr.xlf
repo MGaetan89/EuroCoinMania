@@ -2,6 +2,10 @@
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
 	<file source-language="fr" datatype="plaintext" original="file.ext">
 		<body>
+			<trans-unit id="actions">
+				<source>actions</source>
+				<target>Actions</target>
+			</trans-unit>
 			<trans-unit id="coin_data_provider">
 				<source>coin_data_provider</source>
 				<target>Informations sur les pièces fournies par</target>
@@ -30,42 +34,6 @@
 				<source>sitename</source>
 				<target>Euro Collector</target>
 			</trans-unit>
-			<trans-unit id="user.account">
-				<source>user.account</source>
-				<target>Mon compte</target>
-			</trans-unit>
-			<trans-unit id="user.login">
-				<source>user.login</source>
-				<target>Connexion</target>
-			</trans-unit>
-			<trans-unit id="user.login_action">
-				<source>user.login_action</source>
-				<target>Accéder à mon compte</target>
-			</trans-unit>
-			<trans-unit id="user.login_required">
-				<source>user.login_required</source>
-				<target>Vous devez être connecté pour accéder à cette page</target>
-			</trans-unit>
-			<trans-unit id="user.logout">
-				<source>user.logout</source>
-				<target>Déconnexion</target>
-			</trans-unit>
-			<trans-unit id="user.not_allowed">
-				<source>user.not_allowed</source>
-				<target>Vous n'êtes pas autorisé à accéder à cette page</target>
-			</trans-unit>
-			<trans-unit id="user.profile">
-				<source>user.profile</source>
-				<target>Mon profil</target>
-			</trans-unit>
-			<trans-unit id="user.register">
-				<source>user.register</source>
-				<target>Inscription</target>
-			</trans-unit>
-			<trans-unit id="user.register_action">
-				<source>user.register_action</source>
-				<target>Créer mon compte</target>
-			</trans-unit>
 			<trans-unit id="yes">
 				<source>yes</source>
 				<target>Oui</target>
@@ -73,4 +41,3 @@
 		</body>
 	</file>
 </xliff>
-

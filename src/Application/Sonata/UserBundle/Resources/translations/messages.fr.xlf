@@ -1,0 +1,127 @@
+<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+	<file source-language="fr" datatype="plaintext" original="file.ext">
+		<body>
+			<trans-unit id="user.biography">
+				<source>user.biography</source>
+				<target>Biographie</target>
+			</trans-unit>
+			<trans-unit id="user.birthday_today">
+				<source>user.birthday_today</source>
+				<target>C'est son anniversaire !</target>
+			</trans-unit>
+			<trans-unit id="user.contact">
+				<source>user.contact</source>
+				<target>Contact</target>
+			</trans-unit>
+			<trans-unit id="user.date_of_birth">
+				<source>user.date_of_birth</source>
+				<target>Date de naissance</target>
+			</trans-unit>
+			<trans-unit id="user.edit_authentication">
+				<source>user.edit_authentication</source>
+				<target>Modifier vos identifiants</target>
+			</trans-unit>
+			<trans-unit id="user.edit_profile">
+				<source>user.edit_profile</source>
+				<target>Editer votre profil</target>
+			</trans-unit>
+			<trans-unit id="user.email">
+				<source>user.email</source>
+				<target>E-mail</target>
+			</trans-unit>
+			<trans-unit id="user.facebook">
+				<source>user.facebook</source>
+				<target>Facebook</target>
+			</trans-unit>
+			<trans-unit id="user.gender">
+				<source>user.gender</source>
+				<target>Sexe</target>
+			</trans-unit>
+			<trans-unit id="user.genderf">
+				<source>user.genderf</source>
+				<target>Femme</target>
+			</trans-unit>
+			<trans-unit id="user.genderm">
+				<source>user.genderm</source>
+				<target>Homme</target>
+			</trans-unit>
+			<trans-unit id="user.google_plus">
+				<source>user.google_plus</source>
+				<target>Google+</target>
+			</trans-unit>
+			<trans-unit id="user.information">
+				<source>user.information</source>
+				<target>Informations</target>
+			</trans-unit>
+			<trans-unit id="user.last_login">
+				<source>user.last_login</source>
+				<target>Dernière visite</target>
+			</trans-unit>
+			<trans-unit id="user.locale">
+				<source>user.locale</source>
+				<target>Langue</target>
+			</trans-unit>
+			<trans-unit id="user.locale.fr">
+				<source>user.locale.fr</source>
+				<target>Française</target>
+			</trans-unit>
+			<trans-unit id="user.login">
+				<source>user.login</source>
+				<target>Connexion</target>
+			</trans-unit>
+			<trans-unit id="user.login_action">
+				<source>user.login_action</source>
+				<target>Accéder à mon compte</target>
+			</trans-unit>
+			<trans-unit id="user.login_required">
+				<source>user.login_required</source>
+				<target>Vous devez être connecté pour accéder à cette page</target>
+			</trans-unit>
+			<trans-unit id="user.logout">
+				<source>user.logout</source>
+				<target>Déconnexion</target>
+			</trans-unit>
+			<trans-unit id="user.not_allowed">
+				<source>user.not_allowed</source>
+				<target>Vous n'êtes pas autorisé à accéder à cette page</target>
+			</trans-unit>
+			<trans-unit id="user.not_found">
+				<source>user.not_found</source>
+				<target>L'utilisateur que vous avez demandé n'existe pas</target>
+			</trans-unit>
+			<trans-unit id="user.profile">
+				<source>user.profile</source>
+				<target>Mon profil</target>
+			</trans-unit>
+			<trans-unit id="user.register">
+				<source>user.register</source>
+				<target>Inscription</target>
+			</trans-unit>
+			<trans-unit id="user.register_action">
+				<source>user.register_action</source>
+				<target>Créer mon compte</target>
+			</trans-unit>
+			<trans-unit id="user.registration_date">
+				<source>user.registration_date</source>
+				<target>Date d'inscription</target>
+			</trans-unit>
+			<trans-unit id="user.show_collection">
+				<source>user.show_collection</source>
+				<target>Voir la collection</target>
+			</trans-unit>
+			<trans-unit id="user.show_profile">
+				<source>user.show_profile</source>
+				<target>Voir le profil</target>
+			</trans-unit>
+			<trans-unit id="user.twitter">
+				<source>user.twitter</source>
+				<target>Twitter</target>
+			</trans-unit>
+			<trans-unit id="user.website">
+				<source>user.website</source>
+				<target>Site web</target>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>

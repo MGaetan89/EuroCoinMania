@@ -2,6 +2,14 @@ body {
 	margin-top: 50px;
 }
 
+dl.dl-horizontal dd {
+	margin-left: 150px;
+}
+
+dl.dl-horizontal dt {
+	width: 140px;
+}
+
 #map {
 	height: 454px;
 }
@@ -17,12 +25,4 @@ body {
 
 .popover {
 	width: auto;
-}
-
-.popover dl.dl-horizontal dd {
-	margin-left: 150px;
-}
-
-.popover dl.dl-horizontal dt {
-	width: 140px;
 }

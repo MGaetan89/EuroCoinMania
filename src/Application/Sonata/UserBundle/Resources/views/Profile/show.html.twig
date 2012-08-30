@@ -1,33 +1,74 @@
-{% extends '::base.html.twig' %}
+{% extends 'ApplicationSonataUserBundle:Profile:base.html.twig' %}
 
-{% block body %}
-<h2 class="page-header">
-	{{ app.user.username }}
-	<small>{{ app.user.fullname }}</small>
-</h2>
-
+{% block content %}
 <div class="row-fluid">
-	<div class="span2">
-		<div class="dropdown">
-			<ul class="dropdown-menu" style="display: block;">
-				<li class="nav-header">{{ 'countries.list'|trans }}</li>
+	<div class="span6">
+		<h3 class="page-header">{{ 'user.information'|trans }}</h3>
 
-				<li>
-					<a href="{{ path('sonata_user_profile_edit') }}">
-						<i class="icon-chevron-right"></i>
-						{{ 'link_edit_profile'|trans }}
-					</a>
-				</li>
-				<li>
-					<a href="{{ path('sonata_user_profile_edit_authentication') }}">
-						<i class="icon-chevron-right"></i>
-						{{ 'link_edit_authentication'|trans }}
-					</a>
-				</li>
-			</ul>
-		</div>
+		<dl class="dl-horizontal">
+			<dt>{{ 'user.registration_date'|trans }}</dt>
+				<dd>{{ user.createdat|format_datetime }}</dd>
+
+			{% if user.lastlogin %}
+			<dt>{{ 'user.last_login'|trans }}</dt>
+				<dd>{{ user.lastlogin|format_datetime }}</dd>
+			{% endif %}
+
+			{% if user.dateofbirth %}
+			<dt>{{ 'user.date_of_birth'|trans }}</dt>
+				<dd>
+					{% if date(user.dateofbirth) == date() %}
+						<i class="icon-gift"></i> {{ 'user.birthday_today'|trans }}
+					{% else %}
+						{{ user.dateofbirth|format_date }}
+					{% endif %}
+				</dd>
+			{% endif %}
+
+			{% if user.gender %}
+			<dt>{{ 'user.gender'|trans }}</dt>
+				<dd>{{ ('user.gender' ~ user.gender)|trans }}</dd>
+			{% endif %}
+
+			{% if user.locale %}
+			<dt>{{ 'user.locale'|trans }}</dt>
+				<dd>{{ ('user.locale.' ~ user.locale)|trans }}</dd>
+			{% endif %}
+		</dl>
 	</div>
-	<div class="span10">
+	<div class="span6">
+		<h3 class="page-header"><span class="pull-right">{{ 'user.contact'|trans }}</span><br /></h3>
+
+		<dl class="dl-horizontal">
+			<dt>{{ 'user.email'|trans }}</dt>
+				<dd><a href="mailto: {{ user.email }}" target="_new">{{ user.email }}</a></dd>
+
+			{% if user.website %}
+			<dt>{{ 'user.website'|trans }}</dt>
+				<dd><a href="{{ user.website }}">Site web</a></dd>
+			{% endif %}
+
+			{% if user.facebookuid %}
+			<dt>{{ 'user.facebook'|trans }}</dt>
+				<dd><a href="http://www.fb.me/{{ user.facebookuid }}" target="_new">{{ user.facebookuid }}</a></dd>
+			{% endif %}
+
+			{% if user.twitteruid %}
+			<dt>{{ 'user.twitter'|trans }}</dt>
+				<dd><a href="http://www.twitter.com/{{ user.twitteruid }}" target="_new">{{ user.twitteruid }}</a></dd>
+			{% endif %}
+
+			{% if user.gplusuid %}
+			<dt>{{ 'user.google_plus'|trans }}</dt>
+				<dd><a href="http://plus.google.com/{{ user.gplusuid }}" target="_new">{{ user.gplusuid }}</a></dd>
+			{% endif %}
+		</dl>
 	</div>
 </div>
+
+{% if user.biography %}
+	<h3 class="page-header">{{ 'user.biography'|trans }}</h3>
+
+	{{ user.biography }}
+{% endif %}
 {% endblock %}

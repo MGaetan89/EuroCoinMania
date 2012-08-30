@@ -37,7 +37,7 @@
 					{% if app.user %}
 						<li class="{{ macros.is_active('sonata_user_profile_show', 'false') }} dropdown">
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-								{{ app.user ? app.user : 'user.account'|trans }} <b class="caret"></b>
+								{{ app.user }} <b class="caret"></b>
 							</a>
 							<ul class="dropdown-menu">
 								{% if is_granted('ROLE_ADMIN') %}
@@ -45,7 +45,7 @@
 									<li class="divider"></li>
 								{% endif %}
 
-								<li{{ macros.is_active('sonata_user_profile_show') }}><a href="{{ path('sonata_user_profile_show') }}">{{ 'user.profile'|trans }}</a></li>
+								<li{{ macros.is_active('show_profile') }}><a href="{{ path('show_profile', { id: app.user.id }) }}">{{ 'user.profile'|trans }}</a></li>
 								<li><a href="#">Mes conversations</a></li>
 								<li class="divider"></li>
 								<li><a href="{{ path('fos_user_security_logout') }}">{{ 'user.logout'|trans }}</a></li>
@@ -93,7 +93,7 @@
 	<div class="navbar-inner">
 		<div class="container-fluid">
 			<p class="muted navbar-text pull-right">
-				{{ 'site_created_by'|trans }} <a href="#">M.Gaetan89</a> &mdash;
+				{{ 'site_created_by'|trans }} <a href="{{ path('show_profile', { id: 1 }) }}">M.Gaetan89</a> &mdash;
 				{{ 'coin_data_provider'|trans }} <a href="http://euro-auflagen.de/">Euro Auflagen</a>
 			</p>
 		</div>

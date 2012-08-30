@@ -57,13 +57,13 @@
 			<tr class="{{ row_classes[share.status - 1] }}">
 				<td>
 					{% if share.fromuser.id == app.user.id %}<strong>{% endif %}
-						{{ share.fromuser.username }}
+						<a href="{{ path('show_profile', { id: share.fromuser.id }) }}">{{ share.fromuser.username }}</a>
 					{% if share.fromuser.id == app.user.id %}</strong>{% endif %}
 
 					&rarr;
 
 					{% if share.touser.id == app.user.id %}<strong>{% endif %}
-						{{ share.touser.username }}
+						<a href="{{ path('show_profile', { id: share.touser.id }) }}">{{ share.touser.username }}</a>
 					{% if share.touser.id == app.user.id %}</strong>{% endif %}
 				</td>
 				<td>{{ share.date|format_datetime }}</td>

@@ -1,0 +1,11 @@
+show_profile:
+    pattern:  /{id}/show
+    defaults: { _controller: ApplicationSonataUserBundle:Default:show }
+    requirements:
+        id: "\d+"
+
+show_user_collection:
+    pattern:  /{id}/collection
+    defaults: { _controller: ApplicationSonataUserBundle:Default:collection }
+    requirements:
+        id: "\d+"
