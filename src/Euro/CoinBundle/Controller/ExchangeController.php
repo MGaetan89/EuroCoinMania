@@ -6,6 +6,10 @@ use Euro\CoinBundle\Entity\Share;
 
 class ExchangeController extends BaseController {
 
+	public function acceptAction($id) {
+		// @Todo : implement and decide actio to perform with 'UserCoin.sharing'
+	}
+
 	public function cancelRefuseAction($id, $refuse) {
 		$flashBag = $this->get('session')->getFlashBag();
 		if (!$user = $this->getUser()) {

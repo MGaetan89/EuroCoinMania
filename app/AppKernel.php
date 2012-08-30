@@ -3,47 +3,55 @@
 use Symfony\Component\HttpKernel\Kernel;
 use Symfony\Component\Config\Loader\LoaderInterface;
 
-class AppKernel extends Kernel
-{
-    public function registerBundles()
-    {
-        $bundles = array(
-            new Symfony\Bundle\FrameworkBundle\FrameworkBundle(),
-            new Symfony\Bundle\SecurityBundle\SecurityBundle(),
-            new Symfony\Bundle\TwigBundle\TwigBundle(),
-            new Symfony\Bundle\MonologBundle\MonologBundle(),
-            new Symfony\Bundle\SwiftmailerBundle\SwiftmailerBundle(),
-            new Symfony\Bundle\AsseticBundle\AsseticBundle(),
-            new Doctrine\Bundle\DoctrineBundle\DoctrineBundle(),
-            new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
-            new JMS\AopBundle\JMSAopBundle(),
-            new JMS\DiExtraBundle\JMSDiExtraBundle($this),
-            new JMS\SecurityExtraBundle\JMSSecurityExtraBundle(),
-            new FOS\UserBundle\FOSUserBundle(),
-            new Sonata\CacheBundle\SonataCacheBundle(),
-            new Sonata\BlockBundle\SonataBlockBundle(),
-            new Knp\Bundle\MenuBundle\KnpMenuBundle(),
-            new Sonata\jQueryBundle\SonatajQueryBundle(),
-            new Sonata\AdminBundle\SonataAdminBundle(),
-            new Sonata\DoctrineORMAdminBundle\SonataDoctrineORMAdminBundle(),
-            new Sonata\EasyExtendsBundle\SonataEasyExtendsBundle(),
-            new Sonata\UserBundle\SonataUserBundle('FOSUserBundle'),
-            new Application\Sonata\UserBundle\ApplicationSonataUserBundle(),
-            new Sonata\IntlBundle\SonataIntlBundle(),
-            new Euro\CoinBundle\EuroCoinBundle(),
-        );
+class AppKernel extends Kernel {
 
-        if (in_array($this->getEnvironment(), array('dev', 'test'))) {
-            $bundles[] = new Symfony\Bundle\WebProfilerBundle\WebProfilerBundle();
-            $bundles[] = new Sensio\Bundle\DistributionBundle\SensioDistributionBundle();
-            $bundles[] = new Sensio\Bundle\GeneratorBundle\SensioGeneratorBundle();
-        }
+	public function registerBundles() {
+		$bundles = array(
+			// Default bundles
+			new Symfony\Bundle\AsseticBundle\AsseticBundle(),
+			new Symfony\Bundle\FrameworkBundle\FrameworkBundle(),
+			new Symfony\Bundle\MonologBundle\MonologBundle(),
+			new Symfony\Bundle\SecurityBundle\SecurityBundle(),
+			new Symfony\Bundle\SwiftmailerBundle\SwiftmailerBundle(),
+			new Symfony\Bundle\TwigBundle\TwigBundle(),
+			new Doctrine\Bundle\DoctrineBundle\DoctrineBundle(),
+			new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
+			new JMS\AopBundle\JMSAopBundle(),
+			new JMS\DiExtraBundle\JMSDiExtraBundle($this),
+			new JMS\SecurityExtraBundle\JMSSecurityExtraBundle(),
 
-        return $bundles;
-    }
+			// Installed bundles
+			new Application\Sonata\MediaBundle\ApplicationSonataMediaBundle(),
+			new Application\Sonata\NewsBundle\ApplicationSonataNewsBundle(),
+			new Application\Sonata\UserBundle\ApplicationSonataUserBundle(),
+			new Knp\Bundle\MarkdownBundle\KnpMarkdownBundle(),
+			new Knp\Bundle\MenuBundle\KnpMenuBundle(),
+			new Euro\CoinBundle\EuroCoinBundle(),
+			new FOS\UserBundle\FOSUserBundle(),
+			new Sonata\AdminBundle\SonataAdminBundle(),
+			new Sonata\BlockBundle\SonataBlockBundle(),
+			new Sonata\CacheBundle\SonataCacheBundle(),
+			new Sonata\DoctrineORMAdminBundle\SonataDoctrineORMAdminBundle(),
+			new Sonata\EasyExtendsBundle\SonataEasyExtendsBundle(),
+			new Sonata\FormatterBundle\SonataFormatterBundle(),
+			new Sonata\IntlBundle\SonataIntlBundle(),
+			new Sonata\jQueryBundle\SonatajQueryBundle(),
+			new Sonata\MediaBundle\SonataMediaBundle(),
+			new Sonata\NewsBundle\SonataNewsBundle(),
+			new Sonata\UserBundle\SonataUserBundle('FOSUserBundle'),
+		);
 
-    public function registerContainerConfiguration(LoaderInterface $loader)
-    {
-        $loader->load(__DIR__.'/config/config_'.$this->getEnvironment().'.yml');
-    }
+		if (in_array($this->getEnvironment(), array('dev', 'test'))) {
+			$bundles[] = new Symfony\Bundle\WebProfilerBundle\WebProfilerBundle();
+			$bundles[] = new Sensio\Bundle\DistributionBundle\SensioDistributionBundle();
+			$bundles[] = new Sensio\Bundle\GeneratorBundle\SensioGeneratorBundle();
+		}
+
+		return $bundles;
+	}
+
+	public function registerContainerConfiguration(LoaderInterface $loader) {
+		$loader->load(__DIR__ . '/config/config_' . $this->getEnvironment() . '.yml');
+	}
+
 }
