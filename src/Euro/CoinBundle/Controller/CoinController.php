@@ -136,12 +136,12 @@ class CoinController extends BaseController {
 		}
 
 		return $this->render('EuroCoinBundle:Coin:' . $template_file . '.html.twig', array(
+					'all_values' => $values,
 					'coins' => $coins,
 					'collector' => $collector,
 					'countries' => $countries,
 					'current' => $country,
 					'uc' => $uc,
-					'all_values' => $values,
 				));
 	}
 

@@ -7,7 +7,7 @@ use Euro\CoinBundle\Entity\Share;
 class ExchangeController extends BaseController {
 
 	public function acceptAction($id) {
-		// @Todo : implement and decide actio to perform with 'UserCoin.sharing'
+		// @Todo : implement and decide action to perform with 'UserCoin.sharing'
 	}
 
 	public function cancelRefuseAction($id, $refuse) {

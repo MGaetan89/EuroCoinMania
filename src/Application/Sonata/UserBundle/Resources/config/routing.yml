@@ -5,7 +5,8 @@ show_profile:
         id: "\d+"
 
 show_user_collection:
-    pattern:  /{id}/collection
-    defaults: { _controller: ApplicationSonataUserBundle:Default:collection }
+    pattern:  /{user_id}/collection/{country_id}/{country_name}
+    defaults: { _controller: ApplicationSonataUserBundle:Default:collection, country_id: null, country_name: null }
     requirements:
-        id: "\d+"
+        country_id: "\d+"
+        user_id: "\d+"

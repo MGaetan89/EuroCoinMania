@@ -13,6 +13,30 @@ use Sonata\UserBundle\Model\UserInterface;
  */
 class UserCoinRepository extends EntityRepository {
 
+	public function findCoinsByUserAndCountry(UserInterface $user, $country) {
+		$queryBuilder = $this->createQueryBuilder('uc');
+		$expr = $queryBuilder->expr();
+
+		return $queryBuilder
+						->select('uc, c, ct, v, y, w')
+						->join('uc.coin', 'c')
+						->join('c.country', 'ct')
+						->join('c.value', 'v')
+						->join('c.year', 'y')
+						->leftJoin('y.workshop', 'w')
+						->where($expr->eq('uc.user', ':user'))
+						->andWhere($expr->eq('c.country', ':country'))
+						->orderBy('y.year', 'ASC')
+						->addOrderBy('w.short_name', 'ASC')
+						->addOrderBy('v.value', 'DESC')
+						->setParameters(array(
+							'country' => $country,
+							'user' => $user,
+						))
+						->getQuery()
+						->getResult();
+	}
+
 	public function findDoublesForUser(UserInterface $user) {
 		$queryBuilder = $this->createQueryBuilder('uc');
 		$expr = $queryBuilder->expr();

@@ -13,23 +13,22 @@
 	<div class="span3">
 		<div class="dropdown">
 			<ul class="dropdown-menu" style="display: block;">
+				{% block optional_menu %}{% endblock %}
+
 				<li class="nav-header">{{ 'actions'|trans }}</li>
 
-				{% if app.request.get('_route') == 'show_user_collection' %}
-					<li>
-						<a href="{{ path('show_profile', { id: user.id }) }}">
-							<i class="icon-chevron-right"></i>
-							{{ 'user.show_profile'|trans }}
-						</a>
-					</li>
-				{% else %}
-					<li>
-						<a href="{{ path('show_user_collection', { id: user.id }) }}">
-							<i class="icon-chevron-right"></i>
-							{{ 'user.show_collection'|trans }}
-						</a>
-					</li>
-				{% endif %}
+				<li{{ macros.is_active(['show_profile']) }}>
+					<a href="{{ path('show_profile', { id: user.id }) }}">
+						<i class="icon-chevron-right"></i>
+						{{ 'user.show_profile'|trans }}
+					</a>
+				</li>
+				<li{{ macros.is_active(['show_user_collection']) }}>
+					<a href="{{ path('show_user_collection', { user_id: user.id }) }}">
+						<i class="icon-chevron-right"></i>
+						{{ 'user.show_collection'|trans }}
+					</a>
+				</li>
 
 				{% if app.user.id == user.id %}
 					<li class="divider">
