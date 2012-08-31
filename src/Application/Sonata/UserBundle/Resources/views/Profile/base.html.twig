@@ -12,11 +12,9 @@
 <div class="row-fluid">
 	<div class="span3">
 		{% if app.request.get('_route') == 'show_profile' and gravatar_exists(user.email) %}
-			<div style="padding-left: 20px;">
-				<img alt="{{ user.username }}" class="img-polaroid pull-left" src="{{ gravatar(user.email) }}" title="{{ user.username }}" />
+			<div style="margin-bottom: 10px; padding-left: 20px;">
+				<img alt="{{ user.username }}" class="img-polaroid" src="{{ gravatar(user.email) }}" title="{{ user.username }}" />
 			</div>
-
-			<div style="height: 180px;"></div>
 		{% endif %}
 
 		<div class="dropdown">
