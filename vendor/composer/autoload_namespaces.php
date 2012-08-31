@@ -29,6 +29,7 @@ return array(
     'Sensio\\Bundle\\GeneratorBundle' => $vendorDir . '/sensio/generator-bundle/',
     'Sensio\\Bundle\\FrameworkExtraBundle' => $vendorDir . '/sensio/framework-extra-bundle/',
     'Sensio\\Bundle\\DistributionBundle' => $vendorDir . '/sensio/distribution-bundle/',
+    'Ornicar\\GravatarBundle\\' => $vendorDir . '/ornicar/gravatar-bundle/',
     'Monolog' => $vendorDir . '/monolog/monolog/src/',
     'Metadata\\' => $vendorDir . '/jms/metadata/src/',
     'Knp\\Menu\\' => $vendorDir . '/knplabs/knp-menu/src/',

@@ -43,7 +43,7 @@ class UserCoinRepository extends EntityRepository {
 
 		return $queryBuilder
 						->select($expr->countDistinct('uc') . ' AS total')
-						->addSelect('u.id, u.username')
+						->addSelect('u.id, u.username, u.email')
 						->join('uc.user', 'u')
 						->where($expr->neq('uc.user', ':user'))
 						->andWhere($expr->gt('uc.quantity - uc.sharing', 1))

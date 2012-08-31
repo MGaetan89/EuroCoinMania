@@ -28,6 +28,7 @@ class AppKernel extends Kernel {
 			new Knp\Bundle\MenuBundle\KnpMenuBundle(),
 			new Euro\CoinBundle\EuroCoinBundle(),
 			new FOS\UserBundle\FOSUserBundle(),
+			new Ornicar\GravatarBundle\OrnicarGravatarBundle(),
 			new Sonata\AdminBundle\SonataAdminBundle(),
 			new Sonata\BlockBundle\SonataBlockBundle(),
 			new Sonata\CacheBundle\SonataCacheBundle(),

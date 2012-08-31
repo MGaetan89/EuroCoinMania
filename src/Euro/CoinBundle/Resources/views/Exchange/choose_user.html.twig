@@ -43,7 +43,7 @@
 			{% set amount = user['total'] %}
 			<li class="span2">
 				<a class="thumbnail" href="{{ path('exchange_coins_request', { id: user['id'], name: user['username'] }) }}">
-					<img src="http://fakeimg.pl/160x160/?text=Pas%20d'avatar" />
+					<img alt="{{ user['username'] }}" src="{{ gravatar(user['email']) }}" title="{{ user['username'] }}" />
 
 					<div class="caption">
 						<h4>{{ user['username'] }}</h4>

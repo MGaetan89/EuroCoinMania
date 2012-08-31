@@ -2,6 +2,7 @@ imports:
     - { resource: parameters.yml }
     - { resource: security.yml }
     - { resource: bundles/fos_user.yml }
+    - { resource: bundles/ornicar_gravatar.yml }
     - { resource: bundles/sonata_admin.yml }
     - { resource: bundles/sonata_block.yml }
     - { resource: bundles/sonata_cache.yml }

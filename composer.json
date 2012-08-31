@@ -30,7 +30,8 @@
         "sonata-project/doctrine-extensions": "dev-master",
         "sonata-project/user-bundle": "dev-master",
         "sonata-project/intl-bundle": "dev-master",
-		"sonata-project/news-bundle": "dev-master"
+		"sonata-project/news-bundle": "dev-master",
+		"ornicar/gravatar-bundle": "dev-master"
     },
     "scripts": {
         "post-install-cmd": [
