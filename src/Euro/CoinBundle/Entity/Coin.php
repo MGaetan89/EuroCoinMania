@@ -40,11 +40,11 @@ class Coin {
 	private $year;
 
 	/**
-	 * @var boolean $commemorative
+	 * @var boolean $collector
 	 *
-	 * @ORM\Column(name="commemorative", type="boolean")
+	 * @ORM\Column(name="collector", type="boolean")
 	 */
-	private $commemorative;
+	private $collector;
 
 	/**
 	 * @var string $description
@@ -77,24 +77,24 @@ class Coin {
 	}
 
 	/**
-	 * Set commemorative
+	 * Set collector
 	 *
-	 * @param boolean $commemorative
+	 * @param boolean $collector
 	 * @return Coin
 	 */
-	public function setCommemorative($commemorative) {
-		$this->commemorative = $commemorative;
+	public function setCollector($collector) {
+		$this->collector = $collector;
 
 		return $this;
 	}
 
 	/**
-	 * Get commemorative
+	 * Get collector
 	 *
 	 * @return boolean 
 	 */
-	public function isCommemorative() {
-		return $this->commemorative;
+	public function isCollector() {
+		return $this->collector;
 	}
 
 	/**

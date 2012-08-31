@@ -1,111 +1,82 @@
-{% extends '::base.html.twig' %}
+{% extends 'EuroCoinBundle:Coin:base.html.twig' %}
 
-{% block body %}
-{% if countries %}
-<div class="row-fluid">
-	<div class="dropdown span2">
-		<ul class="dropdown-menu" style="display: block;">
-			<li class="nav-header">{{ 'countries.list'|trans }}</li>
+{% block content %}
+{% if countries and coins|length > 0 %}
+	{% set header %}
+	<tr>
+		<th>&nbsp;</th>
+		{% for value in all_values %}
+		<th>{{ macros.value(value) }}</th>
+		{% endfor %}
+	</tr>
+	{% endset %}
 
-			{% for country in countries %}
-			{% set name = macros.name(country) %}
-			<li{% if country.name == current.name %} class="active"{% endif %} data-action="popover" title="{{ name }}" data-content="{% include 'EuroCoinBundle:Country:country_data.html.twig' with { country: country } %}">
-				<a href="{{ path('coin_collection', { id: country.id, country: name }) }}">
-					<i class="icon-chevron-right"></i> {{ name }}
-				</a>
-			</li>
-			{% endfor %}
-		</ul>
-	</div>
-	<div class="span10">
-		{% set name = macros.name(current) %}
+	{% set empty_cell %}
+	<td style="text-align: center;">{{ 'coin.no_mintage'|trans }}</td>
+	{% endset %}
 
-		<h2 class="page-header">
-			<img alt="{{ name }}" src="{{ asset('bundles/eurocoin/images/flags/' ~ current.nameiso ~ '.png') }}" title="{{ name }}" />
-			{{ name }}
-		</h2>
+	<table class="table table-bordered table-condensed table-hover table-striped">
+	<tbody>
+		{{ header }}
 
-		{% if coins|length > 0 %}
-			{% set header %}
-			<tr>
-				<th>&nbsp;</th>
-				{% for value in all_values %}
-				<th>{{ macros.value(value) }}</th>
-				{% endfor %}
-			</tr>
-			{% endset %}
-
-			{% set empty_cell %}
-			<td style="text-align: center;">{{ 'coin.no_mintage'|trans }}</td>
-			{% endset %}
-
-			<table class="table table-bordered table-condensed table-hover table-striped">
-			<tbody>
+		{% for year, values in coins %}
+			{% if loop.index0 > 0 and loop.index0 % 5 == 0 %}
 				{{ header }}
+			{% endif %}
 
-				{% for year, values in coins %}
-					{% if loop.index0 > 0 and loop.index0 % 5 == 0 %}
-						{{ header }}
-					{% endif %}
+			<tr>
+				{% set has_year = false %}
+				{% for value in all_values if values[value] is defined and not has_year %}
+					{% set has_year = true %}
 
-					<tr>
-						{% set has_year = false %}
-						{% for value in all_values if values[value] is defined and not has_year %}
-							{% set has_year = true %}
+					<td>{{ macros.year(values[value].year) }}</td>
+				{% endfor %}
 
-							<td>{{ macros.year(values[value].year) }}</td>
-						{% endfor %}
+				{% for value in all_values %}
+					{% if values[value] is defined %}
+						{% set coin = values[value] %}
 
-						{% for value in all_values %}
-							{% if values[value] is defined %}
-								{% set coin = values[value] %}
+						{% if app.user %}
+							{% set has_coin = uc[coin.id] is defined %}
+						{% endif %}
+
+						<td>
+							<div class="btn-toolbar" data-coin="{{ coin.id }}">
+								<div class="btn-group pull-left">
+									<button class="btn btn-mini btn-info" title="{{ 'coin.information'|trans }}" data-action="query-coin-info" data-loading-text="?">?</button>
+
+									{% if app.user %}
+										{% if has_coin %}
+											<button class="btn btn-mini disabled" disabled="disabled" id="quantity-{{ coin.id }}" title="{{ 'coin.self_quantity'|trans }}">
+												{{ uc[coin.id].quantity|number_format_duration }}
+
+												{% if uc[coin.id].sharing %}
+													({{ uc[coin.id].sharing }})
+												{% endif %}
+											</button>
+										{% else %}
+											<button class="btn btn-mini disabled" disabled="disabled" id="quantity-{{ coin.id }}" title="{{ 'coin.registered_quantity'|trans }}">0</button>
+										{% endif %}
+									{% else %}
+										<button class="btn btn-mini disabled" disabled="disabled" id="quantity-{{ coin.id }}" title="{{ 'coin.mintage'|trans }}">{{ coin.mintage|number_format_duration }}</button>
+									{% endif %}
+								</div>
 
 								{% if app.user %}
-									{% set has_coin = uc[coin.id] is defined %}
+								<div class="btn-group pull-right">
+									<button class="btn btn-mini btn-danger{% if not has_coin %} disabled" disabled="disabled{% endif %}" title="{{ 'coin.remove'|trans }}" data-action="remove-coin" data-loading-text="-">-</button>
+									<button class="btn btn-mini btn-success{% if coin.mintage == coin.membertotal %} disabled" disabled="disabled{% endif %}" title="{{ 'coin.add'|trans }}" data-action="add-coin" data-loading-text="+">+</button>
+								</div>
 								{% endif %}
-
-								<td>
-									<div class="btn-toolbar" data-coin="{{ coin.id }}">
-										<div class="btn-group pull-left">
-											<button class="btn btn-mini btn-info" title="{{ 'coin.information'|trans }}" data-action="query-coin-info" data-loading-text="?">?</button>
-
-											{% if app.user %}
-												{% if has_coin %}
-													<button class="btn btn-mini disabled" disabled="disabled" id="quantity-{{ coin.id }}" title="{{ 'coin.self_quantity'|trans }}">{{ uc[coin.id]|number_format_duration }}</button>
-												{% else %}
-													<button class="btn btn-mini disabled" disabled="disabled" id="quantity-{{ coin.id }}" title="{{ 'coin.registered_quantity'|trans }}">0</button>
-												{% endif %}
-											{% else %}
-												<button class="btn btn-mini disabled" disabled="disabled" id="quantity-{{ coin.id }}" title="{{ 'coin.mintage'|trans }}">{{ coin.mintage|number_format_duration }}</button>
-											{% endif %}
-										</div>
-
-										{% if app.user %}
-										<div class="btn-group pull-right">
-											<button class="btn btn-mini btn-danger{% if not has_coin %} disabled" disabled="disabled{% endif %}" title="{{ 'coin.remove'|trans }}" data-action="remove-coin" data-loading-text="-">-</button>
-											<button class="btn btn-mini btn-success{% if coin.mintage == coin.membertotal %} disabled" disabled="disabled{% endif %}" title="{{ 'coin.add'|trans }}" data-action="add-coin" data-loading-text="+">+</button>
-										</div>
-										{% endif %}
-									</div>
-								</td>
-							{% else %}
-								{{ empty_cell }}
-							{% endif %}
-						{% endfor %}
-					</tr>
+							</div>
+						</td>
+					{% else %}
+						{{ empty_cell }}
+					{% endif %}
 				{% endfor %}
-			</tbody>
-			</table>
-		{% else %}
-			<div class="alert">{{ 'coin.none'|trans }}</div>
-		{% endif %}
-	</div>
-</div>
-{% else %}
-<div class="alert">{{ 'country.none'|trans }}</div>
+			</tr>
+		{% endfor %}
+	</tbody>
+	</table>
 {% endif %}
-{% endblock %}
-
-{% block javascript %}
-<script src="{{ asset('bundles/eurocoin/js/collection.js') }}" type="text/javascript"></script>
 {% endblock %}

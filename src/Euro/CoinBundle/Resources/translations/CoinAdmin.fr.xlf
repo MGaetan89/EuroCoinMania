@@ -26,9 +26,9 @@
 				<source>euro_coin.menu_coin</source>
 				<target>Pièce</target>
 			</trans-unit>
-			<trans-unit id="filter.label_commemorative">
-				<source>filter.label_commemorative</source>
-				<target>Commémorative ?</target>
+			<trans-unit id="filter.label_collector">
+				<source>filter.label_collector</source>
+				<target>Collector ?</target>
 			</trans-unit>
 			<trans-unit id="filter.label_country">
 				<source>filter.label_country</source>
@@ -42,9 +42,9 @@
 				<source>filter.label_year</source>
 				<target>Année</target>
 			</trans-unit>
-			<trans-unit id="form.label_commemorative">
-				<source>form.label_commemorative</source>
-				<target>Commémorative ?</target>
+			<trans-unit id="form.label_collector">
+				<source>form.label_collector</source>
+				<target>Collector ?</target>
 			</trans-unit>
 			<trans-unit id="form.label_country">
 				<source>form.label_country</source>
@@ -74,9 +74,9 @@
 				<source>list.label_coin</source>
 				<target>Pièce</target>
 			</trans-unit>
-			<trans-unit id="list.label_commemorative">
-				<source>list.label_commemorative</source>
-				<target>Commémorative ?</target>
+			<trans-unit id="list.label_collector">
+				<source>list.label_collector</source>
+				<target>Collector ?</target>
 			</trans-unit>
 			<trans-unit id="list.label_description">
 				<source>list.label_description</source>

@@ -18,7 +18,7 @@ class CoinAdmin extends Admin {
 				->add('country')
 				->add('value')
 				->add('year')
-				->add('commemorative');
+				->add('collector');
 	}
 
 	protected function configureFormFields(FormMapper $form) {
@@ -26,7 +26,7 @@ class CoinAdmin extends Admin {
 				->add('country', 'sonata_type_model')
 				->add('value', 'sonata_type_model')
 				->add('year', 'sonata_type_model')
-				->add('commemorative', null, array('required' => false))
+				->add('collector', null, array('required' => false))
 				->add('description', null, array('required' => false))
 				->add('mintage');
 	}
@@ -34,7 +34,7 @@ class CoinAdmin extends Admin {
 	protected function configureListFields(ListMapper $listMapper) {
 		$listMapper
 				->addIdentifier('coin', null, array('template' => 'EuroCoinBundle:Admin:Coin/list_coin.html.twig'))
-				->add('commemorative', null, array('editable' => true))
+				->add('collector', null, array('editable' => true))
 				->add('description')
 				->add('mintage', null, array('template' => 'EuroCoinBundle:Admin:Coin/list_mintage.html.twig'))
 				->add('_action', 'actions', array(
@@ -51,7 +51,7 @@ class CoinAdmin extends Admin {
 				->add('country')
 				->add('value')
 				->add('year')
-				->add('commemorative')
+				->add('collector')
 				->add('description')
 				->add('mintage')
 				->add('member_total');

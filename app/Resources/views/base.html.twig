@@ -26,8 +26,8 @@
 
 			<div class="nav-collapse">
 				<ul class="nav">
-					<li{{ macros.is_active('countries_list') }}><a href="{{ path('countries_list') }}">{{ 'countries.list'|trans }}</a></li>
-					<li{{ macros.is_active('coin_collection') }}><a href="{{ path('coin_collection') }}">{{ 'coin.collection'|trans }}</a></li>
+					<li{{ macros.is_active(['countries_list']) }}><a href="{{ path('countries_list') }}">{{ 'countries.list'|trans }}</a></li>
+					<li{{ macros.is_active(['coin_collection', 'coin_collection_collector']) }}><a href="{{ path('coin_collection') }}">{{ 'coin.collection'|trans }}</a></li>
 
 					{% if app.user %}
 						<li{{ macros.is_active(['exchange_coins_request', 'exchange_coins_suggest', 'exchange_choose_user', 'exchange_list', 'exchange_list_all']) }}><a href="{{ path('exchange_list') }}">{{ 'exchanges'|trans }}</a></li>
@@ -35,7 +35,7 @@
 				</ul>
 				<ul class="nav pull-right">
 					{% if app.user %}
-						<li class="{{ macros.is_active('sonata_user_profile_show', 'false') }} dropdown">
+						<li class="{{ macros.is_active(['sonata_user_profile_show'], 'false') }} dropdown">
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown">
 								{{ app.user }} <b class="caret"></b>
 							</a>
@@ -45,15 +45,15 @@
 									<li class="divider"></li>
 								{% endif %}
 
-								<li{{ macros.is_active('show_profile') }}><a href="{{ path('show_profile', { id: app.user.id }) }}">{{ 'user.profile'|trans }}</a></li>
+								<li{{ macros.is_active(['show_profile']) }}><a href="{{ path('show_profile', { id: app.user.id }) }}">{{ 'user.profile'|trans }}</a></li>
 								<li><a href="#">Mes conversations</a></li>
 								<li class="divider"></li>
 								<li><a href="{{ path('fos_user_security_logout') }}">{{ 'user.logout'|trans }}</a></li>
 							</ul>
 						</li>
 					{% else %}
-						<li{{ macros.is_active('fos_user_security_login') }}><a href="{{ path('fos_user_security_login') }}">{{ 'user.login'|trans }}</a></li>
-						<li{{ macros.is_active('fos_user_registration_register') }}><a href="{{ path('fos_user_registration_register') }}">{{ 'user.register'|trans }}</a></li>
+						<li{{ macros.is_active(['fos_user_security_login']) }}><a href="{{ path('fos_user_security_login') }}">{{ 'user.login'|trans }}</a></li>
+						<li{{ macros.is_active(['fos_user_registration_register']) }}><a href="{{ path('fos_user_registration_register') }}">{{ 'user.register'|trans }}</a></li>
 					{% endif %}
 				</ul>
 			</div>

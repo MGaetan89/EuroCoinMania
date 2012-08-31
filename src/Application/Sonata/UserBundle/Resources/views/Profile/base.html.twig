@@ -34,13 +34,13 @@
 				{% if app.user.id == user.id %}
 					<li class="divider">
 
-					<li{{ macros.is_active('sonata_user_profile_edit') }}>
+					<li{{ macros.is_active(['sonata_user_profile_edit']) }}>
 						<a href="{{ path('sonata_user_profile_edit') }}">
 							<i class="icon-chevron-right"></i>
 							{{ 'user.edit_profile'|trans }}
 						</a>
 					</li>
-					<li{{ macros.is_active('sonata_user_profile_edit_authentication') }}>
+					<li{{ macros.is_active(['sonata_user_profile_edit_authentication']) }}>
 						<a href="{{ path('sonata_user_profile_edit_authentication') }}">
 							<i class="icon-chevron-right"></i>
 							{{ 'user.edit_authentication'|trans }}

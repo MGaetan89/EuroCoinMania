@@ -12,7 +12,7 @@ use Doctrine\ORM\EntityRepository;
  */
 class CoinRepository extends EntityRepository {
 
-	public function findCoinsByCountry(Country $country) {
+	public function findCoinsByCountry(Country $country, $collector) {
 		$queryBuidler = $this->createQueryBuilder('c');
 		$expr = $queryBuidler->expr();
 
@@ -21,10 +21,14 @@ class CoinRepository extends EntityRepository {
 						->join('c.year', 'y')
 						->leftJoin('y.workshop', 'w')
 						->where($expr->eq('c.country', ':country'))
+						->andWhere($expr->eq('c.collector', ':collector'))
 						->orderBy('y.year', 'ASC')
 						->addOrderBy('w.short_name', 'ASC')
 						->addOrderBy('v.value', 'DESC')
-						->setParameter('country', $country)
+						->setParameters(array(
+							'collector' => $collector,
+							'country' => $country,
+						))
 						->getQuery()
 						->getResult();
 	}

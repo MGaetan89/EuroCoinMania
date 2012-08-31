@@ -11,9 +11,9 @@
 		<dt>{{ 'coin.value'|trans }}</dt>
 			<dd>{{ macros.value(coin.value) }}</dd>
 
-		<dt>{{ 'coin.commemorative'|trans }}</dt>
+		<dt>{{ 'coin.collector'|trans }}</dt>
 			<dd>
-				{% if coin.commemorative %}
+				{% if coin.collector %}
 					<i class="icon-ok"></i> {{ 'yes'|trans }}
 				{% else %}
 					<i class="icon-remove"></i> {{ 'no'|trans }}

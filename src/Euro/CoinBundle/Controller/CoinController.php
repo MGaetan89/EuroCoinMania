@@ -72,9 +72,10 @@ class CoinController extends BaseController {
 	/**
 	 * Display all the coins available for a given country
 	 * @param integer $id The country id for the collection to display
+	 * @param boolean $collector Wether we show collector coins or not
 	 * @return \Symfony\Component\HttpFoundation\Response 
 	 */
-	public function collectionAction($id) {
+	public function collectionAction($id, $collector) {
 		$doctrine = $this->getDoctrine();
 		$translator = $this->get('translator');
 		$countries = $doctrine->getRepository('EuroCoinBundle:Country')->findBy(array(), array('join_date' => 'ASC'));
@@ -108,12 +109,14 @@ class CoinController extends BaseController {
 		$uc = array();
 
 		if ($country) {
-			$coins = $doctrine->getRepository('EuroCoinBundle:Coin')->findCoinsByCountry($country);
+			$coins = $doctrine->getRepository('EuroCoinBundle:Coin')->findCoinsByCountry($country, $collector);
 
-			list($coins, $values) = $this->_buildVars($coins);
+			if (!$collector) {
+				list($coins, $values) = $this->_buildVars($coins);
 
-			$coins = array_shift($coins);
-			$values = array_shift($values);
+				$coins = array_shift($coins);
+				$values = array_shift($values);
+			}
 
 			$user_coins = array();
 			if ($this->getUser()) {
@@ -121,14 +124,20 @@ class CoinController extends BaseController {
 
 				foreach ($user_coins as $user_coin) {
 					if ($user_coin->getQuantity() > 0) {
-						$uc[$user_coin->getCoin()->getId()] = $user_coin->getQuantity();
+						$uc[$user_coin->getCoin()->getId()] = $user_coin;
 					}
 				}
 			}
 		}
 
-		return $this->render('EuroCoinBundle:Coin:collection.html.twig', array(
+		$template_file = 'collection';
+		if ($collector) {
+			$template_file = 'collection_collector';
+		}
+
+		return $this->render('EuroCoinBundle:Coin:' . $template_file . '.html.twig', array(
 					'coins' => $coins,
+					'collector' => $collector,
 					'countries' => $countries,
 					'current' => $country,
 					'uc' => $uc,

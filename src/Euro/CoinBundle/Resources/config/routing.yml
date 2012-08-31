@@ -7,7 +7,13 @@ coin_add:
 
 coin_collection:
     pattern: /collection/{id}/{country}
-    defaults: { _controller: EuroCoinBundle:Coin:collection, country: null, id: null }
+    defaults: { _controller: EuroCoinBundle:Coin:collection, collector: false, country: null, id: null }
+    requirements:
+        id: "\d*"
+
+coin_collection_collector:
+    pattern: /collection/collector/{id}/{country}
+    defaults: { _controller: EuroCoinBundle:Coin:collection, collector: true, country: null, id: null }
     requirements:
         id: "\d*"
 

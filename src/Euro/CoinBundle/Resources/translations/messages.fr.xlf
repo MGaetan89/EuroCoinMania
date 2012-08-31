@@ -6,13 +6,21 @@
 				<source>coin.add</source>
 				<target>Ajouter</target>
 			</trans-unit>
+			<trans-unit id="coin.circulation">
+				<source>coin.circulation</source>
+				<target>Circulation</target>
+			</trans-unit>
 			<trans-unit id="coin.collection">
 				<source>coin.collection</source>
 				<target>Collection</target>
 			</trans-unit>
-			<trans-unit id="coin.commemorative">
-				<source>coin.commemorative</source>
-				<target>Commémorative ?</target>
+			<trans-unit id="coin.collector">
+				<source>coin.collector</source>
+				<target>Collector</target>
+			</trans-unit>
+			<trans-unit id="coin.description">
+				<source>coin.description</source>
+				<target>Description</target>
 			</trans-unit>
 			<trans-unit id="coin.country">
 				<source>coin.country</source>
@@ -109,6 +117,10 @@ Si l'échange est accepté par l'autre utilisateur, vos inventaires respectifs s
 			<trans-unit id="coin.self_quantity">
 				<source>coin.self_quantity</source>
 				<target>Quantité possédée</target>
+			</trans-unit>
+			<trans-unit id="coin.sharing_count_info">
+				<source>coin.sharing_count_info</source>
+				<target>La valeur entre parenthèses représente la quantité engagée dans un échange.</target>
 			</trans-unit>
 			<trans-unit id="coin.unavailable">
 				<source>coin.unavailable</source>

@@ -1,0 +1,26 @@
+{% extends 'EuroCoinBundle:Coin:base.html.twig' %}
+
+{% block content %}
+{% if countries and coins|length > 0 %}
+	<table class="table table-hover table-striped">
+	<thead>
+		<tr>
+			<th>{{ 'coin.year'|trans }}</th>
+			<th>{{ 'coin.value'|trans }}</th>
+			<th>{{ 'coin.description'|trans }}</th>
+			<th>{{ 'coin.mintage'|trans }}</th>
+		</tr>
+	</thead>
+	<tbody>
+	{% for coin in coins %}
+		<tr>
+			<td>{{ macros.year(coin.year) }}</td>
+			<td>{{ macros.value(coin.value) }}</td>
+			<td>{{ coin.description }}</td>
+			<td>{{ coin.mintage|number_format }}</td>
+		</tr>
+	{% endfor %}
+	</tbody>
+	</table>
+{% endif %}
+{% endblock %}
