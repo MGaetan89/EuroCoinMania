@@ -146,8 +146,8 @@ class ExchangeController extends BaseController {
 		$coins = array();
 		foreach ($shares as $share) {
 			$coins[$share->getId()] = array(
-				'requested' => $coin_repo->findById($share->getCoinsRequested()),
-				'suggested' => $coin_repo->findById($share->getCoinsSuggested()),
+				'requested' => $coin_repo->findCoinById($share->getCoinsRequested()),
+				'suggested' => $coin_repo->findCoinById($share->getCoinsSuggested()),
 			);
 		}
 

@@ -36,6 +36,7 @@ class UserCoinRepository extends EntityRepository {
 		$expr = $queryBuilder->expr();
 
 		return $queryBuilder
+						->select('uc, c, v, y, w')
 						->join('uc.coin', 'c')
 						->join('c.value', 'v')
 						->join('c.year', 'y')
@@ -55,6 +56,7 @@ class UserCoinRepository extends EntityRepository {
 		$expr = $queryBuilder->expr();
 
 		return $queryBuilder
+						->select('uc, c, v, y, w')
 						->join('uc.coin', 'c')
 						->join('c.value', 'v')
 						->join('c.year', 'y')
