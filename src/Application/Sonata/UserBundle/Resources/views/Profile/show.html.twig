@@ -69,6 +69,6 @@
 {% if user.biography %}
 	<h3 class="page-header">{{ 'user.biography'|trans }}</h3>
 
-	{{ user.biography }}
+	{{ user.biography|format_text('markdown')|raw }}
 {% endif %}
 {% endblock %}
