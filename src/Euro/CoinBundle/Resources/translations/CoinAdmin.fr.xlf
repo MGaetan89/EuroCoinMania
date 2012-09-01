@@ -86,6 +86,22 @@
 				<source>list.label_mintage</source>
 				<target>Quantité tirée — enregistrée</target>
 			</trans-unit>
+			<trans-unit id="show.label_coin">
+				<source>show.label_coin</source>
+				<target>Pièce</target>
+			</trans-unit>
+			<trans-unit id="show.label_collector">
+				<source>show.label_collector</source>
+				<target>Collector ?</target>
+			</trans-unit>
+			<trans-unit id="show.label_description">
+				<source>show.label_description</source>
+				<target>Description</target>
+			</trans-unit>
+			<trans-unit id="show.label_mintage">
+				<source>show.label_mintage</source>
+				<target>Quantité enregistrée / tirée</target>
+			</trans-unit>
 		</body>
 	</file>
 </xliff>

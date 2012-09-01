@@ -48,13 +48,10 @@ class CoinAdmin extends Admin {
 
 	protected function configureShowFields(ShowMapper $show) {
 		$show
-				->add('country')
-				->add('value')
-				->add('year')
+				->add('coin', null, array('template' => 'EuroCoinBundle:Admin:Coin/show_coin.html.twig'))
 				->add('collector')
 				->add('description')
-				->add('mintage')
-				->add('member_total');
+				->add('mintage', null, array('template' => 'EuroCoinBundle:Admin:Coin/show_mintage.html.twig'));
 	}
 
 	public function prePersist($coin) {

@@ -1,0 +1,5 @@
+{% extends 'SonataAdminBundle:CRUD:base_show_field.html.twig' %}
+
+{% block field %}
+	{{ object.membertotal|number_format_duration }} / {{ object.mintage|number_format_duration }}
+{% endblock %}
