@@ -10,7 +10,15 @@
 	<meta charset="UTF-8" />
 	<meta content="width=device-width, initial-scale=1.0" name="viewport" />
 
-	<title>{% block title %}{{ 'sitename'|trans }}{% endblock %}</title>
+	<title>
+		{% block title %}{% endblock %}
+
+		{% if block('title') %}
+			&bull;
+		{% endif %}
+
+		{{ 'sitename'|trans }}
+	</title>
 </head>
 <body>
 <div class="navbar navbar-fixed-top">

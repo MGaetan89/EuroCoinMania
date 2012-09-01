@@ -1,7 +1,9 @@
 {% extends '::base.html.twig' %}
 
+{% block title %}{{ post.title }}{% endblock %}
+
 {% block body %}
-<h2 class="page-header">{{ post.title }}</h2>
+<h2 class="page-header">{{ block('title') }}</h2>
 
 <div class="row-fluid">
 	<div class="span2">

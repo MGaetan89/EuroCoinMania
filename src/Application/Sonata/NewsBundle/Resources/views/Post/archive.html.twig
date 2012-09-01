@@ -1,7 +1,9 @@
 {% extends '::base.html.twig' %}
 
+{% block title %}{{ 'news.archives'|trans }}{% endblock %}
+
 {% block body %}
-<h2>{{ 'news.archives'|trans }}</h2>
+<h2 class="page-header">{{ block('title') }}</h2>
 
 <div class="row-fluid">
 	{% for post in pager.getResults() %}

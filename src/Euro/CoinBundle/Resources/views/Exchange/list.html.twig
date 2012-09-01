@@ -1,13 +1,15 @@
 {% extends '::base.html.twig' %}
 
-{% block body %}
-<h2 class="page-header">
+{% block title %}
 	{% if all %}
 		{{ 'exchange.list_all'|trans }}
 	{% else %}
 		{{ 'exchange.list_pending'|trans }}
 	{% endif %}
-</h2>
+{% endblock %}
+
+{% block body %}
+<h2 class="page-header">{{ block('title') }}</h2>
 
 <div class="row-fluid">
 	<div class="span2">

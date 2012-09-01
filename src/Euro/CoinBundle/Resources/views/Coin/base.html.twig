@@ -1,9 +1,10 @@
 {% extends '::base.html.twig' %}
 
+{% block title %}{{ macros.name(current) }}{% endblock %}
+
 {% block body %}
 {% if countries %}
 {% set name = macros.name(current) %}
-
 <div class="row-fluid">
 	<div class="dropdown span2">
 		<ul class="dropdown-menu" style="display: block;">

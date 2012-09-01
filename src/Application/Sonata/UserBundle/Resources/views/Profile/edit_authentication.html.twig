@@ -1,11 +1,11 @@
-{% extends '::base.html.twig' %}
+{% extends 'ApplicationSonataUserBundle:Profile:base.html.twig' %}
 
-{% block body %}
-<h2 class="page-header">{{ 'user.editing_authentication'|trans }}</h2>
-
+{% block content %}
 <form action="{{ path('sonata_user_profile_edit') }}" method="post">
 	{{ form_rest(form) }}
 
-	<button class="btn" name="submit" type="submit">{{ 'user.update_profile'|trans }}</button>
+	<div class="form-actions">
+		<button class="btn" name="submit" type="submit">{{ 'user.update_profile'|trans }}</button>
+	</div>
 </form>
 {% endblock %}

@@ -1,7 +1,9 @@
 {% extends '::base.html.twig' %}
 
+{% block title %}{{ 'coin.exchange'|trans }}{% endblock %}
+
 {% block body %}
-<h2 class="page-header">{{ 'coin.exchange'|trans }}</h2>
+<h2 class="page-header">{{ block('title') }}</h2>
 
 <div class="row-fluid">
 	<div class="span2">

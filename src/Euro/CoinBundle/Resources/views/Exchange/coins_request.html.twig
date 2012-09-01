@@ -1,7 +1,9 @@
 {% extends '::base.html.twig' %}
 
+{% block title %}{{ from.username }} &rarr; {{ app.user.username }}{% endblock %}
+
 {% block body %}
-<h2 class="page-header">{{ from.username }} &rarr; {{ app.user.username }}</h2>
+<h2 class="page-header">{{ block('title') }}</h2>
 
 <div class="row-fluid">
 	<div class="span3 well well-small" style="padding: 8px 0;">

@@ -1,7 +1,9 @@
 {% extends "::base.html.twig" %}
 
+{% block title %}{{ 'countries.list'|trans }}{% endblock %}
+
 {% block body %}
-<h2 class="page-header">{{ 'countries.list'|trans }}</h2>
+<h2 class="page-header">{{ block('title') }}</h2>
 
 {% if countries %}
 <div class="row-fluid">

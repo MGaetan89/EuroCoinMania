@@ -1,8 +1,14 @@
 {% extends '::base.html.twig' %}
 
+{% if user is not defined %}
+	{% set user = app.user %}
+{% endif %}
+
+{% block title %}{{ user.username }}{% endblock %}
+
 {% block body %}
 <h2 class="page-header">
-	{{ user.username }}
+	{{ block('title') }}
 
 	{% if user.fullname %}
 		<small>{{ user.fullname }}</small>
