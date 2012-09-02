@@ -22,6 +22,10 @@
 				<source>pm.folders.inbox</source>
 				<target>Boîte de réception</target>
 			</trans-unit>
+			<trans-unit id="pm.has_share">
+				<source>pm.has_share</source>
+				<target>Cette discussion concerne un échange</target>
+			</trans-unit>
 			<trans-unit id="pm.last_message">
 				<source>pm.last_message</source>
 				<target>Dernier message</target>

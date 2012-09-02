@@ -1,0 +1,29 @@
+{% extends 'EuroPrivateMessageBundle:PrivateMessage:base.html.twig' %}
+
+{% block title %}{{ messages[0].conversation.title }}{% endblock %}
+
+{% block content %}
+{% set authors = [ '', messages[0].conversation.fromuser, messages[0].conversation.touser ] %}
+
+{% for message in messages %}
+	{% set from = authors[message.direction + 1] %}
+
+	<div class="{% if message.new and from.id != app.user.id %}alert alert-block alert-success {% endif %}well">
+		<div class="row-fluid">
+			<div class="{% if loop.index0 % 2 == 0 %}pull-right {% endif %}span3">
+				<div style="text-align: center;">
+					<h4>
+						<a href="{{ path('show_profile', { id: from.id }) }}">{{ from.username }}</a>
+						<i class="icon-time" title="{{ 'pm.posted_on'|trans({ '%date%': message.date|format_datetime }) }}"></i>
+					</h4>
+
+					<img alt="{{ from.username }}" src="{{ gravatar(from.email) }}" title="{{ from.username }}" />
+				</div>
+			</div>
+			<div class="{% if loop.index0 % 2 == 0 %}pull-left {% endif %}span9">
+				{{ message.content }}
+			</div>
+		</div>
+	</div>
+{% endfor %}
+{% endblock %}

@@ -11,5 +11,17 @@ use Doctrine\ORM\EntityRepository;
  * repository methods below.
  */
 class MessageRepository extends EntityRepository {
-	
+	public function findByConversation($id) {
+		$queryBuilder = $this->createQueryBuilder('m');
+		$expr = $queryBuilder->expr();
+
+		return $queryBuilder
+						->select('m, c')
+						->join('m.conversation', 'c')
+						->where($expr->eq('m.conversation', ':conversation'))
+						->orderBy('m.date', 'DESC')
+						->setParameter('conversation', $id)
+						->getQuery()
+						->getResult();
+	}
 }

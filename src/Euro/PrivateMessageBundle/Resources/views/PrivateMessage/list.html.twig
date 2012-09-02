@@ -1,71 +1,46 @@
-{% extends '::base.html.twig' %}
+{% extends 'EuroPrivateMessageBundle:PrivateMessage:base.html.twig' %}
 
-{% block title %}{{ 'pm.messaging'|trans }}{% endblock %}
+{% block content %}
+{% if conversations %}
+	<table class="table table-hover table-striped">
+	<thead>
+		<tr>
+			<th>{{ 'pm.correspondent'|trans }}</th>
+			<th>{{ 'pm.title'|trans }}</th>
+			<th>{{ 'pm.last_message'|trans }}</th>
+		</tr>
+	</thead>
+	<tbody>
+		{% for pm in conversations %}
+			{% set message = pm.messages[0] %}
 
-{% block body %}
-<h2 class="page-header">{{ block('title') }}</h2>
+			{% if message.direction == 0 %}
+				{% set last_author = pm.fromuser %}
+			{% else %}
+				{% set last_author = pm.touser %}
+			{% endif %}
 
-<div class="row-fluid">
-	<div class="span3">
-		<div class="dropdown">
-			<ul class="dropdown-menu" style="display: block;">
-				<li class="nav-header">{{ 'pm.folders'|trans }}</li>
+			{% if pm.touser.id == app.user.id %}
+				{% set author = pm.fromuser %}
+			{% else %}
+				{% set author = pm.touser %}
+			{% endif %}
 
-				<li{{ macros.is_active(['pm_list']) }}>
-					<a href="{{ path('pm_list') }}">
-						<i class="icon-chevron-right"></i>
-						{{ 'pm.folders.inbox'|trans }}
-					</a>
-				</li>
-				<li{{ macros.is_active(['pm_list_archives']) }}>
-					<a href="{{ path('pm_list_archives') }}">
-						<i class="icon-chevron-right"></i>
-						{{ 'pm.folders.archives'|trans }}
-					</a>
-				</li>
-			</ul>
-		</div>
-	</div>
-	<div class="span9">
-		{% if conversations %}
-			<table class="table table-hover table-striped">
-			<thead>
-				<tr>
-					<th>{{ 'pm.correspondent'|trans }}</th>
-					<th>{{ 'pm.title'|trans }}</th>
-					<th>{{ 'pm.last_message'|trans }}</th>
-				</tr>
-			</thead>
-			<tbody>
-				{% for pm in conversations %}
-					{% set message = pm.messages[0] %}
-
-					{% if message.direction == 0 %}
-						{% set last_author = pm.fromuser %}
-					{% else %}
-						{% set last_author = pm.touser %}
-					{% endif %}
-
-					{% if pm.touser.id == app.user.id %}
-						{% set author = pm.fromuser %}
-					{% else %}
-						{% set author = pm.touser %}
-					{% endif %}
-
-					<tr{% if message.new %} class="success"{% endif %}>
-						<td><a href="{{ path('show_profile', { id: author.id }) }}">{{ author }}</a></td>
-						<td><a href="#">{{ pm.title }}</a></td>
-						<td>
-							{{ 'pm.posted_by'|trans }} <a href="{{ path('show_profile', { id: last_author.id }) }}">{{ last_author }}</a>
-							{{ 'pm.posted_on'|trans({ '%date%': message.date|format_datetime }) }}
-						</td>
-					</tr>
-				{% endfor %}
-			</tbody>
-			</table>
-		{% else %}
-			<div class="alert">{{ 'pm.folder_empty'|trans }}</div>
-		{% endif %}
-	</div>
-</div>
+			<tr{% if message.new %} class="success"{% endif %}>
+				<td><a href="{{ path('show_profile', { id: author.id }) }}">{{ author }}</a></td>
+				<td>
+					<i class="icon-share" title="{{ 'pm.has_share'|trans }}"></i>
+					<a href="{{ path('pm_read', { id: pm.id, title: macros.slugify(pm.title) }) }}">{{ pm.title }}</a>
+				</td>
+				<td>
+					{{ 'pm.posted_by'|trans }} <a href="{{ path('show_profile', { id: last_author.id }) }}">{{ last_author }}</a>
+					{{ 'pm.posted_on'|trans({ '%date%': message.date|format_datetime }) }}
+				</td>
+			</tr>
+		{% endfor %}
+	</tbody>
+	</table>
+{% else %}
+	<div class="alert">{{ 'pm.folder_empty'|trans }}</div>
+{% endif %}
 {% endblock %}

@@ -5,3 +5,9 @@ pm_list:
 pm_list_archives:
     pattern:  /pm/archives
     defaults: { _controller: EuroPrivateMessageBundle:PrivateMessage:list, archives: true }
+
+pm_read:
+    pattern: /pm/read/{id}/{title}
+    defaults: { _controller: EuroPrivateMessageBundle:PrivateMessage:read }
+    requirements:
+        id: "\d+"

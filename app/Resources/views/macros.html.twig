@@ -28,6 +28,12 @@
 {% endspaceless %}
 {% endmacro %}
 
+{% macro slugify(text) %}
+{% spaceless %}
+	{{ text|replace(' ', '-') }}
+{% endspaceless %}
+{% endmacro %}
+
 {% macro value(value, currency) %}
 {% spaceless %}
 	{% if value.value is defined %}
