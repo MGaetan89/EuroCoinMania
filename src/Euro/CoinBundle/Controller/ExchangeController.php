@@ -293,4 +293,36 @@ class ExchangeController extends BaseController {
 		return $this->redirect($this->generateUrl('exchange_list'));
 	}
 
+	public function showAction($id) {
+		if (!$user = $this->getUser()) {
+			$this->get('session')->getFlashBag()->add('error', 'user.login_required');
+
+			return $this->redirect($this->generateUrl('coin_collection'));
+		}
+
+		$doctrine = $this->getDoctrine();
+		$share = $doctrine->getRepository('EuroCoinBundle:Share')->find($id);
+
+		if (!$share) {
+			$this->get('session')->getFlashBag()->add('info', 'exchange.not_found');
+
+			return $this->redirect($this->generateUrl('exchange_list'));
+		}
+
+		$coin_repo = $doctrine->getRepository('EuroCoinBundle:Coin');
+		$coins = array(
+			'requested' => $coin_repo->findCoinById($share->getCoinsRequested()),
+			'suggested' => $coin_repo->findCoinById($share->getCoinsSuggested()),
+		);
+
+		return $this->render('EuroCoinBundle:Exchange:show.html.twig', array(
+					'coins' => $coins,
+					'counts' => array(
+						'requested' => count($coins['requested']),
+						'suggested' => count($coins['suggested']),
+					),
+					'share' => $share,
+				));
+	}
+
 }

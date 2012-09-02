@@ -30,7 +30,7 @@
 
 {% macro slugify(text) %}
 {% spaceless %}
-	{{ text|replace(' ', '-') }}
+	{{ text|replace(' ', '-')|replace('\'', '-') }}
 {% endspaceless %}
 {% endmacro %}
 

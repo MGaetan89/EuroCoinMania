@@ -2,7 +2,7 @@
 
 {% set pm = messages[0].conversation %}
 
-{% block title %}{{ pm.title }}{% endblock %}
+{% block title %}{{ pm.title|trans }}{% endblock %}
 
 {% block content %}
 {% set authors = [ pm.fromuser, pm.touser ] %}
@@ -35,8 +35,9 @@
 				{% endif %}
 
 				{% if message.type > 0 %}
-					{{ message.content|replace({
+					{{ message.content|trans|replace({
 						'%from_user%': '<a href="' ~ path('show_profile', { id: from.id }) ~ '">' ~ from.username ~ '</a>',
+						'%share_path%': path('exchange_show', { id: pm.share.id }),
 						'%to_user%': '<a href="' ~ path('show_profile', { id: to.id }) ~ '">' ~ to.username ~ '</a>'
 					})|raw }}
 				{% else %}

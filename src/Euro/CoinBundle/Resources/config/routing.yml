@@ -79,8 +79,14 @@ exchange_refuse:
         id: "\d+"
 
 exchange_save:
-    pattern: /collection/doubles/user/{id}/{name}/save
+    pattern: /exchange/user/{id}/{name}/save
     defaults: { _controller: EuroCoinBundle:Exchange:save }
     requirements:
         id: "\d+"
         _method: POST
+
+exchange_show:
+    pattern: /exchange/{id}/show
+    defaults: { _controller: EuroCoinBundle:Exchange:show }
+    requirements:
+        id: "\d+"

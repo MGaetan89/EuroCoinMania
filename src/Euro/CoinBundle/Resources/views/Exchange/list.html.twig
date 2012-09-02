@@ -1,4 +1,4 @@
-{% extends '::base.html.twig' %}
+{% extends 'EuroCoinBundle:Exchange:base.html.twig' %}
 
 {% block title %}
 	{% if all %}
@@ -8,100 +8,71 @@
 	{% endif %}
 {% endblock %}
 
-{% block body %}
-<h2 class="page-header">{{ block('title') }}</h2>
+{% block content %}
+<table class="table table-bordered table-hover table-striped">
+<thead>
+	<tr>
+		<th>{{ 'exchange.id'|trans }}</th>
+		<th>{{ 'exchange.direction'|trans }}</th>
+		<th>{{ 'exchange.proposed_on'|trans }}</th>
+		<th>{{ 'exchange.coins_requested'|trans }}</th>
+		<th>{{ 'exchange.coins_suggested'|trans }}</th>
 
-<div class="row-fluid">
-	<div class="span2">
-		<div class="dropdown">
-			<ul class="dropdown-menu" style="display: block;">
-				<li class="nav-header">{{ 'exchange.actions'|trans }}</li>
-				<li>
-					<a href="{{ path('exchange_choose_user') }}">
-						<i class="icon-chevron-right"></i> 
-						{{ 'exchange.new'|trans }}
-					</a>
-				</li>
-				<li{% if not all %} class="active"{% endif %}>
-					<a href="{{ path('exchange_list') }}">
-						<i class="icon-chevron-right"></i> 
-						{{ 'exchanges.pending'|trans }}
-					</a>
-				</li>
-				<li{% if all %} class="active"{% endif %}>
-					<a href="{{ path('exchange_list_all') }}">
-						<i class="icon-chevron-right"></i> 
-						{{ 'exchanges.all'|trans }}
-					</a>
-				</li>
+		{% if all %}
+			<th>{{ 'exchange.status'|trans }}</th>
+		{% else %}
+			<th>{{ 'exchange.actions'|trans }}</th>
+		{% endif %}
+	</tr>
+</thead>
+<tbody>
+{% set row_classes = ['info', 'success', 'warning', 'error'] %}
+{% for share in shares %}
+	<tr class="{{ row_classes[share.status - 1] }}">
+		<td><a href="{{ path('exchange_show', { id: share.id }) }}">#{{ share.id }}</a></td>
+		<td>
+			{% if share.fromuser.id == app.user.id %}<strong>{% endif %}
+				<a href="{{ path('show_profile', { id: share.fromuser.id }) }}">{{ share.fromuser.username }}</a>
+			{% if share.fromuser.id == app.user.id %}</strong>{% endif %}
+
+			&rarr;
+
+			{% if share.touser.id == app.user.id %}<strong>{% endif %}
+				<a href="{{ path('show_profile', { id: share.touser.id }) }}">{{ share.touser.username }}</a>
+			{% if share.touser.id == app.user.id %}</strong>{% endif %}
+		</td>
+		<td>{{ share.date|format_datetime }}</td>
+		<td>
+			<ul>
+				{% for coin in coins[share.id]['requested'] %}
+					<li>{{ macros.coin(coin) }}</li>
+				{% endfor %}
 			</ul>
-		</div>
-	</div>
-	<div class="span10">
-		<table class="table table-bordered table-hover table-striped">
-		<thead>
-			<tr>
-				<th>{{ 'exchange.direction'|trans }}</th>
-				<th>{{ 'exchange.proposed_on'|trans }}</th>
-				<th>{{ 'exchange.coins_requested'|trans }}</th>
-				<th>{{ 'exchange.coins_suggested'|trans }}</th>
+		</td>
+		<td>
+			<ul>
+				{% for coin in coins[share.id]['suggested'] %}
+					<li>{{ macros.coin(coin) }}</li>
+				{% endfor %}
+			</ul>
+		</td>
 
-				{% if all %}
-					<th>{{ 'exchange.status'|trans }}</th>
-				{% else %}
-					<th>{{ 'exchange.actions'|trans }}</th>
-				{% endif %}
-			</tr>
-		</thead>
-		<tbody>
-		{% set row_classes = ['info', 'success', 'warning', 'error'] %}
-		{% for share in shares %}
-			<tr class="{{ row_classes[share.status - 1] }}">
-				<td>
-					{% if share.fromuser.id == app.user.id %}<strong>{% endif %}
-						<a href="{{ path('show_profile', { id: share.fromuser.id }) }}">{{ share.fromuser.username }}</a>
-					{% if share.fromuser.id == app.user.id %}</strong>{% endif %}
-
-					&rarr;
-
-					{% if share.touser.id == app.user.id %}<strong>{% endif %}
-						<a href="{{ path('show_profile', { id: share.touser.id }) }}">{{ share.touser.username }}</a>
-					{% if share.touser.id == app.user.id %}</strong>{% endif %}
-				</td>
-				<td>{{ share.date|format_datetime }}</td>
-				<td>
-					<ul>
-						{% for coin in coins[share.id]['requested'] %}
-							<li>{{ macros.coin(coin) }}</li>
-						{% endfor %}
-					</ul>
-				</td>
-				<td>
-					<ul>
-						{% for coin in coins[share.id]['suggested'] %}
-							<li>{{ macros.coin(coin) }}</li>
-						{% endfor %}
-					</ul>
-				</td>
-
-				{% if all %}
-					<td>{{ ('exchange.status' ~ share.status)|trans }}</td>
-				{% else %}
-					<td>
-						<div class="btn-group">
-							{% if share.fromuser.id == app.user.id %}
-								<a class="btn btn-small btn-warning" href="{{ path('exchange_cancel', { id: share.id }) }}" title="{{ 'exchange.cancel'|trans }}"><i class="icon-minus-sign"></i></a>
-							{% else %}
-								<a class="btn btn-small btn-success" href="{{ path('exchange_accept', { id: share.id }) }}" title="{{ 'exchange.accept'|trans }}"><i class="icon-ok"></i></a>
-								<a class="btn btn-small btn-danger" href="{{ path('exchange_refuse', { id: share.id }) }}" title="{{ 'exchange.refuse'|trans }}"><i class="icon-remove"></i></a>
-							{% endif %}
-						</div>
-					</td>
-				{% endif %}
-			</tr>
-		{% endfor %}
-		</tbody>
-		</table>
-	</div>
-</div>
+		{% if all %}
+			<td>{{ ('exchange.status' ~ share.status)|trans }}</td>
+		{% else %}
+			<td>
+				<div class="btn-group">
+					{% if share.fromuser.id == app.user.id %}
+						<a class="btn btn-small btn-warning" href="{{ path('exchange_cancel', { id: share.id }) }}" title="{{ 'exchange.cancel'|trans }}"><i class="icon-minus-sign"></i></a>
+					{% else %}
+						<a class="btn btn-small btn-success" href="{{ path('exchange_accept', { id: share.id }) }}" title="{{ 'exchange.accept'|trans }}"><i class="icon-ok"></i></a>
+						<a class="btn btn-small btn-danger" href="{{ path('exchange_refuse', { id: share.id }) }}" title="{{ 'exchange.refuse'|trans }}"><i class="icon-remove"></i></a>
+					{% endif %}
+				</div>
+			</td>
+		{% endif %}
+	</tr>
+{% endfor %}
+</tbody>
+</table>
 {% endblock %}

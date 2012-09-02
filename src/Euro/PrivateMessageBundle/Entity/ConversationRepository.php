@@ -25,11 +25,9 @@ class ConversationRepository extends EntityRepository {
 						->where($expr->eq('c.from_user', ':user'))
 						->orWhere($expr->eq('c.to_user', ':user'))
 						->andWhere($expr->eq('c.open', ':open'))
-						->andWhere($expr->eq('m.type', ':type'))
 						->orderBy('m.date', 'DESC')
 						->setParameters(array(
 							'open' => !$archives,
-							'type' => Message::TYPE_ANSWER,
 							'user' => $user,
 						))
 						->getQuery()

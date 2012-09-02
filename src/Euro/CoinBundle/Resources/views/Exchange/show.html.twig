@@ -1,0 +1,41 @@
+{% extends 'EuroCoinBundle:Exchange:base.html.twig' %}
+
+{% block title %}{{ 'exchange.showing'|trans }}{% endblock %}
+
+{% block content %}
+{% set total_requested, total_suggested = 0, 0 %}
+<table class="table table-hover table-striped">
+<thead>
+	<tr>
+		<th>{{ 'exchange.proposed_by'|trans({ '%path%': path('show_profile', { id: share.fromuser.id }), '%username%': share.fromuser.username })|raw }}</th>
+		<th>{{ 'exchange.received_by'|trans({ '%path%': path('show_profile', { id: share.touser.id }), '%username%': share.touser.username })|raw }}</th>
+	</tr>
+</thead>
+<tbody>
+	<tr>
+		<td>
+			<ul>
+				{% for coin in coins.requested %}
+					{% set total_requested = total_requested + coin.value.value %}
+					<li>{{ macros.coin(coin) }}</li>
+				{% endfor %}
+			</ul>
+		</td>
+		<td>
+			<ul>
+				{% for coin in coins.suggested %}
+					{% set total_suggested = total_suggested + coin.value.value %}
+					<li>{{ macros.coin(coin) }}</li>
+				{% endfor %}
+			</ul>
+		</td>
+	</tr>
+</tbody>
+<tfoot>
+	<tr>
+		<th>{{ 'exchange.total_count'|transchoice(counts.requested, { '%sum%': macros.value(total_requested), '%count%': counts.requested }) }}</th>
+		<th>{{ 'exchange.total_count'|transchoice(counts.suggested, { '%sum%': macros.value(total_suggested), '%count%': counts.suggested }) }}</th>
+	</tr>
+</tfoot>
+</table>
+{% endblock %}

@@ -354,6 +354,10 @@ Si l'échange est accepté par l'autre utilisateur, vos inventaires respectifs s
 				<source>exchange.direction</source>
 				<target>Sens de l'échange</target>
 			</trans-unit>
+			<trans-unit id="exchange.id">
+				<source>exchange.id</source>
+				<target>Numéro</target>
+			</trans-unit>
 			<trans-unit id="exchange.list_all">
 				<source>exchange.list_all</source>
 				<target>Liste de tous vos échanges</target>
@@ -386,9 +390,21 @@ Si l'échange est accepté par l'autre utilisateur, vos inventaires respectifs s
 				<source>exchange.not_own</source>
 				<target>Cet échange ne vous appartient pas</target>
 			</trans-unit>
+			<trans-unit id="exchange.proposed_by">
+				<source>exchange.proposed_by</source>
+				<target><![CDATA[
+Proposé par <a href="%path%">%username%</a>
+				]]></target>
+			</trans-unit>
 			<trans-unit id="exchange.proposed_on">
 				<source>exchange.proposed_on</source>
 				<target>Proposé le</target>
+			</trans-unit>
+			<trans-unit id="exchange.received_by">
+				<source>exchange.received_by</source>
+				<target><![CDATA[
+Reçu par <a href="%path%">%username%</a>
+				]]></target>
 			</trans-unit>
 			<trans-unit id="exchange.refuse">
 				<source>exchange.refuse</source>
@@ -397,6 +413,10 @@ Si l'échange est accepté par l'autre utilisateur, vos inventaires respectifs s
 			<trans-unit id="exchange.refused">
 				<source>exchange.refused</source>
 				<target>L'échange a bien été refusé</target>
+			</trans-unit>
+			<trans-unit id="exchange.showing">
+				<source>exchange.showing</source>
+				<target>Affichage d'un échange</target>
 			</trans-unit>
 			<trans-unit id="exchange.status">
 				<source>exchange.status</source>
@@ -417,6 +437,10 @@ Si l'échange est accepté par l'autre utilisateur, vos inventaires respectifs s
 			<trans-unit id="exchange.status4">
 				<source>exchange.status4</source>
 				<target>Refusé</target>
+			</trans-unit>
+			<trans-unit id="exchange.total_count">
+				<source>exchange.total_count</source>
+				<target>%sum% en %count% pièce|%sum% en %count% pièces</target>
 			</trans-unit>
 			<trans-unit id="exchanges">
 				<source>exchanges</source>

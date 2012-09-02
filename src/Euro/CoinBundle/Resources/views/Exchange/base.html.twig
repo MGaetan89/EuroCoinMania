@@ -1,0 +1,44 @@
+{% extends '::base.html.twig' %}
+
+{% block body %}
+<h2 class="page-header">{{ block('title') }}</h2>
+
+<div class="row-fluid">
+	<div class="span2">
+		<div class="dropdown">
+			<ul class="dropdown-menu" style="display: block;">
+				<li class="nav-header">{{ 'exchange.actions'|trans }}</li>
+
+				{% if app.request.get('_route') == 'exchange_show' %}
+					<li{{ macros.is_active(['exchange_show']) }}>
+						<a href="{{ path('exchange_show', { id: share.id }) }}">
+							<i class="icon-chevron-right"></i> 
+							{{ 'exchange.showing'|trans }}
+						</a>
+					</li>
+				{% endif %}
+
+				<li{{ macros.is_active(['exchange_choose_user']) }}>
+					<a href="{{ path('exchange_choose_user') }}">
+						<i class="icon-chevron-right"></i> 
+						{{ 'exchange.new'|trans }}
+					</a>
+				</li>
+				<li{{ macros.is_active(['exchange_list']) }}>
+					<a href="{{ path('exchange_list') }}">
+						<i class="icon-chevron-right"></i> 
+						{{ 'exchanges.pending'|trans }}
+					</a>
+				</li>
+				<li{{ macros.is_active(['exchange_list_all']) }}>
+					<a href="{{ path('exchange_list_all') }}">
+						<i class="icon-chevron-right"></i> 
+						{{ 'exchanges.all'|trans }}
+					</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+	<div class="{% if share is defined %}offset1 span9{% else %}span10{% endif %}">{% block content %}{% endblock %}</div>
+</div>
+{% endblock %}

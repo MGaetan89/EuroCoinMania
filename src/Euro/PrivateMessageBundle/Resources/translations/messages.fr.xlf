@@ -14,6 +14,10 @@
 				<source>pm.answer_add</source>
 				<target>Poster une réponse</target>
 			</trans-unit>
+			<trans-unit id="pm.close">
+				<source>pm.close</source>
+				<target>Fermer la conversation</target>
+			</trans-unit>
 			<trans-unit id="pm.correspondent">
 				<source>pm.correspondent</source>
 				<target>Correspondant</target>
@@ -53,6 +57,16 @@
 			<trans-unit id="pm.posted_on">
 				<source>pm.posted_on</source>
 				<target>le %date%</target>
+			</trans-unit>
+			<trans-unit id="pm.text.new_exchange">
+				<source>pm.text.new_exchange</source>
+				<target><![CDATA[
+<strong>%from_user%</strong> vous propose un échange. Vous pouvez le consulter en <a href="%share_path%">cliquant ici</a>.
+				]]></target>
+			</trans-unit>
+			<trans-unit id="pm.title.new_exchange">
+				<source>pm.title.new_exchange</source>
+				<target>Nouvel échange</target>
 			</trans-unit>
 			<trans-unit id="pm.title">
 				<source>pm.title</source>

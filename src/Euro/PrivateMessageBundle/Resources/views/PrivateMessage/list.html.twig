@@ -33,7 +33,7 @@
 						<i class="icon-share" title="{{ 'pm.has_share'|trans }}"></i>
 					{% endif %}
 
-					<a href="{{ path('pm_read', { id: pm.id, title: macros.slugify(pm.title) }) }}">{{ pm.title }}</a>
+					<a href="{{ path('pm_read', { id: pm.id, title: macros.slugify(pm.title|trans) }) }}">{{ pm.title|trans }}</a>
 				</td>
 				<td>
 					{{ 'pm.posted_by'|trans }} <a href="{{ path('show_profile', { id: last_author.id }) }}">{{ last_author }}</a>

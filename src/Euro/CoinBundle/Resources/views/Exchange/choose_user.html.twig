@@ -1,60 +1,29 @@
-{% extends '::base.html.twig' %}
+{% extends 'EuroCoinBundle:Exchange:base.html.twig' %}
 
 {% block title %}{{ 'coin.exchange'|trans }}{% endblock %}
 
-{% block body %}
-<h2 class="page-header">{{ block('title') }}</h2>
+{% block content %}
+<div class="alert alert-block alert-info fade in">
+	<button type="button" class="close" data-dismiss="alert">×</button>
 
-<div class="row-fluid">
-	<div class="span2">
-		<div class="dropdown">
-			<ul class="dropdown-menu" style="display: block;">
-				<li class="nav-header">{{ 'exchange.actions'|trans }}</li>
-				<li class="active">
-					<a href="{{ path('exchange_choose_user') }}">
-						<i class="icon-chevron-right"></i> 
-						{{ 'exchange.new'|trans }}
-					</a>
-				</li>
-				<li>
-					<a href="{{ path('exchange_list') }}">
-						<i class="icon-chevron-right"></i> 
-						{{ 'exchanges.pending'|trans }}
-					</a>
-				</li>
-				<li>
-					<a href="{{ path('exchange_list_all') }}">
-						<i class="icon-chevron-right"></i> 
-						{{ 'exchanges.all'|trans }}
-					</a>
-				</li>
-			</ul>
-		</div>
-	</div>
-	<div class="span10">
-		<div class="alert alert-block alert-info fade in">
-			<button type="button" class="close" data-dismiss="alert">×</button>
+	<h4>{{ 'information'|trans }}</h4>
 
-			<h4>{{ 'information'|trans }}</h4>
-
-			{{ 'coin.exchange_explain'|trans|raw }}
-		</div>
-
-		<ul class="thumbnails">
-			{% for user in users %}
-			{% set amount = user['total'] %}
-			<li class="span2">
-				<a class="thumbnail" href="{{ path('exchange_coins_request', { id: user['id'], name: user['username'] }) }}">
-					<img alt="{{ user['username'] }}" src="{{ gravatar(user['email']) }}" title="{{ user['username'] }}" />
-
-					<div class="caption">
-						<h4>{{ user['username'] }}</h4>
-						<small>{{ 'coin.doubles'|transchoice(amount, { '%amount%': amount }) }}</small>
-					</div>
-				</a>
-			</li>
-			{% endfor %}
-		</ul>
-	</div>
+	{{ 'coin.exchange_explain'|trans|raw }}
 </div>
+
+<ul class="thumbnails">
+	{% for user in users %}
+	{% set amount = user['total'] %}
+	<li class="span2">
+		<a class="thumbnail" href="{{ path('exchange_coins_request', { id: user['id'], name: user['username'] }) }}">
+			<img alt="{{ user['username'] }}" src="{{ gravatar(user['email']) }}" title="{{ user['username'] }}" />
+
+			<div class="caption">
+				<h4>{{ user['username'] }}</h4>
+				<small>{{ 'coin.doubles'|transchoice(amount, { '%amount%': amount }) }}</small>
+			</div>
+		</a>
+	</li>
+	{% endfor %}
+</ul>
 {% endblock %}

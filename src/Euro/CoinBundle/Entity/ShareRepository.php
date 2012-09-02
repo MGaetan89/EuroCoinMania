@@ -13,6 +13,20 @@ use Sonata\UserBundle\Model\UserInterface;
  */
 class ShareRepository extends EntityRepository {
 
+	public function find($id) {
+		$queryBuilder = $this->createQueryBuilder('s');
+		$expr = $queryBuilder->expr();
+
+		return $queryBuilder
+						->select('s, fu, tu')
+						->join('s.from_user', 'fu')
+						->join('s.to_user', 'tu')
+						->where($expr->eq('s.id', ':id'))
+						->setParameter('id', $id)
+						->getQuery()
+						->getSingleResult();
+	}
+
 	public function findForUser(UserInterface $user, $all) {
 		$queryBuilder = $this->createQueryBuilder('s');
 		$expr = $queryBuilder->expr();
