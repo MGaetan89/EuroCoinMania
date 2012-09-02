@@ -6,6 +6,10 @@
 				<source>actions</source>
 				<target>Actions</target>
 			</trans-unit>
+			<trans-unit id="close">
+				<source>close</source>
+				<target>Fermer</target>
+			</trans-unit>
 			<trans-unit id="coin_data_provider">
 				<source>coin_data_provider</source>
 				<target>Informations sur les pièces fournies par</target>

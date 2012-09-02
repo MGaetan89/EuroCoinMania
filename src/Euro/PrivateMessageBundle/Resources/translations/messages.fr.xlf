@@ -2,6 +2,18 @@
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
 	<file source-language="en" datatype="plaintext" original="file.ext">
 		<body>
+			<trans-unit id="pm.add_answer">
+				<source>pm.add_answer</source>
+				<target>Poster la réponse</target>
+			</trans-unit>
+			<trans-unit id="pm.answer">
+				<source>pm.answer</source>
+				<target>Répondre</target>
+			</trans-unit>
+			<trans-unit id="pm.answer_add">
+				<source>pm.answer_add</source>
+				<target>Poster une réponse</target>
+			</trans-unit>
 			<trans-unit id="pm.correspondent">
 				<source>pm.correspondent</source>
 				<target>Correspondant</target>
