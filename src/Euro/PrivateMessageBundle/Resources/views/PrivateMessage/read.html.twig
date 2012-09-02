@@ -8,7 +8,7 @@
 {% set authors = [ pm.fromuser, pm.touser ] %}
 
 {% for message in messages %}
-	{% set from = authors[message.direction * 1] %}
+	{% set from, to = authors[message.direction * 1], authors[(message.direction + 1) % 2] %}
 
 	{% if message.type == 1 %}
 	<div class="alert-info well well-small">
@@ -34,7 +34,10 @@
 			<div class="{% if loop.index0 % 2 == 0 %}pull-left {% endif %}span9">
 				{% endif %}
 
-				{{ message.content }}
+				{{ message.content|replace({
+					'%from_user%': '<a href="' ~ path('show_profile', { id: from.id }) ~ '">' ~ from.username ~ '</a>',
+					'%to_user%': '<a href="' ~ path('show_profile', { id: to.id }) ~ '">' ~ to.username ~ '</a>'
+				})|raw }}
 
 				{% if message.type == 0 %}
 			</div>
