@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Euro\CoinBundle\Entity\UserCoin
  *
- * @ORM\Table()
+ * @ORM\Table(name="euro_coin__usercoin")
  * @ORM\Entity(repositoryClass="Euro\CoinBundle\Entity\UserCoinRepository")
  */
 class UserCoin {
@@ -23,6 +23,8 @@ class UserCoin {
 	private $id;
 
 	/**
+	 * @var User $user
+	 *
 	 * @ORM\ManyToOne(targetEntity="Application\Sonata\UserBundle\Entity\User")
 	 * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
 	 */

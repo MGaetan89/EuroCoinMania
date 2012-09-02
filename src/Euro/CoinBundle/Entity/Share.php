@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Euro\CoinBundle\Entity\Share
  *
- * @ORM\Table()
+ * @ORM\Table(name="euro_coin__share")
  * @ORM\Entity(repositoryClass="Euro\CoinBundle\Entity\ShareRepository")
  */
 class Share {
