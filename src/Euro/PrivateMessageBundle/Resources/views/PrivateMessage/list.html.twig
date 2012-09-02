@@ -29,7 +29,10 @@
 			<tr{% if message.new %} class="success"{% endif %}>
 				<td><a href="{{ path('show_profile', { id: author.id }) }}">{{ author }}</a></td>
 				<td>
-					<i class="icon-share" title="{{ 'pm.has_share'|trans }}"></i>
+					{% if pm.share %}
+						<i class="icon-share" title="{{ 'pm.has_share'|trans }}"></i>
+					{% endif %}
+
 					<a href="{{ path('pm_read', { id: pm.id, title: macros.slugify(pm.title) }) }}">{{ pm.title }}</a>
 				</td>
 				<td>

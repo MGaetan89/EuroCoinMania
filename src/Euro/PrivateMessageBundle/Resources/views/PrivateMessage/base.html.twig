@@ -20,12 +20,15 @@
 							{{ pm.title }}
 						</a>
 					</li>
-					<li>
-						<a href="#modal-answer" data-toggle="modal">
-							<i class="icon-chevron-right"></i>
-							{{ 'pm.answer'|trans }}
-						</a>
-					</li>
+
+					{% if pm.open %}
+						<li>
+							<a href="#modal-answer" data-toggle="modal">
+								<i class="icon-chevron-right"></i>
+								{{ 'pm.answer'|trans }}
+							</a>
+						</li>
+					{% endif %}
 
 					<li class="divider"></li>
 				{% endif %}

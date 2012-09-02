@@ -15,6 +15,12 @@ class Message {
 	const DIRECTION_FROM_TO = 0;
 	const DIRECTION_TO_FROM = 1;
 
+	const TYPE_ANSWER = 0;
+	const TYPE_INFO = 1;
+	const TYPE_DANGER = 2;
+	const TYPE_WARNING = 3;
+	const TYPE_SUCCESS = 4;
+
 	/**
 	 * @var integer $id
 	 *
@@ -51,6 +57,13 @@ class Message {
 	 * @ORM\Column(name="new", type="boolean")
 	 */
 	private $new;
+
+	/**
+	 * @var smallint $type
+	 *
+	 * @ORM\Column(name="type", type="smallint")
+	 */
+	private $type;
 
 	/**
 	 * @var Conversation $conversation
@@ -151,6 +164,27 @@ class Message {
 	 */
 	public function isNew() {
 		return $this->new;
+	}
+
+	/**
+	 * Set type
+	 *
+	 * @param smallint $type
+	 * @return Message
+	 */
+	public function setType($type) {
+		$this->type = $type;
+
+		return $this;
+	}
+
+	/**
+	 * Get type
+	 *
+	 * @return smallint 
+	 */
+	public function getType() {
+		return $this->type;
 	}
 
 	/**

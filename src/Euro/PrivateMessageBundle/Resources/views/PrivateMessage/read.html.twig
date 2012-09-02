@@ -1,13 +1,24 @@
 {% extends 'EuroPrivateMessageBundle:PrivateMessage:base.html.twig' %}
 
-{% block title %}{{ messages[0].conversation.title }}{% endblock %}
+{% set pm = messages[0].conversation %}
+
+{% block title %}{{ pm.title }}{% endblock %}
 
 {% block content %}
-{% set authors = [ '', messages[0].conversation.fromuser, messages[0].conversation.touser ] %}
+{% set authors = [ pm.fromuser, pm.touser ] %}
 
 {% for message in messages %}
-	{% set from = authors[message.direction + 1] %}
+	{% set from = authors[message.direction * 1] %}
 
+	{% if message.type == 1 %}
+	<div class="alert-info well well-small">
+	{% elseif message.type == 2 %}
+	<div class="alert-danger well well-small">
+	{% elseif message.type == 3 %}
+	<div class="alert well well-small">
+	{% elseif message.type == 4 %}
+	<div class="alert-success well well-small">
+	{% else %}
 	<div class="{% if message.new and from.id != app.user.id %}alert-success {% endif %}well">
 		<div class="row-fluid">
 			<div class="{% if loop.index0 % 2 == 0 %}pull-right {% endif %}span3">
@@ -21,33 +32,40 @@
 				</div>
 			</div>
 			<div class="{% if loop.index0 % 2 == 0 %}pull-left {% endif %}span9">
+				{% endif %}
+
 				{{ message.content }}
+
+				{% if message.type == 0 %}
 			</div>
 		</div>
+		{% endif %}
 	</div>
 {% endfor %}
 {% endblock %}
 
-{% block javascript %}
-<div class="fade hide modal" id="modal-answer" tabindex="-1">
-	<div class="modal-header">
-		<button class="close" type="button" data-dismiss="alert">×</button>
+{% if pm.open %}
+	{% block javascript %}
+	<div class="fade hide modal" id="modal-answer" tabindex="-1">
+		<div class="modal-header">
+			<button class="close" type="button" data-dismiss="alert">×</button>
 
-		<h3 id="myModalLabel">{{ 'pm.answer_add'|trans }}</h3>
-	</div>
-	<div class="modal-body">
-		<form action="#" class="form-horizontal" method="post">
-			<div class="control-group">
-				<label class="control-label" for="message_content">Message</label>
-				<div class="controls">
-					<textarea class="span4" id="message_content" rows="5"></textarea>
+			<h3>{{ 'pm.answer_add'|trans }}</h3>
+		</div>
+		<div class="modal-body">
+			<form action="#" class="form-horizontal" method="post">
+				<div class="control-group">
+					<label class="control-label" for="message_content">Message</label>
+					<div class="controls">
+						<textarea class="span4" id="message_content" rows="5"></textarea>
+					</div>
 				</div>
-			</div>
-		</form>
+			</form>
+		</div>
+		<div class="modal-footer">
+			<button class="btn" data-dismiss="modal">{{ 'close'|trans }}</button>
+			<button class="btn btn-primary" type="submit">{{ 'pm.add_answer'|trans }}</button>
+		</div>
 	</div>
-	<div class="modal-footer">
-		<button class="btn" data-dismiss="modal">{{ 'close'|trans }}</button>
-		<button class="btn btn-primary" type="submit">{{ 'pm.add_answer'|trans }}</button>
-	</div>
-</div>
-{% endblock %}
+	{% endblock %}
+{% endif %}
