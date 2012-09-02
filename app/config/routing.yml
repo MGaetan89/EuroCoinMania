@@ -1,3 +1,7 @@
+euro_private_message:
+    resource: "@EuroPrivateMessageBundle/Resources/config/routing.yml"
+    prefix:   /
+
 EuroCoinBundle:
     resource: "@EuroCoinBundle/Resources/config/routing.yml"
     prefix:   /

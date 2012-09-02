@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+	<file source-language="en" datatype="plaintext" original="file.ext">
+		<body>
+			<trans-unit id="pm.unread_count">
+				<source>pm.unread_count</source>
+				<target>%count% message non lu|%count% messages non lus</target>
+			</trans-unit>
+			<trans-unit id="pm.user_pm">
+				<source>pm.user_pm</source>
+				<target>Mes conversations</target>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>
