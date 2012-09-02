@@ -2,6 +2,46 @@
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
 	<file source-language="en" datatype="plaintext" original="file.ext">
 		<body>
+			<trans-unit id="pm.correspondent">
+				<source>pm.correspondent</source>
+				<target>Correspondant</target>
+			</trans-unit>
+			<trans-unit id="pm.folder_empty">
+				<source>pm.folder_empty</source>
+				<target>Ce dossier ne contient pas de message</target>
+			</trans-unit>
+			<trans-unit id="pm.folders">
+				<source>pm.folders</source>
+				<target>Dossiers</target>
+			</trans-unit>
+			<trans-unit id="pm.folders.archives">
+				<source>pm.folders.archives</source>
+				<target>Messages archivés</target>
+			</trans-unit>
+			<trans-unit id="pm.folders.inbox">
+				<source>pm.folders.inbox</source>
+				<target>Boîte de réception</target>
+			</trans-unit>
+			<trans-unit id="pm.last_message">
+				<source>pm.last_message</source>
+				<target>Dernier message</target>
+			</trans-unit>
+			<trans-unit id="pm.messaging">
+				<source>pm.messaging</source>
+				<target>Messagerie</target>
+			</trans-unit>
+			<trans-unit id="pm.posted_by">
+				<source>pm.posted_by</source>
+				<target>Par</target>
+			</trans-unit>
+			<trans-unit id="pm.posted_on">
+				<source>pm.posted_on</source>
+				<target>le %date%</target>
+			</trans-unit>
+			<trans-unit id="pm.title">
+				<source>pm.title</source>
+				<target>Titre</target>
+			</trans-unit>
 			<trans-unit id="pm.unread_count">
 				<source>pm.unread_count</source>
 				<target>%count% message non lu|%count% messages non lus</target>

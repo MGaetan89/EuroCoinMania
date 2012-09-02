@@ -1,4 +1,4 @@
-euro_private_message:
+EuroPrivateMessageBundle:
     resource: "@EuroPrivateMessageBundle/Resources/config/routing.yml"
     prefix:   /
 

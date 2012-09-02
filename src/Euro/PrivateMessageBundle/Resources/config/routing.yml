@@ -1,3 +1,7 @@
-euro_private_message_homepage:
-    pattern:  /hello/{name}
-    defaults: { _controller: EuroPrivateMessageBundle:Default:index }
+pm_list:
+    pattern:  /pm
+    defaults: { _controller: EuroPrivateMessageBundle:PrivateMessage:list, archives: false }
+
+pm_list_archives:
+    pattern:  /pm/archives
+    defaults: { _controller: EuroPrivateMessageBundle:PrivateMessage:list, archives: true }

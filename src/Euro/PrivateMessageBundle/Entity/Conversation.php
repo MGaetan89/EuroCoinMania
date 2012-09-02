@@ -3,6 +3,7 @@
 namespace Euro\PrivateMessageBundle\Entity;
 
 use Application\Sonata\UserBundle\Entity\User;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Euro\CoinBundle\Entity\Share;
 
@@ -12,16 +13,16 @@ use Euro\CoinBundle\Entity\Share;
  * @ORM\Table(name="euro_pm__conversation")
  * @ORM\Entity(repositoryClass="Euro\PrivateMessageBundle\Entity\ConversationRepository")
  */
-class Conversation
-{
-    /**
-     * @var integer $id
-     *
-     * @ORM\Column(name="id", type="integer")
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
-     */
-    private $id;
+class Conversation {
+
+	/**
+	 * @var integer $id
+	 *
+	 * @ORM\Column(name="id", type="integer")
+	 * @ORM\Id
+	 * @ORM\GeneratedValue(strategy="AUTO")
+	 */
+	private $id;
 
 	/**
 	 * @var User $from_user
@@ -39,19 +40,19 @@ class Conversation
 	 */
 	private $to_user;
 
-    /**
-     * @var string $title
-     *
-     * @ORM\Column(name="title", type="string", length=255)
-     */
-    private $title;
+	/**
+	 * @var string $title
+	 *
+	 * @ORM\Column(name="title", type="string", length=255)
+	 */
+	private $title;
 
-    /**
-     * @var boolean $open
-     *
-     * @ORM\Column(name="open", type="boolean")
-     */
-    private $open;
+	/**
+	 * @var boolean $open
+	 *
+	 * @ORM\Column(name="open", type="boolean")
+	 */
+	private $open;
 
 	/**
 	 * @var Share $share
@@ -61,16 +62,25 @@ class Conversation
 	 */
 	private $share;
 
+	/**
+	 * @var ArrayCollection $messages
+	 *
+	 * @ORM\OneToMany(targetEntity="Message", mappedBy="conversation")
+	 */
+	protected $messages;
 
-    /**
-     * Get id
-     *
-     * @return integer 
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
+	public function __construct() {
+		$this->messages = new ArrayCollection();
+	}
+
+	/**
+	 * Get id
+	 *
+	 * @return integer 
+	 */
+	public function getId() {
+		return $this->id;
+	}
 
 	/**
 	 * Set from_user
@@ -114,51 +124,47 @@ class Conversation
 		return $this->to_user;
 	}
 
-    /**
-     * Set title
-     *
-     * @param string $title
-     * @return Conversation
-     */
-    public function setTitle($title)
-    {
-        $this->title = $title;
-    
-        return $this;
-    }
+	/**
+	 * Set title
+	 *
+	 * @param string $title
+	 * @return Conversation
+	 */
+	public function setTitle($title) {
+		$this->title = $title;
 
-    /**
-     * Get title
-     *
-     * @return string 
-     */
-    public function getTitle()
-    {
-        return $this->title;
-    }
+		return $this;
+	}
 
-    /**
-     * Set open
-     *
-     * @param boolean $open
-     * @return Conversation
-     */
-    public function setOpen($open)
-    {
-        $this->open = $open;
-    
-        return $this;
-    }
+	/**
+	 * Get title
+	 *
+	 * @return string 
+	 */
+	public function getTitle() {
+		return $this->title;
+	}
 
-    /**
-     * Get open
-     *
-     * @return boolean 
-     */
-    public function isOpen()
-    {
-        return $this->open;
-    }
+	/**
+	 * Set open
+	 *
+	 * @param boolean $open
+	 * @return Conversation
+	 */
+	public function setOpen($open) {
+		$this->open = $open;
+
+		return $this;
+	}
+
+	/**
+	 * Get open
+	 *
+	 * @return boolean 
+	 */
+	public function isOpen() {
+		return $this->open;
+	}
 
 	/**
 	 * Set share
@@ -180,4 +186,35 @@ class Conversation
 	public function getShare() {
 		return $this->share;
 	}
+
+	/**
+	 * Add messages
+	 *
+	 * @param Message $messages
+	 * @return Conversation
+	 */
+	public function addMessage(Message $messages) {
+		$this->messages[] = $messages;
+
+		return $this;
+	}
+
+	/**
+	 * Remove messages
+	 *
+	 * @param Message $messages
+	 */
+	public function removeMessage(Message $messages) {
+		$this->messages->removeElement($messages);
+	}
+
+	/**
+	 * Get messages
+	 *
+	 * @return ArrayCollection 
+	 */
+	public function getMessages() {
+		return $this->messages;
+	}
+
 }

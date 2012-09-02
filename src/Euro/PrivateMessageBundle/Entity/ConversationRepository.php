@@ -3,6 +3,7 @@
 namespace Euro\PrivateMessageBundle\Entity;
 
 use Doctrine\ORM\EntityRepository;
+use Sonata\UserBundle\Model\UserInterface;
 
 /**
  * ConversationRepository
@@ -11,5 +12,27 @@ use Doctrine\ORM\EntityRepository;
  * repository methods below.
  */
 class ConversationRepository extends EntityRepository {
-	
+
+	public function findConversationsForUser(UserInterface $user, $archives) {
+		$queryBuilder = $this->createQueryBuilder('c');
+		$expr = $queryBuilder->expr();
+
+		return $queryBuilder
+						->select('c, m')
+						->join('c.from_user', 'fu')
+						->join('c.to_user', 'tu')
+						->join('c.messages', 'm')
+						->where($expr->eq('c.from_user', ':user'))
+						->orWhere($expr->eq('c.to_user', ':user'))
+						->andWhere($expr->eq('c.open', ':open'))
+						->groupBy('m.conversation')
+						->orderBy('m.date', 'DESC')
+						->setParameters(array(
+							'open' => !$archives,
+							'user' => $user,
+						))
+						->getQuery()
+						->getResult();
+	}
+
 }
