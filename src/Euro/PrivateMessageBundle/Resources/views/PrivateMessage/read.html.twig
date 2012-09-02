@@ -34,10 +34,14 @@
 			<div class="{% if loop.index0 % 2 == 0 %}pull-left {% endif %}span9">
 				{% endif %}
 
-				{{ message.content|replace({
-					'%from_user%': '<a href="' ~ path('show_profile', { id: from.id }) ~ '">' ~ from.username ~ '</a>',
-					'%to_user%': '<a href="' ~ path('show_profile', { id: to.id }) ~ '">' ~ to.username ~ '</a>'
-				})|raw }}
+				{% if message.type > 0 %}
+					{{ message.content|replace({
+						'%from_user%': '<a href="' ~ path('show_profile', { id: from.id }) ~ '">' ~ from.username ~ '</a>',
+						'%to_user%': '<a href="' ~ path('show_profile', { id: to.id }) ~ '">' ~ to.username ~ '</a>'
+					})|raw }}
+				{% else %}
+					{{ message.content }}
+				{% endif %}
 
 				{% if message.type == 0 %}
 			</div>
