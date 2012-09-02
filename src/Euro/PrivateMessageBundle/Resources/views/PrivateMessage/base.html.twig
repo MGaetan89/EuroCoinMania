@@ -9,10 +9,10 @@
 	<div class="span3">
 		<div class="dropdown">
 			<ul class="dropdown-menu" style="display: block;">
-				<li class="nav-header">{{ 'pm.folders'|trans }}</li>
-
 				{% if app.request.get('_route') == 'pm_read' %}
 					{% set pm = messages[0].conversation %}
+
+					<li class="nav-header">{{ 'actions'|trans }}</li>
 
 					<li{{ macros.is_active(['pm_read']) }}>
 						<a href="{{ path('pm_read', { id: pm.id, title: macros.slugify(pm.title) }) }}">
@@ -32,6 +32,8 @@
 
 					<li class="divider"></li>
 				{% endif %}
+
+				<li class="nav-header">{{ 'pm.folders'|trans }}</li>
 
 				<li{{ macros.is_active(['pm_list']) }}>
 					<a href="{{ path('pm_list') }}">
