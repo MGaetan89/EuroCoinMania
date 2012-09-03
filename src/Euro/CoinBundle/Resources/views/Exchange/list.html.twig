@@ -62,6 +62,8 @@
 		{% else %}
 			<td>
 				<div class="btn-group">
+					<a class="btn btn-small btn-info" href="{{ path('pm_read', { id: share.conversation.id, title: macros.slugify(share.conversation.title|trans) }) }}" title="{{ 'exchange.read_conversation'|trans }}"><i class="icon-comment"></i></a>
+
 					{% if share.fromuser.id == app.user.id %}
 						<a class="btn btn-small btn-warning" href="{{ path('exchange_cancel', { id: share.id }) }}" title="{{ 'exchange.cancel'|trans }}"><i class="icon-minus-sign"></i></a>
 					{% else %}

@@ -4,6 +4,7 @@ namespace Euro\CoinBundle\Entity;
 
 use Application\Sonata\UserBundle\Entity\User;
 use Doctrine\ORM\Mapping as ORM;
+use Euro\PrivateMessageBundle\Entity\Conversation;
 
 /**
  * Euro\CoinBundle\Entity\Share
@@ -70,6 +71,14 @@ class Share {
 	 * @ORM\Column(name="coins_suggested", type="array")
 	 */
 	private $coins_suggested;
+
+	/**
+	 * @var integer $conversation
+	 *
+	 * @ORM\ManyToOne(targetEntity="Euro\PrivateMessageBundle\Entity\Conversation")
+	 * @ORM\JoinColumn(name="conversation_id", referencedColumnName="id")
+	 */
+	private $conversation;
 
 	public function __construct() {
 		$this->date = new \DateTime();
@@ -208,6 +217,27 @@ class Share {
 	 */
 	public function getCoinsSuggested() {
 		return $this->coins_suggested;
+	}
+
+	/**
+	 * Set conversation
+	 *
+	 * @param Conversation $conversation
+	 * @return Share
+	 */
+	public function setConversation(Conversation $conversation) {
+		$this->conversation = $conversation;
+
+		return $this;
+	}
+
+	/**
+	 * Get conversation
+	 *
+	 * @return Conversation 
+	 */
+	public function getConversation() {
+		return $this->conversation;
 	}
 
 }

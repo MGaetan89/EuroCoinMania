@@ -400,6 +400,10 @@ Proposé par <a href="%path%">%username%</a>
 				<source>exchange.proposed_on</source>
 				<target>Proposé le</target>
 			</trans-unit>
+			<trans-unit id="exchange.read_conversation">
+				<source>exchange.read_conversation</source>
+				<target>Lire la conversation</target>
+			</trans-unit>
 			<trans-unit id="exchange.received_by">
 				<source>exchange.received_by</source>
 				<target><![CDATA[
