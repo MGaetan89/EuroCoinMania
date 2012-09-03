@@ -46,6 +46,14 @@
 				<source>pm.messaging</source>
 				<target>Messagerie</target>
 			</trans-unit>
+			<trans-unit id="pm.not_for_you">
+				<source>pm.not_for_you</source>
+				<target>Cette conversation ne vous concerne pas</target>
+			</trans-unit>
+			<trans-unit id="pm.not_found">
+				<source>pm.not_found</source>
+				<target>Cette conversation n'existe pas</target>
+			</trans-unit>
 			<trans-unit id="pm.posted_by">
 				<source>pm.posted_by</source>
 				<target>Par</target>

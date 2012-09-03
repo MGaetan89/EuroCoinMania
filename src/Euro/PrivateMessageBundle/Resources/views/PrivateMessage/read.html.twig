@@ -15,7 +15,7 @@
 
 		<div class="alert-{{ classes[message.type - 1] }} well well-small">
 	{% else %}
-	<div class="{% if message.new and from.id != app.user.id %}alert-success {% endif %}well">
+	<div class="{% if message.id in new_messages and to.id == app.user.id %}alert-success {% endif %}well">
 		<div class="row-fluid">
 			<div class="{% if loop.index0 % 2 == 0 %}pull-right {% endif %}span3">
 				<div style="text-align: center;">

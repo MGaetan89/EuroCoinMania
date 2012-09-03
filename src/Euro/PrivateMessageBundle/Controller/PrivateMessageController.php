@@ -2,6 +2,7 @@
 
 namespace Euro\PrivateMessageBundle\Controller;
 
+use Euro\PrivateMessageBundle\Entity\Message;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 class PrivateMessageController extends Controller {
@@ -30,20 +31,41 @@ class PrivateMessageController extends Controller {
 			return $this->redirect($this->generateUrl('fos_user_security_login'));
 		}
 
-		$messages = $this->getDoctrine()->getRepository('EuroPrivateMessageBundle:Message')->findByConversation($id);
+		$doctrine = $this->getDoctrine();
+		$messages = $doctrine->getRepository('EuroPrivateMessageBundle:Message')->findByConversation($id);
 
 		if (!$messages) {
-			// Cette conversation n'existe pas
+			$flashBag->add('error', 'pm.not_found');
+
+			return $this->redirect($this->generateUrl('pm_list'));
 		}
 
 		$conversation = $messages[0]->getConversation();
 
-		if ($conversation->getFromUser() !== $user || $conversation->getToUser() !== $user) {
-			// Cette conversation ne vous concerne pas !
+		if ($conversation->getFromUser()->getId() !== $user->getId() && $conversation->getToUser()->getId() !== $user->getId()) {
+			$flashBag->add('error', 'pm.not_for_you');
+
+			return $this->redirect($this->generateUrl('pm_list'));
 		}
+
+		$new_messages = array();
+		foreach ($messages as $message) {
+			if ($message->isNew()) {
+				if (
+						($message->getDirection() == Message::DIRECTION_FROM_TO && $conversation->getToUser()->getId() === $user->getId()) ||
+						($message->getDirection() == Message::DIRECTION_TO_FROM && $conversation->getFromUser()->getId() === $user->getId())
+				) {
+					$message->setNew(false);
+					$new_messages[] = $message->getId();
+				}
+			}
+		}
+
+		$doctrine->getManager()->flush();
 
 		return $this->render('EuroPrivateMessageBundle:PrivateMessage:read.html.twig', array(
 					'messages' => $messages,
+					'new_messages' => $new_messages,
 				));
 	}
 
