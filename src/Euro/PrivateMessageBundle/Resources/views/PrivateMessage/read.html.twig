@@ -10,14 +10,10 @@
 {% for message in messages %}
 	{% set from, to = authors[message.direction * 1], authors[(message.direction + 1) % 2] %}
 
-	{% if message.type == 1 %}
-	<div class="alert-info well well-small">
-	{% elseif message.type == 2 %}
-	<div class="alert-danger well well-small">
-	{% elseif message.type == 3 %}
-	<div class="alert well well-small">
-	{% elseif message.type == 4 %}
-	<div class="alert-success well well-small">
+	{% if message.type > 0 %}
+		{% set classes = ['info', 'danger', 'warning', 'success'] %}
+
+		<div class="alert-{{ classes[message.type - 1] }} well well-small">
 	{% else %}
 	<div class="{% if message.new and from.id != app.user.id %}alert-success {% endif %}well">
 		<div class="row-fluid">

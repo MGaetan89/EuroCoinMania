@@ -15,6 +15,12 @@ dl.dl-horizontal dt {
 	height: 454px;
 }
 
+.alert-warning {
+	background-color: #fcf8e3;
+	border-color: #fbeed5;
+	color: #c09853;
+}
+
 .btn.btn-info.active {
 	background-color: #04C;
 }
