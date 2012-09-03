@@ -26,8 +26,40 @@ class DefaultController extends BaseController {
 
 		$doctrine = $this->getDoctrine();
 		$translator = $this->get('translator');
-		$countries = $doctrine->getRepository('EuroCoinBundle:Country')->findBy(array(), array('join_date' => 'ASC'));
+
+		$coins = array();
 		$country = null;
+		$uc = array();
+		$user_coins = $doctrine->getRepository('EuroCoinBundle:UserCoin')->findCoinsByUser($user);
+		$values = array();
+
+		list($coins, $values) = $this->_buildVars($user_coins);
+
+		$coins = array_shift($coins);
+		$values = array_shift($values);
+
+		$countries = array();
+		foreach ($user_coins as $user_coin) {
+			$coin = $user_coin->getCoin();
+
+			if ($user_coin->getQuantity() > 0) {
+				$country = $coin->getCountry();
+				$ct_id = $country->getId();
+				if (!isset($countries[$ct_id])) {
+					$countries[$ct_id] = $country;
+				}
+
+				$uc[$coin->getId()] = $user_coin;
+			}
+		}
+
+		if (!$country_id && $country) {
+			return $this->redirect($this->generateUrl('show_user_collection', array(
+								'country_id' => $country->getId(),
+								'country_name' => $translator->trans((string) $country),
+								'user_id' => $user_id,
+							)));
+		}
 
 		// Sort the countries by translated name
 		usort($countries, function ($a, $b) use (&$country, $country_id, $translator) {
@@ -40,46 +72,6 @@ class DefaultController extends BaseController {
 
 					return strcmp($a_name, $b_name);
 				});
-
-		if (!$country && $countries) {
-			$country = $countries[0];
-
-			if (!$country_id) {
-				return $this->redirect($this->generateUrl('show_user_collection', array(
-									'country_id' => $country->getId(),
-									'country_name' => $translator->trans((string) $country),
-									'user_id' => $user_id,
-								)));
-			}
-		}
-
-		$coins = array();
-		$values = array();
-		$uc = array();
-
-		if ($country) {
-			$user_coins = $doctrine->getRepository('EuroCoinBundle:UserCoin')->findCoinsByUserAndCountry($user, $country);
-
-			list($coins, $values) = $this->_buildVars($user_coins);
-
-			$coins = array_shift($coins);
-			$values = array_shift($values);
-
-			$countries = array();
-			foreach ($user_coins as $user_coin) {
-				$coin = $user_coin->getCoin();
-
-				if ($user_coin->getQuantity() > 0) {
-					$country = $coin->getCountry();
-					$country_id = $country->getId();
-					if (!isset($countries[$country_id])) {
-						$countries[$country_id] = $country;
-					}
-
-					$uc[$coin->getId()] = $user_coin;
-				}
-			}
-		}
 
 		return $this->render('ApplicationSonataUserBundle:Profile:collection.html.twig', array(
 					'all_values' => $values,

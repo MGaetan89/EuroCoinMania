@@ -10,6 +10,10 @@
 				<source>user.birthday_today</source>
 				<target>C'est son anniversaire !</target>
 			</trans-unit>
+			<trans-unit id="user.collection.empty">
+				<source>user.collection.empty</source>
+				<target>Cet utilisateur n'a pas de pièces dans sa collection</target>
+			</trans-unit>
 			<trans-unit id="user.contact">
 				<source>user.contact</source>
 				<target>Contact</target>
