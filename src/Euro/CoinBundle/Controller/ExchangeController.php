@@ -3,6 +3,7 @@
 namespace Euro\CoinBundle\Controller;
 
 use Euro\CoinBundle\Entity\Share;
+use Euro\PrivateMessageBundle\Entity\Conversation;
 use Euro\PrivateMessageBundle\Entity\Message;
 
 class ExchangeController extends BaseController {
@@ -179,11 +180,17 @@ class ExchangeController extends BaseController {
 				$flashBag->add('info', 'exchange.none_pending');
 
 				return $this->redirect($this->generateUrl('exchange_list_all'));
+			} else {
+				$flashBag->clear();
+				$flashBag->add('info', 'exchange.none');
+
+				return $this->redirect($this->generateUrl('exchange_choose_user'));
 			}
 
+			$flashBag->clear();
 			$flashBag->add('info', 'exchange.none');
 
-			return $this->redirect($this->generateUrl('exchange_choose_user'));
+			return $this->redirect($this->generateUrl('coin_collection'));
 		}
 
 		return $this->render('EuroCoinBundle:Exchange:list.html.twig', array(
@@ -294,6 +301,25 @@ class ExchangeController extends BaseController {
 		$share->setCoinsRequested($from_coins_id);
 		$share->setCoinsSuggested($coins_id);
 
+		$conversation = new Conversation();
+		$conversation->setFromUser($user);
+		$conversation->setToUser($from);
+		$conversation->setTitle('pm.title.new_exchange');
+		$conversation->setShare($share);
+
+		$message = new Message();
+		$message->setContent('pm.text.new_exchange');
+		$message->setType(Message::TYPE_INFO);
+		$message->setConversation($conversation);
+
+		$em = $doctrine->getManager();
+		$em->persist($conversation);
+		$em->persist($message);
+		$em->persist($share);
+
+		$conversation->addMessage($message);
+		$share->setConversation($conversation);
+
 		$from_coins = $doctrine->getRepository('EuroCoinBundle:UserCoin')->findBy(array(
 			'coin' => $from_coins_id,
 			'user' => $from,
@@ -307,13 +333,13 @@ class ExchangeController extends BaseController {
 			$uc->addShare();
 		}
 
-		$em = $doctrine->getManager();
-		$em->persist($share);
 		$em->flush();
 
 		$this->get('session')->getFlashBag()->add('success', 'coin.doubles.save_successfull');
 
-		return $this->redirect($this->generateUrl('exchange_list'));
+		return $this->redirect($this->generateUrl('exchange_show', array(
+							'id' => $share->getId(),
+						)));
 	}
 
 	public function showAction($id) {

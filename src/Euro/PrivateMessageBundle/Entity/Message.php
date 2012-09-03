@@ -75,6 +75,7 @@ class Message {
 
 	public function __construct() {
 		$this->date = new \DateTime();
+		$this->direction = Message::DIRECTION_FROM_TO;
 		$this->new = true;
 	}
 

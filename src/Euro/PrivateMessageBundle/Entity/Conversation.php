@@ -71,6 +71,7 @@ class Conversation {
 
 	public function __construct() {
 		$this->messages = new ArrayCollection();
+		$this->open = true;
 	}
 
 	/**
