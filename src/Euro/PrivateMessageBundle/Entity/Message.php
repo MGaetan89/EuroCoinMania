@@ -77,6 +77,7 @@ class Message {
 		$this->date = new \DateTime();
 		$this->direction = Message::DIRECTION_FROM_TO;
 		$this->new = true;
+		$this->type = Message::TYPE_ANSWER;
 	}
 
 	/**

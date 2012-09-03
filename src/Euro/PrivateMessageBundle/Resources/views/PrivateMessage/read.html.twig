@@ -17,21 +17,23 @@
 	{% else %}
 	<div class="{% if message.id in new_messages and to.id == app.user.id %}alert-success {% endif %}well">
 		<div class="row-fluid">
-			<div class="{% if loop.index0 % 2 == 0 %}pull-right {% endif %}span3">
+			<div class="span2">
 				<div style="text-align: center;">
-					<h4>
+					<h5>
 						<a href="{{ path('show_profile', { id: from.id }) }}">{{ from.username }}</a>
 						<i class="icon-time" title="{{ 'pm.posted_on'|trans({ '%date%': message.date|format_datetime }) }}"></i>
-					</h4>
+					</h5>
 
-					<img alt="{{ from.username }}" src="{{ gravatar(from.email) }}" title="{{ from.username }}" />
+					<img alt="{{ from.username }}" class="img-polaroid" src="{{ gravatar(from.email, 110) }}" title="{{ from.username }}" />
 				</div>
 			</div>
-			<div class="{% if loop.index0 % 2 == 0 %}pull-left {% endif %}span9">
+			<div class="span10">
 				{% endif %}
 
+				{% set content = message.content %}
+
 				{% if message.type > 0 %}
-					{% set content = message.content|trans|replace({
+					{% set content = content|trans|replace({
 						'%from_user%': '<a href="' ~ path('show_profile', { id: from.id }) ~ '">' ~ from.username ~ '</a>',
 						'%to_user%': '<a href="' ~ path('show_profile', { id: to.id }) ~ '">' ~ to.username ~ '</a>'
 					}) %}
@@ -41,11 +43,9 @@
 							'%share_path%': path('exchange_show', { id: pm.share.id })
 						}) %}
 					{% endif %}
-
-					{{ content|raw }}
-				{% else %}
-					{{ message.content }}
 				{% endif %}
+
+				{{ content|format_text('markdown')|raw }}
 
 				{% if message.type == 0 %}
 			</div>
@@ -64,18 +64,16 @@
 			<h3>{{ 'pm.answer_add'|trans }}</h3>
 		</div>
 		<div class="modal-body">
-			<form action="#" class="form-horizontal" method="post">
-				<div class="control-group">
-					<label class="control-label" for="message_content">Message</label>
-					<div class="controls">
-						<textarea class="span4" id="message_content" rows="5"></textarea>
-					</div>
+			<form action="{{ path('pm_answer_process', { id: pm.id }) }}" class="form-horizontal" method="post">
+				{{ form_row(form.content) }}
+
+				{{ form_rest(form) }}
+
+				<div class="form-actions">
+					<button class="btn" data-dismiss="modal">{{ 'close'|trans }}</button>
+					<button class="btn btn-primary" type="submit">{{ 'pm.add_answer'|trans }}</button>
 				</div>
 			</form>
-		</div>
-		<div class="modal-footer">
-			<button class="btn" data-dismiss="modal">{{ 'close'|trans }}</button>
-			<button class="btn btn-primary" type="submit">{{ 'pm.add_answer'|trans }}</button>
 		</div>
 	</div>
 	{% endblock %}

@@ -8,7 +8,7 @@ EuroCoinBundle:
 
 ApplicationSonataUserBundle:
     resource: "@ApplicationSonataUserBundle/Resources/config/routing.yml"
-    prefix:   /profile
+    prefix:   /
 
 ApplicationSonataNewsBundle:
     resource: "@ApplicationSonataNewsBundle/Resources/config/routing.yml"

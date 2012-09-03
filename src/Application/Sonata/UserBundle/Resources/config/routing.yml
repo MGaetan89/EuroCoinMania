@@ -1,12 +1,18 @@
 show_profile:
-    pattern:  /{id}/show
+    pattern:  /profile/{id}/show
     defaults: { _controller: ApplicationSonataUserBundle:Default:show }
     requirements:
         id: "\d+"
 
 show_user_collection:
-    pattern:  /{user_id}/collection/{country_id}/{country_name}
+    pattern:  /profile/{user_id}/collection/{country_id}/{country_name}
     defaults: { _controller: ApplicationSonataUserBundle:Default:collection, country_id: null, country_name: null }
     requirements:
         country_id: "\d+"
         user_id: "\d+"
+
+users_query:
+    pattern: /users/query
+    defaults: { _controller: ApplicationSonataUserBundle:Default:query }
+    requirements:
+        _method: POST

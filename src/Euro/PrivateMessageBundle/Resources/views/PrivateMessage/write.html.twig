@@ -1,0 +1,33 @@
+{% extends 'EuroPrivateMessageBundle:PrivateMessage:base.html.twig' %}
+
+{% block title %}{{ 'pm.writing'|trans }}{% endblock %}
+
+{% block content %}
+<form action="{{ path('pm_write_process') }}" class="form-horizontal" method="post">
+	{{ form_row(form.title) }}
+	{{ form_row(form.to_user) }}
+	{{ form_row(form.message) }}
+
+	{{ form_rest(form) }}
+
+	<div class="form-actions">
+		<button class="btn btn-primary" type="submit">{{ 'pm.send'|trans }}</button>
+	</div>
+</form>
+{% endblock %}
+
+{% block javascript %}
+<script type="text/javascript">
+$(function() {
+	$('#euro_privatemessagebundle_conversationtype_to_user').typeahead({
+		minLength: 2,
+		source: function (query, process) {
+			$.post('/users/query', { query: query }, function (data) {
+				console.log(data);
+				process(data);
+			});
+		}
+	});
+});
+</script>
+{% endblock %}

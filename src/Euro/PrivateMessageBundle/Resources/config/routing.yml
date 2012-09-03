@@ -1,3 +1,10 @@
+pm_answer_process:
+    pattern: /pm/{id}/answer-process
+    defaults: { _controller: EuroPrivateMessageBundle:PrivateMessage:answerProcess }
+    requirements:
+        id: "\d+"
+        _method: POST
+
 pm_close:
     pattern: /pm/close/{id}/{title}
     defaults: { _controller: EuroPrivateMessageBundle:PrivateMessage:close }
@@ -17,3 +24,13 @@ pm_read:
     defaults: { _controller: EuroPrivateMessageBundle:PrivateMessage:read }
     requirements:
         id: "\d+"
+
+pm_write:
+    pattern: /pm/write
+    defaults: { _controller: EuroPrivateMessageBundle:PrivateMessage:write }
+
+pm_write_process:
+    pattern: /pm/write-process
+    defaults: { _controller: EuroPrivateMessageBundle:PrivateMessage:writeProcess }
+    requirements:
+        _method: POST

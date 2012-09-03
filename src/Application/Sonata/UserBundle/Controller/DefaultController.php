@@ -3,6 +3,7 @@
 namespace Application\Sonata\UserBundle\Controller;
 
 use Euro\CoinBundle\Controller\BaseController;
+use Symfony\Component\HttpFoundation\Response;
 
 class DefaultController extends BaseController {
 
@@ -88,6 +89,33 @@ class DefaultController extends BaseController {
 					'uc' => $uc,
 					'user' => $user,
 				));
+	}
+
+	public function queryAction() {
+		$translator = $this->get('translator');
+
+		if (!$user = $this->getUser()) {
+			throw $this->createNotFoundException($translator->trans('user.login_required'));
+		}
+
+		$query = strtolower($this->getRequest()->request->get('query'));
+
+		$queryBuilder = $this->getDoctrine()->getEntityManager()->createQueryBuilder();
+		$expr = $queryBuilder->expr();
+
+		$users = $queryBuilder
+				->select('u')
+				->from('Application\Sonata\UserBundle\Entity\User', 'u')
+				->where($expr->like($expr->lower('u.username'), $expr->literal('%' . $query . '%')))
+				->getQuery()
+				->getResult();
+
+		$result = array();
+		foreach ($users as $user) {
+			$result[] = $user->getUsername();
+		}
+
+		return new Response(json_encode($result));
 	}
 
 	public function showAction($id) {

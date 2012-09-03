@@ -66,6 +66,10 @@
 				<source>pm.posted_on</source>
 				<target>le %date%</target>
 			</trans-unit>
+			<trans-unit id="pm.send">
+				<source>pm.send</source>
+				<target>Envoyer le message</target>
+			</trans-unit>
 			<trans-unit id="pm.show_exchange">
 				<source>pm.show_exchange</source>
 				<target>Voir l'échange</target>
@@ -109,6 +113,14 @@
 			<trans-unit id="pm.user_pm">
 				<source>pm.user_pm</source>
 				<target>Mes conversations</target>
+			</trans-unit>
+			<trans-unit id="pm.write">
+				<source>pm.write</source>
+				<target>Nouveau message</target>
+			</trans-unit>
+			<trans-unit id="pm.writing">
+				<source>pm.writing</source>
+				<target>Rédaction d'un nouveau message</target>
 			</trans-unit>
 		</body>
 	</file>
