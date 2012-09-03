@@ -18,9 +18,10 @@ class ShareRepository extends EntityRepository {
 		$expr = $queryBuilder->expr();
 
 		return $queryBuilder
-						->select('s, fu, tu')
+						->select('s, fu, tu, c')
 						->join('s.from_user', 'fu')
 						->join('s.to_user', 'tu')
+						->join('s.conversation', 'c')
 						->where($expr->eq('s.id', ':id'))
 						->setParameter('id', $id)
 						->getQuery()
@@ -32,6 +33,10 @@ class ShareRepository extends EntityRepository {
 		$expr = $queryBuilder->expr();
 
 		$queryBuilder
+				->select('s, fu, tu, c')
+				->join('s.from_user', 'fu')
+				->join('s.to_user', 'tu')
+				->join('s.conversation', 'c')
 				->where($expr->eq('s.from_user', ':user'))
 				->orWhere($expr->eq('s.to_user', ':user'));
 

@@ -16,6 +16,14 @@
 							{{ 'exchange.showing'|trans }}
 						</a>
 					</li>
+					<li>
+						<a href="{{ path('pm_read', { id: share.conversation.id, title: macros.slugify(share.conversation.title|trans) }) }}">
+							<i class="icon-chevron-right"></i> 
+							{{ 'exchange.read_conversation'|trans }}
+						</a>
+					</li>
+
+					<li class="divider"></li>
 				{% endif %}
 
 				<li{{ macros.is_active(['exchange_choose_user']) }}>

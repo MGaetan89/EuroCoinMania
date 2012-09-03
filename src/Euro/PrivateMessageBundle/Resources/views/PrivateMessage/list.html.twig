@@ -30,7 +30,9 @@
 				<td><a href="{{ path('show_profile', { id: author.id }) }}">{{ author }}</a></td>
 				<td>
 					{% if pm.share %}
-						<i class="icon-share" title="{{ 'pm.has_share'|trans }}"></i>
+						<a href="{{ path('exchange_show', { id: pm.share.id }) }}">
+							<i class="icon-share" title="{{ 'pm.show_exchange'|trans }}"></i>
+						</a>
 					{% endif %}
 
 					<a href="{{ path('pm_read', { id: pm.id, title: macros.slugify(pm.title|trans) }) }}">{{ pm.title|trans }}</a>

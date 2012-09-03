@@ -21,6 +21,15 @@
 						</a>
 					</li>
 
+					{% if pm.share %}
+						<li>
+							<a href="{{ path('exchange_show', { id: pm.share.id }) }}">
+								<i class="icon-chevron-right"></i>
+								{{ 'pm.show_exchange'|trans }}
+							</a>
+						</li>
+					{% endif %}
+
 					{% if pm.open %}
 						<li>
 							<a href="#modal-answer" data-toggle="modal">

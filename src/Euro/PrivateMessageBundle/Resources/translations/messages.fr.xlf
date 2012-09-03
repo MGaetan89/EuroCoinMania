@@ -38,10 +38,6 @@
 				<source>pm.folders.inbox</source>
 				<target>Boîte de réception</target>
 			</trans-unit>
-			<trans-unit id="pm.has_share">
-				<source>pm.has_share</source>
-				<target>Cette discussion concerne un échange</target>
-			</trans-unit>
 			<trans-unit id="pm.last_message">
 				<source>pm.last_message</source>
 				<target>Dernier message</target>
@@ -57,6 +53,10 @@
 			<trans-unit id="pm.posted_on">
 				<source>pm.posted_on</source>
 				<target>le %date%</target>
+			</trans-unit>
+			<trans-unit id="pm.show_exchange">
+				<source>pm.show_exchange</source>
+				<target>Voir l'échange</target>
 			</trans-unit>
 			<trans-unit id="pm.text.new_exchange">
 				<source>pm.text.new_exchange</source>
