@@ -1,3 +1,9 @@
+pm_close:
+    pattern: /pm/close/{id}/{title}
+    defaults: { _controller: EuroPrivateMessageBundle:PrivateMessage:close }
+    requirements:
+        id: "\d+"
+
 pm_list:
     pattern:  /pm
     defaults: { _controller: EuroPrivateMessageBundle:PrivateMessage:list, archives: false }

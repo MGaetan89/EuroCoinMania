@@ -18,6 +18,10 @@
 				<source>pm.close</source>
 				<target>Fermer la conversation</target>
 			</trans-unit>
+			<trans-unit id="pm.closed_success">
+				<source>pm.closed_success</source>
+				<target>La conversation a bien été fermé</target>
+			</trans-unit>
 			<trans-unit id="pm.correspondent">
 				<source>pm.correspondent</source>
 				<target>Correspondant</target>
