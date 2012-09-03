@@ -58,10 +58,28 @@
 				<source>pm.show_exchange</source>
 				<target>Voir l'échange</target>
 			</trans-unit>
+			<trans-unit id="pm.text.conversation_closed">
+				<source>pm.text.conversation_closed</source>
+				<target><![CDATA[
+<strong>%from_user%</strong> a fermé cette discussion.
+				]]></target>
+			</trans-unit>
+			<trans-unit id="pm.text.exchange_canceled">
+				<source>pm.text.exchange_canceled</source>
+				<target><![CDATA[
+<strong>%from_user%</strong> a annulé cet échange.
+				]]></target>
+			</trans-unit>
+			<trans-unit id="pm.text.exchange_refused">
+				<source>pm.text.exchange_refused</source>
+				<target><![CDATA[
+<strong>%from_user%</strong> a refusé cet échange.
+				]]></target>
+			</trans-unit>
 			<trans-unit id="pm.text.new_exchange">
 				<source>pm.text.new_exchange</source>
 				<target><![CDATA[
-<strong>%from_user%</strong> vous propose un échange. Vous pouvez le consulter en <a href="%share_path%">cliquant ici</a>.
+<strong>%from_user%</strong> a proposé un échange. Vous pouvez le consulter en <a href="%share_path%">cliquant ici</a>.
 				]]></target>
 			</trans-unit>
 			<trans-unit id="pm.title.new_exchange">

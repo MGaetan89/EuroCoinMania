@@ -3,6 +3,7 @@
 namespace Euro\CoinBundle\Controller;
 
 use Euro\CoinBundle\Entity\Share;
+use Euro\PrivateMessageBundle\Entity\Message;
 
 class ExchangeController extends BaseController {
 
@@ -30,9 +31,13 @@ class ExchangeController extends BaseController {
 		if ($refuse) {
 			$condition = $share->getToUser()->getId() !== $user->getId();
 			$error = 'exchange.not_intended';
+			$pm_text = 'exchange_refused';
+			$pm_type = Message::TYPE_DANGER;
 		} else {
 			$condition = $share->getFromUser()->getId() !== $user->getId();
 			$error = 'exchange.not_own';
+			$pm_text = 'exchange_canceled';
+			$pm_type = Message::TYPE_WARNING;
 		}
 
 		if ($condition) {
@@ -62,7 +67,25 @@ class ExchangeController extends BaseController {
 			$uc->removeShare();
 		}
 
-		$doctrine->getManager()->flush();
+		$conversation = $share->getConversation();
+
+		$message = new Message();
+		$message->setContent('pm.text.' . $pm_text);
+		$message->setType($pm_type);
+		$message->setConversation($conversation);
+
+		if ($share->getFromUser()->getId() === $user->getId()) {
+			$message->setDirection(Message::DIRECTION_FROM_TO);
+		} else {
+			$message->setDirection(Message::DIRECTION_TO_FROM);
+		}
+
+		$em = $doctrine->getManager();
+		$em->persist($message);
+
+		$conversation->addMessage($message);
+
+		$em->flush();
 
 		if ($refuse) {
 			$flashBag->add('success', 'exchange.refused');

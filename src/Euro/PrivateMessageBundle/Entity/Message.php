@@ -73,6 +73,11 @@ class Message {
 	 */
 	private $conversation;
 
+	public function __construct() {
+		$this->date = new \DateTime();
+		$this->new = true;
+	}
+
 	/**
 	 * Get id
 	 *
