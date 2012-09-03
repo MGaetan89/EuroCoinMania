@@ -26,7 +26,7 @@
 				{% set author = pm.touser %}
 			{% endif %}
 
-			<tr{% if message.new %} class="success"{% endif %}>
+			<tr{% if message.new and last_author.id != app.user.id %} class="success"{% endif %}>
 				<td><a href="{{ path('show_profile', { id: author.id }) }}">{{ author }}</a></td>
 				<td>
 					{% if pm.share %}
