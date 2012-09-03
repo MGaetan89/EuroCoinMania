@@ -12,24 +12,26 @@
 	</tr>
 </thead>
 <tbody>
+	{% set _coins = counts.requested > counts.suggested ? coins.requested : coins.suggested %}
+
+	{% for index in _coins|keys %}
 	<tr>
 		<td>
-			<ul>
-				{% for coin in coins.requested %}
-					{% set total_requested = total_requested + coin.value.value %}
-					<li>{{ macros.coin(coin) }}</li>
-				{% endfor %}
-			</ul>
+			{% set coin = coins.requested[index] %}
+			{% if coin is defined %}
+				{% set total_requested = total_requested + coin.value.value %}
+				{{ macros.coin(coin) }}
+			{% endif %}
 		</td>
 		<td>
-			<ul>
-				{% for coin in coins.suggested %}
-					{% set total_suggested = total_suggested + coin.value.value %}
-					<li>{{ macros.coin(coin) }}</li>
-				{% endfor %}
-			</ul>
+			{% set coin = coins.suggested[index] %}
+			{% if coin is defined %}
+				{% set total_suggested = total_suggested + coin.value.value %}
+				{{ macros.coin(coin) }}
+			{% endif %}
 		</td>
 	</tr>
+	{% endfor %}
 </tbody>
 <tfoot>
 	<tr>
