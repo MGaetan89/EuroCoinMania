@@ -65,13 +65,13 @@
 		</div>
 		<div class="modal-body">
 			<form action="{{ path('pm_answer_process', { id: pm.id }) }}" class="form-horizontal" method="post">
-				{{ form_row(form.content) }}
+				{{ form_row(form.content, { label: 'pm.form.title' }) }}
 
 				{{ form_rest(form) }}
 
 				<div class="form-actions">
-					<button class="btn" data-dismiss="modal">{{ 'close'|trans }}</button>
 					<button class="btn btn-primary" type="submit">{{ 'pm.add_answer'|trans }}</button>
+					<button class="btn" data-dismiss="modal">{{ 'close'|trans }}</button>
 				</div>
 			</form>
 		</div>

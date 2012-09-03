@@ -42,6 +42,18 @@
 				<source>pm.folders.inbox</source>
 				<target>Boîte de réception</target>
 			</trans-unit>
+			<trans-unit id="pm.form.message">
+				<source>pm.form.message</source>
+				<target>Message</target>
+			</trans-unit>
+			<trans-unit id="pm.form.title">
+				<source>pm.form.title</source>
+				<target>Titre</target>
+			</trans-unit>
+			<trans-unit id="pm.form.to_user">
+				<source>pm.form.to_user</source>
+				<target>Destinataire</target>
+			</trans-unit>
 			<trans-unit id="pm.last_message">
 				<source>pm.last_message</source>
 				<target>Dernier message</target>

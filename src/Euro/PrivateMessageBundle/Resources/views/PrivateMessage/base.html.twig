@@ -46,6 +46,15 @@
 					{% endif %}
 
 					<li class="divider"></li>
+				{% elseif app.request.get('_route') == 'pm_write' %}
+					<li class="nav-header">{{ 'actions'|trans }}</li>
+
+					<li{{ macros.is_active(['pm_write']) }}>
+						<a href="{{ path('pm_write') }}">
+							<i class="icon-chevron-right"></i>
+							{{ 'pm.write'|trans }}
+						</a>
+					</li>
 				{% endif %}
 
 				<li class="nav-header">{{ 'pm.folders'|trans }}</li>

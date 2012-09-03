@@ -4,9 +4,9 @@
 
 {% block content %}
 <form action="{{ path('pm_write_process') }}" class="form-horizontal" method="post">
-	{{ form_row(form.title) }}
-	{{ form_row(form.to_user) }}
-	{{ form_row(form.message) }}
+	{{ form_row(form.title, { label: 'pm.form.title' }) }}
+	{{ form_row(form.to_user, { label: 'pm.form.to_user' }) }}
+	{{ form_row(form.message, { label: 'pm.form.message' }) }}
 
 	{{ form_rest(form) }}
 
