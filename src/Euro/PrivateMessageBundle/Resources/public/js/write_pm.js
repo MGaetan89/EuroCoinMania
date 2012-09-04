@@ -20,7 +20,10 @@ $(function() {
 	});
 
 	$('#submit').on('click', function (e) {
-		var id = null, user = to_user.val();
+		var $this = $(this), id = null, user = to_user.val();
+
+		$this.addClass('disabled').attr('disabled', true);
+
 		for (var i in users) {
 			if (users[i] === user) {
 				id = i;

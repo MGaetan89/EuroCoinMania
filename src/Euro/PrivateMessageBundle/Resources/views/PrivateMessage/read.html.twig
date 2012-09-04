@@ -70,11 +70,13 @@
 				{{ form_rest(form) }}
 
 				<div class="form-actions">
-					<button class="btn btn-primary" type="submit">{{ 'pm.add_answer'|trans }}</button>
+					<button class="btn btn-primary" id="submit" type="submit">{{ 'pm.add_answer'|trans }}</button>
 					<button class="btn" data-dismiss="modal">{{ 'close'|trans }}</button>
 				</div>
 			</form>
 		</div>
 	</div>
+
+	<script src="{{ asset('bundles/europrivatemessage/js/answer_pm.js') }}" type="text/javascript"></script>
 	{% endblock %}
 {% endif %}
