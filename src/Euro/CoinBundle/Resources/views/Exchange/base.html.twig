@@ -11,13 +11,13 @@
 
 				{% if app.request.get('_route') == 'exchange_show' %}
 					<li{{ macros.is_active(['exchange_show']) }}>
-						<a href="{{ path('exchange_show', { id: share.id }) }}">
+						<a href="{{ path('exchange_show', { id: exchange.id }) }}">
 							<i class="icon-chevron-right"></i> 
 							{{ 'exchange.showing'|trans }}
 						</a>
 					</li>
 					<li>
-						<a href="{{ path('pm_read', { id: share.conversation.id, title: macros.slugify(share.conversation.title|trans) }) }}">
+						<a href="{{ path('pm_read', { id: exchange.conversation.id, title: macros.slugify(exchange.conversation.title|trans) }) }}">
 							<i class="icon-chevron-right"></i> 
 							{{ 'exchange.read_conversation'|trans }}
 						</a>
@@ -47,6 +47,6 @@
 			</ul>
 		</div>
 	</div>
-	<div class="{% if share is defined %}offset1 span9{% else %}span10{% endif %}">{% block content %}{% endblock %}</div>
+	<div class="{% if exchange is defined %}offset1 span9{% else %}span10{% endif %}">{% block content %}{% endblock %}</div>
 </div>
 {% endblock %}

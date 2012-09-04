@@ -5,7 +5,7 @@ namespace Euro\PrivateMessageBundle\Entity;
 use Application\Sonata\UserBundle\Entity\User;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
-use Euro\CoinBundle\Entity\Share;
+use Euro\CoinBundle\Entity\Exchange;
 
 /**
  * Euro\PrivateMessageBundle\Entity\Conversation
@@ -55,12 +55,12 @@ class Conversation {
 	private $open;
 
 	/**
-	 * @var Share $share
+	 * @var Exchange $exchange
 	 *
-	 * @ORM\ManyToOne(targetEntity="Euro\CoinBundle\Entity\Share")
-	 * @ORM\JoinColumn(name="share_id", referencedColumnName="id")
+	 * @ORM\ManyToOne(targetEntity="Euro\CoinBundle\Entity\Exchange")
+	 * @ORM\JoinColumn(name="exchange_id", referencedColumnName="id")
 	 */
-	private $share;
+	private $exchange;
 
 	/**
 	 * @var ArrayCollection $messages
@@ -168,24 +168,24 @@ class Conversation {
 	}
 
 	/**
-	 * Set share
+	 * Set exchange
 	 *
-	 * @param Share $share
+	 * @param Exchange $exchange
 	 * @return Conversation
 	 */
-	public function setShare(Share $share) {
-		$this->share = $share;
+	public function setExchange(Exchange $exchange) {
+		$this->exchange = $exchange;
 
 		return $this;
 	}
 
 	/**
-	 * Get share
+	 * Get exchange
 	 *
-	 * @return Share
+	 * @return Exchange
 	 */
-	public function getShare() {
-		return $this->share;
+	public function getExchange() {
+		return $this->exchange;
 	}
 
 	/**

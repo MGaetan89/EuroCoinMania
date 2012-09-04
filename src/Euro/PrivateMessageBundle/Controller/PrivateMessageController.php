@@ -2,7 +2,7 @@
 
 namespace Euro\PrivateMessageBundle\Controller;
 
-use Euro\CoinBundle\Entity\Share;
+use Euro\CoinBundle\Entity\Exchange;
 use Euro\PrivateMessageBundle\Entity\Conversation;
 use Euro\PrivateMessageBundle\Entity\Message;
 use Euro\PrivateMessageBundle\Form\ConversationType;
@@ -81,7 +81,7 @@ class PrivateMessageController extends Controller {
 			return $this->redirect($this->generateUrl('pm_list'));
 		}
 
-		if ($conversation->getShare() && $conversation->getShare()->getStatus() == Share::STATUS_PENDING) {
+		if ($conversation->getExchange() && $conversation->getExchange()->getStatus() == Exchange::STATUS_PENDING) {
 			$flashBag->add('error', 'pm.not_closable');
 
 			return $this->redirect($this->generateUrl('pm_read', array(

@@ -7,12 +7,12 @@ use Doctrine\ORM\Mapping as ORM;
 use Euro\PrivateMessageBundle\Entity\Conversation;
 
 /**
- * Euro\CoinBundle\Entity\Share
+ * Euro\CoinBundle\Entity\Exchange
  *
- * @ORM\Table(name="euro_coin__share")
- * @ORM\Entity(repositoryClass="Euro\CoinBundle\Entity\ShareRepository")
+ * @ORM\Table(name="euro_coin__exchange")
+ * @ORM\Entity(repositoryClass="Euro\CoinBundle\Entity\ExchangeRepository")
  */
-class Share {
+class Exchange {
 
 	const STATUS_PENDING = 1;
 	const STATUS_ACCEPTED = 2;
@@ -97,7 +97,7 @@ class Share {
 	 * Set date
 	 *
 	 * @param \DateTime $date
-	 * @return Share
+	 * @return Exchange
 	 */
 	public function setDate($date) {
 		$this->date = $date;
@@ -118,7 +118,7 @@ class Share {
 	 * Set status
 	 *
 	 * @param integer $status
-	 * @return Share
+	 * @return Exchange
 	 */
 	public function setStatus($status) {
 		$this->status = $status;
@@ -139,7 +139,7 @@ class Share {
 	 * Set from_user
 	 *
 	 * @param User $fromUser
-	 * @return Share
+	 * @return Exchange
 	 */
 	public function setFromUser(User $fromUser) {
 		$this->from_user = $fromUser;
@@ -160,7 +160,7 @@ class Share {
 	 * Set to_user
 	 *
 	 * @param User $toUser
-	 * @return Share
+	 * @return Exchange
 	 */
 	public function setToUser(User $toUser) {
 		$this->to_user = $toUser;
@@ -181,7 +181,7 @@ class Share {
 	 * Set coins_requested
 	 *
 	 * @param array $coinsRequested
-	 * @return Share
+	 * @return Exchange
 	 */
 	public function setCoinsRequested(array $coinsRequested) {
 		$this->coins_requested = $coinsRequested;
@@ -202,7 +202,7 @@ class Share {
 	 * Set coins_suggested
 	 *
 	 * @param array $coinsSuggested
-	 * @return Share
+	 * @return Exchange
 	 */
 	public function setCoinsSuggested(array $coinsSuggested) {
 		$this->coins_suggested = $coinsSuggested;
@@ -223,7 +223,7 @@ class Share {
 	 * Set conversation
 	 *
 	 * @param Conversation $conversation
-	 * @return Share
+	 * @return Exchange
 	 */
 	public function setConversation(Conversation $conversation) {
 		$this->conversation = $conversation;

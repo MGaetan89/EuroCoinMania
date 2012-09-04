@@ -2,7 +2,7 @@
 
 namespace Euro\CoinBundle\Controller;
 
-use Euro\CoinBundle\Entity\Share;
+use Euro\CoinBundle\Entity\Exchange;
 use Euro\PrivateMessageBundle\Entity\Conversation;
 use Euro\PrivateMessageBundle\Entity\Message;
 
@@ -21,21 +21,21 @@ class ExchangeController extends BaseController {
 		}
 
 		$doctrine = $this->getDoctrine();
-		$share = $doctrine->getRepository('EuroCoinBundle:Share')->find($id);
+		$exchange = $doctrine->getRepository('EuroCoinBundle:Exchange')->find($id);
 
-		if (!$share) {
+		if (!$exchange) {
 			$flashBag->add('error', 'exchange.not_found');
 
 			return $this->redirect($this->generateUrl('exchange_list'));
 		}
 
 		if ($refuse) {
-			$condition = $share->getToUser()->getId() !== $user->getId();
+			$condition = $exchange->getToUser()->getId() !== $user->getId();
 			$error = 'exchange.not_intended';
 			$pm_text = 'exchange_refused';
 			$pm_type = Message::TYPE_DANGER;
 		} else {
-			$condition = $share->getFromUser()->getId() !== $user->getId();
+			$condition = $exchange->getFromUser()->getId() !== $user->getId();
 			$error = 'exchange.not_own';
 			$pm_text = 'exchange_canceled';
 			$pm_type = Message::TYPE_WARNING;
@@ -47,35 +47,35 @@ class ExchangeController extends BaseController {
 			return $this->redirect($this->generateUrl('exchange_list'));
 		}
 
-		$share->setStatus($refuse ? Share::STATUS_REFUSED : Share::STATUS_CANCELED);
+		$exchange->setStatus($refuse ? Exchange::STATUS_REFUSED : Exchange::STATUS_CANCELED);
 
 		$user_coin = $doctrine->getRepository('EuroCoinBundle:UserCoin');
 		$coins = $user_coin->findBy(array(
-			'coin' => $share->getCoinsSuggested(),
-			'user' => $share->getFromUser(),
+			'coin' => $exchange->getCoinsSuggested(),
+			'user' => $exchange->getFromUser(),
 				));
 
 		foreach ($coins as $uc) {
-			$uc->removeShare();
+			$uc->removeExchange();
 		}
 
 		$coins = $user_coin->findBy(array(
-			'coin' => $share->getCoinsRequested(),
-			'user' => $share->getToUser(),
+			'coin' => $exchange->getCoinsRequested(),
+			'user' => $exchange->getToUser(),
 				));
 
 		foreach ($coins as $uc) {
-			$uc->removeShare();
+			$uc->removeExchange();
 		}
 
-		$conversation = $share->getConversation();
+		$conversation = $exchange->getConversation();
 
 		$message = new Message();
 		$message->setContent('pm.text.' . $pm_text);
 		$message->setType($pm_type);
 		$message->setConversation($conversation);
 
-		if ($share->getFromUser()->getId() === $user->getId()) {
+		if ($exchange->getFromUser()->getId() === $user->getId()) {
 			$message->setDirection(Message::DIRECTION_FROM_TO);
 		} else {
 			$message->setDirection(Message::DIRECTION_TO_FROM);
@@ -164,18 +164,18 @@ class ExchangeController extends BaseController {
 		}
 
 		$doctrine = $this->getDoctrine();
-		$shares = $doctrine->getRepository('EuroCoinBundle:Share')->findForUser($user, $all);
+		$exchanges = $doctrine->getRepository('EuroCoinBundle:Exchange')->findForUser($user, $all);
 
 		$coin_repo = $doctrine->getRepository('EuroCoinBundle:Coin');
 		$coins = array();
-		foreach ($shares as $share) {
-			$coins[$share->getId()] = array(
-				'requested' => $coin_repo->findCoinById($share->getCoinsRequested()),
-				'suggested' => $coin_repo->findCoinById($share->getCoinsSuggested()),
+		foreach ($exchanges as $exchange) {
+			$coins[$exchange->getId()] = array(
+				'requested' => $coin_repo->findCoinById($exchange->getCoinsRequested()),
+				'suggested' => $coin_repo->findCoinById($exchange->getCoinsSuggested()),
 			);
 		}
 
-		if (!$shares) {
+		if (!$exchanges) {
 			if (!$all) {
 				$flashBag->add('info', 'exchange.none_pending');
 
@@ -196,7 +196,7 @@ class ExchangeController extends BaseController {
 		return $this->render('EuroCoinBundle:Exchange:list.html.twig', array(
 					'all' => $all,
 					'coins' => $coins,
-					'shares' => $shares,
+					'exchanges' => $exchanges,
 				));
 	}
 
@@ -294,18 +294,18 @@ class ExchangeController extends BaseController {
 
 		$from_coins_id = $this->getRequest()->getSession()->get('from_coins');
 
-		$share = new Share();
-		$share->setStatus(Share::STATUS_PENDING);
-		$share->setFromUser($user);
-		$share->setToUser($from);
-		$share->setCoinsRequested($from_coins_id);
-		$share->setCoinsSuggested($coins_id);
+		$exchange = new Exchange();
+		$exchange->setStatus(Exchange::STATUS_PENDING);
+		$exchange->setFromUser($user);
+		$exchange->setToUser($from);
+		$exchange->setCoinsRequested($from_coins_id);
+		$exchange->setCoinsSuggested($coins_id);
 
 		$conversation = new Conversation();
 		$conversation->setFromUser($user);
 		$conversation->setToUser($from);
 		$conversation->setTitle('pm.title.new_exchange');
-		$conversation->setShare($share);
+		$conversation->setExchange($exchange);
 
 		$message = new Message();
 		$message->setContent('pm.text.new_exchange');
@@ -315,10 +315,10 @@ class ExchangeController extends BaseController {
 		$em = $doctrine->getManager();
 		$em->persist($conversation);
 		$em->persist($message);
-		$em->persist($share);
+		$em->persist($exchange);
 
 		$conversation->addMessage($message);
-		$share->setConversation($conversation);
+		$exchange->setConversation($conversation);
 
 		$from_coins = $doctrine->getRepository('EuroCoinBundle:UserCoin')->findBy(array(
 			'coin' => $from_coins_id,
@@ -326,11 +326,11 @@ class ExchangeController extends BaseController {
 				));
 
 		foreach ($from_coins as $uc) {
-			$uc->addShare();
+			$uc->addExchange();
 		}
 
 		foreach ($to_coins as $uc) {
-			$uc->addShare();
+			$uc->addExchange();
 		}
 
 		$em->flush();
@@ -338,7 +338,7 @@ class ExchangeController extends BaseController {
 		$this->get('session')->getFlashBag()->add('success', 'coin.doubles.save_successfull');
 
 		return $this->redirect($this->generateUrl('exchange_show', array(
-							'id' => $share->getId(),
+							'id' => $exchange->getId(),
 						)));
 	}
 
@@ -350,9 +350,9 @@ class ExchangeController extends BaseController {
 		}
 
 		$doctrine = $this->getDoctrine();
-		$share = $doctrine->getRepository('EuroCoinBundle:Share')->find($id);
+		$exchange = $doctrine->getRepository('EuroCoinBundle:Exchange')->find($id);
 
-		if (!$share) {
+		if (!$exchange) {
 			$this->get('session')->getFlashBag()->add('info', 'exchange.not_found');
 
 			return $this->redirect($this->generateUrl('exchange_list'));
@@ -360,8 +360,8 @@ class ExchangeController extends BaseController {
 
 		$coin_repo = $doctrine->getRepository('EuroCoinBundle:Coin');
 		$coins = array(
-			'requested' => $coin_repo->findCoinById($share->getCoinsRequested()),
-			'suggested' => $coin_repo->findCoinById($share->getCoinsSuggested()),
+			'requested' => $coin_repo->findCoinById($exchange->getCoinsRequested()),
+			'suggested' => $coin_repo->findCoinById($exchange->getCoinsSuggested()),
 		);
 
 		return $this->render('EuroCoinBundle:Exchange:show.html.twig', array(
@@ -370,7 +370,7 @@ class ExchangeController extends BaseController {
 						'requested' => count($coins['requested']),
 						'suggested' => count($coins['suggested']),
 					),
-					'share' => $share,
+					'exchange' => $exchange,
 				));
 	}
 

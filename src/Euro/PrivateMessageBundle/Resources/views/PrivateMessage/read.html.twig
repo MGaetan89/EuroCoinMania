@@ -38,9 +38,9 @@
 						'%to_user%': '<a href="' ~ path('show_profile', { id: to.id }) ~ '">' ~ to.username ~ '</a>'
 					}) %}
 
-					{% if pm.share %}
+					{% if pm.exchange %}
 						{% set content = content|replace({
-							'%share_path%': path('exchange_show', { id: pm.share.id })
+							'%exchange_path%': path('exchange_show', { id: pm.exchange.id })
 						}) %}
 					{% endif %}
 				{% endif %}

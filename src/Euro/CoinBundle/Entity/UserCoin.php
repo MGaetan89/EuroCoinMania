@@ -150,22 +150,22 @@ class UserCoin {
 	}
 
 	/**
-	 * Add one share
+	 * Add one exchange
 	 *
 	 * @return UserCoin
 	 */
-	public function addShare() {
+	public function addExchange() {
 		$this->sharing++;
 
 		return $this;
 	}
 
 	/**
-	 * Remove one share
+	 * Remove one exchange
 	 *
 	 * @return UserCoin
 	 */
-	public function removeShare() {
+	public function removeExchange() {
 		$this->sharing--;
 
 		return $this;

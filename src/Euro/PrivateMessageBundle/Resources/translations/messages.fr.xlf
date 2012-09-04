@@ -115,7 +115,7 @@
 			<trans-unit id="pm.text.new_exchange">
 				<source>pm.text.new_exchange</source>
 				<target><![CDATA[
-<strong>%from_user%</strong> a proposé un échange. Vous pouvez le consulter en <a href="%share_path%">cliquant ici</a>.
+<strong>%from_user%</strong> a proposé un échange. Vous pouvez le consulter en <a href="%exchange_path%">cliquant ici</a>.
 				]]></target>
 			</trans-unit>
 			<trans-unit id="pm.title.new_exchange">

@@ -7,8 +7,8 @@
 <table class="table table-hover table-striped">
 <thead>
 	<tr>
-		<th>{{ 'exchange.proposed_by'|trans({ '%path%': path('show_profile', { id: share.fromuser.id }), '%username%': share.fromuser.username })|raw }}</th>
-		<th>{{ 'exchange.received_by'|trans({ '%path%': path('show_profile', { id: share.touser.id }), '%username%': share.touser.username })|raw }}</th>
+		<th>{{ 'exchange.proposed_by'|trans({ '%path%': path('show_profile', { id: exchange.fromuser.id }), '%username%': exchange.fromuser.username })|raw }}</th>
+		<th>{{ 'exchange.received_by'|trans({ '%path%': path('show_profile', { id: exchange.touser.id }), '%username%': exchange.touser.username })|raw }}</th>
 	</tr>
 </thead>
 <tbody>

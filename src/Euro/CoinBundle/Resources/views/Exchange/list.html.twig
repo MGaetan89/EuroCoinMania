@@ -27,48 +27,48 @@
 </thead>
 <tbody>
 {% set row_classes = ['info', 'success', 'warning', 'error'] %}
-{% for share in shares %}
-	<tr class="{{ row_classes[share.status - 1] }}">
-		<td><a href="{{ path('exchange_show', { id: share.id }) }}">#{{ share.id }}</a></td>
+{% for exchange in exchanges %}
+	<tr class="{{ row_classes[exchange.status - 1] }}">
+		<td><a href="{{ path('exchange_show', { id: exchange.id }) }}">#{{ exchange.id }}</a></td>
 		<td>
-			{% if share.fromuser.id == app.user.id %}<strong>{% endif %}
-				<a href="{{ path('show_profile', { id: share.fromuser.id }) }}">{{ share.fromuser.username }}</a>
-			{% if share.fromuser.id == app.user.id %}</strong>{% endif %}
+			{% if exchange.fromuser.id == app.user.id %}<strong>{% endif %}
+				<a href="{{ path('show_profile', { id: exchange.fromuser.id }) }}">{{ exchange.fromuser.username }}</a>
+			{% if exchange.fromuser.id == app.user.id %}</strong>{% endif %}
 
 			&rarr;
 
-			{% if share.touser.id == app.user.id %}<strong>{% endif %}
-				<a href="{{ path('show_profile', { id: share.touser.id }) }}">{{ share.touser.username }}</a>
-			{% if share.touser.id == app.user.id %}</strong>{% endif %}
+			{% if exchange.touser.id == app.user.id %}<strong>{% endif %}
+				<a href="{{ path('show_profile', { id: exchange.touser.id }) }}">{{ exchange.touser.username }}</a>
+			{% if exchange.touser.id == app.user.id %}</strong>{% endif %}
 		</td>
-		<td>{{ share.date|format_datetime }}</td>
+		<td>{{ exchange.date|format_datetime }}</td>
 		<td>
 			<ul>
-				{% for coin in coins[share.id]['requested'] %}
+				{% for coin in coins[exchange.id]['requested'] %}
 					<li>{{ macros.coin(coin) }}</li>
 				{% endfor %}
 			</ul>
 		</td>
 		<td>
 			<ul>
-				{% for coin in coins[share.id]['suggested'] %}
+				{% for coin in coins[exchange.id]['suggested'] %}
 					<li>{{ macros.coin(coin) }}</li>
 				{% endfor %}
 			</ul>
 		</td>
 
 		{% if all %}
-			<td>{{ ('exchange.status' ~ share.status)|trans }}</td>
+			<td>{{ ('exchange.status' ~ exchange.status)|trans }}</td>
 		{% else %}
 			<td>
 				<div class="btn-group">
-					<a class="btn btn-small btn-info" href="{{ path('pm_read', { id: share.conversation.id, title: macros.slugify(share.conversation.title|trans) }) }}" title="{{ 'exchange.read_conversation'|trans }}"><i class="icon-comment"></i></a>
+					<a class="btn btn-small btn-info" href="{{ path('pm_read', { id: exchange.conversation.id, title: macros.slugify(exchange.conversation.title|trans) }) }}" title="{{ 'exchange.read_conversation'|trans }}"><i class="icon-comment"></i></a>
 
-					{% if share.fromuser.id == app.user.id %}
-						<a class="btn btn-small btn-warning" href="{{ path('exchange_cancel', { id: share.id }) }}" title="{{ 'exchange.cancel'|trans }}"><i class="icon-minus-sign"></i></a>
+					{% if exchange.fromuser.id == app.user.id %}
+						<a class="btn btn-small btn-warning" href="{{ path('exchange_cancel', { id: exchange.id }) }}" title="{{ 'exchange.cancel'|trans }}"><i class="icon-minus-sign"></i></a>
 					{% else %}
-						<a class="btn btn-small btn-success" href="{{ path('exchange_accept', { id: share.id }) }}" title="{{ 'exchange.accept'|trans }}"><i class="icon-ok"></i></a>
-						<a class="btn btn-small btn-danger" href="{{ path('exchange_refuse', { id: share.id }) }}" title="{{ 'exchange.refuse'|trans }}"><i class="icon-remove"></i></a>
+						<a class="btn btn-small btn-success" href="{{ path('exchange_accept', { id: exchange.id }) }}" title="{{ 'exchange.accept'|trans }}"><i class="icon-ok"></i></a>
+						<a class="btn btn-small btn-danger" href="{{ path('exchange_refuse', { id: exchange.id }) }}" title="{{ 'exchange.refuse'|trans }}"><i class="icon-remove"></i></a>
 					{% endif %}
 				</div>
 			</td>
