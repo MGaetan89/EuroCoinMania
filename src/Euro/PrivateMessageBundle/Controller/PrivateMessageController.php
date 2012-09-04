@@ -205,7 +205,15 @@ class PrivateMessageController extends Controller {
 
 				$content = $data['message'];
 				$title = $data['title'];
-				$to_user = $this->getDoctrine()->getRepository('ApplicationSonataUserBundle:User')->findOneByUsername($data['to_user']);
+				$to_user = $this->getDoctrine()->getRepository('ApplicationSonataUserBundle:User')->find($data['to_user']);
+
+				if (!$to_user) {
+					throw $this->createNotFoundException($translator->trans('user.not_found'));
+				}
+
+				if ($to_user->getId() === $user->getId()) {
+					throw $this->createNotFoundException($translator->trans('pm.not_self'));
+				}
 
 				$conversation = new Conversation();
 				$conversation->setFromUser($user);

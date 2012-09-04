@@ -11,23 +11,11 @@
 	{{ form_rest(form) }}
 
 	<div class="form-actions">
-		<button class="btn btn-primary" type="submit">{{ 'pm.send'|trans }}</button>
+		<button class="btn btn-primary" id="submit" type="submit">{{ 'pm.send'|trans }}</button>
 	</div>
 </form>
 {% endblock %}
 
 {% block javascript %}
-<script type="text/javascript">
-$(function() {
-	$('#euro_privatemessagebundle_conversationtype_to_user').typeahead({
-		minLength: 2,
-		source: function (query, process) {
-			$.post('/users/query', { query: query }, function (data) {
-				console.log(data);
-				process(data);
-			});
-		}
-	});
-});
-</script>
+<script src="{{ asset('bundles/europrivatemessage/js/write_pm.js') }}" type="text/javascript"></script>
 {% endblock %}

@@ -99,15 +99,21 @@ class DefaultController extends BaseController {
 				->select('u')
 				->from('Application\Sonata\UserBundle\Entity\User', 'u')
 				->where($expr->like($expr->lower('u.username'), $expr->literal('%' . $query . '%')))
+				->andWhere($expr->neq('u.id', ':id'))
+				->orderBy('u.username')
+				->setParameter('id', $user->getId())
 				->getQuery()
 				->getResult();
 
 		$result = array();
 		foreach ($users as $user) {
-			$result[] = $user->getUsername();
+			$result[$user->getId()] = $user->getUsername();
 		}
 
-		return new Response(json_encode($result));
+		$response = new Response(json_encode($result));
+		$response->headers->set('Content-Type', 'application/json');
+
+		return $response;
 	}
 
 	public function showAction($id) {
