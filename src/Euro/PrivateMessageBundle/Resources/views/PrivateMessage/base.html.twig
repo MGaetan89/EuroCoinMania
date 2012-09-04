@@ -38,7 +38,7 @@
 							</a>
 						</li>
 
-						{% if not pm.share or pm.share.status == 1 %}
+						{% if not pm.share or pm.share.status != 1 %}
 							<li>
 								<a href="{{ path('pm_close', { id: pm.id, title: macros.slugify(pm.title|trans) }) }}">
 									<i class="icon-chevron-right"></i>
