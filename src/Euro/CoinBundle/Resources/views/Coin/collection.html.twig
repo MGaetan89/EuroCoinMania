@@ -63,10 +63,10 @@
 								</div>
 
 								{% if app.user %}
-								<div class="btn-group pull-right">
-									<button class="btn btn-mini btn-danger{% if not has_coin %} disabled" disabled="disabled{% endif %}" title="{{ 'coin.remove'|trans }}" data-action="remove-coin" data-loading-text="-">-</button>
-									<button class="btn btn-mini btn-success{% if coin.mintage == coin.membertotal %} disabled" disabled="disabled{% endif %}" title="{{ 'coin.add'|trans }}" data-action="add-coin" data-loading-text="+">+</button>
-								</div>
+									<div class="btn-group pull-right">
+										<button class="btn btn-mini btn-danger{% if not has_coin %} disabled" disabled="disabled{% endif %}" title="{{ 'coin.remove'|trans }}" data-action="remove-coin" data-loading-text="-">-</button>
+										<button class="btn btn-mini btn-success{% if coin.mintage == coin.membertotal %} disabled" disabled="disabled{% endif %}" title="{{ 'coin.add'|trans }}" data-action="add-coin" data-loading-text="+">+</button>
+									</div>
 								{% endif %}
 							</div>
 						</td>

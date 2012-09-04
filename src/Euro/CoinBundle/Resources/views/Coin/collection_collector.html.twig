@@ -3,12 +3,18 @@
 {% block content %}
 {% if countries and coins|length > 0 %}
 	<table class="table table-hover table-striped">
+	<colgroup>
+		<col width="7%" />
+		<col width="5%" />
+		<col width="75%" />
+		<col width="13%" />
+	</colgroup>
 	<thead>
 		<tr>
 			<th>{{ 'coin.year'|trans }}</th>
 			<th>{{ 'coin.value'|trans }}</th>
 			<th>{{ 'coin.description'|trans }}</th>
-			<th>{{ 'coin.mintage'|trans }}</th>
+			<th>{{ 'actions'|trans }}</th>
 		</tr>
 	</thead>
 	<tbody>
@@ -17,7 +23,40 @@
 			<td>{{ macros.year(coin.year) }}</td>
 			<td>{{ macros.value(coin.value) }}</td>
 			<td>{{ coin.description }}</td>
-			<td>{{ coin.mintage|number_format }}</td>
+			<td>
+				<div class="btn-toolbar" data-coin="{{ coin.id }}">
+					<div class="btn-group pull-left">
+						<button class="btn btn-mini btn-info" title="{{ 'coin.information'|trans }}" data-action="query-coin-info" data-loading-text="?">?</button>
+
+						{% if app.user %}
+							{% set has_coin = uc[coin.id] is defined %}
+						{% endif %}
+
+						{% if app.user %}
+							{% if has_coin %}
+								<button class="btn btn-mini disabled" disabled="disabled" id="quantity-{{ coin.id }}" title="{{ 'coin.self_quantity'|trans }}">
+									{{ uc[coin.id].quantity|number_format_duration }}
+
+									{% if uc[coin.id].sharing %}
+										({{ uc[coin.id].sharing }})
+									{% endif %}
+								</button>
+							{% else %}
+								<button class="btn btn-mini disabled" disabled="disabled" id="quantity-{{ coin.id }}" title="{{ 'coin.registered_quantity'|trans }}">0</button>
+							{% endif %}
+						{% else %}
+							<button class="btn btn-mini disabled" disabled="disabled" id="quantity-{{ coin.id }}" title="{{ 'coin.mintage'|trans }}">{{ coin.mintage|number_format_duration }}</button>
+						{% endif %}
+					</div>
+
+					{% if app.user %}
+						<div class="btn-group pull-right">
+							<button class="btn btn-mini btn-danger{% if not has_coin %} disabled" disabled="disabled{% endif %}" title="{{ 'coin.remove'|trans }}" data-action="remove-coin" data-loading-text="-">-</button>
+							<button class="btn btn-mini btn-success{% if coin.mintage == coin.membertotal %} disabled" disabled="disabled{% endif %}" title="{{ 'coin.add'|trans }}" data-action="add-coin" data-loading-text="+">+</button>
+						</div>
+					{% endif %}
+				</div>
+			</td>
 		</tr>
 	{% endfor %}
 	</tbody>

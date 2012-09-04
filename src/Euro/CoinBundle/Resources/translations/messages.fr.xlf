@@ -120,7 +120,7 @@ Si l'échange est accepté par l'autre utilisateur, vos inventaires respectifs n
 			</trans-unit>
 			<trans-unit id="coin.sharing_count_info">
 				<source>coin.sharing_count_info</source>
-				<target>La valeur entre parenthèses représente la quantité engagée dans un échange.</target>
+				<target>La valeur éventuelle entre parenthèses représente la quantité engagée dans un échange.</target>
 			</trans-unit>
 			<trans-unit id="coin.unavailable">
 				<source>coin.unavailable</source>

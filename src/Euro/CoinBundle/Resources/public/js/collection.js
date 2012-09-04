@@ -1,8 +1,8 @@
 $(function () {
-	var body = $('body'), opened = null;
+	var body = $('body'), opened = null, placement = location.pathname.substr(0, '/collection/collector/'.length) !== '/collection/collector/' ? 'bottom' : 'left';
 
 	$('[data-action=add-coin], [data-action=remove-coin]').on('click', function () {
-		var $this = $(this), action = $this.data('action').split('-')[0], id = $this.parents('.btn-toolbar').data('coin');
+		var $this = $(this), action = $this.data('action').split('-')[0], id = $this.parents('[data-coin]').data('coin');
 
 		if ($this.hasClass('disabled')) {
 			return;
@@ -28,7 +28,7 @@ $(function () {
 	});
 
 	$('[data-action=query-coin-info]').on('click', function () {
-		var $this = $(this).button('loading'), id = $this.parents('.btn-toolbar').data('coin');
+		var $this = $(this).button('loading'), id = $this.parents('[data-coin]').data('coin');
 
 		if (opened) {
 			opened.popover('hide');
@@ -51,7 +51,7 @@ $(function () {
 
 				opened = $this.popover({
 					content: data.html(),
-					placement: 'bottom',
+					placement: placement,
 					trigger: 'manual'
 				}).popover('toggle').button('reset');
 			});
