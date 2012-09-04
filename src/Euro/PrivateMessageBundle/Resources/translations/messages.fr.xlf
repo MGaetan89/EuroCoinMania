@@ -62,6 +62,10 @@
 				<source>pm.messaging</source>
 				<target>Messagerie</target>
 			</trans-unit>
+			<trans-unit id="pm.not_closable">
+				<source>pm.not_closable</source>
+				<target>Vous ne pouvez pas fermer cette conversation car l'échange auquel elle est associée n'est pas terminé</target>
+			</trans-unit>
 			<trans-unit id="pm.not_for_you">
 				<source>pm.not_for_you</source>
 				<target>Cette conversation ne vous concerne pas</target>

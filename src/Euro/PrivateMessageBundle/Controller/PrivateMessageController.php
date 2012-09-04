@@ -80,6 +80,15 @@ class PrivateMessageController extends Controller {
 			return $this->redirect($this->generateUrl('pm_list'));
 		}
 
+		if ($conversation->getShare() && $conversation->getShare() == Share::STATUS_PENDING) {
+			$flashBag->add('error', 'pm.not_closable');
+
+			return $this->redirect($this->generateUrl('pm_read', array(
+								'id' => $conversation->getId(),
+								'title' => $conversation->getTitle(),
+							)));
+		}
+
 		$message = new Message();
 		$message->setContent('pm.text.conversation_closed');
 		$message->setType(Message::TYPE_INFO);
