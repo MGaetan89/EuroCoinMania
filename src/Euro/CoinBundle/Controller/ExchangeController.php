@@ -8,7 +8,7 @@ use Euro\PrivateMessageBundle\Entity\Message;
 
 class ExchangeController extends BaseController {
 
-	public function acceptAction($id) {
+	public function acceptCancelRefuseAction($id, $type) {
 		$flashBag = $this->get('session')->getFlashBag();
 		if (!$user = $this->getUser()) {
 			$flashBag->add('error', 'user.login_required');
@@ -25,81 +25,36 @@ class ExchangeController extends BaseController {
 			return $this->redirect($this->generateUrl('exchange_list'));
 		}
 
-		$exchange->setStatus(Exchange::STATUS_ACCEPTED);
+		switch ($type) {
+			case 'accept' :
+				$condition = $exchange->getToUser()->getId() !== $user->getId();
+				$error = 'exchange.not_intended';
+				$flash_message = 'exchange.accepted';
+				$message_type = Exchange::STATUS_ACCEPTED;
+				$pm_text = 'exchange_accepted';
+				$pm_type = Message::TYPE_SUCCESS;
 
-		$user_coin = $doctrine->getRepository('EuroCoinBundle:UserCoin');
-		$coins = $user_coin->findBy(array(
-			'coin' => $exchange->getCoinsSuggested(),
-			'user' => $exchange->getFromUser(),
-				));
+				break;
 
-		foreach ($coins as $uc) {
-			$uc->removeExchange();
-		}
+			case 'cancel' :
+				$condition = $exchange->getFromUser()->getId() !== $user->getId();
+				$error = 'exchange.not_own';
+				$flash_message = 'exchange.canceled';
+				$message_type = Exchange::STATUS_CANCELED;
+				$pm_text = 'exchange_canceled';
+				$pm_type = Message::TYPE_WARNING;
 
-		$coins = $user_coin->findBy(array(
-			'coin' => $exchange->getCoinsRequested(),
-			'user' => $exchange->getToUser(),
-				));
+				break;
 
-		foreach ($coins as $uc) {
-			$uc->removeExchange();
-		}
+			case 'refuse' :
+				$condition = $exchange->getToUser()->getId() !== $user->getId();
+				$error = 'exchange.not_intended';
+				$flash_message = 'exchange.refused';
+				$message_type = Exchange::STATUS_REFUSED;
+				$pm_text = 'exchange_refused';
+				$pm_type = Message::TYPE_DANGER;
 
-		$conversation = $exchange->getConversation();
-
-		$message = new Message();
-		$message->setContent('pm.text.exchange_accepted');
-		$message->setType(Message::TYPE_SUCCESS);
-		$message->setConversation($conversation);
-
-		if ($exchange->getFromUser()->getId() === $user->getId()) {
-			$message->setDirection(Message::DIRECTION_FROM_TO);
-		} else {
-			$message->setDirection(Message::DIRECTION_TO_FROM);
-		}
-
-		$em = $doctrine->getManager();
-		$em->persist($message);
-
-		$conversation->addMessage($message);
-
-		$em->flush();
-
-		$flashBag->add('success', 'exchange.accepted');
-
-		return $this->redirect($this->generateUrl('exchange_show', array(
-							'id' => $exchange->getId(),
-						)));
-	}
-
-	public function cancelRefuseAction($id, $refuse) {
-		$flashBag = $this->get('session')->getFlashBag();
-		if (!$user = $this->getUser()) {
-			$flashBag->add('error', 'user.login_required');
-
-			return $this->redirect($this->generateUrl('exchange_list'));
-		}
-
-		$doctrine = $this->getDoctrine();
-		$exchange = $doctrine->getRepository('EuroCoinBundle:Exchange')->find($id);
-
-		if (!$exchange) {
-			$flashBag->add('error', 'exchange.not_found');
-
-			return $this->redirect($this->generateUrl('exchange_list'));
-		}
-
-		if ($refuse) {
-			$condition = $exchange->getToUser()->getId() !== $user->getId();
-			$error = 'exchange.not_intended';
-			$pm_text = 'exchange_refused';
-			$pm_type = Message::TYPE_DANGER;
-		} else {
-			$condition = $exchange->getFromUser()->getId() !== $user->getId();
-			$error = 'exchange.not_own';
-			$pm_text = 'exchange_canceled';
-			$pm_type = Message::TYPE_WARNING;
+				break;
 		}
 
 		if ($condition) {
@@ -108,7 +63,7 @@ class ExchangeController extends BaseController {
 			return $this->redirect($this->generateUrl('exchange_list'));
 		}
 
-		$exchange->setStatus($refuse ? Exchange::STATUS_REFUSED : Exchange::STATUS_CANCELED);
+		$exchange->setStatus($message_type);
 
 		$user_coin = $doctrine->getRepository('EuroCoinBundle:UserCoin');
 		$coins = $user_coin->findBy(array(
@@ -149,11 +104,7 @@ class ExchangeController extends BaseController {
 
 		$em->flush();
 
-		if ($refuse) {
-			$flashBag->add('success', 'exchange.refused');
-		} else {
-			$flashBag->add('success', 'exchange.canceled');
-		}
+		$flashBag->add('success', $flash_message);
 
 		return $this->redirect($this->generateUrl('exchange_show', array(
 							'id' => $exchange->getId(),

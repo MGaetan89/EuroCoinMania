@@ -37,13 +37,13 @@ countries_list:
 
 exchange_accept:
     pattern: /exchange/{id}/accept
-    defaults: { _controller: EuroCoinBundle:Exchange:accept }
+    defaults: { _controller: EuroCoinBundle:Exchange:acceptCancelRefuse, type: 'accept' }
     requirements:
         id: "\d+"
 
 exchange_cancel:
     pattern: /exchange/{id}/cancel
-    defaults: { _controller: EuroCoinBundle:Exchange:cancelRefuse, refuse: false }
+    defaults: { _controller: EuroCoinBundle:Exchange:acceptCancelRefuse, type: 'cancel' }
     requirements:
         id: "\d+"
         
@@ -74,7 +74,7 @@ exchange_list_all:
 
 exchange_refuse:
     pattern: /exchange/{id}/refuse
-    defaults: { _controller: EuroCoinBundle:Exchange:cancelRefuse, refuse: true }
+    defaults: { _controller: EuroCoinBundle:Exchange:acceptCancelRefuse, type: 'refuse' }
     requirements:
         id: "\d+"
 
