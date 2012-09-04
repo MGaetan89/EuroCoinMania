@@ -43,8 +43,11 @@
 				</ul>
 				<ul class="nav pull-right">
 					{% if app.user %}
+						{#
 						{% set count = 3 %}
 						<li><a href="{{ path('pm_list') }}" title="{{ 'pm.unread_count'|transchoice(count, { '%count%': count }) }}"><span class="badge badge-warning">{{ count }}</span></a></li>
+						#}
+
 						<li class="{{ macros.is_active(['pm_list', 'pm_list_archives', 'pm_read', 'show_profile'], 'false') }} dropdown">
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown">
 								{{ app.user }} <b class="caret"></b>

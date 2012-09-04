@@ -30,7 +30,7 @@ security:
                 use_referer:    true
             logout:
                 path:           /admin/logout
-                target:         /admin/login
+                target:         /
             anonymous:    true
         main:
             switch_user:        true
