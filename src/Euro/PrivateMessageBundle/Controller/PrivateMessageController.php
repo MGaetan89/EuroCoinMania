@@ -126,10 +126,12 @@ class PrivateMessageController extends Controller {
 		}
 
 		$conversations = $this->getDoctrine()->getRepository('EuroPrivateMessageBundle:Conversation')->findConversationsForUser($user, $archives);
+		$form = $this->createForm(new ConversationType());
 
 		return $this->render('EuroPrivateMessageBundle:PrivateMessage:list.html.twig', array(
 					'archives' => $archives,
 					'conversations' => $conversations,
+					'form' => $form->createView(),
 				));
 	}
 
@@ -179,21 +181,6 @@ class PrivateMessageController extends Controller {
 					'form' => $form->createView(),
 					'messages' => $messages,
 					'new_messages' => $new_messages,
-				));
-	}
-
-	public function writeAction() {
-		$flashBag = $this->get('session')->getFlashBag();
-		if (!$user = $this->getUser()) {
-			$flashBag->add('error', 'user.login_required');
-
-			return $this->redirect($this->generateUrl('fos_user_security_login'));
-		}
-
-		$form = $this->createForm(new ConversationType());
-
-		return $this->render('EuroPrivateMessageBundle:PrivateMessage:write.html.twig', array(
-					'form' => $form->createView(),
 				));
 	}
 
