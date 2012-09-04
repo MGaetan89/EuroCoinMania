@@ -71,7 +71,7 @@ Afin de faire une demande d'échange, veuillez suivre les étapes suivantes :
 	<li>Choisissez les pièces qui vous intéressent parmi les doubles de sa collection</li>
 	<li>Choisissez les pièces que vous souhaitez donner contre celles que vous avez sélectionné</li>
 </ol>
-Si l'échange est accepté par l'autre utilisateur, vos inventaires respectifs sont automatiquement mis à jour afin de prendre en compte cet échange.
+Si l'échange est accepté par l'autre utilisateur, vos inventaires respectifs ne sont pas mis à jour. Vous devez faire ce changement manuellement.
 				]]></target>
 			</trans-unit>
 			<trans-unit id="coin.exchange_request">
@@ -329,6 +329,10 @@ Si l'échange est accepté par l'autre utilisateur, vos inventaires respectifs s
 			<trans-unit id="exchange.accept">
 				<source>exchange.accept</source>
 				<target>Accepter</target>
+			</trans-unit>
+			<trans-unit id="exchange.accepted">
+				<source>exchange.accepted</source>
+				<target>Vous avez bien accepté cet échange</target>
 			</trans-unit>
 			<trans-unit id="exchange.actions">
 				<source>exchange.actions</source>

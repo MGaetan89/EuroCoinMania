@@ -45,7 +45,13 @@
 					{% endif %}
 				{% endif %}
 
-				{{ content|format_text('markdown')|raw }}
+				{% set content = content|format_text('markdown') %}
+
+				{% if message.type > 0 %}
+					{{ content|slice(3, -5)|raw }}
+				{% else %}
+					{{ content|raw }}
+				{% endif %}
 
 				{% if message.type == 0 %}
 			</div>

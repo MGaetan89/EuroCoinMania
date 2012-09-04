@@ -9,7 +9,68 @@ use Euro\PrivateMessageBundle\Entity\Message;
 class ExchangeController extends BaseController {
 
 	public function acceptAction($id) {
-		// @Todo : implement and decide action to perform with 'UserCoin.sharing'
+		$flashBag = $this->get('session')->getFlashBag();
+		if (!$user = $this->getUser()) {
+			$flashBag->add('error', 'user.login_required');
+
+			return $this->redirect($this->generateUrl('exchange_list'));
+		}
+
+		$doctrine = $this->getDoctrine();
+		$exchange = $doctrine->getRepository('EuroCoinBundle:Exchange')->find($id);
+
+		if (!$exchange) {
+			$flashBag->add('error', 'exchange.not_found');
+
+			return $this->redirect($this->generateUrl('exchange_list'));
+		}
+
+		$exchange->setStatus(Exchange::STATUS_ACCEPTED);
+
+		$user_coin = $doctrine->getRepository('EuroCoinBundle:UserCoin');
+		$coins = $user_coin->findBy(array(
+			'coin' => $exchange->getCoinsSuggested(),
+			'user' => $exchange->getFromUser(),
+				));
+
+		foreach ($coins as $uc) {
+			$uc->removeExchange();
+		}
+
+		$coins = $user_coin->findBy(array(
+			'coin' => $exchange->getCoinsRequested(),
+			'user' => $exchange->getToUser(),
+				));
+
+		foreach ($coins as $uc) {
+			$uc->removeExchange();
+		}
+
+		$conversation = $exchange->getConversation();
+
+		$message = new Message();
+		$message->setContent('pm.text.exchange_accepted');
+		$message->setType(Message::TYPE_SUCCESS);
+		$message->setConversation($conversation);
+
+		if ($exchange->getFromUser()->getId() === $user->getId()) {
+			$message->setDirection(Message::DIRECTION_FROM_TO);
+		} else {
+			$message->setDirection(Message::DIRECTION_TO_FROM);
+		}
+
+		$em = $doctrine->getManager();
+		$em->persist($message);
+
+		$conversation->addMessage($message);
+
+		$em->flush();
+
+		$flashBag->add('success', 'exchange.accepted');
+
+		return $this->redirect($this->generateUrl('exchange_show', array(
+							'id' => $exchange->getId(),
+						)));
 	}
 
 	public function cancelRefuseAction($id, $refuse) {
@@ -94,7 +155,9 @@ class ExchangeController extends BaseController {
 			$flashBag->add('success', 'exchange.canceled');
 		}
 
-		return $this->redirect($this->generateUrl('exchange_list'));
+		return $this->redirect($this->generateUrl('exchange_show', array(
+							'id' => $exchange->getId(),
+						)));
 	}
 
 	public function chooseCoinsAction($id) {
