@@ -149,4 +149,26 @@ class DefaultController extends BaseController {
 				));
 	}
 
+	public function statsAction($id) {
+		if (!$user = $this->getUser()) {
+			$this->get('session')->getFlashBag()->add('error', 'user.login_required');
+
+			return $this->redirect($this->generateUrl('fos_user_security_login'));
+		}
+
+		if ($user->getId() != $id) {
+			$user = $this->getDoctrine()->getRepository('ApplicationSonataUserBundle:User')->find($id);
+
+			if (!$user) {
+				$this->get('session')->getFlashBag()->add('error', 'user.not_found');
+
+				return $this->redirect($this->generateUrl('welcome'));
+			}
+		}
+
+		return $this->render('ApplicationSonataUserBundle:Profile:stats.html.twig', array(
+					'user' => $user,
+				));
+	}
+
 }

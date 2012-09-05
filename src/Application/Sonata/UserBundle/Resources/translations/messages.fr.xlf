@@ -138,6 +138,10 @@
 				<source>user.show_profile</source>
 				<target>Voir le profil</target>
 			</trans-unit>
+			<trans-unit id="user.show_stats">
+				<source>user.show_stats</source>
+				<target>Voir les statistiques</target>
+			</trans-unit>
 			<trans-unit id="user.timezone">
 				<source>user.timezone</source>
 				<target>Fuseau horaire</target>

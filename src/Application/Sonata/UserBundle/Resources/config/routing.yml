@@ -4,6 +4,12 @@ show_profile:
     requirements:
         id: "\d+"
 
+show_user_stats:
+    pattern:  /profile/{id}/stats
+    defaults: { _controller: ApplicationSonataUserBundle:Default:stats }
+    requirements:
+        id: "\d+"
+
 show_user_collection:
     pattern:  /profile/{user_id}/collection/{country_id}/{country_name}
     defaults: { _controller: ApplicationSonataUserBundle:Default:collection, collector: false, country_id: null, country_name: null }

@@ -145,7 +145,7 @@ class Coin {
 	 * @return Coin
 	 */
 	public function addUnit() {
-		$this->member_total++;
+		++$this->member_total;
 
 		return $this;
 	}
@@ -156,7 +156,7 @@ class Coin {
 	 * @return Coin
 	 */
 	public function removeUnit() {
-		$this->member_total--;
+		--$this->member_total;
 
 		return $this;
 	}

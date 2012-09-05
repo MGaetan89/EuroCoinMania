@@ -112,7 +112,7 @@ class UserCoin {
 	 * @return UserCoin
 	 */
 	public function addUnit() {
-		$this->quantity++;
+		++$this->quantity;
 
 		return $this;
 	}
@@ -123,7 +123,7 @@ class UserCoin {
 	 * @return UserCoin
 	 */
 	public function removeUnit() {
-		$this->quantity--;
+		--$this->quantity;
 
 		return $this;
 	}
@@ -155,7 +155,7 @@ class UserCoin {
 	 * @return UserCoin
 	 */
 	public function addExchange() {
-		$this->sharing++;
+		++$this->sharing;
 
 		return $this;
 	}
@@ -166,7 +166,7 @@ class UserCoin {
 	 * @return UserCoin
 	 */
 	public function removeExchange() {
-		$this->sharing--;
+		--$this->sharing;
 
 		return $this;
 	}

@@ -43,6 +43,12 @@
 						{{ 'user.show_collection'|trans }}
 					</a>
 				</li>
+				<li{{ macros.is_active(['show_user_stats']) }}>
+					<a href="{{ path('show_user_stats', { id: user.id }) }}">
+						<i class="icon-chevron-right"></i>
+						{{ 'user.show_stats'|trans }}
+					</a>
+				</li>
 
 				{% if app.user.id == user.id %}
 					<li class="divider">
