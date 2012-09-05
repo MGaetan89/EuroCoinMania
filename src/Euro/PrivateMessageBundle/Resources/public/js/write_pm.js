@@ -15,7 +15,7 @@ $(function() {
 				}
 
 				process(data);
-			});
+			}, 'json');
 		}
 	});
 
@@ -42,3 +42,4 @@ $(function() {
 		return true;
 	});
 });
+
