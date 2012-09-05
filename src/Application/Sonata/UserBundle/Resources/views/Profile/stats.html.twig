@@ -1,17 +1,30 @@
 {% extends 'ApplicationSonataUserBundle:Profile:base.html.twig' %}
 
 {% block content %}
-<ul class="nav nav-tabs">
-	<li class="active"><a href="#countries" data-toggle="tab">Pays</a></li>
-	<li><a href="#coins" data-toggle="tab">Pièces</a></li>
-</ul>
+<div class="tabbable tabs-left">
+	<ul class="nav nav-tabs">
+		<li class="active"><a href="#global" data-toggle="tab">Général</a></li>
 
-<div class="tab-content">
-	<div class="tab-pane active" id="countries">
-		,,,
-	</div>
-	<div class="tab-pane" id="coins">
-		;;;
+		{% for country in countries %}
+			<li><a href="#country-{{ country.id }}" data-toggle="tab">{{ macros.name(country) }}</a></li>
+		{% endfor %}
+	</ul>
+
+	<div class="tab-content">
+		<div class="tab-pane active" id="global">
+			<dl class="dl-horizontal">
+				{% for name, value in global %}
+					<dt>{{ name }}</dt>
+					<dd>{{ value|join(', ') }}</dd>
+				{% endfor %}
+			</dl>
+		</div>
+
+		{% for country in countries %}
+			<div class="tab-pane" id="country-{{ country.id }}">
+				Statistiques sur l'utilisateur pour le pays {{ macros.name(country) }}
+			</div>
+		{% endfor %}
 	</div>
 </div>
 {% endblock %}

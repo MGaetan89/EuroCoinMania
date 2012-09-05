@@ -156,8 +156,9 @@ class DefaultController extends BaseController {
 			return $this->redirect($this->generateUrl('fos_user_security_login'));
 		}
 
+		$doctrine = $this->getDoctrine();
 		if ($user->getId() != $id) {
-			$user = $this->getDoctrine()->getRepository('ApplicationSonataUserBundle:User')->find($id);
+			$user = $doctrine->getRepository('ApplicationSonataUserBundle:User')->find($id);
 
 			if (!$user) {
 				$this->get('session')->getFlashBag()->add('error', 'user.not_found');
@@ -166,7 +167,54 @@ class DefaultController extends BaseController {
 			}
 		}
 
+		$user_coins = $doctrine->getRepository('EuroCoinBundle:UserCoin')->findByUser($user);
+		$countries = array();
+		$global = array(
+			'countries' => array(),
+			'total_coins' => 0,
+			'total_collectors' => 0,
+			'total_doubles' => 0,
+			'total_uniques' => 0,
+			'total_value' => 0,
+		);
+
+		foreach ($user_coins as $uc) {
+			$coin = $uc->getCoin();
+			$country = $coin->getCountry();
+			$country_id = $country->getId();
+			$quantity = $uc->getQuantity();
+			$value = $coin->getValue();
+
+			// Global stats
+			if (!isset($global['countries'][$country_id])) {
+				$global['countries'][$country_id] = $country;
+			}
+
+			++$global['total_coins'];
+
+			if ($coin->isCollector()) {
+				++$global['total_collectors'];
+			}
+
+			if ($quantity === 1) {
+				++$global['total_uniques'];
+			} else if ($quantity > 1) {
+				++$global['total_doubles'];
+			}
+
+			$global['total_value'] += $value->getValue() * $quantity;
+
+			// Retrieve country list
+			if (!isset($countries[$country_id])) {
+				$countries[$country_id] = $country;
+			}
+
+			// Per country stats
+		}
+
 		return $this->render('ApplicationSonataUserBundle:Profile:stats.html.twig', array(
+					'countries' => $countries,
+					'global' => $global,
 					'user' => $user,
 				));
 	}
