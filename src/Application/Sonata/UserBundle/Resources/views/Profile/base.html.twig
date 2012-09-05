@@ -37,7 +37,7 @@
 						{{ 'user.show_profile'|trans }}
 					</a>
 				</li>
-				<li{{ macros.is_active(['show_user_collection']) }}>
+				<li{{ macros.is_active(['show_user_collection', 'show_user_collection_collector']) }}>
 					<a href="{{ path('show_user_collection', { user_id: user.id }) }}">
 						<i class="icon-chevron-right"></i>
 						{{ 'user.show_collection'|trans }}
