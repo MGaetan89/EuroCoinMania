@@ -30,7 +30,7 @@ class DefaultController extends BaseController {
 		$coins = array();
 		$country = null;
 		$uc = array();
-		$user_coins = $doctrine->getRepository('EuroCoinBundle:UserCoin')->findCoinsByUser($user);
+		$user_coins = $doctrine->getRepository('EuroCoinBundle:UserCoin')->findCoinsByUser($user, false);
 		$values = array();
 
 		list($coins, $values) = $this->_buildVars($user_coins);

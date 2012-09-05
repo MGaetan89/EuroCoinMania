@@ -13,7 +13,7 @@ use Sonata\UserBundle\Model\UserInterface;
  */
 class UserCoinRepository extends EntityRepository {
 
-	public function findCoinsByUser(UserInterface $user) {
+	public function findCoinsByUser(UserInterface $user, $collector) {
 		$queryBuilder = $this->createQueryBuilder('uc');
 		$expr = $queryBuilder->expr();
 
@@ -25,10 +25,14 @@ class UserCoinRepository extends EntityRepository {
 						->join('c.year', 'y')
 						->leftJoin('y.workshop', 'w')
 						->where($expr->eq('uc.user', ':user'))
+						->andWhere($expr->eq('c.collector', ':collector'))
 						->orderBy('y.year', 'ASC')
 						->addOrderBy('w.short_name', 'ASC')
 						->addOrderBy('v.value', 'DESC')
-						->setParameter('user', $user)
+						->setParameters(array(
+							'collector' => $collector,
+							'user' => $user,
+						))
 						->getQuery()
 						->getResult();
 	}
