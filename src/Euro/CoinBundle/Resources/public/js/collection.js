@@ -1,5 +1,5 @@
 $(function () {
-	var body = $('body'), opened = null, placement = location.pathname.substr(0, '/collection/collector/'.length) !== '/collection/collector/' ? 'bottom' : 'left';
+	var body = $('body'), opened = null, placement = location.pathname.match('collector') ? 'left' : 'bottom';
 
 	$('[data-action=add-coin], [data-action=remove-coin]').on('click', function () {
 		var $this = $(this), action = $this.data('action').split('-')[0], id = $this.parents('[data-coin]').data('coin');

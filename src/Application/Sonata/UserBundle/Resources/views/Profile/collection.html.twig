@@ -1,23 +1,5 @@
 {% extends 'ApplicationSonataUserBundle:Profile:base.html.twig' %}
 
-{% block optional_menu %}
-{% if countries %}
-	<li class="nav-header">{{ 'countries.list'|trans }}</li>
-
-	{% for country in countries %}
-		{% set _name = macros.name(country) %}
-
-		<li{% if country.name == current.name %} class="active"{% endif %} data-action="popover" title="{{ _name }}" data-content="{% include 'EuroCoinBundle:Country:country_data.html.twig' with { country: country } %}">
-			<a href="{{ path('show_user_collection', { country_name: _name, country_id: country.id, user_id: user.id }) }}">
-				<i class="icon-chevron-right"></i> {{ _name }}
-			</a>
-		</li>
-	{% endfor %}
-
-	<li class="divider"></li>
-{% endif %}
-{% endblock %}
-
 {% block content %}
 {% if coins %}
 	{% set header %}
@@ -53,11 +35,7 @@
 				{% for value in all_values %}
 					{% if values[value] is defined %}
 						{% set coin = values[value] %}
-
-						{% if app.user %}
-							{% set has_coin = uc[coin.id] is defined %}
-						{% endif %}
-
+						{% set has_coin = uc[coin.id] is defined %}
 						{% set quantity = has_coin ? uc[coin.id].quantity : 0 %}
 
 						<td>
@@ -79,4 +57,8 @@
 {% else %}
 	<div class="alert">{{ 'user.collection.empty'|trans }}</div>
 {% endif %}
+{% endblock %}
+
+{% block javascript %}
+<script src="{{ asset('bundles/eurocoin/js/collection.js') }}" type="text/javascript"></script>
 {% endblock %}

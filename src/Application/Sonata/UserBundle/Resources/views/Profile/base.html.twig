@@ -25,7 +25,9 @@
 
 		<div class="dropdown">
 			<ul class="dropdown-menu" style="display: block;">
-				{% block optional_menu %}{% endblock %}
+				{% if app.request.get('_route') in ['show_user_collection', 'show_user_collection_collector'] %}
+					{% include 'ApplicationSonataUserBundle:Profile:collection_menu.html.twig' %}
+				{% endif %}
 
 				<li class="nav-header">{{ 'actions'|trans }}</li>
 

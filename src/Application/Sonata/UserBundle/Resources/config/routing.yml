@@ -6,7 +6,14 @@ show_profile:
 
 show_user_collection:
     pattern:  /profile/{user_id}/collection/{country_id}/{country_name}
-    defaults: { _controller: ApplicationSonataUserBundle:Default:collection, country_id: null, country_name: null }
+    defaults: { _controller: ApplicationSonataUserBundle:Default:collection, collector: false, country_id: null, country_name: null }
+    requirements:
+        country_id: "\d+"
+        user_id: "\d+"
+
+show_user_collection_collector:
+    pattern:  /profile/{user_id}/collection/collector/{country_id}/{country_name}
+    defaults: { _controller: ApplicationSonataUserBundle:Default:collection, collector: true, country_id: null, country_name: null }
     requirements:
         country_id: "\d+"
         user_id: "\d+"

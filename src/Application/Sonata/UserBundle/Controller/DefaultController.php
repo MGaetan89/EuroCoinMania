@@ -7,7 +7,7 @@ use Symfony\Component\HttpFoundation\Response;
 
 class DefaultController extends BaseController {
 
-	public function collectionAction($country_id, $user_id) {
+	public function collectionAction($collector, $country_id, $user_id) {
 		if (!$user = $this->getUser()) {
 			$this->get('session')->getFlashBag()->add('error', 'user.login_required');
 
@@ -27,16 +27,22 @@ class DefaultController extends BaseController {
 		$doctrine = $this->getDoctrine();
 		$translator = $this->get('translator');
 
-		$coins = array();
 		$country = null;
 		$uc = array();
-		$user_coins = $doctrine->getRepository('EuroCoinBundle:UserCoin')->findCoinsByUser($user, false);
+		$user_coins = $doctrine->getRepository('EuroCoinBundle:UserCoin')->findCoinsByUser($user, $collector);
 		$values = array();
 
-		list($coins, $values) = $this->_buildVars($user_coins);
+		if ($collector) {
+			$coins = array();
+			foreach ($user_coins as $user_coin) {
+				$coins[] = $user_coin->getCoin();
+			}
+		} else {
+			list($coins, $values) = $this->_buildVars($user_coins);
 
-		$coins = array_shift($coins);
-		$values = array_shift($values);
+			$coins = array_shift($coins);
+			$values = array_shift($values);
+		}
 
 		$countries = array();
 		foreach ($user_coins as $user_coin) {
@@ -73,7 +79,12 @@ class DefaultController extends BaseController {
 					return strcmp($a_name, $b_name);
 				});
 
-		return $this->render('ApplicationSonataUserBundle:Profile:collection.html.twig', array(
+		$template_file = 'collection';
+		if ($collector) {
+			$template_file = 'collection_collector';
+		}
+
+		return $this->render('ApplicationSonataUserBundle:Profile:' . $template_file . '.html.twig', array(
 					'all_values' => $values,
 					'coins' => $coins,
 					'countries' => $countries,
