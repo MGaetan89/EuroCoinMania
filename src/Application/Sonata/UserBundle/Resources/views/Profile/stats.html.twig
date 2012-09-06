@@ -16,18 +16,18 @@
 				<div class="span6">
 					<h3 class="page-header">Quelques chiffres</h3>
 
-					<dl class="dl-horizontal">
+					<dl>
 						<dt>{{ 'user.stats.total_coins'|trans }}</dt>
-							<dd>{{ global.total_coins|number_format }}</dd>
+							<dd>{{ 'coins'|transchoice(global.total_coins, { '%total%': global.total_coins|number_format }) }}</dd>
 
 						<dt>{{ 'user.stats.total_doubles'|trans }}</dt>
-							<dd>{{ global.total_doubles|number_format }}</dd>
+							<dd>{{ 'coins'|transchoice(global.total_doubles, { '%total%': global.total_doubles|number_format }) }}</dd>
 
 						<dt>{{ 'user.stats.total_uniques'|trans }}</dt>
-							<dd>{{ global.total_uniques|number_format }}</dd>
+							<dd>{{ 'coins'|transchoice(global.total_uniques, { '%total%': global.total_uniques|number_format }) }}</dd>
 
 						<dt>{{ 'user.stats.total_collectors'|trans }}</dt>
-							<dd>{{ global.total_collectors|number_format }}</dd>
+							<dd>{{ 'coins'|transchoice(global.total_collectors, { '%total%': global.total_collectors|number_format }) }}</dd>
 
 						<dt>{{ 'user.stats.total_value'|trans }}</dt>
 							<dd>{{ macros.value(global.total_value) }}</dd>
@@ -41,7 +41,9 @@
 
 					<ul>
 						{% for country in global.countries %}
-							<li><a href="#">{{ macros.name(country) }}</a> avec {{ global.total_coins_by_country[country.id] }} pièces</li>
+							{% set name = macros.name(country) %}
+
+							<li><a href="{{ path('coin_collection', { id: country.id, country: name }) }}">{{ name }}</a> avec <strong>{{ global.total_coins_by_country[country.id] }}</strong> pièces</li>
 						{% endfor %}
 					</ul>
 				</div>

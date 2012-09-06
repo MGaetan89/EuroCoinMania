@@ -142,6 +142,30 @@
 				<source>user.show_stats</source>
 				<target>Voir les statistiques</target>
 			</trans-unit>
+			<trans-unit id="user.stats.average_value">
+				<source>user.stats.average_value</source>
+				<target>Valeur moyenne d'une pièce</target>
+			</trans-unit>
+			<trans-unit id="user.stats.total_coins">
+				<source>user.stats.total_coins</source>
+				<target>Nombre total de pièces</target>
+			</trans-unit>
+			<trans-unit id="user.stats.total_collectors">
+				<source>user.stats.total_collectors</source>
+				<target>Nombre de pièces collectors</target>
+			</trans-unit>
+			<trans-unit id="user.stats.total_doubles">
+				<source>user.stats.total_doubles</source>
+				<target>Nombre de pièces en double</target>
+			</trans-unit>
+			<trans-unit id="user.stats.total_uniques">
+				<source>user.stats.total_uniques</source>
+				<target>Nombre de pièces uniques</target>
+			</trans-unit>
+			<trans-unit id="user.stats.total_value">
+				<source>user.stats.total_value</source>
+				<target>Valeur total de la collection</target>
+			</trans-unit>
 			<trans-unit id="user.timezone">
 				<source>user.timezone</source>
 				<target>Fuseau horaire</target>

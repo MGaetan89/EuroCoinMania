@@ -134,6 +134,10 @@ Si l'échange est accepté par l'autre utilisateur, vos inventaires respectifs n
 				<source>coin.year</source>
 				<target>Année</target>
 			</trans-unit>
+			<trans-unit id="coins">
+				<source>coins</source>
+				<target>%total% pièce|%total% pièces</target>
+			</trans-unit>
 			<trans-unit id="coins.requested_coins">
 				<source>coins.requested_coins</source>
 				<target>Pièces demandées</target>
