@@ -219,7 +219,9 @@ class DefaultController extends BaseController {
 			// Per country stats
 		}
 
-		$global['average_value'] = $global['total_value'] / $global['total_coins'];
+		if ($global['total_coins'] > 0) {
+			$global['average_value'] = $global['total_value'] / $global['total_coins'];
+		}
 
 		return $this->render('ApplicationSonataUserBundle:Profile:stats.html.twig', array(
 					'countries' => $countries,

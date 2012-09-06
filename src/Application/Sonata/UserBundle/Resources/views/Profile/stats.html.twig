@@ -1,84 +1,89 @@
 {% extends 'ApplicationSonataUserBundle:Profile:base.html.twig' %}
 
 {% block content %}
-<div class="tabbable tabs-left">
-	<ul class="nav nav-tabs">
-		<li class="active"><a href="#global" data-toggle="tab">{{ 'user.stats.global'|trans }}</a></li>
+{% if global.total_coins %}
+	<div class="tabbable tabs-left">
+		<ul class="nav nav-tabs">
+			<li class="active"><a href="#global" data-toggle="tab">{{ 'user.stats.global'|trans }}</a></li>
 
-		{% for country in countries %}
-			<li><a href="#country-{{ country.id }}" data-toggle="tab">{{ macros.name(country) }}</a></li>
-		{% endfor %}
-	</ul>
+			{% for country in countries %}
+				<li><a href="#country-{{ country.id }}" data-toggle="tab">{{ macros.name(country) }}</a></li>
+			{% endfor %}
+		</ul>
 
-	<div class="tab-content">
-		<div class="tab-pane active" id="global">
-			<div class="row-fluid">
-				<div class="span6">
-					<h3 class="page-header">{{ 'user.stats.global.stats'|trans }}</h3>
+		<div class="tab-content">
+			<div class="tab-pane active" id="global">
+				<div class="row-fluid">
+					<div class="{% if global.total_coins %}span6{% else %}span12{% endif %}">
+						<h3 class="page-header">{{ 'user.stats.global.stats'|trans }}</h3>
 
-					<dl>
-						<dt>{{ 'user.stats.total_coins'|trans }}</dt>
-							<dd>{{ 'coins'|transchoice(global.total_coins, { '%total%': global.total_coins|number_format }) }}</dd>
+						<dl>
+							<dt>{{ 'user.stats.total_coins'|trans }}</dt>
+								<dd>{{ 'coins'|transchoice(global.total_coins, { '%total%': global.total_coins|number_format }) }}</dd>
 
-						<dt>{{ 'user.stats.total_doubles'|trans }}</dt>
-							<dd>{{ 'coins'|transchoice(global.total_doubles, { '%total%': global.total_doubles|number_format }) }}</dd>
+							<dt>{{ 'user.stats.total_doubles'|trans }}</dt>
+								<dd>{{ 'coins'|transchoice(global.total_doubles, { '%total%': global.total_doubles|number_format }) }}</dd>
 
-						<dt>{{ 'user.stats.total_uniques'|trans }}</dt>
-							<dd>{{ 'coins'|transchoice(global.total_uniques, { '%total%': global.total_uniques|number_format }) }}</dd>
+							<dt>{{ 'user.stats.total_uniques'|trans }}</dt>
+								<dd>{{ 'coins'|transchoice(global.total_uniques, { '%total%': global.total_uniques|number_format }) }}</dd>
 
-						<dt>{{ 'user.stats.total_collectors'|trans }}</dt>
-							<dd>{{ 'coins'|transchoice(global.total_collectors, { '%total%': global.total_collectors|number_format }) }}</dd>
+							<dt>{{ 'user.stats.total_collectors'|trans }}</dt>
+								<dd>{{ 'coins'|transchoice(global.total_collectors, { '%total%': global.total_collectors|number_format }) }}</dd>
 
-						<dt>{{ 'user.stats.total_value'|trans }}</dt>
-							<dd>{{ macros.value(global.total_value) }}</dd>
+							<dt>{{ 'user.stats.total_value'|trans }}</dt>
+								<dd>{{ macros.value(global.total_value) }}</dd>
 
-						<dt>{{ 'user.stats.average_value'|trans }}</dt>
-							<dd>{{ macros.value(global.average_value) }}</dd>
-					</dl>
+							<dt>{{ 'user.stats.average_value'|trans }}</dt>
+								<dd>{{ macros.value(global.average_value) }}</dd>
+						</dl>
+					</div>
+
+					<div class="span6">
+						<h3 class="page-header"><span class="pull-right">{{ 'user.stats.global.owned_countries'|trans }}</span><br /></h3>
+
+						<ul>
+							{% for country in global.countries %}
+								{% set count, name = global.total_coins_by_country[country.id], macros.name(country) %}
+
+								<li>
+									{{ 'user.stats.global.country_count'|transchoice(count, {
+										'%count%': count,
+										'%country%': name,
+										'%path%': path('coin_collection', { id: country.id, country: name })
+									})|raw }}
+								</li>
+							{% endfor %}
+						</ul>
+					</div>
 				</div>
-				<div class="span6">
-					<h3 class="page-header"><span class="pull-right">{{ 'user.stats.global.owned_countries'|trans }}</span><br /></h3>
 
-					<ul>
-						{% for country in global.countries %}
-							{% set count, name = global.total_coins_by_country[country.id], macros.name(country) %}
+				<h3 class="page-header">{{ 'user.stats.global.collection_distribution'|trans }}</h3>
 
-							<li>
-								{{ 'user.stats.global.country_count'|transchoice(count, {
-									'%count%': count,
-									'%country%': name,
-									'%path%': path('coin_collection', { id: country.id, country: name })
-								})|raw }}
-							</li>
-						{% endfor %}
-					</ul>
+				<div class="progress">
+					{% set classes = ['info', 'success', 'warning', 'danger'] %}
+
+					{% for country in countries %}
+						{% set count, total = global.total_coins_by_country[country.id], global.total_coins %}
+						{% set title = 'user.stats.global.coin_distribution'|transchoice(count, {
+							'%count%': count,
+							'%total%': total
+						}) %}
+
+						<div class="bar bar-{{ cycle(classes, loop.index0) }}" rel="tooltip" style="width: {{ count / total * 100 }}%" title="{{ title }}">{{ macros.name(country) }}</div>
+					{% endfor %}
 				</div>
 			</div>
 
-			<h3 class="page-header">{{ 'user.stats.global.collection_distribution'|trans }}</h3>
-
-			<div class="progress">
-				{% set classes = ['info', 'success', 'warning', 'danger'] %}
-
-				{% for country in countries %}
-					{% set count, total = global.total_coins_by_country[country.id], global.total_coins %}
-					{% set title = 'user.stats.global.coin_distribution'|transchoice(count, {
-						'%count%': count,
-						'%total%': total
-					}) %}
-
-					<div class="bar bar-{{ cycle(classes, loop.index0) }}" rel="tooltip" style="width: {{ count / total * 100 }}%" title="{{ title }}">{{ macros.name(country) }}</div>
-				{% endfor %}
-			</div>
+			{% for country in countries %}
+				<div class="tab-pane" id="country-{{ country.id }}">
+					Statistiques sur l'utilisateur pour le pays <strong>{{ macros.name(country) }}</strong>
+				</div>
+			{% endfor %}
 		</div>
-
-		{% for country in countries %}
-			<div class="tab-pane" id="country-{{ country.id }}">
-				Statistiques sur l'utilisateur pour le pays <strong>{{ macros.name(country) }}</strong>
-			</div>
-		{% endfor %}
 	</div>
-</div>
+{% else %}
+	<div class="alert">{{ 'user.collection.empty'|trans }}</div>
+{% endif %}
 {% endblock %}
 
 {% block javascript %}
