@@ -170,8 +170,10 @@ class DefaultController extends BaseController {
 		$user_coins = $doctrine->getRepository('EuroCoinBundle:UserCoin')->findByUser($user);
 		$countries = array();
 		$global = array(
+			'average_value' => 0,
 			'countries' => array(),
 			'total_coins' => 0,
+			'total_coins_by_country' => array(),
 			'total_collectors' => 0,
 			'total_doubles' => 0,
 			'total_uniques' => 0,
@@ -189,8 +191,13 @@ class DefaultController extends BaseController {
 			if (!isset($global['countries'][$country_id])) {
 				$global['countries'][$country_id] = $country;
 			}
-
 			++$global['total_coins'];
+
+			if (!isset($global['total_coins_by_country'][$country_id])) {
+				$global['total_coins_by_country'][$country_id] = 1;
+			} else {
+				++$global['total_coins_by_country'][$country_id];
+			}
 
 			if ($coin->isCollector()) {
 				++$global['total_collectors'];
@@ -211,6 +218,8 @@ class DefaultController extends BaseController {
 
 			// Per country stats
 		}
+
+		$global['average_value'] = $global['total_value'] / $global['total_coins'];
 
 		return $this->render('ApplicationSonataUserBundle:Profile:stats.html.twig', array(
 					'countries' => $countries,

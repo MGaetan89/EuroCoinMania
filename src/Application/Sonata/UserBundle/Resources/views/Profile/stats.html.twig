@@ -12,17 +12,55 @@
 
 	<div class="tab-content">
 		<div class="tab-pane active" id="global">
-			<dl class="dl-horizontal">
-				{% for name, value in global %}
-					<dt>{{ name }}</dt>
-					<dd>{{ value|join(', ') }}</dd>
+			<div class="row-fluid">
+				<div class="span6">
+					<h3 class="page-header">Quelques chiffres</h3>
+
+					<dl class="dl-horizontal">
+						<dt>{{ 'user.stats.total_coins'|trans }}</dt>
+							<dd>{{ global.total_coins|number_format }}</dd>
+
+						<dt>{{ 'user.stats.total_doubles'|trans }}</dt>
+							<dd>{{ global.total_doubles|number_format }}</dd>
+
+						<dt>{{ 'user.stats.total_uniques'|trans }}</dt>
+							<dd>{{ global.total_uniques|number_format }}</dd>
+
+						<dt>{{ 'user.stats.total_collectors'|trans }}</dt>
+							<dd>{{ global.total_collectors|number_format }}</dd>
+
+						<dt>{{ 'user.stats.total_value'|trans }}</dt>
+							<dd>{{ macros.value(global.total_value) }}</dd>
+
+						<dt>{{ 'user.stats.average_value'|trans }}</dt>
+							<dd>{{ macros.value(global.average_value) }}</dd>
+					</dl>
+				</div>
+				<div class="span6">
+					<h3 class="page-header"><span class="pull-right">Pays possédés</span><br /></h3>
+
+					<ul>
+						{% for country in global.countries %}
+							<li><a href="#">{{ macros.name(country) }}</a> avec {{ global.total_coins_by_country[country.id] }} pièces</li>
+						{% endfor %}
+					</ul>
+				</div>
+			</div>
+
+			<h3 class="page-header">Répartition de la collection</h3>
+
+			<div class="progress">
+				{% set classes = ['info', 'success', 'warning', 'danger'] %}
+
+				{% for country in countries %}
+					<div class="bar bar-{{ cycle(classes, loop.index0) }}" style="width: {{ global.total_coins_by_country[country.id] / global.total_coins * 100 }}%" title="{{ global.total_coins_by_country[country.id] }} / {{ global.total_coins }}">{{ macros.name(country) }}</div>
 				{% endfor %}
-			</dl>
+			</div>
 		</div>
 
 		{% for country in countries %}
 			<div class="tab-pane" id="country-{{ country.id }}">
-				Statistiques sur l'utilisateur pour le pays {{ macros.name(country) }}
+				Statistiques sur l'utilisateur pour le pays <strong>{{ macros.name(country) }}</strong>
 			</div>
 		{% endfor %}
 	</div>
