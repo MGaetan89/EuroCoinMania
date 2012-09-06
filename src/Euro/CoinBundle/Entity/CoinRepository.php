@@ -12,6 +12,25 @@ use Doctrine\ORM\EntityRepository;
  */
 class CoinRepository extends EntityRepository {
 
+	public function findByCountry(array $countries) {
+		$queryBuidler = $this->createQueryBuilder('c');
+		$expr = $queryBuidler->expr();
+
+		return $queryBuidler
+						->select('c, ct, v, y, w')
+						->join('c.country', 'ct')
+						->join('c.value', 'v')
+						->join('c.year', 'y')
+						->leftJoin('y.workshop', 'w')
+						->where($expr->in('c.country', ':countries'))
+						->orderBy('y.year', 'ASC')
+						->addOrderBy('w.short_name', 'ASC')
+						->addOrderBy('v.value', 'DESC')
+						->setParameter('countries', $countries)
+						->getQuery()
+						->getResult();
+	}
+
 	public function findCoinById(array $ids) {
 		$queryBuidler = $this->createQueryBuilder('c');
 		$expr = $queryBuidler->expr();

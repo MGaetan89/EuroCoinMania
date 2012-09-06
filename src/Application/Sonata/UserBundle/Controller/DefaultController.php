@@ -169,16 +169,18 @@ class DefaultController extends BaseController {
 
 		$user_coins = $doctrine->getRepository('EuroCoinBundle:UserCoin')->findByUser($user);
 		$countries = array();
+		$countries_user_stats = array();
 		$global = array(
 			'average_value' => 0,
 			'countries' => array(),
-			'total_coins' => 0,
-			'total_coins_by_country' => array(),
+			'total_coins' => count($user_coins),
 			'total_collectors' => 0,
 			'total_doubles' => 0,
 			'total_uniques' => 0,
+			'total_uniques_value' => 0,
 			'total_value' => 0,
 		);
+		$years = array();
 
 		foreach ($user_coins as $uc) {
 			$coin = $uc->getCoin();
@@ -186,17 +188,12 @@ class DefaultController extends BaseController {
 			$country_id = $country->getId();
 			$quantity = $uc->getQuantity();
 			$value = $coin->getValue();
+			$year = $coin->getYear();
+			$year_id = $year->getId();
 
 			// Global stats
 			if (!isset($global['countries'][$country_id])) {
 				$global['countries'][$country_id] = $country;
-			}
-			++$global['total_coins'];
-
-			if (!isset($global['total_coins_by_country'][$country_id])) {
-				$global['total_coins_by_country'][$country_id] = 1;
-			} else {
-				++$global['total_coins_by_country'][$country_id];
 			}
 
 			if ($coin->isCollector()) {
@@ -209,6 +206,7 @@ class DefaultController extends BaseController {
 				++$global['total_doubles'];
 			}
 
+			$global['total_uniques_value'] += $value->getValue();
 			$global['total_value'] += $value->getValue() * $quantity;
 
 			// Retrieve country list
@@ -216,17 +214,81 @@ class DefaultController extends BaseController {
 				$countries[$country_id] = $country;
 			}
 
-			// Per country stats
+			// Per country stat
+			if (!isset($countries_user_stats[$country_id])) {
+				$countries_user_stats[$country_id] = array(
+					'total_coins' => 0,
+					'total_collectors' => 0,
+					'total_value' => 0,
+					'years' => array(),
+				);
+			}
+
+			$stat = &$countries_user_stats[$country_id];
+
+			++$stat['total_coins'];
+
+			if ($coin->isCollector()) {
+				++$stat['total_collectors'];
+			}
+
+			$stat['total_value'] += $value->getValue();
+
+			if (!isset($stat['years'][$year_id])) {
+				$stat['years'][$year_id] = 0;
+			}
+
+			++$stat['years'][$year_id];
 		}
 
 		if ($global['total_coins'] > 0) {
 			$global['average_value'] = $global['total_value'] / $global['total_coins'];
 		}
 
+		$countries_data = $doctrine->getRepository('EuroCoinBundle:Coin')->findByCountry($countries);
+		$countries_stats = array();
+
+		foreach ($countries_data as $coin) {
+			$country = $coin->getCountry();
+			$country_id = $country->getId();
+			$value = $coin->getValue();
+			$year = $coin->getYear();
+			$year_id = $year->getId();
+
+			if (!isset($countries_stats[$country_id])) {
+				$countries_stats[$country_id] = array(
+					'total_coins' => 0,
+					'total_collectors' => 0,
+					'total_value' => 0,
+					'years' => array(),
+				);
+			}
+
+			$stat = &$countries_stats[$country_id];
+
+			++$stat['total_coins'];
+
+			if ($coin->isCollector()) {
+				++$stat['total_collectors'];
+			}
+
+			$stat['total_value'] += $value->getValue();
+
+			if (!isset($stat['years'][$year_id])) {
+				$stat['years'][$year_id] = 0;
+				$years[$year_id] = $year;
+			}
+
+			++$stat['years'][$year_id];
+		}
+
 		return $this->render('ApplicationSonataUserBundle:Profile:stats.html.twig', array(
 					'countries' => $countries,
+					'countries_stats' => $countries_stats,
+					'countries_user_stats' => $countries_user_stats,
 					'global' => $global,
 					'user' => $user,
+					'years' => $years,
 				));
 	}
 

@@ -144,7 +144,27 @@
 			</trans-unit>
 			<trans-unit id="user.stats.average_value">
 				<source>user.stats.average_value</source>
-				<target>Valeur moyenne d'une pièce</target>
+				<target>Valeur moyenne d'une pièce (sur le total)</target>
+			</trans-unit>
+			<trans-unit id="user.stats.country.coins">
+				<source>user.stats.country.coins</source>
+				<target>Nombre de pièces</target>
+			</trans-unit>
+			<trans-unit id="user.stats.country.collectors">
+				<source>user.stats.country.collectors</source>
+				<target>Nombre de pièces collectors</target>
+			</trans-unit>
+			<trans-unit id="user.stats.country.distribution_by_year">
+				<source>user.stats.country.distribution_by_year</source>
+				<target>Répartition par année</target>
+			</trans-unit>
+			<trans-unit id="user.stats.country.value">
+				<source>user.stats.country.value</source>
+				<target>Valeur enregistrée</target>
+			</trans-unit>
+			<trans-unit id="user.stats.country.value_distribution">
+				<source>user.stats.country.value_distribution</source>
+				<target>%count% sur %total%</target>
 			</trans-unit>
 			<trans-unit id="user.stats.global">
 				<source>user.stats.global</source>
@@ -187,6 +207,10 @@
 			<trans-unit id="user.stats.total_uniques">
 				<source>user.stats.total_uniques</source>
 				<target>Nombre de pièces uniques</target>
+			</trans-unit>
+			<trans-unit id="user.stats.total_uniques_value">
+				<source>user.stats.total_uniques_value</source>
+				<target>Valeur de la collection en pièces uniques</target>
 			</trans-unit>
 			<trans-unit id="user.stats.total_value">
 				<source>user.stats.total_value</source>

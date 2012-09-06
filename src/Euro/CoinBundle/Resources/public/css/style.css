@@ -3,14 +3,6 @@ body {
 	margin-top: 50px;
 }
 
-dl.dl-horizontal dd {
-	margin-left: 150px;
-}
-
-dl.dl-horizontal dt {
-	width: 140px;
-}
-
 #map {
 	height: 454px;
 }
