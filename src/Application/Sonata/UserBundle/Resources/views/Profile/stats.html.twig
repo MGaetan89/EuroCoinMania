@@ -3,7 +3,7 @@
 {% block content %}
 <div class="tabbable tabs-left">
 	<ul class="nav nav-tabs">
-		<li class="active"><a href="#global" data-toggle="tab">Général</a></li>
+		<li class="active"><a href="#global" data-toggle="tab">{{ 'user.stats.global'|trans }}</a></li>
 
 		{% for country in countries %}
 			<li><a href="#country-{{ country.id }}" data-toggle="tab">{{ macros.name(country) }}</a></li>
@@ -14,7 +14,7 @@
 		<div class="tab-pane active" id="global">
 			<div class="row-fluid">
 				<div class="span6">
-					<h3 class="page-header">Quelques chiffres</h3>
+					<h3 class="page-header">{{ 'user.stats.global.stats'|trans }}</h3>
 
 					<dl>
 						<dt>{{ 'user.stats.total_coins'|trans }}</dt>
@@ -37,25 +37,37 @@
 					</dl>
 				</div>
 				<div class="span6">
-					<h3 class="page-header"><span class="pull-right">Pays possédés</span><br /></h3>
+					<h3 class="page-header"><span class="pull-right">{{ 'user.stats.global.owned_countries'|trans }}</span><br /></h3>
 
 					<ul>
 						{% for country in global.countries %}
-							{% set name = macros.name(country) %}
+							{% set count, name = global.total_coins_by_country[country.id], macros.name(country) %}
 
-							<li><a href="{{ path('coin_collection', { id: country.id, country: name }) }}">{{ name }}</a> avec <strong>{{ global.total_coins_by_country[country.id] }}</strong> pièces</li>
+							<li>
+								{{ 'user.stats.global.country_count'|transchoice(count, {
+									'%count%': count,
+									'%country%': name,
+									'%path%': path('coin_collection', { id: country.id, country: name })
+								})|raw }}
+							</li>
 						{% endfor %}
 					</ul>
 				</div>
 			</div>
 
-			<h3 class="page-header">Répartition de la collection</h3>
+			<h3 class="page-header">{{ 'user.stats.global.collection_distribution'|trans }}</h3>
 
 			<div class="progress">
 				{% set classes = ['info', 'success', 'warning', 'danger'] %}
 
 				{% for country in countries %}
-					<div class="bar bar-{{ cycle(classes, loop.index0) }}" style="width: {{ global.total_coins_by_country[country.id] / global.total_coins * 100 }}%" title="{{ global.total_coins_by_country[country.id] }} / {{ global.total_coins }}">{{ macros.name(country) }}</div>
+					{% set count, total = global.total_coins_by_country[country.id], global.total_coins %}
+					{% set title = 'user.stats.global.coin_distribution'|transchoice(count, {
+						'%count%': count,
+						'%total%': total
+					}) %}
+
+					<div class="bar bar-{{ cycle(classes, loop.index0) }}" rel="tooltip" style="width: {{ count / total * 100 }}%" title="{{ title }}">{{ macros.name(country) }}</div>
 				{% endfor %}
 			</div>
 		</div>
@@ -67,4 +79,8 @@
 		{% endfor %}
 	</div>
 </div>
+{% endblock %}
+
+{% block javascript %}
+<script src="{{ asset('bundles/applicationsonatauser/js/stats.js') }}" type="text/javascript"></script>
 {% endblock %}

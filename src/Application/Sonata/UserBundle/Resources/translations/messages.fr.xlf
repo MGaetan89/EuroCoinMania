@@ -146,6 +146,32 @@
 				<source>user.stats.average_value</source>
 				<target>Valeur moyenne d'une pièce</target>
 			</trans-unit>
+			<trans-unit id="user.stats.global">
+				<source>user.stats.global</source>
+				<target>Général</target>
+			</trans-unit>
+			<trans-unit id="user.stats.global.coin_distribution">
+				<source>user.stats.global.coin_distribution</source>
+				<target>%count% pièce sur %total%|%count% pièces sur %total%</target>
+			</trans-unit>
+			<trans-unit id="user.stats.global.collection_distribution">
+				<source>user.stats.global.collection_distribution</source>
+				<target>Répartition de la collection</target>
+			</trans-unit>
+			<trans-unit id="user.stats.global.country_count">
+				<source>user.stats.global.country_count</source>
+				<target><![CDATA[
+<a href="%path%">%country%</a> avec <strong>%count%</strong> pièce|<a href="%path%">%country%</a> avec <strong>%count%</strong> pièces
+				]]></target>
+			</trans-unit>
+			<trans-unit id="user.stats.global.owned_countries">
+				<source>user.stats.global.owned_countries</source>
+				<target>Pays possédés</target>
+			</trans-unit>
+			<trans-unit id="user.stats.global.stats">
+				<source>user.stats.global.stats</source>
+				<target>Quelques chiffres</target>
+			</trans-unit>
 			<trans-unit id="user.stats.total_coins">
 				<source>user.stats.total_coins</source>
 				<target>Nombre total de pièces</target>
