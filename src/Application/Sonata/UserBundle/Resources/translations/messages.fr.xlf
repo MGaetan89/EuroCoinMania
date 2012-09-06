@@ -166,6 +166,10 @@
 				<source>user.stats.country.value_distribution</source>
 				<target>%count% sur %total%</target>
 			</trans-unit>
+			<trans-unit id="user.stats.country.year">
+				<source>user.stats.country.year</source>
+				<target>Année %year%</target>
+			</trans-unit>
 			<trans-unit id="user.stats.global">
 				<source>user.stats.global</source>
 				<target>Général</target>
