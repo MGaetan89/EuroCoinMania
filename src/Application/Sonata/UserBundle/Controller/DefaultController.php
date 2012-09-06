@@ -32,35 +32,50 @@ class DefaultController extends BaseController {
 		$user_coins = $doctrine->getRepository('EuroCoinBundle:UserCoin')->findCoinsByUser($user, $collector);
 		$values = array();
 
-		if ($collector) {
-			$coins = array();
-			foreach ($user_coins as $user_coin) {
-				$coins[] = $user_coin->getCoin();
-			}
-		} else {
-			list($coins, $values) = $this->_buildVars($user_coins);
-
-			$coins = array_shift($coins);
-			$values = array_shift($values);
-		}
-
 		$countries = array();
 		foreach ($user_coins as $user_coin) {
 			$coin = $user_coin->getCoin();
 
 			if ($user_coin->getQuantity() > 0) {
-				$country = $coin->getCountry();
-				$ct_id = $country->getId();
+				$_country = $coin->getCountry();
+				$ct_id = $_country->getId();
 				if (!isset($countries[$ct_id])) {
-					$countries[$ct_id] = $country;
+					$countries[$ct_id] = $_country;
+				}
+
+				if ($ct_id == $country_id) {
+					$country = $_country;
 				}
 
 				$uc[$coin->getId()] = $user_coin;
 			}
 		}
 
-		if (!$country_id && $country) {
-			return $this->redirect($this->generateUrl('show_user_collection', array(
+		if ($collector) {
+			$coins = array();
+			foreach ($user_coins as $user_coin) {
+				$coins[] = $user_coin->getCoin();
+			}
+
+			if (!$country) {
+				$country = reset($countries);
+			}
+		} else {
+			list($coins, $values) = $this->_buildVars($user_coins);
+
+			$country_name = $translator->trans((string) $country);
+
+			if (!isset($coins[$country_name])) {
+				$country = reset($countries);
+				$country_name = $translator->trans((string) $country);
+			}
+
+			$coins = $coins[$country_name];
+			$values = $values[$country_name];
+		}
+
+		if ($country && (!$country_id || $country_id != $country->getId())) {
+			return $this->redirect($this->generateUrl($this->getRequest()->get('_route'), array(
 								'country_id' => $country->getId(),
 								'country_name' => $translator->trans((string) $country),
 								'user_id' => $user_id,
@@ -237,7 +252,6 @@ class DefaultController extends BaseController {
 			if (!isset($stat['years'][$year_id])) {
 				$stat['years'][$year_id] = 0;
 			}
-
 			++$stat['years'][$year_id];
 		}
 
@@ -278,7 +292,6 @@ class DefaultController extends BaseController {
 				$stat['years'][$year_id] = 0;
 				$years[$year_id] = $year;
 			}
-
 			++$stat['years'][$year_id];
 		}
 
