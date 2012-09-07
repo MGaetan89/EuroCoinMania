@@ -3,5 +3,11 @@
 {% block fos_user_content %}
 <h2 class="page-header">{{ 'user.register'|trans }}</h2>
 
-{% include 'FOSUserBundle:Registration:register_content.html.twig' %}
+<div class="row-fluid">
+	<div class="span6">
+		{% include 'FOSUserBundle:Registration:register_content.html.twig' %}
+	</div>
+	<div class="span6">
+		{{ 'user.register.explain'|trans }}
+	</div>
 {% endblock fos_user_content %}
