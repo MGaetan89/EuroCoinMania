@@ -134,6 +134,18 @@
 				<source>user.registration_date</source>
 				<target>Date d'inscription</target>
 			</trans-unit>
+			<trans-unit id="user.register_explain">
+				<source>user.register_explain</source>
+				<target><![CDATA[
+<p>En vous inscrivant sur <strong>EuroCoin Mania</strong>, vous aurez accès à de nouvelles fonctionnalités :</p>
+<ul>
+	<li><strong>Gestion de votre collection :</strong> aussi bien les pièces courantes, que les pièces de deux euros commémoratives et les pièces collectors ;</li>
+	<li><strong>Echangez vos pièces avec les autres membres :</strong> proposez vos pièces en doubles aux autres membres afin de compléter vos collections respectives ;</li>
+	<li><strong>Messagerie privée :</strong> pour discuter de vos échanges ou tout autre sujet ;</li>
+</ul>
+<p>De plus, si vous vous inscrivez avec une adresse e-mail enregistrée sur le site <a href="http://www.gravatar.com/">Gravatar.com</a>, votre photo de profil sera automatiquement affichée sur EuroCoin Mania.</p>
+				]]></target>
+			</trans-unit>
 			<trans-unit id="user.show_collection">
 				<source>user.show_collection</source>
 				<target>Voir la collection</target>
