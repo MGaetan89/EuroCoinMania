@@ -54,7 +54,7 @@
 							</a>
 							<ul class="dropdown-menu">
 								{% if is_granted('ROLE_ADMIN') %}
-									<li><a href="{{ path('sonata_admin_dashboard') }}">Administration</a></li>
+									<li><a href="{{ path('sonata_admin_dashboard') }}">{{ 'administration'|trans }}</a></li>
 									<li class="divider"></li>
 								{% endif %}
 
@@ -105,16 +105,74 @@
 <div class="hidden-phone navbar navbar-fixed-bottom">
 	<div class="navbar-inner">
 		<div class="container-fluid">
-			<p class="muted navbar-text pull-right">
-				{{ 'site_created_by'|trans }} <a href="{{ path('show_profile', { id: 1 }) }}">M.Gaetan89</a> &mdash;
-				{{ 'coin_data_provider'|trans }} <a href="http://euro-auflagen.de/">Euro Auflagen</a>
+			<a class="btn btn-small" id="footer-toggle" rel="tooltip" title="{{ 'view_more'|trans }}" data-placement="right" data-toggle="collapse" data-target="#footer-extend">
+				<i class="icon-plus"></i>
+			</a>
+
+			<p class="muted navbar-text pull-right" id="footer-short">
+				{{ 'site_created_by'|trans({
+					'%name%': 'M.Gaetan89',
+					'%path%': path('show_profile', { id: 1 }),
+				})|raw }} &mdash;
+				{{ 'coin_data_provider'|trans({
+					'%name%': 'Euro Auflagen',
+					'%path%': 'http://euro-auflagen.de/',
+				})|raw }}
 			</p>
+
+			<div class="collapse" id="footer-extend">
+				<hr />
+
+				<p>
+					<strong>{{ 'coin.collection'|trans }} :</strong>
+
+						<a href="{{ path('coin_collection') }}">{{ 'coin.circulation'|trans }}</a> &bull;
+						<a href="{{ path('coin_collection_collector') }}">{{ 'coin.collector'|trans }}</a>
+				</p>
+
+				{% if app.user %}
+					<p>
+						<strong>{{ 'exchanges'|trans }} :</strong>
+
+							<a href="{{ path('exchange_choose_user') }}">{{ 'exchange.new'|trans }}</a> &bull;
+							<a href="{{ path('exchange_list') }}">{{ 'exchanges.pending'|trans }}</a> &bull;
+							<a href="{{ path('exchange_list_all') }}">{{ 'exchanges.all'|trans }}</a>
+					</p>
+					<p>
+						<strong>{{ app.user.username }} :</strong>
+
+							{% if is_granted('ROLE_ADMIN') %}
+								<a href="{{ path('sonata_admin_dashboard') }}">{{ 'administration'|trans }}</a> &bull;
+							{% endif %}
+
+							<a href="{{ path('show_profile', { id: app.user.id }) }}">{{ 'user.profile'|trans }}</a> &bull;
+							<a href="{{ path('pm_list') }}">{{ 'pm.user_pm'|trans }}</a> &bull;
+							<a href="{{ path('fos_user_security_logout') }}">{{ 'user.logout'|trans }}</a>
+					</p>
+				{% else %}
+					<p>
+						<strong>{{ 'user.account'|trans }} :</strong>
+
+						<a href="{{ path('fos_user_security_login') }}">{{ 'user.login'|trans }}</a> &bull;
+						<a href="{{ path('fos_user_registration_register') }}">{{ 'user.register'|trans }}</a>
+					</p>
+				{% endif %}
+
+				<p>
+					<strong>{{ 'copyright'|trans }} :</strong>
+
+						<a href="{{ path('show_profile', { id: 1 }) }}" rel="tooltip" title="M.Gaetan89">{{ 'webmaster'|trans }}</a> &bull;
+						<a href="http://euro-auflagen.de/" rel="tooltip" title="Euro Auflagen">{{ 'copyright.coin_data'|trans }}</a> &bull;
+						<a href="http://www.famfamfam.com/" rel="tooltip" title="FamFamFam">{{ 'copyright.country_flags'|trans }}</a>
+				</p>
+			</div>
 		</div>
 	</div>
 </div>
 
 <script src="{{ asset('bundles/eurocoin/js/jquery.js') }}" type="text/javascript"></script>
 <script src="{{ asset('bundles/eurocoin/js/bootstrap.js') }}" type="text/javascript"></script>
+<script src="{{ asset('bundles/eurocoin/js/app.js') }}" type="text/javascript"></script>
 {% block javascript %}{% endblock %}
 </body>
 </html>

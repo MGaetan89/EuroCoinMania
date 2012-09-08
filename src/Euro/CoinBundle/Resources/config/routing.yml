@@ -48,17 +48,17 @@ exchange_cancel:
         id: "\d+"
         
 exchange_choose_user:
-    pattern: /exchange/step-1/users
+    pattern: /exchange/new/step-1/users
     defaults: { _controller: EuroCoinBundle:Exchange:chooseUser }
 
 exchange_coins_request:
-    pattern: /exchange/step-2/coins/request/{id}/{name}
+    pattern: /exchange/new/step-2/coins/request/{id}/{name}
     defaults: { _controller: EuroCoinBundle:Exchange:chooseCoins }
     requirements:
         id: "\d+"
 
 exchange_coins_suggest:
-    pattern: /exchange/step-3/coins/suggest/{id}/{name}
+    pattern: /exchange/new/step-3/coins/suggest/{id}/{name}
     defaults: { _controller: EuroCoinBundle:Exchange:proposeCoins }
     requirements:
         id: "\d+"
@@ -79,7 +79,7 @@ exchange_refuse:
         id: "\d+"
 
 exchange_save:
-    pattern: /exchange/step-4/save/{id}/{name}
+    pattern: /exchange/new/step-4/save/{id}/{name}
     defaults: { _controller: EuroCoinBundle:Exchange:save }
     requirements:
         id: "\d+"

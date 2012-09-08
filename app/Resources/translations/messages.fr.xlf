@@ -6,17 +6,35 @@
 				<source>actions</source>
 				<target>Actions</target>
 			</trans-unit>
+			<trans-unit id="administration">
+				<source>administration</source>
+				<target>Administration</target>
+			</trans-unit>
 			<trans-unit id="close">
 				<source>close</source>
 				<target>Fermer</target>
 			</trans-unit>
 			<trans-unit id="coin_data_provider">
 				<source>coin_data_provider</source>
-				<target>Informations sur les pièces fournies par</target>
+				<target><![CDATA[
+Informations sur les pièces fournies par <a href="%path%">%name%</a>
+				]]></target>
 			</trans-unit>
 			<trans-unit id="congratulation">
 				<source>congratulation</source>
 				<target>Félicitation !</target>
+			</trans-unit>
+			<trans-unit id="copyright">
+				<source>copyright</source>
+				<target>Copyright</target>
+			</trans-unit>
+			<trans-unit id="copyright.coin_data">
+				<source>copyright.coin_data</source>
+				<target>Informations sur les pièces</target>
+			</trans-unit>
+			<trans-unit id="copyright.country_flags">
+				<source>copyright.country_flags</source>
+				<target>Drapeaux des pays</target>
 			</trans-unit>
 			<trans-unit id="error">
 				<source>error</source>
@@ -32,11 +50,21 @@
 			</trans-unit>
 			<trans-unit id="site_created_by">
 				<source>site_created_by</source>
-				<target>Site crée par</target>
+				<target><![CDATA[
+Site crée par <a href="%path%">%name%</a>
+				]]></target>
 			</trans-unit>
 			<trans-unit id="sitename">
 				<source>sitename</source>
-				<target>Euro Collector</target>
+				<target>EuroCoin Mania</target>
+			</trans-unit>
+			<trans-unit id="view_more">
+				<source>view_more</source>
+				<target>Afficher plus</target>
+			</trans-unit>
+			<trans-unit id="webmaster">
+				<source>webmaster</source>
+				<target>Webmaster</target>
 			</trans-unit>
 			<trans-unit id="yes">
 				<source>yes</source>
