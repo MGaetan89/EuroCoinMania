@@ -187,6 +187,7 @@ class DefaultController extends BaseController {
 			}
 		}
 
+		$translator = $this->get('translator');
 		$user_coins = $doctrine->getRepository('EuroCoinBundle:UserCoin')->findByUser($user);
 		$countries = array();
 		$countries_data = array();
@@ -301,6 +302,14 @@ class DefaultController extends BaseController {
 				}
 				++$stat['years'][$year_id];
 			}
+
+			// Sort the countries by translated name
+			usort($global['countries'], function ($a, $b) use ($translator) {
+						$a_name = $translator->trans((string) $a);
+						$b_name = $translator->trans((string) $b);
+
+						return strcmp($a_name, $b_name);
+					});
 		}
 
 		return $this->render('ApplicationSonataUserBundle:Profile:stats.html.twig', array(

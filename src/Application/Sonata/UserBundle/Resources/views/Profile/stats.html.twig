@@ -67,12 +67,14 @@
 
 					{% for country in countries %}
 						{% set count, total = countries_user_stats[country.id].total_coins, global.total_coins %}
+						{% set country_name = macros.name(country) %}
 						{% set title = 'user.stats.global.coin_distribution'|transchoice(count, {
 							'%count%': count,
+							'%country%': country_name,
 							'%total%': total
 						}) %}
 
-						<div class="bar bar-{{ cycle(classes, loop.index0) }}" rel="tooltip" style="width: {{ count / total * 100 }}%;" title="{{ title }}">{{ macros.name(country) }}</div>
+						<div class="bar bar-{{ cycle(classes, loop.index0) }}" rel="tooltip" style="width: {{ count / total * 100 }}%;" title="{{ title }}">{{ country_name }}</div>
 					{% endfor %}
 				</div>
 			</div>
@@ -142,7 +144,7 @@
 									'%total%': total
 								}) %}
 
-								<dt>{{ 'user.stats.country.year'|trans({ '%year%': macros.year(year) }) }}</dt>
+								<dt>{{ 'user.stats.country.year'|trans({ '%year%': macros.year(year) })|raw }}</dt>
 									<dd>
 										<div class="progress" rel="tooltip" title="{{ title }}">
 											<div class="bar bar-{{ cycle(classes, i) }}" style="width: {{ ratio }}%;">{{ ratio > 0 ? text : '' }}</div>

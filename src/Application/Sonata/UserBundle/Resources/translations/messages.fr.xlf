@@ -192,7 +192,9 @@
 			</trans-unit>
 			<trans-unit id="user.stats.global.coin_distribution">
 				<source>user.stats.global.coin_distribution</source>
-				<target>%count% pièce sur %total%|%count% pièces sur %total%</target>
+				<target><![CDATA[
+<strong>%country% :</strong> %count% pièce sur %total%|<strong>%country% :</strong> %count% pièces sur %total%
+				]]></target>
 			</trans-unit>
 			<trans-unit id="user.stats.global.collection_distribution">
 				<source>user.stats.global.collection_distribution</source>
