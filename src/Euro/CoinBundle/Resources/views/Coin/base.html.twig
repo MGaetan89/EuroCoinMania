@@ -1,60 +1,60 @@
 {% extends '::base.html.twig' %}
 
-{% block title %}{{ macros.name(current) }}{% endblock %}
+{% block title %}{{ countries ? macros.name(current) : '' }}{% endblock %}
 
 {% block body %}
-{% set name = macros.name(current) %}
-
-<h2 class="page-header">
-	<img alt="{{ name }}" src="{{ asset('bundles/eurocoin/images/flags/' ~ current.nameiso ~ '.png') }}" title="{{ name }}" />
-	{{ name }}
-</h2>
-
 {% if countries %}
-<div class="row-fluid">
-	<div class="span2">
-		<div class="dropdown">
-			<ul class="dropdown-menu" style="display: block;">
-				<li class="nav-header">{{ 'countries.list'|trans }}</li>
+	{% set name = macros.name(current) %}
 
-				{% set path = collector ? 'coin_collection_collector' : 'coin_collection' %}
-				{% for country in countries %}
-					{% set _name = macros.name(country) %}
+	<h2 class="page-header">
+		<img alt="{{ name }}" src="{{ asset('bundles/eurocoin/images/flags/' ~ current.nameiso ~ '.png') }}" title="{{ name }}" />
+		{{ name }}
+	</h2>
 
-					<li{% if country.name == current.name %} class="active"{% endif %} data-action="popover" title="{{ _name }}" data-content="{% include 'EuroCoinBundle:Country:country_data.html.twig' with { country: country } %}">
-						<a href="{{ path(path, { id: country.id, country: _name }) }}">
-							<i class="icon-chevron-right"></i> {{ _name }}
+	<div class="row-fluid">
+		<div class="span2">
+			<div class="dropdown">
+				<ul class="dropdown-menu" style="display: block;">
+					<li class="nav-header">{{ 'countries.list'|trans }}</li>
+
+					{% set path = collector ? 'coin_collection_collector' : 'coin_collection' %}
+					{% for country in countries %}
+						{% set _name = macros.name(country) %}
+
+						<li{% if country.name == current.name %} class="active"{% endif %} data-action="popover" title="{{ _name }}" data-content="{% include 'EuroCoinBundle:Country:country_data.html.twig' with { country: country } %}">
+							<a href="{{ path(path, { id: country.id, country: _name }) }}">
+								<i class="icon-chevron-right"></i> {{ _name }}
+							</a>
+						</li>
+					{% endfor %}
+
+					<li class="divider"></li>
+
+					<li{{ macros.is_active(['coin_collection']) }}>
+						<a href="{{ path('coin_collection', { id: current.id, country: name }) }}">
+							<i class="icon-chevron-right"></i> {{ 'coin.circulation'|trans }}
 						</a>
 					</li>
-				{% endfor %}
+					<li{{ macros.is_active(['coin_collection_collector']) }}>
+						<a href="{{ path('coin_collection_collector', { id: current.id, country: name }) }}">
+							<i class="icon-chevron-right"></i> {{ 'coin.collector'|trans }}
+						</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<div class="span10">
+			{% if coins|length > 0 %}
+				{% if app.user %}
+				<div class="alert alert-info">{{ 'coin.sharing_count_info'|trans }}</div>
+				{% endif %}
 
-				<li class="divider"></li>
-
-				<li{{ macros.is_active(['coin_collection']) }}>
-					<a href="{{ path('coin_collection', { id: current.id, country: name }) }}">
-						<i class="icon-chevron-right"></i> {{ 'coin.circulation'|trans }}
-					</a>
-				</li>
-				<li{{ macros.is_active(['coin_collection_collector']) }}>
-					<a href="{{ path('coin_collection_collector', { id: current.id, country: name }) }}">
-						<i class="icon-chevron-right"></i> {{ 'coin.collector'|trans }}
-					</a>
-				</li>
-			</ul>
+				{% block content %}{% endblock %}
+			{% else %}
+				<div class="alert">{{ 'coin.none'|trans }}</div>
+			{% endif %}
 		</div>
 	</div>
-	<div class="span10">
-		{% if coins|length > 0 %}
-			{% if app.user %}
-			<div class="alert alert-info">{{ 'coin.sharing_count_info'|trans }}</div>
-			{% endif %}
-
-			{% block content %}{% endblock %}
-		{% else %}
-			<div class="alert">{{ 'coin.none'|trans }}</div>
-		{% endif %}
-	</div>
-</div>
 {% else %}
 	<div class="alert">{{ 'country.none'|trans }}</div>
 {% endif %}

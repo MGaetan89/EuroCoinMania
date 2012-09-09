@@ -159,9 +159,11 @@ class ExchangeController extends BaseController {
 		$users = $this->getDoctrine()->getRepository('EuroCoinBundle:UserCoin')->findDoublesForUser($user);
 
 		if (!$users) {
-			$this->get('session')->getFlashBag()->add('info', 'coin.doubles.none');
+			$flashBag = $this->get('session')->getFlashBag();
+			$flashBag->clear();
+			$flashBag->add('info', 'coin.doubles.none');
 
-			return $this->redirect($this->generateUrl('exchange_list'));
+			return $this->redirect($this->generateUrl('exchange_list_all'));
 		}
 
 		return $this->render('EuroCoinBundle:Exchange:choose_user.html.twig', array(
@@ -191,20 +193,11 @@ class ExchangeController extends BaseController {
 
 		if (!$exchanges) {
 			if (!$all) {
+				$flashBag->clear();
 				$flashBag->add('info', 'exchange.none_pending');
 
 				return $this->redirect($this->generateUrl('exchange_list_all'));
-			} else {
-				$flashBag->clear();
-				$flashBag->add('info', 'exchange.none');
-
-				return $this->redirect($this->generateUrl('exchange_choose_user'));
 			}
-
-			$flashBag->clear();
-			$flashBag->add('info', 'exchange.none');
-
-			return $this->redirect($this->generateUrl('coin_collection'));
 		}
 
 		return $this->render('EuroCoinBundle:Exchange:list.html.twig', array(

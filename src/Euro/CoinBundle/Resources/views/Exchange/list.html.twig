@@ -9,72 +9,76 @@
 {% endblock %}
 
 {% block content %}
-<table class="table table-bordered table-hover table-striped">
-<thead>
-	<tr>
-		<th>{{ 'exchange.id'|trans }}</th>
-		<th>{{ 'exchange.direction'|trans }}</th>
-		<th>{{ 'exchange.proposed_on'|trans }}</th>
-		<th>{{ 'exchange.coins_requested'|trans }}</th>
-		<th>{{ 'exchange.coins_suggested'|trans }}</th>
+{% if exchanges %}
+	<table class="table table-bordered table-hover table-striped">
+	<thead>
+		<tr>
+			<th>{{ 'exchange.id'|trans }}</th>
+			<th>{{ 'exchange.direction'|trans }}</th>
+			<th>{{ 'exchange.proposed_on'|trans }}</th>
+			<th>{{ 'exchange.coins_requested'|trans }}</th>
+			<th>{{ 'exchange.coins_suggested'|trans }}</th>
 
-		{% if all %}
-			<th>{{ 'exchange.status'|trans }}</th>
-		{% else %}
-			<th>{{ 'exchange.actions'|trans }}</th>
-		{% endif %}
-	</tr>
-</thead>
-<tbody>
-{% set row_classes = ['info', 'success', 'warning', 'error'] %}
-{% for exchange in exchanges %}
-	<tr class="{{ row_classes[exchange.status - 1] }}">
-		<td><a href="{{ path('exchange_show', { id: exchange.id }) }}">#{{ exchange.id }}</a></td>
-		<td>
-			{% if exchange.fromuser.id == app.user.id %}<strong>{% endif %}
-				<a href="{{ path('show_profile', { id: exchange.fromuser.id }) }}">{{ exchange.fromuser.username }}</a>
-			{% if exchange.fromuser.id == app.user.id %}</strong>{% endif %}
-
-			&rarr;
-
-			{% if exchange.touser.id == app.user.id %}<strong>{% endif %}
-				<a href="{{ path('show_profile', { id: exchange.touser.id }) }}">{{ exchange.touser.username }}</a>
-			{% if exchange.touser.id == app.user.id %}</strong>{% endif %}
-		</td>
-		<td>{{ exchange.date|format_datetime }}</td>
-		<td>
-			<ul>
-				{% for coin in coins[exchange.id]['requested'] %}
-					<li>{{ macros.coin(coin) }}</li>
-				{% endfor %}
-			</ul>
-		</td>
-		<td>
-			<ul>
-				{% for coin in coins[exchange.id]['suggested'] %}
-					<li>{{ macros.coin(coin) }}</li>
-				{% endfor %}
-			</ul>
-		</td>
-
-		{% if all %}
-			<td>{{ ('exchange.status' ~ exchange.status)|trans }}</td>
-		{% else %}
+			{% if all %}
+				<th>{{ 'exchange.status'|trans }}</th>
+			{% else %}
+				<th>{{ 'exchange.actions'|trans }}</th>
+			{% endif %}
+		</tr>
+	</thead>
+	<tbody>
+	{% set row_classes = ['info', 'success', 'warning', 'error'] %}
+	{% for exchange in exchanges %}
+		<tr class="{{ row_classes[exchange.status - 1] }}">
+			<td><a href="{{ path('exchange_show', { id: exchange.id }) }}">#{{ exchange.id }}</a></td>
 			<td>
-				<div class="btn-group">
-					<a class="btn btn-small btn-info" href="{{ path('pm_read', { id: exchange.conversation.id, title: macros.slugify(exchange.conversation.title|trans) }) }}" title="{{ 'exchange.read_conversation'|trans }}"><i class="icon-comment"></i></a>
+				{% if exchange.fromuser.id == app.user.id %}<strong>{% endif %}
+					<a href="{{ path('show_profile', { id: exchange.fromuser.id }) }}">{{ exchange.fromuser.username }}</a>
+				{% if exchange.fromuser.id == app.user.id %}</strong>{% endif %}
 
-					{% if exchange.fromuser.id == app.user.id %}
-						<a class="btn btn-small btn-warning" href="{{ path('exchange_cancel', { id: exchange.id }) }}" title="{{ 'exchange.cancel'|trans }}"><i class="icon-minus-sign"></i></a>
-					{% else %}
-						<a class="btn btn-small btn-success" href="{{ path('exchange_accept', { id: exchange.id }) }}" title="{{ 'exchange.accept'|trans }}"><i class="icon-ok"></i></a>
-						<a class="btn btn-small btn-danger" href="{{ path('exchange_refuse', { id: exchange.id }) }}" title="{{ 'exchange.refuse'|trans }}"><i class="icon-remove"></i></a>
-					{% endif %}
-				</div>
+				&rarr;
+
+				{% if exchange.touser.id == app.user.id %}<strong>{% endif %}
+					<a href="{{ path('show_profile', { id: exchange.touser.id }) }}">{{ exchange.touser.username }}</a>
+				{% if exchange.touser.id == app.user.id %}</strong>{% endif %}
 			</td>
-		{% endif %}
-	</tr>
-{% endfor %}
-</tbody>
-</table>
+			<td>{{ exchange.date|format_datetime }}</td>
+			<td>
+				<ul>
+					{% for coin in coins[exchange.id]['requested'] %}
+						<li>{{ macros.coin(coin) }}</li>
+					{% endfor %}
+				</ul>
+			</td>
+			<td>
+				<ul>
+					{% for coin in coins[exchange.id]['suggested'] %}
+						<li>{{ macros.coin(coin) }}</li>
+					{% endfor %}
+				</ul>
+			</td>
+
+			{% if all %}
+				<td>{{ ('exchange.status' ~ exchange.status)|trans }}</td>
+			{% else %}
+				<td>
+					<div class="btn-group">
+						<a class="btn btn-small btn-info" href="{{ path('pm_read', { id: exchange.conversation.id, title: macros.slugify(exchange.conversation.title|trans) }) }}" title="{{ 'exchange.read_conversation'|trans }}"><i class="icon-comment"></i></a>
+
+						{% if exchange.fromuser.id == app.user.id %}
+							<a class="btn btn-small btn-warning" href="{{ path('exchange_cancel', { id: exchange.id }) }}" title="{{ 'exchange.cancel'|trans }}"><i class="icon-minus-sign"></i></a>
+						{% else %}
+							<a class="btn btn-small btn-success" href="{{ path('exchange_accept', { id: exchange.id }) }}" title="{{ 'exchange.accept'|trans }}"><i class="icon-ok"></i></a>
+							<a class="btn btn-small btn-danger" href="{{ path('exchange_refuse', { id: exchange.id }) }}" title="{{ 'exchange.refuse'|trans }}"><i class="icon-remove"></i></a>
+						{% endif %}
+					</div>
+				</td>
+			{% endif %}
+		</tr>
+	{% endfor %}
+	</tbody>
+	</table>
+{% else %}
+	<div class="alert">{{ 'exchange.none'|trans }}</div>
+{% endif %}
 {% endblock %}
