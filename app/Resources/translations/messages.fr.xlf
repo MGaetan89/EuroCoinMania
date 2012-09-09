@@ -32,6 +32,10 @@ Informations sur les pièces fournies par <a href="%path%">%name%</a>
 				<source>copyright.coin_data</source>
 				<target>Informations sur les pièces</target>
 			</trans-unit>
+			<trans-unit id="copyright.contribute_on_github">
+				<source>copyright.contribute_on_github</source>
+				<target>Contibuez à l'amélioration du site</target>
+			</trans-unit>
 			<trans-unit id="copyright.country_flags">
 				<source>copyright.country_flags</source>
 				<target>Drapeaux des pays</target>
