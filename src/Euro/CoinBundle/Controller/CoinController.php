@@ -83,8 +83,8 @@ class CoinController extends BaseController {
 
 		// Sort the countries by translated name
 		usort($countries, function ($a, $b) use (&$country, $id, $translator) {
-					$a_name = $translator->trans((string) $a->getName());
-					$b_name = $translator->trans((string) $b->getName());
+					$a_name = $translator->trans((string) $a);
+					$b_name = $translator->trans((string) $b);
 
 					if ($id == $a->getId()) {
 						$country = $a;
