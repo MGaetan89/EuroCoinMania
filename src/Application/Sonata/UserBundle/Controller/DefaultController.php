@@ -107,6 +107,7 @@ class DefaultController extends BaseController {
 		return $this->render('ApplicationSonataUserBundle:Profile:' . $template_file . '.html.twig', array(
 					'all_values' => $values,
 					'coins' => $coins,
+					'collector' => $collector,
 					'countries' => $countries,
 					'current' => $country,
 					'uc' => $uc,
