@@ -88,6 +88,8 @@ class CoinController extends BaseController {
 
 					if ($id == $a->getId()) {
 						$country = $a;
+					} else if ($id == $b->getId()) {
+						$country = $b;
 					}
 
 					return strcmp($a_name, $b_name);

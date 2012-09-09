@@ -91,6 +91,8 @@ class DefaultController extends BaseController {
 
 						if ($country_id == $a->getId()) {
 							$country = $a;
+						} else if ($country_id == $b->getId()) {
+							$country = $b;
 						}
 
 						return strcmp($a_name, $b_name);
