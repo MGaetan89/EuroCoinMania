@@ -15,20 +15,17 @@ class ValueAdmin extends Admin {
 
 	protected function configureDatagridFilters(DatagridMapper $filter) {
 		$filter
-				->add('value')
-				->add('collector');
+				->add('value');
 	}
 
 	protected function configureFormFields(FormMapper $form) {
 		$form
-				->add('value')
-				->add('collector', null, array('required' => false));
+				->add('value');
 	}
 
 	protected function configureListFields(ListMapper $listMapper) {
 		$listMapper
 				->addIdentifier('value', null, array('template' => 'EuroCoinBundle:Admin:Value/list_value.html.twig'))
-				->add('collector', null, array('editable' => true))
 				->add('_action', 'actions', array(
 					'actions' => array(
 						'view' => array(),
@@ -40,8 +37,7 @@ class ValueAdmin extends Admin {
 
 	protected function configureShowFields(ShowMapper $show) {
 		$show
-				->add('value', null, array('template' => 'EuroCoinBundle:Admin:Value/show_value.html.twig'))
-				->add('collector');
+				->add('value', null, array('template' => 'EuroCoinBundle:Admin:Value/show_value.html.twig'));
 	}
 
 }

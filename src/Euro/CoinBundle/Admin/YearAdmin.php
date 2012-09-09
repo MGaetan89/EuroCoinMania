@@ -25,7 +25,7 @@ class YearAdmin extends Admin {
 						'max' => date('Y'),
 						'min' => 1999,
 						)))
-				->add('workshop', null, array('required' => false));
+				->add('workshop', 'sonata_type_model', array('required' => false));
 	}
 
 	protected function configureListFields(ListMapper $listMapper) {

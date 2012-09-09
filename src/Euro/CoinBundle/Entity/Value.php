@@ -28,13 +28,6 @@ class Value {
 	 */
 	private $value;
 
-	/**
-	 * @var boolean $collector
-	 *
-	 * @ORM\Column(name="collector", type="boolean")
-	 */
-	private $collector;
-
 	public function __toString() {
 		return $this->getValue() . ' €';
 	}
@@ -67,27 +60,6 @@ class Value {
 	 */
 	public function getValue() {
 		return $this->value;
-	}
-
-	/**
-	 * Set collector
-	 *
-	 * @param boolean $collector
-	 * @return Value
-	 */
-	public function setCollector($collector) {
-		$this->collector = $collector;
-
-		return $this;
-	}
-
-	/**
-	 * Get collector
-	 *
-	 * @return boolean 
-	 */
-	public function isCollector() {
-		return $this->collector;
 	}
 
 }
