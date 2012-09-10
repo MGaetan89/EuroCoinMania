@@ -34,69 +34,73 @@ class DefaultController extends BaseController {
 		$user_coins = $doctrine->getRepository('EuroCoinBundle:UserCoin')->findCoinsByUser($user, $collector);
 		$values = array();
 
-		if ($user_coins) {
+		if (!$user_coins && $collector) {
+			return $this->redirect($this->generateUrl('show_user_collection', array(
+								'user_id' => $user_id,
+							)));
+		}
+
+		foreach ($user_coins as $user_coin) {
+			$coin = $user_coin->getCoin();
+
+			if ($user_coin->getQuantity() > 0) {
+				$_country = $coin->getCountry();
+				$ct_id = $_country->getId();
+				if (!isset($countries[$ct_id])) {
+					$countries[$ct_id] = $_country;
+				}
+
+				if ($ct_id == $country_id) {
+					$country = $_country;
+				}
+
+				$uc[$coin->getId()] = $user_coin;
+			}
+		}
+
+		// Sort the countries by translated name
+		usort($countries, function ($a, $b) use (&$country, $country_id, $translator) {
+					$a_name = $translator->trans((string) $a);
+					$b_name = $translator->trans((string) $b);
+
+					if ($country_id == $a->getId()) {
+						$country = $a;
+					} else if ($country_id == $b->getId()) {
+						$country = $b;
+					}
+
+					return strcmp($a_name, $b_name);
+				});
+
+		if ($collector) {
+			$coins = array();
 			foreach ($user_coins as $user_coin) {
-				$coin = $user_coin->getCoin();
-
-				if ($user_coin->getQuantity() > 0) {
-					$_country = $coin->getCountry();
-					$ct_id = $_country->getId();
-					if (!isset($countries[$ct_id])) {
-						$countries[$ct_id] = $_country;
-					}
-
-					if ($ct_id == $country_id) {
-						$country = $_country;
-					}
-
-					$uc[$coin->getId()] = $user_coin;
-				}
+				$coins[] = $user_coin->getCoin();
 			}
 
-			if ($collector) {
-				$coins = array();
-				foreach ($user_coins as $user_coin) {
-					$coins[] = $user_coin->getCoin();
-				}
+			if (!$country) {
+				$country = reset($countries);
+			}
+		} else {
+			list($coins, $values) = $this->_buildVars($user_coins);
 
-				if (!$country) {
-					$country = reset($countries);
-				}
-			} else {
-				list($coins, $values) = $this->_buildVars($user_coins);
+			$country_name = $translator->trans((string) $country);
 
+			if (!isset($coins[$country_name])) {
+				$country = reset($countries);
 				$country_name = $translator->trans((string) $country);
-
-				if (!isset($coins[$country_name])) {
-					$country = reset($countries);
-					$country_name = $translator->trans((string) $country);
-				}
-
-				$coins = $coins[$country_name];
-				$values = $values[$country_name];
 			}
 
-			if ($country && (!$country_id || $country_id != $country->getId())) {
-				return $this->redirect($this->generateUrl($this->getRequest()->get('_route'), array(
-									'country_id' => $country->getId(),
-									'country_name' => $translator->trans((string) $country),
-									'user_id' => $user_id,
-								)));
-			}
+			$coins = $coins[$country_name];
+			$values = $values[$country_name];
+		}
 
-			// Sort the countries by translated name
-			usort($countries, function ($a, $b) use (&$country, $country_id, $translator) {
-						$a_name = $translator->trans((string) $a);
-						$b_name = $translator->trans((string) $b);
-
-						if ($country_id == $a->getId()) {
-							$country = $a;
-						} else if ($country_id == $b->getId()) {
-							$country = $b;
-						}
-
-						return strcmp($a_name, $b_name);
-					});
+		if ($country && (!$country_id || $country_id != $country->getId())) {
+			return $this->redirect($this->generateUrl($this->getRequest()->get('_route'), array(
+								'country_id' => $country->getId(),
+								'country_name' => $translator->trans((string) $country),
+								'user_id' => $user_id,
+							)));
 		}
 
 		$template_file = 'collection';
