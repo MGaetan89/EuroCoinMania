@@ -139,7 +139,7 @@
 								{% set total = stat.years[year.id] %}
 								{% set ratio = count / total * 100 %}
 								{% set text = '%.2f %%'|format(ratio) %}
-								{% set title = 'user.stats.global.coin_distribution'|transchoice(count, {
+								{% set title = 'user.stats.country.coin_distribution'|transchoice(count, {
 									'%count%': count,
 									'%total%': total
 								}) %}

@@ -162,6 +162,10 @@
 				<source>user.stats.average_value</source>
 				<target>Valeur moyenne d'une pièce (sur le total)</target>
 			</trans-unit>
+			<trans-unit id="user.stats.country.coin_distribution">
+				<source>user.stats.country.coin_distribution</source>
+				<target>%count% pièce sur %total%|%count% pièces sur %total%</target>
+			</trans-unit>
 			<trans-unit id="user.stats.country.coins">
 				<source>user.stats.country.coins</source>
 				<target>Nombre de pièces</target>
