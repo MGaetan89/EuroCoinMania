@@ -68,7 +68,9 @@
 			</trans-unit>
 			<trans-unit id="news.posted_by_on">
 				<source>news.posted_by_on</source>
-				<target>Posté par %author% le %date%</target>
+				<target><![CDATA[
+Posté par <a href="%path%">%author%</a> le %date%
+				]]></target>
 			</trans-unit>
 			<trans-unit id="news.publication_date">
 				<source>news.publication_date</source>

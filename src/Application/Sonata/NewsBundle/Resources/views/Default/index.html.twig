@@ -17,7 +17,7 @@
 
 			<p>{{ post.abstract|format_text('markdown')|raw }}</p>
 			<p>
-				<span class="muted">{{ 'news.posted_by_on'|trans({ '%author%': post.author, '%date%': post.publicationDateStart|format_datetime }) }}</span>
+				<span class="muted">{{ 'news.posted_by_on'|trans({ '%author%': post.author, '%date%': post.publicationDateStart|format_datetime, '%path%': path('show_profile', { id: post.author.id }) })|raw }}</span>
 			</p>
 		</div>
 	{% else %}
