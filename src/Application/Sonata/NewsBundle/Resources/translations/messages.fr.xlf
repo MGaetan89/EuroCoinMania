@@ -30,9 +30,17 @@
 				<source>news.author</source>
 				<target>Auteur</target>
 			</trans-unit>
+			<trans-unit id="news.comment">
+				<source>news.comment</source>
+				<target>Commentaire</target>
+			</trans-unit>
 			<trans-unit id="news.comment.add">
 				<source>news.comment.add</source>
 				<target>Poster un commentaire</target>
+			</trans-unit>
+			<trans-unit id="news.comment.author">
+				<source>news.comment.author</source>
+				<target>Auteur</target>
 			</trans-unit>
 			<trans-unit id="news.comment.post">
 				<source>news.comment.post</source>
