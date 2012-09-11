@@ -2,5 +2,6 @@ nbproject/
 app/cache/
 app/logs/
 web/bundles/
+web/uploads/media/*
 app/bootstrap.php.cache
 composer.phar
