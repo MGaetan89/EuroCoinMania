@@ -1,9 +1,21 @@
 <h4>{{ 'news.comment.add'|trans }}</h4>
 
 <form action="{{ url('sonata_news_add_comment', { id: post_id }) }}" method="post">
-	{{ form_row(form.name, { label: 'comment.author.name'|trans }) }}
-	{{ form_row(form.email, { label: 'comment.author.email'|trans }) }}
-	{{ form_row(form.url, { label: 'comment.author.website'|trans }) }}
+	{% if app.user %}
+		{% set disabled_attr = { 
+			class: 'disabled',
+			disabled: 'disabled'
+		} %}
+
+		{{ form_row(form.name, { attr: disabled_attr, label: 'comment.author.name'|trans, value: app.user }) }}
+		{{ form_row(form.email, { attr: disabled_attr, label: 'comment.author.email'|trans, value: app.user.email }) }}
+		{{ form_row(form.url, { attr: disabled_attr, label: 'comment.author.website'|trans, value: app.user.website }) }}
+	{% else %}
+		{{ form_row(form.name, { label: 'comment.author.name'|trans }) }}
+		{{ form_row(form.email, { label: 'comment.author.email'|trans }) }}
+		{{ form_row(form.url, { label: 'comment.author.website'|trans }) }}
+	{% endif %}
+
 	{{ form_row(form.message, { label: 'comment.message'|trans }) }}
 
 	{{ form_rest(form) }}
