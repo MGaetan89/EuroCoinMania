@@ -17,7 +17,7 @@
 			<trans-unit id="coin_data_provider">
 				<source>coin_data_provider</source>
 				<target><![CDATA[
-Informations sur les pièces fournies par <a href="%path%">%name%</a>
+Informations sur les pièces fournies par <a href="%path%" target="_blank">%name%</a>
 				]]></target>
 			</trans-unit>
 			<trans-unit id="congratulation">
