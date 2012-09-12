@@ -1,6 +1,6 @@
 <h4>{{ 'news.comment.add'|trans }}</h4>
 
-<form action="{{ url('sonata_news_add_comment', { id: post_id }) }}" method="post">
+<form action="{{ url('sonata_news_add_comment', { id: post_id }) }}" class="form-horizontal" method="post">
 	{% if app.user %}
 		{% set disabled_attr = { 
 			class: 'disabled',
@@ -16,7 +16,9 @@
 		{{ form_row(form.url, { label: 'comment.author.website'|trans }) }}
 	{% endif %}
 
-	{{ form_row(form.message, { label: 'comment.message'|trans }) }}
+	{% include 'ApplicationSonataNewsBundle:Post:editor.html.twig' with { target: 'comment_message' } %}
+
+	{{ form_row(form.message, { attr: { class: 'span7', rows: 6 }, label: 'comment.message'|trans }) }}
 
 	{{ form_rest(form) }}
 

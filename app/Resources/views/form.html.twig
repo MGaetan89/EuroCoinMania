@@ -8,6 +8,14 @@
 {% endspaceless %}
 {% endblock form_widget_simple %}
 
+{% block textarea_widget %}
+{% spaceless %}
+	<div class="controls">
+		<textarea {{ block('widget_attributes') }}>{{ value }}</textarea>
+	</div>
+{% endspaceless %}
+{% endblock textarea_widget %}
+
 {% block form_label %}
 {% spaceless %}
 	{% set label_attr = label_attr|merge({ class: (label_attr.class|default('') ~ ' control-label')|trim }) %}

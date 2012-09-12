@@ -87,7 +87,7 @@
 
 					<dl>
 						{% set count, total = countries_user_stats[country.id].total_coins, stat.total_coins %}
-						{% set title = 'user.stats.global.coin_distribution'|transchoice(count, {
+						{% set title = 'user.stats.country.coin_distribution'|transchoice(count, {
 							'%count%': count,
 							'%total%': total
 						}) %}
@@ -114,7 +114,7 @@
 
 						{% if stat.total_collectors %}
 							{% set count, total = countries_user_stats[country.id].total_collectors, stat.total_collectors %}
-							{% set title = 'user.stats.global.coin_distribution'|transchoice(count, {
+							{% set title = 'user.stats.country.coin_distribution'|transchoice(count, {
 								'%count%': count,
 								'%total%': total
 							}) %}
