@@ -6,4 +6,5 @@ web/uploads/media/*
 app/bootstrap.php.cache
 composer.phar
 rsync-exclude
+sitemap.xml
 update
