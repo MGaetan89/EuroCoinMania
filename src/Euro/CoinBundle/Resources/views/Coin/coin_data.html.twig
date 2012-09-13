@@ -1,29 +1,45 @@
 {% import "::macros.html.twig" as macros %}
 
 <div class="hide" id="coin-info-{{ coin.id }}">
-	<dl class="dl-horizontal">
-		<dt>{{ 'coin.country'|trans }}</dt>
-			<dd>{{ coin.country|trans }}</dd>
+	<div class="row">
+		{% if coin.image %}
+			<div class="span2">
+				{% media coin.image, 'small' %}
+			</div>
+		{% endif %}
+	{% if not coin.collector %}
+	</div>
+	<div class="row">
+		<div class="span2">
+			<dl>
+	{% else %}
+		<div class="span3">
+			<dl class="dl-horizontal">
+	{% endif %}
+				<dt>{{ 'coin.country'|trans }}</dt>
+					<dd>{{ coin.country|trans }}</dd>
 
-		<dt>{{ 'coin.year'|trans }}</dt>
-			<dd>{{ macros.year(coin.year) }}</dd>
+				<dt>{{ 'coin.year'|trans }}</dt>
+					<dd>{{ macros.year(coin.year) }}</dd>
 
-		<dt>{{ 'coin.value'|trans }}</dt>
-			<dd>{{ macros.value(coin.value) }}</dd>
+				<dt>{{ 'coin.value'|trans }}</dt>
+					<dd>{{ macros.value(coin.value) }}</dd>
 
-		<dt>{{ 'coin.collector'|trans }}</dt>
-			<dd>
-				{% if coin.collector %}
-					<i class="icon-ok"></i> {{ 'yes'|trans }}
-				{% else %}
-					<i class="icon-remove"></i> {{ 'no'|trans }}
-				{% endif %}
-			</dd>
+				<dt>{{ 'coin.collector'|trans }}</dt>
+					<dd>
+						{% if coin.collector %}
+							<i class="icon-ok"></i> {{ 'yes'|trans }}
+						{% else %}
+							<i class="icon-remove"></i> {{ 'no'|trans }}
+						{% endif %}
+					</dd>
 
-		<dt>{{ 'coin.mintage'|trans }}</dt>
-			<dd>{{ coin.mintage|number_format_duration }}</dd>
+				<dt>{{ 'coin.mintage'|trans }}</dt>
+					<dd>{{ coin.mintage|number_format_duration }}</dd>
 
-		<dt>{{ 'coin.registered_quantity'|trans }}</dt>
-			<dd>{{ coin.membertotal|number_format_duration }}</dd>
-	</dl>
+				<dt>{{ 'coin.registered_quantity'|trans }}</dt>
+					<dd>{{ coin.membertotal|number_format_duration }}</dd>
+			</dl>
+		</div>
+	</div>
 </div>

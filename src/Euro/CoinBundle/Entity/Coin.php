@@ -2,6 +2,7 @@
 
 namespace Euro\CoinBundle\Entity;
 
+use Application\Sonata\MediaBundle\Entity\Media;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -66,6 +67,12 @@ class Coin {
 	 * @ORM\Column(name="member_total", type="integer")
 	 */
 	private $member_total;
+
+	/**
+	 * @ORM\ManyToOne(targetEntity="Application\Sonata\MediaBundle\Entity\Media")
+	 * @ORM\JoinColumn(name="image_id", referencedColumnName="id")
+	 */
+	private $image;
 
 	/**
 	 * Get id
@@ -240,6 +247,26 @@ class Coin {
 	 */
 	public function getYear() {
 		return $this->year;
+	}
+
+	/**
+	 * Set image
+	 *
+	 * @param Media $image
+	 */
+	public function setImage(Media $image) {
+		$this->image = $image;
+
+		return $this;
+	}
+
+	/**
+	 * Get image
+	 *
+	 * @return Media
+	 */
+	public function getImage() {
+		return $this->image;
 	}
 
 }

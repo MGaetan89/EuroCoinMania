@@ -28,7 +28,8 @@ class CoinAdmin extends Admin {
 				->add('year', 'sonata_type_model')
 				->add('collector', null, array('required' => false))
 				->add('description', null, array('required' => false))
-				->add('mintage');
+				->add('mintage')
+				->add('image', 'sonata_type_model');
 	}
 
 	protected function configureListFields(ListMapper $listMapper) {
@@ -37,6 +38,7 @@ class CoinAdmin extends Admin {
 				->add('collector', null, array('editable' => true))
 				->add('description')
 				->add('mintage', null, array('template' => 'EuroCoinBundle:Admin:Coin/list_mintage.html.twig'))
+				->add('image')
 				->add('_action', 'actions', array(
 					'actions' => array(
 						'view' => array(),
@@ -51,7 +53,8 @@ class CoinAdmin extends Admin {
 				->add('coin', null, array('template' => 'EuroCoinBundle:Admin:Coin/show_coin.html.twig'))
 				->add('collector')
 				->add('description')
-				->add('mintage', null, array('template' => 'EuroCoinBundle:Admin:Coin/show_mintage.html.twig'));
+				->add('mintage', null, array('template' => 'EuroCoinBundle:Admin:Coin/show_mintage.html.twig'))
+				->add('image');
 	}
 
 	public function prePersist($coin) {
