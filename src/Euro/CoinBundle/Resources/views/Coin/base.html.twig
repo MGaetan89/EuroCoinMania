@@ -49,6 +49,24 @@
 				<div class="alert alert-info">{{ 'coin.sharing_count_info'|trans }}</div>
 				{% endif %}
 
+				<ul class="breadcrumb">
+					{% for year in years %}
+						<li>
+							{% if year.id == current_year %}<strong>{% endif %}
+							<a href="{{ path(app.request.get('_route'), { id: current.id, country: name, year: year.id, year_full: year }) }}">{{ macros.year(year) }}</a>
+							<span class="divider"></span>
+							{% if year.id == current_year %}</strong>{% endif %}
+						</li>
+					{% endfor %}
+
+					<li>
+						{% if not current_year %}<strong>{% endif %}
+						<a href="{{ path(app.request.get('_route'), { id: current.id, country: name }) }}">{{ 'coin.all_years'|trans }}</a>
+						<span class="divider"></span>
+						{% if not current_year %}</strong>{% endif %}
+					</li>
+				</ul>
+
 				{% block content %}{% endblock %}
 			{% else %}
 				<div class="alert">{{ 'coin.none'|trans }}</div>

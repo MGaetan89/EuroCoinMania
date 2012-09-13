@@ -50,20 +50,49 @@ class CoinRepository extends EntityRepository {
 						->getResult();
 	}
 
-	public function findCoinsByCountry(Country $country, $collector) {
+	public function findCoinsByCountry(Country $country, $collector, $year) {
+		$queryBuidler = $this->createQueryBuilder('c');
+		$expr = $queryBuidler->expr();
+		$parameters = array(
+			'collector' => $collector,
+			'country' => $country,
+		);
+
+		$queryBuilder = $queryBuidler
+				->select('c, v, y, w')
+				->join('c.value', 'v')
+				->join('c.year', 'y')
+				->leftJoin('y.workshop', 'w')
+				->where($expr->eq('c.country', ':country'))
+				->andWhere($expr->eq('c.collector', ':collector'));
+
+		if ($year) {
+			$parameters['year'] = $year;
+			$queryBuilder = $queryBuidler
+					->andWhere($expr->eq('y.id', ':year'));
+		}
+
+		return $queryBuilder
+						->orderBy('y.year', 'ASC')
+						->addOrderBy('w.short_name', 'ASC')
+						->addOrderBy('v.value', 'DESC')
+						->setParameters($parameters)
+						->getQuery()
+						->getResult();
+	}
+
+	public function findYearsForCountry(Country $country, $collector) {
 		$queryBuidler = $this->createQueryBuilder('c');
 		$expr = $queryBuidler->expr();
 
 		return $queryBuidler
-						->select('c, v, y, w')
-						->join('c.value', 'v')
+						->select('c, y, w')
 						->join('c.year', 'y')
 						->leftJoin('y.workshop', 'w')
 						->where($expr->eq('c.country', ':country'))
 						->andWhere($expr->eq('c.collector', ':collector'))
 						->orderBy('y.year', 'ASC')
 						->addOrderBy('w.short_name', 'ASC')
-						->addOrderBy('v.value', 'DESC')
 						->setParameters(array(
 							'collector' => $collector,
 							'country' => $country,

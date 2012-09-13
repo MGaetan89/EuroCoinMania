@@ -73,9 +73,10 @@ class CoinController extends BaseController {
 	 * Display all the coins available for a given country
 	 * @param integer $id The country id for the collection to display
 	 * @param boolean $collector Wether we show collector coins or not
+	 * @param integer $year The year to display
 	 * @return \Symfony\Component\HttpFoundation\Response 
 	 */
-	public function collectionAction($id, $collector) {
+	public function collectionAction($id, $collector, $year) {
 		$doctrine = $this->getDoctrine();
 		$translator = $this->get('translator');
 		$countries = $doctrine->getRepository('EuroCoinBundle:Country')->findBy(array(), array('join_date' => 'ASC'));
@@ -107,11 +108,19 @@ class CoinController extends BaseController {
 		}
 
 		$coins = array();
-		$values = array();
 		$uc = array();
+		$values = array();
+		$years = array();
 
 		if ($country) {
-			$coins = $doctrine->getRepository('EuroCoinBundle:Coin')->findCoinsByCountry($country, $collector);
+			$coin_repo = $doctrine->getRepository('EuroCoinBundle:Coin');
+			$coins = $coin_repo->findCoinsByCountry($country, $collector, $year);
+			$years = $coin_repo->findYearsForCountry($country, $collector);
+
+			foreach ($years as &$item) {
+				$item = $item->getYear();
+			}
+			$years = array_unique($years);
 
 			if (!$collector) {
 				list($coins, $values) = $this->_buildVars($coins);
@@ -143,7 +152,9 @@ class CoinController extends BaseController {
 					'collector' => $collector,
 					'countries' => $countries,
 					'current' => $country,
+					'current_year' => $year,
 					'uc' => $uc,
+					'years' => $years,
 				));
 	}
 

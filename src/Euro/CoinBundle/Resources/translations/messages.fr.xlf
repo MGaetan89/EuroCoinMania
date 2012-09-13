@@ -6,6 +6,10 @@
 				<source>coin.add</source>
 				<target>Ajouter</target>
 			</trans-unit>
+			<trans-unit id="coin.all_years">
+				<source>coin.all_years</source>
+				<target>Toutes les années</target>
+			</trans-unit>
 			<trans-unit id="coin.circulation">
 				<source>coin.circulation</source>
 				<target>Circulation</target>
