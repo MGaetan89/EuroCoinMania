@@ -8,7 +8,10 @@
 	<link href="{{ asset('bundles/eurocoin/css/bootstrap-responsive.css') }}" rel="stylesheet" />
 
 	<meta charset="UTF-8" />
-	<meta content="width=device-width, initial-scale=1.0" name="viewport" />
+	<meta name="description" content="{{ 'site_description'|trans }}" />
+	<meta name="keywords" content="{{ 'site_keywords'|trans }}" />
+	<meta name="robots" content="index, follow" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
 	<title>
 		{% block title %}{% endblock %}
@@ -19,6 +22,18 @@
 
 		{{ 'sitename'|trans }}
 	</title>
+	
+	<script type="text/javascript">
+	var _gaq = _gaq || [];
+	_gaq.push(['_setAccount', 'UA-34775644-1']);
+	_gaq.push(['_trackPageview']);
+
+	(function() {
+		var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+		ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+		var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+	})();
+	</script>
 </head>
 <body>
 <div class="navbar navbar-fixed-top">
@@ -65,8 +80,8 @@
 							</ul>
 						</li>
 					{% else %}
-						<li{{ macros.is_active(['fos_user_security_login']) }}><a href="{{ path('fos_user_security_login') }}">{{ 'user.login'|trans }}</a></li>
-						<li{{ macros.is_active(['fos_user_registration_register']) }}><a href="{{ path('fos_user_registration_register') }}">{{ 'user.register'|trans }}</a></li>
+						<li{{ macros.is_active(['fos_user_security_login']) }}><a href="{{ path('fos_user_security_login') }}" rel="nofollow">{{ 'user.login'|trans }}</a></li>
+						<li{{ macros.is_active(['fos_user_registration_register']) }}><a href="{{ path('fos_user_registration_register') }}" rel="nofollow">{{ 'user.register'|trans }}</a></li>
 					{% endif %}
 				</ul>
 			</div>
@@ -153,8 +168,8 @@
 					<p>
 						<strong>{{ 'user.account'|trans }} :</strong>
 
-						<a href="{{ path('fos_user_security_login') }}">{{ 'user.login'|trans }}</a> &bull;
-						<a href="{{ path('fos_user_registration_register') }}">{{ 'user.register'|trans }}</a>
+						<a href="{{ path('fos_user_security_login') }}" rel="nofollow">{{ 'user.login'|trans }}</a> &bull;
+						<a href="{{ path('fos_user_registration_register') }}" rel="nofollow">{{ 'user.register'|trans }}</a>
 					</p>
 				{% endif %}
 

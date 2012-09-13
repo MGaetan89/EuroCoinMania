@@ -58,6 +58,14 @@ Informations sur les pièces fournies par <a href="%path%" target="_blank">%name
 Site crée par <a href="%path%">%name%</a>
 				]]></target>
 			</trans-unit>
+			<trans-unit id="site_description">
+				<source>site_description</source>
+				<target>Gérer votre collection de pièces en Euro et proposer des échanges aux autres utilisateurs.</target>
+			</trans-unit>
+			<trans-unit id="site_keywords">
+				<source>site_keywords</source>
+				<target>euro, numismate, collection, échange</target>
+			</trans-unit>
 			<trans-unit id="sitename">
 				<source>sitename</source>
 				<target>EuroCoin Mania</target>
