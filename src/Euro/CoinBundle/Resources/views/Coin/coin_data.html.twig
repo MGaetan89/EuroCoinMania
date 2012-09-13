@@ -10,9 +10,13 @@
 	{% if not coin.collector %}
 	</div>
 	<div class="row">
+		{% if coin.image %}
 		<div class="span2">
 			<dl>
-	{% else %}
+		{% endif %}
+	{% endif %}
+
+	{% if coin.collector or not coin.image %}
 		<div class="span3">
 			<dl class="dl-horizontal">
 	{% endif %}
