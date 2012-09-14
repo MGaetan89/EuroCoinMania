@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
-	<file source-language="fr" datatype="plaintext" original="file.ext">
+	<file source-language="en" datatype="plaintext" original="file.ext">
 		<body>
 			<trans-unit id="actions">
 				<source>actions</source>
@@ -12,18 +12,18 @@
 			</trans-unit>
 			<trans-unit id="close">
 				<source>close</source>
-				<target>Fermer</target>
+				<target>Close</target>
 			</trans-unit>
 			<trans-unit id="coin_data_provider">
 				<source>coin_data_provider</source>
 				<target><![CDATA[
-Tirage des pièces fournie par <a href="%path%" target="_blank">%name%</a>
+Coins mintage provided by <a href="%path%" target="_blank">%name%</a>
 				]]>
 				</target>
 			</trans-unit>
 			<trans-unit id="congratulation">
 				<source>congratulation</source>
-				<target>Félicitation !</target>
+				<target>Congratulation!</target>
 			</trans-unit>
 			<trans-unit id="copyright">
 				<source>copyright</source>
@@ -31,42 +31,42 @@ Tirage des pièces fournie par <a href="%path%" target="_blank">%name%</a>
 			</trans-unit>
 			<trans-unit id="copyright.coin_data">
 				<source>copyright.coin_data</source>
-				<target>Tirage des pièces</target>
+				<target>Coins mintage</target>
 			</trans-unit>
 			<trans-unit id="copyright.contribute_on_github">
 				<source>copyright.contribute_on_github</source>
-				<target>Contribuez à l'amélioration du site</target>
+				<target>Contribute to the site's improvement</target>
 			</trans-unit>
 			<trans-unit id="copyright.country_flags">
 				<source>copyright.country_flags</source>
-				<target>Drapeaux des pays</target>
+				<target>Country flags</target>
 			</trans-unit>
 			<trans-unit id="error">
 				<source>error</source>
-				<target>Erreur !</target>
+				<target>Error!</target>
 			</trans-unit>
 			<trans-unit id="information">
 				<source>information</source>
-				<target>Information !</target>
+				<target>Information!</target>
 			</trans-unit>
 			<trans-unit id="no">
 				<source>no</source>
-				<target>Non</target>
+				<target>No</target>
 			</trans-unit>
 			<trans-unit id="site_created_by">
 				<source>site_created_by</source>
 				<target><![CDATA[
-Site crée par <a href="%path%">%name%</a>
+Site created by <a href="%path%">%name%</a>
 				]]>
 				</target>
 			</trans-unit>
 			<trans-unit id="site_description">
 				<source>site_description</source>
-				<target>Gérer votre collection de pièces en Euro et proposer des échanges aux autres utilisateurs.</target>
+				<target>Manage your Euro coin collection and suggest exchanges to the other users.</target>
 			</trans-unit>
 			<trans-unit id="site_keywords">
 				<source>site_keywords</source>
-				<target>euro, numismate, collection, échange</target>
+				<target>euro, numismatist, collection, share, exchange</target>
 			</trans-unit>
 			<trans-unit id="sitename">
 				<source>sitename</source>
@@ -74,7 +74,7 @@ Site crée par <a href="%path%">%name%</a>
 			</trans-unit>
 			<trans-unit id="view_more">
 				<source>view_more</source>
-				<target>Afficher plus</target>
+				<target>View more</target>
 			</trans-unit>
 			<trans-unit id="webmaster">
 				<source>webmaster</source>
@@ -82,7 +82,7 @@ Site crée par <a href="%path%">%name%</a>
 			</trans-unit>
 			<trans-unit id="yes">
 				<source>yes</source>
-				<target>Oui</target>
+				<target>Yes</target>
 			</trans-unit>
 		</body>
 	</file>

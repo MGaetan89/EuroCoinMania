@@ -4,11 +4,11 @@
 		<body>
 			<trans-unit id="coin.add">
 				<source>coin.add</source>
-				<target>Ajouter</target>
+				<target>Add</target>
 			</trans-unit>
 			<trans-unit id="coin.all_years">
 				<source>coin.all_years</source>
-				<target>Toutes les années</target>
+				<target>All years</target>
 			</trans-unit>
 			<trans-unit id="coin.circulation">
 				<source>coin.circulation</source>
@@ -28,43 +28,43 @@
 			</trans-unit>
 			<trans-unit id="coin.country">
 				<source>coin.country</source>
-				<target>Pays</target>
+				<target>Country</target>
 			</trans-unit>
 			<trans-unit id="coin.doubles">
 				<source>coin.doubles</source>
-				<target>%amount% double|%amount% doubles</target>
+				<target>%amount% dulicate|%amount% duplicates</target>
 			</trans-unit>
 			<trans-unit id="coin.doubles.no_self_exchange">
 				<source>coin.doubles.no_self_exchange</source>
-				<target>Vous ne pouvez pas faire un échange avec vous-même</target>
+				<target>You can not exchange coins with yourself</target>
 			</trans-unit>
 			<trans-unit id="coin.doubles.none">
 				<source>coin.doubles.none</source>
-				<target>Aucun membre n'a de doubles à vous échanger</target>
+				<target>No user have coins to exchange with you</target>
 			</trans-unit>
 			<trans-unit id="coin.doubles.none_selected">
 				<source>coin.doubles.none_selected</source>
-				<target>Vous devez sélectionner au moins une pièce</target>
+				<target>You need to choose at least one coin</target>
 			</trans-unit>
 			<trans-unit id="coin.doubles.save_successfull">
 				<source>coin.doubles.save_successfull</source>
-				<target>Votre demande d'échange a bien été enregistré</target>
+				<target>Your exchange request has successfully been saved</target>
 			</trans-unit>
 			<trans-unit id="coin.doubles.some_not_found">
 				<source>coin.doubles.some_not_found</source>
-				<target>Certaines des pièces que vous avez sélectionné n'appartiennent pas à l'utilisateur</target>
+				<target>Some of the coins you have selected do not belong to the user</target>
 			</trans-unit>
 			<trans-unit id="coin.doubles.user_no_doubles">
 				<source>coin.doubles.user_no_doubles</source>
-				<target>Cet utilisateur ne possède pas de doubles</target>
+				<target>This user has no duplicate coins</target>
 			</trans-unit>
 			<trans-unit id="coin.doubles.user_not_found">
 				<source>coin.doubles.user_not_found</source>
-				<target>L'utilisateur spécifié n'existe pas</target>
+				<target>The specified user does not exist</target>
 			</trans-unit>
 			<trans-unit id="coin.exchange">
 				<source>coin.exchange</source>
-				<target>Echanger</target>
+				<target>Exchange</target>
 			</trans-unit>
 			<trans-unit id="coin.exchange_explain">
 				<source>coin.exchange_explain</source>
@@ -81,195 +81,195 @@ Si l'échange est accepté par l'autre utilisateur, vos inventaires respectifs n
 			</trans-unit>
 			<trans-unit id="coin.exchange_request">
 				<source>coin.exchange_request</source>
-				<target>Demander ces pièces</target>
+				<target>Request these coins</target>
 			</trans-unit>
 			<trans-unit id="coin.exchange_suggest">
 				<source>coin.exchange_suggest</source>
-				<target>Proposer ces pièces</target>
+				<target>Suggest these coins</target>
 			</trans-unit>
 			<trans-unit id="coin.information">
 				<source>coin.information</source>
-				<target>Informations</target>
+				<target>Information</target>
 			</trans-unit>
 			<trans-unit id="coin.mintage">
 				<source>coin.mintage</source>
-				<target>Tirage</target>
+				<target>Mintage</target>
 			</trans-unit>
 			<trans-unit id="coin.no_mintage">
 				<source>coin.no_mintage</source>
-				<target>Aucun tirage</target>
+				<target>No mintage</target>
 			</trans-unit>
 			<trans-unit id="coin.none">
 				<source>coin.none</source>
-				<target>Aucune pièce n'a été enregistré pour ce pays.</target>
+				<target>No coins have been registered for this country.</target>
 			</trans-unit>
 			<trans-unit id="coin.not_available">
 				<source>coin.not_available</source>
-				<target>La pièce que vous recherchez n'est plus disponible</target>
+				<target>The coin you requested is no longer available</target>
 			</trans-unit>
 			<trans-unit id="coin.not_found">
 				<source>coin.not_found</source>
-				<target>La pièce que vous recherchez n'existe pas</target>
+				<target>The coin you requested does not exist</target>
 			</trans-unit>
 			<trans-unit id="coin.registered_quantity">
 				<source>coin.registered_quantity</source>
-				<target>Quantité enregistrée</target>
+				<target>Registered quantity</target>
 			</trans-unit>
 			<trans-unit id="coin.remove">
 				<source>coin.remove</source>
-				<target>Retirer</target>
+				<target>Remove</target>
 			</trans-unit>
 			<trans-unit id="coin.self_quantity">
 				<source>coin.self_quantity</source>
-				<target>Quantité possédée</target>
+				<target>Owned quantity</target>
 			</trans-unit>
 			<trans-unit id="coin.sharing_count_info">
 				<source>coin.sharing_count_info</source>
-				<target>La valeur éventuelle entre parenthèses représente la quantité engagée dans un échange.</target>
+				<target>The possible value between parentheses shows the quantity saved for an exchange.</target>
 			</trans-unit>
 			<trans-unit id="coin.unavailable">
 				<source>coin.unavailable</source>
-				<target>Non disponible</target>
+				<target>Unavailable</target>
 			</trans-unit>
 			<trans-unit id="coin.value">
 				<source>coin.value</source>
-				<target>Valeur</target>
+				<target>Value</target>
 			</trans-unit>
 			<trans-unit id="coin.year">
 				<source>coin.year</source>
-				<target>Année</target>
+				<target>Year</target>
 			</trans-unit>
 			<trans-unit id="coins">
 				<source>coins</source>
-				<target>%total% pièce|%total% pièces</target>
+				<target>%total% coin|%total% coins</target>
 			</trans-unit>
 			<trans-unit id="coins.requested_coins">
 				<source>coins.requested_coins</source>
-				<target>Pièces demandées</target>
+				<target>Requested coins</target>
 			</trans-unit>
 			<trans-unit id="coins.suggested_coins">
 				<source>coins.suggested_coins</source>
-				<target>Pièces proposées</target>
+				<target>Suggested coins</target>
 			</trans-unit>
 			<trans-unit id="countries.list">
 				<source>countries.list</source>
-				<target>Liste des pays</target>
+				<target>Country list</target>
 			</trans-unit>
 			<trans-unit id="country.currency.austria">
 				<source>country.currency.austria</source>
-				<target>Schilling autrichien</target>
+				<target>Austrian schilling</target>
 			</trans-unit>
 			<trans-unit id="country.currency.belgium">
 				<source>country.currency.belgium</source>
-				<target>Franc belge</target>
+				<target>Belgian franc</target>
 			</trans-unit>
 			<trans-unit id="country.currency.cyprus">
 				<source>country.currency.cyprus</source>
-				<target>Livre chypriote</target>
+				<target>Cypriot pound</target>
 			</trans-unit>
 			<trans-unit id="country.currency.estonia">
 				<source>country.currency.estonia</source>
-				<target>Couronne estonienne</target>
+				<target>Estonian kroon</target>
 			</trans-unit>
 			<trans-unit id="country.currency.finland">
 				<source>country.currency.finland</source>
-				<target>Mark finlandais</target>
+				<target>Finnish markka</target>
 			</trans-unit>
 			<trans-unit id="country.currency.france">
 				<source>country.currency.france</source>
-				<target>Franc français</target>
+				<target>French franc</target>
 			</trans-unit>
 			<trans-unit id="country.currency.germany">
 				<source>country.currency.germany</source>
-				<target>Mark allemand</target>
+				<target>German Mark</target>
 			</trans-unit>
 			<trans-unit id="country.currency.greece">
 				<source>country.currency.greece</source>
-				<target>Drachme moderne grecque</target>
+				<target>Greek drachma</target>
 			</trans-unit>
 			<trans-unit id="country.currency.ireland">
 				<source>country.currency.ireland</source>
-				<target>Livre irlandaise</target>
+				<target>Irish pound</target>
 			</trans-unit>
 			<trans-unit id="country.currency.italy">
 				<source>country.currency.italy</source>
-				<target>Lire italienne</target>
+				<target>Italian lira</target>
 			</trans-unit>
 			<trans-unit id="country.currency.luxembourg">
 				<source>country.currency.luxembourg</source>
-				<target>Franc luxembourgeois</target>
+				<target>Luxembourgish franc</target>
 			</trans-unit>
 			<trans-unit id="country.currency.malta">
 				<source>country.currency.malta</source>
-				<target>Lire maltaise</target>
+				<target>Maltese lira</target>
 			</trans-unit>
 			<trans-unit id="country.currency.monaco">
 				<source>country.currency.monaco</source>
-				<target>Franc monégasque</target>
+				<target>Monegasque franc</target>
 			</trans-unit>
 			<trans-unit id="country.currency.netherlands">
 				<source>country.currency.netherlands</source>
-				<target>Florin néerlandais</target>
+				<target>Dutch guilder</target>
 			</trans-unit>
 			<trans-unit id="country.currency.portugal">
 				<source>country.currency.portugal</source>
-				<target>Escudo portugais</target>
+				<target>Portuguese escudo</target>
 			</trans-unit>
 			<trans-unit id="country.currency.san-marino">
 				<source>country.currency.san-marino</source>
-				<target>Lire de Saint-Marin</target>
+				<target>Sammarinese lira</target>
 			</trans-unit>
 			<trans-unit id="country.currency.slovakia">
 				<source>country.currency.slovakia</source>
-				<target>Couronne slovaque</target>
+				<target>Slovak koruna</target>
 			</trans-unit>
 			<trans-unit id="country.currency.slovenia">
 				<source>country.currency.slovenia</source>
-				<target>Tolar slovène</target>
+				<target>Slovenian tolar</target>
 			</trans-unit>
 			<trans-unit id="country.currency.spain">
 				<source>country.currency.spain</source>
-				<target>Peseta espagnole</target>
+				<target>Spanish peseta</target>
 			</trans-unit>
 			<trans-unit id="country.currency.vatican">
 				<source>country.currency.vatican</source>
-				<target>Lire vaticane</target>
+				<target>Vatican lira</target>
 			</trans-unit>
 			<trans-unit id="country.exchange_rate">
 				<source>country.exchange_rate</source>
-				<target>Taux de change</target>
+				<target>Exchange rate</target>
 			</trans-unit>
 			<trans-unit id="country.former_currency">
 				<source>country.former_currency</source>
-				<target>Ancienne monnaie</target>
+				<target>Former currency</target>
 			</trans-unit>
 			<trans-unit id="country.join_date">
 				<source>country.join_date</source>
-				<target>Date d'adoption</target>
+				<target>Adoption date</target>
 			</trans-unit>
 			<trans-unit id="country.name">
 				<source>country.name</source>
-				<target>Nom</target>
+				<target>Name</target>
 			</trans-unit>
 			<trans-unit id="country.name.austria">
 				<source>country.name.austria</source>
-				<target>Autriche</target>
+				<target>Austria</target>
 			</trans-unit>
 			<trans-unit id="country.name.belgium">
 				<source>country.name.belgium</source>
-				<target>Belgique</target>
+				<target>Belgium</target>
 			</trans-unit>
 			<trans-unit id="country.name.cyprus">
 				<source>country.name.cyprus</source>
-				<target>Chypre</target>
+				<target>Cyprus</target>
 			</trans-unit>
 			<trans-unit id="country.name.estonia">
 				<source>country.name.estonia</source>
-				<target>Estonie</target>
+				<target>Estonia</target>
 			</trans-unit>
 			<trans-unit id="country.name.finland">
 				<source>country.name.finland</source>
-				<target>Finlande</target>
+				<target>Finland</target>
 			</trans-unit>
 			<trans-unit id="country.name.france">
 				<source>country.name.france</source>
@@ -277,19 +277,19 @@ Si l'échange est accepté par l'autre utilisateur, vos inventaires respectifs n
 			</trans-unit>
 			<trans-unit id="country.name.germany">
 				<source>country.name.germany</source>
-				<target>Allemagne</target>
+				<target>Germany</target>
 			</trans-unit>
 			<trans-unit id="country.name.greece">
 				<source>country.name.greece</source>
-				<target>Grèce</target>
+				<target>Greece</target>
 			</trans-unit>
 			<trans-unit id="country.name.ireland">
 				<source>country.name.ireland</source>
-				<target>Irelande</target>
+				<target>Ireland</target>
 			</trans-unit>
 			<trans-unit id="country.name.italy">
 				<source>country.name.italy</source>
-				<target>Italie</target>
+				<target>Italy</target>
 			</trans-unit>
 			<trans-unit id="country.name.luxembourg">
 				<source>country.name.luxembourg</source>
@@ -297,7 +297,7 @@ Si l'échange est accepté par l'autre utilisateur, vos inventaires respectifs n
 			</trans-unit>
 			<trans-unit id="country.name.malta">
 				<source>country.name.malta</source>
-				<target>Malte</target>
+				<target>Malta</target>
 			</trans-unit>
 			<trans-unit id="country.name.monaco">
 				<source>country.name.monaco</source>
@@ -305,7 +305,7 @@ Si l'échange est accepté par l'autre utilisateur, vos inventaires respectifs n
 			</trans-unit>
 			<trans-unit id="country.name.netherlands">
 				<source>country.name.netherlands</source>
-				<target>Pays-Bas</target>
+				<target>Netherlands</target>
 			</trans-unit>
 			<trans-unit id="country.name.portugal">
 				<source>country.name.portugal</source>
@@ -313,19 +313,19 @@ Si l'échange est accepté par l'autre utilisateur, vos inventaires respectifs n
 			</trans-unit>
 			<trans-unit id="country.name.san-marino">
 				<source>country.name.san-marino</source>
-				<target>Saint-Marin</target>
+				<target>San-Marino</target>
 			</trans-unit>
 			<trans-unit id="country.name.slovakia">
 				<source>country.name.slovakia</source>
-				<target>Slovaquie</target>
+				<target>Slovakia</target>
 			</trans-unit>
 			<trans-unit id="country.name.slovenia">
 				<source>country.name.slovenia</source>
-				<target>Slovénie</target>
+				<target>Slovenia</target>
 			</trans-unit>
 			<trans-unit id="country.name.spain">
 				<source>country.name.spain</source>
-				<target>Espagne</target>
+				<target>Spain</target>
 			</trans-unit>
 			<trans-unit id="country.name.vatican">
 				<source>country.name.vatican</source>
@@ -333,15 +333,15 @@ Si l'échange est accepté par l'autre utilisateur, vos inventaires respectifs n
 			</trans-unit>
 			<trans-unit id="country.none">
 				<source>country.none</source>
-				<target>Aucun pays n'est disponible pour le moment.</target>
+				<target>No country is available for the moment.</target>
 			</trans-unit>
 			<trans-unit id="exchange.accept">
 				<source>exchange.accept</source>
-				<target>Accepter</target>
+				<target>Accept</target>
 			</trans-unit>
 			<trans-unit id="exchange.accepted">
 				<source>exchange.accepted</source>
-				<target>Vous avez bien accepté cet échange</target>
+				<target>You have accepted this exchange</target>
 			</trans-unit>
 			<trans-unit id="exchange.actions">
 				<source>exchange.actions</source>
@@ -349,133 +349,133 @@ Si l'échange est accepté par l'autre utilisateur, vos inventaires respectifs n
 			</trans-unit>
 			<trans-unit id="exchange.cancel">
 				<source>exchange.cancel</source>
-				<target>Annuler</target>
+				<target>Cancel</target>
 			</trans-unit>
 			<trans-unit id="exchange.canceled">
 				<source>exchange.canceled</source>
-				<target>Votre échange a bien été annulé</target>
+				<target>You have canceled this exchange</target>
 			</trans-unit>
 			<trans-unit id="exchange.coins_requested">
 				<source>exchange.coins_requested</source>
-				<target>Pièces demandées</target>
+				<target>Requested coins</target>
 			</trans-unit>
 			<trans-unit id="exchange.coins_suggested">
 				<source>exchange.coins_suggested</source>
-				<target>Pièces proposées</target>
+				<target>Suggested coins</target>
 			</trans-unit>
 			<trans-unit id="exchange.direction">
 				<source>exchange.direction</source>
-				<target>Sens de l'échange</target>
+				<target>Exchange direction</target>
 			</trans-unit>
 			<trans-unit id="exchange.id">
 				<source>exchange.id</source>
-				<target>Numéro</target>
+				<target>Number</target>
 			</trans-unit>
 			<trans-unit id="exchange.list_all">
 				<source>exchange.list_all</source>
-				<target>Liste de tous vos échanges</target>
+				<target>List of all your exchanges</target>
 			</trans-unit>
 			<trans-unit id="exchange.list_pending">
 				<source>exchange.list_pending</source>
-				<target>Liste de vos échanges en cours</target>
+				<target>List of your pending exchanges</target>
 			</trans-unit>
 			<trans-unit id="exchange.new">
 				<source>exchange.new</source>
-				<target>Nouvel échange</target>
+				<target>New exchange</target>
 			</trans-unit>
 			<trans-unit id="exchange.none">
 				<source>exchange.none</source>
-				<target>Vous n'avez pas d'échange</target>
+				<target>You have no exchange</target>
 			</trans-unit>
 			<trans-unit id="exchange.none_pending">
 				<source>exchange.none_pending</source>
-				<target>Vous n'avez pas d'échange en cours</target>
+				<target>You have no pending exchange</target>
 			</trans-unit>
 			<trans-unit id="exchange.not_found">
 				<source>exchange.not_found</source>
-				<target>Cet échange n'existe pas</target>
+				<target>This exchange does not exist</target>
 			</trans-unit>
 			<trans-unit id="exchange.not_intended">
 				<source>exchange.not_intended</source>
-				<target>Cet échange ne vous est pas destiné</target>
+				<target>This exchange is not intended to you</target>
 			</trans-unit>
 			<trans-unit id="exchange.not_own">
 				<source>exchange.not_own</source>
-				<target>Cet échange ne vous appartient pas</target>
+				<target>This exchange does not belong to you</target>
 			</trans-unit>
 			<trans-unit id="exchange.proposed_by">
 				<source>exchange.proposed_by</source>
 				<target><![CDATA[
-Proposé par <a href="%path%">%username%</a>
+Proposed by <a href="%path%">%username%</a>
 				]]>
 				</target>
 			</trans-unit>
 			<trans-unit id="exchange.proposed_on">
 				<source>exchange.proposed_on</source>
-				<target>Proposé le</target>
+				<target>Proposed on</target>
 			</trans-unit>
 			<trans-unit id="exchange.read_conversation">
 				<source>exchange.read_conversation</source>
-				<target>Lire la conversation</target>
+				<target>Read the conversation</target>
 			</trans-unit>
 			<trans-unit id="exchange.received_by">
 				<source>exchange.received_by</source>
 				<target><![CDATA[
-Reçu par <a href="%path%">%username%</a>
+Received by <a href="%path%">%username%</a>
 				]]>
 				</target>
 			</trans-unit>
 			<trans-unit id="exchange.refuse">
 				<source>exchange.refuse</source>
-				<target>Refuser</target>
+				<target>Refuse</target>
 			</trans-unit>
 			<trans-unit id="exchange.refused">
 				<source>exchange.refused</source>
-				<target>L'échange a bien été refusé</target>
+				<target>This exchange has been refused</target>
 			</trans-unit>
 			<trans-unit id="exchange.showing">
 				<source>exchange.showing</source>
-				<target>Affichage d'un échange</target>
+				<target>Viewing an exchange</target>
 			</trans-unit>
 			<trans-unit id="exchange.status">
 				<source>exchange.status</source>
-				<target>Statut</target>
+				<target>Status</target>
 			</trans-unit>
 			<trans-unit id="exchange.status1">
 				<source>exchange.status1</source>
-				<target>En cours</target>
+				<target>Pending</target>
 			</trans-unit>
 			<trans-unit id="exchange.status2">
 				<source>exchange.status2</source>
-				<target>Accepté</target>
+				<target>Accepted</target>
 			</trans-unit>
 			<trans-unit id="exchange.status3">
 				<source>exchange.status3</source>
-				<target>Annulé</target>
+				<target>Canceled</target>
 			</trans-unit>
 			<trans-unit id="exchange.status4">
 				<source>exchange.status4</source>
-				<target>Refusé</target>
+				<target>Refused</target>
 			</trans-unit>
 			<trans-unit id="exchange.total_count">
 				<source>exchange.total_count</source>
-				<target>%sum% en %count% pièce|%sum% en %count% pièces</target>
+				<target>%sum% with %count% coin|%sum% with %count% coins</target>
 			</trans-unit>
 			<trans-unit id="exchanges">
 				<source>exchanges</source>
-				<target>Echanges</target>
+				<target>Exchanges</target>
 			</trans-unit>
 			<trans-unit id="exchanges.all">
 				<source>exchanges.all</source>
-				<target>Tous vos échanges</target>
+				<target>All your exchanges</target>
 			</trans-unit>
 			<trans-unit id="exchanges.pending">
 				<source>exchanges.pending</source>
-				<target>Echanges en cours</target>
+				<target>Pending exchanges</target>
 			</trans-unit>
 			<trans-unit id="user.coin_not_found">
 				<source>user.coin_not_found</source>
-				<target>Vous ne possédez pas encore cette pièce</target>
+				<target>You do not own this coin yet</target>
 			</trans-unit>
 		</body>
 	</file>

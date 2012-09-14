@@ -8,11 +8,11 @@
 			</trans-unit>
 			<trans-unit id="comment.author.name">
 				<source>comment.author.name</source>
-				<target>Nom</target>
+				<target>Name</target>
 			</trans-unit>
 			<trans-unit id="comment.author.website">
 				<source>comment.author.website</source>
-				<target>Site web</target>
+				<target>Website</target>
 			</trans-unit>
 			<trans-unit id="comment.message">
 				<source>comment.message</source>
@@ -20,11 +20,11 @@
 			</trans-unit>
 			<trans-unit id="edit.bold.symbol">
 				<source>edit.bold.symbol</source>
-				<target>G</target>
+				<target>B</target>
 			</trans-unit>
 			<trans-unit id="edit.bold.title">
 				<source>edit.bold.title</source>
-				<target>Gras</target>
+				<target>Bold</target>
 			</trans-unit>
 			<trans-unit id="edit.image.symbol">
 				<source>edit.image.symbol</source>
@@ -40,7 +40,7 @@
 			</trans-unit>
 			<trans-unit id="edit.italic.title">
 				<source>edit.italic.title</source>
-				<target>Italique</target>
+				<target>Italic</target>
 			</trans-unit>
 			<trans-unit id="edit.link.symbol">
 				<source>edit.link.symbol</source>
@@ -48,7 +48,7 @@
 			</trans-unit>
 			<trans-unit id="edit.link.title">
 				<source>edit.link.title</source>
-				<target>Lien</target>
+				<target>Link</target>
 			</trans-unit>
 			<trans-unit id="edit.list.symbol">
 				<source>edit.list.symbol</source>
@@ -59,7 +59,7 @@
 			</trans-unit>
 			<trans-unit id="edit.list.title">
 				<source>edit.list.title</source>
-				<target>Liste</target>
+				<target>List</target>
 			</trans-unit>
 			<trans-unit id="edit.list-ordered.symbol">
 				<source>edit.list-ordered.symbol</source>
@@ -70,7 +70,7 @@
 			</trans-unit>
 			<trans-unit id="edit.list-ordered.title">
 				<source>edit.list-ordered.title</source>
-				<target>Liste ordonnée</target>
+				<target>Ordered list</target>
 			</trans-unit>
 			<trans-unit id="edit.separator.symbol">
 				<source>edit.separator.symbol</source>
@@ -81,19 +81,19 @@
 			</trans-unit>
 			<trans-unit id="edit.separator.title">
 				<source>edit.separator.title</source>
-				<target>Séparateur horizontal</target>
+				<target>Horizontal separator</target>
 			</trans-unit>
 			<trans-unit id="edit.underline.symbol">
 				<source>edit.underline.symbol</source>
-				<target>S</target>
+				<target>U</target>
 			</trans-unit>
 			<trans-unit id="edit.underline.title">
 				<source>edit.underline.title</source>
-				<target>Souligné</target>
+				<target>Underline</target>
 			</trans-unit>
 			<trans-unit id="news">
 				<source>news</source>
-				<target>Actualités</target>
+				<target>News</target>
 			</trans-unit>
 			<trans-unit id="news.archives">
 				<source>news.archives</source>
@@ -101,62 +101,62 @@
 			</trans-unit>
 			<trans-unit id="news.author">
 				<source>news.author</source>
-				<target>Auteur</target>
+				<target>Author</target>
 			</trans-unit>
 			<trans-unit id="news.comment">
 				<source>news.comment</source>
-				<target>Commentaire</target>
+				<target>Comment</target>
 			</trans-unit>
 			<trans-unit id="news.comment.add">
 				<source>news.comment.add</source>
-				<target>Poster un commentaire</target>
+				<target>Post a comment</target>
 			</trans-unit>
 			<trans-unit id="news.comment.author">
 				<source>news.comment.author</source>
-				<target>Auteur</target>
+				<target>Author</target>
 			</trans-unit>
 			<trans-unit id="news.comment.post">
 				<source>news.comment.post</source>
-				<target>Poster le commentaire</target>
+				<target>Post the comment</target>
 			</trans-unit>
 			<trans-unit id="news.comments">
 				<source>news.comments</source>
-				<target>Commentaires</target>
+				<target>Comments</target>
 			</trans-unit>
 			<trans-unit id="news.comments.closed">
 				<source>news.comments.closed</source>
-				<target>Les commentaires sont désactivés sur cette news</target>
+				<target>Comments are disabled on this news</target>
 			</trans-unit>
 			<trans-unit id="news.comments.count">
 				<source>news.comments.count</source>
-				<target>%count% commentaire|%count% commentaires</target>
+				<target>%count% comment|%count% comments</target>
 			</trans-unit>
 			<trans-unit id="news.comments.none">
 				<source>news.comments.none</source>
-				<target>Soyez le premier à commenter cette actualité !</target>
+				<target>Be the first to comment on this news!</target>
 			</trans-unit>
 			<trans-unit id="news.content">
 				<source>news.content</source>
-				<target>Actualité</target>
+				<target>News</target>
 			</trans-unit>
 			<trans-unit id="news.information">
 				<source>news.information</source>
-				<target>Informations</target>
+				<target>Information</target>
 			</trans-unit>
 			<trans-unit id="news.none">
 				<source>news.none</source>
-				<target>Aucune news n'a été publié pour le moment</target>
+				<target>No news have been published so far</target>
 			</trans-unit>
 			<trans-unit id="news.posted_by_on">
 				<source>news.posted_by_on</source>
 				<target><![CDATA[
-Posté par <a href="%path%">%author%</a> le %date%
+Posted by <a href="%path%">%author%</a> on %date%
 				]]>
 				</target>
 			</trans-unit>
 			<trans-unit id="news.publication_date">
 				<source>news.publication_date</source>
-				<target>Date de publication</target>
+				<target>Publication date</target>
 			</trans-unit>
 			<trans-unit id="news.tags">
 				<source>news.tags</source>

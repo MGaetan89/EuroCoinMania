@@ -18,7 +18,7 @@
 			<dt>{{ 'user.date_of_birth'|trans }}</dt>
 				<dd>
 					{% if date(user.dateofbirth) == date() %}
-						<i class="icon-gift"></i> {{ 'user.birthday_today'|trans }}
+						<i class="icon-gift"></i> {{ ('user.birthday_today' ~ user.gender)|trans }}
 					{% else %}
 						{{ user.dateofbirth|format_date }}
 					{% endif %}
