@@ -46,26 +46,28 @@
 		<div class="span10">
 			{% if coins|length > 0 %}
 				{% if app.user %}
-				<div class="alert alert-info">{{ 'coin.sharing_count_info'|trans }}</div>
+					<div class="alert alert-info">{{ 'coin.sharing_count_info'|trans }}</div>
 				{% endif %}
 
-				<ul class="breadcrumb">
-					{% for year in years %}
-						<li>
-							{% if year.id == current_year %}<strong>{% endif %}
-							<a href="{{ path(app.request.get('_route'), { id: current.id, country: name, year: year.id, year_full: year }) }}">{{ macros.year(year) }}</a>
-							<span class="divider"></span>
-							{% if year.id == current_year %}</strong>{% endif %}
-						</li>
-					{% endfor %}
+				{% if years|length > 1 %}
+					<ul class="breadcrumb">
+						{% for year in years %}
+							<li>
+								{% if year.id == current_year %}<strong>{% endif %}
+								<a href="{{ path(app.request.get('_route'), { id: current.id, country: name, year: year.id, year_full: year }) }}">{{ macros.year(year) }}</a>
+								<span class="divider"></span>
+								{% if year.id == current_year %}</strong>{% endif %}
+							</li>
+						{% endfor %}
 
-					<li>
-						{% if not current_year %}<strong>{% endif %}
-						<a href="{{ path(app.request.get('_route'), { id: current.id, country: name }) }}">{{ 'coin.all_years'|trans }}</a>
-						<span class="divider"></span>
-						{% if not current_year %}</strong>{% endif %}
-					</li>
-				</ul>
+						<li>
+							{% if not current_year %}<strong>{% endif %}
+							<a href="{{ path(app.request.get('_route'), { id: current.id, country: name }) }}">{{ 'coin.all_years'|trans }}</a>
+							<span class="divider"></span>
+							{% if not current_year %}</strong>{% endif %}
+						</li>
+					</ul>
+				{% endif %}
 
 				{% block content %}{% endblock %}
 			{% else %}
