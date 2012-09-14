@@ -1,5 +1,5 @@
 $(function () {
-	var coins_list = $('#coins_list .divider'), count = 0, submit = $('#exchange'), total = 0, total_elt = coins_list.next('.nav-header').find('span');
+	var coins_list = $('#coins_list .divider'), count = 0, model = $('#item-model').detach().html(), submit = $('#exchange'), total = 0, total_elt = coins_list.next('.nav-header').find('span');
 
 	submit.on('click', function (e) {
 		var coins = [];
@@ -25,7 +25,7 @@ $(function () {
 			count++;
 			total += value;
 
-			var elt = $('<li id="' + id +'"><a>' + $this.data('desc') + '</a></li>');
+			var elt = $('<li id="' + id + '"></li>').html(model.replace('%COIN%', $this.data('desc')));
 
 			coins_list.before(elt.data('value', value));
 		}
@@ -37,5 +37,12 @@ $(function () {
 		} else if (count == 1) {
 			submit.removeClass('disabled').removeAttr('disabled');
 		}
+	});
+
+	$('#coins_list').on('click', '[data-action=remove-coin]', function () {
+		var parent = $(this).parent(), id = parent.attr('id').replace('coin-', '');
+
+		$('button[data-coin=' + id + ']').button('toggle');
+		parent.detach();
 	});
 });
