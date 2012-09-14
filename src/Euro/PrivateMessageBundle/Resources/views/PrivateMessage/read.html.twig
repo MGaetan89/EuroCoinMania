@@ -70,7 +70,7 @@
 			<h3>{{ 'pm.answer_add'|trans }}</h3>
 		</div>
 		<div class="modal-body">
-			<form action="{{ path('pm_answer_process', { id: pm.id }) }}" class="form-horizontal" method="post">
+			<form action="{{ path('pm_answer_process', { id: pm.id }) }}" class="form-horizontal" id="answer-form" method="post">
 				{% include 'ApplicationSonataNewsBundle:Post:editor.html.twig' with { target: 'euro_privatemessagebundle_messagetype_content' } %}
 
 				{{ form_row(form.content, { label: 'pm.form.title' }) }}
@@ -78,7 +78,7 @@
 				{{ form_rest(form) }}
 
 				<div class="form-actions">
-					<button class="btn btn-primary" id="submit" type="submit">{{ 'pm.add_answer'|trans }}</button>
+					<button class="btn btn-primary" type="submit">{{ 'pm.add_answer'|trans }}</button>
 					<button class="btn" data-dismiss="modal">{{ 'close'|trans }}</button>
 				</div>
 			</form>

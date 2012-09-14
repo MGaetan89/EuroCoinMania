@@ -19,10 +19,10 @@ $(function() {
 		}
 	});
 
-	$('#submit').on('click', function (e) {
-		var $this = $(this), id = null, user = to_user.val();
+	$('#write-form').on('submit', function (e) {
+		var id = null, user = to_user.val();
 
-		$this.addClass('disabled').attr('disabled', true);
+		$(this).find('[type=submit]').addClass('disabled').attr('disabled', true);
 
 		for (var i in users) {
 			if (users[i] === user) {

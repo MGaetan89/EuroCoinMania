@@ -1,5 +1,5 @@
 $(function () {
-	$('#submit').on('click', function () {
-		$(this).addClass('disabled').attr('disabled', true);
+	$('#answer-form').on('submit', function () {
+		$(this).find('[type=submit]').addClass('disabled').attr('disabled', true);
 	});
 });

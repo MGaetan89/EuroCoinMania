@@ -35,7 +35,7 @@
 						{% if app.user %}
 							{% if has_coin %}
 								<button class="btn btn-mini disabled" disabled="disabled" id="quantity-{{ coin.id }}" title="{{ 'coin.self_quantity'|trans }}">
-									{{ uc[coin.id].quantity|number_format_duration }}
+									{{ uc[coin.id].quantity|number_format }}
 
 									{% if uc[coin.id].sharing %}
 										({{ uc[coin.id].sharing }})
@@ -45,7 +45,7 @@
 								<button class="btn btn-mini disabled" disabled="disabled" id="quantity-{{ coin.id }}" title="{{ 'coin.registered_quantity'|trans }}">0</button>
 							{% endif %}
 						{% else %}
-							<button class="btn btn-mini disabled" disabled="disabled" id="quantity-{{ coin.id }}" title="{{ 'coin.mintage'|trans }}">{{ coin.mintage|number_format_duration }}</button>
+							<button class="btn btn-mini disabled" disabled="disabled" id="quantity-{{ coin.id }}" title="{{ 'coin.mintage'|trans }}">{{ coin.mintage|number_format }}</button>
 						{% endif %}
 					</div>
 

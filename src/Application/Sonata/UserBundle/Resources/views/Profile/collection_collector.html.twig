@@ -30,7 +30,7 @@
 						{% set quantity = has_coin ? uc[coin.id].quantity : 0 %}
 
 						<button class="btn btn-mini btn-info" title="{{ 'coin.information'|trans }}" data-action="query-coin-info" data-loading-text="?">?</button>
-						<button class="btn btn-mini disabled" disabled="disabled" title="{{ 'coin.self_quantity'|trans }}">{{ quantity|number_format_duration }}</button>
+						<button class="btn btn-mini disabled" disabled="disabled" title="{{ 'coin.self_quantity'|trans }}">{{ quantity|number_format }}</button>
 					</div>
 				</div>
 			</td>

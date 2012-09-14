@@ -66,7 +66,7 @@
 		<h3>{{ 'pm.writing'|trans }}</h3>
 	</div>
 	<div class="modal-body">
-		<form action="{{ path('pm_write_process') }}" class="form-horizontal" method="post">
+		<form action="{{ path('pm_write_process') }}" class="form-horizontal" id="write-form" method="post">
 			{{ form_row(form.title, { label: 'pm.form.title' }) }}
 			{{ form_row(form.to_user, { label: 'pm.form.to_user' }) }}
 
@@ -77,7 +77,7 @@
 			{{ form_rest(form) }}
 
 			<div class="form-actions">
-				<button class="btn btn-primary" id="submit" type="submit">{{ 'pm.send'|trans }}</button>
+				<button class="btn btn-primary" type="submit">{{ 'pm.send'|trans }}</button>
 				<button class="btn" data-dismiss="modal">{{ 'close'|trans }}</button>
 			</div>
 		</form>

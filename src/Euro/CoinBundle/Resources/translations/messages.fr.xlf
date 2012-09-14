@@ -113,7 +113,7 @@ Si l'échange est accepté par l'autre utilisateur, vos inventaires respectifs n
 			</trans-unit>
 			<trans-unit id="coin.registered_quantity">
 				<source>coin.registered_quantity</source>
-				<target>Quantité enregistrée</target>
+				<target>Total enregistrée</target>
 			</trans-unit>
 			<trans-unit id="coin.remove">
 				<source>coin.remove</source>

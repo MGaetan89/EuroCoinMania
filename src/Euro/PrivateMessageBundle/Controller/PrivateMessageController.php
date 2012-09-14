@@ -50,7 +50,7 @@ class PrivateMessageController extends Controller {
 
 				return $this->redirect($this->generateUrl('pm_read', array(
 									'id' => $conversation->getId(),
-									'title' => $conversation->getTitle(),
+									'title' => $translator->trans($conversation->getTitle()),
 								)));
 			}
 		}

@@ -17,9 +17,10 @@
 	{% for index in _coins|keys %}
 	<tr>
 		<td>
-			{% set coin = coins.requested[index] %}
-			{% if coin is defined %}
+			{% if coins.requested[index] is defined %}
+				{% set coin = coins.requested[index] %}
 				{% set total_requested = total_requested + coin.value.value %}
+
 				{{ macros.coin(coin) }}
 			{% endif %}
 		</td>
