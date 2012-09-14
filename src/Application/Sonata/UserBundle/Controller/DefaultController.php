@@ -58,49 +58,51 @@ class DefaultController extends BaseController {
 			}
 		}
 
-		// Sort the countries by translated name
-		usort($countries, function ($a, $b) use (&$country, $country_id, $translator) {
-					$a_name = $translator->trans((string) $a);
-					$b_name = $translator->trans((string) $b);
+		if ($countries) {
+			// Sort the countries by translated name
+			usort($countries, function ($a, $b) use (&$country, $country_id, $translator) {
+						$a_name = $translator->trans((string) $a);
+						$b_name = $translator->trans((string) $b);
 
-					if ($country_id == $a->getId()) {
-						$country = $a;
-					} else if ($country_id == $b->getId()) {
-						$country = $b;
-					}
+						if ($country_id == $a->getId()) {
+							$country = $a;
+						} else if ($country_id == $b->getId()) {
+							$country = $b;
+						}
 
-					return strcmp($a_name, $b_name);
-				});
+						return strcmp($a_name, $b_name);
+					});
 
-		if ($collector) {
-			$coins = array();
-			foreach ($user_coins as $user_coin) {
-				$coins[] = $user_coin->getCoin();
-			}
+			if ($collector) {
+				$coins = array();
+				foreach ($user_coins as $user_coin) {
+					$coins[] = $user_coin->getCoin();
+				}
 
-			if (!$country) {
-				$country = reset($countries);
-			}
-		} else {
-			list($coins, $values) = $this->_buildVars($user_coins);
+				if (!$country) {
+					$country = reset($countries);
+				}
+			} else {
+				list($coins, $values) = $this->_buildVars($user_coins);
 
-			$country_name = $translator->trans((string) $country);
-
-			if (!isset($coins[$country_name])) {
-				$country = reset($countries);
 				$country_name = $translator->trans((string) $country);
+
+				if (!isset($coins[$country_name])) {
+					$country = reset($countries);
+					$country_name = $translator->trans((string) $country);
+				}
+
+				$coins = $coins[$country_name];
+				$values = $values[$country_name];
 			}
 
-			$coins = $coins[$country_name];
-			$values = $values[$country_name];
-		}
-
-		if ($country && (!$country_id || $country_id != $country->getId())) {
-			return $this->redirect($this->generateUrl($this->getRequest()->get('_route'), array(
-								'country_id' => $country->getId(),
-								'country_name' => $translator->trans((string) $country),
-								'user_id' => $user_id,
-							)));
+			if ($country && (!$country_id || $country_id != $country->getId())) {
+				return $this->redirect($this->generateUrl($this->getRequest()->get('_route'), array(
+									'country_id' => $country->getId(),
+									'country_name' => $translator->trans((string) $country),
+									'user_id' => $user_id,
+								)));
+			}
 		}
 
 		$template_file = 'collection';
