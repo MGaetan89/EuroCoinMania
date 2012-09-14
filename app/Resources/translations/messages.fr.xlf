@@ -53,6 +53,10 @@ Tirage des pièces fournie par <a href="%path%" target="_blank">%name%</a>
 				<source>no</source>
 				<target>Non</target>
 			</trans-unit>
+			<trans-unit id="personnal_menu">
+				<source>personnal_menu</source>
+				<target>Menu personnel</target>
+			</trans-unit>
 			<trans-unit id="site_created_by">
 				<source>site_created_by</source>
 				<target><![CDATA[
