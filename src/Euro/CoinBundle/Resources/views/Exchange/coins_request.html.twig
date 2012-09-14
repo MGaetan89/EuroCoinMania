@@ -54,7 +54,7 @@
 								{% set coin = values[value] %}
 
 								<td>
-									<button class="btn btn-info btn-mini" data-coin="{{ coin.id }}" data-desc="{{ macros.coin(coin) }}" data-toggle="button" data-value="{{ coin.value.value }}">
+									<button class="btn btn-info btn-mini" data-coin="{{ coin.id }}" data-desc="{{ macros.coin(coin)|e('html') }}" data-toggle="button" data-value="{{ coin.value.value }}">
 										<i class="icon-white icon-ok"></i>
 									</button>
 								</td>
