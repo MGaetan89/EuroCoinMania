@@ -87,6 +87,10 @@ Si l'échange est accepté par l'autre utilisateur, vos inventaires respectifs n
 				<source>coin.exchange_suggest</source>
 				<target>Proposer ces pièces</target>
 			</trans-unit>
+			<trans-unit id="coin.image">
+				<source>coin.image</source>
+				<target>Image</target>
+			</trans-unit>
 			<trans-unit id="coin.information">
 				<source>coin.information</source>
 				<target>Informations</target>
@@ -94,6 +98,10 @@ Si l'échange est accepté par l'autre utilisateur, vos inventaires respectifs n
 			<trans-unit id="coin.mintage">
 				<source>coin.mintage</source>
 				<target>Tirage</target>
+			</trans-unit>
+			<trans-unit id="coin.no_image">
+				<source>coin.no_image</source>
+				<target>Aucune image</target>
 			</trans-unit>
 			<trans-unit id="coin.no_mintage">
 				<source>coin.no_mintage</source>

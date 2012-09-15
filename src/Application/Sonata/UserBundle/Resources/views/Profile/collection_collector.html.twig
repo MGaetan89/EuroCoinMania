@@ -4,13 +4,15 @@
 {% if coins %}
 	<table class="table table-hover table-striped">
 	<colgroup>
+		<col width="10%" />
 		<col width="7%" />
 		<col width="5%" />
-		<col width="80%" />
+		<col width="70%" />
 		<col width="8%" />
 	</colgroup>
 	<thead>
 		<tr>
+			<th>{{ 'coin.image'|trans }}</th>
 			<th>{{ 'coin.year'|trans }}</th>
 			<th>{{ 'coin.value'|trans }}</th>
 			<th>{{ 'coin.description'|trans }}</th>
@@ -20,6 +22,13 @@
 	<tbody>
 	{% for coin in coins %}
 		<tr>
+			<td>
+				{% if coin.image %}
+					{% media coin.image, 'small' %}
+				{% else %}
+					{{ 'coin.no_image'|trans }}
+				{% endif %}
+			</td>
 			<td>{{ macros.year(coin.year) }}</td>
 			<td>{{ macros.value(coin.value) }}</td>
 			<td>{{ coin.description }}</td>

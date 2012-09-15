@@ -2,7 +2,7 @@
 
 <div class="hide" id="coin-info-{{ coin.id }}">
 	<div class="row">
-		{% if coin.image %}
+		{% if coin.image and not coin.collector %}
 			<div class="span2">
 				{% media coin.image, 'small' %}
 			</div>
@@ -10,7 +10,7 @@
 	{% if not coin.collector %}
 	</div>
 	<div class="row">
-		{% if coin.image %}
+		{% if coin.image and not coin.collector %}
 		<div class="span2">
 			<dl>
 		{% endif %}
