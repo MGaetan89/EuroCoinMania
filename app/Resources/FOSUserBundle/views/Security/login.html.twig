@@ -11,14 +11,14 @@
 	<input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
 
 	<div class="control-group">
-		<label class="control-label" for="username">{{ 'security.login.username'|trans({}, 'FOSUserBundle') }}</label>
+		<label class="control-label" for="username">{{ 'user.username'|trans }}</label>
 		<div class="controls">
 			<input id="username" name="_username" type="text" value="{{ last_username }}" />
 		</div>
 	</div>
 
 	<div class="control-group">
-		<label class="control-label" for="password">{{ 'security.login.password'|trans({}, 'FOSUserBundle') }}</label>
+		<label class="control-label" for="password">{{ 'user.password'|trans }}</label>
 		<div class="controls">
 			<input id="password" name="_password" type="password" />
 		</div>
@@ -28,13 +28,15 @@
 		<div class="controls">
 			<label class="checkbox">
 				<input id="remember_me" name="_remember_me" type="checkbox" value="on" />
-				{{ 'security.login.remember_me'|trans({}, 'FOSUserBundle') }}
+				{{ 'user.remember_me'|trans }}
 			</label>
 		</div>
 	</div>
 
 	<div class="form-actions">
 		<input class="btn btn-primary" id="_submit" name="_submit" type="submit" value="{{ 'user.login_action'|trans }}" />
+
+		<a class="btn btn-link" href="{{ path('fos_user_resetting_request') }}">{{ 'user.password_forgotten'|trans }}</a>
 	</div>
 </form>
 {% endblock fos_user_content %}

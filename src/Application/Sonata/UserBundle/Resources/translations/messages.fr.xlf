@@ -126,6 +126,14 @@
 				<source>user.not_found</source>
 				<target>L'utilisateur que vous avez demandé n'existe pas</target>
 			</trans-unit>
+			<trans-unit id="user.password">
+				<source>user.password</source>
+				<target>Mot de passe</target>
+			</trans-unit>
+			<trans-unit id="user.password_forgotten">
+				<source>user.password_forgotten</source>
+				<target>Mot de passe oublié</target>
+			</trans-unit>
 			<trans-unit id="user.phone">
 				<source>user.phone</source>
 				<target>Téléphone</target>
@@ -158,6 +166,22 @@
 <p>De plus, si vous vous inscrivez avec une adresse e-mail enregistrée sur le site <a href="http://www.gravatar.com/">Gravatar.com</a>, votre photo de profil sera automatiquement affichée sur EuroCoin Mania.</p>
 				]]>
 				</target>
+			</trans-unit>
+			<trans-unit id="user.remember_me">
+				<source>user.remember_me</source>
+				<target>Connexion automatique</target>
+			</trans-unit>
+			<trans-unit id="user.request_password">
+				<source>user.request_password</source>
+				<target>Demande de mot de passe</target>
+			</trans-unit>
+			<trans-unit id="user.request_password.submit">
+				<source>user.request_password.submit</source>
+				<target>Demander votre mot de passe</target>
+			</trans-unit>
+			<trans-unit id="user.request_password.username">
+				<source>user.request_password.username</source>
+				<target>Nom d'utilisateur ou adresse e-mail</target>
 			</trans-unit>
 			<trans-unit id="user.show_collection">
 				<source>user.show_collection</source>
@@ -268,6 +292,10 @@
 			<trans-unit id="user.update_profile">
 				<source>user.update_profile</source>
 				<target>Mettre à jour</target>
+			</trans-unit>
+			<trans-unit id="user.username">
+				<source>user.username</source>
+				<target>Nom d'utilisateur</target>
 			</trans-unit>
 			<trans-unit id="user.website">
 				<source>user.website</source>

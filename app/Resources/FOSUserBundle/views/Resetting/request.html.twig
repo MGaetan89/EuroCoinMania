@@ -1,0 +1,9 @@
+{% extends "FOSUserBundle::layout.html.twig" %}
+
+{% block title %}{{ 'user.request_password'|trans }}{% endblock %}
+
+{% block fos_user_content %}
+<h2 class="page-header">{{ block('title') }}</h2>
+
+{% include 'FOSUserBundle:Resetting:request_content.html.twig' %}
+{% endblock fos_user_content %}
