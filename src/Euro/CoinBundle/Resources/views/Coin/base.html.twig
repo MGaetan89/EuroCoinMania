@@ -46,7 +46,11 @@
 		<div class="span10">
 			{% if coins|length > 0 %}
 				{% if app.user %}
-					<div class="alert alert-info">{{ 'coin.sharing_count_info'|trans }}</div>
+					<div class="alert alert-info fade in">
+						<button class="close" type="button" data-dismiss="alert">×</button>
+
+						{{ 'coin.sharing_count_info'|trans }}
+					</div>
 				{% endif %}
 
 				{% if years|length > 1 %}
