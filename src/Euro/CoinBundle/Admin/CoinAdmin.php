@@ -29,7 +29,7 @@ class CoinAdmin extends Admin {
 				->add('collector', null, array('required' => false))
 				->add('description', null, array('required' => false))
 				->add('mintage')
-				->add('image', 'sonata_type_model');
+				->add('image', 'sonata_type_model', array('required' => false));
 	}
 
 	protected function configureListFields(ListMapper $listMapper) {
