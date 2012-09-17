@@ -1,0 +1,11 @@
+services:
+    application_sonata_user.security.interactive_login_listener:
+        class: Application\Sonata\UserBundle\EventListener\UserListener
+        tags:
+            - { name: kernel.event_listener, event: security.interactive_login, method: setLocaleForAuthenticatedUser }
+
+    application_sonata_user.security.kernel_request_listener:
+        class: Application\Sonata\UserBundle\EventListener\UserListener
+        tags:
+            - { name: kernel.event_listener, event: kernel.request, method: setLocaleForUnauthenticatedUser }
+
