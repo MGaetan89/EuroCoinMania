@@ -23,18 +23,22 @@ class CoinAdmin extends Admin {
 
 	protected function configureFormFields(FormMapper $form) {
 		$form
-				->add('country', 'sonata_type_model')
-				->add('value', 'sonata_type_model')
-				->add('year', 'sonata_type_model')
-				->add('collector', null, array('required' => false))
-				->add('description', null, array('required' => false))
-				->add('mintage')
-				->add('image', 'sonata_type_model', array(
-					'required' => false
-						), array(
-					'link_parameters' => array('context' => 'coins')
-						)
-		);
+				->with('General')
+					->add('country', 'sonata_type_model')
+					->add('value', 'sonata_type_model')
+					->add('year', 'sonata_type_model')
+					->add('mintage')
+				->end()
+				->with('Options', array('collapsed' => true))
+					->add('collector', null, array('required' => false))
+					->add('description', null, array('required' => false))
+					->add('image', 'sonata_type_model', array(
+						'required' => false
+							), array(
+						'link_parameters' => array('context' => 'coins')
+							)
+					)
+				->end();
 	}
 
 	protected function configureListFields(ListMapper $listMapper) {
