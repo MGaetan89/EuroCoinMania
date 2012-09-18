@@ -1,5 +1,5 @@
 {
-    "hash": "4609565de4341c94b5d04028e2092874",
+    "hash": "6518b5d1eb7d252a30f2dee66198522c",
     "packages": [
         {
             "name": "doctrine/common",
@@ -358,7 +358,7 @@
             "require-dev": {
                 "sami/sami": "dev-master"
             },
-            "time": "2012-07-29 00:35:18",
+            "time": "2012-07-28 22:35:18",
             "type": "library",
             "installation-source": "dist",
             "autoload": {
@@ -404,7 +404,7 @@
                 "symfony/framework-bundle": "2.*",
                 "jms/cg": "1.0.0"
             },
-            "time": "2012-01-02 20:50:26",
+            "time": "2012-01-02 19:50:26",
             "type": "symfony-bundle",
             "installation-source": "dist",
             "autoload": {
@@ -446,7 +446,7 @@
             "require": {
                 "php": ">=5.3.0"
             },
-            "time": "2012-01-02 20:40:52",
+            "time": "2012-01-02 19:40:52",
             "type": "library",
             "installation-source": "dist",
             "autoload": {
@@ -548,7 +548,7 @@
             "require": {
                 "php": ">=5.3.0"
             },
-            "time": "2012-01-02 21:32:49",
+            "time": "2012-01-02 20:32:49",
             "type": "library",
             "installation-source": "dist",
             "autoload": {
@@ -838,7 +838,7 @@
                 "knplabs/knp-menu": "1.1.*",
                 "symfony/framework-bundle": ">=2.0,<2.2-dev"
             },
-            "time": "2012-05-17 11:56:49",
+            "time": "2012-05-17 09:56:49",
             "type": "symfony-bundle",
             "installation-source": "dist",
             "autoload": {
@@ -954,7 +954,7 @@
             "suggest": {
                 "ext-curl": "*"
             },
-            "time": "2012-06-25 19:01:38",
+            "time": "2012-06-25 17:01:38",
             "type": "library",
             "installation-source": "dist",
             "autoload": {
