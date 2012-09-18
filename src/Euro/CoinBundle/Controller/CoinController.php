@@ -108,6 +108,7 @@ class CoinController extends BaseController {
 		}
 
 		$coins = array();
+		$totals = array();
 		$uc = array();
 		$values = array();
 		$years = array();
@@ -121,6 +122,18 @@ class CoinController extends BaseController {
 				$item = $item->getYear();
 			}
 			$years = array_unique($years);
+
+			if (!$collector) {
+				foreach ($coins as $coin) {
+					$value = (string) $coin->getValue()->getValue();
+
+					if (!isset($totals[$value])) {
+						$totals[$value] = $coin->getMintage();
+					} else {
+						$totals[$value] += $coin->getMintage();
+					}
+				}
+			}
 
 			if (!$collector) {
 				list($coins, $values) = $this->_buildVars($coins);
@@ -153,6 +166,7 @@ class CoinController extends BaseController {
 					'countries' => $countries,
 					'current' => $country,
 					'current_year' => $year,
+					'totals' => $totals,
 					'uc' => $uc,
 					'years' => $years,
 				));
