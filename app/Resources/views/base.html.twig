@@ -3,9 +3,13 @@
 <html>
 <head>
 	<link href="{{ path('sonata_news_archive', { _format: 'rss' }) }}" rel="alternate" title="{{ 'sitename'|trans }}" type="application/rss+xml" />
-	<link href="{{ asset('bundles/eurocoin/css/bootstrap.css') }}" rel="stylesheet" />
-	<link href="{{ asset('bundles/eurocoin/css/style.css') }}" rel="stylesheet" />
-	<link href="{{ asset('bundles/eurocoin/css/bootstrap-responsive.css') }}" rel="stylesheet" />
+
+	<link href="{{ asset('favicon.png') }}" rel="icon" type="image/png" />
+	<link href="{{ asset('favicon.ico') }}" rel="shortcut icon" type="image/x-icon" />
+
+	<link href="{{ asset('bundles/eurocoin/css/bootstrap.css') }}" rel="stylesheet" type="text/css" />
+	<link href="{{ asset('bundles/eurocoin/css/style.css') }}" rel="stylesheet" type="text/css" />
+	<link href="{{ asset('bundles/eurocoin/css/bootstrap-responsive.css') }}" rel="stylesheet" type="text/css" />
 
 	<meta charset="UTF-8" />
 	<meta name="description" content="{{ 'site_description'|trans }}" />
