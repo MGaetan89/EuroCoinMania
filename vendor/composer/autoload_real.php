@@ -6,9 +6,15 @@ require __DIR__ . '/ClassLoader.php';
 
 class ComposerAutoloaderInit
 {
+    private static $loader;
+
     public static function getLoader()
     {
-        $loader = new \Composer\Autoload\ClassLoader();
+        if (null !== static::$loader) {
+            return static::$loader;
+        }
+
+        static::$loader = $loader = new \Composer\Autoload\ClassLoader();
         $vendorDir = dirname(__DIR__);
         $baseDir = dirname($vendorDir);
 
@@ -24,6 +30,7 @@ class ComposerAutoloaderInit
 
         $loader->register();
 
+        require $vendorDir . '/kriswallsmith/assetic/src/functions.php';
         require $vendorDir . '/swiftmailer/swiftmailer/lib/swift_required.php';
 
         return $loader;
