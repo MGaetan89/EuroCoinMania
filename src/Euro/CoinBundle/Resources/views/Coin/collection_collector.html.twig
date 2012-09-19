@@ -31,7 +31,7 @@
 			</td>
 			<td>{{ macros.year(coin.year) }}</td>
 			<td>{{ macros.value(coin.value) }}</td>
-			<td>{{ coin.description }}</td>
+			<td>{{ coin.description|format_text('markdown')|raw }}</td>
 			<td>
 				<div class="btn-toolbar" data-coin="{{ coin.id }}">
 					<div class="btn-group pull-left">
