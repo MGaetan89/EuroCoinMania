@@ -13,6 +13,24 @@ use Sonata\UserBundle\Model\UserInterface;
  */
 class UserCoinRepository extends EntityRepository {
 
+	public function findBiggestCollections() {
+		$queryBuilder = $this->createQueryBuilder('uc');
+		$expr = $queryBuilder->expr();
+
+		return $queryBuilder
+						->select('uc, u')
+						->addSelect('SUM(uc.quantity) AS total')
+						->addSelect('COUNT(uc.id) AS total_uniques')
+						->join('uc.user', 'u')
+						->groupBy('uc.user')
+						->having($expr->gt('total', 0))
+						->orderBy('total', 'DESC')
+						->addOrderBy('total_uniques', 'DESC')
+						->setMaxResults(10)
+						->getQuery()
+						->getResult();
+	}
+
 	public function findByUser(UserInterface $user) {
 		$queryBuilder = $this->createQueryBuilder('uc');
 		$expr = $queryBuilder->expr();
@@ -112,6 +130,24 @@ class UserCoinRepository extends EntityRepository {
 							'coins' => $coins,
 							'user' => $user,
 						))
+						->getQuery()
+						->getResult();
+	}
+
+	public function findMostValuedCollections() {
+		$queryBuilder = $this->createQueryBuilder('uc');
+		$expr = $queryBuilder->expr();
+
+		return $queryBuilder
+						->select('uc, u')
+						->addSelect('SUM(uc.quantity * v.value) AS total')
+						->join('uc.coin', 'c')
+						->join('uc.user', 'u')
+						->join('c.value', 'v')
+						->groupBy('uc.user')
+						->having($expr->gt('total', 0))
+						->orderBy('total', 'DESC')
+						->setMaxResults(10)
 						->getQuery()
 						->getResult();
 	}

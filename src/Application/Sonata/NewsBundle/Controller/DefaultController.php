@@ -12,7 +12,10 @@ class DefaultController extends Controller {
 		);
 
 		$doctrine = $this->getDoctrine();
+		$uc_repo = $doctrine->getRepository('EuroCoinBundle:UserCoin');
 		$stats = array(
+			'biggest_collections' => $uc_repo->findBiggestCollections(),
+			'most_valued_collections' => $uc_repo->findMostValuedCollections(),
 			'top_countries' => $doctrine->getRepository('EuroCoinBundle:Coin')->findTopCountries(),
 		);
 

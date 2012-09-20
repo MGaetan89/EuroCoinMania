@@ -80,6 +80,14 @@ Site created by <a href="%path%">%name%</a>
 				<source>stats</source>
 				<target>Statistics</target>
 			</trans-unit>
+			<trans-unit id="stats.biggest_collections">
+				<source>stats.biggest_collections</source>
+				<target>Biggest collections</target>
+			</trans-unit>
+			<trans-unit id="stats.most_valued_collections">
+				<source>stats.most_valued_collections</source>
+				<target>Most valued collections</target>
+			</trans-unit>
 			<trans-unit id="stats.top_countries">
 				<source>stats.top_countries</source>
 				<target>Most owned countries</target>

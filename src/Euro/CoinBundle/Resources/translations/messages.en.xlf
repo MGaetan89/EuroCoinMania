@@ -167,6 +167,10 @@ Si l'échange est accepté par l'autre utilisateur, vos inventaires respectifs n
 				<source>countries.list</source>
 				<target>Country list</target>
 			</trans-unit>
+			<trans-unit id="coins.uniques">
+				<source>coins.uniques</source>
+				<target>%total% unique|%total% uniques</target>
+			</trans-unit>
 			<trans-unit id="country.currency.austria">
 				<source>country.currency.austria</source>
 				<target>Austrian schilling</target>

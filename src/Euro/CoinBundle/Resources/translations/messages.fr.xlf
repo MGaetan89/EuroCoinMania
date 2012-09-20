@@ -163,6 +163,10 @@ Si l'échange est accepté par l'autre utilisateur, vos inventaires respectifs n
 				<source>coins.suggested_coins</source>
 				<target>Pièces proposées</target>
 			</trans-unit>
+			<trans-unit id="coins.uniques">
+				<source>coins.uniques</source>
+				<target>%total% unique|%total% uniques</target>
+			</trans-unit>
 			<trans-unit id="countries.list">
 				<source>countries.list</source>
 				<target>Liste des pays</target>

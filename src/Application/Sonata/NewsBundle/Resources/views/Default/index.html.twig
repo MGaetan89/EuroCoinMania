@@ -41,7 +41,7 @@
 						<img alt="{{ name }}" src="{{ asset('bundles/eurocoin/images/flags/' ~ country.nameiso ~ '.png') }}" title="{{ name }}" />
 						{{ name }}
 					</span>
-					<span class="pull-right">{{ total|number_format }} enregistrements</span>
+					<span class="pull-right">{{ 'coins'|transchoice(total, { '%total%': total|number_format }) }}</span>
 				</a></li>
 			{% endfor %}
 		</ul>
@@ -49,15 +49,17 @@
 
 	<div class="span4 well" style="padding: 8px 0;">
 		<ul class="nav nav-list">
-			<li class="nav-header">Membres ayant le plus de pièces</li>
+			<li class="nav-header">{{ 'stats.biggest_collections'|trans }}</li>
 
-			{% set last = constant('PHP_INT_MAX') %}
-			{% for i in 1..10 %}
-				{% set last = random(last) %}
+			{% for user in stats.biggest_collections %}
+				{% set user, total, total_uniques = user[0].user, user.total, user.total_uniques %}
 
-				<li><a class="clearfix" href="#">
-					<span class="pull-left"><i class="icon-user"></i> M.Gaetan89</span>
-					<span class="pull-right">{{ last|number_format }} pièces</span>
+				<li><a class="clearfix" href="{{ path('show_user_collection', { user_id: user.id }) }}">
+					<span class="pull-left"><i class="icon-user"></i> {{ user.username }}</span>
+					<span class="pull-right">
+						{{ 'coins'|transchoice(total, { '%total%': total|number_format }) }}
+						({{ 'coins.uniques'|transchoice(total_uniques, { '%total%': total_uniques|number_format }) }})
+					</span>
 				</a></li>
 			{% endfor %}
 		</ul>
@@ -65,15 +67,14 @@
 
 	<div class="span4 well" style="padding: 8px 0;">
 		<ul class="nav nav-list">
-			<li class="nav-header">Collection ayant la plus grande valeur</li>
+			<li class="nav-header">{{ 'stats.most_valued_collections'|trans }}</li>
 
-			{% set last = constant('PHP_INT_MAX') %}
-			{% for i in 1..10 %}
-				{% set last = random(last) %}
+			{% for user in stats.most_valued_collections %}
+				{% set user, total = user[0].user, user.total %}
 
-				<li><a class="clearfix" href="#">
-					<span class="pull-left"><i class="icon-user"></i> M.Gaetan89</span>
-					<span class="pull-right">{{ macros.value(last) }}</span>
+				<li><a class="clearfix" href="{{ path('show_user_collection', { user_id: user.id }) }}">
+					<span class="pull-left"><i class="icon-user"></i> {{ user.username }}</span>
+					<span class="pull-right">{{ macros.value(total) }}</span>
 				</a></li>
 			{% endfor %}
 		</ul>
