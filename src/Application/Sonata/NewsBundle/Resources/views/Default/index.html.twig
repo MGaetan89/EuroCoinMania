@@ -58,7 +58,7 @@
 					<span class="pull-left"><i class="icon-user"></i> {{ user.username }}</span>
 					<span class="pull-right">
 						{{ 'coins'|transchoice(total, { '%total%': total|number_format }) }}
-						({{ 'coins.uniques'|transchoice(total_uniques, { '%total%': total_uniques|number_format }) }})
+						({{ 'coins.differents'|transchoice(total_uniques, { '%total%': total_uniques|number_format }) }})
 					</span>
 				</a></li>
 			{% endfor %}

@@ -155,6 +155,10 @@ Si l'échange est accepté par l'autre utilisateur, vos inventaires respectifs n
 				<source>coins</source>
 				<target>%total% coin|%total% coins</target>
 			</trans-unit>
+			<trans-unit id="coins.differents">
+				<source>coins.differents</source>
+				<target>%total% different|%total% differents</target>
+			</trans-unit>
 			<trans-unit id="coins.requested_coins">
 				<source>coins.requested_coins</source>
 				<target>Requested coins</target>
@@ -166,10 +170,6 @@ Si l'échange est accepté par l'autre utilisateur, vos inventaires respectifs n
 			<trans-unit id="countries.list">
 				<source>countries.list</source>
 				<target>Country list</target>
-			</trans-unit>
-			<trans-unit id="coins.uniques">
-				<source>coins.uniques</source>
-				<target>%total% unique|%total% uniques</target>
 			</trans-unit>
 			<trans-unit id="country.currency.austria">
 				<source>country.currency.austria</source>
