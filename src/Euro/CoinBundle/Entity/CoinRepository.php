@@ -60,7 +60,7 @@ class CoinRepository extends EntityRepository {
 
 		$queryBuilder = $queryBuidler
 				->select('c, i, v, y, w')
-				->join('c.image', 'i')
+				->leftJoin('c.image', 'i')
 				->join('c.value', 'v')
 				->join('c.year', 'y')
 				->leftJoin('y.workshop', 'w')
