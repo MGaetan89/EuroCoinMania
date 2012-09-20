@@ -30,7 +30,7 @@
 			<tr id="{{ country.nameiso }}-list">
 				<td>
 					<a href="{{ path('coin_collection', { id: country.id, country: name }) }}">
-						<img alt="{{ name }}" src="{{ asset('bundles/eurocoin/images/flags/' ~ country.nameiso ~ '.png') }}" title="{{ name }}" />
+						<img alt="{{ name }}" src="{% path country.flag, 'small' %}" title="{{ name }}" />
 						{{ name }}
 					</a>
 				</td>

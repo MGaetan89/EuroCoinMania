@@ -32,7 +32,7 @@ class CoinAdmin extends Admin {
 				->with('Options', array('collapsed' => true))
 					->add('collector', null, array('required' => false))
 					->add('description', null, array('required' => false))
-					->add('image', 'sonata_type_model', array(
+					->add('image', 'sonata_type_model_list', array(
 						'required' => false
 							), array(
 						'link_parameters' => array('context' => 'coins')

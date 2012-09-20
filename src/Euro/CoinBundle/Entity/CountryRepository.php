@@ -11,5 +11,16 @@ use Doctrine\ORM\EntityRepository;
  * repository methods below.
  */
 class CountryRepository extends EntityRepository {
-	
+
+	public function findAll() {
+		$queryBuidler = $this->createQueryBuilder('c');
+
+		return $queryBuidler
+						->select('c, f')
+						->join('c.flag', 'f')
+						->orderBy('c.join_date', 'ASC')
+						->getQuery()
+						->getResult();
+	}
+
 }

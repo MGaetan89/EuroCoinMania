@@ -7,7 +7,7 @@
 	{% set name = macros.name(current) %}
 
 	<h2 class="page-header">
-		<img alt="{{ name }}" src="{{ asset('bundles/eurocoin/images/flags/' ~ current.nameiso ~ '.png') }}" title="{{ name }}" />
+		<img alt="{{ name }}" src="{% path current.flag, 'big' %}" title="{{ name }}" />
 		{{ name }}
 	</h2>
 

@@ -8,27 +8,31 @@ sonata_media:
                 - sonata.media.provider.youtube
                 - sonata.media.provider.image
                 - sonata.media.provider.file
-
             formats:
-                small: { width: 100 , quality: 70 }
-                big:   { width: 500 , quality: 70 }
+                small: { width: 100, quality: 70 }
+                big:   { width: 500, quality: 70 }
         coins:
             providers:
                 - sonata.media.provider.image
-
             formats:
-                small: { width: 140 , quality: 95 }
-                big:   { width: 500 , quality: 90 }
+                small: { width: 140, quality: 95 }
+                big:   { width: 500, quality: 90 }
+        flags:
+            providers:
+                - sonata.media.provider.image
+            formats:
+                mini:  { width: 16, quality: 95 }
+                small: { width: 24, quality: 95 }
+                big:   { width: 32, quality: 95 }
         news:
             providers:
                 - sonata.media.provider.dailymotion
                 - sonata.media.provider.youtube
                 - sonata.media.provider.image
                 - sonata.media.provider.file
-
             formats:
-                small: { width: 150 , quality: 95 }
-                big:   { width: 500 , quality: 90 }
+                small: { width: 150, quality: 95 }
+                big:   { width: 500, quality: 90 }
 
     cdn:
         server:

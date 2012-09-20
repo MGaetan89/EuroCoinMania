@@ -2,6 +2,7 @@
 
 namespace Euro\CoinBundle\Entity;
 
+use Application\Sonata\MediaBundle\Entity\Media;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -55,6 +56,12 @@ class Country {
 	 * @ORM\Column(name="exchange_rate", type="float")
 	 */
 	private $exchange_rate;
+
+	/**
+	 * @ORM\ManyToOne(targetEntity="Application\Sonata\MediaBundle\Entity\Media")
+	 * @ORM\JoinColumn(name="flag_id", referencedColumnName="id")
+	 */
+	private $flag;
 
 	public function __toString() {
 		return 'country.name.' . $this->getName();
@@ -172,6 +179,26 @@ class Country {
 	 */
 	public function getExchangeRate() {
 		return $this->exchange_rate;
+	}
+
+	/**
+	 * Set flag
+	 *
+	 * @param Media $flag
+	 */
+	public function setFlag(Media $flag) {
+		$this->flag = $flag;
+
+		return $this;
+	}
+
+	/**
+	 * Get flag
+	 *
+	 * @return Media
+	 */
+	public function getFlag() {
+		return $this->flag;
 	}
 
 }

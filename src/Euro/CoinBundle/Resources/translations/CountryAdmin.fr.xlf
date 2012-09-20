@@ -46,6 +46,10 @@
 				<source>form.label_exchange_rate</source>
 				<target>Taux de change</target>
 			</trans-unit>
+			<trans-unit id="form.label_flag">
+				<source>form.label_flag</source>
+				<target>Drapeau</target>
+			</trans-unit>
 			<trans-unit id="form.label_former_currency_iso">
 				<source>form.label_former_currency_iso</source>
 				<target>Code de l'ancienne monnaie</target>

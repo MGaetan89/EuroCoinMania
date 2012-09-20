@@ -13,7 +13,7 @@ class CountryController extends Controller {
 	public function listAction() {
 		$repository = $this->getDoctrine()->getRepository('EuroCoinBundle:Country');
 		$translator = $this->get('translator');
-		$countries = $repository->findBy(array(), array('join_date' => 'ASC'));
+		$countries = $repository->findAll();
 
 		// Sort the countries by translated name
 		usort($countries, function ($a, $b) use ($translator) {

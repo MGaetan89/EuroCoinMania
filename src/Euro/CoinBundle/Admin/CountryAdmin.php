@@ -27,7 +27,13 @@ class CountryAdmin extends Admin {
 				->add('name_iso')
 				->add('join_date', null, array('years' => range(1999, date('Y'))))
 				->add('former_currency_iso')
-				->add('exchange_rate');
+				->add('exchange_rate')
+				->add('flag', 'sonata_type_model_list', array(
+					'required' => false
+						), array(
+					'link_parameters' => array('context' => 'flags')
+						)
+		);
 	}
 
 	protected function configureListFields(ListMapper $listMapper) {
@@ -54,15 +60,15 @@ class CountryAdmin extends Admin {
 	public function validate(ErrorElement $errorElement, $object) {
 		$errorElement
 				->with('name')
-					->assertMaxLength(array('limit' => 25))
+				->assertMaxLength(array('limit' => 25))
 				->end()
 				->with('name_iso')
-					->assertMinLength(array('limit' => 2))
-					->assertMaxLength(array('limit' => 2))
+				->assertMinLength(array('limit' => 2))
+				->assertMaxLength(array('limit' => 2))
 				->end()
 				->with('former_currency_iso')
-					->assertMinLength(array('limit' => 3))
-					->assertMaxLength(array('limit' => 3))
+				->assertMinLength(array('limit' => 3))
+				->assertMaxLength(array('limit' => 3))
 				->end();
 	}
 

@@ -38,7 +38,7 @@
 
 				<li><a class="clearfix" href="{{ path('coin_collection', { id: country.id, country: name }) }}">
 					<span class="pull-left">
-						<img alt="{{ name }}" src="{{ asset('bundles/eurocoin/images/flags/' ~ country.nameiso ~ '.png') }}" title="{{ name }}" />
+						<img alt="{{ name }}" src="{% path country.flag, 'mini' %}" title="{{ name }}" />
 						{{ name }}
 					</span>
 					<span class="pull-right">{{ 'coins'|transchoice(total, { '%total%': total|number_format }) }}</span>

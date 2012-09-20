@@ -79,7 +79,7 @@ class CoinController extends BaseController {
 	public function collectionAction($id, $collector, $year) {
 		$doctrine = $this->getDoctrine();
 		$translator = $this->get('translator');
-		$countries = $doctrine->getRepository('EuroCoinBundle:Country')->findBy(array(), array('join_date' => 'ASC'));
+		$countries = $doctrine->getRepository('EuroCoinBundle:Country')->findAll();
 		$country = null;
 
 		// Sort the countries by translated name
