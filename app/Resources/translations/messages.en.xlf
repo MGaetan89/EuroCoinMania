@@ -76,6 +76,14 @@ Site created by <a href="%path%">%name%</a>
 				<source>sitename</source>
 				<target>EuroCoin Mania</target>
 			</trans-unit>
+			<trans-unit id="stats">
+				<source>stats</source>
+				<target>Statistics</target>
+			</trans-unit>
+			<trans-unit id="stats.top_countries">
+				<source>stats.top_countries</source>
+				<target>Most owned countries</target>
+			</trans-unit>
 			<trans-unit id="view_more">
 				<source>view_more</source>
 				<target>View more</target>

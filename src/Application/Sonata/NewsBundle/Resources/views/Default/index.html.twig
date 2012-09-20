@@ -24,4 +24,59 @@
 		<div class="alert">{{ 'news.none'|trans }}</div>
 	{% endfor %}
 </div>
+
+<h3 class="page-header">{{ 'stats'|trans }}</h3>
+
+<div class="row-fluid">
+	<div class="span4 well" style="padding: 8px 0;">
+		<ul class="nav nav-list">
+			<li class="nav-header">{{ 'stats.top_countries'|trans }}</li>
+
+			{% for country in stats.top_countries %}
+				{% set country, total = country[0].country, country.total %}
+				{% set name = macros.name(country) %}
+
+				<li><a class="clearfix" href="{{ path('coin_collection', { id: country.id, country: name }) }}">
+					<span class="pull-left">
+						<img alt="{{ name }}" src="{{ asset('bundles/eurocoin/images/flags/' ~ country.nameiso ~ '.png') }}" title="{{ name }}" />
+						{{ name }}
+					</span>
+					<span class="pull-right">{{ total|number_format }} enregistrements</span>
+				</a></li>
+			{% endfor %}
+		</ul>
+	</div>
+
+	<div class="span4 well" style="padding: 8px 0;">
+		<ul class="nav nav-list">
+			<li class="nav-header">Membres ayant le plus de pièces</li>
+
+			{% set last = constant('PHP_INT_MAX') %}
+			{% for i in 1..10 %}
+				{% set last = random(last) %}
+
+				<li><a class="clearfix" href="#">
+					<span class="pull-left"><i class="icon-user"></i> M.Gaetan89</span>
+					<span class="pull-right">{{ last|number_format }} pièces</span>
+				</a></li>
+			{% endfor %}
+		</ul>
+	</div>
+
+	<div class="span4 well" style="padding: 8px 0;">
+		<ul class="nav nav-list">
+			<li class="nav-header">Collection ayant la plus grande valeur</li>
+
+			{% set last = constant('PHP_INT_MAX') %}
+			{% for i in 1..10 %}
+				{% set last = random(last) %}
+
+				<li><a class="clearfix" href="#">
+					<span class="pull-left"><i class="icon-user"></i> M.Gaetan89</span>
+					<span class="pull-right">{{ macros.value(last) }}</span>
+				</a></li>
+			{% endfor %}
+		</ul>
+	</div>
+</div>
 {% endblock %}

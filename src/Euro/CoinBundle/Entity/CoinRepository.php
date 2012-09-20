@@ -82,6 +82,22 @@ class CoinRepository extends EntityRepository {
 						->getResult();
 	}
 
+	public function findTopCountries() {
+		$queryBuidler = $this->createQueryBuilder('c');
+		$expr = $queryBuidler->expr();
+
+		return $queryBuidler
+						->select('c')
+						->addSelect('SUM(c.member_total) AS total')
+						->join('c.country', 'ct')
+						->groupBy('c.country')
+						->having($expr->gt('total', 0))
+						->orderBy('total', 'DESC')
+						->setMaxResults(10)
+						->getQuery()
+						->getResult();
+	}
+
 	public function findYearsForCountry(Country $country, $collector) {
 		$queryBuidler = $this->createQueryBuilder('c');
 		$expr = $queryBuidler->expr();
