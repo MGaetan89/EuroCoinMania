@@ -90,7 +90,7 @@ class CoinRepository extends EntityRepository {
 						->select('c, ct, f')
 						->addSelect('SUM(c.member_total) AS total')
 						->join('c.country', 'ct')
-				->join('ct.flag', 'f')
+						->join('ct.flag', 'f')
 						->groupBy('c.country')
 						->having($expr->gt('total', 0))
 						->orderBy('total', 'DESC')
