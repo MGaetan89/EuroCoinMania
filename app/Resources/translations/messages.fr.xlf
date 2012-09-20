@@ -86,7 +86,7 @@ Site crée par <a href="%path%">%name%</a>
 			</trans-unit>
 			<trans-unit id="stats.most_valued_collections">
 				<source>stats.most_valued_collections</source>
-				<target>Collections avec la plus grande valeur</target>
+				<target>Collections ayant le plus de valeur</target>
 			</trans-unit>
 			<trans-unit id="stats.top_countries">
 				<source>stats.top_countries</source>
