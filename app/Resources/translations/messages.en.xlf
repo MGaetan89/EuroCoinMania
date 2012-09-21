@@ -53,6 +53,10 @@ Coins mintage provided by <a href="%path%" target="_blank">%name%</a>
 				<source>no</source>
 				<target>No</target>
 			</trans-unit>
+			<trans-unit id="no_data">
+				<source>no_data</source>
+				<target>No data</target>
+			</trans-unit>
 			<trans-unit id="personnal_menu">
 				<source>personnal_menu</source>
 				<target>Personnal menu</target>

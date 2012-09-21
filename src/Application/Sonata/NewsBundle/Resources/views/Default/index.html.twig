@@ -43,6 +43,8 @@
 					</span>
 					<span class="pull-right">{{ 'coins'|transchoice(total, { '%total%': total|number_format }) }}</span>
 				</a></li>
+			{% else %}
+				<li>{{ 'no_data'|trans }}</li>
 			{% endfor %}
 		</ul>
 	</div>
@@ -61,6 +63,8 @@
 						({{ 'coins.differents'|transchoice(total_uniques, { '%total%': total_uniques|number_format }) }})
 					</span>
 				</a></li>
+			{% else %}
+				<li>{{ 'no_data'|trans }}</li>
 			{% endfor %}
 		</ul>
 	</div>
@@ -76,6 +80,8 @@
 					<span class="pull-left"><i class="icon-user"></i> {{ user.username }}</span>
 					<span class="pull-right">{{ macros.value(total) }}</span>
 				</a></li>
+			{% else %}
+				<li>{{ 'no_data'|trans }}</li>
 			{% endfor %}
 		</ul>
 	</div>
