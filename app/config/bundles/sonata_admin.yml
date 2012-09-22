@@ -1,6 +1,7 @@
 sonata_admin:
     title: Administration
+    title_logo: /favicon.png
     dashboard:
         blocks:
-            - { position: left,  type: sonata.admin.block.admin_list, settings: { groups: [Collection, sonata_user] } }
-            - { position: right, type: sonata.admin.block.admin_list, settings: { groups: [sonata_blog, sonata_media] } }
+            - { position: left,  type: sonata.admin.block.admin_list, settings: { groups: [Collection, sonata_media] } }
+            - { position: right, type: sonata.admin.block.admin_list, settings: { groups: [sonata_blog, sonata_user] } }
