@@ -78,6 +78,10 @@
 				<source>user.google_plus</source>
 				<target>Google+</target>
 			</trans-unit>
+			<trans-unit id="user.has_no_such_coin">
+				<source>user.has_no_such_coin</source>
+				<target>This user does not have coin matching your criteria</target>
+			</trans-unit>
 			<trans-unit id="user.information">
 				<source>user.information</source>
 				<target>Information</target>
@@ -211,6 +215,10 @@
 				<source>user.stats.country.collectors</source>
 				<target>Number of collector coins</target>
 			</trans-unit>
+			<trans-unit id="user.stats.country.commemoratives">
+				<source>user.stats.country.commemoratives</source>
+				<target>Number of commemorative coins</target>
+			</trans-unit>
 			<trans-unit id="user.stats.country.distribution_by_year">
 				<source>user.stats.country.distribution_by_year</source>
 				<target>Distribution by year</target>
@@ -264,6 +272,10 @@
 			<trans-unit id="user.stats.total_collectors">
 				<source>user.stats.total_collectors</source>
 				<target>Number of collector coins</target>
+			</trans-unit>
+			<trans-unit id="user.stats.total_commemoratives">
+				<source>user.stats.total_commemoratives</source>
+				<target>Nombre de pièces commemoratives</target>
 			</trans-unit>
 			<trans-unit id="user.stats.total_doubles">
 				<source>user.stats.total_doubles</source>

@@ -10,16 +10,23 @@ show_user_stats:
     requirements:
         id: "\d+"
 
-show_user_collection:
+show_user_collection1:
     pattern:  /profile/{user_id}/collection/{country_id}/{country_name}
-    defaults: { _controller: ApplicationSonataUserBundle:Default:collection, collector: false, country_id: null, country_name: null }
+    defaults: { _controller: ApplicationSonataUserBundle:Default:collection, country_id: null, country_name: null, type: 1 }
     requirements:
         country_id: "\d+"
         user_id: "\d+"
 
-show_user_collection_collector:
+show_user_collection2:
+    pattern:  /profile/{user_id}/collection/commemorative/{country_id}/{country_name}
+    defaults: { _controller: ApplicationSonataUserBundle:Default:collection, country_id: null, country_name: null, type: 2 }
+    requirements:
+        country_id: "\d+"
+        user_id: "\d+"
+
+show_user_collection3:
     pattern:  /profile/{user_id}/collection/collector/{country_id}/{country_name}
-    defaults: { _controller: ApplicationSonataUserBundle:Default:collection, collector: true, country_id: null, country_name: null }
+    defaults: { _controller: ApplicationSonataUserBundle:Default:collection, country_id: null, country_name: null, type: 3 }
     requirements:
         country_id: "\d+"
         user_id: "\d+"

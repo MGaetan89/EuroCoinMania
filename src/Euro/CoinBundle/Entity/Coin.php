@@ -13,6 +13,10 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Coin {
 
+	const TYPE_CIRCULATION = 1;
+	const TYPE_COMMEMORATIVE = 2;
+	const TYPE_COLLECTOR = 3;
+
 	/**
 	 * @var integer $id
 	 *
@@ -41,11 +45,11 @@ class Coin {
 	private $year;
 
 	/**
-	 * @var boolean $collector
+	 * @var integer $type
 	 *
-	 * @ORM\Column(name="collector", type="boolean")
+	 * @ORM\Column(name="type", type="smallint")
 	 */
-	private $collector;
+	private $type;
 
 	/**
 	 * @var string $description
@@ -84,24 +88,24 @@ class Coin {
 	}
 
 	/**
-	 * Set collector
+	 * Set type
 	 *
-	 * @param boolean $collector
+	 * @param integer $type
 	 * @return Coin
 	 */
-	public function setCollector($collector) {
-		$this->collector = $collector;
+	public function setType($type) {
+		$this->type = $type;
 
 		return $this;
 	}
 
 	/**
-	 * Get collector
+	 * Get type
 	 *
-	 * @return boolean 
+	 * @return integer 
 	 */
-	public function isCollector() {
-		return $this->collector;
+	public function getType() {
+		return $this->type;
 	}
 
 	/**

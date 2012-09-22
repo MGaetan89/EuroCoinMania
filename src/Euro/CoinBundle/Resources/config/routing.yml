@@ -5,15 +5,21 @@ coin_add:
         id: "\d+"
         _method: POST
 
-coin_collection:
+coin_collection1:
     pattern: /collection/{id}/{country}/{year}/{year_full}
-    defaults: { _controller: EuroCoinBundle:Coin:collection, collector: false, country: null, id: null, year: null, year_full: null }
+    defaults: { _controller: EuroCoinBundle:Coin:collection, country: null, id: null, type: 1, year: null, year_full: null }
     requirements:
         id: "\d*"
 
-coin_collection_collector:
+coin_collection2:
+    pattern: /collection/commemorative/{id}/{country}/{year}/{year_full}
+    defaults: { _controller: EuroCoinBundle:Coin:collection, country: null, id: null, type: 2, year: null, year_full: null }
+    requirements:
+        id: "\d*"
+
+coin_collection3:
     pattern: /collection/collector/{id}/{country}/{year}/{year_full}
-    defaults: { _controller: EuroCoinBundle:Coin:collection, collector: true, country: null, id: null, year: null, year_full: null }
+    defaults: { _controller: EuroCoinBundle:Coin:collection, country: null, id: null, type: 3, year: null, year_full: null }
     requirements:
         id: "\d*"
 

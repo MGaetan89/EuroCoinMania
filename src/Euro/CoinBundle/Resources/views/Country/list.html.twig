@@ -26,20 +26,20 @@
 		</thead>
 		<tbody>
 			{% for country in countries %}
-			{% set base, name = macros.value(1), macros.name(country) %}
-			<tr id="{{ country.nameiso }}-list">
-				<td>
-					<a href="{{ path('coin_collection', { id: country.id, country: name }) }}">
-						<img alt="{{ name }}" src="{% path country.flag, 'small' %}" title="{{ name }}" />
-						{{ name }}
-					</a>
-				</td>
-				<td>{{ country.joindate|format_date }}</td>
-				<td>
-					{{ base ~ ' = ' ~ macros.value(country.exchangerate, country.formercurrencyiso) }}
-					<span class="muted pull-right">{{ macros.currency(country) }}</span>
-				</td>
-			</tr>
+				{% set base, name = macros.value(1), macros.name(country) %}
+				<tr id="{{ country.nameiso }}-list">
+					<td>
+						<a href="{{ path('coin_collection1', { id: country.id, country: name }) }}">
+							<img alt="{{ name }}" src="{% path country.flag, 'small' %}" title="{{ name }}" />
+							{{ name }}
+						</a>
+					</td>
+					<td>{{ country.joindate|format_date }}</td>
+					<td>
+						{{ base ~ ' = ' ~ macros.value(country.exchangerate, country.formercurrencyiso) }}
+						<span class="muted pull-right">{{ macros.currency(country) }}</span>
+					</td>
+				</tr>
 			{% endfor %}
 		</tbody>
 		</table>

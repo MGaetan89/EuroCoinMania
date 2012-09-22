@@ -36,7 +36,7 @@ class CountryController extends Controller {
 			$countries_js[] = array(
 				'name' => $name,
 				'nameiso' => $country->getNameIso(),
-				'path' => $this->generateUrl('coin_collection', array(
+				'path' => $this->generateUrl('coin_collection1', array(
 					'country' => $name,
 					'id' => $country->getId(),
 				)),

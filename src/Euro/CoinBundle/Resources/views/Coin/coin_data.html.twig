@@ -2,21 +2,21 @@
 
 <div class="hide" id="coin-info-{{ coin.id }}">
 	<div class="row">
-		{% if coin.image and not coin.collector %}
+		{% if coin.image and coin.type == 1 %}
 			<div class="span2">
 				{% media coin.image, 'small' %}
 			</div>
 		{% endif %}
-	{% if not coin.collector %}
+	{% if coin.type == 1 %}
 	</div>
 	<div class="row">
-		{% if coin.image and not coin.collector %}
+		{% if coin.image and coin.type == 1 %}
 		<div class="span2">
 			<dl>
 		{% endif %}
 	{% endif %}
 
-	{% if coin.collector or not coin.image %}
+	{% if coin.type != 1 or not coin.image %}
 		<div class="span3">
 			<dl class="dl-horizontal">
 	{% endif %}
@@ -29,14 +29,8 @@
 				<dt>{{ 'coin.value'|trans }}</dt>
 					<dd>{{ macros.value(coin.value) }}</dd>
 
-				<dt>{{ 'coin.collector'|trans }}</dt>
-					<dd>
-						{% if coin.collector %}
-							<i class="icon-ok"></i> {{ 'yes'|trans }}
-						{% else %}
-							<i class="icon-remove"></i> {{ 'no'|trans }}
-						{% endif %}
-					</dd>
+				<dt>{{ 'coin.type'|trans }}</dt>
+					<dd>{{ ('coin.type' ~ coin.type)|trans }}</dd>
 
 				<dt>{{ 'coin.mintage'|trans }}</dt>
 					<dd>{{ coin.mintage|number_format }}</dd>

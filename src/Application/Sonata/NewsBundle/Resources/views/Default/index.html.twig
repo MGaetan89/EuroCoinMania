@@ -36,7 +36,7 @@
 				{% set country, total = country[0].country, country.total %}
 				{% set name = macros.name(country) %}
 
-				<li><a class="clearfix" href="{{ path('coin_collection', { id: country.id, country: name }) }}">
+				<li><a class="clearfix" href="{{ path('coin_collection1', { id: country.id, country: name }) }}">
 					<span class="pull-left">
 						<img alt="{{ name }}" src="{% path country.flag, 'mini' %}" title="{{ name }}" />
 						{{ name }}
@@ -56,7 +56,7 @@
 			{% for user in stats.biggest_collections %}
 				{% set user, total, total_uniques = user[0].user, user.total, user.total_uniques %}
 
-				<li><a class="clearfix" href="{{ path('show_user_collection', { user_id: user.id }) }}">
+				<li><a class="clearfix" href="{{ path('show_user_collection1', { user_id: user.id }) }}">
 					<span class="pull-left"><i class="icon-user"></i> {{ user.username }}</span>
 					<span class="pull-right">
 						{{ 'coins'|transchoice(total, { '%total%': total|number_format }) }}
@@ -76,7 +76,7 @@
 			{% for user in stats.most_valued_collections %}
 				{% set user, total = user[0].user, user.total %}
 
-				<li><a class="clearfix" href="{{ path('show_user_collection', { user_id: user.id }) }}">
+				<li><a class="clearfix" href="{{ path('show_user_collection1', { user_id: user.id }) }}">
 					<span class="pull-left"><i class="icon-user"></i> {{ user.username }}</span>
 					<span class="pull-right">{{ macros.value(total) }}</span>
 				</a></li>

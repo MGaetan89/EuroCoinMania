@@ -48,7 +48,7 @@ class UserCoinRepository extends EntityRepository {
 						->getResult();
 	}
 
-	public function findCoinsByUser(UserInterface $user, $collector) {
+	public function findCoinsByUser(UserInterface $user, $type) {
 		$queryBuilder = $this->createQueryBuilder('uc');
 		$expr = $queryBuilder->expr();
 
@@ -60,12 +60,12 @@ class UserCoinRepository extends EntityRepository {
 						->join('c.year', 'y')
 						->leftJoin('y.workshop', 'w')
 						->where($expr->eq('uc.user', ':user'))
-						->andWhere($expr->eq('c.collector', ':collector'))
+						->andWhere($expr->eq('c.type', ':type'))
 						->orderBy('y.year', 'ASC')
 						->addOrderBy('w.short_name', 'ASC')
 						->addOrderBy('v.value', 'DESC')
 						->setParameters(array(
-							'collector' => $collector,
+							'type' => $type,
 							'user' => $user,
 						))
 						->getQuery()

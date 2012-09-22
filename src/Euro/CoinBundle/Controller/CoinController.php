@@ -2,6 +2,7 @@
 
 namespace Euro\CoinBundle\Controller;
 
+use Euro\CoinBundle\Entity\Coin;
 use Euro\CoinBundle\Entity\UserCoin;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -72,11 +73,11 @@ class CoinController extends BaseController {
 	/**
 	 * Display all the coins available for a given country
 	 * @param integer $id The country id for the collection to display
-	 * @param boolean $collector Wether we show collector coins or not
+	 * @param integer $type The type of collection to show
 	 * @param integer $year The year to display
 	 * @return \Symfony\Component\HttpFoundation\Response 
 	 */
-	public function collectionAction($id, $collector, $year) {
+	public function collectionAction($id, $type, $year) {
 		$doctrine = $this->getDoctrine();
 		$translator = $this->get('translator');
 		$countries = $doctrine->getRepository('EuroCoinBundle:Country')->findAll();
@@ -99,12 +100,10 @@ class CoinController extends BaseController {
 		if (!$country && $countries) {
 			$country = $countries[0];
 
-			if (!$id) {
-				return $this->redirect($this->generateUrl('coin_collection', array(
-									'country' => $translator->trans((string) $country),
-									'id' => $country->getId(),
-								)));
-			}
+			return $this->redirect($this->generateUrl('coin_collection' . $type, array(
+								'country' => $translator->trans((string) $country),
+								'id' => $country->getId(),
+							)));
 		}
 
 		$coins = array();
@@ -115,15 +114,15 @@ class CoinController extends BaseController {
 
 		if ($country) {
 			$coin_repo = $doctrine->getRepository('EuroCoinBundle:Coin');
-			$coins = $coin_repo->findCoinsByCountry($country, $collector, $year);
-			$years = $coin_repo->findYearsForCountry($country, $collector);
+			$coins = $coin_repo->findCoinsByCountry($country, $type, $year);
+			$years = $coin_repo->findYearsForCountry($country, $type);
 
 			foreach ($years as &$item) {
 				$item = $item->getYear();
 			}
 			$years = array_unique($years);
 
-			if (!$collector) {
+			if ($type == Coin::TYPE_CIRCULATION) {
 				foreach ($coins as $coin) {
 					$value = (string) $coin->getValue()->getValue();
 
@@ -133,9 +132,7 @@ class CoinController extends BaseController {
 						$totals[$value] += $coin->getMintage();
 					}
 				}
-			}
 
-			if (!$collector) {
 				list($coins, $values) = $this->_buildVars($coins);
 
 				$coins = array_shift($coins);
@@ -155,14 +152,14 @@ class CoinController extends BaseController {
 		}
 
 		$template_file = 'collection';
-		if ($collector) {
+		if ($type != Coin::TYPE_CIRCULATION) {
 			$template_file = 'collection_collector';
 		}
 
 		return $this->render('EuroCoinBundle:Coin:' . $template_file . '.html.twig', array(
 					'all_values' => $values,
 					'coins' => $coins,
-					'collector' => $collector,
+					'type' => $type,
 					'countries' => $countries,
 					'current' => $country,
 					'current_year' => $year,

@@ -22,6 +22,10 @@
 				<source>coin.collector</source>
 				<target>Collector</target>
 			</trans-unit>
+			<trans-unit id="coin.commemorative">
+				<source>coin.commemorative</source>
+				<target>Commemorative</target>
+			</trans-unit>
 			<trans-unit id="coin.description">
 				<source>coin.description</source>
 				<target>Description</target>
@@ -138,6 +142,22 @@ Si l'échange est accepté par l'autre utilisateur, vos inventaires respectifs n
 			<trans-unit id="coin.total">
 				<source>coin.total</source>
 				<target>Total</target>
+			</trans-unit>
+			<trans-unit id="coin.type">
+				<source>coin.type</source>
+				<target>Type</target>
+			</trans-unit>
+			<trans-unit id="coin.type1">
+				<source>coin.type1</source>
+				<target>Circulation</target>
+			</trans-unit>
+			<trans-unit id="coin.type2">
+				<source>coin.type2</source>
+				<target>Commemorative</target>
+			</trans-unit>
+			<trans-unit id="coin.type3">
+				<source>coin.type3</source>
+				<target>Collector</target>
 			</trans-unit>
 			<trans-unit id="coin.unavailable">
 				<source>coin.unavailable</source>

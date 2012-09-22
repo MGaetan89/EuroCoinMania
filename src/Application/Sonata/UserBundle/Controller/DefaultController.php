@@ -3,13 +3,15 @@
 namespace Application\Sonata\UserBundle\Controller;
 
 use Euro\CoinBundle\Controller\BaseController;
+use Euro\CoinBundle\Entity\Coin;
 use Symfony\Component\HttpFoundation\Response;
 
 class DefaultController extends BaseController {
 
-	public function collectionAction($collector, $country_id, $user_id) {
+	public function collectionAction($type, $country_id, $user_id) {
+		$flashBag = $this->get('session')->getFlashBag();
 		if (!$user = $this->getUser()) {
-			$this->get('session')->getFlashBag()->add('error', 'user.login_required');
+			$flashBag->add('error', 'user.login_required');
 
 			return $this->redirect($this->generateUrl('fos_user_security_login'));
 		}
@@ -18,7 +20,7 @@ class DefaultController extends BaseController {
 			$user = $this->getDoctrine()->getRepository('ApplicationSonataUserBundle:User')->find($user_id);
 
 			if (!$user) {
-				$this->get('session')->getFlashBag()->add('error', 'user.not_found');
+				$flashBag->add('error', 'user.not_found');
 
 				return $this->redirect($this->generateUrl('welcome'));
 			}
@@ -31,11 +33,13 @@ class DefaultController extends BaseController {
 		$countries = array();
 		$country = null;
 		$uc = array();
-		$user_coins = $doctrine->getRepository('EuroCoinBundle:UserCoin')->findCoinsByUser($user, $collector);
+		$user_coins = $doctrine->getRepository('EuroCoinBundle:UserCoin')->findCoinsByUser($user, $type);
 		$values = array();
 
-		if (!$user_coins && $collector) {
-			return $this->redirect($this->generateUrl('show_user_collection', array(
+		if (!$user_coins && $type != Coin::TYPE_CIRCULATION) {
+			$flashBag->add('info', 'user.has_no_such_coin');
+
+			return $this->redirect($this->generateUrl('show_user_collection1', array(
 								'user_id' => $user_id,
 							)));
 		}
@@ -73,7 +77,7 @@ class DefaultController extends BaseController {
 						return strcmp($a_name, $b_name);
 					});
 
-			if ($collector) {
+			if ($type != Coin::TYPE_CIRCULATION) {
 				$coins = array();
 				foreach ($user_coins as $user_coin) {
 					$coins[] = $user_coin->getCoin();
@@ -106,14 +110,14 @@ class DefaultController extends BaseController {
 		}
 
 		$template_file = 'collection';
-		if ($collector) {
+		if ($type != Coin::TYPE_CIRCULATION) {
 			$template_file = 'collection_collector';
 		}
 
 		return $this->render('ApplicationSonataUserBundle:Profile:' . $template_file . '.html.twig', array(
 					'all_values' => $values,
 					'coins' => $coins,
-					'collector' => $collector,
+					'type' => $type,
 					'countries' => $countries,
 					'current' => $country,
 					'uc' => $uc,
@@ -205,6 +209,7 @@ class DefaultController extends BaseController {
 			'countries' => array(),
 			'total_coins' => count($user_coins),
 			'total_collectors' => 0,
+			'total_commemoratives' => 0,
 			'total_doubles' => 0,
 			'total_uniques' => 0,
 			'total_uniques_value' => 0,
@@ -227,8 +232,14 @@ class DefaultController extends BaseController {
 					$global['countries'][$country_id] = $country;
 				}
 
-				if ($coin->isCollector()) {
-					++$global['total_collectors'];
+				switch ($coin->getType()) {
+					case Coin::TYPE_COLLECTOR :
+						++$global['total_collectors'];
+						break;
+
+					case Coin::TYPE_COMMEMORATIVE :
+						++$global['total_commemoratives'];
+						break;
 				}
 
 				if ($quantity === 1) {
@@ -250,6 +261,7 @@ class DefaultController extends BaseController {
 					$countries_user_stats[$country_id] = array(
 						'total_coins' => 0,
 						'total_collectors' => 0,
+						'total_commemoratives' => 0,
 						'total_value' => 0,
 						'years' => array(),
 					);
@@ -259,8 +271,14 @@ class DefaultController extends BaseController {
 
 				++$stat['total_coins'];
 
-				if ($coin->isCollector()) {
-					++$stat['total_collectors'];
+				switch ($coin->getType()) {
+					case Coin::TYPE_COLLECTOR :
+						++$stat['total_collectors'];
+						break;
+
+					case Coin::TYPE_COMMEMORATIVE :
+						++$stat['total_commemoratives'];
+						break;
 				}
 
 				$stat['total_value'] += $value->getValue();
@@ -288,6 +306,7 @@ class DefaultController extends BaseController {
 					$countries_stats[$country_id] = array(
 						'total_coins' => 0,
 						'total_collectors' => 0,
+						'total_commemoratives' => 0,
 						'total_value' => 0,
 						'years' => array(),
 					);
@@ -297,8 +316,14 @@ class DefaultController extends BaseController {
 
 				++$stat['total_coins'];
 
-				if ($coin->isCollector()) {
-					++$stat['total_collectors'];
+				switch ($coin->getType()) {
+					case Coin::TYPE_COLLECTOR :
+						++$stat['total_collectors'];
+						break;
+
+					case Coin::TYPE_COMMEMORATIVE :
+						++$stat['total_commemoratives'];
+						break;
 				}
 
 				$stat['total_value'] += $value->getValue();

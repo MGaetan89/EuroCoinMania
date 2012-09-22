@@ -25,7 +25,7 @@
 
 		<div class="dropdown">
 			<ul class="dropdown-menu" style="display: block; position: static;">
-				{% if app.request.get('_route') in ['show_user_collection', 'show_user_collection_collector'] %}
+				{% if app.request.get('_route') in ['show_user_collection1', 'show_user_collection2', 'show_user_collection3'] %}
 					{% include 'ApplicationSonataUserBundle:Profile:collection_menu.html.twig' %}
 				{% endif %}
 
@@ -37,8 +37,8 @@
 						{{ 'user.show_profile'|trans }}
 					</a>
 				</li>
-				<li{{ macros.is_active(['show_user_collection', 'show_user_collection_collector']) }}>
-					<a href="{{ path('show_user_collection', { user_id: user.id }) }}">
+				<li{{ macros.is_active(['show_user_collection1', 'show_user_collection2', 'show_user_collection3']) }}>
+					<a href="{{ path('show_user_collection1', { user_id: user.id }) }}">
 						<i class="icon-chevron-right"></i>
 						{{ 'user.show_collection'|trans }}
 					</a>

@@ -30,6 +30,9 @@
 							<dt>{{ 'user.stats.total_collectors'|trans }}</dt>
 								<dd>{{ 'coins'|transchoice(global.total_collectors, { '%total%': global.total_collectors|number_format }) }}</dd>
 
+							<dt>{{ 'user.stats.total_commemoratives'|trans }}</dt>
+								<dd>{{ 'coins'|transchoice(global.total_commemoratives, { '%total%': global.total_commemoratives|number_format }) }}</dd>
+
 							<dt>{{ 'user.stats.total_value'|trans }}</dt>
 								<dd>{{ macros.value(global.total_value) }}</dd>
 
@@ -52,7 +55,7 @@
 									{{ 'user.stats.global.country_count'|transchoice(count, {
 										'%count%': count,
 										'%country%': name,
-										'%path%': path('coin_collection', { id: country.id, country: name })
+										'%path%': path('coin_collection1', { id: country.id, country: name })
 									})|raw }}
 								</li>
 							{% endfor %}
@@ -120,6 +123,21 @@
 							}) %}
 
 							<dt>{{ 'user.stats.country.collectors'|trans }}</dt>
+								<dd>
+									<div class="progress">
+										<div class="bar" rel="tooltip" style="width: {{ count / total * 100 }}%;" title="{{ title }}">{{ '%.2f'|format(count / total * 100) }} %</div>
+									</div>
+								</dd>
+						{% endif %}
+
+						{% if stat.total_commemoratives %}
+							{% set count, total = countries_user_stats[country.id].total_commemoratives, stat.total_commemoratives %}
+							{% set title = 'user.stats.country.coin_distribution'|transchoice(count, {
+								'%count%': count,
+								'%total%': total
+							}) %}
+
+							<dt>{{ 'user.stats.country.commemoratives'|trans }}</dt>
 								<dd>
 									<div class="progress">
 										<div class="bar" rel="tooltip" style="width: {{ count / total * 100 }}%;" title="{{ title }}">{{ '%.2f'|format(count / total * 100) }} %</div>

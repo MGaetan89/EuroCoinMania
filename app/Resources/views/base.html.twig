@@ -56,7 +56,7 @@
 			<div class="nav-collapse">
 				<ul class="nav">
 					<li{{ macros.is_active(['countries_list']) }}><a href="{{ path('countries_list') }}">{{ 'countries.list'|trans }}</a></li>
-					<li{{ macros.is_active(['coin_collection', 'coin_collection_collector']) }}><a href="{{ path('coin_collection') }}">{{ 'coin.collection'|trans }}</a></li>
+					<li{{ macros.is_active(['coin_collection1', 'coin_collection2', 'coin_collection3']) }}><a href="{{ path('coin_collection1') }}">{{ 'coin.collection'|trans }}</a></li>
 
 					{% if app.user %}
 						<li{{ macros.is_active(['exchange_coins_request', 'exchange_coins_suggest', 'exchange_choose_user', 'exchange_list', 'exchange_list_all', 'exchange_show']) }}><a href="{{ path('exchange_list') }}">{{ 'exchanges'|trans }}</a></li>
@@ -69,7 +69,7 @@
 						<li><a href="{{ path('pm_list') }}" title="{{ 'pm.unread_count'|transchoice(count, { '%count%': count }) }}"><span class="badge badge-warning">{{ count }}</span></a></li>
 						#}
 
-						<li class="{{ macros.is_active(['pm_list', 'pm_list_archives', 'pm_read', 'show_profile', 'show_user_collection', 'show_user_stats'], 'false') }} dropdown">
+						<li class="{{ macros.is_active(['pm_list', 'pm_list_archives', 'pm_read', 'show_profile', 'show_user_collection1', 'show_user_collection2', 'show_user_collection3', 'show_user_stats'], 'false') }} dropdown">
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown">
 								{{ app.user }} <b class="caret"></b>
 							</a>
@@ -79,7 +79,7 @@
 									<li class="divider"></li>
 								{% endif %}
 
-								<li{{ macros.is_active(['show_profile', 'show_user_collection', 'show_user_stats']) }}><a href="{{ path('show_profile', { id: app.user.id }) }}">{{ 'user.profile'|trans }}</a></li>
+								<li{{ macros.is_active(['show_profile', 'show_user_collection1', 'show_user_collection2', 'show_user_collection3', 'show_user_stats']) }}><a href="{{ path('show_profile', { id: app.user.id }) }}">{{ 'user.profile'|trans }}</a></li>
 								<li{{ macros.is_active(['pm_list', 'pm_list_archives', 'pm_read']) }}><a href="{{ path('pm_list') }}">{{ 'pm.user_pm'|trans }}</a></li>
 								<li class="divider"></li>
 								<li><a href="{{ path('fos_user_security_logout') }}">{{ 'user.logout'|trans }}</a></li>
@@ -147,8 +147,9 @@
 				<p>
 					<strong>{{ 'coin.collection'|trans }} :</strong>
 
-						<a href="{{ path('coin_collection') }}">{{ 'coin.circulation'|trans }}</a> &bull;
-						<a href="{{ path('coin_collection_collector') }}">{{ 'coin.collector'|trans }}</a>
+						<a href="{{ path('coin_collection1') }}">{{ 'coin.circulation'|trans }}</a> &bull;
+						<a href="{{ path('coin_collection2') }}">{{ 'coin.commemorative'|trans }}</a> &bull;
+						<a href="{{ path('coin_collection3') }}">{{ 'coin.collector'|trans }}</a>
 				</p>
 
 				{% if app.user %}
