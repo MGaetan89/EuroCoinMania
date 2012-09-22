@@ -109,6 +109,19 @@ class Coin {
 	}
 
 	/**
+	 * Get types
+	 *
+	 * @return array 
+	 */
+	public static function getTypes() {
+		return array(
+			self::TYPE_CIRCULATION => 'coin.type1',
+			self::TYPE_COMMEMORATIVE => 'coin.type2',
+			self::TYPE_COLLECTOR => 'coin.type3',
+		);
+	}
+
+	/**
 	 * Set description
 	 *
 	 * @param string $description

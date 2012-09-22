@@ -26,13 +26,13 @@
 				<source>euro_coin.menu_coin</source>
 				<target>Pièce</target>
 			</trans-unit>
-			<trans-unit id="filter.label_collector">
-				<source>filter.label_collector</source>
-				<target>Collector ?</target>
-			</trans-unit>
 			<trans-unit id="filter.label_country">
 				<source>filter.label_country</source>
 				<target>Pays</target>
+			</trans-unit>
+			<trans-unit id="filter.label_type">
+				<source>filter.label_type</source>
+				<target>Type</target>
 			</trans-unit>
 			<trans-unit id="filter.label_value">
 				<source>filter.label_value</source>
@@ -41,10 +41,6 @@
 			<trans-unit id="filter.label_year">
 				<source>filter.label_year</source>
 				<target>Année</target>
-			</trans-unit>
-			<trans-unit id="form.label_collector">
-				<source>form.label_collector</source>
-				<target>Collector ?</target>
 			</trans-unit>
 			<trans-unit id="form.label_country">
 				<source>form.label_country</source>
@@ -62,6 +58,10 @@
 				<source>form.label_mintage</source>
 				<target>Tirage</target>
 			</trans-unit>
+			<trans-unit id="form.label_type">
+				<source>form.label_type</source>
+				<target>Type</target>
+			</trans-unit>
 			<trans-unit id="form.label_value">
 				<source>form.label_value</source>
 				<target>Valeur</target>
@@ -78,10 +78,6 @@
 				<source>list.label_coin</source>
 				<target>Pièce</target>
 			</trans-unit>
-			<trans-unit id="list.label_collector">
-				<source>list.label_collector</source>
-				<target>Collector ?</target>
-			</trans-unit>
 			<trans-unit id="list.label_description">
 				<source>list.label_description</source>
 				<target>Description</target>
@@ -94,13 +90,13 @@
 				<source>list.label_mintage</source>
 				<target>Quantité tirée — enregistrée</target>
 			</trans-unit>
+			<trans-unit id="list.label_type">
+				<source>list.label_type</source>
+				<target>Type</target>
+			</trans-unit>
 			<trans-unit id="show.label_coin">
 				<source>show.label_coin</source>
 				<target>Pièce</target>
-			</trans-unit>
-			<trans-unit id="show.label_collector">
-				<source>show.label_collector</source>
-				<target>Collector ?</target>
 			</trans-unit>
 			<trans-unit id="show.label_description">
 				<source>show.label_description</source>
@@ -113,6 +109,10 @@
 			<trans-unit id="show.label_mintage">
 				<source>show.label_mintage</source>
 				<target>Quantité enregistrée / tirée</target>
+			</trans-unit>
+			<trans-unit id="show.label_type">
+				<source>show.label_type</source>
+				<target>Type</target>
 			</trans-unit>
 		</body>
 	</file>
