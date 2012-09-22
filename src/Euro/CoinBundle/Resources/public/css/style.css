@@ -3,6 +3,10 @@ body {
 	padding-top: 50px;
 }
 
+img {
+	vertical-align: text-top;
+}
+
 #map {
 	height: 454px;
 }

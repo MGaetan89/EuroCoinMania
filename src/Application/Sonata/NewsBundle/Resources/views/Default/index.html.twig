@@ -57,7 +57,10 @@
 				{% set user, total, total_uniques = user[0].user, user.total, user.total_uniques %}
 
 				<li><a class="clearfix" href="{{ path('show_user_collection1', { user_id: user.id }) }}">
-					<span class="pull-left"><i class="icon-user"></i> {{ user.username }}</span>
+					<span class="pull-left">
+						<img alt="{{ user.username }}" src="{{ gravatar(user.email, 16) }}" title="{{ user.username }}" />
+						{{ user.username }}
+					</span>
 					<span class="pull-right">
 						{{ 'coins'|transchoice(total, { '%total%': total|number_format }) }}
 						({{ 'coins.differents'|transchoice(total_uniques, { '%total%': total_uniques|number_format }) }})
@@ -77,7 +80,10 @@
 				{% set user, total = user[0].user, user.total %}
 
 				<li><a class="clearfix" href="{{ path('show_user_collection1', { user_id: user.id }) }}">
-					<span class="pull-left"><i class="icon-user"></i> {{ user.username }}</span>
+					<span class="pull-left">
+						<img alt="{{ user.username }}" src="{{ gravatar(user.email, 16) }}" title="{{ user.username }}" />
+						{{ user.username }}
+					</span>
 					<span class="pull-right">{{ macros.value(total) }}</span>
 				</a></li>
 			{% else %}
