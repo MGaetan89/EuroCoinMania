@@ -30,6 +30,10 @@
 				<source>user.contact</source>
 				<target>Contact</target>
 			</trans-unit>
+			<trans-unit id="user.country">
+				<source>user.country</source>
+				<target>Pays</target>
+			</trans-unit>
 			<trans-unit id="user.date_of_birth">
 				<source>user.date_of_birth</source>
 				<target>Date de naissance</target>
@@ -93,18 +97,6 @@
 			<trans-unit id="user.lastname">
 				<source>user.lastname</source>
 				<target>Nom</target>
-			</trans-unit>
-			<trans-unit id="user.locale">
-				<source>user.locale</source>
-				<target>Langue</target>
-			</trans-unit>
-			<trans-unit id="user.locale.en">
-				<source>user.locale.en</source>
-				<target>Anglais</target>
-			</trans-unit>
-			<trans-unit id="user.locale.fr">
-				<source>user.locale.fr</source>
-				<target>Française</target>
 			</trans-unit>
 			<trans-unit id="user.login">
 				<source>user.login</source>

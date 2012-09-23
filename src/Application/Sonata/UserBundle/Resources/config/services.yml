@@ -9,3 +9,7 @@ services:
         tags:
             - { name: kernel.event_listener, event: kernel.request, method: setLocaleForUnauthenticatedUser }
 
+    application_sonata_user.profile.form.type:
+        class: Application\Sonata\UserBundle\Form\Type\ProfileType
+        tags:
+            - { name: form.type, alias: application_sonata_user_profile }

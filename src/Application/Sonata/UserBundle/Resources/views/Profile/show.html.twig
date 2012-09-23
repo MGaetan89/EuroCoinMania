@@ -30,9 +30,14 @@
 				<dd>{{ ('user.gender' ~ user.gender)|trans }}</dd>
 			{% endif %}
 
-			{% if user.locale %}
-			<dt>{{ 'user.locale'|trans }}</dt>
-				<dd>{{ ('user.locale.' ~ user.locale)|trans }}</dd>
+			{% if user.country %}
+			{% set country = user.country|country %}
+
+			<dt>{{ 'user.country'|trans }}</dt>
+				<dd>
+					<img alt="{{ country }}" src="{{ asset('bundles/applicationsonatauser/images/' ~ user.country|lower ~ '.png') }}" title="{{ country }}" />
+					{{ country }}
+				</dd>
 			{% endif %}
 		</dl>
 	</div>

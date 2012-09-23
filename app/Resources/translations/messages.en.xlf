@@ -49,10 +49,6 @@ Coins mintage provided by <a href="%path%" target="_blank">%name%</a>
 				<source>information</source>
 				<target>Information!</target>
 			</trans-unit>
-			<trans-unit id="no">
-				<source>no</source>
-				<target>No</target>
-			</trans-unit>
 			<trans-unit id="no_data">
 				<source>no_data</source>
 				<target>No data</target>
@@ -103,10 +99,6 @@ Site created by <a href="%path%">%name%</a>
 			<trans-unit id="webmaster">
 				<source>webmaster</source>
 				<target>Webmaster</target>
-			</trans-unit>
-			<trans-unit id="yes">
-				<source>yes</source>
-				<target>Yes</target>
 			</trans-unit>
 		</body>
 	</file>

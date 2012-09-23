@@ -58,7 +58,19 @@
 
 				<li><a class="clearfix" href="{{ path('show_user_collection1', { user_id: user.id }) }}">
 					<span class="pull-left">
-						<img alt="{{ user.username }}" src="{{ gravatar(user.email, 16) }}" title="{{ user.username }}" />
+						{% if user.country %}
+							{% set image = {
+								src: asset('bundles/applicationsonatauser/images/' ~ user.country|lower ~ '.png'),
+								title: user.country|country
+							} %}
+						{% else %}
+							{% set image = {
+								src: gravatar(user.email, 16),
+								title: user.username
+							} %}
+						{% endif %}
+
+						<img alt="{{ image.title }}" src="{{ image.src }}" title="{{ image.title }}" />
 						{{ user.username }}
 					</span>
 					<span class="pull-right">
@@ -81,9 +93,22 @@
 
 				<li><a class="clearfix" href="{{ path('show_user_collection1', { user_id: user.id }) }}">
 					<span class="pull-left">
-						<img alt="{{ user.username }}" src="{{ gravatar(user.email, 16) }}" title="{{ user.username }}" />
+						{% if user.country %}
+							{% set image = {
+								src: asset('bundles/applicationsonatauser/images/' ~ user.country|lower ~ '.png'),
+								title: user.country|country
+							} %}
+						{% else %}
+							{% set image = {
+								src: gravatar(user.email, 16),
+								title: user.username
+							} %}
+						{% endif %}
+
+						<img alt="{{ image.title }}" src="{{ image.src }}" title="{{ image.title }}" />
 						{{ user.username }}
 					</span>
+					<span class="pull-right">
 					<span class="pull-right">{{ macros.value(total) }}</span>
 				</a></li>
 			{% else %}

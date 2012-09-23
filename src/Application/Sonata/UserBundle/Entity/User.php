@@ -20,12 +20,38 @@ class User extends BaseUser {
 	protected $id;
 
 	/**
+	 * @var string $country 
+	 */
+	protected $country;
+
+	/**
 	 * Get id
 	 *
 	 * @return integer $id
 	 */
 	public function getId() {
 		return $this->id;
+	}
+
+	/**
+	 * Set country
+	 *
+	 * @param string $country
+	 * @return User
+	 */
+	public function setCountry($country) {
+		$this->country = $country;
+
+		return $this;
+	}
+
+	/**
+	 * Get country
+	 *
+	 * @return string 
+	 */
+	public function getCountry() {
+		return $this->country;
 	}
 
 }

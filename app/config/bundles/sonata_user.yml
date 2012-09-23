@@ -6,7 +6,7 @@ sonata_user:
         group:              Application\Sonata\UserBundle\Entity\Group
     profile:  # Profile Form (firstname, lastname, etc ...)
         form:
-            type:               sonata_user_profile
+            type:               application_sonata_user_profile
             handler:            sonata.user.profile.form.handler.default
-            name:               sonata_user_profile_form
+            name:               application_sonata_user_profile
             validation_groups:  [Profile]

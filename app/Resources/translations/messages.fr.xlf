@@ -49,10 +49,6 @@ Tirage des pièces fournie par <a href="%path%" target="_blank">%name%</a>
 				<source>information</source>
 				<target>Information !</target>
 			</trans-unit>
-			<trans-unit id="no">
-				<source>no</source>
-				<target>Non</target>
-			</trans-unit>
 			<trans-unit id="no_data">
 				<source>no_data</source>
 				<target>Aucune donnée</target>
@@ -103,10 +99,6 @@ Site crée par <a href="%path%">%name%</a>
 			<trans-unit id="webmaster">
 				<source>webmaster</source>
 				<target>Webmaster</target>
-			</trans-unit>
-			<trans-unit id="yes">
-				<source>yes</source>
-				<target>Oui</target>
 			</trans-unit>
 		</body>
 	</file>
