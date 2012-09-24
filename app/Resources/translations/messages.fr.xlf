@@ -92,10 +92,6 @@ Site crée par <a href="%path%">%name%</a>
 				<source>stats.top_countries</source>
 				<target>Pays les plus possédés</target>
 			</trans-unit>
-			<trans-unit id="view_more">
-				<source>view_more</source>
-				<target>Afficher plus</target>
-			</trans-unit>
 			<trans-unit id="webmaster">
 				<source>webmaster</source>
 				<target>Webmaster</target>

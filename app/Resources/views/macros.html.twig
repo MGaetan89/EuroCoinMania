@@ -49,7 +49,7 @@
 	{{ year.year }}
 
 	{% if year.workshop %}
-		<abbr title="{{ year.workshop.name }}">{{ year.workshop.shortname }}</abbr>
+		<abbr rel="tooltip" title="{{ year.workshop.name }}">{{ year.workshop.shortname }}</abbr>
 	{% endif %}
 {% endspaceless %}
 {% endmacro %}

@@ -92,10 +92,6 @@ Site created by <a href="%path%">%name%</a>
 				<source>stats.top_countries</source>
 				<target>Most owned countries</target>
 			</trans-unit>
-			<trans-unit id="view_more">
-				<source>view_more</source>
-				<target>View more</target>
-			</trans-unit>
 			<trans-unit id="webmaster">
 				<source>webmaster</source>
 				<target>Webmaster</target>

@@ -38,7 +38,7 @@
 
 				<li><a class="clearfix" href="{{ path('coin_collection1', { id: country.id, country: name }) }}">
 					<span class="pull-left">
-						<img alt="{{ name }}" src="{% path country.flag, 'mini' %}" title="{{ name }}" />
+						<img alt="{{ name }}" rel="tooltip" src="{% path country.flag, 'mini' %}" title="{{ name }}" data-placement="right" />
 						{{ name }}
 					</span>
 					<span class="pull-right">{{ 'coins'|transchoice(total, { '%total%': total|number_format }) }}</span>
@@ -70,7 +70,7 @@
 							} %}
 						{% endif %}
 
-						<img alt="{{ image.title }}" src="{{ image.src }}" title="{{ image.title }}" />
+						<img alt="{{ image.title }}" rel="tooltip" src="{{ image.src }}" title="{{ image.title }}" data-placement="right" />
 						{{ user.username }}
 					</span>
 					<span class="pull-right">
@@ -105,7 +105,7 @@
 							} %}
 						{% endif %}
 
-						<img alt="{{ image.title }}" src="{{ image.src }}" title="{{ image.title }}" />
+						<img alt="{{ image.title }}" rel="tooltip" src="{{ image.src }}" title="{{ image.title }}" data-placement="right" />
 						{{ user.username }}
 					</span>
 					<span class="pull-right">
