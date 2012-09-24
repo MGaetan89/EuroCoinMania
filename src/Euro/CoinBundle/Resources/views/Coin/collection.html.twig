@@ -83,7 +83,7 @@
 			{% for value, total in totals %}
 				<th>
 					<span class="pull-left">{{ total|number_format }}</span>
-					<span class="pull-right" rel="tooltip" title="{{ macros.value(total * value) }}" data-placement="left"><a>?</a></span>
+					<span class="pull-right" rel="tooltip" title="{{ macros.value(total * value) }}" data-placement="left"><a>&euro;</a></span>
 				</th>
 			{% endfor %}
 		</tr>
