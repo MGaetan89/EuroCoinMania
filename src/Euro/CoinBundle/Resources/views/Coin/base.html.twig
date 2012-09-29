@@ -13,8 +13,21 @@
 
 	<div class="row-fluid">
 		<div class="span2">
+			<div class="well well-small">
+				<dl style="display: block; position: static;">
+					<dt>{{ 'country.join_date'|trans }}</dt>
+						<dd>{{ current.joindate|format_date }}</dd>
+
+					<dt>{{ 'country.former_currency'|trans }}</dt>
+						<dd>{{ macros.currency(current) }}</dd>
+
+					<dt>{{ 'country.exchange_rate'|trans }}</dt>
+						<dd>{{ macros.value(1) ~ ' = ' ~ macros.value(current.exchangerate, current.formercurrencyiso) }}</dd>
+				</dl>
+			</div>
+
 			<div class="dropdown">
-				<ul class="dropdown-menu" style="display: block; position: static;">
+				<ul class="dropdown-menu" style="display: block; position: static; width: 178px;">
 					<li class="nav-header">{{ 'country.current'|trans }}</li>
 
 					{% set _name = macros.name(current) %}
@@ -50,14 +63,6 @@
 							</a>
 						</li>
 					{% endfor %}
-
-					<li class="divider"></li>
-
-					<li class="nav-header">{{ macros.name(current) }}</li>
-
-					<li rel="tooltip" title="{{ 'country.join_date'|trans }}" data-placement="right"><a><i class="icon-time"></i> {{ current.joindate|format_date }}</a></li>
-					<li rel="tooltip" title="{{ 'country.former_currency'|trans }}" data-placement="right"><a><i class="icon-chevron-left"></i> {{ macros.currency(current) }}</a></li>
-					<li rel="tooltip" title="{{ 'country.exchange_rate'|trans }}" data-placement="right"><a><i class="icon-refresh"></i> {{ macros.value(1) ~ ' = ' ~ macros.value(current.exchangerate, current.formercurrencyiso) }}</a></li>
 				</ul>
 			</div>
 		</div>
