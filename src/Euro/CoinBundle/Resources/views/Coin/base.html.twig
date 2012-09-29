@@ -54,8 +54,6 @@
 
 					<li class="divider"></li>
 
-					<li class="nav-header">{{ 'actions'|trans }}</li>
-
 					{% for i in 1..3 %}
 						<li{{ macros.is_active(['coin_collection' ~ i]) }}>
 							<a href="{{ path('coin_collection' ~ i, { id: current.id, country: name }) }}">
