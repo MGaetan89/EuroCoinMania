@@ -271,6 +271,10 @@ Si l'échange est accepté par l'autre utilisateur, vos inventaires respectifs n
 				<source>country.currency.vatican</source>
 				<target>Vatican lira</target>
 			</trans-unit>
+			<trans-unit id="country.current">
+				<source>country.current</source>
+				<target>Displayed country</target>
+			</trans-unit>
 			<trans-unit id="country.exchange_rate">
 				<source>country.exchange_rate</source>
 				<target>Exchange rate</target>
