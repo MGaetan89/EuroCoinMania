@@ -28,7 +28,7 @@ $(function () {
 	});
 
 	$('[data-action=hide-items]').on('click', function () {
-		$(this).nextUntil('.divider', 'li').slideToggle();
+		$(this).nextUntil('.divider', 'li').toggle();
 
 		return false;
 	});
