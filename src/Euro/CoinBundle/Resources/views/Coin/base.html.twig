@@ -17,12 +17,24 @@
 				<ul class="dropdown-menu" style="display: block; position: static;">
 					<li class="nav-header">{{ 'countries.list'|trans }}</li>
 
-					{% for country in countries %}
+					{% set _name = macros.name(current) %}
+
+					<li class="active" data-action="popover" title="{{ _name }}" data-content="{% include 'EuroCoinBundle:Country:country_data.html.twig' with { country: current } %}">
+						<a href="{{ path('coin_collection' ~ type, { id: current.id, country: _name }) }}">
+							<img alt="{{ _name }}" src="{% path current.flag, 'mini' %}" title="{{ _name }}" />
+							{{ _name }}
+						</a>
+					</li>
+
+					<li class="nav-header" data-action="hide-items">Autres pays</li>
+
+					{% for country in countries if country.id != current.id %}
 						{% set _name = macros.name(country) %}
 
-						<li{% if country.name == current.name %} class="active"{% endif %} data-action="popover" title="{{ _name }}" data-content="{% include 'EuroCoinBundle:Country:country_data.html.twig' with { country: country } %}">
+						<li class="hide" data-action="popover" title="{{ _name }}" data-content="{% include 'EuroCoinBundle:Country:country_data.html.twig' with { country: country } %}">
 							<a href="{{ path('coin_collection' ~ type, { id: country.id, country: _name }) }}">
-								<i class="icon-chevron-right"></i> {{ _name }}
+								<img alt="{{ _name }}" src="{% path country.flag, 'mini' %}" title="{{ _name }}" />
+								{{ _name }}
 							</a>
 						</li>
 					{% endfor %}

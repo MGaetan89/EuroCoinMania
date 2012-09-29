@@ -27,6 +27,12 @@ $(function () {
 		});
 	});
 
+	$('[data-action=hide-items]').on('click', function () {
+		$(this).nextUntil('.divider', 'li').slideToggle();
+
+		return false;
+	});
+
 	$('[data-action=query-coin-info]').on('click', function () {
 		var $this = $(this).button('loading'), id = $this.parents('[data-coin]').data('coin');
 
