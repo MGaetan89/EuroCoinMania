@@ -8,7 +8,7 @@ use Symfony\Component\HttpFoundation\Response;
 
 class CoinController extends BaseController {
 
-	const YEAR_RANGE_SIZE = 10;
+	const YEAR_RANGE_SIZE = 7;
 
 	/**
 	 * Add or remove one coin in the user collection
