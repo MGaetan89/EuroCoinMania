@@ -39,7 +39,7 @@
 						</a>
 					</li>
 
-					<li class="nav-header" data-action="hide-items">{{ 'country.others'|trans }}</li>
+					<li class="nav-header" data-action="hide-items" style="cursor: pointer;">+ {{ 'country.others'|trans }}</li>
 
 					{% for country in countries if country.id != current.id %}
 						{% set _name = macros.name(country) %}
