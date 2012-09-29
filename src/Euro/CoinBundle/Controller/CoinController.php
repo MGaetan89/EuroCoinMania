@@ -8,6 +8,8 @@ use Symfony\Component\HttpFoundation\Response;
 
 class CoinController extends BaseController {
 
+	const YEAR_RANGE_SIZE = 10;
+
 	/**
 	 * Add or remove one coin in the user collection
 	 * @param integer $id The coin id to add/remove in the collection
@@ -114,13 +116,28 @@ class CoinController extends BaseController {
 
 		if ($country) {
 			$coin_repo = $doctrine->getRepository('EuroCoinBundle:Coin');
-			$coins = $coin_repo->findCoinsByCountry($country, $type, $year);
 			$years = $coin_repo->findYearsForCountry($country, $type);
 
 			foreach ($years as &$item) {
 				$item = $item->getYear();
 			}
-			$years = array_unique($years);
+
+			$years = array_chunk($years, self::YEAR_RANGE_SIZE);
+
+			foreach ($years as &$item) {
+				$item = $item[0]->getYear() . '..' . $item[count($item) - 1]->getYear();
+			}
+
+			if (!$year && $years) {
+				return $this->redirect($this->generateUrl('coin_collection' . $type, array(
+									'country' => $translator->trans((string) $country),
+									'id' => $country->getId(),
+									'year' => $years[0],
+								)));
+			}
+
+			$year_range = array_map('intval', explode('..', $year));
+			$coins = $coin_repo->findCoinsByCountry($country, $type, $year_range);
 
 			if ($type == Coin::TYPE_CIRCULATION) {
 				foreach ($coins as $coin) {
