@@ -13,7 +13,7 @@
 			{% endif %}
 
 		<div class="span4">
-			<h3><a href="{{ url('sonata_news_view', { permalink: sonata_news_permalink(post) }) }}">{{ post.title }}</a></h3>
+			<h4><a href="{{ url('sonata_news_view', { permalink: sonata_news_permalink(post) }) }}">{{ post.title }}</a></h4>
 
 			<p>{{ post.abstract|format_text('markdown')|raw }}</p>
 			<p>
