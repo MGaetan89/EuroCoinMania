@@ -1,105 +1,5 @@
 [
     {
-        "name": "twig/twig",
-        "version": "dev-master",
-        "version_normalized": "9999999-dev",
-        "source": {
-            "type": "git",
-            "url": "git://github.com/fabpot/Twig.git",
-            "reference": "b4d1d62b82e83c6fd3d5a6cd46a186de64275bb4"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://github.com/fabpot/Twig/zipball/b4d1d62b82e83c6fd3d5a6cd46a186de64275bb4",
-            "reference": "b4d1d62b82e83c6fd3d5a6cd46a186de64275bb4",
-            "shasum": ""
-        },
-        "require": {
-            "php": ">=5.2.4"
-        },
-        "time": "2012-09-18 05:38:15",
-        "type": "library",
-        "extra": {
-            "branch-alias": {
-                "dev-master": "1.10-dev"
-            }
-        },
-        "installation-source": "source",
-        "autoload": {
-            "psr-0": {
-                "Twig_": "lib/"
-            }
-        },
-        "license": [
-            "BSD-3"
-        ],
-        "authors": [
-            {
-                "name": "Fabien Potencier",
-                "email": "fabien@symfony.com"
-            },
-            {
-                "name": "Armin Ronacher",
-                "email": "armin.ronacher@active-4.com"
-            }
-        ],
-        "description": "Twig, the flexible, fast, and secure template language for PHP",
-        "homepage": "http://twig.sensiolabs.org",
-        "keywords": [
-            "templating"
-        ]
-    },
-    {
-        "name": "swiftmailer/swiftmailer",
-        "version": "dev-master",
-        "version_normalized": "9999999-dev",
-        "source": {
-            "type": "git",
-            "url": "git://github.com/swiftmailer/swiftmailer.git",
-            "reference": "1e5482485f30a2431f9b8eb19a091eef4b57008c"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://github.com/swiftmailer/swiftmailer/zipball/1e5482485f30a2431f9b8eb19a091eef4b57008c",
-            "reference": "1e5482485f30a2431f9b8eb19a091eef4b57008c",
-            "shasum": ""
-        },
-        "require": {
-            "php": ">=5.2.4"
-        },
-        "time": "2012-09-13 09:16:16",
-        "type": "library",
-        "extra": {
-            "branch-alias": {
-                "dev-master": "4.2-dev"
-            }
-        },
-        "installation-source": "source",
-        "autoload": {
-            "files": [
-                "lib/swift_required.php"
-            ]
-        },
-        "license": [
-            "LGPL"
-        ],
-        "authors": [
-            {
-                "name": "Fabien Potencier",
-                "email": "fabien@symfony.com"
-            },
-            {
-                "name": "Chris Corbyn"
-            }
-        ],
-        "description": "Swiftmailer, free feature-rich PHP mailer",
-        "homepage": "http://swiftmailer.org",
-        "keywords": [
-            "mail",
-            "mailer"
-        ]
-    },
-    {
         "name": "knplabs/knp-menu",
         "version": "1.1.x-dev",
         "version_normalized": "1.1.9999999.9999999-dev",
@@ -127,7 +27,7 @@
             "silex/silex": "for the integration with your silex application",
             "twig/twig": "for the TwigRenderer and the integration with your templates"
         },
-        "time": "2012-06-10 12:20:40",
+        "time": "2012-06-09 18:20:40",
         "type": "library",
         "extra": {
             "branch-alias": {
@@ -184,7 +84,7 @@
             "knplabs/knp-menu": "1.1.*",
             "symfony/framework-bundle": ">=2.0,<2.2-dev"
         },
-        "time": "2012-05-17 07:56:49",
+        "time": "2012-05-16 13:56:49",
         "type": "symfony-bundle",
         "installation-source": "dist",
         "autoload": {
@@ -237,7 +137,7 @@
         "suggest": {
             "twig/twig": ">=1.3.0"
         },
-        "time": "2012-09-07 04:20:02",
+        "time": "2012-09-06 10:20:02",
         "type": "symfony-bundle",
         "installation-source": "source",
         "autoload": {
@@ -289,7 +189,7 @@
         "suggest": {
             "ext-curl": "*"
         },
-        "time": "2012-09-06 17:39:49",
+        "time": "2012-09-05 23:39:49",
         "type": "library",
         "installation-source": "source",
         "autoload": {
@@ -337,7 +237,7 @@
             "php": ">=5.3.2",
             "symfony/framework-bundle": "2.*"
         },
-        "time": "2012-08-29 19:34:42",
+        "time": "2012-08-29 01:34:42",
         "type": "symfony-bundle",
         "installation-source": "source",
         "autoload": {
@@ -367,71 +267,6 @@
         ]
     },
     {
-        "name": "sonata-project/admin-bundle",
-        "version": "dev-master",
-        "version_normalized": "9999999-dev",
-        "target-dir": "Sonata/AdminBundle",
-        "source": {
-            "type": "git",
-            "url": "git://github.com/sonata-project/SonataAdminBundle.git",
-            "reference": "bad0e5f36b0bc5f5beb844c1c5de53cb03a4547d"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://github.com/sonata-project/SonataAdminBundle/zipball/bad0e5f36b0bc5f5beb844c1c5de53cb03a4547d",
-            "reference": "bad0e5f36b0bc5f5beb844c1c5de53cb03a4547d",
-            "shasum": ""
-        },
-        "require": {
-            "sonata-project/jquery-bundle": "dev-master",
-            "sonata-project/exporter": "dev-master",
-            "sonata-project/block-bundle": "dev-master",
-            "knplabs/knp-menu-bundle": "1.1.*"
-        },
-        "require-dev": {
-            "jms/translation-bundle": "*"
-        },
-        "suggest": {
-            "sonata-project/doctrine-orm-admin-bundle": "dev-master",
-            "sonata-project/intl-bundle": "dev-master"
-        },
-        "time": "2012-09-17 18:33:06",
-        "type": "symfony-bundle",
-        "extra": {
-            "branch-alias": {
-                "dev-master": "2.1-dev"
-            }
-        },
-        "installation-source": "source",
-        "autoload": {
-            "psr-0": {
-                "Sonata\\AdminBundle": ""
-            }
-        },
-        "license": [
-            "MIT"
-        ],
-        "authors": [
-            {
-                "name": "Thomas Rabaix",
-                "email": "thomas.rabaix@sonata-project.org",
-                "homepage": "http://sonata-project.org"
-            },
-            {
-                "name": "Sonata Community",
-                "homepage": "https://github.com/sonata-project/SonataDoctrineORMAdminBundle/contributors"
-            }
-        ],
-        "description": "Symfony SonataAdminBundle",
-        "homepage": "http://sonata-project.org/bundles/admin",
-        "keywords": [
-            "admin",
-            "Admin Generator",
-            "sonata",
-            "bootstrap"
-        ]
-    },
-    {
         "name": "sonata-project/cache-bundle",
         "version": "dev-master",
         "version_normalized": "9999999-dev",
@@ -458,7 +293,7 @@
             "ext-apc": "*",
             "ext-memcached": "*"
         },
-        "time": "2012-09-17 18:41:04",
+        "time": "2012-09-17 00:41:04",
         "type": "symfony-bundle",
         "installation-source": "source",
         "autoload": {
@@ -487,59 +322,6 @@
         ]
     },
     {
-        "name": "sonata-project/doctrine-orm-admin-bundle",
-        "version": "dev-master",
-        "version_normalized": "9999999-dev",
-        "target-dir": "Sonata/DoctrineORMAdminBundle",
-        "source": {
-            "type": "git",
-            "url": "git://github.com/sonata-project/SonataDoctrineORMAdminBundle.git",
-            "reference": "fb32475840404f5436a965779208d982b084d85e"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://github.com/sonata-project/SonataDoctrineORMAdminBundle/zipball/fb32475840404f5436a965779208d982b084d85e",
-            "reference": "fb32475840404f5436a965779208d982b084d85e",
-            "shasum": ""
-        },
-        "require": {
-            "sonata-project/admin-bundle": "dev-master",
-            "doctrine/orm": ">=2.2,<2.4-dev",
-            "symfony/symfony": "2.1.*"
-        },
-        "time": "2012-09-17 18:33:32",
-        "type": "symfony-bundle",
-        "installation-source": "source",
-        "autoload": {
-            "psr-0": {
-                "Sonata\\DoctrineORMAdminBundle": ""
-            }
-        },
-        "license": [
-            "MIT"
-        ],
-        "authors": [
-            {
-                "name": "Thomas Rabaix",
-                "email": "thomas.rabaix@sonata-project.org",
-                "homepage": "http://sonata-project.org"
-            },
-            {
-                "name": "Sonata Community",
-                "homepage": "https://github.com/sonata-project/SonataDoctrineORMAdminBundle/contributors"
-            }
-        ],
-        "description": "Symfony Sonata / Integrate Doctrine ORM into the SonataAdminBundle",
-        "homepage": "http://sonata-project.org/bundles/admin",
-        "keywords": [
-            "admin",
-            "generator",
-            "Admin Generator",
-            "sonata",
-            "bootstrap"
-        ]
-    },
-    {
         "name": "knplabs/knp-markdown-bundle",
         "version": "dev-master",
         "version_normalized": "9999999-dev",
@@ -562,7 +344,7 @@
         "suggest": {
             "symfony/twig-bundle": "to use the Twig markdown filter"
         },
-        "time": "2012-09-13 03:13:25",
+        "time": "2012-09-12 09:13:25",
         "type": "symfony-bundle",
         "installation-source": "source",
         "autoload": {
@@ -616,7 +398,7 @@
             "twig/twig": "*",
             "ext-intl": "*"
         },
-        "time": "2012-08-30 19:24:58",
+        "time": "2012-08-30 01:24:58",
         "type": "symfony-bundle",
         "installation-source": "source",
         "autoload": {
@@ -670,7 +452,7 @@
             "symfony/console": "2.*",
             "symfony/finder": "2.*"
         },
-        "time": "2012-08-30 19:11:44",
+        "time": "2012-08-30 01:11:44",
         "type": "symfony-bundle",
         "installation-source": "source",
         "autoload": {
@@ -720,7 +502,7 @@
         "suggest": {
             "ext-curl": "*"
         },
-        "time": "2012-06-25 15:01:38",
+        "time": "2012-06-24 21:01:38",
         "type": "library",
         "installation-source": "dist",
         "autoload": {
@@ -766,7 +548,7 @@
         "require-dev": {
             "sami/sami": "dev-master"
         },
-        "time": "2012-07-28 20:35:18",
+        "time": "2012-07-28 02:35:18",
         "type": "library",
         "installation-source": "dist",
         "autoload": {
@@ -791,55 +573,6 @@
             "image processing",
             "drawing",
             "graphics"
-        ]
-    },
-    {
-        "name": "sonata-project/doctrine-extensions",
-        "version": "dev-master",
-        "version_normalized": "9999999-dev",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/sonata-project/sonata-doctrine-extensions",
-            "reference": "0a316790871e1ea7f019e2313667570eabd270b9"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://github.com/sonata-project/sonata-doctrine-extensions/zipball/0a316790871e1ea7f019e2313667570eabd270b9",
-            "reference": "0a316790871e1ea7f019e2313667570eabd270b9",
-            "shasum": ""
-        },
-        "require": {
-            "php": ">=5.3.2",
-            "doctrine/orm": "*"
-        },
-        "time": "2012-03-22 22:26:33",
-        "type": "library",
-        "installation-source": "source",
-        "autoload": {
-            "psr-0": {
-                "Sonata\\Doctrine\\Types": "src/"
-            }
-        },
-        "license": [
-            "MIT"
-        ],
-        "authors": [
-            {
-                "name": "Thomas Rabaix",
-                "email": "thomas.rabaix@sonata-project.org",
-                "homepage": "http://sonata-project.org"
-            },
-            {
-                "name": "Sonata Community",
-                "homepage": "https://github.com/sonata-project/sonata-doctrine-extensions/contributors"
-            }
-        ],
-        "description": "Doctrine2 behavioral extensions",
-        "homepage": "https://github.com/sonata-project/sonata-doctrine-extensions",
-        "keywords": [
-            "json",
-            "doctrine2",
-            "doctrine"
         ]
     },
     {
@@ -870,7 +603,7 @@
             "liip/monitor-bundle": "*",
             "videlalvaro/php-amqplib": "*"
         },
-        "time": "2012-09-08 13:39:27",
+        "time": "2012-09-07 19:39:27",
         "type": "symfony-bundle",
         "installation-source": "source",
         "autoload": {
@@ -901,146 +634,6 @@
         ]
     },
     {
-        "name": "friendsofsymfony/user-bundle",
-        "version": "dev-master",
-        "version_normalized": "9999999-dev",
-        "target-dir": "FOS/UserBundle",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/FriendsOfSymfony/FOSUserBundle",
-            "reference": "34f1919ceab96339a8dc6ad7c2b00274a6f499f1"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://github.com/FriendsOfSymfony/FOSUserBundle/zipball/34f1919ceab96339a8dc6ad7c2b00274a6f499f1",
-            "reference": "34f1919ceab96339a8dc6ad7c2b00274a6f499f1",
-            "shasum": ""
-        },
-        "require": {
-            "php": ">=5.3.2",
-            "symfony/framework-bundle": "2.1.*",
-            "symfony/security-bundle": "2.1.*"
-        },
-        "require-dev": {
-            "twig/twig": "*",
-            "doctrine/doctrine-bundle": "*",
-            "swiftmailer/swiftmailer": "*",
-            "willdurand/propel-typehintable-behavior": "dev-master",
-            "symfony/validator": "2.1.*",
-            "symfony/yaml": "2.1.*"
-        },
-        "suggest": {
-            "doctrine/couchdb-odm-bundle": "*",
-            "doctrine/doctrine-bundle": "*",
-            "doctrine/mongodb-odm-bundle": "*"
-        },
-        "time": "2012-09-17 11:58:54",
-        "type": "symfony-bundle",
-        "extra": {
-            "branch-alias": {
-                "dev-master": "2.0.x-dev"
-            }
-        },
-        "installation-source": "source",
-        "autoload": {
-            "psr-0": {
-                "FOS\\UserBundle": ""
-            }
-        },
-        "license": [
-            "MIT"
-        ],
-        "authors": [
-            {
-                "name": "Christophe Coevoet",
-                "email": "stof@notk.org"
-            },
-            {
-                "name": "Thibault Duplessis",
-                "email": "thibault.duplessis@gmail.com",
-                "homepage": "http://ornicar.github.com"
-            },
-            {
-                "name": "FriendsOfSymfony Community",
-                "homepage": "https://github.com/friendsofsymfony/FOSUserBundle/contributors"
-            }
-        ],
-        "description": "Symfony FOSUserBundle",
-        "homepage": "http://friendsofsymfony.github.com",
-        "keywords": [
-            "User management"
-        ]
-    },
-    {
-        "name": "doctrine/doctrine-bundle",
-        "version": "dev-master",
-        "version_normalized": "9999999-dev",
-        "target-dir": "Doctrine/Bundle/DoctrineBundle",
-        "source": {
-            "type": "git",
-            "url": "git://github.com/doctrine/DoctrineBundle.git",
-            "reference": "d3c930599723c8343472a5791b0f5909a4111a73"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://github.com/doctrine/DoctrineBundle/zipball/d3c930599723c8343472a5791b0f5909a4111a73",
-            "reference": "d3c930599723c8343472a5791b0f5909a4111a73",
-            "shasum": ""
-        },
-        "require": {
-            "php": ">=5.3.2",
-            "doctrine/dbal": ">=2.2,<2.4-dev",
-            "symfony/framework-bundle": "2.1.*",
-            "symfony/doctrine-bridge": "2.1.*"
-        },
-        "require-dev": {
-            "doctrine/orm": ">=2.2,<2.4-dev",
-            "symfony/validator": "2.1.*",
-            "symfony/yaml": "2.1.*"
-        },
-        "suggest": {
-            "doctrine/orm": "The Doctrine ORM integration is optional in the bundle."
-        },
-        "time": "2012-09-10 11:12:44",
-        "type": "symfony-bundle",
-        "extra": {
-            "branch-alias": {
-                "dev-master": "1.0.x-dev"
-            }
-        },
-        "installation-source": "source",
-        "autoload": {
-            "psr-0": {
-                "Doctrine\\Bundle\\DoctrineBundle": ""
-            }
-        },
-        "license": [
-            "MIT"
-        ],
-        "authors": [
-            {
-                "name": "Fabien Potencier",
-                "email": "fabien@symfony.com"
-            },
-            {
-                "name": "Symfony Community",
-                "homepage": "http://symfony.com/contributors"
-            },
-            {
-                "name": "Benjamin Eberlei",
-                "email": "kontakt@beberlei.de"
-            }
-        ],
-        "description": "Symfony DoctrineBundle",
-        "homepage": "http://www.doctrine-project.org",
-        "keywords": [
-            "database",
-            "orm",
-            "persistence",
-            "dbal"
-        ]
-    },
-    {
         "name": "jms/cg",
         "version": "1.0.0",
         "version_normalized": "1.0.0.0",
@@ -1058,7 +651,7 @@
         "require": {
             "php": ">=5.3.0"
         },
-        "time": "2012-01-02 18:40:52",
+        "time": "2012-01-02 09:40:52",
         "type": "library",
         "installation-source": "dist",
         "autoload": {
@@ -1100,7 +693,7 @@
         "require": {
             "php": ">=5.3.0"
         },
-        "time": "2012-01-02 19:32:49",
+        "time": "2012-01-02 10:32:49",
         "type": "library",
         "installation-source": "dist",
         "autoload": {
@@ -1147,7 +740,7 @@
             "symfony/framework-bundle": "2.*",
             "jms/cg": "1.0.0"
         },
-        "time": "2012-01-02 18:50:26",
+        "time": "2012-01-02 09:50:26",
         "type": "symfony-bundle",
         "installation-source": "dist",
         "autoload": {
@@ -1170,68 +763,6 @@
         "keywords": [
             "annotations",
             "aop"
-        ]
-    },
-    {
-        "name": "jms/di-extra-bundle",
-        "version": "1.1.x-dev",
-        "version_normalized": "1.1.9999999.9999999-dev",
-        "target-dir": "JMS/DiExtraBundle",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/schmittjoh/JMSDiExtraBundle",
-            "reference": "b94feeee8f57060598fdc7a3ef2527182b3946b5"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://github.com/schmittjoh/JMSDiExtraBundle/zipball/b94feeee8f57060598fdc7a3ef2527182b3946b5",
-            "reference": "b94feeee8f57060598fdc7a3ef2527182b3946b5",
-            "shasum": ""
-        },
-        "require": {
-            "symfony/framework-bundle": "2.1.*",
-            "jms/aop-bundle": "1.0.*",
-            "jms/metadata": "1.1.*",
-            "symfony/process": "2.1.*",
-            "symfony/finder": "2.1.*"
-        },
-        "require-dev": {
-            "jms/security-extra-bundle": "1.*",
-            "symfony/validator": "*",
-            "symfony/form": "*",
-            "symfony/class-loader": "*",
-            "symfony/yaml": "*",
-            "symfony/browser-kit": "*",
-            "symfony/security-bundle": "*",
-            "symfony/twig-bundle": "*",
-            "sensio/framework-extra-bundle": "*",
-            "doctrine/doctrine-bundle": "*",
-            "doctrine/orm": "*"
-        },
-        "time": "2012-09-17 05:09:06",
-        "type": "symfony-bundle",
-        "installation-source": "source",
-        "autoload": {
-            "psr-0": {
-                "JMS\\DiExtraBundle": ""
-            }
-        },
-        "license": [
-            "Apache"
-        ],
-        "authors": [
-            {
-                "name": "Johannes M. Schmitt",
-                "email": "schmittjoh@gmail.com",
-                "homepage": "http://jmsyst.com",
-                "role": "Developer of wrapped JMSSerializerBundle"
-            }
-        ],
-        "description": "Allows to configure dependency injection using annotations",
-        "homepage": "http://jmsyst.com/bundles/JMSDiExtraBundle",
-        "keywords": [
-            "dependency injection",
-            "annotations"
         ]
     },
     {
@@ -1271,7 +802,7 @@
             "symfony/form": "*",
             "symfony/validator": "*"
         },
-        "time": "2012-09-06 12:12:23",
+        "time": "2012-09-05 18:12:23",
         "type": "symfony-bundle",
         "installation-source": "source",
         "autoload": {
@@ -1333,7 +864,7 @@
             "ptachoire/cssembed": "Assetic provides the integration with phpcssembed to embed data uris",
             "leafo/scssphp-compass": "Assetic provides the integration with the SCSS compass plugin"
         },
-        "time": "2012-09-14 07:29:48",
+        "time": "2012-09-13 13:29:48",
         "type": "library",
         "extra": {
             "branch-alias": {
@@ -1400,7 +931,7 @@
         "suggest": {
             "symfony/twig-bundle": "2.1.*"
         },
-        "time": "2012-09-14 08:37:24",
+        "time": "2012-09-13 14:37:24",
         "type": "symfony-bundle",
         "extra": {
             "branch-alias": {
@@ -1432,62 +963,6 @@
         ]
     },
     {
-        "name": "symfony/swiftmailer-bundle",
-        "version": "dev-master",
-        "version_normalized": "9999999-dev",
-        "target-dir": "Symfony/Bundle/SwiftmailerBundle",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/symfony/SwiftmailerBundle",
-            "reference": "d2eae9385c029cbac031a90e6d2abc74b889a562"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://github.com/symfony/SwiftmailerBundle/zipball/d2eae9385c029cbac031a90e6d2abc74b889a562",
-            "reference": "d2eae9385c029cbac031a90e6d2abc74b889a562",
-            "shasum": ""
-        },
-        "require": {
-            "php": ">=5.3.2",
-            "symfony/swiftmailer-bridge": "2.1.*",
-            "swiftmailer/swiftmailer": ">=4.2.0,<4.3-dev"
-        },
-        "require-dev": {
-            "symfony/dependency-injection": "2.1.*",
-            "symfony/http-kernel": "2.1.*",
-            "symfony/config": "2.1.*",
-            "symfony/yaml": "2.1.*"
-        },
-        "time": "2012-08-29 08:25:46",
-        "type": "symfony-bundle",
-        "extra": {
-            "branch-alias": {
-                "dev-master": "2.1-dev"
-            }
-        },
-        "installation-source": "source",
-        "autoload": {
-            "psr-0": {
-                "Symfony\\Bundle\\SwiftmailerBundle": ""
-            }
-        },
-        "license": [
-            "MIT"
-        ],
-        "authors": [
-            {
-                "name": "Fabien Potencier",
-                "email": "fabien@symfony.com"
-            },
-            {
-                "name": "Symfony Community",
-                "homepage": "http://symfony.com/contributors"
-            }
-        ],
-        "description": "Symfony SwiftmailerBundle",
-        "homepage": "http://symfony.com"
-    },
-    {
         "name": "twig/extensions",
         "version": "dev-master",
         "version_normalized": "9999999-dev",
@@ -1505,7 +980,7 @@
         "require": {
             "twig/twig": "1.*"
         },
-        "time": "2012-09-04 10:51:18",
+        "time": "2012-09-03 16:51:18",
         "type": "library",
         "extra": {
             "branch-alias": {
@@ -1553,7 +1028,7 @@
         "require": {
             "php": ">=5.3.2"
         },
-        "time": "2012-09-20 05:55:18",
+        "time": "2012-09-19 11:55:18",
         "type": "library",
         "extra": {
             "branch-alias": {
@@ -1605,100 +1080,6 @@
         ]
     },
     {
-        "name": "symfony/symfony",
-        "version": "2.1.x-dev",
-        "version_normalized": "2.1.9999999.9999999-dev",
-        "source": {
-            "type": "git",
-            "url": "git://github.com/symfony/symfony.git",
-            "reference": "9fd2baa502ea6700461cce89f2295a695c20e430"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://github.com/symfony/symfony/zipball/9fd2baa502ea6700461cce89f2295a695c20e430",
-            "reference": "9fd2baa502ea6700461cce89f2295a695c20e430",
-            "shasum": ""
-        },
-        "require": {
-            "php": ">=5.3.3",
-            "doctrine/common": ">2.2,<2.4-dev",
-            "twig/twig": ">=1.9.1,<2.0-dev"
-        },
-        "replace": {
-            "symfony/doctrine-bridge": "self.version",
-            "symfony/monolog-bridge": "self.version",
-            "symfony/propel1-bridge": "self.version",
-            "symfony/swiftmailer-bridge": "self.version",
-            "symfony/twig-bridge": "self.version",
-            "symfony/framework-bundle": "self.version",
-            "symfony/security-bundle": "self.version",
-            "symfony/twig-bundle": "self.version",
-            "symfony/web-profiler-bundle": "self.version",
-            "symfony/browser-kit": "self.version",
-            "symfony/class-loader": "self.version",
-            "symfony/config": "self.version",
-            "symfony/console": "self.version",
-            "symfony/css-selector": "self.version",
-            "symfony/dependency-injection": "self.version",
-            "symfony/dom-crawler": "self.version",
-            "symfony/event-dispatcher": "self.version",
-            "symfony/filesystem": "self.version",
-            "symfony/finder": "self.version",
-            "symfony/form": "self.version",
-            "symfony/http-foundation": "self.version",
-            "symfony/http-kernel": "self.version",
-            "symfony/locale": "self.version",
-            "symfony/options-resolver": "self.version",
-            "symfony/process": "self.version",
-            "symfony/routing": "self.version",
-            "symfony/security": "self.version",
-            "symfony/serializer": "self.version",
-            "symfony/templating": "self.version",
-            "symfony/translation": "self.version",
-            "symfony/validator": "self.version",
-            "symfony/yaml": "self.version"
-        },
-        "require-dev": {
-            "doctrine/dbal": ">=2.2,<2.4-dev",
-            "doctrine/orm": ">=2.2.3,<2.4-dev",
-            "doctrine/data-fixtures": "1.0.*",
-            "propel/propel1": "dev-master",
-            "monolog/monolog": "dev-master"
-        },
-        "time": "2012-09-20 08:39:30",
-        "type": "library",
-        "extra": {
-            "branch-alias": {
-                "dev-master": "2.1-dev"
-            }
-        },
-        "installation-source": "source",
-        "autoload": {
-            "psr-0": {
-                "Symfony": "src/",
-                "SessionHandlerInterface": "src/Symfony/Component/HttpFoundation/Resources/stubs"
-            }
-        },
-        "license": [
-            "MIT"
-        ],
-        "authors": [
-            {
-                "name": "Fabien Potencier",
-                "email": "fabien@symfony.com"
-            },
-            {
-                "name": "Symfony Community",
-                "homepage": "http://symfony.com/contributors"
-            }
-        ],
-        "description": "The Symfony PHP framework",
-        "homepage": "http://symfony.com",
-        "keywords": [
-            "framework"
-        ]
-    },
-    {
         "name": "sonata-project/block-bundle",
         "version": "dev-master",
         "version_normalized": "9999999-dev",
@@ -1723,7 +1104,7 @@
         "suggest": {
             "sonata-project/admin-bundle": "dev-master"
         },
-        "time": "2012-09-18 15:41:57",
+        "time": "2012-09-17 21:41:57",
         "type": "symfony-bundle",
         "installation-source": "source",
         "autoload": {
@@ -1771,7 +1152,7 @@
             "php": ">=5.3.2",
             "doctrine/common": "2.3.*"
         },
-        "time": "2012-09-20 05:56:37",
+        "time": "2012-09-19 11:56:37",
         "type": "library",
         "extra": {
             "branch-alias": {
@@ -1839,7 +1220,7 @@
         "suggest": {
             "symfony/yaml": "If you want to use YAML Metadata Mapping Driver"
         },
-        "time": "2012-09-20 06:03:35",
+        "time": "2012-09-19 12:03:35",
         "bin": [
             "bin/doctrine",
             "bin/doctrine.php"
@@ -1906,7 +1287,7 @@
             "symfony/symfony": "2.1.*",
             "knplabs/knp-markdown-bundle": "dev-master"
         },
-        "time": "2012-09-18 14:09:07",
+        "time": "2012-09-17 20:09:07",
         "type": "symfony-bundle",
         "installation-source": "source",
         "autoload": {
@@ -1937,258 +1318,6 @@
         ]
     },
     {
-        "name": "knplabs/gaufrette",
-        "version": "dev-master",
-        "version_normalized": "9999999-dev",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/KnpLabs/Gaufrette",
-            "reference": "1b27fa4c2f606d1e80ba578c81b7e083ea58fa1b"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://github.com/KnpLabs/Gaufrette/zipball/1b27fa4c2f606d1e80ba578c81b7e083ea58fa1b",
-            "reference": "1b27fa4c2f606d1e80ba578c81b7e083ea58fa1b",
-            "shasum": ""
-        },
-        "require": {
-            "php": ">=5.3.0"
-        },
-        "require-dev": {
-            "pear-aws/sdk": "*",
-            "rackspace/php-cloudfiles": "*",
-            "doctrine/dbal": ">=2.3",
-            "pear-dropbox-php/dropbox": "*"
-        },
-        "suggest": {
-            "knplabs/knp-gaufrette-bundle": "*",
-            "ext-curl": "*",
-            "ext-mbstring": "*",
-            "ext-mongo": "*",
-            "pear-aws/sdk": ">=1.4.5",
-            "rackspace/php-cloudfiles": "*",
-            "doctrine/dbal": ">=2.3"
-        },
-        "time": "2012-09-20 10:00:57",
-        "type": "library",
-        "installation-source": "source",
-        "autoload": {
-            "psr-0": {
-                "Gaufrette": "src/"
-            }
-        },
-        "license": [
-            "MIT"
-        ],
-        "authors": [
-            {
-                "name": "Antoine Hérault",
-                "email": "antoine.herault@gmail.com",
-                "homepage": "https://github.com/Herzult"
-            },
-            {
-                "name": "The contributors",
-                "homepage": "http://github.com/knplabs/Gaufrette/contributors"
-            }
-        ],
-        "description": "PHP5 library that provides a filesystem abstraction layer",
-        "homepage": "http://knplabs.com",
-        "keywords": [
-            "media",
-            "file",
-            "filesystem",
-            "abstraction"
-        ]
-    },
-    {
-        "name": "sonata-project/media-bundle",
-        "version": "dev-master",
-        "version_normalized": "9999999-dev",
-        "target-dir": "Sonata/MediaBundle",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/sonata-project/SonataMediaBundle",
-            "reference": "14343761bd2dfa915413121f660cc9fd3e32b8d9"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://github.com/sonata-project/SonataMediaBundle/zipball/14343761bd2dfa915413121f660cc9fd3e32b8d9",
-            "reference": "14343761bd2dfa915413121f660cc9fd3e32b8d9",
-            "shasum": ""
-        },
-        "require": {
-            "sonata-project/admin-bundle": "dev-master",
-            "sonata-project/notification-bundle": "dev-master",
-            "sonata-project/easy-extends-bundle": "dev-master",
-            "knplabs/gaufrette": "dev-master",
-            "kriswallsmith/buzz": "0.7",
-            "symfony/symfony": "2.1.x",
-            "imagine/imagine": "v0.3.0"
-        },
-        "require-dev": {
-            "sonata-project/formatter-bundle": "dev-master"
-        },
-        "suggest": {
-            "sonata-project/doctrine-orm-admin-bundle": "dev-master",
-            "sonata-project/admin-bundle": "dev-master",
-            "liip/imagine-bundle": "dev-master",
-            "amazonwebservices/aws-sdk-for-php": "1.5.*"
-        },
-        "time": "2012-09-18 17:57:46",
-        "type": "symfony-bundle",
-        "installation-source": "source",
-        "autoload": {
-            "psr-0": {
-                "Sonata\\MediaBundle": ""
-            }
-        },
-        "license": [
-            "MIT"
-        ],
-        "authors": [
-            {
-                "name": "Thomas Rabaix",
-                "email": "thomas.rabaix@sonata-project.org",
-                "homepage": "http://sonata-project.org"
-            },
-            {
-                "name": "Sonata Community",
-                "homepage": "https://github.com/sonata-project/SonataMediaBundle/contributors"
-            }
-        ],
-        "description": "Symfony SonataMediaBundle",
-        "homepage": "http://sonata-project.org/bundles/media",
-        "keywords": [
-            "media",
-            "file",
-            "sonata",
-            "upload",
-            "pdf",
-            "youtube",
-            "dailymotion",
-            "vimeo"
-        ]
-    },
-    {
-        "name": "sonata-project/user-bundle",
-        "version": "dev-master",
-        "version_normalized": "9999999-dev",
-        "target-dir": "Sonata/UserBundle",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/sonata-project/SonataUserBundle",
-            "reference": "6c4d1857a5c041f4e6656c8b238f16e3ea0a423c"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://github.com/sonata-project/SonataUserBundle/zipball/6c4d1857a5c041f4e6656c8b238f16e3ea0a423c",
-            "reference": "6c4d1857a5c041f4e6656c8b238f16e3ea0a423c",
-            "shasum": ""
-        },
-        "require": {
-            "friendsofsymfony/user-bundle": "dev-master",
-            "sonata-project/doctrine-extensions": "dev-master",
-            "symfony/framework-bundle": "2.1.*",
-            "sonata-project/admin-bundle": "dev-master",
-            "sonata-project/easy-extends-bundle": "dev-master"
-        },
-        "suggest": {
-            "sonata-project/doctrine-orm-admin-bundle": "dev-master"
-        },
-        "time": "2012-09-18 20:18:08",
-        "type": "symfony-bundle",
-        "installation-source": "source",
-        "autoload": {
-            "psr-0": {
-                "Sonata\\UserBundle": ""
-            }
-        },
-        "license": [
-            "MIT"
-        ],
-        "authors": [
-            {
-                "name": "Thomas Rabaix",
-                "email": "thomas.rabaix@sonata-project.org",
-                "homepage": "http://sonata-project.org"
-            },
-            {
-                "name": "Sonata Community",
-                "homepage": "https://github.com/sonata-project/SonataUserBundle/contributors"
-            }
-        ],
-        "description": "Symfony SonataUserBundle",
-        "homepage": "http://sonata-project.org/bundles/user",
-        "keywords": [
-            "sonata",
-            "user",
-            "google authenticator"
-        ]
-    },
-    {
-        "name": "sonata-project/news-bundle",
-        "version": "dev-master",
-        "version_normalized": "9999999-dev",
-        "target-dir": "Sonata/NewsBundle",
-        "source": {
-            "type": "git",
-            "url": "git://github.com/sonata-project/SonataNewsBundle.git",
-            "reference": "6a38362296d74396ca8a21d6231004208d422359"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://github.com/sonata-project/SonataNewsBundle/zipball/6a38362296d74396ca8a21d6231004208d422359",
-            "reference": "6a38362296d74396ca8a21d6231004208d422359",
-            "shasum": ""
-        },
-        "require": {
-            "symfony/symfony": "2.1.*",
-            "sonata-project/admin-bundle": "dev-master",
-            "sonata-project/user-bundle": "dev-master",
-            "sonata-project/media-bundle": "dev-master",
-            "sonata-project/formatter-bundle": "dev-master",
-            "sonata-project/easy-extends-bundle": "dev-master",
-            "sonata-project/intl-bundle": "dev-master",
-            "knplabs/knp-markdown-bundle": "dev-master"
-        },
-        "require-dev": {
-            "doctrine/orm": "*"
-        },
-        "suggest": {
-            "sonata-project/doctrine-orm-admin-bundle": "dev-master"
-        },
-        "time": "2012-09-20 09:15:56",
-        "type": "symfony-bundle",
-        "installation-source": "source",
-        "autoload": {
-            "psr-0": {
-                "Sonata\\NewsBundle": ""
-            }
-        },
-        "license": [
-            "MIT"
-        ],
-        "authors": [
-            {
-                "name": "Thomas Rabaix",
-                "email": "thomas.rabaix@sonata-project.org",
-                "homepage": "http://sonata-project.org"
-            },
-            {
-                "name": "Sonata Community",
-                "homepage": "https://github.com/sonata-project/SonataNewsBundle/contributors"
-            }
-        ],
-        "description": "Symfony SonataNewsBundle",
-        "homepage": "http://sonata-project.org/bundles/news",
-        "keywords": [
-            "blog",
-            "sonata",
-            "news",
-            "post"
-        ]
-    },
-    {
         "name": "sensio/distribution-bundle",
         "version": "2.1.x-dev",
         "version_normalized": "2.1.9999999.9999999-dev",
@@ -2207,7 +1336,7 @@
         "require": {
             "symfony/framework-bundle": "2.1.*"
         },
-        "time": "2012-09-11 05:10:08",
+        "time": "2012-09-10 11:10:08",
         "type": "symfony-bundle",
         "extra": {
             "branch-alias": {
@@ -2255,7 +1384,7 @@
             "symfony/framework-bundle": "2.1.*",
             "doctrine/common": ">=2.1,<2.4-dev"
         },
-        "time": "2012-09-19 14:17:54",
+        "time": "2012-09-18 20:17:54",
         "type": "symfony-bundle",
         "extra": {
             "branch-alias": {
@@ -2284,58 +1413,6 @@
         ]
     },
     {
-        "name": "sensio/generator-bundle",
-        "version": "dev-master",
-        "version_normalized": "9999999-dev",
-        "target-dir": "Sensio/Bundle/GeneratorBundle",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/sensio/SensioGeneratorBundle",
-            "reference": "f5bda1014f5f124a0fd881644664493e36a09ad0"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://github.com/sensio/SensioGeneratorBundle/zipball/f5bda1014f5f124a0fd881644664493e36a09ad0",
-            "reference": "f5bda1014f5f124a0fd881644664493e36a09ad0",
-            "shasum": ""
-        },
-        "require": {
-            "symfony/framework-bundle": "2.2.*",
-            "symfony/console": "2.2.*"
-        },
-        "require-dev": {
-            "doctrine/orm": ">=2.1,<2.4-dev",
-            "twig/twig": ">=1.8,<2.0-dev",
-            "symfony/doctrine-bridge": "2.2.*"
-        },
-        "suggest": {
-            "doctrine/doctrine-bundle": "to generate entities and their crud controller"
-        },
-        "time": "2012-09-19 16:01:13",
-        "type": "symfony-bundle",
-        "extra": {
-            "branch-alias": {
-                "dev-master": "2.2.x-dev"
-            }
-        },
-        "installation-source": "source",
-        "autoload": {
-            "psr-0": {
-                "Sensio\\Bundle\\GeneratorBundle": ""
-            }
-        },
-        "license": [
-            "MIT"
-        ],
-        "authors": [
-            {
-                "name": "Fabien Potencier",
-                "email": "fabien@symfony.com"
-            }
-        ],
-        "description": "This bundle generates code for you"
-    },
-    {
         "name": "monolog/monolog",
         "version": "dev-master",
         "version_normalized": "9999999-dev",
@@ -2361,7 +1438,7 @@
             "ext-amqp": "Allow sending log messages to an AMQP server (1.0+ required)",
             "ext-mongo": "Allow sending log messages to a MongoDB server"
         },
-        "time": "2012-09-18 15:50:48",
+        "time": "2012-09-17 21:50:48",
         "type": "library",
         "extra": {
             "branch-alias": {
@@ -2419,7 +1496,7 @@
             "symfony/yaml": ">=2.1.0,<2.3-dev",
             "symfony/config": ">=2.1.0,<2.3-dev"
         },
-        "time": "2012-09-20 10:40:24",
+        "time": "2012-09-19 16:40:24",
         "type": "symfony-bundle",
         "extra": {
             "branch-alias": {
@@ -2447,5 +1524,924 @@
         ],
         "description": "Symfony MonologBundle",
         "homepage": "http://symfony.com"
+    },
+    {
+        "name": "sensio/generator-bundle",
+        "version": "2.1.x-dev",
+        "version_normalized": "2.1.9999999.9999999-dev",
+        "target-dir": "Sensio/Bundle/GeneratorBundle",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/sensio/SensioGeneratorBundle",
+            "reference": "3a65c9bf7d31aecacffc15a48f5eb2ece3615ef0"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://github.com/sensio/SensioGeneratorBundle/zipball/3a65c9bf7d31aecacffc15a48f5eb2ece3615ef0",
+            "reference": "3a65c9bf7d31aecacffc15a48f5eb2ece3615ef0",
+            "shasum": ""
+        },
+        "require": {
+            "symfony/framework-bundle": "2.1.*",
+            "symfony/console": "2.1.*"
+        },
+        "require-dev": {
+            "symfony/doctrine-bridge": "2.1.*",
+            "doctrine/orm": ">=2.1,<2.4-dev",
+            "twig/twig": ">=1.8,<2.0-dev"
+        },
+        "time": "2012-09-18 13:03:01",
+        "type": "symfony-bundle",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "2.1.x-dev"
+            }
+        },
+        "installation-source": "source",
+        "autoload": {
+            "psr-0": {
+                "Sensio\\Bundle\\GeneratorBundle": ""
+            }
+        },
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Fabien Potencier",
+                "email": "fabien@symfony.com"
+            }
+        ],
+        "description": "This bundle generates code for you"
+    },
+    {
+        "name": "sonata-project/admin-bundle",
+        "version": "dev-master",
+        "version_normalized": "9999999-dev",
+        "target-dir": "Sonata/AdminBundle",
+        "source": {
+            "type": "git",
+            "url": "git://github.com/sonata-project/SonataAdminBundle.git",
+            "reference": "7d7aee76c6c141cc356492f79b4ab78a7269c335"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://github.com/sonata-project/SonataAdminBundle/zipball/7d7aee76c6c141cc356492f79b4ab78a7269c335",
+            "reference": "7d7aee76c6c141cc356492f79b4ab78a7269c335",
+            "shasum": ""
+        },
+        "require": {
+            "sonata-project/jquery-bundle": "dev-master",
+            "sonata-project/exporter": "dev-master",
+            "sonata-project/block-bundle": "dev-master",
+            "knplabs/knp-menu-bundle": "1.1.*"
+        },
+        "require-dev": {
+            "jms/translation-bundle": "*"
+        },
+        "suggest": {
+            "sonata-project/doctrine-orm-admin-bundle": "dev-master",
+            "sonata-project/intl-bundle": "dev-master"
+        },
+        "time": "2012-09-22 22:22:40",
+        "type": "symfony-bundle",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "2.1-dev"
+            }
+        },
+        "installation-source": "source",
+        "autoload": {
+            "psr-0": {
+                "Sonata\\AdminBundle": ""
+            }
+        },
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Thomas Rabaix",
+                "email": "thomas.rabaix@sonata-project.org",
+                "homepage": "http://sonata-project.org"
+            },
+            {
+                "name": "Sonata Community",
+                "homepage": "https://github.com/sonata-project/SonataAdminBundle/contributors"
+            }
+        ],
+        "description": "Symfony SonataAdminBundle",
+        "homepage": "http://sonata-project.org/bundles/admin",
+        "keywords": [
+            "admin",
+            "Admin Generator",
+            "sonata",
+            "bootstrap"
+        ]
+    },
+    {
+        "name": "sonata-project/doctrine-orm-admin-bundle",
+        "version": "dev-master",
+        "version_normalized": "9999999-dev",
+        "target-dir": "Sonata/DoctrineORMAdminBundle",
+        "source": {
+            "type": "git",
+            "url": "git://github.com/sonata-project/SonataDoctrineORMAdminBundle.git",
+            "reference": "072d292b9a759cf7dd562a9bb9eba2f48c92d8c2"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://github.com/sonata-project/SonataDoctrineORMAdminBundle/zipball/072d292b9a759cf7dd562a9bb9eba2f48c92d8c2",
+            "reference": "072d292b9a759cf7dd562a9bb9eba2f48c92d8c2",
+            "shasum": ""
+        },
+        "require": {
+            "sonata-project/admin-bundle": "dev-master",
+            "doctrine/orm": ">=2.2,<2.4-dev",
+            "symfony/symfony": "2.1.*"
+        },
+        "time": "2012-09-23 16:40:29",
+        "type": "symfony-bundle",
+        "installation-source": "source",
+        "autoload": {
+            "psr-0": {
+                "Sonata\\DoctrineORMAdminBundle": ""
+            }
+        },
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Thomas Rabaix",
+                "email": "thomas.rabaix@sonata-project.org",
+                "homepage": "http://sonata-project.org"
+            },
+            {
+                "name": "Sonata Community",
+                "homepage": "https://github.com/sonata-project/SonataDoctrineORMAdminBundle/contributors"
+            }
+        ],
+        "description": "Symfony Sonata / Integrate Doctrine ORM into the SonataAdminBundle",
+        "homepage": "http://sonata-project.org/bundles/admin",
+        "keywords": [
+            "admin",
+            "generator",
+            "Admin Generator",
+            "sonata",
+            "bootstrap"
+        ]
+    },
+    {
+        "name": "jms/di-extra-bundle",
+        "version": "1.1.x-dev",
+        "version_normalized": "1.1.9999999.9999999-dev",
+        "target-dir": "JMS/DiExtraBundle",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/schmittjoh/JMSDiExtraBundle",
+            "reference": "1.1.1"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://github.com/schmittjoh/JMSDiExtraBundle/zipball/1.1.1",
+            "reference": "1.1.1",
+            "shasum": ""
+        },
+        "require": {
+            "symfony/framework-bundle": "2.1.*",
+            "jms/aop-bundle": "1.0.*",
+            "jms/metadata": "1.1.*",
+            "symfony/process": "2.1.*",
+            "symfony/finder": "2.1.*"
+        },
+        "require-dev": {
+            "jms/security-extra-bundle": "1.*",
+            "symfony/validator": "*",
+            "symfony/form": "*",
+            "symfony/class-loader": "*",
+            "symfony/yaml": "*",
+            "symfony/browser-kit": "*",
+            "symfony/security-bundle": "*",
+            "symfony/twig-bundle": "*",
+            "sensio/framework-extra-bundle": "*",
+            "doctrine/doctrine-bundle": "*",
+            "doctrine/orm": "*"
+        },
+        "time": "2012-09-20 16:56:32",
+        "type": "symfony-bundle",
+        "installation-source": "source",
+        "autoload": {
+            "psr-0": {
+                "JMS\\DiExtraBundle": ""
+            }
+        },
+        "license": [
+            "Apache"
+        ],
+        "authors": [
+            {
+                "name": "Johannes M. Schmitt",
+                "email": "schmittjoh@gmail.com",
+                "homepage": "https://github.com/schmittjoh",
+                "role": "Developer of wrapped JMSSerializerBundle"
+            }
+        ],
+        "description": "Allows to configure dependency injection using annotations",
+        "homepage": "http://jmsyst.com/bundles/JMSDiExtraBundle",
+        "keywords": [
+            "dependency injection",
+            "annotations"
+        ]
+    },
+    {
+        "name": "symfony/swiftmailer-bundle",
+        "version": "dev-master",
+        "version_normalized": "9999999-dev",
+        "target-dir": "Symfony/Bundle/SwiftmailerBundle",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/symfony/SwiftmailerBundle",
+            "reference": "e055faf5d7279f3c01ffd58f1548e0fc524b71d1"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://github.com/symfony/SwiftmailerBundle/zipball/e055faf5d7279f3c01ffd58f1548e0fc524b71d1",
+            "reference": "e055faf5d7279f3c01ffd58f1548e0fc524b71d1",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.3.2",
+            "swiftmailer/swiftmailer": ">=4.2.0,<4.3-dev",
+            "symfony/swiftmailer-bridge": ">=2.1.0,<2.3-dev"
+        },
+        "require-dev": {
+            "symfony/dependency-injection": ">=2.1.0,<2.3-dev",
+            "symfony/http-kernel": ">=2.1.0,<2.3-dev",
+            "symfony/config": ">=2.1.0,<2.3-dev",
+            "symfony/yaml": ">=2.1.0,<2.3-dev"
+        },
+        "time": "2012-09-19 18:42:56",
+        "type": "symfony-bundle",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "2.1-dev"
+            }
+        },
+        "installation-source": "source",
+        "autoload": {
+            "psr-0": {
+                "Symfony\\Bundle\\SwiftmailerBundle": ""
+            }
+        },
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Fabien Potencier",
+                "email": "fabien@symfony.com"
+            },
+            {
+                "name": "Symfony Community",
+                "homepage": "http://symfony.com/contributors"
+            }
+        ],
+        "description": "Symfony SwiftmailerBundle",
+        "homepage": "http://symfony.com"
+    },
+    {
+        "name": "sonata-project/media-bundle",
+        "version": "dev-master",
+        "version_normalized": "9999999-dev",
+        "target-dir": "Sonata/MediaBundle",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/sonata-project/SonataMediaBundle",
+            "reference": "cef97c85fe206cfc8a870bbe17446f7205560777"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://github.com/sonata-project/SonataMediaBundle/zipball/cef97c85fe206cfc8a870bbe17446f7205560777",
+            "reference": "cef97c85fe206cfc8a870bbe17446f7205560777",
+            "shasum": ""
+        },
+        "require": {
+            "sonata-project/admin-bundle": "dev-master",
+            "sonata-project/notification-bundle": "dev-master",
+            "sonata-project/easy-extends-bundle": "dev-master",
+            "knplabs/gaufrette": "dev-master",
+            "kriswallsmith/buzz": "0.7",
+            "symfony/symfony": "2.1.x",
+            "imagine/imagine": "v0.3.0"
+        },
+        "require-dev": {
+            "sonata-project/formatter-bundle": "dev-master"
+        },
+        "suggest": {
+            "sonata-project/doctrine-orm-admin-bundle": "dev-master",
+            "sonata-project/admin-bundle": "dev-master",
+            "liip/imagine-bundle": "dev-master",
+            "amazonwebservices/aws-sdk-for-php": "1.5.*"
+        },
+        "time": "2012-09-23 16:39:31",
+        "type": "symfony-bundle",
+        "installation-source": "source",
+        "autoload": {
+            "psr-0": {
+                "Sonata\\MediaBundle": ""
+            }
+        },
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Thomas Rabaix",
+                "email": "thomas.rabaix@sonata-project.org",
+                "homepage": "http://sonata-project.org"
+            },
+            {
+                "name": "Sonata Community",
+                "homepage": "https://github.com/sonata-project/SonataMediaBundle/contributors"
+            }
+        ],
+        "description": "Symfony SonataMediaBundle",
+        "homepage": "http://sonata-project.org/bundles/media",
+        "keywords": [
+            "media",
+            "file",
+            "sonata",
+            "upload",
+            "pdf",
+            "youtube",
+            "dailymotion",
+            "vimeo"
+        ]
+    },
+    {
+        "name": "twig/twig",
+        "version": "dev-master",
+        "version_normalized": "9999999-dev",
+        "source": {
+            "type": "git",
+            "url": "git://github.com/fabpot/Twig.git",
+            "reference": "73ab8ff50c53a3a6046b3a499bd0c6412afc344f"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://github.com/fabpot/Twig/zipball/73ab8ff50c53a3a6046b3a499bd0c6412afc344f",
+            "reference": "73ab8ff50c53a3a6046b3a499bd0c6412afc344f",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.2.4"
+        },
+        "time": "2012-09-28 21:55:47",
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "1.10-dev"
+            }
+        },
+        "installation-source": "source",
+        "autoload": {
+            "psr-0": {
+                "Twig_": "lib/"
+            }
+        },
+        "license": [
+            "BSD-3"
+        ],
+        "authors": [
+            {
+                "name": "Fabien Potencier",
+                "email": "fabien@symfony.com"
+            },
+            {
+                "name": "Armin Ronacher",
+                "email": "armin.ronacher@active-4.com"
+            }
+        ],
+        "description": "Twig, the flexible, fast, and secure template language for PHP",
+        "homepage": "http://twig.sensiolabs.org",
+        "keywords": [
+            "templating"
+        ]
+    },
+    {
+        "name": "swiftmailer/swiftmailer",
+        "version": "dev-master",
+        "version_normalized": "9999999-dev",
+        "source": {
+            "type": "git",
+            "url": "git://github.com/swiftmailer/swiftmailer.git",
+            "reference": "1a987b45ea8dcbbe9680499800c67fc97a2d07f6"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://github.com/swiftmailer/swiftmailer/zipball/1a987b45ea8dcbbe9680499800c67fc97a2d07f6",
+            "reference": "1a987b45ea8dcbbe9680499800c67fc97a2d07f6",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.2.4"
+        },
+        "time": "2012-09-27 12:11:48",
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "4.2-dev"
+            }
+        },
+        "installation-source": "source",
+        "autoload": {
+            "files": [
+                "lib/swift_required.php"
+            ]
+        },
+        "license": [
+            "LGPL"
+        ],
+        "authors": [
+            {
+                "name": "Fabien Potencier",
+                "email": "fabien@symfony.com"
+            },
+            {
+                "name": "Chris Corbyn"
+            }
+        ],
+        "description": "Swiftmailer, free feature-rich PHP mailer",
+        "homepage": "http://swiftmailer.org",
+        "keywords": [
+            "mail",
+            "mailer"
+        ]
+    },
+    {
+        "name": "sonata-project/doctrine-extensions",
+        "version": "dev-master",
+        "version_normalized": "9999999-dev",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/sonata-project/sonata-doctrine-extensions",
+            "reference": "d2cd67a25602fecab6067290536f163ea54f1c8c"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://github.com/sonata-project/sonata-doctrine-extensions/zipball/d2cd67a25602fecab6067290536f163ea54f1c8c",
+            "reference": "d2cd67a25602fecab6067290536f163ea54f1c8c",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.3.2",
+            "doctrine/orm": "*"
+        },
+        "time": "2012-09-28 12:21:53",
+        "type": "library",
+        "installation-source": "source",
+        "autoload": {
+            "psr-0": {
+                "Sonata\\Doctrine\\Types": "src/"
+            }
+        },
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Thomas Rabaix",
+                "email": "thomas.rabaix@sonata-project.org",
+                "homepage": "http://sonata-project.org"
+            },
+            {
+                "name": "Sonata Community",
+                "homepage": "https://github.com/sonata-project/sonata-doctrine-extensions/contributors"
+            }
+        ],
+        "description": "Doctrine2 behavioral extensions",
+        "homepage": "https://github.com/sonata-project/sonata-doctrine-extensions",
+        "keywords": [
+            "json",
+            "doctrine2",
+            "doctrine"
+        ]
+    },
+    {
+        "name": "sonata-project/news-bundle",
+        "version": "dev-master",
+        "version_normalized": "9999999-dev",
+        "target-dir": "Sonata/NewsBundle",
+        "source": {
+            "type": "git",
+            "url": "git://github.com/sonata-project/SonataNewsBundle.git",
+            "reference": "bed88f11fb03e05223f0a1da937387ab7b716bc1"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://github.com/sonata-project/SonataNewsBundle/zipball/bed88f11fb03e05223f0a1da937387ab7b716bc1",
+            "reference": "bed88f11fb03e05223f0a1da937387ab7b716bc1",
+            "shasum": ""
+        },
+        "require": {
+            "symfony/symfony": "2.1.*",
+            "sonata-project/admin-bundle": "dev-master",
+            "sonata-project/user-bundle": "dev-master",
+            "sonata-project/media-bundle": "dev-master",
+            "sonata-project/formatter-bundle": "dev-master",
+            "sonata-project/easy-extends-bundle": "dev-master",
+            "sonata-project/intl-bundle": "dev-master",
+            "knplabs/knp-markdown-bundle": "dev-master"
+        },
+        "require-dev": {
+            "doctrine/orm": "*"
+        },
+        "suggest": {
+            "sonata-project/doctrine-orm-admin-bundle": "dev-master"
+        },
+        "time": "2012-09-25 20:25:03",
+        "type": "symfony-bundle",
+        "installation-source": "source",
+        "autoload": {
+            "psr-0": {
+                "Sonata\\NewsBundle": ""
+            }
+        },
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Thomas Rabaix",
+                "email": "thomas.rabaix@sonata-project.org",
+                "homepage": "http://sonata-project.org"
+            },
+            {
+                "name": "Sonata Community",
+                "homepage": "https://github.com/sonata-project/SonataNewsBundle/contributors"
+            }
+        ],
+        "description": "Symfony SonataNewsBundle",
+        "homepage": "http://sonata-project.org/bundles/news",
+        "keywords": [
+            "blog",
+            "sonata",
+            "news",
+            "post"
+        ]
+    },
+    {
+        "name": "friendsofsymfony/user-bundle",
+        "version": "dev-master",
+        "version_normalized": "9999999-dev",
+        "target-dir": "FOS/UserBundle",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/FriendsOfSymfony/FOSUserBundle",
+            "reference": "570a24893a65e6e90a649d55f384be810202b6f0"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://github.com/FriendsOfSymfony/FOSUserBundle/zipball/570a24893a65e6e90a649d55f384be810202b6f0",
+            "reference": "570a24893a65e6e90a649d55f384be810202b6f0",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.3.2",
+            "symfony/framework-bundle": "2.1.*",
+            "symfony/security-bundle": "2.1.*"
+        },
+        "require-dev": {
+            "twig/twig": "*",
+            "doctrine/doctrine-bundle": "*",
+            "swiftmailer/swiftmailer": "*",
+            "willdurand/propel-typehintable-behavior": "dev-master",
+            "symfony/validator": "2.1.*",
+            "symfony/yaml": "2.1.*"
+        },
+        "suggest": {
+            "doctrine/couchdb-odm-bundle": "*",
+            "doctrine/doctrine-bundle": "*",
+            "doctrine/mongodb-odm-bundle": "*"
+        },
+        "time": "2012-09-28 09:18:49",
+        "type": "symfony-bundle",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "2.0.x-dev"
+            }
+        },
+        "installation-source": "source",
+        "autoload": {
+            "psr-0": {
+                "FOS\\UserBundle": ""
+            }
+        },
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Christophe Coevoet",
+                "email": "stof@notk.org"
+            },
+            {
+                "name": "Thibault Duplessis",
+                "email": "thibault.duplessis@gmail.com",
+                "homepage": "http://ornicar.github.com"
+            },
+            {
+                "name": "FriendsOfSymfony Community",
+                "homepage": "https://github.com/friendsofsymfony/FOSUserBundle/contributors"
+            }
+        ],
+        "description": "Symfony FOSUserBundle",
+        "homepage": "http://friendsofsymfony.github.com",
+        "keywords": [
+            "User management"
+        ]
+    },
+    {
+        "name": "doctrine/doctrine-bundle",
+        "version": "dev-master",
+        "version_normalized": "9999999-dev",
+        "target-dir": "Doctrine/Bundle/DoctrineBundle",
+        "source": {
+            "type": "git",
+            "url": "git://github.com/doctrine/DoctrineBundle.git",
+            "reference": "db818ceec46d05fed4f944b957f82a4ab5197e27"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://github.com/doctrine/DoctrineBundle/zipball/db818ceec46d05fed4f944b957f82a4ab5197e27",
+            "reference": "db818ceec46d05fed4f944b957f82a4ab5197e27",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.3.2",
+            "doctrine/dbal": ">=2.2,<2.4-dev",
+            "symfony/framework-bundle": ">=2.1,<2.3-dev",
+            "symfony/doctrine-bridge": ">=2.1,<2.3-dev"
+        },
+        "require-dev": {
+            "doctrine/orm": ">=2.2,<2.4-dev",
+            "symfony/yaml": ">=2.1,<2.3-dev",
+            "symfony/validator": ">=2.1,<2.3-dev"
+        },
+        "suggest": {
+            "doctrine/orm": "The Doctrine ORM integration is optional in the bundle."
+        },
+        "time": "2012-09-28 10:30:43",
+        "type": "symfony-bundle",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "1.0.x-dev"
+            }
+        },
+        "installation-source": "source",
+        "autoload": {
+            "psr-0": {
+                "Doctrine\\Bundle\\DoctrineBundle": ""
+            }
+        },
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Fabien Potencier",
+                "email": "fabien@symfony.com"
+            },
+            {
+                "name": "Symfony Community",
+                "homepage": "http://symfony.com/contributors"
+            },
+            {
+                "name": "Benjamin Eberlei",
+                "email": "kontakt@beberlei.de"
+            }
+        ],
+        "description": "Symfony DoctrineBundle",
+        "homepage": "http://www.doctrine-project.org",
+        "keywords": [
+            "database",
+            "orm",
+            "persistence",
+            "dbal"
+        ]
+    },
+    {
+        "name": "symfony/symfony",
+        "version": "2.1.x-dev",
+        "version_normalized": "2.1.9999999.9999999-dev",
+        "source": {
+            "type": "git",
+            "url": "git://github.com/symfony/symfony.git",
+            "reference": "bd845b3bbcb13972924fe3030e37fbee8dc04e47"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://github.com/symfony/symfony/zipball/bd845b3bbcb13972924fe3030e37fbee8dc04e47",
+            "reference": "bd845b3bbcb13972924fe3030e37fbee8dc04e47",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.3.3",
+            "doctrine/common": ">2.2,<2.4-dev",
+            "twig/twig": ">=1.9.1,<2.0-dev"
+        },
+        "replace": {
+            "symfony/doctrine-bridge": "self.version",
+            "symfony/monolog-bridge": "self.version",
+            "symfony/propel1-bridge": "self.version",
+            "symfony/swiftmailer-bridge": "self.version",
+            "symfony/twig-bridge": "self.version",
+            "symfony/framework-bundle": "self.version",
+            "symfony/security-bundle": "self.version",
+            "symfony/twig-bundle": "self.version",
+            "symfony/web-profiler-bundle": "self.version",
+            "symfony/browser-kit": "self.version",
+            "symfony/class-loader": "self.version",
+            "symfony/config": "self.version",
+            "symfony/console": "self.version",
+            "symfony/css-selector": "self.version",
+            "symfony/dependency-injection": "self.version",
+            "symfony/dom-crawler": "self.version",
+            "symfony/event-dispatcher": "self.version",
+            "symfony/filesystem": "self.version",
+            "symfony/finder": "self.version",
+            "symfony/form": "self.version",
+            "symfony/http-foundation": "self.version",
+            "symfony/http-kernel": "self.version",
+            "symfony/locale": "self.version",
+            "symfony/options-resolver": "self.version",
+            "symfony/process": "self.version",
+            "symfony/routing": "self.version",
+            "symfony/security": "self.version",
+            "symfony/serializer": "self.version",
+            "symfony/templating": "self.version",
+            "symfony/translation": "self.version",
+            "symfony/validator": "self.version",
+            "symfony/yaml": "self.version"
+        },
+        "require-dev": {
+            "doctrine/dbal": ">=2.2,<2.4-dev",
+            "doctrine/orm": ">=2.2.3,<2.4-dev",
+            "doctrine/data-fixtures": "1.0.*",
+            "propel/propel1": "dev-master",
+            "monolog/monolog": "dev-master"
+        },
+        "time": "2012-09-28 17:49:10",
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "2.1-dev"
+            }
+        },
+        "installation-source": "source",
+        "autoload": {
+            "psr-0": {
+                "Symfony": "src/",
+                "SessionHandlerInterface": "src/Symfony/Component/HttpFoundation/Resources/stubs"
+            }
+        },
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Fabien Potencier",
+                "email": "fabien@symfony.com"
+            },
+            {
+                "name": "Symfony Community",
+                "homepage": "http://symfony.com/contributors"
+            }
+        ],
+        "description": "The Symfony PHP framework",
+        "homepage": "http://symfony.com",
+        "keywords": [
+            "framework"
+        ]
+    },
+    {
+        "name": "knplabs/gaufrette",
+        "version": "dev-master",
+        "version_normalized": "9999999-dev",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/KnpLabs/Gaufrette",
+            "reference": "76b830c119432e08eb8fb723f5d148531f2d84c9"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://github.com/KnpLabs/Gaufrette/zipball/76b830c119432e08eb8fb723f5d148531f2d84c9",
+            "reference": "76b830c119432e08eb8fb723f5d148531f2d84c9",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.3.0"
+        },
+        "require-dev": {
+            "pear-aws/sdk": "*",
+            "rackspace/php-cloudfiles": "*",
+            "doctrine/dbal": ">=2.3",
+            "pear-dropbox-php/dropbox": "*"
+        },
+        "suggest": {
+            "knplabs/knp-gaufrette-bundle": "*",
+            "ext-curl": "*",
+            "ext-mbstring": "*",
+            "ext-mongo": "*",
+            "pear-aws/sdk": ">=1.4.5",
+            "rackspace/php-cloudfiles": "*",
+            "doctrine/dbal": ">=2.3"
+        },
+        "time": "2012-09-26 09:20:30",
+        "type": "library",
+        "installation-source": "source",
+        "autoload": {
+            "psr-0": {
+                "Gaufrette": "src/"
+            }
+        },
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "The contributors",
+                "homepage": "http://github.com/knplabs/Gaufrette/contributors"
+            },
+            {
+                "name": "KnpLabs Team",
+                "homepage": "http://knplabs.com"
+            }
+        ],
+        "description": "PHP5 library that provides a filesystem abstraction layer",
+        "homepage": "http://knplabs.com",
+        "keywords": [
+            "media",
+            "file",
+            "filesystem",
+            "abstraction"
+        ]
+    },
+    {
+        "name": "sonata-project/user-bundle",
+        "version": "dev-master",
+        "version_normalized": "9999999-dev",
+        "target-dir": "Sonata/UserBundle",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/sonata-project/SonataUserBundle",
+            "reference": "20d18cea2bbbc709c6ea8da4228312b638fd85cf"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://github.com/sonata-project/SonataUserBundle/zipball/20d18cea2bbbc709c6ea8da4228312b638fd85cf",
+            "reference": "20d18cea2bbbc709c6ea8da4228312b638fd85cf",
+            "shasum": ""
+        },
+        "require": {
+            "friendsofsymfony/user-bundle": "dev-master",
+            "sonata-project/doctrine-extensions": "dev-master",
+            "symfony/framework-bundle": "2.1.*",
+            "sonata-project/admin-bundle": "dev-master",
+            "sonata-project/easy-extends-bundle": "dev-master"
+        },
+        "suggest": {
+            "sonata-project/doctrine-orm-admin-bundle": "dev-master"
+        },
+        "time": "2012-09-25 12:47:29",
+        "type": "symfony-bundle",
+        "installation-source": "source",
+        "autoload": {
+            "psr-0": {
+                "Sonata\\UserBundle": ""
+            }
+        },
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Thomas Rabaix",
+                "email": "thomas.rabaix@sonata-project.org",
+                "homepage": "http://sonata-project.org"
+            },
+            {
+                "name": "Sonata Community",
+                "homepage": "https://github.com/sonata-project/SonataUserBundle/contributors"
+            }
+        ],
+        "description": "Symfony SonataUserBundle",
+        "homepage": "http://sonata-project.org/bundles/user",
+        "keywords": [
+            "sonata",
+            "user",
+            "google authenticator"
+        ]
     }
 ]
