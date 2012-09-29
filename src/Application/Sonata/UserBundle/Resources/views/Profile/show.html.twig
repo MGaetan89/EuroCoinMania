@@ -35,7 +35,7 @@
 
 			<dt>{{ 'user.country'|trans }}</dt>
 				<dd>
-					<img alt="{{ country }}" src="{{ asset('bundles/applicationsonatauser/images/' ~ user.country|lower ~ '.png') }}" title="{{ country }}" />
+					<img alt="{{ country }}" src="{{ asset('bundles/applicationsonatauser/images/' ~ user.country|lower ~ '.png') }}" rel="tooltip" title="{{ country }}" data-placement="right" />
 					{{ country }}
 				</dd>
 			{% endif %}

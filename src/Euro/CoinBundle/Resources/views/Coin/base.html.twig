@@ -7,7 +7,7 @@
 	{% set name = macros.name(current) %}
 
 	<h2 class="page-header">
-		<img alt="{{ name }}" src="{% path current.flag, 'big' %}" title="{{ name }}" />
+		<img alt="{{ name }}" src="{% path current.flag, 'big' %}" rel="tooltip" title="{{ name }}" data-placement="right" />
 		{{ name }}
 	</h2>
 
@@ -21,7 +21,7 @@
 
 					<li class="active" data-action="popover" title="{{ _name }}" data-content="{% include 'EuroCoinBundle:Country:country_data.html.twig' with { country: current } %}">
 						<a href="{{ path('coin_collection' ~ type, { id: current.id, country: _name }) }}">
-							<img alt="{{ _name }}" src="{% path current.flag, 'mini' %}" title="{{ _name }}" />
+							<img alt="{{ _name }}" src="{% path current.flag, 'mini' %}" rel="tooltip" title="{{ _name }}" data-placement="right" />
 							{{ _name }}
 						</a>
 					</li>
@@ -33,7 +33,7 @@
 
 						<li class="hide" data-action="popover" title="{{ _name }}" data-content="{% include 'EuroCoinBundle:Country:country_data.html.twig' with { country: country } %}">
 							<a href="{{ path('coin_collection' ~ type, { id: country.id, country: _name }) }}">
-								<img alt="{{ _name }}" src="{% path country.flag, 'mini' %}" title="{{ _name }}" />
+								<img alt="{{ _name }}" src="{% path country.flag, 'mini' %}" rel="tooltip" title="{{ _name }}" data-placement="right" />
 								{{ _name }}
 							</a>
 						</li>
