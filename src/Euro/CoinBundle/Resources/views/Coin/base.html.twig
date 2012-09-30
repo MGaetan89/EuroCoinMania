@@ -76,13 +76,18 @@
 
 				{% if years|length > 1 %}
 					<ul class="breadcrumb">
+						<li class="muted">{{ 'years'|trans }} <span class="divider">&nbsp;</span></li>
+
 						{% for year in years %}
+							{% set year_text = 'year.filter_interval'|trans({ '%from%': year.from, '%to%': year.to }) %}
+							{% set year_url = year.from ~ '..' ~ year.to %}
+
 							<li>
-								{% if year == current_year %}<strong>{% endif %}
-									<a href="{{ path(app.request.get('_route'), { id: current.id, country: name, year: year }) }}">{{ year }}</a>
+								{% if year_url == current_year %}<strong>{% endif %}
+									<a href="{{ path(app.request.get('_route'), { id: current.id, country: name, year: year_url }) }}">{{ year_text }}</a>
 
 									<span class="divider">&nbsp;</span>
-								{% if year == current_year %}</strong>{% endif %}
+								{% if year_url == current_year %}</strong>{% endif %}
 							</li>
 						{% endfor %}
 					</ul>

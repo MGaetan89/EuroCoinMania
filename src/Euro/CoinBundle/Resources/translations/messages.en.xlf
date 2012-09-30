@@ -521,6 +521,14 @@ Received by <a href="%path%">%username%</a>
 				<source>user.coin_not_found</source>
 				<target>You do not own this coin yet</target>
 			</trans-unit>
+			<trans-unit id="year.filter_interval">
+				<source>year.filter_interval</source>
+				<target>%from% to %to%</target>
+			</trans-unit>
+			<trans-unit id="years">
+				<source>years</source>
+				<target>Années</target>
+			</trans-unit>
 		</body>
 	</file>
 </xliff>

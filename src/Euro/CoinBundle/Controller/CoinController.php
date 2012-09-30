@@ -125,7 +125,10 @@ class CoinController extends BaseController {
 			$years = array_chunk($years, self::YEAR_RANGE_SIZE);
 
 			foreach ($years as &$item) {
-				$item = $item[0]->getYear() . '..' . $item[count($item) - 1]->getYear();
+				$item = array(
+					'from' => $item[0]->getYear(),
+					'to' => $item[count($item) - 1]->getYear(),
+				);
 			}
 
 			if (!$year && $years) {

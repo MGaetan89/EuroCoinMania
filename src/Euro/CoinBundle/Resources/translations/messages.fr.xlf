@@ -521,6 +521,14 @@ Reçu par <a href="%path%">%username%</a>
 				<source>user.coin_not_found</source>
 				<target>Vous ne possédez pas encore cette pièce</target>
 			</trans-unit>
+			<trans-unit id="year.filter_interval">
+				<source>year.filter_interval</source>
+				<target>%from% à %to%</target>
+			</trans-unit>
+			<trans-unit id="years">
+				<source>years</source>
+				<target>Années</target>
+			</trans-unit>
 		</body>
 	</file>
 </xliff>
