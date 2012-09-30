@@ -1,7 +1,9 @@
 {% extends 'FOSUserBundle::layout.html.twig' %}
 
+{% block title %}{{ 'user.register'|trans }}{% endblock %}
+
 {% block fos_user_content %}
-<h2 class="page-header">{{ 'user.register'|trans }}</h2>
+<h2 class="page-header">{{ block('title') }}</h2>
 
 <div class="row-fluid">
 	<div class="span6">

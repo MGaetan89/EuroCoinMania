@@ -191,6 +191,42 @@ Si l'échange est accepté par l'autre utilisateur, vos inventaires respectifs n
 				<source>countries.list</source>
 				<target>Country list</target>
 			</trans-unit>
+			<trans-unit id="country.coin1">
+				<source>country.coin1</source>
+				<target><![CDATA[
+Coins of &laquo; %country% &raquo;
+				]]></target>
+			</trans-unit>
+			<trans-unit id="country.coin2">
+				<source>country.coin2</source>
+				<target><![CDATA[
+Commemoratives coins of &laquo; %country% &raquo;
+				]]></target>
+			</trans-unit>
+			<trans-unit id="country.coin3">
+				<source>country.coin3</source>
+				<target><![CDATA[
+Collectos coins of &laquo; %country% &raquo;
+				]]></target>
+			</trans-unit>
+			<trans-unit id="country.coin1_from_to">
+				<source>country.coin1_from_to</source>
+				<target><![CDATA[
+Coins of &laquo; %country% &raquo; from %from% to %to%
+				]]></target>
+			</trans-unit>
+			<trans-unit id="country.coin2_from_to">
+				<source>country.coin2_from_to</source>
+				<target><![CDATA[
+Commemoratives coins of &laquo; %country% &raquo; from %from% to %to%
+				]]></target>
+			</trans-unit>
+			<trans-unit id="country.coin3_from_to">
+				<source>country.coin3_from_to</source>
+				<target><![CDATA[
+Collectos coins of &laquo; %country% &raquo; from %from% to %to%
+				]]></target>
+			</trans-unit>
 			<trans-unit id="country.currency.austria">
 				<source>country.currency.austria</source>
 				<target>Austrian schilling</target>

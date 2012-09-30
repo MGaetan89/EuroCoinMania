@@ -153,6 +153,10 @@ class CoinController extends BaseController {
 			}
 
 			$year_range = array_map('intval', explode('..', $year));
+			if (!isset($year_range[1]) && $year_range[0] > 0) {
+				$year_range[1] = $year_range[0];
+			}
+
 			$coins = $coin_repo->findCoinsByCountry($country, $type, $year_range);
 
 			if ($type == Coin::TYPE_CIRCULATION) {
@@ -194,6 +198,7 @@ class CoinController extends BaseController {
 					'current_year' => $year,
 					'totals' => $totals,
 					'uc' => $uc,
+					'year' => $year_range,
 					'years' => $years,
 				));
 	}

@@ -1,6 +1,12 @@
 {% extends '::base.html.twig' %}
 
-{% block title %}{{ countries ? macros.name(current) : '' }}{% endblock %}
+{% block title %}
+{% if year[0] > 0 %}
+	{{ ('country.coin' ~ type ~ '_from_to')|trans({ '%country%': macros.name(current), '%from%': year[0], '%to%': year[1] })|raw }}
+{% else %}
+	{{ ('country.coin' ~ type)|trans({ '%country%': macros.name(current) })|raw }} 
+{% endif %}
+{% endblock %}
 
 {% block body %}
 {% if countries %}
@@ -8,7 +14,7 @@
 
 	<h2 class="page-header">
 		<img alt="{{ name }}" src="{% path current.flag, 'big' %}" rel="tooltip" title="{{ name }}" data-placement="right" />
-		{{ name }}
+		{{ block('title') }}
 	</h2>
 
 	<div class="row-fluid">
