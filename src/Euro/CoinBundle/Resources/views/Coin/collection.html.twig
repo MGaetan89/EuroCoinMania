@@ -20,7 +20,7 @@
 		{{ header }}
 
 		{% for year, values in coins %}
-			{% if loop.index0 > 0 and loop.index0 % 7 == 0 %}
+			{% if loop.index0 > 0 and loop.index0 % constant('Euro\\CoinBundle\\Controller\\CoinController::YEAR_RANGE_SIZE') == 0 %}
 				{{ header }}
 			{% endif %}
 

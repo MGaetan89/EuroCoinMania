@@ -125,17 +125,30 @@ class CoinController extends BaseController {
 			$years = array_chunk($years, self::YEAR_RANGE_SIZE);
 
 			foreach ($years as &$item) {
-				$item = array(
-					'from' => $item[0]->getYear(),
-					'to' => $item[count($item) - 1]->getYear(),
-				);
+				$size = count($item);
+				if ($size > 1) {
+					$item = array(
+						'from' => $item[0]->getYear(),
+						'to' => $item[$size - 1]->getYear(),
+					);
+				} else {
+					$item = array(
+						'from' => $item[0]->getYear(),
+						'to' => '',
+					);
+				}
 			}
 
 			if (!$year && $years) {
+				$year_param = $years[0]['from'];
+				if ($years[0]['to']) {
+					$year_param .= '..' . $years[0]['to'];
+				}
+
 				return $this->redirect($this->generateUrl('coin_collection' . $type, array(
 									'country' => $translator->trans((string) $country),
 									'id' => $country->getId(),
-									'year' => $years[0]['from'] . '..' . $years[0]['to'],
+									'year' => $year_param,
 								)));
 			}
 
