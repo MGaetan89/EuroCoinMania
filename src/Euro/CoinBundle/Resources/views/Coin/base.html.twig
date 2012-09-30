@@ -2,7 +2,11 @@
 
 {% block title %}
 {% if year[0] > 0 %}
-	{{ ('country.coin' ~ type ~ '_from_to')|trans({ '%country%': macros.name(current), '%from%': year[0], '%to%': year[1] })|raw }}
+	{% if year[0] != year[1] %}
+		{{ ('country.coin' ~ type ~ '_from_to')|trans({ '%country%': macros.name(current), '%from%': year[0], '%to%': year[1] })|raw }}
+	{% else %}
+		{{ ('country.coin' ~ type ~ '_from')|trans({ '%country%': macros.name(current), '%from%': year[0] })|raw }}
+	{% endif %}
 {% else %}
 	{{ ('country.coin' ~ type)|trans({ '%country%': macros.name(current) })|raw }} 
 {% endif %}
@@ -84,18 +88,62 @@
 					<ul class="breadcrumb">
 						<li class="muted">{{ 'years'|trans }} <span class="divider">&nbsp;</span></li>
 
+						{% set std_filter = false %}
 						{% for year in years %}
 							{% set year_text = 'year.filter_interval'|trans({ '%from%': year.from, '%to%': year.to }) %}
 							{% set year_url = year.from ~ '..' ~ year.to %}
 
 							<li>
-								{% if year_url == current_year %}<strong>{% endif %}
+								{% if year_url == current_year %}
+									{% set std_filter = true %}
+
+									<strong>
+								{% endif %}
 									<a href="{{ path(app.request.get('_route'), { id: current.id, country: name, year: year_url }) }}">{{ year_text }}</a>
 
 									<span class="divider">&nbsp;</span>
 								{% if year_url == current_year %}</strong>{% endif %}
 							</li>
 						{% endfor %}
+
+						{% if not std_filter %}
+							{% set year_text = year[0] %}
+							{% if year[0] != year[1] %}
+								{% set year_text = 'year.filter_interval'|trans({ '%from%': year[0], '%to%': year[1] }) %}
+							{% endif %}
+
+							<li>
+								<strong>
+									<a href="{{ path(app.request.get('_route'), { id: current.id, country: name, year: current_year }) }}">{{ year_text }}</a>
+
+									<span class="divider">&nbsp;</span>
+								</strong>
+							</li>
+						{% endif %}
+
+						<li class="dropdown">
+							<a href="#" rel="tooltip" title="{{ 'year.setting'|trans }}" data-toggle="dropdown" data-placement="top">
+								<i class="icon-cog"></i> <b class="caret"></b>
+							</a>
+
+							<ul class="dropdown-menu">
+								<li class="nav-header">{{ 'years.filter'|trans }}</li>
+								<li>
+									<form action="{{ url(app.request.get('_route'), { id: current.id, country: _name, year: 'FROM..TO' }) }}" id="customize_filter">
+										<div class="offset1">
+											<input class="span5" name="from" placeholder="{{ 'year.filter_from'|trans }}" type="text" />
+											<input class="span5" name="to" placeholder="{{ 'year.filter_to'|trans }}" type="text" />
+										</div>
+
+										<hr class="divider" />
+
+										<div class="offset1">
+											<button class="btn span10" type="submit">{{ 'year.filter'|trans }}</button>
+										</div>
+									</form>
+								</li>
+							</ul>
+						</li>
 					</ul>
 				{% endif %}
 

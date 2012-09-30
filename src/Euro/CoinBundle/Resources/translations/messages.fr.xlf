@@ -209,6 +209,24 @@ Pièces commémoratives &laquo; %country% &raquo;
 Pièces collectors &laquo; %country% &raquo;
 				]]></target>
 			</trans-unit>
+			<trans-unit id="country.coin1_from">
+				<source>country.coin1_from</source>
+				<target><![CDATA[
+Pièces &laquo; %country% &raquo; de %from%
+				]]></target>
+			</trans-unit>
+			<trans-unit id="country.coin2_from">
+				<source>country.coin2_from</source>
+				<target><![CDATA[
+Pièces commémoratives &laquo; %country% &raquo; de %from%
+				]]></target>
+			</trans-unit>
+			<trans-unit id="country.coin3_from">
+				<source>country.coin3_from</source>
+				<target><![CDATA[
+Pièces collectors &laquo; %country% &raquo; de %from%
+				]]></target>
+			</trans-unit>
 			<trans-unit id="country.coin1_from_to">
 				<source>country.coin1_from_to</source>
 				<target><![CDATA[
@@ -557,13 +575,33 @@ Reçu par <a href="%path%">%username%</a>
 				<source>user.coin_not_found</source>
 				<target>Vous ne possédez pas encore cette pièce</target>
 			</trans-unit>
+			<trans-unit id="year.filter">
+				<source>year.filter</source>
+				<target>Filtrer</target>
+			</trans-unit>
+			<trans-unit id="year.filter_from">
+				<source>year.filter_from</source>
+				<target>Début</target>
+			</trans-unit>
 			<trans-unit id="year.filter_interval">
 				<source>year.filter_interval</source>
 				<target>%from% à %to%</target>
 			</trans-unit>
+			<trans-unit id="year.filter_setting">
+				<source>year.filter_setting</source>
+				<target>Paramètre</target>
+			</trans-unit>
+			<trans-unit id="year.filter_to">
+				<source>year.filter_to</source>
+				<target>Fin</target>
+			</trans-unit>
 			<trans-unit id="years">
 				<source>years</source>
 				<target>Années</target>
+			</trans-unit>
+			<trans-unit id="years.filter">
+				<source>years.filter</source>
+				<target>Filtre par années</target>
 			</trans-unit>
 		</body>
 	</file>

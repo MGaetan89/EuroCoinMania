@@ -67,4 +67,24 @@ $(function () {
 	$('[data-action=popover]').popover({
 		trigger: 'hover'
 	});
+
+	$('#customize_filter').on('submit', function () {
+		var $this = $(this), from = $this.find('[name=from]').val(), to = $this.find('[name=to]').val();
+
+		if (!from.match(/[0-9]{4}/) || (to && (!to.match(/[0-9]{4}/) || from > to))) {
+			return false;
+		}
+
+		if (from == to) {
+			to = undefined;
+		}
+
+		if (to) {
+			location.href = $this.attr('action').replace('FROM..TO', from + '..' + to);
+		} else {
+			location.href = $this.attr('action').replace('FROM..TO', from);
+		}
+
+		return false;
+	});
 });
