@@ -27,8 +27,13 @@ $(function () {
 		});
 	});
 
+	var text = '−';
 	$('[data-action=hide-items]').on('click', function () {
-		$(this).nextUntil('.divider', 'li').toggle();
+		var $this = $(this);
+
+		$this.nextUntil('.divider', 'li').slideToggle();
+		$this.find('span').text(text);
+		text = (text == '−') ? '+' : '−';
 
 		return false;
 	});
