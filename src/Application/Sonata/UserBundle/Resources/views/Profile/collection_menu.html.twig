@@ -9,7 +9,7 @@
 
 		<li{% if country.name == current.name %} class="active"{% endif %} data-action="popover" title="{{ _name }}" data-content="{% include 'EuroCoinBundle:Country:country_data.html.twig' with { country: country } %}">
 			<a href="{{ path('show_user_collection' ~ type, { country_name: _name, country_id: country.id, user_id: user.id }) }}">
-				<img alt="{{ _name }}" src="{% path current.flag, 'mini' %}" rel="tooltip" title="{{ _name }}" data-placement="right" />
+				<img alt="{{ _name }}" src="{% path country.flag, 'mini' %}" rel="tooltip" title="{{ _name }}" data-placement="right" />
 				{{ _name }}
 			</a>
 		</li>
