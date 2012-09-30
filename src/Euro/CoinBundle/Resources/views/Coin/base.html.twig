@@ -90,8 +90,12 @@
 
 						{% set std_filter = false %}
 						{% for year in years %}
-							{% set year_text = 'year.filter_interval'|trans({ '%from%': year.from, '%to%': year.to }) %}
-							{% set year_url = year.from ~ '..' ~ year.to %}
+							{% set year_text = year.from %}
+							{% set year_url = year.from %}
+							{% if year.to %}
+								{% set year_text = 'year.filter_interval'|trans({ '%from%': year.from, '%to%': year.to }) %}
+								{% set year_url = year.from ~ '..' ~ year.to %}
+							{% endif %}
 
 							<li>
 								{% if year_url == current_year %}
