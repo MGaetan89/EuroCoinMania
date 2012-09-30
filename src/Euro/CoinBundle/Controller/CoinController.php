@@ -135,7 +135,7 @@ class CoinController extends BaseController {
 				return $this->redirect($this->generateUrl('coin_collection' . $type, array(
 									'country' => $translator->trans((string) $country),
 									'id' => $country->getId(),
-									'year' => $years[0],
+									'year' => $years[0]['from'] . '..' . $years[0]['to'],
 								)));
 			}
 
