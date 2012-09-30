@@ -24,15 +24,15 @@ class CountryController extends Controller {
 						return ($a_date < $b_date) ? -1 : 1;
 					}
 
-					$a_name = $translator->trans('country.name.' . $a->getName());
-					$b_name = $translator->trans('country.name.' . $b->getName());
+					$a_name = $translator->trans((string) $a);
+					$b_name = $translator->trans((string) $b);
 
 					return strcmp($a_name, $b_name);
 				});
 
 		$countries_js = array();
 		foreach ($countries as $country) {
-			$name = $translator->trans('country.name.' . $country->getName());
+			$name = $translator->trans((string) $country);
 			$countries_js[] = array(
 				'name' => $name,
 				'nameiso' => $country->getNameIso(),

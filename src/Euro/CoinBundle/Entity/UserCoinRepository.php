@@ -3,6 +3,7 @@
 namespace Euro\CoinBundle\Entity;
 
 use Doctrine\ORM\EntityRepository;
+use Euro\CoinBundle\Entity\Country;
 use Sonata\UserBundle\Model\UserInterface;
 
 /**
@@ -27,6 +28,22 @@ class UserCoinRepository extends EntityRepository {
 						->orderBy('total', 'DESC')
 						->addOrderBy('total_uniques', 'DESC')
 						->setMaxResults(10)
+						->getQuery()
+						->getResult();
+	}
+
+	public function findByCountryForUser(UserInterface $user, Country $country) {
+		$queryBuilder = $this->createQueryBuilder('uc');
+		$expr = $queryBuilder->expr();
+
+		return $queryBuilder
+						->join('uc.coin', 'c')
+						->where($expr->eq('uc.user', ':user'))
+						->andWhere($expr->eq('c.country', ':country'))
+						->setParameters(array(
+							'country' => $country,
+							'user' => $user,
+						))
 						->getQuery()
 						->getResult();
 	}

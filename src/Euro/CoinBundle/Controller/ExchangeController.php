@@ -13,7 +13,7 @@ class ExchangeController extends BaseController {
 		if (!$user = $this->getUser()) {
 			$flashBag->add('error', 'user.login_required');
 
-			return $this->redirect($this->generateUrl('exchange_list'));
+			return $this->redirect($this->generateUrl('fos_user_security_login'));
 		}
 
 		$doctrine = $this->getDoctrine();
@@ -116,7 +116,7 @@ class ExchangeController extends BaseController {
 		if (!$user = $this->getUser()) {
 			$flashBag->add('error', 'user.login_required');
 
-			return $this->redirect($this->generateUrl('coin_collection1'));
+			return $this->redirect($this->generateUrl('fos_user_security_login'));
 		}
 
 		$doctrine = $this->getDoctrine();
@@ -153,7 +153,7 @@ class ExchangeController extends BaseController {
 		if (!$user = $this->getUser()) {
 			$this->get('session')->getFlashBag()->add('error', 'user.login_required');
 
-			return $this->redirect($this->generateUrl('coin_collection1'));
+			return $this->redirect($this->generateUrl('fos_user_security_login'));
 		}
 
 		$users = $this->getDoctrine()->getRepository('EuroCoinBundle:UserCoin')->findDoublesForUser($user);
@@ -176,7 +176,7 @@ class ExchangeController extends BaseController {
 		if (!$user = $this->getUser()) {
 			$flashBag->add('error', 'user.login_required');
 
-			return $this->redirect($this->generateUrl('coin_collection1'));
+			return $this->redirect($this->generateUrl('fos_user_security_login'));
 		}
 
 		$doctrine = $this->getDoctrine();
@@ -353,7 +353,7 @@ class ExchangeController extends BaseController {
 		if (!$user = $this->getUser()) {
 			$this->get('session')->getFlashBag()->add('error', 'user.login_required');
 
-			return $this->redirect($this->generateUrl('coin_collection1'));
+			return $this->redirect($this->generateUrl('fos_user_security_login'));
 		}
 
 		$doctrine = $this->getDoctrine();

@@ -14,8 +14,8 @@ class CoinController extends BaseController {
 	 * Add or remove one coin in the user collection
 	 * @param integer $id The coin id to add/remove in the collection
 	 * @param string $type The action to perform (either 'add' or 'remove')
-	 * @return \Symfony\Component\HttpFoundation\Response
-	 * @throws type 
+	 * @return Response
+	 * @throws Symfony\Component\HttpKernel\Exception\NotFoundHttpException 
 	 */
 	public function addRemoveAction($id, $type) {
 		$translator = $this->get('translator');
@@ -77,7 +77,7 @@ class CoinController extends BaseController {
 	 * @param integer $id The country id for the collection to display
 	 * @param integer $type The type of collection to show
 	 * @param integer $year The year to display
-	 * @return \Symfony\Component\HttpFoundation\Response 
+	 * @return Response 
 	 */
 	public function collectionAction($id, $type, $year) {
 		$doctrine = $this->getDoctrine();
@@ -172,9 +172,8 @@ class CoinController extends BaseController {
 				$values = array_shift($values);
 			}
 
-			$user_coins = array();
-			if ($this->getUser()) {
-				$user_coins = $doctrine->getRepository('EuroCoinBundle:UserCoin')->findBy(array('user' => $this->getUser()));
+			if ($user = $this->getUser()) {
+				$user_coins = $doctrine->getRepository('EuroCoinBundle:UserCoin')->findByCountryForUser($user, $country);
 
 				foreach ($user_coins as $user_coin) {
 					if ($user_coin->getQuantity() > 0) {
@@ -184,12 +183,9 @@ class CoinController extends BaseController {
 			}
 		}
 
-		$template_file = 'collection';
-		if ($type != Coin::TYPE_CIRCULATION) {
-			$template_file = 'collection_collector';
-		}
+		$tpl_suffix = ($type != Coin::TYPE_CIRCULATION) ? '_collector' : '';
 
-		return $this->render('EuroCoinBundle:Coin:' . $template_file . '.html.twig', array(
+		return $this->render('EuroCoinBundle:Coin:collection' . $tpl_suffix . '.html.twig', array(
 					'all_values' => $values,
 					'coins' => $coins,
 					'type' => $type,
@@ -205,13 +201,11 @@ class CoinController extends BaseController {
 	/**
 	 * Retrieve data for a given coin
 	 * @param integer $id The coin id
-	 * @return \Symfony\Component\HttpFoundation\Response 
+	 * @return Response 
 	 */
 	public function getAction($id) {
-		$coin = $this->getDoctrine()->getRepository('EuroCoinBundle:Coin')->find($id);
-
 		return $this->render('EuroCoinBundle:Coin:coin_data.html.twig', array(
-					'coin' => $coin,
+					'coin' => $this->getDoctrine()->getRepository('EuroCoinBundle:Coin')->find($id),
 				));
 	}
 

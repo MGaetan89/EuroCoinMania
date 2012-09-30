@@ -8,16 +8,16 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 abstract class BaseController extends Controller {
 
 	/**
-	 * Build the lists of coins and values for each country in <var>$_coins</var>
-	 * @param array $_coins The list of coins as retrieve from the database
+	 * Build the lists of coins and values for each country in <var>$source</var>
+	 * @param array $source The list of coins as retrieve from the database
 	 * @return array The lists of coins and values
 	 */
-	protected function _buildVars(array $_coins) {
+	protected function _buildVars(array $source) {
 		$coins = array();
 		$translator = $this->get('translator');
 		$values = array();
 
-		foreach ($_coins as $coin) {
+		foreach ($source as $coin) {
 			if ($coin instanceof UserCoin) {
 				$coin = $coin->getCoin();
 			}
@@ -29,13 +29,14 @@ abstract class BaseController extends Controller {
 			$coins[$country][$year][$value] = $coin;
 
 			if (!isset($values[$country])) {
-				$values[$country] = array();
-			}
-
-			if (!in_array($value, $values[$country])) {
+				$values[$country] = array($value);
+			} else if (!in_array($value, $values[$country])) {
 				$values[$country][] = $value;
-				rsort($values[$country]);
 			}
+		}
+
+		foreach ($values as &$value) {
+			rsort($value);
 		}
 
 		ksort($coins);
