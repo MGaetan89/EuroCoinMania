@@ -129,7 +129,7 @@
 							<ul class="dropdown-menu">
 								<li class="nav-header">{{ 'years.filter'|trans }}</li>
 								<li>
-									<form action="{{ url(app.request.get('_route'), { id: current.id, country: _name, year: 'FROM..TO' }) }}" id="customize_filter">
+									<form action="{{ url(app.request.get('_route'), { id: current.id, country: name, year: 'FROM..TO' }) }}" id="customize_filter">
 										<div class="offset1">
 											<input class="span5" name="from" placeholder="{{ 'year.filter_from'|trans }}" type="text" />
 											<input class="span5" name="to" placeholder="{{ 'year.filter_to'|trans }}" type="text" />
