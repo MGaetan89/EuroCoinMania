@@ -70,7 +70,7 @@ Site crée par <a href="%path%">%name%</a>
 			</trans-unit>
 			<trans-unit id="site_keywords">
 				<source>site_keywords</source>
-				<target>euro, numismate, collection, échange</target>
+				<target>échange, euro, collection, collector, numismate, pièce, tirage</target>
 			</trans-unit>
 			<trans-unit id="sitename">
 				<source>sitename</source>
