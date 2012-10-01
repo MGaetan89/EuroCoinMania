@@ -12,21 +12,24 @@ class ProfileType extends AbstractType {
 	 */
 	public function buildForm(FormBuilderInterface $builder, array $options) {
 		$builder
-				->remove('locale');
+				->remove('locale')
+				->remove('phone');
 
 		$builder
+				->add('firstname', null, array('required' => false))
+				->add('lastname', null, array('required' => false))
+				->add('dateOfBirth', 'birthday', array('required' => false))
 				->add('gender', 'choice', array(
 					'choices' => array('m' => 'user.genderm', 'f' => 'user.genderf'),
 					'required' => false,
 				))
-				->add('firstname', null, array('required' => false))
-				->add('lastname', null, array('required' => false))
-				->add('dateOfBirth', 'birthday', array('required' => false))
-				->add('website', null, array('required' => false))
-				->add('biography', 'textarea', array('required' => false))
+				->add('country', 'country', array('required' => false))
 				->add('timezone', 'timezone', array('required' => false))
-				->add('phone', null, array('required' => false))
-				->add('country', 'country', array('required' => false));
+				->add('website', null, array('required' => false))
+				->add('facebookuid', null, array('required' => false))
+				->add('twitteruid', null, array('required' => false))
+				->add('gplusuid', null, array('required' => false))
+				->add('biography', 'textarea', array('required' => false));
 	}
 
 	public function getParent() {

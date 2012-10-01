@@ -7,12 +7,14 @@
 			{{ form_row(form.firstname, { label: 'user.firstname'|trans }) }}
 			{{ form_row(form.lastname, { label: 'user.lastname'|trans }) }}
 			{{ form_row(form.dateOfBirth, { label: 'user.date_of_birth'|trans }) }}
-			{{ form_row(form.phone, { label: 'user.phone'|trans }) }}
+			{{ form_row(form.gender, { label: 'user.gender'|trans }) }}
+			{{ form_row(form.country, { label: 'user.country'|trans }) }}
 		</div>
 		<div class="span6">
-			{{ form_row(form.gender, { label: 'user.gender'|trans }) }}
 			{{ form_row(form.website, { label: 'user.website'|trans }) }}
-			{{ form_row(form.country, { label: 'user.country'|trans }) }}
+			{{ form_row(form.facebookuid, { label: 'user.facebook'|trans }) }}
+			{{ form_row(form.twitteruid, { label: 'user.twitter'|trans }) }}
+			{{ form_row(form.gplusuid, { label: 'user.google_plus'|trans }) }}
 			{{ form_row(form.timezone, { label: 'user.timezone'|trans }) }}
 		</div>
 	</div>

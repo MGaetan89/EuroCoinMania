@@ -96,6 +96,20 @@
 </div>
 
 <div class="container-fluid">
+	{% if app.request.get('_route') == 'welcome' %}
+	<div class="alert alert-block alert-info fade in">
+		<button class="close" type="button" data-dismiss="alert">×</button>
+
+		<h4>{{ 'information'|trans }}</h4>
+
+		{{ 'sitename'|trans }} est toujours en développement.<br />
+		Au moment de son lancement officiel, la base de données sera réinitialisée. Cela signifie que les news, commentaires, collections, comptes utilisateurs, ... seront perdues.<br />
+		Si vous souhaitez conserver l'une de ces informations, veuillez prendre contact avec <a href="{{ path('show_profile', { id: 1 }) }}">M.Gaetan89</a>.<br /><br />
+
+		Merci de votre participation et de votre aide dans le test et l'amélioration de ce site.
+	</div>
+	{% endif %}
+
 	{% for message in app.session.flashbag.get('success') %}
 	<div class="alert alert-success fade in">
 		<button class="close" type="button" data-dismiss="alert">×</button>
