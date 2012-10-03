@@ -1,0 +1,7 @@
+page_copyright:
+    pattern:  /copyright
+    defaults: { _controller: ApplicationPageBundle:Page:copyright }
+
+page_links:
+    pattern:  /links
+    defaults: { _controller: ApplicationPageBundle:Page:links }

@@ -1,0 +1,21 @@
+{% extends '::base.html.twig' %}
+
+{% block body %}
+<h2 class="page-header">{{ block('title') }}</h2>
+
+<div class="row-fluid">
+	<div class="span2">
+		<div class="dropdown">
+			<ul class="dropdown-menu" style="display: block; position: static; width: 178px;">
+				<li class="nav-header">{{ 'menu'|trans }}</li>
+
+				<li{{ macros.is_active(['page_copyright']) }}><a href="{{ path('page_copyright') }}">{{ 'copyright'|trans }}</a></li>
+				<li{{ macros.is_active(['page_links']) }}><a href="{{ path('page_links') }}">{{ 'links'|trans }}</a></li>
+			</ul>
+		</div>
+	</div>
+	<div class="span10">
+		{% block content %}{% endblock %}
+	</div>
+</div>
+{% endblock %}

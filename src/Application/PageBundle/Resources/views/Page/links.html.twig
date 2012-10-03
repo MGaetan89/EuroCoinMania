@@ -1,0 +1,14 @@
+{% extends 'ApplicationPageBundle:Page:base.html.twig' %}
+
+{% block title %}{{ 'links'|trans }}{% endblock %}
+
+{% block content %}
+<ul class="thumbnails">
+	<li class="span12">
+		<a class="thumbnail" href="http://www.collect2euros.fr/" target="_blank">
+			<img alt="Collect2euros" src="{{ asset('bundles/applicationpage/images/collect2euros.png') }}" title="Collect2euros" />
+			<h3 style="text-align: center;">Collect2euros</h3>
+		</a>
+	</li>
+</ul>
+{% endblock %}

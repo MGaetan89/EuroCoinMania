@@ -29,22 +29,6 @@ Tirage des pièces fournie par <a href="%path%" target="_blank">%name%</a>
 				<source>congratulation</source>
 				<target>Félicitation !</target>
 			</trans-unit>
-			<trans-unit id="copyright">
-				<source>copyright</source>
-				<target>Copyright</target>
-			</trans-unit>
-			<trans-unit id="copyright.coin_data">
-				<source>copyright.coin_data</source>
-				<target>Tirage des pièces</target>
-			</trans-unit>
-			<trans-unit id="copyright.contribute_on_github">
-				<source>copyright.contribute_on_github</source>
-				<target>Contribuez à l'amélioration du site</target>
-			</trans-unit>
-			<trans-unit id="copyright.country_flags">
-				<source>copyright.country_flags</source>
-				<target>Drapeaux des pays</target>
-			</trans-unit>
 			<trans-unit id="error">
 				<source>error</source>
 				<target>Erreur !</target>
@@ -52,6 +36,10 @@ Tirage des pièces fournie par <a href="%path%" target="_blank">%name%</a>
 			<trans-unit id="information">
 				<source>information</source>
 				<target>Information !</target>
+			</trans-unit>
+			<trans-unit id="menu">
+				<source>menu</source>
+				<target>Menu</target>
 			</trans-unit>
 			<trans-unit id="no_data">
 				<source>no_data</source>

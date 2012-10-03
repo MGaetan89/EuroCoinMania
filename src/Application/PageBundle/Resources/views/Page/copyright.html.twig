@@ -1,0 +1,48 @@
+{% extends 'ApplicationPageBundle:Page:base.html.twig' %}
+
+{% block title %}{{ 'copyright'|trans }}{% endblock %}
+
+{% block content %}
+<h3 class="page-header">{{ 'copyright.data'|trans }}</h3>
+
+<table class="table table-condensed table-hover table-striped">
+<tbody>
+	<tr>
+		<td>{{ 'copyright.webmaster'|trans }}</td>
+		<td>
+			<img alt="{{ webmaster.username }}" src="{{ gravatar(webmaster.email, 16) }}" rel="tooltip" title="{{ webmaster.username }}" data-placement="right" />
+			<a href="{{ path('show_profile', { id: webmaster.id }) }}">{{ webmaster.username }}</a>
+		</td>
+	</tr>
+	<tr>
+		<td>{{ 'copyright.coin_data'|trans }}</td>
+		<td><a href="http://euro-auflagen.de/" target="_blank">Euro Auflagen</a></td>
+	</tr>
+	<tr>
+		<td>{{ 'copyright.country_flags'|trans }}</td>
+		<td><a href="http://www.icondrawer.com/" target="_blank">Icon Drawer</a></td>
+	</tr>
+	<tr>
+		<td>{{ 'copyright.icons'|trans }}</td>
+		<td><a href="http://glyphicons.com/" target="_blank">Glyphicons</a></td>
+	</tr>
+</tbody>
+</table>
+
+<h3 class="page-header">{{ 'copyright.used_technologies'|trans }}</h3>
+
+<table class="table table-condensed table-hover table-striped">
+<tbody>
+	<tr>
+		<td>{{ 'copyright.php_framework'|trans }}</td>
+		<td>
+			<a href="http://symfony.com/" target="_blank">Symfony 2</a>
+		</td>
+	</tr>
+	<tr>
+		<td>{{ 'copyright.css_js_framework'|trans }}</td>
+		<td><a href="http://twitter.github.com/bootstrap/index.html" target="_blank">Bootstrap</a></td>
+	</tr>
+</tbody>
+</table>
+{% endblock %}

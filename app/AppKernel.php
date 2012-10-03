@@ -41,6 +41,7 @@ class AppKernel extends Kernel {
 			new Sonata\MediaBundle\SonataMediaBundle(),
 			new Sonata\NewsBundle\SonataNewsBundle(),
 			new Sonata\UserBundle\SonataUserBundle('FOSUserBundle'),
+            new Application\PageBundle\ApplicationPageBundle(),
 		);
 
 		if (in_array($this->getEnvironment(), array('dev', 'test'))) {

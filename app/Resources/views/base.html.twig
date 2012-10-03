@@ -199,12 +199,11 @@
 				{% endif %}
 
 				<p>
-					<strong>{{ 'copyright'|trans }} :</strong>
+					<strong>{{ 'sitename'|trans }} :</strong>
 
-						<a href="{{ path('show_profile', { id: 1 }) }}" rel="tooltip" title="M.Gaetan89">{{ 'webmaster'|trans }}</a> &bull;
-						<a href="http://euro-auflagen.de/" rel="tooltip" target="_blank" title="Euro Auflagen">{{ 'copyright.coin_data'|trans }}</a> &bull;
-						<a href="http://www.icondrawer.com/" rel="tooltip" target="_blank" title="Icon Drawer">{{ 'copyright.country_flags'|trans }}</a> &mdash;
-						<a href="https://github.com/MGaetan89/Euro" rel="tooltip" target="_blank" title="GitHub">{{ 'copyright.contribute_on_github'|trans }}</a>
+						<a href="{{ path('page_copyright') }}">{{ 'copyright'|trans }}</a> &bull;
+						<a href="{{ path('page_links') }}">{{ 'links'|trans }}</a> &bull;
+						<a href="https://github.com/MGaetan89/Euro" target="_blank">{{ 'copyright.contribute_on_github'|trans }}</a>
 				</p>
 			</div>
 		</div>

@@ -6,6 +6,10 @@ EuroCoinBundle:
     resource: "@EuroCoinBundle/Resources/config/routing.yml"
     prefix:   /
 
+ApplicationPageBundle:
+    resource: "@ApplicationPageBundle/Resources/config/routing.yml"
+    prefix:   /
+
 ApplicationSonataUserBundle:
     resource: "@ApplicationSonataUserBundle/Resources/config/routing.yml"
     prefix:   /
