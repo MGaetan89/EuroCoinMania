@@ -61,6 +61,8 @@
 					{% if app.user %}
 						<li{{ macros.is_active(['exchange_coins_request', 'exchange_coins_suggest', 'exchange_choose_user', 'exchange_list', 'exchange_list_all', 'exchange_show']) }}><a href="{{ path('exchange_list') }}">{{ 'exchanges'|trans }}</a></li>
 					{% endif %}
+
+					<li{{ macros.is_active(['coin_stats']) }}><a href="{{ path('coin_stats') }}">{{ 'stats'|trans }}</a></li>
 				</ul>
 				<ul class="nav pull-right">
 					{% if app.user %}

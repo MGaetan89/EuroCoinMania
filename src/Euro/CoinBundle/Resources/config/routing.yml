@@ -37,6 +37,10 @@ coin_remove:
         id: "\d+"
         _method: POST
 
+coin_stats:
+    pattern: /stats
+    defaults: { _controller: EuroCoinBundle:Coin:stats }
+
 countries_list:
     pattern:  /countries
     defaults: { _controller: EuroCoinBundle:Country:list }

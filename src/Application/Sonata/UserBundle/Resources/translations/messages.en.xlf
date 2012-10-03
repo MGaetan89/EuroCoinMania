@@ -74,9 +74,21 @@
 				<source>user.genderf</source>
 				<target>Woman</target>
 			</trans-unit>
+			<trans-unit id="user.genderf_count">
+				<source>user.genderf_count</source>
+				<target><![CDATA[
+<strong>%total%</strong> woman|<strong>%total%</strong> women
+				]]></target>
+			</trans-unit>
 			<trans-unit id="user.genderm">
 				<source>user.genderm</source>
 				<target>Man</target>
+			</trans-unit>
+			<trans-unit id="user.genderm_count">
+				<source>user.genderm_count</source>
+				<target><![CDATA[
+<strong>%total%</strong> man|<strong>%total%</strong> men
+				]]></target>
 			</trans-unit>
 			<trans-unit id="user.google_plus">
 				<source>user.google_plus</source>

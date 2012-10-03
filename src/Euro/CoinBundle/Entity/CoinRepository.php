@@ -12,6 +12,21 @@ use Doctrine\ORM\EntityRepository;
  */
 class CoinRepository extends EntityRepository {
 
+	public function findCoinsStats() {
+		$queryBuidler = $this->createQueryBuilder('c');
+		$expr = $queryBuidler->expr();
+
+		return $queryBuidler
+						->select('c, ct, f')
+						->addSelect($expr->count('c') . ' AS total')
+						->addSelect('SUM(c.mintage) AS mintage')
+						->join('c.country', 'ct')
+						->join('ct.flag', 'f')
+						->groupBy('c.country')
+						->getQuery()
+						->getResult();
+	}
+
 	public function findByCountry(array $countries) {
 		$queryBuidler = $this->createQueryBuilder('c');
 		$expr = $queryBuidler->expr();

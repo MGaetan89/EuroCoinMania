@@ -214,4 +214,79 @@ class CoinController extends BaseController {
 				));
 	}
 
+	/**
+	 * Compute various stats about the whole site
+	 * @return Response 
+	 */
+	public function statsAction() {
+		$doctrine = $this->getDoctrine();
+
+		// User stats
+		$user_repo = $doctrine->getRepository('ApplicationSonataUserBundle:User');
+		$countries = $user_repo->findFromStats();
+		$genders = $user_repo->findGendersStats();
+
+		$user_stats = array(
+			'age' => $user_repo->findAgeStats(),
+			'country' => array(),
+			'gender' => array(),
+			'total' => (int) $user_repo->count(),
+		);
+
+		foreach ($countries as $country) {
+			$user_stats['country'][$country['country']] = (int) $country['total'];
+		}
+
+		foreach ($genders as $gender) {
+			$user_stats['gender'][$gender['gender']] = (int) $gender['total'];
+		}
+
+		// Euro Zone stats
+		$coin_repo = $doctrine->getRepository('EuroCoinBundle:Coin');
+		$coins = $coin_repo->findCoinsStats();
+		$countries = array();
+
+		$euro_stats = array(
+			'country' => array(),
+			'total_coins' => 0,
+			'total_countries' => 0,
+		);
+
+		foreach ($coins as $coin) {
+			$country = $coin[0]->getCountry();
+
+			$countries[strtoupper($country->getNameIso())] = $country;
+
+			$euro_stats['country'][$country->getId()] = array(
+				'mintage' => $coin['mintage'],
+				'total' => $coin['total'],
+			);
+			$euro_stats['total_coins'] += $coin['total'];
+		}
+
+		$euro_stats['total_countries'] = count($countries);
+
+		// Sort the countries by translated name
+		$translator = $this->get('translator');
+
+		uasort($countries, function ($a, $b) use ($translator) {
+					$a_name = $translator->trans((string) $a);
+					$b_name = $translator->trans((string) $b);
+
+					return strcmp($a_name, $b_name);
+				});
+
+		// Collection stats
+		$uc_repo = $doctrine->getRepository('EuroCoinBundle:UserCoin');
+
+		return $this->render('EuroCoinBundle:Coin:stats.html.twig', array(
+					'biggest_collections' => $uc_repo->findBiggestCollections(),
+					'countries' => $countries,
+					'country_stats' => $coin_repo->findTopCountries(),
+					'euro_stats' => $euro_stats,
+					'most_valued_collections' => $uc_repo->findMostValuedCollections(),
+					'user_stats' => $user_stats,
+				));
+	}
+
 }

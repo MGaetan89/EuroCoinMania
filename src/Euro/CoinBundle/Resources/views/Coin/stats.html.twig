@@ -1,0 +1,196 @@
+{% extends '::base.html.twig' %}
+
+{% block title %}{{ 'stats'|trans }}{% endblock %}
+
+{% block body %}
+<h2 class="page-header">{{ block('title') }}</h2>
+
+<div class="row-fluid">
+	<div class="span6">
+		<h3 class="page-header">{{ 'stats.users'|trans }}</h3>
+
+		{{- 'stats.total_users'|transchoice(user_stats.total, { '%total%': user_stats.total|number_format })|raw -}}
+		{%- for gender, members in user_stats.gender -%}
+			{% if loop.first %}, {% endif %}
+
+			{{ ('user.gender' ~ gender ~ '_count')|transchoice(members, { '%total%': members|number_format })|raw }}
+
+			{% if loop.length - loop.index == 1 %}{{ 'and'|trans }}{% elseif not loop.last %}, {% endif %}
+		{%- endfor -%}
+		.<br />
+
+		{{ 'stats.average_age'|trans({ '%age%': user_stats.age })|raw }}<br />
+		{{ 'stats.users_from'|trans }}
+
+		<table class="table table-hover">
+		<thead>
+			<tr>
+				<th>{{ 'stats.country'|trans }}</th>
+				<th>{{ 'stats.registered_members'|trans }}</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for country, members in user_stats.country %}
+				{% set name = country|country %}
+
+				<tr>
+					<td>
+						<img alt="{{ name }}" rel="tooltip" src="{{ asset('bundles/applicationsonatauser/images/' ~ country|lower ~ '.png') }}" title="{{ name }}" data-placement="right" />
+
+						{% if countries[country] is defined %}<a href="{{ path('coin_collection1', { id: countries[country].id, country: name }) }}">{% endif %}
+							{{ name }}
+						{% if countries[country] is defined %}</a>{% endif %}
+					</td>
+					<td>{{ members|number_format }}</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+		</table>
+
+		<h3 class="page-header">{{ 'stats.top_countries'|trans }}</h3>
+
+		<table class="table table-hover">
+		<thead>
+			<tr>
+				<th>{{ 'stats.country'|trans }}</th>
+				<th>{{ 'stats.total_coins'|trans }}</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for country in country_stats %}
+				{% set country, total = country[0].country, country.total %}
+				{% set name = macros.name(country) %}
+
+				<tr>
+					<td>
+						<img alt="{{ name }}" rel="tooltip" src="{% path country.flag, 'mini' %}" title="{{ name }}" data-placement="right" />
+
+						<a href="{{ path('coin_collection1', { id: country.id, country: name }) }}">
+							{{ name }}
+						</a>
+					</td>
+					<td>{{ 'coins'|transchoice(total, { '%total%': total|number_format }) }}</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+		</table>
+	</div>
+	<div class="span6">
+		<h3 class="page-header"><span class="pull-right">{{ 'stats.country'|trans }}</span><br /></h3>
+
+		{{ 'stats.coins_repartition'|trans({ '%total_coins%': euro_stats.total_coins|number_format, '%total_countries%': euro_stats.total_countries|number_format })|raw }}
+
+		<table class="table table-hover">
+		<thead>
+			<tr>
+				<th>{{ 'stats.country'|trans }}</th>
+				<th>{{ 'stats.unique_coins'|trans }}</th>
+				<th>{{ 'stats.minted_coins'|trans }}</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for country in countries %}
+				{% set name = macros.name(country) %}
+
+				<tr>
+					<td>
+						<img alt="{{ name }}" rel="tooltip" src="{% path country.flag, 'mini' %}" title="{{ name }}" data-placement="right" />
+
+						<a href="{{ path('coin_collection1', { id: country.id, country: name }) }}">
+							{{ name }}
+						</a>
+					</td>
+					<td>{{ 'coins'|transchoice(euro_stats.country[country.id].total, { '%total%': euro_stats.country[country.id].total|number_format }) }}</td>
+					<td>{{ 'coins'|transchoice(euro_stats.country[country.id].mintage, { '%total%': euro_stats.country[country.id].mintage|number_format }) }}</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+		</table>
+	</div>
+</div>
+
+<div class="row-fluid">
+	<div class="span6">
+		<h3 class="page-header">{{ 'stats.biggest_collections'|trans }}</h3>
+
+		<table class="table table-hover">
+		<thead>
+			<tr>
+				<th>{{ 'stats.user'|trans }}</th>
+				<th>{{ 'stats.total_coins'|trans }}</th>
+				<th>{{ 'stats.unique_coins'|trans }}</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for user in biggest_collections %}
+				{% set user, total, total_uniques = user[0].user, user.total, user.total_uniques %}
+
+				<tr>
+					<td>
+						{% if user.country %}
+							{% set image = {
+								src: asset('bundles/applicationsonatauser/images/' ~ user.country|lower ~ '.png'),
+								title: user.country|country
+							} %}
+						{% else %}
+							{% set image = {
+								src: gravatar(user.email, 16),
+								title: user.username
+							} %}
+						{% endif %}
+
+						<img alt="{{ image.title }}" rel="tooltip" src="{{ image.src }}" title="{{ image.title }}" data-placement="right" />
+
+						<a href="{{ path('show_user_collection1', { user_id: user.id }) }}">
+							{{ user.username }}
+						</a>
+					</td>
+					<td>{{ 'coins'|transchoice(total, { '%total%': total|number_format }) }}</td>
+					<td>{{ 'coins.differents'|transchoice(total_uniques, { '%total%': total_uniques|number_format }) }}</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+		</table>
+	</div>
+	<div class="span6">
+		<h3 class="page-header"><span class="pull-right">{{ 'stats.most_valued_collections'|trans }}</span><br /></h3>
+
+		<table class="table table-hover">
+		<thead>
+			<tr>
+				<th>{{ 'stats.user'|trans }}</th>
+				<th>{{ 'stats.total_amount'|trans }}</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for user in most_valued_collections %}
+				{% set user, total = user[0].user, user.total %}
+
+				<tr>
+					<td>
+						{% if user.country %}
+							{% set image = {
+								src: asset('bundles/applicationsonatauser/images/' ~ user.country|lower ~ '.png'),
+								title: user.country|country
+							} %}
+						{% else %}
+							{% set image = {
+								src: gravatar(user.email, 16),
+								title: user.username
+							} %}
+						{% endif %}
+
+						<img alt="{{ image.title }}" rel="tooltip" src="{{ image.src }}" title="{{ image.title }}" data-placement="right" />
+
+						<a href="{{ path('show_user_collection1', { user_id: user.id }) }}">
+							{{ user.username }}
+						</a>
+					</td>
+					<td>{{ macros.value(total) }}</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+		</table>
+	</div>
+</div>
+{% endblock %}

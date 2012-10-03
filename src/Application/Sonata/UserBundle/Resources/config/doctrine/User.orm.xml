@@ -3,7 +3,7 @@
 				  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 				  xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
                   http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
-	<entity name="Application\Sonata\UserBundle\Entity\User" table="fos_user__user">
+	<entity name="Application\Sonata\UserBundle\Entity\User" repository-class="Application\Sonata\UserBundle\Entity\UserRepository" table="fos_user__user">
 		<id column="id" name="id" type="integer">
 			<generator strategy="AUTO" />
 		</id>

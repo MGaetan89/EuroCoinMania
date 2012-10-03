@@ -10,6 +10,10 @@
 				<source>administration</source>
 				<target>Administration</target>
 			</trans-unit>
+			<trans-unit id="and">
+				<source>and</source>
+				<target>and</target>
+			</trans-unit>
 			<trans-unit id="close">
 				<source>close</source>
 				<target>Close</target>
@@ -80,17 +84,74 @@ Site created by <a href="%path%">%name%</a>
 				<source>stats</source>
 				<target>Statistics</target>
 			</trans-unit>
+			<trans-unit id="stats.average_age">
+				<source>stats.average_age</source>
+				<target><![CDATA[
+The average age is <strong>%age%</strong> years old.
+				]]>
+				</target>
+			</trans-unit>
+			<trans-unit id="stats.coins_repartition">
+				<source>stats.coins_repartition</source>
+				<target><![CDATA[
+<strong>%total_coins%</strong> different coins splitted between <strong>%total_countries%</strong> countries as follow:
+				]]>
+				</target>
+			</trans-unit>
+			<trans-unit id="stats.country">
+				<source>stats.country</source>
+				<target>Country</target>
+			</trans-unit>
 			<trans-unit id="stats.biggest_collections">
 				<source>stats.biggest_collections</source>
 				<target>Biggest collections</target>
+			</trans-unit>
+			<trans-unit id="stats.minted_coins">
+				<source>stats.minted_coins</source>
+				<target>Minted coins</target>
 			</trans-unit>
 			<trans-unit id="stats.most_valued_collections">
 				<source>stats.most_valued_collections</source>
 				<target>Most valued collections</target>
 			</trans-unit>
+			<trans-unit id="stats.registered_members">
+				<source>stats.registered_members</source>
+				<target>Registered members</target>
+			</trans-unit>
 			<trans-unit id="stats.top_countries">
 				<source>stats.top_countries</source>
 				<target>Most owned countries</target>
+			</trans-unit>
+			<trans-unit id="stats.total_amount">
+				<source>stats.total_amount</source>
+				<target>Total amount</target>
+			</trans-unit>
+			<trans-unit id="stats.total_coins">
+				<source>stats.total_coins</source>
+				<target>Number of coins</target>
+			</trans-unit>
+			<trans-unit id="stats.total_users">
+				<source>stats.total_users</source>
+				<target><![CDATA[
+<strong>%total%</strong> member is registered on the site|<strong>%total%</strong> members are registered on the site
+				]]>
+				</target>
+			</trans-unit>
+			<trans-unit id="stats.unique_coins">
+				<source>stats.unique_coins</source>
+				<target>Unique coins</target>
+			</trans-unit>
+			<trans-unit id="stats.user">
+				<source>stats.user</source>
+				<target>User</target>
+			</trans-unit>
+			<trans-unit id="stats.users">
+				<source>stats.users</source>
+				<target>Users</target>
+			</trans-unit>
+			<trans-unit id="stats.users_from">
+				<source>stats.users_from</source>
+				<target>Our members come from the following countries :</target>
 			</trans-unit>
 			<trans-unit id="webmaster">
 				<source>webmaster</source>
