@@ -164,10 +164,10 @@
 					<strong>{{ 'coin.collection'|trans }} :</strong>
 
 						{% for i in 1..3 %}
-							<a href="{{ path('coin_collection' ~ i) }}">{{ ('coin.type' ~ i)|trans }}</a>
-
-							{% if not loop.last %} &bull;{% endif %}
+							<a href="{{ path('coin_collection' ~ i) }}">{{ ('coin.type' ~ i)|trans }}</a> &bull;
 						{% endfor %}
+
+						<a href="{{ path('coin_stats') }}">{{ 'stats'|trans }}</a>
 				</p>
 
 				{% if app.user %}
