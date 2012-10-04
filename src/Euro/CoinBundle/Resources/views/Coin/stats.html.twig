@@ -159,12 +159,13 @@
 		<thead>
 			<tr>
 				<th>{{ 'stats.user'|trans }}</th>
+				<th>{{ 'stats.total_unique'|trans }}</th>
 				<th>{{ 'stats.total_amount'|trans }}</th>
 			</tr>
 		</thead>
 		<tbody>
 			{% for user in most_valued_collections %}
-				{% set user, total = user[0].user, user.total %}
+				{% set user, total, total_unique = user[0].user, user.total, user.total_unique %}
 
 				<tr>
 					<td>
@@ -186,6 +187,7 @@
 							{{ user.username }}
 						</a>
 					</td>
+					<td>{{ macros.value(total_unique) }}</td>
 					<td>{{ macros.value(total) }}</td>
 				</tr>
 			{% endfor %}

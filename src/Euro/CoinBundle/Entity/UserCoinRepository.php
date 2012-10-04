@@ -160,6 +160,7 @@ class UserCoinRepository extends EntityRepository {
 		return $queryBuilder
 						->select('uc, u')
 						->addSelect('SUM(uc.quantity * v.value) AS total')
+						->addSelect('SUM(v.value) AS total_unique')
 						->join('uc.coin', 'c')
 						->join('uc.user', 'u')
 						->join('c.value', 'v')

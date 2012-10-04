@@ -24,6 +24,7 @@ stats.registered_members: Registered members
 stats.top_countries: Most owned countries
 stats.total_amount: Total amount
 stats.total_coins: Number of coins
+stats.total_unique: Total unique
 stats.total_users: <strong>%total%</strong> member is registered on the site|<strong>%total%</strong> members are registered on the site
 stats.unique_coins: Unique coins
 stats.user: User
