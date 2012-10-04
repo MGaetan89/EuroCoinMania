@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+	<file source-language="fr" datatype="plaintext" original="file.ext">
+		<body>
+			<trans-unit id="contact">
+				<source>contact</source>
+				<target>Contact</target>
+			</trans-unit>
+			<trans-unit id="contact.email">
+				<source>contact.email</source>
+				<target>Adresse e-mail</target>
+			</trans-unit>
+			<trans-unit id="contact.message">
+				<source>contact.message</source>
+				<target>Message</target>
+			</trans-unit>
+			<trans-unit id="contact.name">
+				<source>contact.name</source>
+				<target>Nom</target>
+			</trans-unit>
+			<trans-unit id="contact.send">
+				<source>contact.send</source>
+				<target>Envoyer</target>
+			</trans-unit>
+			<trans-unit id="contact.subject">
+				<source>contact.subject</source>
+				<target>Sujet</target>
+			</trans-unit>
+			<trans-unit id="contact.subject.comment">
+				<source>contact.subject.comment</source>
+				<target>Commentaire</target>
+			</trans-unit>
+			<trans-unit id="contact.subject.missing_coins">
+				<source>contact.subject.missing_coins</source>
+				<target>Pièces manquantes</target>
+			</trans-unit>
+			<trans-unit id="contact.subject.other">
+				<source>contact.subject.other</source>
+				<target>Autre</target>
+			</trans-unit>
+			<trans-unit id="contact.subject.proposition">
+				<source>contact.subject.proposition</source>
+				<target>Proposition d'amélioration</target>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>

@@ -1,0 +1,16 @@
+{% extends '::base.html.twig' %}
+
+{% block title %}{{ 'contact'|trans }}{% endblock %}
+
+{% block body %}
+<h2 class="page-header">{{ block('title') }}</h2>
+
+<form action="{{ path('contact') }}" class="form-signin" method="post">
+	{{ form_row(form.name, { label: 'contact.name'|trans }) }}
+	{{ form_row(form.email, { label: 'contact.email'|trans }) }}
+	{{ form_row(form.subject, { label: 'contact.subject'|trans }) }}
+	{{ form_row(form.message, { attr: { class: 'span4', rows: 6 }, label: 'contact.message'|trans }) }}
+
+	<buttom class="btn btn-primary" type="submit">{{ 'contact.send'|trans }}</button>
+</form>
+{% endblock %}

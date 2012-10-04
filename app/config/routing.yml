@@ -7,7 +7,7 @@ EuroContactBundle:
     prefix:  /
 
 EuroPageBundle:
-    resource: "@ApplicationPageBundle/Resources/config/routing.yml"
+    resource: "@EuroPageBundle/Resources/config/routing.yml"
     prefix:    /
 
 EuroPrivateMessageBundle:

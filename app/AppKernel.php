@@ -26,7 +26,7 @@ class AppKernel extends Kernel {
 			new Application\Sonata\UserBundle\ApplicationSonataUserBundle(),
 			new Euro\CoinBundle\EuroCoinBundle(),
 			new Euro\ContactBundle\EuroContactBundle(),
-			new Euro\PageBundle\ApplicationPageBundle(),
+			new Euro\PageBundle\EuroPageBundle(),
 			new Euro\PrivateMessageBundle\EuroPrivateMessageBundle(),
 			new FOS\UserBundle\FOSUserBundle(),
 			new Knp\Bundle\MarkdownBundle\KnpMarkdownBundle(),

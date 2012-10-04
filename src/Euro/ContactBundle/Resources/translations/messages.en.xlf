@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+	<file source-language="en" datatype="plaintext" original="file.ext">
+		<body>
+			<trans-unit id="contact">
+				<source>contact</source>
+				<target>Contact</target>
+			</trans-unit>
+			<trans-unit id="contact.email">
+				<source>contact.email</source>
+				<target>E-mail address</target>
+			</trans-unit>
+			<trans-unit id="contact.message">
+				<source>contact.message</source>
+				<target>Message</target>
+			</trans-unit>
+			<trans-unit id="contact.name">
+				<source>contact.name</source>
+				<target>Name</target>
+			</trans-unit>
+			<trans-unit id="contact.send">
+				<source>contact.send</source>
+				<target>Send</target>
+			</trans-unit>
+			<trans-unit id="contact.subject">
+				<source>contact.subject</source>
+				<target>Subject</target>
+			</trans-unit>
+			<trans-unit id="contact.subject.comment">
+				<source>contact.subject.comment</source>
+				<target>Comment</target>
+			</trans-unit>
+			<trans-unit id="contact.subject.missing_coins">
+				<source>contact.subject.missing_coins</source>
+				<target>Missing coins</target>
+			</trans-unit>
+			<trans-unit id="contact.subject.other">
+				<source>contact.subject.other</source>
+				<target>Other</target>
+			</trans-unit>
+			<trans-unit id="contact.subject.proposition">
+				<source>contact.subject.proposition</source>
+				<target>Improvement suggestion</target>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>
