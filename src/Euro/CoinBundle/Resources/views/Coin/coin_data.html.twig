@@ -21,7 +21,7 @@
 			<dl class="dl-horizontal">
 	{% endif %}
 				<dt>{{ 'coin.country'|trans }}</dt>
-					<dd>{{ coin.country|trans }}</dd>
+					<dd>{{ macros.name(coin.country) }}</dd>
 
 				<dt>{{ 'coin.year'|trans }}</dt>
 					<dd>{{ macros.year(coin.year) }}</dd>

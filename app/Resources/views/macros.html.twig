@@ -24,7 +24,7 @@
 
 {% macro name(country) %}
 {% spaceless %}
-	{{ ('country.name.' ~ country.name)|trans }}
+	{{ country.nameiso|upper|country }}
 {% endspaceless %}
 {% endmacro %}
 
