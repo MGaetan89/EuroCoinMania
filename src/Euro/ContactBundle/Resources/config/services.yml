@@ -1,0 +1,7 @@
+parameters:
+#    euro_contact.example.class: Euro\ContactBundle\Example
+
+services:
+#    euro_contact.example:
+#        class: %euro_contact.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]

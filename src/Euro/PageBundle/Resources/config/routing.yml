@@ -1,0 +1,7 @@
+page_copyright:
+    pattern:  /copyright
+    defaults: { _controller: EuroPageBundle:Page:copyright }
+
+page_links:
+    pattern:  /links
+    defaults: { _controller: EuroPageBundle:Page:links }

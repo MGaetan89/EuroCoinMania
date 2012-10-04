@@ -1,0 +1,3 @@
+euro_contact_homepage:
+    pattern:  /contact
+    defaults: { _controller: EuroContactBundle:Contact:contact }

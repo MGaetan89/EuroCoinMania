@@ -1,13 +1,17 @@
-EuroPrivateMessageBundle:
-    resource: "@EuroPrivateMessageBundle/Resources/config/routing.yml"
-    prefix:   /
-
 EuroCoinBundle:
     resource: "@EuroCoinBundle/Resources/config/routing.yml"
     prefix:   /
 
-ApplicationPageBundle:
+EuroContactBundle:
+    resource: "@EuroContactBundle/Resources/config/routing.yml"
+    prefix:  /
+
+EuroPageBundle:
     resource: "@ApplicationPageBundle/Resources/config/routing.yml"
+    prefix:    /
+
+EuroPrivateMessageBundle:
+    resource: "@EuroPrivateMessageBundle/Resources/config/routing.yml"
     prefix:   /
 
 ApplicationSonataUserBundle:

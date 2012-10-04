@@ -24,11 +24,13 @@ class AppKernel extends Kernel {
 			new Application\Sonata\MediaBundle\ApplicationSonataMediaBundle(),
 			new Application\Sonata\NewsBundle\ApplicationSonataNewsBundle(),
 			new Application\Sonata\UserBundle\ApplicationSonataUserBundle(),
-			new Knp\Bundle\MarkdownBundle\KnpMarkdownBundle(),
-			new Knp\Bundle\MenuBundle\KnpMenuBundle(),
 			new Euro\CoinBundle\EuroCoinBundle(),
+			new Euro\ContactBundle\EuroContactBundle(),
+			new Euro\PageBundle\ApplicationPageBundle(),
 			new Euro\PrivateMessageBundle\EuroPrivateMessageBundle(),
 			new FOS\UserBundle\FOSUserBundle(),
+			new Knp\Bundle\MarkdownBundle\KnpMarkdownBundle(),
+			new Knp\Bundle\MenuBundle\KnpMenuBundle(),
 			new Ornicar\GravatarBundle\OrnicarGravatarBundle(),
 			new Sonata\AdminBundle\SonataAdminBundle(),
 			new Sonata\BlockBundle\SonataBlockBundle(),
@@ -41,7 +43,6 @@ class AppKernel extends Kernel {
 			new Sonata\MediaBundle\SonataMediaBundle(),
 			new Sonata\NewsBundle\SonataNewsBundle(),
 			new Sonata\UserBundle\SonataUserBundle('FOSUserBundle'),
-            new Application\PageBundle\ApplicationPageBundle(),
 		);
 
 		if (in_array($this->getEnvironment(), array('dev', 'test'))) {

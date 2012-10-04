@@ -1,10 +1,10 @@
 <?php
 
-namespace Application\PageBundle\Tests\Controller;
+namespace Euro\ContactBundle\Tests\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
-class PageControllerTest extends WebTestCase {
+class ContactControllerTest extends WebTestCase {
 
 	public function testIndex() {
 		$client = static::createClient();
