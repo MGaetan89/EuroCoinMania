@@ -1,8 +1,8 @@
-breadcrumb.link_coin_create: Ajout d''une pièce
-breadcrumb.link_coin_delete: Suppresion d''une pièce
-breadcrumb.link_coin_edit: Modification d''une pièce
+breadcrumb.link_coin_create: Ajout d'une pièce
+breadcrumb.link_coin_delete: Suppresion d'une pièce
+breadcrumb.link_coin_edit: Modification d'une pièce
 breadcrumb.link_coin_list: Liste des pièces
-breadcrumb.link_coin_show: Affichage d''une pièce
+breadcrumb.link_coin_show: Affichage d'une pièce
 euro_coin.menu_coin: Pièce
 filter.label_country: Pays
 filter.label_type: Type

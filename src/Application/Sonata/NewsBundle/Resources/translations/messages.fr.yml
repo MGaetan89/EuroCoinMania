@@ -31,7 +31,7 @@ news.comments.count: %count% commentaire|%count% commentaires
 news.comments.none: Soyez le premier à commenter cette actualité !
 news.content: Actualité
 news.information: Informations
-news.none: Aucune news n''a été publié pour le moment
+news.none: Aucune news n'a été publié pour le moment
 news.posted_by_on: Posté par <a href="%path%">%author%</a> le %date%
 news.publication_date: Date de publication
 news.tags: Tags

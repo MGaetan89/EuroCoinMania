@@ -1,9 +1,9 @@
 user.account: Mon compte
 user.biography: Biographie
-user.birthday_today: C''est son anniversaire !
-user.birthday_todayf: C''est son anniversaire !
-user.birthday_todaym: C''est son anniversaire !
-user.collection.empty: Cet utilisateur n''a pas de pièces dans sa collection
+user.birthday_today: C'est son anniversaire !
+user.birthday_todayf: C'est son anniversaire !
+user.birthday_todaym: C'est son anniversaire !
+user.collection.empty: Cet utilisateur n'a pas de pièces dans sa collection
 user.contact: Contact
 user.country: Pays
 user.date_of_birth: Date de naissance
@@ -20,7 +20,7 @@ user.genderf_count: <strong>%total%</strong> femme|<strong>%total%</strong> femm
 user.genderm: Homme
 user.genderm_count: <strong>%total%</strong> homme|<strong>%total%</strong> hommes
 user.google_plus: Google+
-user.has_no_such_coin: L''utilisateur n''a pas de pièces de ce type
+user.has_no_such_coin: L'utilisateur n'a pas de pièces de ce type
 user.information: Informations
 user.last_login: Dernière visite
 user.lastname: Nom
@@ -28,8 +28,8 @@ user.login: Connexion
 user.login_action: Accéder à mon compte
 user.login_required: Vous devez être connecté pour accéder à cette page
 user.logout: Déconnexion
-user.not_allowed: Vous n''êtes pas autorisé à accéder à cette page
-user.not_found: L''utilisateur que vous avez demandé n''existe pas
+user.not_allowed: Vous n'êtes pas autorisé à accéder à cette page
+user.not_found: L'utilisateur que vous avez demandé n'existe pas
 user.password: Mot de passe
 user.password_forgotten: Mot de passe oublié
 user.phone: Téléphone
@@ -44,15 +44,15 @@ user.register_explain: |
         <li><strong>Messagerie privée :</strong> pour discuter de vos échanges ou tout autre sujet ;</li>
     </ul>
     <p>De plus, si vous vous inscrivez avec une adresse e-mail enregistrée sur le site <a href="http://www.gravatar.com/">Gravatar.com</a>, votre photo de profil sera automatiquement affichée sur EuroCoin Mania.</p>
-user.registration_date: Date d''inscription
+user.registration_date: Date d'inscription
 user.remember_me: Connexion automatique
 user.request_password: Demande de mot de passe
 user.request_password.submit: Demander votre mot de passe
-user.request_password.username: Nom d''utilisateur ou adresse e-mail
+user.request_password.username: Nom d'utilisateur ou adresse e-mail
 user.show_collection: Voir la collection
 user.show_profile: Voir le profil
 user.show_stats: Voir les statistiques
-user.stats.average_value: Valeur moyenne d''une pièce (sur le total)
+user.stats.average_value: Valeur moyenne d'une pièce (sur le total)
 user.stats.country.coin_distribution: %count% pièce sur %total%|%count% pièces sur %total%
 user.stats.country.coins: Nombre de pièces
 user.stats.country.collectors: Nombre de pièces collectors
@@ -77,5 +77,5 @@ user.stats.total_value: Valeur total de la collection
 user.timezone: Fuseau horaire
 user.twitter: Twitter
 user.update_profile: Mettre à jour
-user.username: Nom d''utilisateur
+user.username: Nom d'utilisateur
 user.website: Site web

@@ -1,8 +1,8 @@
-breadcrumb.link_workshop_create: Ajout d''un atelier
-breadcrumb.link_workshop_delete: Suppression d''un atelier
-breadcrumb.link_workshop_edit: Modification d''un atelier
+breadcrumb.link_workshop_create: Ajout d'un atelier
+breadcrumb.link_workshop_delete: Suppression d'un atelier
+breadcrumb.link_workshop_edit: Modification d'un atelier
 breadcrumb.link_workshop_list: Liste des ateliers
-breadcrumb.link_workshop_show: Affichage d''un atelier
+breadcrumb.link_workshop_show: Affichage d'un atelier
 euro_coin.menu_workshop: Atelier
 filter.label_country: Pays
 filter.label_name: Nom

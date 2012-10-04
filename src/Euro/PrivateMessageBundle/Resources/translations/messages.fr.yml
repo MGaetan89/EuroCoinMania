@@ -13,14 +13,14 @@ pm.form.title: Titre
 pm.form.to_user: Destinataire
 pm.last_message: Dernier message
 pm.messaging: Messagerie
-pm.not_closable: Vous ne pouvez pas fermer cette conversation car l''échange auquel elle est associée n''est pas terminé
+pm.not_closable: Vous ne pouvez pas fermer cette conversation car l'échange auquel elle est associée n'est pas terminé
 pm.not_for_you: Cette conversation ne vous concerne pas
-pm.not_found: Cette conversation n''existe pas
+pm.not_found: Cette conversation n'existe pas
 pm.not_self: Vous ne pouvez pas vous envoyer un message à vous-même
 pm.posted_by: Par
 pm.posted_on: le %date%
 pm.send: Envoyer le message
-pm.show_exchange: Voir l''échange
+pm.show_exchange: Voir l'échange
 pm.text.conversation_closed: <strong>%from_user%</strong> a fermé cette discussion.
 pm.text.exchange_accepted: <strong>%from_user%</strong> a accepté cet échange.
 pm.text.exchange_canceled: <strong>%from_user%</strong> a annulé cet échange.
@@ -31,4 +31,4 @@ pm.title.new_exchange: Nouvel échange
 pm.unread_count: %count% message non lu|%count% messages non lus
 pm.user_pm: Mes conversations
 pm.write: Nouveau message
-pm.writing: Rédaction d''un nouveau message
+pm.writing: Rédaction d'un nouveau message

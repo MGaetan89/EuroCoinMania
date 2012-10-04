@@ -6,10 +6,23 @@
 <h2 class="page-header">{{ block('title') }}</h2>
 
 <form action="{{ path('contact') }}" class="form-centered" method="post">
-	{{ form_row(form.name, { label: 'contact.name'|trans }) }}
-	{{ form_row(form.email, { label: 'contact.email'|trans }) }}
+	{% if app.user %}
+		{% set disabled_attr = { 
+			class: 'uneditable-input',
+			readonly: 'readonly'
+		} %}
+
+		{{ form_row(form.name, { attr: disabled_attr, label: 'contact.name'|trans, value: app.user.username }) }}
+		{{ form_row(form.email, { attr: disabled_attr, label: 'contact.email'|trans, value: app.user.email }) }}
+	{% else %}
+		{{ form_row(form.name, { label: 'contact.name'|trans }) }}
+		{{ form_row(form.email, { label: 'contact.email'|trans }) }}
+	{% endif %}
+
 	{{ form_row(form.subject, { label: 'contact.subject'|trans }) }}
 	{{ form_row(form.message, { attr: { class: 'span4', rows: 6 }, label: 'contact.message'|trans }) }}
+
+	{{ form_rest(form) }}
 
 	<button class="btn btn-primary" type="submit">{{ 'contact.send'|trans }}</button>
 </form>
