@@ -1,5 +1,6 @@
 nbproject/
 app/cache/
+app/config/parameters.yml
 app/logs/
 web/bundles/
 web/uploads/media/*
