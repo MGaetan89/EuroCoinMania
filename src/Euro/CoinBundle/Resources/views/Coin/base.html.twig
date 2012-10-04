@@ -160,6 +160,15 @@
 {% else %}
 	<div class="alert">{{ 'country.none'|trans }}</div>
 {% endif %}
+
+<div class="coin-modal-backdrop" id="coin-modal">
+	<div class="btn btn-large btn-primary coin-modal-close-button">{{ 'close'|trans }}</div>
+
+	<div class="coin-modal-inner">
+		<img />
+	</div>
+</div>
+
 {% endblock %}
 
 {% block javascript %}

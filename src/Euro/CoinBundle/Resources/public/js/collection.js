@@ -1,5 +1,5 @@
 $(function () {
-	var body = $('body'), opened = null, placement = location.pathname.match('collector') ? 'left' : 'bottom';
+	var body = $('body'), modal = $('#coin-modal'), opened = null, placement = location.pathname.match('commemorative') ? 'left' : 'bottom';
 
 	$('[data-action=add-coin], [data-action=remove-coin]').on('click', function () {
 		var $this = $(this), action = $this.data('action').split('-')[0], id = $this.parents('[data-coin]').data('coin');
@@ -71,6 +71,20 @@ $(function () {
 
 	$('[data-action=popover]').popover({
 		trigger: 'hover'
+	});
+
+	$('body').on('click', '.zoomable img', function () {
+		var $this = $(this);
+
+		modal.css('display', 'table').find('img').attr({
+			alt: $this.attr('alt'),
+			src: $this.attr('src').replace('_small', '_big'),
+			title: $this.attr('title')
+		});
+	});
+
+	modal.on('click', '.btn', function () {
+		modal.hide();
 	});
 
 	$('#customize_filter').on('submit', function () {

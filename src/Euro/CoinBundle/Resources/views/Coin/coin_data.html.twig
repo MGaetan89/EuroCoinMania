@@ -3,8 +3,8 @@
 <div class="hide" id="coin-info-{{ coin.id }}">
 	<div class="row">
 		{% if coin.image and coin.type == 1 %}
-			<div class="span2">
-				{% media coin.image, 'small' %}
+			<div class="span2 zoomable">
+				{% media coin.image, 'small' with { alt: coin.description, title: coin.description } %}
 			</div>
 		{% endif %}
 	{% if coin.type == 1 %}

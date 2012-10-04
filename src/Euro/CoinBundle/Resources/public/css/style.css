@@ -26,6 +26,29 @@ img {
 	margin-top: 0;
 }
 
+.coin-modal-backdrop {
+	background-color: rgba(0, 0, 0, .8);
+	display: none;
+	height: 100%;
+	left: 0;
+	position: fixed;
+	top: 0;
+	width: 100%;
+	z-index: 1040;
+}
+
+.coin-modal-close-button {
+	right: 50px;
+	position: absolute;
+	top: 50px;
+}
+
+.coin-modal-inner {
+	display: table-cell;
+	text-align: center;
+	vertical-align: middle;
+}
+
 .form-centered {
 	background-color: #F5F5F5;
 	border: 1px solid #E5E5E5;
