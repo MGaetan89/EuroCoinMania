@@ -1,0 +1,28 @@
+breadcrumb.link_coin_create: Adding a coin
+breadcrumb.link_coin_delete: Deleting a coin
+breadcrumb.link_coin_edit: Editing a coin
+breadcrumb.link_coin_list: Coins list
+breadcrumb.link_coin_show: Showing a coin
+euro_coin.menu_coin: Coin
+filter.label_country: Country
+filter.label_type: Type
+filter.label_value: Value
+filter.label_year: Year
+form.label_country: Country
+form.label_description: Description
+form.label_image: Image
+form.label_mintage: Mintage
+form.label_type: Type
+form.label_value: Value
+form.label_year: Year
+list.label__action: Actions
+list.label_coin: Coin
+list.label_description: Description
+list.label_image: Image
+list.label_mintage: Quantity minted — registered
+list.label_type: Type
+show.label_coin: Coin
+show.label_description: Description
+show.label_image: Image
+show.label_mintage: Quantity minted / registered
+show.label_type: Type

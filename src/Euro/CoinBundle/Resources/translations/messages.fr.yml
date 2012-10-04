@@ -1,0 +1,129 @@
+coin.add: Ajouter
+coin.all_years: Toutes les années
+coin.circulation: Circulation
+coin.collection: Collection
+coin.collector: Collector
+coin.commemorative: Commémorative
+coin.country: Pays
+coin.description: Description
+coin.doubles: %amount% double|%amount% doubles
+coin.doubles.no_self_exchange: Vous ne pouvez pas faire un échange avec vous-même
+coin.doubles.none: Aucun membre n''a de doubles à vous échanger
+coin.doubles.none_selected: Vous devez sélectionner au moins une pièce
+coin.doubles.save_successfull: Votre demande d''échange a bien été enregistré
+coin.doubles.some_not_found: Certaines des pièces que vous avez sélectionné n''appartiennent pas à l''utilisateur
+coin.doubles.user_no_doubles: Cet utilisateur ne possède pas de doubles
+coin.doubles.user_not_found: L''utilisateur spécifié n''existe pas
+coin.exchange: Echanger
+coin.exchange_explain: |
+    <p>Afin de faire une demande d''échange, veuillez suivre les étapes suivantes :</p>
+    <ol>
+        <li>Choisissez l''utilisateur avec lequel vous souhaitez échanger vos pièces</li>
+        <li>Choisissez les pièces qui vous intéressent parmi les doubles de sa collection</li>
+        <li>Choisissez les pièces que vous souhaitez donner contre celles que vous avez sélectionné</li>
+    </ol>
+    <p>Si l''échange est accepté par l''autre utilisateur, vos inventaires respectifs ne sont pas mis à jour. Vous devez faire ce changement manuellement.</p>
+coin.exchange_request: Demander ces pièces
+coin.exchange_suggest: Proposer ces pièces
+coin.image: Image
+coin.information: Informations
+coin.mintage: Tirage
+coin.no_image: Aucune image
+coin.no_mintage: Aucun tirage
+coin.none: Aucune pièce n''a été enregistré pour ce pays.
+coin.not_available: La pièce que vous recherchez n''est plus disponible
+coin.not_found: La pièce que vous recherchez n''existe pas
+coin.registered_quantity: Total enregistré
+coin.remove: Retirer
+coin.self_quantity: Quantité possédée
+coin.total: Total
+coin.unavailable: Non disponible
+coin.sharing_count_info: La valeur éventuelle entre parenthèses représente la quantité engagée dans un échange.
+coin.type: Type
+coin.type1: Circulation
+coin.type2: Commémorative
+coin.type3: Collector
+coin.value: Valeur
+coin.year: Année
+coins: %total% pièce|%total% pièces
+coins.differents: %total% différente|%total% différentes
+coins.requested_coins: Pièces demandées
+coins.suggested_coins: Pièces proposées
+countries.list: Liste des pays
+country.coin1: 'Pièces &laquo; %country% &raquo;'
+country.coin1_from: 'Pièces &laquo; %country% &raquo; de %from%'
+country.coin1_from_to: 'Pièces &laquo; %country% &raquo; de %from% à %to%'
+country.coin2: 'Pièces commémoratives &laquo; %country% &raquo;'
+country.coin2_from: 'Pièces commémoratives &laquo; %country% &raquo; de %from%'
+country.coin2_from_to: 'Pièces commémoratives &laquo; %country% &raquo; de %from% à %to%'
+country.coin3: 'Pièces collectors &laquo; %country% &raquo;'
+country.coin3_from: 'Pièces collectors &laquo; %country% &raquo; de %from%'
+country.coin3_from_to: 'Pièces collectors &laquo; %country% &raquo; de %from% à %to%'
+country.currency.austria: Schilling autrichien
+country.currency.belgium: Franc belge
+country.currency.cyprus: Livre chypriote
+country.currency.estonia: Couronne estonienne
+country.currency.finland: Mark finlandais
+country.currency.france: Franc français
+country.currency.germany: Mark allemand
+country.currency.greece: Drachme moderne grecque
+country.currency.ireland: Livre irlandaise
+country.currency.italy: Lire italienne
+country.currency.luxembourg: Franc luxembourgeois
+country.currency.malta: Lire maltaise
+country.currency.monaco: Franc monégasque
+country.currency.netherlands: Florin néerlandais
+country.currency.portugal: Escudo portugais
+country.currency.san-marino: Lire de Saint-Marin
+country.currency.slovakia: Couronne slovaque
+country.currency.slovenia: Tolar slovène
+country.currency.spain: Peseta espagnole
+country.currency.vatican: Lire vaticane
+country.current: Pays consulté
+country.exchange_rate: Taux de change
+country.former_currency: Ancienne monnaie
+country.join_date: Date d''adoption
+country.name: Nom
+country.none: Aucun pays n''est disponible pour le moment.
+country.others: Autres pays
+exchange.accept: Accepter
+exchange.accepted: Vous avez bien accepté cet échange
+exchange.actions: Actions
+exchange.cancel: Annuler
+exchange.canceled: Votre échange a bien été annulé
+exchange.coins_requested: Pièces demandées
+exchange.coins_suggested: Pièces proposées
+exchange.direction: Sens de l''échange
+exchange.id: Numéro
+exchange.list_all: Liste de tous vos échanges
+exchange.list_pending: Liste de vos échanges en cours
+exchange.new: Nouvel échange
+exchange.none: Vous n''avez pas d''échange
+exchange.none_pending: Vous n''avez pas d''échange en cours
+exchange.not_found: Cet échange n''existe pas
+exchange.not_intended: Cet échange ne vous est pas destiné
+exchange.not_own: Cet échange ne vous appartient pas
+exchange.proposed_by: Proposé par <a href="%path%">%username%</a>
+exchange.proposed_on: Proposé le
+exchange.read_conversation: Lire la conversation
+exchange.received_by: Reçu par <a href="%path%">%username%</a>
+exchange.refuse: Refuser
+exchange.refused: L''échange a bien été refusé
+exchange.showing: Affichage d''un échange
+exchange.status: Statut
+exchange.status1: En cours
+exchange.status2: Accepté
+exchange.status3: Annulé
+exchange.status4: Refusé
+exchange.total_count: %sum% en %count% pièce|%sum% en %count% pièces
+exchanges: Echanges
+exchanges.all: Tous vos échanges
+exchanges.pending: Echanges en cours
+user.coin_not_found: Vous ne possédez pas encore cette pièce
+year.filter: Filtrer
+year.filter_from: Début
+year.filter_interval: '%from% à %to%'
+year.filter_setting: Paramètre
+year.filter_to: Fin
+years: Années
+years.filter: 'Filtre par années'

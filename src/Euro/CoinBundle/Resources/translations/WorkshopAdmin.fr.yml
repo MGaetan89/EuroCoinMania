@@ -1,0 +1,19 @@
+breadcrumb.link_workshop_create: Ajout d''un atelier
+breadcrumb.link_workshop_delete: Suppression d''un atelier
+breadcrumb.link_workshop_edit: Modification d''un atelier
+breadcrumb.link_workshop_list: Liste des ateliers
+breadcrumb.link_workshop_show: Affichage d''un atelier
+euro_coin.menu_workshop: Atelier
+filter.label_country: Pays
+filter.label_name: Nom
+filter.label_short_name: Identifiant
+form.label_country: Pays
+form.label_name: Nom
+form.label_short_name: Identifiant
+list.label__action: Actions
+list.label_country: Pays
+list.label_name: Nom
+list.label_short_name: Identifiant
+show.label_country: Pays
+show.label_name: Nom
+show.label_short_name: Identifiant

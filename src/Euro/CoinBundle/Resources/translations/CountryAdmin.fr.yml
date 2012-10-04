@@ -1,0 +1,23 @@
+breadcrumb.link_country_create: Ajout d''un pays
+breadcrumb.link_country_delete: Suppression d''un pays
+breadcrumb.link_country_edit: Modification d''un pays
+breadcrumb.link_country_list: Liste des pays
+breadcrumb.link_country_show: Affichage d''un pays
+euro_coin.menu_country: Pays
+filter.label_former_currency_iso: Code de l''ancienne monnaie
+filter.label_join_date: Date d''adoption
+filter.label_name: Nom
+filter.label_name_iso: Code du pays
+form.label_exchange_rate: Taux de change
+form.label_flag: Drapeau
+form.label_former_currency_iso: Code de l''ancienne monnaie
+form.label_join_date: Date d''adoption
+form.label_name: Nom
+form.label_name_iso: Code du pays
+list.label__action: Actions
+list.label_exchange_rate: Taux de change
+list.label_join_date: Date d''adoption
+list.label_name: Nom
+show.label_exchange_rate: Taux de change
+show.label_join_date: Date d''adoption
+show.label_name: Nom

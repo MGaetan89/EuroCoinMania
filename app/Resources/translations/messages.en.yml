@@ -1,0 +1,31 @@
+actions: Actions
+administration: Administration
+and: and
+close: Close
+coin_data_provider: Coins mintage provided by <a href="%path%" target="_blank">%name%</a>
+congratulation: Congratulation!
+error: Error!
+information: Information!
+menu: Menu
+no_data: No data
+personnal_menu: Personnal menu
+site_created_by: Site created by <a href="%path%">%name%</a>
+site_description: Manage your Euro coin collection and suggest exchanges to the other users.
+site_keywords: euro, exchange, coin, collection, collector, mintage, numismatist, share
+sitename: EuroCoin Mania
+stats: Statistics
+stats.average_age: The average age is <strong>%age%</strong> years old.
+stats.biggest_collections: Biggest collections
+stats.coins_repartition: '<strong>%total_coins%</strong> different coins splitted between <strong>%total_countries%</strong> countries as follow:'
+stats.country: Country
+stats.minted_coins: Minted coins
+stats.most_valued_collections: Most valued collections
+stats.registered_members: Registered members
+stats.top_countries: Most owned countries
+stats.total_amount: Total amount
+stats.total_coins: Number of coins
+stats.total_users: <strong>%total%</strong> member is registered on the site|<strong>%total%</strong> members are registered on the site
+stats.unique_coins: Unique coins
+stats.user: User
+stats.users: Users
+stats.users_from: 'Our members come from the following countries:'

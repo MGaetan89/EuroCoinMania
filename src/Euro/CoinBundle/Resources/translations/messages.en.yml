@@ -1,0 +1,130 @@
+coin.add: Add
+coin.all_years: All years
+coin.circulation: Circulation
+coin.collection: Collection
+coin.collector: Collector
+coin.commemorative: Commemorative
+coin.country: Country
+coin.description: Description
+coin.doubles: %amount% dulicate|%amount% duplicates
+coin.doubles.no_self_exchange: You can not exchange coins with yourself
+coin.doubles.none: No user have coins to exchange with you
+coin.doubles.none_selected: You need to choose at least one coin
+coin.doubles.save_successfull: Your exchange request has successfully been saved
+coin.doubles.some_not_found: Some of the coins you have selected do not belong to the user
+coin.doubles.user_no_doubles: This user has no duplicate coins
+coin.doubles.user_not_found: The specified user does not exist
+coin.exchange: Exchange
+coin.exchange_explain: |
+    <p>In order to ask for an exchange, follow these few steps:</p>
+    <ol>
+        <li>Choose the user with whom you want to make an exchange</li>
+        <li>Choose the coins you are interested in among the duplicates from his/her collection</li>
+        <li>Choose the coins you are willing to give in return of the ones you have selected</li>
+    </ol>
+    <p>If the other user accept your proposition, your respectives collections will not be updated. You will have to do that yourself.</p>
+coin.exchange_request: Request these coins
+coin.exchange_suggest: Suggest these coins
+coin.image: Image
+coin.information: Information
+coin.mintage: Mintage
+coin.no_image: No image
+coin.no_mintage: No mintage
+coin.none: No coins have been registered for this country.
+coin.not_available: The coin you requested is no longer available
+coin.not_found: The coin you requested does not exist
+coin.registered_quantity: Total registered
+coin.remove: Remove
+coin.self_quantity: Owned quantity
+coin.sharing_count_info: The possible value between parentheses shows the quantity saved for an exchange.
+coin.total: Total
+coin.type: Type
+coin.type1: Circulation
+coin.type2: Commemorative
+coin.type3: Collector
+coin.unavailable: Unavailable
+coin.value: Value
+coin.year: Year
+
+coins: %total% coin|%total% coins
+coins.differents: %total% different|%total% differents
+coins.suggested_coins: Suggested coins
+coins.requested_coins: Requested coins
+countries.list: Country list
+country.current: Displayed country
+country.exchange_rate: Exchange rate
+country.former_currency: Former currency
+country.join_date: Adoption date
+country.name: Name
+country.none: No country is available for the moment.
+country.others: Others countries
+country.coin1: 'Coins of &laquo; %country% &raquo;'
+country.coin2: 'Commemoratives coins of &laquo; %country% &raquo;'
+country.coin3: 'Collectos coins of &laquo; %country% &raquo;'
+country.coin1_from: 'Coins of &laquo; %country% &raquo; from %from%'
+country.coin2_from: 'Commemoratives coins of &laquo; %country% &raquo; from %from%'
+country.coin3_from: 'Collectos coins of &laquo; %country% &raquo; from %from%'
+country.coin1_from_to: 'Coins of &laquo; %country% &raquo; from %from% to %to%'
+country.coin2_from_to: 'Commemoratives coins of &laquo; %country% &raquo; from %from% to %to%'
+country.coin3_from_to: 'Collectos coins of &laquo; %country% &raquo; from %from% to %to%'
+country.currency.austria: Austrian schilling
+country.currency.belgium: Belgian franc
+country.currency.cyprus: Cypriot pound
+country.currency.estonia: Estonian kroon
+country.currency.finland: Finnish markka
+country.currency.france: French franc
+country.currency.germany: German Mark
+country.currency.greece: Greek drachma
+country.currency.ireland: Irish pound
+country.currency.italy: Italian lira
+country.currency.luxembourg: Luxembourgish franc
+country.currency.malta: Maltese lira
+country.currency.monaco: Monegasque franc
+country.currency.netherlands: Dutch guilder
+country.currency.portugal: Portuguese escudo
+country.currency.san-marino: Sammarinese lira
+country.currency.slovakia: Slovak koruna
+country.currency.slovenia: Slovenian tolar
+country.currency.spain: Spanish peseta
+country.currency.vatican: Vatican lira
+exchange.accept: Accept
+exchange.accepted: You have accepted this exchange
+exchange.actions: Actions
+exchange.cancel: Cancel
+exchange.canceled: You have canceled this exchange
+exchange.coins_requested: Requested coins
+exchange.coins_suggested: Suggested coins
+exchange.direction: Exchange direction
+exchange.id: Number
+exchange.list_all: List of all your exchanges
+exchange.list_pending: List of your pending exchanges
+exchange.new: New exchange
+exchange.none: You have no exchange
+exchange.none_pending: You have no pending exchange
+exchange.not_found: This exchange does not exist
+exchange.not_intended: This exchange is not intended to you
+exchange.not_own: This exchange does not belong to you
+exchange.proposed_by: Proposed by <a href="%path%">%username%</a>
+exchange.proposed_on: Proposed on
+exchange.read_conversation: Read the conversation
+exchange.received_by: Received by <a href="%path%">%username%</a>
+exchange.refuse: Refuse
+exchange.refused: This exchange has been refused
+exchange.showing: Viewing an exchange
+exchange.status: Status
+exchange.status1: Pending
+exchange.status2: Accepted
+exchange.status3: Canceled
+exchange.status4: Refused
+exchange.total_count: %sum% with %count% coin|%sum% with %count% coins
+exchanges: Exchanges
+exchanges.pending: Pending exchanges
+exchanges.all: All your exchanges
+year.filter: Filter
+year.filter_from: From
+year.filter_interval: '%from% to %to%'
+year.filter_setting: Setting
+year.filter_to: To
+user.coin_not_found: You do not own this coin yet
+years: Years
+years.filter: Filter by years

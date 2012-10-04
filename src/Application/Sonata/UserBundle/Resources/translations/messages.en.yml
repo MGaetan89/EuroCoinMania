@@ -1,0 +1,81 @@
+user.account: My account
+user.biography: Biography
+user.birthday_today: It''s his birthday!
+user.birthday_todayf: It''s her birthday!
+user.birthday_todaym: It''s his birthday!
+user.collection.empty: This user has no coin in his/her collection
+user.contact: Contact
+user.country: Country
+user.date_of_birth: Date of birth
+user.edit_authentication: Change your login details
+user.edit_profile: Update your profile
+user.editing_authentication: Changing your login details
+user.editing_profile: Updating your profile
+user.email: E-mail address
+user.facebook: Facebook
+user.firstname: Firstname
+user.gender: Gender
+user.genderf: Woman
+user.genderf_count: <strong>%total%</strong> woman|<strong>%total%</strong> women
+user.genderm: Man
+user.genderm_count: <strong>%total%</strong> man|<strong>%total%</strong> men
+user.google_plus: Google+
+user.has_no_such_coin: This user does not have coin matching your criteria
+user.information: Information
+user.last_login: Last visit
+user.lastname: Lastname
+user.login: Log in
+user.login_action: Access my account
+user.login_required: You need to be logged in to see this page
+user.logout: Log out
+user.not_allowed: You are not allowed to see this page
+user.not_found: This user does not exist
+user.password: Password
+user.password_forgotten: Password forgotten
+user.phone: Phone number
+user.profile: My profile
+user.register: Register
+user.register_action: Register my account
+user.register_explain: |
+    <p>By registering on <strong>EuroCoin Mania</strong>, you will have access to new features :</p>
+    <ul>
+        <li><strong>Manage your collection:</strong> inclusing circulation coins, commemorative coins and collector coins</li>
+        <li><strong>Exchange your coins:</strong> propose the coins you have more than once to the other members in order to fulfill your respectives collections</li>
+        <li><strong>Private messaging:</strong> discuss your exchanges with a smart private messaging</li>
+    </ul>
+    <p>Furthermore, if your e-mail address is registered on <a href="http://www.gravatar.com/">Gravatar.com</a>, your profile picture will automatically be displayed on EuroCoin Mania.</p>
+user.registration_date: Registration date
+user.remember_me: Remember me
+user.request_password: Request password
+user.request_password.submit: Request your password
+user.request_password.username: Username or e-mail address
+user.show_collection: View the collection
+user.show_profile: View the profile
+user.show_stats: View the statistics
+user.stats.average_value: Average value of a coin (based on all coins)
+user.stats.country.coin_distribution: %count% coin on %total%|%count% coins on %total%
+user.stats.country.coins: Number of coins
+user.stats.country.collectors: Number of collector coins
+user.stats.country.commemoratives: Number of commemorative coins
+user.stats.country.distribution_by_year: Distribution by year
+user.stats.country.value: Total value
+user.stats.country.value_distribution: %count% on %total%
+user.stats.country.year: Year %year%
+user.stats.global: General
+user.stats.global.coin_distribution: <strong>%country% :</strong> %count% coin on %total%|<strong>%country% :</strong> %count% coins on %total%
+user.stats.global.collection_distribution: Collection distribution
+user.stats.global.country_count: <a href="%path%">%country%</a> with <strong>%count%</strong> coin|<a href="%path%">%country%</a> with <strong>%count%</strong> coins
+user.stats.global.owned_countries: Owned countries
+user.stats.global.stats: Data
+user.stats.total_coins: Total number of coins
+user.stats.total_collectors: Number of collector coins
+user.stats.total_commemoratives: Nombre de pièces commemoratives
+user.stats.total_doubles: Number of duplicate coins
+user.stats.total_uniques: Number of unique coins
+user.stats.total_uniques_value: Value of the collection into unique coins
+user.stats.total_value: Total value of the collection
+user.timezone: Time zone
+user.twitter: Twitter
+user.update_profile: Update
+user.username: Username
+user.website: Website

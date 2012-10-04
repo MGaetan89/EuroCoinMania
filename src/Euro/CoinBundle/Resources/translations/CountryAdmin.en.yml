@@ -1,0 +1,23 @@
+breadcrumb.link_country_create: Adding a country
+breadcrumb.link_country_delete: Deleting a country
+breadcrumb.link_country_edit: Editing a country
+breadcrumb.link_country_list: Country list
+breadcrumb.link_country_show: Showing a country
+euro_coin.menu_country: Country
+filter.label_former_currency_iso: Former currency code
+filter.label_join_date: Adoption date
+filter.label_name: Name
+filter.label_name_iso: Country code
+form.label_exchange_rate: Exchange rate
+form.label_flag: Flag
+form.label_former_currency_iso: Former currency code
+form.label_join_date: Adoption date
+form.label_name: Name
+form.label_name_iso: Country code
+list.label__action: Actions
+list.label_exchange_rate: Exchange rate
+list.label_join_date: Adoption date
+list.label_name: Name
+show.label_exchange_rate: Exchange rate
+show.label_join_date: Adoption date
+show.label_name: Name

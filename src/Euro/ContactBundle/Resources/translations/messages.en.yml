@@ -1,0 +1,10 @@
+contact: Contact
+contact.email: E-mail address
+contact.message: Message
+contact.name: Name
+contact.send: Send
+contact.subject: Subject
+contact.subject.comment: Comment
+contact.subject.missing_coins: Missing coins
+contact.subject.other: Other
+contact.subject.proposition: Improvement suggestion

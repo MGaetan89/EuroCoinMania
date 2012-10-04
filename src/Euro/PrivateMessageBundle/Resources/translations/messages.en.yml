@@ -1,0 +1,34 @@
+pm.add_answer: Post the reply
+pm.answer: Answer
+pm.answer_add: Post a reply
+pm.close: Close the discussion
+pm.closed_success: The conversation has been closed
+pm.correspondent: Recipient
+pm.folder_empty: This folder does not contain any message
+pm.folders: Folders
+pm.folders.inbox: Inbox
+pm.folders.archives: Archives
+pm.form.message: Message
+pm.form.title: Title
+pm.form.to_user: Recipient
+pm.last_message: Last message
+pm.messaging: Mailbox
+pm.not_closable: You can not close this conversation car the related exchange is not finished
+pm.not_for_you: This conversation does not belong to you
+pm.not_found: This conversation does not exist
+pm.not_self: You can not write to yourself
+pm.posted_by: By
+pm.posted_on: On %date%
+pm.send: Send the message
+pm.show_exchange: View the exchange
+pm.text.conversation_closed: <strong>%from_user%</strong> closed this conversation.
+pm.text.exchange_accepted: <strong>%from_user%</strong> accepted this exchange.
+pm.text.exchange_canceled: <strong>%from_user%</strong> canceled this exchange.
+pm.text.exchange_refused: <strong>%from_user%</strong> refused this exchange.
+pm.text.new_exchange: <strong>%from_user%</strong> proposed an exchange. You can view it by <a href="%exchange_path%">clicking here</a>.
+pm.title: Title
+pm.title.new_exchange: New exchange
+pm.unread_count: %count% unread message|%count% unread messages
+pm.user_pm: My conversations
+pm.write: New message
+pm.writing: Writing a new message

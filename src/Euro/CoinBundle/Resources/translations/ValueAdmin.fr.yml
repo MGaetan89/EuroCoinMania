@@ -1,0 +1,15 @@
+breadcrumb.link_value_create: Ajout d''une valeur
+breadcrumb.link_value_delete: Suppression d''une valeur
+breadcrumb.link_value_edit: Modification d''une valeur
+breadcrumb.link_value_list: Liste des valeurs
+breadcrumb.link_value_show: Affichage d''une valeur
+euro_coin.menu_value: Valeur
+filter.label_collector: Collector ?
+filter.label_value: Valeur
+form.label_collector: Collector ?
+form.label_value: Valeur
+list.label__action: Actions
+list.label_collector: Collector ?
+list.label_value: Valeur
+show.label_collector: Collector ?
+show.label_value: Valeur

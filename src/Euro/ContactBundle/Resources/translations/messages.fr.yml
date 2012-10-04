@@ -1,0 +1,10 @@
+contact: Contact
+contact.email: Adresse e-mail
+contact.message: Message
+contact.name: Nom
+contact.send: Envoyer
+contact.subject: Sujet
+contact.subject.comment: Commentaire
+contact.subject.missing_coins: Pièces manquantes
+contact.subject.other: Autre
+contact.subject.proposition: Proposition d''amélioration

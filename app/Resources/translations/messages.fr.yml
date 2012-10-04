@@ -1,0 +1,31 @@
+actions: Actions
+administration: Administration
+and: et
+close: Fermer
+coin_data_provider: Tirage des pièces fournie par <a href="%path%" target="_blank">%name%</a>
+congratulation: Félicitation !
+error: Erreur !
+information: Information !
+menu: Menu
+no_data: Aucune donnée
+personnal_menu: Menu personnel
+site_created_by: Site crée par <a href="%path%">%name%</a>
+site_description: Gérer votre collection de pièces en Euro et proposer des échanges aux autres utilisateurs.
+site_keywords: échange, euro, collection, collector, numismate, pièce, tirage
+sitename: EuroCoin Mania
+stats: Statistiques
+stats.average_age: La moyenne d''âge est de <strong>%age%</strong> ans.
+stats.biggest_collections: Plus grandes collections
+stats.coins_repartition: '<strong>%total_coins%</strong> pièces différentes réparties parmi <strong>%total_countries%</strong> pays de la façon suivante :'
+stats.country: Pays
+stats.minted_coins: Pièces imprimées
+stats.most_valued_collections: Collections ayant le plus de valeur
+stats.registered_members: Membres inscrits
+stats.top_countries: Pays les plus possédés
+stats.total_amount: Montant total
+stats.total_coins: Nombres de pièces
+stats.total_users: <strong>%total%</strong> membre est inscrit sur le site|<strong>%total%</strong> membres sont inscrits sur le site
+stats.unique_coins: Pièces uniques
+stats.user: Utilisateur
+stats.users: Utilisateurs
+stats.users_from: 'Nos utilisateurs viennent en majorité des pays suivants :'

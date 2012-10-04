@@ -1,0 +1,81 @@
+user.account: Mon compte
+user.biography: Biographie
+user.birthday_today: C''est son anniversaire !
+user.birthday_todayf: C''est son anniversaire !
+user.birthday_todaym: C''est son anniversaire !
+user.collection.empty: Cet utilisateur n''a pas de pièces dans sa collection
+user.contact: Contact
+user.country: Pays
+user.date_of_birth: Date de naissance
+user.edit_authentication: Modifier vos identifiants
+user.edit_profile: Editer votre profil
+user.editing_authentication: Modification de vos identifiants
+user.editing_profile: Edition de votre profil
+user.email: Adresse e-mail
+user.facebook: Facebook
+user.firstname: Prénom
+user.gender: Sexe
+user.genderf: Femme
+user.genderf_count: <strong>%total%</strong> femme|<strong>%total%</strong> femmes
+user.genderm: Homme
+user.genderm_count: <strong>%total%</strong> homme|<strong>%total%</strong> hommes
+user.google_plus: Google+
+user.has_no_such_coin: L''utilisateur n''a pas de pièces de ce type
+user.information: Informations
+user.last_login: Dernière visite
+user.lastname: Nom
+user.login: Connexion
+user.login_action: Accéder à mon compte
+user.login_required: Vous devez être connecté pour accéder à cette page
+user.logout: Déconnexion
+user.not_allowed: Vous n''êtes pas autorisé à accéder à cette page
+user.not_found: L''utilisateur que vous avez demandé n''existe pas
+user.password: Mot de passe
+user.password_forgotten: Mot de passe oublié
+user.phone: Téléphone
+user.profile: Mon profil
+user.register: Inscription
+user.register_action: Créer mon compte
+user.register_explain: |
+    <p>En vous inscrivant sur <strong>EuroCoin Mania</strong>, vous aurez accès à de nouvelles fonctionnalités :</p>
+    <ul>
+        <li><strong>Gestion de votre collection :</strong> aussi bien les pièces courantes, que les pièces de deux euros commémoratives et les pièces collectors ;</li>
+        <li><strong>Echangez vos pièces avec les autres membres :</strong> proposez vos pièces en double aux autres membres afin de compléter vos collections respectives ;</li>
+        <li><strong>Messagerie privée :</strong> pour discuter de vos échanges ou tout autre sujet ;</li>
+    </ul>
+    <p>De plus, si vous vous inscrivez avec une adresse e-mail enregistrée sur le site <a href="http://www.gravatar.com/">Gravatar.com</a>, votre photo de profil sera automatiquement affichée sur EuroCoin Mania.</p>
+user.registration_date: Date d''inscription
+user.remember_me: Connexion automatique
+user.request_password: Demande de mot de passe
+user.request_password.submit: Demander votre mot de passe
+user.request_password.username: Nom d''utilisateur ou adresse e-mail
+user.show_collection: Voir la collection
+user.show_profile: Voir le profil
+user.show_stats: Voir les statistiques
+user.stats.average_value: Valeur moyenne d''une pièce (sur le total)
+user.stats.country.coin_distribution: %count% pièce sur %total%|%count% pièces sur %total%
+user.stats.country.coins: Nombre de pièces
+user.stats.country.collectors: Nombre de pièces collectors
+user.stats.country.commemoratives: Nombre de pièces commémoratives
+user.stats.country.distribution_by_year: Répartition par année
+user.stats.country.value: Valeur enregistrée
+user.stats.country.value_distribution: %count% sur %total%
+user.stats.country.year: Année %year%
+user.stats.global: Général
+user.stats.global.coin_distribution: <strong>%country% :</strong> %count% pièce sur %total%|<strong>%country% :</strong> %count% pièces sur %total%
+user.stats.global.collection_distribution: Répartition de la collection
+user.stats.global.country_count: <a href="%path%">%country%</a> avec <strong>%count%</strong> pièce|<a href="%path%">%country%</a> avec <strong>%count%</strong> pièces
+user.stats.global.owned_countries: Pays possédés
+user.stats.global.stats: Quelques chiffres
+user.stats.total_coins: Nombre total de pièces
+user.stats.total_collectors: Nombre de pièces collectors
+user.stats.total_commemoratives: Nombre de pièces commémoratives
+user.stats.total_doubles: Nombre de pièces en double
+user.stats.total_uniques: Nombre de pièces uniques
+user.stats.total_uniques_value: Valeur de la collection en pièces uniques
+user.stats.total_value: Valeur total de la collection
+user.timezone: Fuseau horaire
+user.twitter: Twitter
+user.update_profile: Mettre à jour
+user.username: Nom d''utilisateur
+user.website: Site web

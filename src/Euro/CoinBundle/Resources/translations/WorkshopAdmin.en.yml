@@ -1,0 +1,19 @@
+breadcrumb.link_workshop_create: Adding a workshop
+breadcrumb.link_workshop_delete: Deleting a workshop
+breadcrumb.link_workshop_edit: Editing a workshop
+breadcrumb.link_workshop_list: Wokshops list
+breadcrumb.link_workshop_show: Showing a workshop
+euro_coin.menu_workshop: Workshop
+filter.label_country: Country
+filter.label_name: Name
+filter.label_short_name: Identifier
+form.label_country: Country
+form.label_name: Name
+form.label_short_name: Identifier
+list.label__action: Actions
+list.label_country: Country
+list.label_name: Name
+list.label_short_name: Identifier
+show.label_country: Country
+show.label_name: Name
+show.label_short_name: Identifier

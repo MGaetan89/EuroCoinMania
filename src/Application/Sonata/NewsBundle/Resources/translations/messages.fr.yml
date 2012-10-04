@@ -1,0 +1,37 @@
+comment.author.email: Adresse e-mail
+comment.author.name: Nom
+comment.author.website: Site web
+comment.message: Message
+edit.bold.symbol: G
+edit.bold.title: Gras
+edit.image.symbol: ~
+edit.image.title: Image
+edit.italic.symbol: I
+edit.italic.title: Italique
+edit.link.symbol: ~
+edit.link.title: Lien
+edit.list.symbol: '- &hellip;'
+edit.list.title: Liste
+edit.list-ordered.symbol: '1. &hellip;'
+edit.list-ordered.title: Liste ordonnée
+edit.separator.symbol: '&ndash;'
+edit.separator.title: Séparateur horizontal
+edit.underline.symbol: S
+edit.underline.title: Souligné
+news: Actualités
+news.archives: Archives
+news.author: Auteur
+news.comment: Commentaire
+news.comment.add: Poster un commentaire
+news.comment.author: Auteur
+news.comment.post: Poster le commentaire
+news.comments: Commentaires
+news.comments.closed: Les commentaires sont désactivés sur cette news
+news.comments.count: %count% commentaire|%count% commentaires
+news.comments.none: Soyez le premier à commenter cette actualité !
+news.content: Actualité
+news.information: Informations
+news.none: Aucune news n''a été publié pour le moment
+news.posted_by_on: Posté par <a href="%path%">%author%</a> le %date%
+news.publication_date: Date de publication
+news.tags: Tags
