@@ -51,13 +51,6 @@ coins.differents: %total% different|%total% differents
 coins.suggested_coins: Suggested coins
 coins.requested_coins: Requested coins
 countries.list: Country list
-country.current: Displayed country
-country.exchange_rate: Exchange rate
-country.former_currency: Former currency
-country.join_date: Adoption date
-country.name: Name
-country.none: No country is available for the moment.
-country.others: Others countries
 country.coin1: 'Coins of &laquo; %country% &raquo;'
 country.coin2: 'Commemoratives coins of &laquo; %country% &raquo;'
 country.coin3: 'Collectos coins of &laquo; %country% &raquo;'
@@ -87,6 +80,33 @@ country.currency.slovakia: Slovak koruna
 country.currency.slovenia: Slovenian tolar
 country.currency.spain: Spanish peseta
 country.currency.vatican: Vatican lira
+country.current: Displayed country
+country.exchange_rate: Exchange rate
+country.former_currency: Former currency
+country.join_date: Adoption date
+country.name: Name
+country.name.austria: Austria
+country.name.belgium: Belgium
+country.name.cyprus: Cyprus
+country.name.estonia: Estonia
+country.name.finland: Finland
+country.name.france: France
+country.name.germany: Germany
+country.name.greece: Greece
+country.name.ireland: Ireland
+country.name.italy: Italy
+country.name.luxembourg: Luxembourg
+country.name.malta: Malta
+country.name.monaco: Monaco
+country.name.netherlands: Netherlands
+country.name.portugal: Portugal
+country.name.san-marino: San-Marino
+country.name.slovakia: Slovakia
+country.name.slovenia: Slovenia
+country.name.spain: Spain
+country.name.vatican: Vatican
+country.none: No country is available for the moment.
+country.others: Others countries
 exchange.accept: Accept
 exchange.accepted: You have accepted this exchange
 exchange.actions: Actions

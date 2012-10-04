@@ -84,6 +84,26 @@ country.exchange_rate: Taux de change
 country.former_currency: Ancienne monnaie
 country.join_date: Date d'adoption
 country.name: Nom
+country.name.austria: Autriche
+country.name.belgium: Belgique
+country.name.cyprus: Chypre
+country.name.estonia: Estonie
+country.name.finland: Finlande
+country.name.france: France
+country.name.germany: Allemagne
+country.name.greece: Grèce
+country.name.ireland: Irlande
+country.name.italy: Italie
+country.name.luxembourg: Luxembourg
+country.name.malta: Malte
+country.name.monaco: Monaco
+country.name.netherlands: Pays-Bas
+country.name.portugal: Portugal
+country.name.san-marino: Saint-Marin
+country.name.slovakia: Slovaquie
+country.name.slovenia: Slovénie
+country.name.spain: Espagne
+country.name.vatican: Vatican
 country.none: Aucun pays n'est disponible pour le moment.
 country.others: Autres pays
 exchange.accept: Accepter
