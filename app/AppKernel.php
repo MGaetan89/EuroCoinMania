@@ -21,13 +21,6 @@ class AppKernel extends Kernel {
 			new JMS\SecurityExtraBundle\JMSSecurityExtraBundle(),
 
 			// Installed bundles
-			new Application\Sonata\MediaBundle\ApplicationSonataMediaBundle(),
-			new Application\Sonata\NewsBundle\ApplicationSonataNewsBundle(),
-			new Application\Sonata\UserBundle\ApplicationSonataUserBundle(),
-			new Euro\CoinBundle\EuroCoinBundle(),
-			new Euro\ContactBundle\EuroContactBundle(),
-			new Euro\PageBundle\EuroPageBundle(),
-			new Euro\PrivateMessageBundle\EuroPrivateMessageBundle(),
 			new FOS\UserBundle\FOSUserBundle(),
 			new Knp\Bundle\MarkdownBundle\KnpMarkdownBundle(),
 			new Knp\Bundle\MenuBundle\KnpMenuBundle(),
@@ -43,6 +36,15 @@ class AppKernel extends Kernel {
 			new Sonata\MediaBundle\SonataMediaBundle(),
 			new Sonata\NewsBundle\SonataNewsBundle(),
 			new Sonata\UserBundle\SonataUserBundle('FOSUserBundle'),
+
+			// Src
+			new Application\Sonata\MediaBundle\ApplicationSonataMediaBundle(),
+			new Application\Sonata\NewsBundle\ApplicationSonataNewsBundle(),
+			new Application\Sonata\UserBundle\ApplicationSonataUserBundle(),
+			new Euro\CoinBundle\EuroCoinBundle(),
+			new Euro\ContactBundle\EuroContactBundle(),
+			new Euro\PageBundle\EuroPageBundle(),
+			new Euro\PrivateMessageBundle\EuroPrivateMessageBundle(),
 		);
 
 		if (in_array($this->getEnvironment(), array('dev', 'test'))) {
