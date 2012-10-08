@@ -64,7 +64,8 @@ class DefaultController extends BaseController {
 
 		if ($countries) {
 			// Sort the countries by translated name
-			usort($countries, function ($a, $b) use (&$country, $country_id, $translator) {
+			$collator = new \Collator($this->getRequest()->getLocale());
+			usort($countries, function ($a, $b) use ($collator, &$country, $country_id, $translator) {
 						$a_name = $translator->trans((string) $a);
 						$b_name = $translator->trans((string) $b);
 
@@ -74,7 +75,7 @@ class DefaultController extends BaseController {
 							$country = $b;
 						}
 
-						return strcmp($a_name, $b_name);
+						return $collator->compare($a_name, $b_name);
 					});
 
 			if ($type != Coin::TYPE_CIRCULATION) {
@@ -336,11 +337,12 @@ class DefaultController extends BaseController {
 			}
 
 			// Sort the countries by translated name
-			usort($global['countries'], function ($a, $b) use ($translator) {
+			$collator = new \Collator($this->getRequest()->getLocale());
+			usort($global['countries'], function ($a, $b) use ($collator, $translator) {
 						$a_name = $translator->trans((string) $a);
 						$b_name = $translator->trans((string) $b);
 
-						return strcmp($a_name, $b_name);
+						return $collator->compare($a_name, $b_name);
 					});
 		}
 

@@ -16,7 +16,8 @@ class CountryController extends Controller {
 		$countries = $repository->findAll();
 
 		// Sort the countries by translated name
-		usort($countries, function ($a, $b) use ($translator) {
+		$collator = new \Collator($this->getRequest()->getLocale());
+		usort($countries, function ($a, $b) use ($collator, $translator) {
 					$a_date = $a->getJoinDate();
 					$b_date = $b->getJoinDate();
 
@@ -27,7 +28,7 @@ class CountryController extends Controller {
 					$a_name = $translator->trans((string) $a);
 					$b_name = $translator->trans((string) $b);
 
-					return strcmp($a_name, $b_name);
+					return $collator->compare($a_name, $b_name);
 				});
 
 		$countries_js = array();

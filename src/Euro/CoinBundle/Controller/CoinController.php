@@ -86,7 +86,8 @@ class CoinController extends BaseController {
 		$country = null;
 
 		// Sort the countries by translated name
-		usort($countries, function ($a, $b) use (&$country, $id, $translator) {
+		$collator = new \Collator($this->getRequest()->getLocale());
+		usort($countries, function ($a, $b) use ($collator, &$country, $id, $translator) {
 					$a_name = $translator->trans((string) $a);
 					$b_name = $translator->trans((string) $b);
 
@@ -96,7 +97,7 @@ class CoinController extends BaseController {
 						$country = $b;
 					}
 
-					return strcmp($a_name, $b_name);
+					return $collator->compare($a_name, $b_name);
 				});
 
 		if (!$country && $countries) {
