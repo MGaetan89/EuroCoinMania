@@ -55,7 +55,7 @@
 						{% set _name = macros.name(country) %}
 
 						<li class="hide" data-action="popover" title="{{ _name }}" data-content="{% include 'EuroCoinBundle:Country:country_data.html.twig' with { country: country } %}">
-							<a href="{{ path('coin_collection' ~ type, { id: country.id, country: _name }) }}">
+							<a href="{{ path('coin_collection' ~ type, { id: country.id, country: _name|e('url') }) }}">
 								<img alt="{{ _name }}" src="{% path country.flag, 'mini' %}" rel="tooltip" title="{{ _name }}" data-placement="right" />
 								{{ _name }}
 							</a>
