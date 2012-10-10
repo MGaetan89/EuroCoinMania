@@ -24,7 +24,7 @@ stats.most_valued_collections: Collections ayant le plus de valeur
 stats.registered_members: Membres inscrits
 stats.top_countries: Pays les plus possédés
 stats.total_amount: Montant total
-stats.total_coins: Nombres de pièces
+stats.total_coins: Nombre de pièces
 stats.total_unique: Total unique
 stats.total_users: <strong>%total%</strong> membre est inscrit sur le site|<strong>%total%</strong> membres sont inscrits sur le site
 stats.unique_coins: Pièces uniques
