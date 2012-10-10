@@ -8,7 +8,8 @@ img {
 }
 
 #map {
-	height: 454px;
+	height: 100%;
+	width: 100%;
 }
 
 .alert-warning {
@@ -47,6 +48,14 @@ img {
 	display: table-cell;
 	text-align: center;
 	vertical-align: middle;
+}
+
+.eurozone {
+	fill: #006DCC;
+}
+
+.eurozone:hover {
+	fill: #0044CC;
 }
 
 .form-centered {
