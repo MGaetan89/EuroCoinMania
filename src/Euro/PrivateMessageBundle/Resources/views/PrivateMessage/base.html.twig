@@ -6,76 +6,74 @@
 <h2 class="page-header">{{ block('title') }}</h2>
 
 <div class="row-fluid">
-	<div class="span3">
-		<div class="dropdown">
-			<ul class="dropdown-menu" style="display: block; position: static;">
-				{% if app.request.get('_route') == 'pm_read' %}
-					{% set pm = messages[0].conversation %}
+	<div class="dropdown span3">
+		<ul class="dropdown-menu" style="display: block; position: static;">
+			{% if app.request.get('_route') == 'pm_read' %}
+				{% set pm = messages[0].conversation %}
 
-					<li class="nav-header">{{ 'actions'|trans }}</li>
+				<li class="nav-header">{{ 'actions'|trans }}</li>
 
-					<li{{ macros.is_active(['pm_read']) }}>
-						<a href="{{ path('pm_read', { id: pm.id, title: macros.slugify(pm.title|trans) }) }}">
+				<li{{ macros.is_active(['pm_read']) }}>
+					<a href="{{ path('pm_read', { id: pm.id, title: macros.slugify(pm.title|trans) }) }}">
+						<i class="icon-chevron-right"></i>
+						{{ pm.title|trans }}
+					</a>
+				</li>
+
+				{% if pm.exchange %}
+					<li>
+						<a href="{{ path('exchange_show', { id: pm.exchange.id }) }}">
 							<i class="icon-chevron-right"></i>
-							{{ pm.title|trans }}
-						</a>
-					</li>
-
-					{% if pm.exchange %}
-						<li>
-							<a href="{{ path('exchange_show', { id: pm.exchange.id }) }}">
-								<i class="icon-chevron-right"></i>
-								{{ 'pm.show_exchange'|trans }}
-							</a>
-						</li>
-					{% endif %}
-
-					{% if pm.open %}
-						<li>
-							<a href="#modal-answer" data-toggle="modal">
-								<i class="icon-chevron-right"></i>
-								{{ 'pm.answer'|trans }}
-							</a>
-						</li>
-
-						{% if not pm.exchange or pm.exchange.status != 1 %}
-							<li>
-								<a href="{{ path('pm_close', { id: pm.id, title: macros.slugify(pm.title|trans) }) }}">
-									<i class="icon-chevron-right"></i>
-									{{ 'pm.close'|trans }}
-								</a>
-							</li>
-						{% endif %}
-					{% endif %}
-
-					<li class="divider"></li>
-				{% elseif app.request.get('_route') == 'pm_write' %}
-					<li class="nav-header">{{ 'actions'|trans }}</li>
-
-					<li{{ macros.is_active(['pm_write']) }}>
-						<a href="{{ path('pm_write') }}">
-							<i class="icon-chevron-right"></i>
-							{{ 'pm.write'|trans }}
+							{{ 'pm.show_exchange'|trans }}
 						</a>
 					</li>
 				{% endif %}
 
-				<li class="nav-header">{{ 'pm.folders'|trans }}</li>
+				{% if pm.open %}
+					<li>
+						<a href="#modal-answer" data-toggle="modal">
+							<i class="icon-chevron-right"></i>
+							{{ 'pm.answer'|trans }}
+						</a>
+					</li>
 
-				<li{{ macros.is_active(['pm_list']) }}>
-					<a href="{{ path('pm_list') }}">
+					{% if not pm.exchange or pm.exchange.status != 1 %}
+						<li>
+							<a href="{{ path('pm_close', { id: pm.id, title: macros.slugify(pm.title|trans) }) }}">
+								<i class="icon-chevron-right"></i>
+								{{ 'pm.close'|trans }}
+							</a>
+						</li>
+					{% endif %}
+				{% endif %}
+
+				<li class="divider"></li>
+			{% elseif app.request.get('_route') == 'pm_write' %}
+				<li class="nav-header">{{ 'actions'|trans }}</li>
+
+				<li{{ macros.is_active(['pm_write']) }}>
+					<a href="{{ path('pm_write') }}">
 						<i class="icon-chevron-right"></i>
-						{{ 'pm.folders.inbox'|trans }}
+						{{ 'pm.write'|trans }}
 					</a>
 				</li>
-				<li{{ macros.is_active(['pm_list_archives']) }}>
-					<a href="{{ path('pm_list_archives') }}">
-						<i class="icon-chevron-right"></i>
-						{{ 'pm.folders.archives'|trans }}
-					</a>
-				</li>
-			</ul>
-		</div>
+			{% endif %}
+
+			<li class="nav-header">{{ 'pm.folders'|trans }}</li>
+
+			<li{{ macros.is_active(['pm_list']) }}>
+				<a href="{{ path('pm_list') }}">
+					<i class="icon-chevron-right"></i>
+					{{ 'pm.folders.inbox'|trans }}
+				</a>
+			</li>
+			<li{{ macros.is_active(['pm_list_archives']) }}>
+				<a href="{{ path('pm_list_archives') }}">
+					<i class="icon-chevron-right"></i>
+					{{ 'pm.folders.archives'|trans }}
+				</a>
+			</li>
+		</ul>
 	</div>
 	<div class="span9">{% block content %}{% endblock %}</div>
 </div>

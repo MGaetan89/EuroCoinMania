@@ -4,48 +4,46 @@
 <h2 class="page-header">{{ block('title') }}</h2>
 
 <div class="row-fluid">
-	<div class="span2">
-		<div class="dropdown">
-			<ul class="dropdown-menu" style="display: block; position: static;">
-				<li class="nav-header">{{ 'exchange.actions'|trans }}</li>
+	<div class="dropdown span2">
+		<ul class="dropdown-menu" style="display: block; position: static;">
+			<li class="nav-header">{{ 'exchange.actions'|trans }}</li>
 
-				{% if app.request.get('_route') == 'exchange_show' %}
-					<li{{ macros.is_active(['exchange_show']) }}>
-						<a href="{{ path('exchange_show', { id: exchange.id }) }}">
-							<i class="icon-chevron-right"></i> 
-							{{ 'exchange.showing'|trans }}
-						</a>
-					</li>
-					<li>
-						<a href="{{ path('pm_read', { id: exchange.conversation.id, title: macros.slugify(exchange.conversation.title|trans) }) }}">
-							<i class="icon-chevron-right"></i> 
-							{{ 'exchange.read_conversation'|trans }}
-						</a>
-					</li>
-
-					<li class="divider"></li>
-				{% endif %}
-
-				<li{{ macros.is_active(['exchange_choose_user']) }}>
-					<a href="{{ path('exchange_choose_user') }}">
+			{% if app.request.get('_route') == 'exchange_show' %}
+				<li{{ macros.is_active(['exchange_show']) }}>
+					<a href="{{ path('exchange_show', { id: exchange.id }) }}">
 						<i class="icon-chevron-right"></i> 
-						{{ 'exchange.new'|trans }}
+						{{ 'exchange.showing'|trans }}
 					</a>
 				</li>
-				<li{{ macros.is_active(['exchange_list']) }}>
-					<a href="{{ path('exchange_list') }}">
+				<li>
+					<a href="{{ path('pm_read', { id: exchange.conversation.id, title: macros.slugify(exchange.conversation.title|trans) }) }}">
 						<i class="icon-chevron-right"></i> 
-						{{ 'exchanges.pending'|trans }}
+						{{ 'exchange.read_conversation'|trans }}
 					</a>
 				</li>
-				<li{{ macros.is_active(['exchange_list_all']) }}>
-					<a href="{{ path('exchange_list_all') }}">
-						<i class="icon-chevron-right"></i> 
-						{{ 'exchanges.all'|trans }}
-					</a>
-				</li>
-			</ul>
-		</div>
+
+				<li class="divider"></li>
+			{% endif %}
+
+			<li{{ macros.is_active(['exchange_choose_user']) }}>
+				<a href="{{ path('exchange_choose_user') }}">
+					<i class="icon-chevron-right"></i> 
+					{{ 'exchange.new'|trans }}
+				</a>
+			</li>
+			<li{{ macros.is_active(['exchange_list']) }}>
+				<a href="{{ path('exchange_list') }}">
+					<i class="icon-chevron-right"></i> 
+					{{ 'exchanges.pending'|trans }}
+				</a>
+			</li>
+			<li{{ macros.is_active(['exchange_list_all']) }}>
+				<a href="{{ path('exchange_list_all') }}">
+					<i class="icon-chevron-right"></i> 
+					{{ 'exchanges.all'|trans }}
+				</a>
+			</li>
+		</ul>
 	</div>
 	<div class="{% if exchange is defined %}offset1 span9{% else %}span10{% endif %}">{% block content %}{% endblock %}</div>
 </div>
