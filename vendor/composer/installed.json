@@ -2150,69 +2150,6 @@
         ]
     },
     {
-        "name": "sonata-project/news-bundle",
-        "version": "dev-master",
-        "version_normalized": "9999999-dev",
-        "target-dir": "Sonata/NewsBundle",
-        "source": {
-            "type": "git",
-            "url": "git://github.com/sonata-project/SonataNewsBundle.git",
-            "reference": "4e55cf4930ea9ce31bd983e50c9573aed52f0354"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://github.com/sonata-project/SonataNewsBundle/zipball/4e55cf4930ea9ce31bd983e50c9573aed52f0354",
-            "reference": "4e55cf4930ea9ce31bd983e50c9573aed52f0354",
-            "shasum": ""
-        },
-        "require": {
-            "symfony/symfony": "2.1.*",
-            "sonata-project/admin-bundle": "dev-master",
-            "sonata-project/user-bundle": "dev-master",
-            "sonata-project/media-bundle": "dev-master",
-            "sonata-project/formatter-bundle": "dev-master",
-            "sonata-project/easy-extends-bundle": "dev-master",
-            "sonata-project/intl-bundle": "dev-master",
-            "knplabs/knp-markdown-bundle": "dev-master"
-        },
-        "require-dev": {
-            "doctrine/orm": "*"
-        },
-        "suggest": {
-            "sonata-project/doctrine-orm-admin-bundle": "dev-master"
-        },
-        "time": "2012-10-14 11:38:28",
-        "type": "symfony-bundle",
-        "installation-source": "source",
-        "autoload": {
-            "psr-0": {
-                "Sonata\\NewsBundle": ""
-            }
-        },
-        "license": [
-            "MIT"
-        ],
-        "authors": [
-            {
-                "name": "Thomas Rabaix",
-                "email": "thomas.rabaix@sonata-project.org",
-                "homepage": "http://sonata-project.org"
-            },
-            {
-                "name": "Sonata Community",
-                "homepage": "https://github.com/sonata-project/SonataNewsBundle/contributors"
-            }
-        ],
-        "description": "Symfony SonataNewsBundle",
-        "homepage": "http://sonata-project.org/bundles/news",
-        "keywords": [
-            "blog",
-            "sonata",
-            "news",
-            "post"
-        ]
-    },
-    {
         "name": "friendsofsymfony/user-bundle",
         "version": "dev-master",
         "version_normalized": "9999999-dev",
@@ -2444,6 +2381,69 @@
         "homepage": "http://symfony.com",
         "keywords": [
             "framework"
+        ]
+    },
+    {
+        "name": "sonata-project/news-bundle",
+        "version": "dev-master",
+        "version_normalized": "9999999-dev",
+        "target-dir": "Sonata/NewsBundle",
+        "source": {
+            "type": "git",
+            "url": "git://github.com/sonata-project/SonataNewsBundle.git",
+            "reference": "b6f51033be9b0cf93dcc61839be81c4cdb04e1e1"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://github.com/sonata-project/SonataNewsBundle/zipball/b6f51033be9b0cf93dcc61839be81c4cdb04e1e1",
+            "reference": "b6f51033be9b0cf93dcc61839be81c4cdb04e1e1",
+            "shasum": ""
+        },
+        "require": {
+            "symfony/symfony": "2.1.*",
+            "sonata-project/admin-bundle": "dev-master",
+            "sonata-project/user-bundle": "dev-master",
+            "sonata-project/media-bundle": "dev-master",
+            "sonata-project/formatter-bundle": "dev-master",
+            "sonata-project/easy-extends-bundle": "dev-master",
+            "sonata-project/intl-bundle": "dev-master",
+            "knplabs/knp-markdown-bundle": "dev-master"
+        },
+        "require-dev": {
+            "doctrine/orm": "*"
+        },
+        "suggest": {
+            "sonata-project/doctrine-orm-admin-bundle": "dev-master"
+        },
+        "time": "2012-10-14 12:01:38",
+        "type": "symfony-bundle",
+        "installation-source": "source",
+        "autoload": {
+            "psr-0": {
+                "Sonata\\NewsBundle": ""
+            }
+        },
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Thomas Rabaix",
+                "email": "thomas.rabaix@sonata-project.org",
+                "homepage": "http://sonata-project.org"
+            },
+            {
+                "name": "Sonata Community",
+                "homepage": "https://github.com/sonata-project/SonataNewsBundle/contributors"
+            }
+        ],
+        "description": "Symfony SonataNewsBundle",
+        "homepage": "http://sonata-project.org/bundles/news",
+        "keywords": [
+            "blog",
+            "sonata",
+            "news",
+            "post"
         ]
     }
 ]

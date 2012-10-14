@@ -1827,12 +1827,12 @@
             "source": {
                 "type": "git",
                 "url": "git://github.com/sonata-project/SonataNewsBundle.git",
-                "reference": "4e55cf4930ea9ce31bd983e50c9573aed52f0354"
+                "reference": "b6f51033be9b0cf93dcc61839be81c4cdb04e1e1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/sonata-project/SonataNewsBundle/zipball/4e55cf4930ea9ce31bd983e50c9573aed52f0354",
-                "reference": "4e55cf4930ea9ce31bd983e50c9573aed52f0354",
+                "url": "https://github.com/sonata-project/SonataNewsBundle/zipball/b6f51033be9b0cf93dcc61839be81c4cdb04e1e1",
+                "reference": "b6f51033be9b0cf93dcc61839be81c4cdb04e1e1",
                 "shasum": ""
             },
             "require": {
@@ -1851,7 +1851,7 @@
             "suggest": {
                 "sonata-project/doctrine-orm-admin-bundle": "dev-master"
             },
-            "time": "1350239908",
+            "time": "1350241298",
             "type": "symfony-bundle",
             "installation-source": "source",
             "autoload": {
