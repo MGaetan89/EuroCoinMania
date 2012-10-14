@@ -1,0 +1,13 @@
+{% extends 'FOSUserBundle::layout.html.twig' %}
+
+{% block title %}{{ 'user.login'|trans }}{% endblock %}
+
+{% block fos_user_content %}
+<h2 class="page-header">{{ block('title') }}</h2>
+
+{% if error %}
+	<div>{{ error|trans({}, 'FOSUserBundle') }}</div>
+{% endif %}
+
+{% include 'FOSUserBundle:Security:login_content.html.twig' %}
+{% endblock fos_user_content %}

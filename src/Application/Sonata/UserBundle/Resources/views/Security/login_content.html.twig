@@ -1,15 +1,4 @@
-{% extends "FOSUserBundle::layout.html.twig" %}
-
-{% block title %}{{ 'user.login'|trans }}{% endblock %}
-
-{% block fos_user_content %}
-<h2 class="page-header">{{ block('title') }}</h2>
-
-{% if error %}
-	<div>{{ error|trans({}, 'FOSUserBundle') }}</div>
-{% endif %}
-
-<form action="{{ path("fos_user_security_check") }}" class="form-centered" method="post">
+<form action="{{ path("fos_user_security_check") }}"{% if app.request.get('_route') == 'fos_user_security_login' %} class="form-centered"{% endif %} method="post">
 	<input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
 
 	<div class="control-group">
@@ -39,4 +28,3 @@
 
 	<a class="btn btn-link" href="{{ path('fos_user_resetting_request') }}">{{ 'user.password_forgotten'|trans }}</a>
 </form>
-{% endblock fos_user_content %}
