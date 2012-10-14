@@ -6,7 +6,9 @@
 <h2 class="page-header">{{ block('title') }}</h2>
 
 {% if error %}
-	<div>{{ error|trans({}, 'FOSUserBundle') }}</div>
+	<div class="alert alert-error">
+		<strong>{{ 'error'|trans }}</strong> {{ error|trans({}, 'FOSUserBundle') }}
+	</div>
 {% endif %}
 
 {% include 'FOSUserBundle:Security:login_content.html.twig' %}
