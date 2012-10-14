@@ -13,11 +13,7 @@ class PrivateMessageController extends Controller {
 
 	public function answerProcessAction($id) {
 		$translator = $this->get('translator');
-
-		if (!$user = $this->getUser()) {
-			throw $this->createNotFoundException($translator->trans('user.login_required'));
-		}
-
+		$user = $this->getUser();
 		$conversation = $this->getDoctrine()->getRepository('EuroPrivateMessageBundle:Conversation')->find($id);
 
 		if (!$conversation) {
@@ -60,12 +56,7 @@ class PrivateMessageController extends Controller {
 
 	public function closeAction($id) {
 		$flashBag = $this->get('session')->getFlashBag();
-		if (!$user = $this->getUser()) {
-			$flashBag->add('error', 'user.login_required');
-
-			return $this->redirect($this->generateUrl('fos_user_security_login'));
-		}
-
+		$user = $this->getUser();
 		$doctrine = $this->getDoctrine();
 		$conversation = $doctrine->getRepository('EuroPrivateMessageBundle:Conversation')->find($id);
 
@@ -118,13 +109,7 @@ class PrivateMessageController extends Controller {
 	}
 
 	public function listAction($archives) {
-		$flashBag = $this->get('session')->getFlashBag();
-		if (!$user = $this->getUser()) {
-			$flashBag->add('error', 'user.login_required');
-
-			return $this->redirect($this->generateUrl('fos_user_security_login'));
-		}
-
+		$user = $this->getUser();
 		$conversations = $this->getDoctrine()->getRepository('EuroPrivateMessageBundle:Conversation')->findConversationsForUser($user, $archives);
 		$form = $this->createForm(new ConversationType());
 
@@ -137,12 +122,7 @@ class PrivateMessageController extends Controller {
 
 	public function readAction($id) {
 		$flashBag = $this->get('session')->getFlashBag();
-		if (!$user = $this->getUser()) {
-			$flashBag->add('error', 'user.login_required');
-
-			return $this->redirect($this->generateUrl('fos_user_security_login'));
-		}
-
+		$user = $this->getUser();
 		$doctrine = $this->getDoctrine();
 		$messages = $doctrine->getRepository('EuroPrivateMessageBundle:Message')->findByConversation($id);
 
@@ -186,11 +166,7 @@ class PrivateMessageController extends Controller {
 
 	public function writeProcessAction() {
 		$translator = $this->get('translator');
-
-		if (!$user = $this->getUser()) {
-			throw $this->createNotFoundException($translator->trans('user.login_required'));
-		}
-
+		$user = $this->getUser();
 		$form = $this->createForm(new ConversationType());
 		$request = $this->getRequest();
 

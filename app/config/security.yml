@@ -27,7 +27,6 @@ security:
                 use_forward:    false
                 check_path:     /admin/login_check
                 failure_path:   null
-                use_referer:    true
             logout:
                 path:           /admin/logout
                 target:         /
@@ -39,9 +38,10 @@ security:
             form_login:
                 provider:       fos_userbundle
                 login_path:     /login
-                use_forward:    false
+                use_forward:    true
                 check_path:     /login_check
                 failure_path:   null
+                use_referer:    true
             logout:             true
             anonymous:          true
         dev:
@@ -58,4 +58,8 @@ security:
         - { path: ^/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/admin, role: [ROLE_ADMIN, ROLE_SONATA_ADMIN] }
+        - { path: ^/exchange, role: ROLE_USER }
+        - { path: ^/pm, role: ROLE_USER }
+        - { path: ^/profile, role: ROLE_USER }
+        - { path: ^/users, role: ROLE_USER }
         - { path: ^/.*, role: IS_AUTHENTICATED_ANONYMOUSLY }

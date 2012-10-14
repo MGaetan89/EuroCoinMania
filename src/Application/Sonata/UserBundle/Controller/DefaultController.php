@@ -10,12 +10,7 @@ class DefaultController extends BaseController {
 
 	public function collectionAction($type, $country_id, $user_id) {
 		$flashBag = $this->get('session')->getFlashBag();
-		if (!$user = $this->getUser()) {
-			$flashBag->add('error', 'user.login_required');
-
-			return $this->redirect($this->generateUrl('fos_user_security_login'));
-		}
-
+		$user = $this->getUser();
 		if ($user->getId() != $user_id) {
 			$user = $this->getDoctrine()->getRepository('ApplicationSonataUserBundle:User')->find($user_id);
 
@@ -137,12 +132,7 @@ class DefaultController extends BaseController {
 	}
 
 	public function queryAction() {
-		$translator = $this->get('translator');
-
-		if (!$user = $this->getUser()) {
-			throw $this->createNotFoundException($translator->trans('user.login_required'));
-		}
-
+		$user = $this->getUser();
 		$query = strtolower($this->getRequest()->request->get('query'));
 
 		$queryBuilder = $this->getDoctrine()->getEntityManager()->createQueryBuilder();
@@ -170,12 +160,7 @@ class DefaultController extends BaseController {
 	}
 
 	public function showAction($id) {
-		if (!$user = $this->getUser()) {
-			$this->get('session')->getFlashBag()->add('error', 'user.login_required');
-
-			return $this->redirect($this->generateUrl('fos_user_security_login'));
-		}
-
+		$user = $this->getUser();
 		if ($user->getId() != $id) {
 			$user = $this->getDoctrine()->getRepository('ApplicationSonataUserBundle:User')->find($id);
 
@@ -192,12 +177,7 @@ class DefaultController extends BaseController {
 	}
 
 	public function statsAction($id) {
-		if (!$user = $this->getUser()) {
-			$this->get('session')->getFlashBag()->add('error', 'user.login_required');
-
-			return $this->redirect($this->generateUrl('fos_user_security_login'));
-		}
-
+		$user = $this->getUser();
 		$doctrine = $this->getDoctrine();
 		if ($user->getId() != $id) {
 			$user = $doctrine->getRepository('ApplicationSonataUserBundle:User')->find($id);

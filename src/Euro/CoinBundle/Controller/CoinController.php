@@ -177,7 +177,7 @@ class CoinController extends BaseController {
 				$values = array_shift($values);
 			}
 
-			if ($user = $this->getUser()) {
+			if (($user = $this->getUser()) !== null) {
 				$user_coins = $doctrine->getRepository('EuroCoinBundle:UserCoin')->findByCountryForUser($user, $country);
 
 				foreach ($user_coins as $user_coin) {

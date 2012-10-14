@@ -10,12 +10,7 @@ class ExchangeController extends BaseController {
 
 	public function acceptCancelRefuseAction($id, $type) {
 		$flashBag = $this->get('session')->getFlashBag();
-		if (!$user = $this->getUser()) {
-			$flashBag->add('error', 'user.login_required');
-
-			return $this->redirect($this->generateUrl('fos_user_security_login'));
-		}
-
+		$user = $this->getUser();
 		$doctrine = $this->getDoctrine();
 		$exchange = $doctrine->getRepository('EuroCoinBundle:Exchange')->find($id);
 
@@ -113,12 +108,7 @@ class ExchangeController extends BaseController {
 
 	public function chooseCoinsAction($id) {
 		$flashBag = $this->get('session')->getFlashBag();
-		if (!$user = $this->getUser()) {
-			$flashBag->add('error', 'user.login_required');
-
-			return $this->redirect($this->generateUrl('fos_user_security_login'));
-		}
-
+		$user = $this->getUser();
 		$doctrine = $this->getDoctrine();
 		$from = $doctrine->getRepository('ApplicationSonataUserBundle:User')->find($id);
 
@@ -150,12 +140,7 @@ class ExchangeController extends BaseController {
 	}
 
 	public function chooseUserAction() {
-		if (!$user = $this->getUser()) {
-			$this->get('session')->getFlashBag()->add('error', 'user.login_required');
-
-			return $this->redirect($this->generateUrl('fos_user_security_login'));
-		}
-
+		$user = $this->getUser();
 		$users = $this->getDoctrine()->getRepository('EuroCoinBundle:UserCoin')->findDoublesForUser($user);
 
 		if (!$users) {
@@ -173,12 +158,7 @@ class ExchangeController extends BaseController {
 
 	public function listAction($all) {
 		$flashBag = $this->get('session')->getFlashBag();
-		if (!$user = $this->getUser()) {
-			$flashBag->add('error', 'user.login_required');
-
-			return $this->redirect($this->generateUrl('fos_user_security_login'));
-		}
-
+		$user = $this->getUser();
 		$doctrine = $this->getDoctrine();
 		$exchanges = $doctrine->getRepository('EuroCoinBundle:Exchange')->findForUser($user, $all);
 
@@ -209,11 +189,7 @@ class ExchangeController extends BaseController {
 
 	public function proposeCoinsAction($id) {
 		$translator = $this->get('translator');
-
-		if (!$user = $this->getUser()) {
-			throw $this->createNotFoundException($translator->trans('user.login_required'));
-		}
-
+		$user = $this->getUser();
 		$doctrine = $this->getDoctrine();
 		$from = $doctrine->getRepository('ApplicationSonataUserBundle:User')->find($id);
 
@@ -267,11 +243,7 @@ class ExchangeController extends BaseController {
 
 	public function saveAction($id) {
 		$translator = $this->get('translator');
-
-		if (!$user = $this->getUser()) {
-			throw $this->createNotFoundException($translator->trans('user.login_required'));
-		}
-
+		$user = $this->getUser();
 		$doctrine = $this->getDoctrine();
 		$from = $doctrine->getRepository('ApplicationSonataUserBundle:User')->find($id);
 
@@ -350,12 +322,6 @@ class ExchangeController extends BaseController {
 	}
 
 	public function showAction($id) {
-		if (!$user = $this->getUser()) {
-			$this->get('session')->getFlashBag()->add('error', 'user.login_required');
-
-			return $this->redirect($this->generateUrl('fos_user_security_login'));
-		}
-
 		$doctrine = $this->getDoctrine();
 		$exchange = $doctrine->getRepository('EuroCoinBundle:Exchange')->find($id);
 
