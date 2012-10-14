@@ -36,10 +36,20 @@ class DefaultController extends BaseController {
 		$user_coins = $doctrine->getRepository('EuroCoinBundle:UserCoin')->findCoinsByUser($user, $type);
 		$values = array();
 
-		if (!$user_coins && $type != Coin::TYPE_CIRCULATION) {
-			$flashBag->add('info', 'user.has_no_such_coin');
+		if (!$user_coins) {
+			if ($type == Coin::TYPE_CIRCULATION) {
+				$type = Coin::TYPE_COMMEMORATIVE;
+			} else if ($type == Coin::TYPE_COMMEMORATIVE) {
+				$type = Coin::TYPE_COLLECTOR;
+			} else {
+				$flashBag->add('info', 'user.has_no_such_coin');
 
-			return $this->redirect($this->generateUrl('show_user_collection1', array(
+				return $this->redirect($this->generateUrl('show_profile', array(
+									'user_id' => $user_id,
+								)));
+			}
+
+			return $this->redirect($this->generateUrl('show_user_collection' . $type, array(
 								'user_id' => $user_id,
 							)));
 		}
