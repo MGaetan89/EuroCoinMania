@@ -16,6 +16,7 @@ class ContactType extends AbstractType {
 						'comment' => 'contact.subject.comment',
 						'proposition' => 'contact.subject.proposition',
 						'missing_coins' => 'contact.subject.missing_coins',
+						'partnership' => 'contact.subject.partnership',
 						'other' => 'contact.subject.other',
 					)
 				))

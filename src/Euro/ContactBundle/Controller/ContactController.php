@@ -13,7 +13,7 @@ class ContactController extends Controller {
 			'email' => null,
 			'message' => null,
 			'name' => null,
-			'subject' => 'other',
+			'subject' => $request->get('subject') ? : 'other',
 		);
 		$form = $this->createForm(new ContactType(), $default);
 

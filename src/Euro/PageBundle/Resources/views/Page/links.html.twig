@@ -3,6 +3,14 @@
 {% block title %}{{ 'links'|trans }}{% endblock %}
 
 {% block content %}
+<div class="alert alert-info">
+	<button class="close" type="button" data-dismiss="alert">×</button>
+
+	{{ 'links.information'|trans({ '%path%': path('contact', { subject: 'partnership' }) })|raw }}
+</div>
+
+<h3 class="page-header">{{ 'links.about_euro'|trans }}</h3>
+
 <ul class="thumbnails">
 	<li class="span12">
 		<a class="thumbnail" href="http://www.collect2euros.fr/" target="_blank">
@@ -10,12 +18,17 @@
 				alt="Site pour les collectionneurs pièces de 2 euros"
 				rel="tooltip"
 				src="{{ asset('bundles/europage/images/collect2euros.png') }}"
-				title="<h5>Collect2euros</h5>Site pour les collectionneurs de pièces de 2 euros"
+				title="<h5>Collect2euros</h5>Site pour les collectionneurs pièces de 2 euros"
 			/>
-			<h3 style="text-align: center;">Collect2euros</h3>
+			<h3 style="text-align: center;">
+				<img alt="{{ 'fr'|language }}" rel="tooltip" src="{{ asset('bundles/applicationsonatauser/images/fr.png') }}" title="{{ 'fr'|language }}" />
+				Collect2euros
+			</h3>
 		</a>
 	</li>
 </ul>
+
+<h3 class="page-header">{{ 'links.other_sites'|trans }}</h3>
 
 <ul class="thumbnails">
 	<li class="span12">
@@ -24,11 +37,13 @@
 				alt="Republic of Gamers par ASUS - Jouons selon vos regles ! Tout le savoir faire ASUS pour des composants et PC portables surpuissant dédiés au Gaming !"
 				rel="tooltip"
 				src="{{ asset('bundles/europage/images/republicofgamers.jpg') }}"
-				title="<h5>Republic of Gamers par ASUS</h5>Jouons selon vos regles !<br />Tout le savoir faire ASUS pour des composants et PC portables surpuissant dédiés au Gaming !"
+				title="<h5>Republic of Gamers par ASUS</h5>Republic of Gamers par ASUS - Jouons selon vos regles ! Tout le savoir faire ASUS pour des composants et PC portables surpuissant dédiés au Gaming !"
 			/>
-			<h3 style="text-align: center;">Republic of Gamers par ASUS</h3>
+			<h3 style="text-align: center;">
+				<img alt="{{ 'fr'|language }}" rel="tooltip" src="{{ asset('bundles/applicationsonatauser/images/fr.png') }}" title="{{ 'fr'|language }}" />
+				Republic of Gamers par ASUS
+			</h3>
 		</a>
 	</li>
 </ul>
 {% endblock %}
-

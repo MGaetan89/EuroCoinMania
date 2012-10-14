@@ -9,3 +9,6 @@ copyright.php_framework: PHP Framework
 copyright.used_technologies: Used technologies
 copyright.webmaster: Webmaster
 links: Links
+links.about_euro: Sites about Euro
+links.information: If you want to add your website to this list, please use the <a href="%path%">contact form</a> to provide the required information.
+links.other_sites: Other websites
