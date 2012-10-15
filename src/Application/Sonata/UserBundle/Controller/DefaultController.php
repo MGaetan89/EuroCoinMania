@@ -40,7 +40,7 @@ class DefaultController extends BaseController {
 				$flashBag->add('info', 'user.has_no_such_coin');
 
 				return $this->redirect($this->generateUrl('show_profile', array(
-									'user_id' => $user_id,
+									'id' => $user_id,
 								)));
 			}
 
