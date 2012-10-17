@@ -24,7 +24,7 @@
 		<tr>
 			<td>
 				{% if coin.image %}
-					{% media coin.image, 'small' %}
+					{% media coin.image, 'small' with { alt: coin.description, title: coin.description } %}
 				{% else %}
 					{{ 'coin.no_image'|trans }}
 				{% endif %}
