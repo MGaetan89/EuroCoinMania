@@ -65,10 +65,9 @@
 
 				<h3 class="page-header">{{ 'user.stats.global.collection_distribution'|trans }}</h3>
 
-				<div class="progress">
-					{% set classes = ['info', 'success', 'warning', 'danger'] %}
-
-					{% for country in countries %}
+				{% set classes = ['info', 'success', 'warning', 'danger'] %}
+				{% for country in countries %}
+					<div class="progress">
 						{% set count, total = countries_user_stats[country.id].total_coins, global.total_coins %}
 						{% set country_name = macros.name(country) %}
 						{% set title = 'user.stats.global.coin_distribution'|transchoice(count, {
@@ -78,8 +77,8 @@
 						}) %}
 
 						<div class="bar bar-{{ cycle(classes, loop.index0) }}" rel="tooltip" style="width: {{ count / total * 100 }}%;" title="{{ title }}">{{ country_name }}</div>
-					{% endfor %}
-				</div>
+					</div>
+				{% endfor %}
 			</div>
 
 			{% for country in countries %}
