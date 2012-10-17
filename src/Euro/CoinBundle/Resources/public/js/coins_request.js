@@ -25,7 +25,7 @@ $(function () {
 			count++;
 			total += value;
 
-			var elt = $('<li id="' + id + '"></li>').html(model.replace('%COIN%', $this.data('desc')));
+			var elt = $('<li id="' + id + '"></li>').html(model.replace('%COIN%', $this.data('desc'))).data('value', value);
 
 			coins_list.before(elt.data('value', value));
 		}
@@ -41,6 +41,9 @@ $(function () {
 
 	$('#coins_list').on('click', '[data-action=remove-coin]', function () {
 		var parent = $(this).parent(), id = parent.attr('id').replace('coin-', '');
+
+		total -= parent.data('value');
+		total_elt.text(Math.round(total * 100) / 100);
 
 		$('button[data-coin=' + id + ']').button('toggle');
 		parent.detach();
