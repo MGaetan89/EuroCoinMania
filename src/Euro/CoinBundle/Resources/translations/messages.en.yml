@@ -134,9 +134,13 @@ exchange.refused: This exchange has been refused
 exchange.showing: Viewing an exchange
 exchange.status: Status
 exchange.status1: Pending
+exchange.status1.long: This exchange is still open for discussion
 exchange.status2: Accepted
+exchange.status2.long: This exchange has been accepted
 exchange.status3: Canceled
+exchange.status3.long: This exchange has been canceled
 exchange.status4: Refused
+exchange.status4.long: This exchange has been refused
 exchange.total_count: %sum% with %count% coin|%sum% with %count% coins
 exchanges: Exchanges
 exchanges.pending: Pending exchanges

@@ -133,9 +133,13 @@ exchange.refused: L'échange a bien été refusé
 exchange.showing: Affichage d'un échange
 exchange.status: Statut
 exchange.status1: En cours
+exchange.status1.long: Cet échange est toujours en cours de négociation
 exchange.status2: Accepté
+exchange.status2.long: Cet échange a été accepté
 exchange.status3: Annulé
+exchange.status3.long: Cet échange a été annulé
 exchange.status4: Refusé
+exchange.status4.long: Cet échange a été refusé
 exchange.total_count: %sum% en %count% pièce|%sum% en %count% pièces
 exchanges: Echanges
 exchanges.all: Tous vos échanges
