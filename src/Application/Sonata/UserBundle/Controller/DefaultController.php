@@ -86,7 +86,10 @@ class DefaultController extends BaseController {
 			if ($type != Coin::TYPE_CIRCULATION) {
 				$coins = array();
 				foreach ($user_coins as $user_coin) {
-					$coins[] = $user_coin->getCoin();
+					$coin = $user_coin->getCoin();
+					if ($country && $country->getId() == $coin->getCountry()->getId()) {
+						$coins[] = $coin;
+					}
 				}
 
 				if (!$country) {
