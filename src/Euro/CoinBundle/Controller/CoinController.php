@@ -268,13 +268,13 @@ class CoinController extends BaseController {
 		$euro_stats['total_countries'] = count($countries);
 
 		// Sort the countries by translated name
+		$collator = new \Collator($this->getRequest()->getLocale());
 		$translator = $this->get('translator');
-
-		uasort($countries, function ($a, $b) use ($translator) {
+		uasort($countries, function ($a, $b) use ($collator, $translator) {
 					$a_name = $translator->trans((string) $a);
 					$b_name = $translator->trans((string) $b);
 
-					return strcmp($a_name, $b_name);
+					return $collator->compare($a_name, $b_name);
 				});
 
 		// Collection stats
