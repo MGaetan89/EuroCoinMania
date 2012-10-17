@@ -1,6 +1,8 @@
+{% import _self as macros %}
+
 {% macro coin(coin) %}
 {% spaceless %}
-	{{ _self.name(coin.country) }} {{ _self.year(coin.year) }} {{ _self.value(coin.value) }}
+	{{ macros.name(coin.country) }} {{ macros.year(coin.year) }} {{ macros.value(coin.value) }}
 {% endspaceless %}
 {% endmacro %}
 
