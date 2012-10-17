@@ -12,6 +12,8 @@
 {% endif %}
 {% endblock %}
 
+{% block meta_description %}{{ block('title') }}{% endblock %}
+
 {% block body %}
 {% if countries %}
 	{% set name = macros.name(current) %}

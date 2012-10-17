@@ -1,5 +1,7 @@
 {% extends '::base.html.twig' %}
 
+{% block meta_description %}{{ 'news.archives.meta_description'|trans({ '%tag%': tag })|raw }}{% endblock %}
+
 {% block title %}{{ 'news.archives'|trans }}{% endblock %}
 
 {% block body %}

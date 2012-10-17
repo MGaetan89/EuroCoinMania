@@ -51,6 +51,7 @@ coins.differents: %total% different|%total% differents
 coins.suggested_coins: Suggested coins
 coins.requested_coins: Requested coins
 countries.list: Country list
+countries.list.meta_description: List of member countries of the Euro zone
 country.coin1: 'Coins of &laquo; %country% &raquo;'
 country.coin2: 'Commemoratives coins of &laquo; %country% &raquo;'
 country.coin3: 'Collectos coins of &laquo; %country% &raquo;'

@@ -19,6 +19,7 @@ stats.average_age: La moyenne d'âge est de <strong>%age%</strong> ans.
 stats.biggest_collections: Plus grandes collections
 stats.coins_repartition: '<strong>%total_coins%</strong> pièces différentes réparties parmi <strong>%total_countries%</strong> pays de la façon suivante :'
 stats.country: Pays
+stats.meta_description: Statistiques concernant EuroCoin Mania
 stats.minted_coins: Pièces imprimées
 stats.most_valued_collections: Collections ayant le plus de valeur
 stats.registered_members: Membres inscrits

@@ -19,6 +19,7 @@ stats.average_age: The average age is <strong>%age%</strong> years old.
 stats.biggest_collections: Biggest collections
 stats.coins_repartition: '<strong>%total_coins%</strong> different coins splitted between <strong>%total_countries%</strong> countries as follow:'
 stats.country: Country
+stats.meta_description: Statistics about EuroCoin Mania
 stats.minted_coins: Minted coins
 stats.most_valued_collections: Most valued collections
 stats.registered_members: Registered members

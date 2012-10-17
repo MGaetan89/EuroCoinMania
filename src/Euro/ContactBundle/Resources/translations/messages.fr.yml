@@ -1,6 +1,7 @@
 contact: Contact
 contact.email: Adresse e-mail
 contact.message: Message
+contact.meta_description: Contactez l'équipe d'EuroCoin Mania et nous vous répondrons dans les plus brefs délais
 contact.name: Nom
 contact.send: Envoyer
 contact.send.fail: Votre message n'a pas pus être envoyé. Veuillez réessayer ultérieurement.

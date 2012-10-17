@@ -25,6 +25,7 @@ user.information: Information
 user.last_login: Last visit
 user.lastname: Lastname
 user.login: Log in
+user.login.meta_description: Log in to EuroCoin Mania to manage your collection
 user.login_action: Access my account
 user.login_required: You need to be logged in to see this page
 user.logout: Log out
@@ -35,6 +36,7 @@ user.password_forgotten: Password forgotten
 user.phone: Phone number
 user.profile: My profile
 user.register: Register
+user.register.meta_description: Register on EuroCoin Mania to gain access to exclusive features
 user.register_action: Register my account
 user.register_explain: |
     <p>By registering on <strong>EuroCoin Mania</strong>, you will have access to new features :</p>
@@ -47,6 +49,7 @@ user.register_explain: |
 user.registration_date: Registration date
 user.remember_me: Remember me
 user.request_password: Request password
+user.request_password.meta_description: Request a new password if you can not access your account
 user.request_password.submit: Request your password
 user.request_password.username: Username or e-mail address
 user.show_collection: View the collection

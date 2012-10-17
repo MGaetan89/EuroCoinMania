@@ -1,5 +1,7 @@
 {% extends '::base.html.twig' %}
 
+{% block meta_description %}{{ post.abstract|format_text('markdown')|striptags }}{% endblock %}
+
 {% block title %}{{ post.title }}{% endblock %}
 
 {% block body %}
