@@ -80,6 +80,11 @@ img {
 	padding-bottom: 10px;
 }
 
+/* https://github.com/twitter/bootstrap/issues/5113 */
+.modal-open .dropdown-menu {
+  z-index: 20050;
+}
+
 .popover {
 	width: auto;
 }
