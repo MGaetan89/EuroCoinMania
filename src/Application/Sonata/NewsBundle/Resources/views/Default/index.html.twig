@@ -103,7 +103,7 @@
 			<li class="nav-header">{{ 'stats.most_valued_collections'|trans }}</li>
 
 			{% for user in stats.most_valued_collections %}
-				{% set user, total, total_unique = user[0].user, user.total, user.total_unique %}
+				{% set user, total = user[0].user, user.total %}
 
 				<li><a class="clearfix" href="{{ path('show_user_collection1', { user_id: user.id }) }}">
 					<span class="pull-left">
@@ -122,7 +122,7 @@
 						<img alt="{{ image.title }}" rel="tooltip" src="{{ image.src }}" title="{{ image.title }}" data-placement="right" />
 						{{ user.username }}
 					</span>
-					<span class="pull-right">{{ macros.value(total) }} ({{ macros.value(total_unique) }})</span>
+					<span class="pull-right">{{ macros.value(total) }}</span>
 				</a></li>
 			{% else %}
 				<li>{{ 'no_data'|trans }}</li>
