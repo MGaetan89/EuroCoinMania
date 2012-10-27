@@ -8,7 +8,7 @@ class DefaultController extends Controller {
 
 	public function indexAction() {
 		$posts = $this->get('sonata.news.manager.post')->getPager(
-				array(), 1, 9
+				array(), 1, 6
 		);
 
 		$doctrine = $this->getDoctrine();

@@ -36,3 +36,5 @@ news.none: Aucune news n'a été publié pour le moment
 news.posted_by_on: Posté par <a href="%path%">%author%</a> le %date%
 news.publication_date: Date de publication
 news.tags: Tags
+twitter.feed: Tweets de @EuroCoinMania
+twitter.tweets: Tweets
