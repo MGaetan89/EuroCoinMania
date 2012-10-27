@@ -2,29 +2,37 @@
 
 {% block content %}
 {% if countries and coins|length > 0 %}
-	{% set header %}
-	<tr>
-		<th>&nbsp;</th>
-		{% for value in all_values %}
+	{% set header_content %}
+	{% for value in all_values %}
 		<th>{{ macros.value(value) }}</th>
-		{% endfor %}
-	</tr>
+	{% endfor %}
 	{% endset %}
 
 	{% set empty_cell %}
 	<td style="text-align: center;">{{ 'coin.no_mintage'|trans }}</td>
 	{% endset %}
 
+	{% set hide_count = 0 %}
+	{% set year_range = constant('Euro\\CoinBundle\\Controller\\CoinController::YEAR_RANGE_SIZE') %}
+
 	<table class="table table-bordered table-condensed table-hover table-striped">
 	<tbody>
-		{{ header }}
+		<tr>
+			<th><i class="icon-minus" data-action="toggle-collection"></i></th>
+			{{ header_content }}
+		</tr>
 
 		{% for year, values in coins %}
-			{% if loop.index0 > 0 and loop.index0 % constant('Euro\\CoinBundle\\Controller\\CoinController::YEAR_RANGE_SIZE') == 0 %}
-				{{ header }}
+			{% if loop.index0 > 0 and loop.index0 % year_range == 0 %}
+				{% set hide_count = year_range %}
+
+				<tr class="values">
+					<th><i class="icon-plus" data-action="toggle-collection"></i></th>
+					{{ header_content }}
+				</tr>
 			{% endif %}
 
-			<tr>
+			<tr{% if hide_count > 0 %} class="hide"{% set hide_count = hide_count - 1 %}{% endif %}>
 				{% set has_year = false %}
 				{% for value in all_values if values[value] is defined and not has_year %}
 					{% set has_year = true %}

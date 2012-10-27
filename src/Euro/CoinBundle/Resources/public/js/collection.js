@@ -73,6 +73,16 @@ $(function () {
 		trigger: 'hover'
 	});
 
+	$('table').on('click', 'i[data-action=toggle-collection]', function () {
+		var $this = $(this), row = $this.parents('tr');
+
+		$this.toggleClass('icon-minus icon-plus');
+
+		row.nextUntil('.values').each(function () {
+			$(this).slideToggle();
+		});
+	});
+
 	$('body').on('click', '.zoomable img', function () {
 		var $this = $(this);
 
