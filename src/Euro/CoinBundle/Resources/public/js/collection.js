@@ -74,13 +74,8 @@ $(function () {
 	});
 
 	$('table').on('click', 'i[data-action=toggle-collection]', function () {
-		var $this = $(this), row = $this.parents('tr');
-
-		$this.toggleClass('icon-minus icon-plus');
-
-		row.nextUntil('.values').each(function () {
-			$(this).slideToggle();
-		});
+		$(this).toggleClass('icon-minus icon-plus')
+			.parents('tr').nextUntil('.values', 'tr').slideToggle();
 	});
 
 	$('body').on('click', '.zoomable img', function () {
