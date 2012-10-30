@@ -70,6 +70,7 @@ $(function () {
 	});
 
 	$('[data-action=popover]').popover({
+		html: true,
 		trigger: 'hover'
 	});
 
