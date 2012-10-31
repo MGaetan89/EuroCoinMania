@@ -29,12 +29,13 @@ $(function () {
 		}
 
 		$.each(countries, function (index, country) {
-			map.find('#' + country.nameiso)
-			.attr('title', country.name)
-			.hover(hoverIn, hoverOut)
-			.on('click', function () {
-				location.href = country.path;
-			});
+			map
+				.find('#' + country.nameiso)
+				.attr('title', country.name)
+				.hover(hoverIn, hoverOut)
+				.on('click', function () {
+					location.href = country.path;
+				});
 		});
 	});
 });

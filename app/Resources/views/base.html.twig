@@ -42,7 +42,7 @@
 	{% endif %}
 </head>
 <body>
-{% set locale = 'en' %}
+{% set locale, route = 'en', app.request.get('_route') %}
 {% if app.user.locale is defined %}
 	{% set locale = app.user.locale %}
 {% endif %}
@@ -103,23 +103,11 @@
 </div>
 
 <div class="container-fluid">
-	{% if app.request.get('_route') == 'welcome' %}
+	{% if route == 'welcome' %}
 	<div class="alert alert-info fade in">
 		<button class="close" type="button" data-dismiss="alert">×</button>
 
 		A compter du <strong>dimanche 4 novembre 2012</strong>, le site terminera sa phase de test.
-	</div>
-
-	<div class="alert alert-block alert-info fade in">
-		<button class="close" type="button" data-dismiss="alert">×</button>
-
-		<h4>{{ 'information'|trans }}</h4>
-
-		{{ 'sitename'|trans }} est toujours en développement.<br />
-		Au moment de son lancement officiel, la base de données sera réinitialisée. Cela signifie que les news, commentaires, collections, comptes utilisateurs, ... seront perdues.<br />
-		Si vous souhaitez conserver l'une de ces informations, veuillez prendre contact avec <a href="{{ path('contact') }}">M.Gaetan89</a>.<br /><br />
-
-		Merci de votre participation et de votre aide dans le test et l'amélioration de ce site.
 	</div>
 	{% endif %}
 
@@ -166,7 +154,7 @@
 							<b class="caret"></b>
 						</a>
 
-						<ul class="dropdown-menu" style="padding-left: 10px;">
+						<ul class="dropdown-menu pull-right" style="padding-left: 10px;">
 							<li>
 								<div class="g-plusone"></div>
 							</li>
@@ -184,11 +172,15 @@
 					{{ 'site_created_by'|trans({
 						'%name%': 'M.Gaetan89',
 						'%path%': path('show_profile', { id: 1 }),
-					})|raw }} &mdash;
+					})|raw }}
+
+					{% if route in ['coin_collection1', 'coin_collection2', 'coin_collection3'] %}
+					 &mdash;
 					{{ 'coin_data_provider'|trans({
 						'%name%': 'Euro Auflagen',
 						'%path%': 'http://euro-auflagen.de/',
 					})|raw }}
+					{% endif %}
 				</p>
 			</div>
 
@@ -196,7 +188,7 @@
 				<hr />
 
 				<p>
-					<strong>{{ 'coin.collection'|trans }} :</strong>
+					<strong>{{ 'coin.collection'|trans }} &mdash;</strong>
 
 						{% for i in 1..3 %}
 							<a href="{{ path('coin_collection' ~ i) }}">{{ ('coin.type' ~ i)|trans }}</a> &bull;
@@ -207,14 +199,14 @@
 
 				{% if app.user %}
 					<p>
-						<strong>{{ 'exchanges'|trans }} :</strong>
+						<strong>{{ 'exchanges'|trans }} &mdash;</strong>
 
 							<a href="{{ path('exchange_choose_user') }}">{{ 'exchange.new'|trans }}</a> &bull;
 							<a href="{{ path('exchange_list') }}">{{ 'exchanges.pending'|trans }}</a> &bull;
 							<a href="{{ path('exchange_list_all') }}">{{ 'exchanges.all'|trans }}</a>
 					</p>
 					<p>
-						<strong>{{ app.user.username }} :</strong>
+						<strong>{{ app.user.username }} &mdash;</strong>
 
 							{% if is_granted('ROLE_ADMIN') %}
 								<a href="{{ path('sonata_admin_dashboard') }}">{{ 'administration'|trans }}</a> &bull;
@@ -226,7 +218,7 @@
 					</p>
 				{% else %}
 					<p>
-						<strong>{{ 'user.account'|trans }} :</strong>
+						<strong>{{ 'user.account'|trans }} &mdash;</strong>
 
 						<a href="{{ path('fos_user_security_login') }}" rel="nofollow">{{ 'user.login'|trans }}</a> &bull;
 						<a href="{{ path('fos_user_registration_register') }}" rel="nofollow">{{ 'user.register'|trans }}</a>
@@ -234,7 +226,7 @@
 				{% endif %}
 
 				<p>
-					<strong>{{ 'sitename'|trans }} :</strong>
+					<strong>{{ 'sitename'|trans }} &mdash;</strong>
 
 						<a href="{{ path('contact') }}">{{ 'contact'|trans }}</a> &bull;
 						<a href="{{ path('page_copyright') }}">{{ 'copyright'|trans }}</a> &bull;
@@ -247,7 +239,7 @@
 </div>
 
 {% if not app.user %}
-	{% if app.request.get('_route') != 'fos_user_security_login' %}
+	{% if route != 'fos_user_security_login' %}
 		<div class="fade hide modal" id="modal-login" tabindex="-1">
 			<div class="modal-header">
 				<button class="close" type="button" data-dismiss="modal">×</button>
@@ -260,7 +252,7 @@
 		</div>
 	{% endif %}
 
-	{% if app.request.get('_route') != 'fos_user_registration_register' %}
+	{% if route != 'fos_user_registration_register' %}
 		<div class="fade hide modal" id="modal-register" tabindex="-1">
 			<div class="modal-header">
 				<button class="close" type="button" data-dismiss="modal">×</button>
