@@ -16,7 +16,7 @@
 </h2>
 
 <div class="row-fluid">
-	<div class="span3">
+	<div class="span2">
 		{% if app.request.get('_route') in ['show_profile', 'show_user_stats'] and gravatar_exists(user.email) %}
 			<div style="margin-bottom: 10px; padding-left: 20px;">
 				<img alt="{{ user.username }}" class="img-polaroid" src="{{ gravatar(user.email) }}" title="{{ user.username }}" />
@@ -24,7 +24,7 @@
 		{% endif %}
 
 		<div class="dropdown">
-			<ul class="dropdown-menu" style="display: block; position: static;">
+			<ul class="dropdown-menu" style="display: block; position: static; width: 178px;">
 				{% if app.request.get('_route') in ['show_user_collection1', 'show_user_collection2', 'show_user_collection3'] %}
 					{% include 'ApplicationSonataUserBundle:Profile:collection_menu.html.twig' %}
 				{% endif %}
@@ -75,7 +75,7 @@
 			</ul>
 		</div>
 	</div>
-	<div class="span9">
+	<div class="span10">
 		{% block content %}{% endblock %}
 	</div>
 </div>
