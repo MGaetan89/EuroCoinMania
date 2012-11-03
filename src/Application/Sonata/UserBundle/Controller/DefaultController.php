@@ -337,6 +337,13 @@ class DefaultController extends BaseController {
 
 						return $collator->compare($a_name, $b_name);
 					});
+
+			usort($countries, function ($a, $b) use ($collator, $translator) {
+						$a_name = $translator->trans((string) $a);
+						$b_name = $translator->trans((string) $b);
+
+						return $collator->compare($a_name, $b_name);
+					});
 		}
 
 		return $this->render('ApplicationSonataUserBundle:Profile:stats.html.twig', array(
