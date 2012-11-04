@@ -22,28 +22,28 @@
 							<div class="span6">
 						{% endif %}
 
-							<{{ tag_name }}><a href="{{ url('sonata_news_view', { permalink: sonata_news_permalink(post) }) }}">{{ post.title }}</a></{{ tag_name }}>
+						<{{ tag_name }}><a href="{{ url('sonata_news_view', { permalink: sonata_news_permalink(post) }) }}">{{ post.title }}</a></{{ tag_name }}>
 
-							<p>{{ post.abstract|format_text('markdown')|raw }}</p>
-							<p>
-								<span class="muted">{{ 'news.posted_by_on'|trans({ '%author%': post.author, '%date%': post.publicationDateStart|format_datetime, '%path%': path('show_profile', { id: post.author.id }) })|raw }}</span>
+						<p>{{ post.abstract|format_text('markdown')|raw }}</p>
+						<p>
+							<span class="muted">{{ 'news.posted_by_on'|trans({ '%author%': post.author, '%date%': post.publicationDateStart|format_datetime, '%path%': path('show_profile', { id: post.author.id }) })|raw }}</span>
 
-								{% if post.commentsCount > 0 %}
-									{% set comment_count = 'news.comments.count'|transchoice(post.commentsCount, { '%count%': post.commentsCount }) %}
-									{% if loop.index0 > 0 %}
-										<span class="badge pull-right" rel="tooltip" title="{{ comment_count }}">{{ post.commentsCount }}</span>
-									{% else %}
-										<span class="label pull-right">{{ comment_count }}</span>
-									{% endif %}
+							{% if post.commentsCount > 0 %}
+								{% set comment_count = 'news.comments.count'|transchoice(post.commentsCount, { '%count%': post.commentsCount }) %}
+								{% if loop.index0 > 0 %}
+									<span class="badge pull-right" rel="tooltip" title="{{ comment_count }}">{{ post.commentsCount }}</span>
+								{% else %}
+									<span class="label pull-right">{{ comment_count }}</span>
 								{% endif %}
-							</p>
-						</div>
+							{% endif %}
+						</p>
+					</div>
 
-						{% if loop.index0 == 0 %}
-							</div>
-							<div class="row-fluid">
-						{% endif %}
-					{% endfor %}
+					{% if loop.index0 == 0 %}
+						</div>
+						<div class="row-fluid">
+					{% endif %}
+				{% endfor %}
 			</div>
 		{% elseif total_posts == 1 %}
 			{% for post in posts %}
