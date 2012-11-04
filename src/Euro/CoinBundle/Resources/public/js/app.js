@@ -10,3 +10,4 @@ $(function () {
 		footer_short.toggle();
 	});
 });
+

@@ -9,7 +9,6 @@ information: Information!
 menu: Menu
 no_data: No data
 personnal_menu: Personnal menu
-share: Share
 site_created_by: Site created by <a href="%path%">%name%</a>
 site_description: Manage your Euro coin collection and suggest exchanges to the other users.
 site_keywords: euro, exchange, coin, collection, collector, mintage, numismatist, share
