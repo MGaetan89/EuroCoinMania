@@ -159,15 +159,18 @@ class CoinController extends BaseController {
 			}
 
 			$coins = $coin_repo->findCoinsByCountry($country, $type, $year_range);
+			$user = $this->getUser();
 
 			if ($type == Coin::TYPE_CIRCULATION) {
 				foreach ($coins as $coin) {
 					$value = (string) $coin->getValue()->getValue();
 
-					if (!isset($totals[$value])) {
-						$totals[$value] = $coin->getMintage();
-					} else {
-						$totals[$value] += $coin->getMintage();
+					if (!$user) {
+						if (!isset($totals[$value])) {
+							$totals[$value] = $coin->getMintage();
+						} else {
+							$totals[$value] += $coin->getMintage();
+						}
 					}
 				}
 
@@ -177,12 +180,19 @@ class CoinController extends BaseController {
 				$values = array_shift($values);
 			}
 
-			if (($user = $this->getUser()) !== null) {
+			if ($user !== null) {
+				$totals = array_fill_keys($values, 0);
 				$user_coins = $doctrine->getRepository('EuroCoinBundle:UserCoin')->findByCountryForUser($user, $country);
 
 				foreach ($user_coins as $user_coin) {
-					if ($user_coin->getQuantity() > 0) {
-						$uc[$user_coin->getCoin()->getId()] = $user_coin;
+					$coin = $user_coin->getCoin();
+					$quantity = $user_coin->getQuantity();
+					$value = (string) $coin->getValue()->getValue();
+
+					$totals[$value] += $quantity;
+
+					if ($quantity > 0) {
+						$uc[$coin->getId()] = $user_coin;
 					}
 				}
 			}

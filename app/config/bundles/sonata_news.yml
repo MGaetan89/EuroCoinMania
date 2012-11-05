@@ -1,12 +1,12 @@
 sonata_news:
-    title:        Sonata Project
-    link:         http://sonata-project.org
-    description:  Cool bundles on top of Symfony2
-    salt:         'secureToken'
+    title:        'EuroCoin Mania'
+    link:         http://www.eurocoin-mania.eu/
+    description:  'Manage your Euro coin collection and suggest exchanges to the other users.'
+    salt:         'd6103a76bf071c49945ae4d9fd69e98fc'
     permalink_generator: sonata.news.permalink.date # sonata.news.permalink.category
 
     comment:
         notification:
-            emails:   [email@example.org, email2@example.org]
-            from:     no-reply@sonata-project.org
+            emails:   [contact@eurocoin-mania.eu]
+            from:     contact@eurocoin-mania.eu
             template: 'SonataNewsBundle:Mail:comment_notification.txt.twig'
