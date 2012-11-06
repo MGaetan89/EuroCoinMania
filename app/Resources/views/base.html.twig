@@ -238,7 +238,20 @@
 				<h3>{{ 'user.register'|trans }}</h3>
 			</div>
 			<div class="modal-body">
-				{% render 'FOSUserBundle:Registration:register' %}
+				<ul class="nav nav-pills">
+					<li><a href="#information" data-toggle="pill">{{ 'user.register_info'|trans }}</a></li>
+					<li class="active"><a href="#form" data-toggle="pill">{{ 'user.register_form'|trans }}</a></li>
+				</ul>
+
+				<div class="tab-content">
+					<div class="tab-pane" id="information">
+						{{ 'user.register_explain'|trans|raw }}
+					</div>
+
+					<div class="tab-pane active" id="form">
+						{% render 'FOSUserBundle:Registration:register' %}
+					</div>
+				</div>
 			</div>
 		</div>
 	{% endif %}

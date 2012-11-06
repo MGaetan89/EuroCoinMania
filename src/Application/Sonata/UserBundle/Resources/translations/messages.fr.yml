@@ -41,11 +41,13 @@ user.register_action: Créer mon compte
 user.register_explain: |
     <p>En vous inscrivant sur <strong>EuroCoin Mania</strong>, vous aurez accès à de nouvelles fonctionnalités :</p>
     <ul>
-        <li><strong>Gestion de votre collection :</strong> aussi bien les pièces courantes, que les pièces de deux euros commémoratives et les pièces collectors ;</li>
-        <li><strong>Echangez vos pièces avec les autres membres :</strong> proposez vos pièces en double aux autres membres afin de compléter vos collections respectives ;</li>
-        <li><strong>Messagerie privée :</strong> pour discuter de vos échanges ou tout autre sujet ;</li>
+        <li><strong>Gestion de votre collection :</strong> aussi bien les pièces courantes, que les pièces de deux euros commémoratives et les pièces collectors</li>
+        <li><strong>Echangez vos pièces avec les autres membres :</strong> proposez vos pièces en double aux autres membres afin de compléter vos collections respectives</li>
+        <li><strong>Messagerie privée :</strong> pour discuter de vos échanges ou tout autre sujet</li>
     </ul>
     <p>De plus, si vous vous inscrivez avec une adresse e-mail enregistrée sur le site <a href="http://www.gravatar.com/">Gravatar.com</a>, votre photo de profil sera automatiquement affichée sur EuroCoin Mania.</p>
+user.register_form: Formulaire
+user.register_info: Information
 user.registration_date: Date d'inscription
 user.remember_me: Connexion automatique
 user.request_password: Demande de mot de passe

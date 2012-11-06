@@ -46,6 +46,8 @@ user.register_explain: |
         <li><strong>Private messaging:</strong> discuss your exchanges with a smart private messaging</li>
     </ul>
     <p>Furthermore, if your e-mail address is registered on <a href="http://www.gravatar.com/">Gravatar.com</a>, your profile picture will automatically be displayed on EuroCoin Mania.</p>
+user.register_form: Form
+user.register_info: Information
 user.registration_date: Registration date
 user.remember_me: Remember me
 user.request_password: Request password
