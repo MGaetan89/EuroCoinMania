@@ -7,6 +7,7 @@ contact.send: Envoyer
 contact.send.fail: Votre message n'a pas pus être envoyé. Veuillez réessayer ultérieurement.
 contact.send.success: Votre message a bien été envoyé. Nous tâcherons d'en prendre compte dans les plus brefs délais. Merci de votre intérêt.
 contact.subject: Sujet
+contact.subject.bug_report: Dysfonctionnement
 contact.subject.comment: Commentaire
 contact.subject.missing_coins: Pièces manquantes
 contact.subject.other: Autre

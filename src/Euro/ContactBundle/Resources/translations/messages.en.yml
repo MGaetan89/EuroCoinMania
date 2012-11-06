@@ -7,6 +7,7 @@ contact.send: Send
 contact.send.fail: Your message could not be sent. Please try again later.
 contact.send.success: Your message has been successfully sent. We will do our best to take it into account in the shortest possible time. Thank you for your interest.
 contact.subject: Subject
+contact.subject.bug_report: Bug report
 contact.subject.comment: Comment
 contact.subject.missing_coins: Missing coins
 contact.subject.other: Other
