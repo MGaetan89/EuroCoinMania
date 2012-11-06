@@ -17,7 +17,7 @@
 
 	<table class="table table-bordered table-condensed table-hover table-striped">
 	<tbody>
-		<tr id="values">
+		<tr>
 			<th><i class="icon-minus" data-action="toggle-collection"></i></th>
 			{{ header_content }}
 		</tr>
@@ -26,7 +26,7 @@
 			{% if loop.index0 > 0 and loop.index0 % year_range == 0 %}
 				{% set hide_count = year_range %}
 
-				<tr>
+				<tr class="values">
 					<th><i class="icon-plus" data-action="toggle-collection"></i></th>
 					{{ header_content }}
 				</tr>
