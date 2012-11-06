@@ -158,11 +158,11 @@ class CoinController extends BaseController {
 				$year_range[1] = $year_range[0];
 			}
 
-			$coins = $coin_repo->findCoinsByCountry($country, $type, $year_range);
+			$base_coins = $coin_repo->findCoinsByCountry($country, $type, $year_range);
 			$user = $this->getUser();
 
 			if ($type == Coin::TYPE_CIRCULATION) {
-				foreach ($coins as $coin) {
+				foreach ($base_coins as $coin) {
 					$value = (string) $coin->getValue()->getValue();
 
 					if (!$user) {
@@ -174,7 +174,7 @@ class CoinController extends BaseController {
 					}
 				}
 
-				list($coins, $values) = $this->_buildVars($coins);
+				list($coins, $values) = $this->_buildVars($base_coins);
 
 				$coins = array_shift($coins);
 				$values = array_shift($values);
@@ -182,7 +182,9 @@ class CoinController extends BaseController {
 
 			if ($user !== null) {
 				$totals = array_fill_keys($values, 0);
-				$user_coins = $doctrine->getRepository('EuroCoinBundle:UserCoin')->findByCoinsForUser($user, $coins);
+				$user_coins = $doctrine->getRepository('EuroCoinBundle:UserCoin')->findByCoinsForUser($user, $base_coins);
+
+				unset($base_coins);
 
 				foreach ($user_coins as $user_coin) {
 					$coin = $user_coin->getCoin();
