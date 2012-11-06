@@ -38,7 +38,6 @@ coin.remove: Retirer
 coin.self_quantity: Quantité possédée
 coin.total: Total
 coin.unavailable: Non disponible
-coin.sharing_count_info: La valeur éventuelle entre parenthèses représente la quantité engagée dans un échange.
 coin.type: Type
 coin.type1: Circulation
 coin.type2: Commémorative

@@ -17,7 +17,7 @@
 
 	<table class="table table-bordered table-condensed table-hover table-striped">
 	<tbody>
-		<tr>
+		<tr id="values">
 			<th><i class="icon-minus" data-action="toggle-collection"></i></th>
 			{{ header_content }}
 		</tr>
@@ -26,7 +26,7 @@
 			{% if loop.index0 > 0 and loop.index0 % year_range == 0 %}
 				{% set hide_count = year_range %}
 
-				<tr class="values">
+				<tr>
 					<th><i class="icon-plus" data-action="toggle-collection"></i></th>
 					{{ header_content }}
 				</tr>
@@ -57,10 +57,6 @@
 										{% if has_coin %}
 											<button class="btn btn-mini disabled" disabled="disabled" id="quantity-{{ coin.id }}" title="{{ 'coin.self_quantity'|trans }}">
 												{{ uc[coin.id].quantity|number_format }}
-
-												{% if uc[coin.id].sharing %}
-													({{ uc[coin.id].sharing }})
-												{% endif %}
 											</button>
 										{% else %}
 											<button class="btn btn-mini disabled" disabled="disabled" id="quantity-{{ coin.id }}" title="{{ 'coin.registered_quantity'|trans }}">0</button>
@@ -86,11 +82,11 @@
 		{% endfor %}
 	</tbody>
 	<tfoot>
-		<tr>
+		<tr id="quantity-total">
 			<th>{{ 'coin.total'|trans }}</th>
 			{% for value, total in totals %}
 				<th>
-					<span class="pull-left">{{ total|number_format }}</span>
+					<span class="pull-left quantity">{{ total|number_format }}</span>
 					<span class="pull-right" rel="tooltip" title="{{ macros.value(total * value) }}" data-placement="left"><i class="icon-info-sign"></i></span>
 				</th>
 			{% endfor %}

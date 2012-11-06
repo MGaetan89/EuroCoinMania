@@ -1,5 +1,5 @@
 $(function () {
-	var body = $('body'), modal = $('#coin-modal'), opened = null, placement = location.pathname.match('commemorative') ? 'left' : 'bottom';
+	var body = $('body'), modal = $('#coin-modal'), opened = null, placement = location.pathname.match('commemorative') ? 'left' : 'bottom', quantityTotal = $('#quantity-total');
 
 	$('[data-action=add-coin], [data-action=remove-coin]').on('click', function () {
 		var $this = $(this), action = $this.data('action').split('-')[0], id = $this.parents('[data-coin]').data('coin');
@@ -15,7 +15,15 @@ $(function () {
 				return;
 			}
 
-			$('#quantity-' + id).text(quantity);
+			var index = $('#quantity-' + id).text(quantity).index(),
+				total = quantityTotal.find(':eq(' + index + ') .quantity'),
+				oldTotal = parseInt(total.text().replace(/[^0-9]/g, ''));
+
+			if (action == 'add') {
+				total.text(oldTotal + 1);
+			} else {
+				total.text(oldTotal - 1);
+			}
 
 			if (quantity > 0) {
 				if (action === 'add' && quantity == 1) {

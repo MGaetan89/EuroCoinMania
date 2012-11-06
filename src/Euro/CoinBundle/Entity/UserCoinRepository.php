@@ -3,7 +3,6 @@
 namespace Euro\CoinBundle\Entity;
 
 use Doctrine\ORM\EntityRepository;
-use Euro\CoinBundle\Entity\Country;
 use Sonata\UserBundle\Model\UserInterface;
 
 /**
@@ -33,16 +32,15 @@ class UserCoinRepository extends EntityRepository {
 						->getResult();
 	}
 
-	public function findByCountryForUser(UserInterface $user, Country $country) {
+	public function findByCoinsForUser(UserInterface $user, array $coins) {
 		$queryBuilder = $this->createQueryBuilder('uc');
 		$expr = $queryBuilder->expr();
 
 		return $queryBuilder
-						->join('uc.coin', 'c')
 						->where($expr->eq('uc.user', ':user'))
-						->andWhere($expr->eq('c.country', ':country'))
+						->andWhere($expr->in('uc.coin', ':coins'))
 						->setParameters(array(
-							'country' => $country,
+							'coins' => $coins,
 							'user' => $user,
 						))
 						->getQuery()
