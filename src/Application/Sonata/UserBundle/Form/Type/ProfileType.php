@@ -18,9 +18,15 @@ class ProfileType extends AbstractType {
 		$builder
 				->add('firstname', null, array('required' => false))
 				->add('lastname', null, array('required' => false))
-				->add('dateOfBirth', 'birthday', array('required' => false))
+				->add('dateOfBirth', 'birthday', array(
+					'required' => false,
+					'years' => range(date('Y') - 100,  date('Y')),
+				))
 				->add('gender', 'choice', array(
-					'choices' => array('m' => 'user.genderm', 'f' => 'user.genderf'),
+					'choices' => array(
+						'f' => 'user.genderf',
+						'm' => 'user.genderm',
+					),
 					'required' => false,
 				))
 				->add('country', 'country', array('required' => false))
