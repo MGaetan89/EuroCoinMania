@@ -86,6 +86,11 @@
 									<li class="divider"></li>
 								{% endif %}
 
+								{% if is_granted('ROLE_PREVIOUS_ADMIN') %}
+									<li><a href="{{ url('welcome', { _switch_user: '_exit' }) }}">{{ 'admin.restore_account'|trans }}</a></li>
+									<li class="divider"></li>
+								{% endif %}
+
 								<li{{ macros.is_active(['show_profile', 'show_user_collection1', 'show_user_collection2', 'show_user_collection3', 'show_user_stats']) }}><a href="{{ path('show_profile', { id: app.user.id }) }}">{{ 'user.profile'|trans }}</a></li>
 								<li{{ macros.is_active(['pm_list', 'pm_list_archives', 'pm_read']) }}><a href="{{ path('pm_list') }}">{{ 'pm.user_pm'|trans }}</a></li>
 								<li class="divider"></li>
