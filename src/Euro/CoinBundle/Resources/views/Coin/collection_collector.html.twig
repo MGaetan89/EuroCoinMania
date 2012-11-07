@@ -45,10 +45,6 @@
 							{% if has_coin %}
 								<button class="btn btn-mini disabled" disabled="disabled" id="quantity-{{ coin.id }}" title="{{ 'coin.self_quantity'|trans }}">
 									{{ uc[coin.id].quantity|number_format }}
-
-									{% if uc[coin.id].sharing %}
-										({{ uc[coin.id].sharing }})
-									{% endif %}
 								</button>
 							{% else %}
 								<button class="btn btn-mini disabled" disabled="disabled" id="quantity-{{ coin.id }}" title="{{ 'coin.registered_quantity'|trans }}">0</button>

@@ -178,6 +178,8 @@ class CoinController extends BaseController {
 
 				$coins = array_shift($coins);
 				$values = array_shift($values);
+			} else {
+				$coins = $base_coins;
 			}
 
 			if ($user !== null) {
@@ -191,7 +193,11 @@ class CoinController extends BaseController {
 					$quantity = $user_coin->getQuantity();
 					$value = (string) $coin->getValue()->getValue();
 
-					$totals[$value] += $quantity;
+					if (!isset($totals[$value])) {
+						$totals[$value] = $quantity;
+					} else {
+						$totals[$value] += $quantity;
+					}
 
 					if ($quantity > 0) {
 						$uc[$coin->getId()] = $user_coin;

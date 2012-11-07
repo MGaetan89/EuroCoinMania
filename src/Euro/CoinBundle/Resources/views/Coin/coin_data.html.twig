@@ -1,7 +1,7 @@
 {% import "::macros.html.twig" as macros %}
 
-<div class="hide" id="coin-info-{{ coin.id }}">
-	<div class="row">
+<div id="coin-info-{{ coin.id }}">
+	<div class="row-fluid">
 		{% if coin.image and coin.type == 1 %}
 			<div class="span2 zoomable">
 				{% media coin.image, 'small' with { alt: coin.description, title: coin.description } %}
@@ -9,7 +9,7 @@
 		{% endif %}
 	{% if coin.type == 1 %}
 	</div>
-	<div class="row">
+	<div class="row-fluid">
 		{% if coin.image and coin.type == 1 %}
 		<div class="span2">
 			<dl>

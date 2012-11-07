@@ -1,7 +1,27 @@
 $(function () {
-	var body = $('body'), modal = $('#coin-modal'), opened = null, placement = location.pathname.match('commemorative') ? 'left' : 'bottom', quantityTotal = $('#quantity-total');
+	var body = $('body'),
+		modal = $('#coin-modal'),
+		opened = null,
+		placement = location.pathname.match('commemorative') ? 'left' : 'right',
+		quantityTotal = $('#quantity-total');
 
-	$('[data-action=add-coin], [data-action=remove-coin]').on('click', function () {
+	var text = '−';
+	$('[data-action=hide-items]').on('click', function () {
+		var $this = $(this);
+
+		$this.nextUntil('.divider', 'li').slideToggle();
+		$this.find('span').text(text);
+		text = (text == '−') ? '+' : '−';
+
+		return false;
+	});
+
+	$('[data-action=popover]').popover({
+		html: true,
+		trigger: 'hover'
+	});
+
+	$('table').on('click', '[data-action=add-coin], [data-action=remove-coin]', function () {
 		var $this = $(this), action = $this.data('action').split('-')[0], id = $this.parents('[data-coin]').data('coin');
 
 		if ($this.hasClass('disabled')) {
@@ -20,6 +40,7 @@ $(function () {
 				oldTotal = parseInt(total.text().replace(/[^0-9]/g, ''));
 
 			if (action == 'add') {
+
 				total.text(oldTotal + 1);
 			} else {
 				total.text(oldTotal - 1);
@@ -33,20 +54,7 @@ $(function () {
 				$this.button('reset');
 			}
 		});
-	});
-
-	var text = '−';
-	$('[data-action=hide-items]').on('click', function () {
-		var $this = $(this);
-
-		$this.nextUntil('.divider', 'li').slideToggle();
-		$this.find('span').text(text);
-		text = (text == '−') ? '+' : '−';
-
-		return false;
-	});
-
-	$('[data-action=query-coin-info]').on('click', function () {
+	}).on('click', '[data-action=query-coin-info]', function () {
 		var $this = $(this).button('loading'), id = $this.parents('[data-coin]').data('coin');
 
 		if (opened) {
@@ -63,26 +71,19 @@ $(function () {
 		}
 
 		if ($('#coin-info-' + id).length) {
-			opened = $this.popover('toggle').button('reset');
+			opened = $this.button('reset');
 		} else {
 			$.post('/coin/' + id + '/get', function (data) {
-				data = $(data).appendTo(body);
+				data = $(data).hide().appendTo(body);
 
 				opened = $this.popover({
-					content: data.html(),
-					placement: placement,
-					trigger: 'manual'
-				}).popover('toggle').button('reset');
+					content: $(data).html(),
+					html: true,
+					placement: placement
+				}).popover('show').button('reset');
 			});
 		}
-	});
-
-	$('[data-action=popover]').popover({
-		html: true,
-		trigger: 'hover'
-	});
-
-	$('table').on('click', 'i[data-action=toggle-collection]', function () {
+	}).on('click', 'i[data-action=toggle-collection]', function () {
 		$(this).toggleClass('icon-minus icon-plus')
 			.parents('tr').nextUntil('.values', 'tr').slideToggle();
 	});

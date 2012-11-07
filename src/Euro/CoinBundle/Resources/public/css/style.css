@@ -100,3 +100,7 @@ img {
 	border-top-color: #777;
 }
 
+.popover-content p {
+	font-size: 14px;
+}
+
