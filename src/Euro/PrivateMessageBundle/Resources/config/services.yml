@@ -1,7 +1,7 @@
-parameters:
-#    euro_private_message.example.class: Euro\PrivateMessageBundle\Example
-
 services:
-#    euro_private_message.example:
-#        class: %euro_private_message.example.class%
-#        arguments: [@service_id, "plain_value", %parameter%]
+    twig.extension.euro_pm:
+        class: Euro\PrivateMessageBundle\Twig\Extension\TwigExtension
+        arguments:
+            doctrine: "@doctrine"
+        tags:
+            - { name: twig.extension }

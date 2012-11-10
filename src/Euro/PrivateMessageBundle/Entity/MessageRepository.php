@@ -3,6 +3,7 @@
 namespace Euro\PrivateMessageBundle\Entity;
 
 use Doctrine\ORM\EntityRepository;
+use Sonata\UserBundle\Model\UserInterface;
 
 /**
  * MessageRepository
@@ -11,6 +12,26 @@ use Doctrine\ORM\EntityRepository;
  * repository methods below.
  */
 class MessageRepository extends EntityRepository {
+
+	public function countNewMessages(UserInterface $user) {
+		$queryBuidler = $this->createQueryBuilder('m');
+		$expr = $queryBuidler->expr();
+
+		$where = $expr->andX(
+				$expr->eq('m.new', 1), $expr->orX(
+						$expr->andX($expr->eq('c.from_user', ':user'), $expr->eq('m.direction', 1)), $expr->andX($expr->eq('c.to_user', ':user'), $expr->eq('m.direction', 0))
+				)
+		);
+
+		return (int) $queryBuidler
+						->select($expr->count('DISTINCT c.id'))
+						->join('m.conversation', 'c')
+						->where($where)
+						->setParameter('user', $user)
+						->getQuery()
+						->getSingleScalarResult();
+	}
+
 	public function findByConversation($id) {
 		$queryBuilder = $this->createQueryBuilder('m');
 		$expr = $queryBuilder->expr();
@@ -24,4 +45,5 @@ class MessageRepository extends EntityRepository {
 						->getQuery()
 						->getResult();
 	}
+
 }

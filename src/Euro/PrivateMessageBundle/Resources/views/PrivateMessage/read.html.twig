@@ -14,6 +14,7 @@
 		{% set classes = ['info', 'danger', 'warning', 'success'] %}
 
 		<div class="alert-{{ classes[message.type - 1] }} well well-small">
+			<i class="icon-time" rel="tooltip" title="{{ 'pm.posted_on'|trans({ '%date%': message.date|format_datetime }) }}"></i>
 	{% else %}
 	<div class="{% if message.id in new_messages and to.id == app.user.id %}alert-success {% endif %}well">
 		<div class="row-fluid">
@@ -21,7 +22,7 @@
 				<div style="text-align: center;">
 					<h5>
 						<a href="{{ path('show_profile', { id: from.id }) }}">{{ from.username }}</a>
-						<i class="icon-time" title="{{ 'pm.posted_on'|trans({ '%date%': message.date|format_datetime }) }}"></i>
+						<i class="icon-time" rel="tooltip" title="{{ 'pm.posted_on'|trans({ '%date%': message.date|format_datetime }) }}"></i>
 					</h5>
 
 					<img alt="{{ from.username }}" class="img-polaroid" src="{{ gravatar(from.email, 110) }}" title="{{ from.username }}" />
