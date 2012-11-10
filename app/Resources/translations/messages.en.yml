@@ -6,6 +6,7 @@ close: Close
 coin_data_provider: Coins mintage provided by <a href="%path%" target="_blank">%name%</a>
 congratulation: Congratulation!
 error: Error!
+error.not_found: The page you requested does not exist.
 information: Information!
 menu: Menu
 no_data: No data

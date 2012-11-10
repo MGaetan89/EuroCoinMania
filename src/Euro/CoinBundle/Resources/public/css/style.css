@@ -80,6 +80,19 @@ img {
 	padding-bottom: 10px;
 }
 
+.form-centered-error {
+	background-color: #F2DEDE;
+	border-color: #EED3D7;
+	color: #B94A48;
+	height: 200px;
+	left: 50%;
+	margin-left: -180px;
+	margin-top: -160px;
+	position: absolute;
+	top: 50%;
+	width: 500px;
+}
+
 .popover {
 	width: auto;
 }

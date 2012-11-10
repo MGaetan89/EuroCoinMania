@@ -6,6 +6,7 @@ close: Fermer
 coin_data_provider: Tirage des pièces fournie par <a href="%path%" target="_blank">%name%</a>
 congratulation: Félicitation !
 error: Erreur !
+error.not_found: La page que vous souhaitez consulter n'existe pas.
 information: Information !
 menu: Menu
 no_data: Aucune donnée
