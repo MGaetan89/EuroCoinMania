@@ -201,7 +201,7 @@ class DefaultController extends BaseController {
 		$global = array(
 			'average_value' => 0,
 			'countries' => array(),
-			'total_coins' => count($user_coins),
+			'total_coins' => 0,
 			'total_collectors' => 0,
 			'total_commemoratives' => 0,
 			'total_doubles' => 0,
@@ -226,6 +226,7 @@ class DefaultController extends BaseController {
 					$global['countries'][$country_id] = $country;
 				}
 
+				$global['total_coins'] += $quantity;
 				switch ($coin->getType()) {
 					case Coin::TYPE_COLLECTOR :
 						++$global['total_collectors'];
