@@ -50,7 +50,14 @@
 					</a>
 				</li>
 
-				{% if app.user.id == user.id %}
+				{% if app.user.id != user.id %}
+					<li>
+						<a href="{{ path('pm_write', { id: user.id, user: user.username }) }}">
+							<i class="icon-chevron-right"></i>
+							{{ 'user.contact_pm'|trans }}
+						</a>
+					</li>
+				{% else %}
 					<li class="divider">
 
 					<li{{ macros.is_active(['sonata_user_profile_edit']) }}>

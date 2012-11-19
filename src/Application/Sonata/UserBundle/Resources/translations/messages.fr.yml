@@ -5,6 +5,7 @@ user.birthday_todayf: C'est son anniversaire !
 user.birthday_todaym: C'est son anniversaire !
 user.collection.empty: Cet utilisateur n'a pas de pièces dans sa collection
 user.contact: Contact
+user.contact_pm: Contacter
 user.country: Pays
 user.current_password: Mot de passe actuel
 user.date_of_birth: Date de naissance

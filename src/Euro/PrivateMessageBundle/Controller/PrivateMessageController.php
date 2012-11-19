@@ -164,6 +164,30 @@ class PrivateMessageController extends Controller {
 				));
 	}
 
+	public function writeAction($id, $user) {
+		if ($id == $this->getuser()->getId()) {
+			$this->get('session')->getFlashBag()->add('error', 'pm.not_self');
+
+			return $this->redirect($this->generateUrl('pm_list'));
+		}
+
+		$user = $this->getDoctrine()->getRepository('ApplicationSonataUserBundle:User')->find($id);
+
+		if (!$user) {
+			$this->get('session')->getFlashBag()->add('error', 'user.not_found');
+
+			return $this->redirect($this->generateUrl('pm_list'));
+		}
+
+		$form = $this->createForm(new ConversationType());
+
+		return $this->render('EuroPrivateMessageBundle:PrivateMessage:write.html.twig', array(
+					'form' => $form->createView(),
+					'user_id' => $id,
+					'user_name' => $user->getUsername(),
+				));
+	}
+
 	public function writeProcessAction() {
 		$translator = $this->get('translator');
 		$user = $this->getUser();

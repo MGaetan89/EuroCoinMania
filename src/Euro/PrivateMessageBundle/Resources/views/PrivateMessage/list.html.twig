@@ -66,21 +66,7 @@
 		<h3>{{ 'pm.writing'|trans }}</h3>
 	</div>
 	<div class="modal-body">
-		<form action="{{ path('pm_write_process') }}" class="form-horizontal" id="write-form" method="post">
-			{{ form_row(form.title, { label: 'pm.form.title' }) }}
-			{{ form_row(form.to_user, { label: 'pm.form.to_user' }) }}
-
-			{% include 'ApplicationSonataNewsBundle:Post:editor.html.twig' with { target: 'euro_privatemessagebundle_conversationtype_message' } %}
-
-			{{ form_row(form.message, { attr: { class: 'span3', rows: 6 }, label: 'pm.form.message' }) }}
-
-			{{ form_rest(form) }}
-
-			<div class="form-actions">
-				<button class="btn btn-primary" type="submit">{{ 'pm.send'|trans }}</button>
-				<button class="btn" data-dismiss="modal">{{ 'close'|trans }}</button>
-			</div>
-		</form>
+		{% include 'EuroPrivateMessageBundle:PrivateMessage:write_content.html.twig' %}
 	</div>
 </div>
 

@@ -5,6 +5,7 @@ user.birthday_todayf: It's her birthday!
 user.birthday_todaym: It's his birthday!
 user.collection.empty: This user has no coin in his/her collection
 user.contact: Contact
+user.contact_pm: Contact
 user.country: Country
 user.current_password: Current password
 user.date_of_birth: Date of birth

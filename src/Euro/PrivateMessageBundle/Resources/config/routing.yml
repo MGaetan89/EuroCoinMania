@@ -25,6 +25,12 @@ pm_read:
     requirements:
         id: "\d+"
 
+pm_write:
+    pattern: /pm/write/{id}/{user}
+    defaults: { _controller: EuroPrivateMessageBundle:PrivateMessage:write, id: 0, user: null }
+    requirements:
+        id: "\d+"
+
 pm_write_process:
     pattern: /pm/write-process
     defaults: { _controller: EuroPrivateMessageBundle:PrivateMessage:writeProcess }

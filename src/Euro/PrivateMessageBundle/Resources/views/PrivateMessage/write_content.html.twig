@@ -1,0 +1,25 @@
+<form action="{{ path('pm_write_process') }}" class="form-horizontal" id="write-form" method="post">
+	{{ form_row(form.title, { label: 'pm.form.title' }) }}
+
+	{% if user_id is defined %}
+		{{ form_row(form.to_user, { label: 'pm.form.to_user', attr: {
+			class: 'uneditable-input',
+			'data-id': user_id,
+			readonly: 'readonly'
+		}, value: user_name }) }}
+	{% else %}
+		{{ form_row(form.to_user, { label: 'pm.form.to_user' }) }}
+	{% endif %}
+
+	{% include 'ApplicationSonataNewsBundle:Post:editor.html.twig' with { target: 'euro_privatemessagebundle_conversationtype_message' } %}
+
+	{{ form_row(form.message, { attr: { class: (user_id is defined) ? 'span6' : 'span3', rows: 6 }, label: 'pm.form.message' }) }}
+
+	{{ form_rest(form) }}
+
+	<div class="form-actions">
+		<button class="btn btn-primary" type="submit">{{ 'pm.send'|trans }}</button>
+		<button class="btn" data-dismiss="modal">{{ 'close'|trans }}</button>
+	</div>
+</form>
+
