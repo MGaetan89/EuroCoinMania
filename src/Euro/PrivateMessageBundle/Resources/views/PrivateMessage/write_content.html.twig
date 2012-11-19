@@ -1,7 +1,7 @@
 <form action="{{ path('pm_write_process') }}" class="form-horizontal" id="write-form" method="post">
 	{{ form_row(form.title, { label: 'pm.form.title' }) }}
 
-	{% if user_id is defined %}
+	{% if user_id is defined and user_id != '' %}
 		{{ form_row(form.to_user, { label: 'pm.form.to_user', attr: {
 			class: 'uneditable-input',
 			'data-id': user_id,
