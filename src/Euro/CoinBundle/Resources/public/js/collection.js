@@ -35,12 +35,11 @@ $(function () {
 				return;
 			}
 
-			var index = $('#quantity-' + id).text(quantity).index(),
-				total = quantityTotal.find(':eq(' + index + ') .quantity'),
+			var index = $('#quantity-' + id).text(quantity).parents('td').index(),
+				total = quantityTotal.find('th:eq(' + index + ') .quantity'),
 				oldTotal = parseInt(total.text().replace(/[^0-9]/g, ''));
 
 			if (action == 'add') {
-
 				total.text(oldTotal + 1);
 			} else {
 				total.text(oldTotal - 1);
