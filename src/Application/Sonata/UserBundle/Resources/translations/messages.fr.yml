@@ -6,6 +6,7 @@ user.birthday_todaym: C'est son anniversaire !
 user.collection.empty: Cet utilisateur n'a pas de pièces dans sa collection
 user.contact: Contact
 user.country: Pays
+user.current_password: Mot de passe actuel
 user.date_of_birth: Date de naissance
 user.edit_authentication: Modifier vos identifiants
 user.edit_profile: Editer votre profil
@@ -19,6 +20,7 @@ user.genderf: Femme
 user.genderf_count: <strong>%total%</strong> femme|<strong>%total%</strong> femmes
 user.genderm: Homme
 user.genderm_count: <strong>%total%</strong> homme|<strong>%total%</strong> hommes
+user.get_avatar_info: Si vous souhaitez être identifiable par un avatar, veuillez enregistrer votre adresse e-mail sur <a href="http://www.gravatar.com/" target="_blank">Gravatar.com</a>.
 user.google_plus: Google+
 user.has_no_such_coin: L'utilisateur n'a pas de pièces de ce type
 user.information: Informations
@@ -31,8 +33,10 @@ user.login_required: Vous devez être connecté pour accéder à cette page
 user.logout: Déconnexion
 user.not_allowed: Vous n'êtes pas autorisé à accéder à cette page
 user.not_found: L'utilisateur que vous avez demandé n'existe pas
+user.optional_information: Informations facultatives
 user.password: Mot de passe
 user.password_forgotten: Mot de passe oublié
+user.password_verification: Confirmation
 user.phone: Téléphone
 user.profile: Mon profil
 user.register: Inscription
@@ -45,7 +49,7 @@ user.register_explain: |
         <li><strong>Echangez vos pièces avec les autres membres :</strong> proposez vos pièces en double aux autres membres afin de compléter vos collections respectives</li>
         <li><strong>Messagerie privée :</strong> pour discuter de vos échanges ou tout autre sujet</li>
     </ul>
-    <p>De plus, si vous vous inscrivez avec une adresse e-mail enregistrée sur le site <a href="http://www.gravatar.com/">Gravatar.com</a>, votre photo de profil sera automatiquement affichée sur EuroCoin Mania.</p>
+    <p>De plus, si vous vous inscrivez avec une adresse e-mail enregistrée sur le site <a href="http://www.gravatar.com/" target="_blank">Gravatar.com</a>, votre photo de profil sera automatiquement affichée sur EuroCoin Mania.</p>
 user.register_form: Formulaire
 user.register_info: Information
 user.registration_date: Date d'inscription
@@ -54,9 +58,9 @@ user.request_password: Demande de mot de passe
 user.request_password.meta_description: Demandez un nouveau mot de passe si vous ne parvez plus à accéder à votre compte
 user.request_password.submit: Demander votre mot de passe
 user.request_password.username: Nom d'utilisateur ou adresse e-mail
-user.show_collection: Voir la collection
-user.show_profile: Voir le profil
-user.show_stats: Voir les statistiques
+user.show_collection: Collection
+user.show_profile: Profil
+user.show_stats: Statistiques
 user.stats.average_value: Valeur moyenne d'une pièce (sur le total)
 user.stats.country.coin_distribution: %count% pièce sur %total%|%count% pièces sur %total%
 user.stats.country.coins: Nombre de pièces

@@ -4,6 +4,7 @@
 
 	<div class="controls">
 		<input {{ block('widget_attributes') }} type="{{ type }}"{% if value is not empty %} value="{{ value }}"{% endif %} />
+		{{ form_errors(form) }}
 	</div>
 {% endspaceless %}
 {% endblock form_widget_simple %}
@@ -12,6 +13,7 @@
 {% spaceless %}
 	<div class="controls">
 		<textarea {{ block('widget_attributes') }}>{{ value }}</textarea>
+		{{ form_errors(form) }}
 	</div>
 {% endspaceless %}
 {% endblock textarea_widget %}
@@ -32,15 +34,20 @@
 		{% set label = name|humanize %}
 	{% endif %}
 
-	<label{% for attrname, attrvalue in label_attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>{{ label|trans({}, translation_domain) }}</label>
+	<label{% for attrname, attrvalue in label_attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>
+		{{ label|trans({}, translation_domain) }}
+
+		{% if required %}
+			*
+		{% endif %}
+	</label>
 {% endspaceless %}
 {% endblock form_label %}
 
 {% block form_row %}
 {% spaceless %}
-	<div class="control-group">
+	<div class="control-group{% if errors|length > 0 %} error{% endif %}">
 		{{ form_label(form) }}
-		{{ form_errors(form) }}
 		{{ form_widget(form) }}
 	</div>
 {% endspaceless %}
@@ -48,16 +55,38 @@
 
 {% block date_widget %}
 {% spaceless %}
-	{% if widget == 'single_text' %}
-		{{ block('form_widget_simple') }}
-	{% else %}
-		<div {{ block('widget_container_attributes') }}>
-			{{ date_pattern|replace({
-				'{{ year }}':  form_widget(form.year, { attr: { class: 'span3' } }),
-				'{{ month }}': form_widget(form.month, { attr: { class: 'span2' } }),
-				'{{ day }}':   form_widget(form.day, { attr: { class: 'span2' } }),
-			})|raw }}
-		</div>
-	{% endif %}
+	<div class="controls">
+		{% if widget == 'single_text' %}
+			{{ block('form_widget_simple') }}
+		{% else %}
+			<div class="row-fluid" {{ block('widget_container_attributes') }}>
+				{{ date_pattern|replace({
+					'{{ year }}':  form_widget(form.year, { attr: { class: 'span3' } }),
+					'{{ month }}': form_widget(form.month, { attr: { class: 'span2' } }),
+					'{{ day }}':   form_widget(form.day, { attr: { class: 'span2' } }),
+				})|raw }}
+			</div>
+		{% endif %}
+
+		{{ form_errors(form) }}
+	</div>
 {% endspaceless %}
 {% endblock date_widget %}
+
+{% block form_errors %}
+{% spaceless %}
+	{% if errors|length > 0 %}
+		<span class="help-block">
+			<ul>
+				{% for error in errors %}
+					<li>{{
+						error.messagePluralization is null
+							? error.messageTemplate|trans(error.messageParameters, 'validators')
+							: error.messageTemplate|transchoice(error.messagePluralization, error.messageParameters, 'validators')
+					}}</li>
+				{% endfor %}
+			</ul>
+		</span>
+	{% endif %}
+{% endspaceless %}
+{% endblock form_errors %}

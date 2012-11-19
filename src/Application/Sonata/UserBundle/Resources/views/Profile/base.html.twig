@@ -29,7 +29,7 @@
 					{% include 'ApplicationSonataUserBundle:Profile:collection_menu.html.twig' %}
 				{% endif %}
 
-				<li class="nav-header">{{ 'actions'|trans }}</li>
+				<li class="nav-header">{{ user.username }}</li>
 
 				<li{{ macros.is_active(['show_profile']) }}>
 					<a href="{{ path('show_profile', { id: user.id }) }}">

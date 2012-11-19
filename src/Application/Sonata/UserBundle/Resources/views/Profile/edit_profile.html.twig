@@ -1,6 +1,10 @@
 {% extends 'ApplicationSonataUserBundle:Profile:base.html.twig' %}
 
 {% block content %}
+{% if not gravatar_exists(user.email) %}
+	<div class="alert alert-info">{{ 'user.get_avatar_info'|trans|raw }}</div>
+{% endif %}
+
 <form action="{{ path('sonata_user_profile_edit') }}" method="post">
 	<div class="row-fluid">
 		<div class="span6">

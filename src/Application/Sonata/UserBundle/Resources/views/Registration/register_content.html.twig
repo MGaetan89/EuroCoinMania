@@ -1,5 +1,30 @@
 <form action="{{ path('fos_user_registration_register') }}" class="form-horizontal" method="post">
-	{{ form_widget(form) }}
+	{{ form_row(form.username, { label: 'user.username'|trans }) }}
+	{{ form_row(form.email, { label: 'user.email'|trans }) }}
+	{{ form_row(form.plainPassword.first, { label: 'user.password'|trans }) }}
+	{{ form_row(form.plainPassword.second, { label: 'user.password_verification'|trans }) }}
+
+	<div class="accordion" id="extra-fields-parent">
+		<div class="accordion-group">
+			<div class="accordion-heading">
+				<a class="accordion-toggle" data-toggle="collapse" data-parent="#extra-fields-parent" href="#extra-fields">
+					{{ 'user.optional_information'|trans }}
+				</a>
+			</div>
+
+			<div id="extra-fields" class="accordion-body collapse">
+				<div class="accordion-inner">
+					{{ form_row(form.firstname, { label: 'user.firstname'|trans }) }}
+					{{ form_row(form.lastname, { label: 'user.lastname'|trans }) }}
+					{{ form_row(form.dateOfBirth, { label: 'user.date_of_birth'|trans }) }}
+					{{ form_row(form.gender, { label: 'user.gender'|trans }) }}
+					{{ form_row(form.country, { label: 'user.country'|trans }) }}
+				</div>
+			</div>
+		</div>
+	</div>
+
+	{{ form_rest(form) }}
 
 	<div class="form-actions">
 		<button class="btn btn-primary" type="submit">{{ 'user.register_action'|trans }}</button>

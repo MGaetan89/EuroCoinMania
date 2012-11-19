@@ -76,7 +76,7 @@
 							'%total%': total
 						}) %}
 
-						<div class="bar bar-{{ cycle(classes, loop.index0) }}" rel="tooltip" style="width: {{ count / total * 100 }}%;" title="{{ title }}">{{ country_name }}</div>
+						<div class="bar bar-{{ cycle(classes, loop.index0) }}" rel="tooltip" style="width: {{ count / total * 100 }}%;" title="{{ title }}" data-html="true">{{ country_name }}</div>
 					</div>
 				{% endfor %}
 			</div>

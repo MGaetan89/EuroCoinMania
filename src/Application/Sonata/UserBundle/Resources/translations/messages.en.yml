@@ -6,6 +6,7 @@ user.birthday_todaym: It's his birthday!
 user.collection.empty: This user has no coin in his/her collection
 user.contact: Contact
 user.country: Country
+user.current_password: Current password
 user.date_of_birth: Date of birth
 user.edit_authentication: Change your login details
 user.edit_profile: Update your profile
@@ -19,6 +20,7 @@ user.genderf: Woman
 user.genderf_count: <strong>%total%</strong> woman|<strong>%total%</strong> women
 user.genderm: Man
 user.genderm_count: <strong>%total%</strong> man|<strong>%total%</strong> men
+user.get_avatar_info: If you want to be recognizable with an avatar, register your e-mail address on <a href="http://www.gravatar.com/" target="_blank">Gravatar.com</a>.
 user.google_plus: Google+
 user.has_no_such_coin: This user does not have coin matching your criteria
 user.information: Information
@@ -31,8 +33,10 @@ user.login_required: You need to be logged in to see this page
 user.logout: Log out
 user.not_allowed: You are not allowed to see this page
 user.not_found: This user does not exist
+user.optional_information: Optional information
 user.password: Password
 user.password_forgotten: Password forgotten
+user.password_verification: Confirmation
 user.phone: Phone number
 user.profile: My profile
 user.register: Register
@@ -45,7 +49,7 @@ user.register_explain: |
         <li><strong>Exchange your coins:</strong> propose the coins you have more than once to the other members in order to fulfill your respectives collections</li>
         <li><strong>Private messaging:</strong> discuss your exchanges with a smart private messaging</li>
     </ul>
-    <p>Furthermore, if your e-mail address is registered on <a href="http://www.gravatar.com/">Gravatar.com</a>, your profile picture will automatically be displayed on EuroCoin Mania.</p>
+    <p>Furthermore, if your e-mail address is registered on <a href="http://www.gravatar.com/" target="_blank">Gravatar.com</a>, your profile picture will automatically be displayed on EuroCoin Mania.</p>
 user.register_form: Form
 user.register_info: Information
 user.registration_date: Registration date
@@ -54,9 +58,9 @@ user.request_password: Request password
 user.request_password.meta_description: Request a new password if you can not access your account
 user.request_password.submit: Request your password
 user.request_password.username: Username or e-mail address
-user.show_collection: View the collection
-user.show_profile: View the profile
-user.show_stats: View the statistics
+user.show_collection: Collection
+user.show_profile: Profile
+user.show_stats: Statistics
 user.stats.average_value: Average value of a coin (based on all coins)
 user.stats.country.coin_distribution: %count% coin on %total%|%count% coins on %total%
 user.stats.country.coins: Number of coins

@@ -1,7 +1,11 @@
 {% extends 'ApplicationSonataUserBundle:Profile:base.html.twig' %}
 
 {% block content %}
-<form action="{{ path('sonata_user_profile_edit') }}" method="post">
+<form action="{{ path('sonata_user_profile_edit') }}" class="form-horizontal" method="post">
+	{{ form_row(form.username, { label: 'user.username'|trans }) }}
+	{{ form_row(form.email, { label: 'user.email'|trans }) }}
+	{{ form_row(form.current_password, { label: 'user.current_password'|trans }) }}
+
 	{{ form_rest(form) }}
 
 	<div class="form-actions">
