@@ -54,6 +54,7 @@ user.register_explain: |
 user.register_form: Formulaire
 user.register_info: Information
 user.registration_date: Date d'inscription
+user.registration_success: Votre compte a bien été crée. Bienvenue sur EuroCoinMania !
 user.remember_me: Connexion automatique
 user.request_password: Demande de mot de passe
 user.request_password.meta_description: Demandez un nouveau mot de passe si vous ne parvez plus à accéder à votre compte

@@ -5,9 +5,7 @@ $(function () {
 	}, map = $('#map'), countries = map.data('countries');
 
 	$.get(map.attr('src'), function (data) {
-		var svg = $(data).find('svg').attr('id', map.attr('id'));
-
-		map.replaceWith(svg);
+		map.replaceWith($(data).find('svg').attr('id', map.attr('id')));
 		map = $('#map');
 
 		$('table tbody').on('mouseenter', 'tr', function () {

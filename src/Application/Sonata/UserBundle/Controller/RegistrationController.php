@@ -3,9 +3,20 @@
 namespace Application\Sonata\UserBundle\Controller;
 
 use FOS\UserBundle\Controller\RegistrationController as BaseController;
+use FOS\UserBundle\Model\UserInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 
 class RegistrationController extends BaseController {
+
+	public function confirmedAction() {
+		$user = $this->container->get('security.context')->getToken()->getUser();
+
+        if (is_object($user) && $user instanceof UserInterface) {
+			$this->container->get('session')->getFlashBag()->add('success', 'user.registration_success');
+		}
+
+		return new RedirectResponse($this->container->get('router')->generate('welcome'));
+	}
 
 	public function registerAction() {
 		$form = $this->container->get('fos_user.registration.form');

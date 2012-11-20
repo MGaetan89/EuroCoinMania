@@ -54,6 +54,7 @@ user.register_explain: |
 user.register_form: Form
 user.register_info: Information
 user.registration_date: Registration date
+user.registration_success: Your account has been created. Welcome on EuroCoin Mania!
 user.remember_me: Remember me
 user.request_password: Request password
 user.request_password.meta_description: Request a new password if you can not access your account

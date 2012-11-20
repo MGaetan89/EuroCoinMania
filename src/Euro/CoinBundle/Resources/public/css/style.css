@@ -54,14 +54,6 @@ img {
 	white-space: normal;
 }
 
-.eurozone {
-	fill: #006DCC;
-}
-
-.eurozone:hover {
-	fill: #0044CC;
-}
-
 .form-centered {
 	background-color: #F5F5F5;
 	border: 1px solid #E5E5E5;
