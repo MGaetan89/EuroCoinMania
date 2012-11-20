@@ -24,7 +24,7 @@
 		{{ 'stats.average_age'|trans({ '%age%': user_stats.age })|raw }}<br />
 		{{ 'stats.users_from'|trans }}
 
-		<table class="table table-hover table-striped">
+		<table class="table table-condensed table-hover table-striped">
 		<thead>
 			<tr>
 				<th>{{ 'stats.country'|trans }}</th>
@@ -51,7 +51,7 @@
 
 		<h3 class="page-header">{{ 'stats.top_countries'|trans }}</h3>
 
-		<table class="table table-hover table-striped">
+		<table class="table table-condensed table-hover table-striped">
 		<thead>
 			<tr>
 				<th>{{ 'stats.country'|trans }}</th>
@@ -82,7 +82,7 @@
 
 		{{ 'stats.coins_repartition'|trans({ '%total_coins%': euro_stats.total_coins|number_format, '%total_countries%': euro_stats.total_countries|number_format })|raw }}
 
-		<table class="table table-hover table-striped">
+		<table class="table table-condensed table-hover table-striped">
 		<thead>
 			<tr>
 				<th>{{ 'stats.country'|trans }}</th>
@@ -115,7 +115,7 @@
 	<div class="span6">
 		<h3 class="page-header">{{ 'stats.biggest_collections'|trans }}</h3>
 
-		<table class="table table-hover table-striped">
+		<table class="table table-condensed table-hover table-striped">
 		<thead>
 			<tr>
 				<th>{{ 'stats.user'|trans }}</th>
@@ -157,12 +157,12 @@
 	<div class="span6">
 		<h3 class="page-header">{{ 'stats.most_valued_collections'|trans }}</h3>
 
-		<table class="table table-hover table-striped">
+		<table class="table table-condensed table-hover table-striped">
 		<thead>
 			<tr>
 				<th>{{ 'stats.user'|trans }}</th>
-				<th>{{ 'stats.total_unique'|trans }}</th>
 				<th>{{ 'stats.total_amount'|trans }}</th>
+				<th>{{ 'stats.total_unique'|trans }}</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -189,8 +189,8 @@
 							{{ user.username }}
 						</a>
 					</td>
-					<td>{{ macros.value(total_unique) }}</td>
 					<td>{{ macros.value(total) }}</td>
+					<td>{{ macros.value(total_unique) }}</td>
 				</tr>
 			{% endfor %}
 		</tbody>
