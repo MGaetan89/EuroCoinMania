@@ -89,6 +89,11 @@ img {
 	width: auto;
 }
 
+.popover .close {
+	margin-right: 7px;
+	margin-top: 7px;
+}
+
 /* Bootstrap fixes */
 .dropdown-menu.typeahead {
 	z-index: 20000;

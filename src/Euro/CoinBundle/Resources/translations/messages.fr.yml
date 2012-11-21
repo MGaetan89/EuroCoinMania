@@ -1,4 +1,4 @@
-coin.add: Ajouter
+coin.add: Ajouter la quantité indiquée
 coin.all_years: Toutes les années
 coin.circulation: Circulation
 coin.collection: Collection
@@ -27,6 +27,7 @@ coin.exchange_request: Demander ces pièces
 coin.exchange_suggest: Proposer ces pièces
 coin.image: Image
 coin.information: Informations
+coin.manage: Gestion de la pièce
 coin.mintage: Tirage
 coin.no_image: Aucune image
 coin.no_mintage: Aucun tirage
@@ -34,7 +35,7 @@ coin.none: Aucune pièce n'a été enregistré pour ce pays.
 coin.not_available: La pièce que vous recherchez n'est plus disponible
 coin.not_found: La pièce que vous recherchez n'existe pas
 coin.registered_quantity: Total enregistré
-coin.remove: Retirer
+coin.remove: Retirer la quantité indiquée
 coin.self_quantity: Quantité possédée
 coin.total: Total
 coin.unavailable: Non disponible

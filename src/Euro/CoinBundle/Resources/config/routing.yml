@@ -1,5 +1,5 @@
 coin_add:
-    pattern: /coin/{id}/add
+    pattern: /coin/{id}/add/{quantity}
     defaults: { _controller: EuroCoinBundle:Coin:addRemove, type: add }
     requirements:
         id: "\d+"
@@ -31,7 +31,7 @@ coin_get:
         _method: POST
 
 coin_remove:
-    pattern: /coin/{id}/remove
+    pattern: /coin/{id}/remove/{quantity}
     defaults: { _controller: EuroCoinBundle:Coin:addRemove, type: remove }
     requirements:
         id: "\d+"

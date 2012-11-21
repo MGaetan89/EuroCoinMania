@@ -111,8 +111,8 @@ class UserCoin {
 	 *
 	 * @return UserCoin
 	 */
-	public function addUnit() {
-		++$this->quantity;
+	public function addUnit($quantity = 1) {
+		$this->quantity += $quantity;
 
 		return $this;
 	}
@@ -122,8 +122,8 @@ class UserCoin {
 	 *
 	 * @return UserCoin
 	 */
-	public function removeUnit() {
-		--$this->quantity;
+	public function removeUnit($quantity = 1) {
+		$this->quantity -= $quantity;
 
 		return $this;
 	}

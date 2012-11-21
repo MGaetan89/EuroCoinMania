@@ -1,4 +1,4 @@
-coin.add: Add
+coin.add: Add provided quantity
 coin.all_years: All years
 coin.circulation: Circulation
 coin.collection: Collection
@@ -27,6 +27,7 @@ coin.exchange_request: Request these coins
 coin.exchange_suggest: Suggest these coins
 coin.image: Image
 coin.information: Information
+coin.manage: Coin management
 coin.mintage: Mintage
 coin.no_image: No image
 coin.no_mintage: No mintage
@@ -34,7 +35,7 @@ coin.none: No coins have been registered for this country.
 coin.not_available: The coin you requested is no longer available
 coin.not_found: The coin you requested does not exist
 coin.registered_quantity: Total registered
-coin.remove: Remove
+coin.remove: Remove provided quantity
 coin.self_quantity: Owned quantity
 coin.total: Total
 coin.type: Type
@@ -44,7 +45,6 @@ coin.type3: Collector
 coin.unavailable: Unavailable
 coin.value: Value
 coin.year: Year
-
 coins: %total% coin|%total% coins
 coins.differents: %total% different|%total% differents
 coins.suggested_coins: Suggested coins

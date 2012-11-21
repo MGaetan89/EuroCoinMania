@@ -14,10 +14,11 @@ class CoinController extends BaseController {
 	 * Add or remove one coin in the user collection
 	 * @param integer $id The coin id to add/remove in the collection
 	 * @param string $type The action to perform (either 'add' or 'remove')
+	 * @param integer $quantity The number of coins to add or remove
 	 * @return Response
 	 * @throws Symfony\Component\HttpKernel\Exception\NotFoundHttpException 
 	 */
-	public function addRemoveAction($id, $type) {
+	public function addRemoveAction($id, $type, $quantity) {
 		$translator = $this->get('translator');
 
 		if (!$user = $this->getUser()) {
@@ -37,7 +38,7 @@ class CoinController extends BaseController {
 				throw $this->createNotFoundException($translator->trans('coin.not_found'));
 			}
 
-			if ($coin->getMemberTotal() === $coin->getMintage()) {
+			if ($coin->getMemberTotal() + $quantity > $coin->getMintage()) {
 				throw $this->createNotFoundException($translator->trans('coin.not_available'));
 			}
 
@@ -45,13 +46,14 @@ class CoinController extends BaseController {
 				$uc = new UserCoin();
 				$uc->setUser($user);
 				$uc->setCoin($coin);
+				$uc->setQuantity($quantity);
 
 				$em->persist($uc);
 			} else {
-				$uc->addUnit();
+				$uc->addUnit($quantity);
 			}
 
-			$coin->addUnit();
+			$coin->addUnit($quantity);
 		} else if ($type === 'remove') {
 			if (!$uc || $uc->getQuantity() === 0) {
 				throw $this->createNotFoundException($translator->trans('user.coin_not_found'));
@@ -63,8 +65,10 @@ class CoinController extends BaseController {
 				throw $this->createNotFoundException($translator->trans('coin.not_found'));
 			}
 
-			$coin->removeUnit();
-			$uc->removeUnit();
+			if ($coin->getMemberTotal() > $quantity && $uc->getQuantity() > $quantity) {
+				$coin->removeUnit($quantity);
+				$uc->removeUnit($quantity);
+			}
 		}
 
 		$em->flush();

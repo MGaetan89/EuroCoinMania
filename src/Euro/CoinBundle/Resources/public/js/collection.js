@@ -1,7 +1,6 @@
 $(function () {
 	var body = $('body'),
 		modal = $('#coin-modal'),
-		opened = null,
 		placement = location.pathname.match('commemorative') ? 'left' : 'right',
 		quantityTotal = $('#quantity-total');
 
@@ -22,7 +21,18 @@ $(function () {
 	});
 
 	$('table').on('click', '[data-action=add-coin], [data-action=remove-coin]', function () {
-		var $this = $(this), action = $this.data('action').split('-')[0], id = $this.parents('[data-coin]').data('coin');
+		var $this = $(this),
+			action = $this.data('action').split('-')[0],
+			id = $this.parents('[data-coin]').data('coin'),
+			quantityInput = $this.siblings('.quantity'),
+			quantity = parseInt(quantityInput.val()),
+			quantityElt = $('#quantity-' + id);
+
+		if (isNaN(quantity) || quantity <= 0) {
+			// Display error message
+
+			return;
+		}
 
 		if ($this.hasClass('disabled')) {
 			return;
@@ -30,55 +40,44 @@ $(function () {
 
 		$this.button('loading');
 
-		$.post('/coin/' + id + '/' + action, function (quantity) {
-			if (!quantity) {
+		$.post('/coin/' + id + '/' + action + '/' + quantity, function (newQuantity) {
+			if (!newQuantity) {
 				return;
 			}
 
-			var index = $('#quantity-' + id).text(quantity).parents('td').index(),
+			var index = quantityElt.text(newQuantity).parents('td').index(),
 				total = quantityTotal.find('th:eq(' + index + ') .quantity'),
 				oldTotal = parseInt(total.text().replace(/[^0-9]/g, ''));
 
 			if (action == 'add') {
-				total.text(oldTotal + 1);
+				total.text(oldTotal + quantity);
 			} else {
-				total.text(oldTotal - 1);
+				total.text(oldTotal - quantity);
 			}
 
-			if (quantity > 0) {
-				if (action === 'add' && quantity == 1) {
+			if (newQuantity > 0) {
+				if (action === 'add' && newQuantity == 1) {
 					$this.siblings('[data-action=remove-coin]').button('reset');
 				}
 
 				$this.button('reset');
+				quantityElt.parent().next('[rel=popover]').popover('hide');
 			}
 		});
 	}).on('click', '[data-action=query-coin-info]', function () {
 		var $this = $(this).button('loading'), id = $this.parents('[data-coin]').data('coin');
 
-		if (opened) {
-			opened.popover('hide');
-
-			if (opened[0] == $this[0]) {
-				opened = null;
-				$this.button('reset');
-
-				return;
-			}
-
-			opened = null;
-		}
-
 		if ($('#coin-info-' + id).length) {
-			opened = $this.button('reset');
+			$this.button('reset');
 		} else {
 			$.post('/coin/' + id + '/get', function (data) {
 				data = $(data).hide().appendTo(body);
 
-				opened = $this.popover({
+				$this.popover({
 					content: $(data).html(),
 					html: true,
-					placement: placement
+					placement: placement,
+					template: '<div class="popover"><div class="close" data-dismiss="alert">&times;</div><div class="arrow"></div><div class="popover-inner"><h3 class="popover-title"></h3><div class="popover-content"><p></p></div></div></div>'
 				}).popover('show').button('reset');
 			});
 		}
