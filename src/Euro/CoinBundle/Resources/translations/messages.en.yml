@@ -1,4 +1,4 @@
-coin.add: Add provided quantity
+coin.add: Add
 coin.all_years: All years
 coin.circulation: Circulation
 coin.collection: Collection
@@ -34,8 +34,9 @@ coin.no_mintage: No mintage
 coin.none: No coins have been registered for this country.
 coin.not_available: The coin you requested is no longer available
 coin.not_found: The coin you requested does not exist
+coin.quantity: Quantity
 coin.registered_quantity: Total registered
-coin.remove: Remove provided quantity
+coin.remove: Remove
 coin.self_quantity: Owned quantity
 coin.total: Total
 coin.type: Type

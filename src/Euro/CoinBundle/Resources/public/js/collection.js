@@ -56,7 +56,7 @@ $(function () {
 			}
 
 			if (newQuantity > 0) {
-				if (action === 'add' && newQuantity == 1) {
+				if (action === 'add') {
 					$this.siblings('[data-action=remove-coin]').button('reset');
 				}
 

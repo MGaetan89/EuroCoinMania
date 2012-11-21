@@ -42,23 +42,14 @@
 						{% endif %}
 
 						{% if app.user %}
-							{% if has_coin %}
-								<button class="btn btn-mini disabled" disabled="disabled" id="quantity-{{ coin.id }}" title="{{ 'coin.self_quantity'|trans }}">
-									{{ uc[coin.id].quantity|number_format }}
-								</button>
-							{% else %}
-								<button class="btn btn-mini disabled" disabled="disabled" id="quantity-{{ coin.id }}" title="{{ 'coin.registered_quantity'|trans }}">0</button>
-							{% endif %}
+							<button class="btn btn-mini disabled" disabled="disabled" id="quantity-{{ coin.id }}" title="{{ 'coin.self_quantity'|trans }}">{{ has_coin ? uc[coin.id].quantity|number_format : 0 }}</button>
 						{% else %}
 							<button class="btn btn-mini disabled" disabled="disabled" id="quantity-{{ coin.id }}" title="{{ 'coin.mintage'|trans }}">{{ coin.mintage|number_format }}</button>
 						{% endif %}
 					</div>
 
 					{% if app.user %}
-						<div class="btn-group pull-right">
-							<button class="btn btn-mini btn-danger{% if not has_coin %} disabled" disabled="disabled{% endif %}" title="{{ 'coin.remove'|trans }}" data-action="remove-coin" data-loading-text="-">-</button>
-							<button class="btn btn-mini btn-success{% if coin.mintage == coin.membertotal %} disabled" disabled="disabled{% endif %}" title="{{ 'coin.add'|trans }}" data-action="add-coin" data-loading-text="+">+</button>
-						</div>
+						<i class="icon-cog pull-right" rel="popover" title="{{ 'coin.manage'|trans }}" data-html="true" data-placement="left" data-content="{% include 'EuroCoinBundle:Coin:popover_actions.html.twig' with { coin: coin, has_coin: has_coin } %}"></i>
 					{% endif %}
 				</div>
 			</td>
