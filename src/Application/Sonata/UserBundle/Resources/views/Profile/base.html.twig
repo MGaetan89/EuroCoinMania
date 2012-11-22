@@ -18,7 +18,7 @@
 <div class="row-fluid">
 	<div class="span2">
 		{% if app.request.get('_route') in ['show_profile', 'show_user_stats'] and gravatar_exists(user.email) %}
-			<div style="margin-bottom: 10px; padding-left: 20px;">
+			<div style="margin-bottom: 10px; text-align: center;">
 				<img alt="{{ user.username }}" class="img-polaroid" src="{{ gravatar(user.email) }}" title="{{ user.username }}" />
 			</div>
 		{% endif %}

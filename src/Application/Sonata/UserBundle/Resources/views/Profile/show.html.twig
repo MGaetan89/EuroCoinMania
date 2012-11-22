@@ -1,71 +1,78 @@
 {% extends 'ApplicationSonataUserBundle:Profile:base.html.twig' %}
 
 {% block content %}
+
+<h3 class="page-header">
+	{{ 'user.information'|trans }}
+
+	<div class="pull-right">
+		<a class="btn btn-link" href="mailto: {{ user.email }}" rel="tooltip" target="_blank" title="{{ 'user.email'|trans }}">
+			<img alt="{{ 'user.email'|trans }}" src="{{ asset('bundles/applicationsonatauser/images/email.png') }}" />
+		</a>
+
+		{% if user.facebookuid %}
+			<a class="btn btn-link" href="http://www.fb.me/{{ user.facebookuid }}" rel="tooltip" target="_blank" title="{{ 'user.facebook'|trans }}">
+				<img alt="{{ 'user.facebook'|trans }}" src="{{ asset('bundles/applicationsonatauser/images/facebook.png') }}" />
+			</a>
+		{% endif %}
+
+		{% if user.twitteruid %}
+			<a class="btn btn-link" href="http://www.twitter.com/{{ user.twitteruid }}" rel="tooltip" target="_blank" title="{{ 'user.twitter'|trans }}">
+				<img alt="{{ 'user.twitter'|trans }}" src="{{ asset('bundles/applicationsonatauser/images/twitter.png') }}" />
+			</a>
+		{% endif %}
+
+		{% if user.gplusuid %}
+			<a class="btn btn-link" href="http://plus.google.com/{{ user.gplusuid }}" rel="tooltip" target="_blank" title="{{ 'user.google_plus'|trans }}">
+				<img alt="{{ 'user.google_plus'|trans }}" src="{{ asset('bundles/applicationsonatauser/images/google_plus.png') }}" />
+			</a>
+		{% endif %}
+	</div>
+</h3>
+
 <div class="row-fluid">
 	<div class="span6">
-		<h3 class="page-header">{{ 'user.information'|trans }}</h3>
-
 		<dl class="dl-horizontal">
 			<dt>{{ 'user.registration_date'|trans }}</dt>
 				<dd>{{ user.createdat|format_datetime }}</dd>
 
 			{% if user.lastlogin %}
-			<dt>{{ 'user.last_login'|trans }}</dt>
-				<dd>{{ user.lastlogin|format_datetime }}</dd>
+				<dt>{{ 'user.last_login'|trans }}</dt>
+					<dd>{{ user.lastlogin|format_datetime }}</dd>
 			{% endif %}
 
 			{% if user.dateofbirth %}
-			<dt>{{ 'user.date_of_birth'|trans }}</dt>
-				<dd>
-					{% if date(user.dateofbirth) == date() %}
-						<i class="icon-gift"></i> {{ ('user.birthday_today' ~ user.gender)|trans }}
-					{% else %}
-						{{ user.dateofbirth|format_date }}
-					{% endif %}
-				</dd>
-			{% endif %}
-
-			{% if user.gender %}
-			<dt>{{ 'user.gender'|trans }}</dt>
-				<dd>{{ ('user.gender' ~ user.gender)|trans }}</dd>
-			{% endif %}
-
-			{% if user.country %}
-			{% set country = user.country|country %}
-
-			<dt>{{ 'user.country'|trans }}</dt>
-				<dd>
-					<img alt="{{ country }}" src="{{ asset('bundles/applicationsonatauser/images/' ~ user.country|lower ~ '.png') }}" rel="tooltip" title="{{ country }}" data-placement="right" />
-					{{ country }}
-				</dd>
+				<dt>{{ 'user.date_of_birth'|trans }}</dt>
+					<dd>
+						{% if date(user.dateofbirth) == date() %}
+							<i class="icon-gift"></i> {{ ('user.birthday_today' ~ user.gender)|trans }}
+						{% else %}
+							{{ user.dateofbirth|format_date }}
+						{% endif %}
+					</dd>
 			{% endif %}
 		</dl>
 	</div>
 	<div class="span6">
-		<h3 class="page-header"><span class="pull-right">{{ 'user.contact'|trans }}</span><br /></h3>
-
 		<dl class="dl-horizontal">
-			<dt>{{ 'user.email'|trans }}</dt>
-				<dd><a href="mailto: {{ user.email }}" target="_new">{{ user.email }}</a></dd>
+			{% if user.gender %}
+				<dt>{{ 'user.gender'|trans }}</dt>
+					<dd>{{ ('user.gender' ~ user.gender)|trans }}</dd>
+			{% endif %}
+
+			{% if user.country %}
+				{% set country = user.country|country %}
+
+				<dt>{{ 'user.country'|trans }}</dt>
+					<dd>
+						<img alt="{{ country }}" src="{{ asset('bundles/applicationsonatauser/images/' ~ user.country|lower ~ '.png') }}" rel="tooltip" title="{{ country }}" data-placement="right" />
+						{{ country }}
+					</dd>
+			{% endif %}
 
 			{% if user.website %}
-			<dt>{{ 'user.website'|trans }}</dt>
-				<dd><a href="{{ user.website }}">{{ user.website }}</a></dd>
-			{% endif %}
-
-			{% if user.facebookuid %}
-			<dt>{{ 'user.facebook'|trans }}</dt>
-				<dd><a href="http://www.fb.me/{{ user.facebookuid }}" target="_new">{{ user.facebookuid }}</a></dd>
-			{% endif %}
-
-			{% if user.twitteruid %}
-			<dt>{{ 'user.twitter'|trans }}</dt>
-				<dd><a href="http://www.twitter.com/{{ user.twitteruid }}" target="_new">{{ user.twitteruid }}</a></dd>
-			{% endif %}
-
-			{% if user.gplusuid %}
-			<dt>{{ 'user.google_plus'|trans }}</dt>
-				<dd><a href="http://plus.google.com/{{ user.gplusuid }}" target="_new">{{ user.gplusuid }}</a></dd>
+				<dt>{{ 'user.website'|trans }}</dt>
+					<dd><a href="{{ user.website }}">{{ user.website }}</a></dd>
 			{% endif %}
 		</dl>
 	</div>

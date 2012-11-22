@@ -95,6 +95,15 @@ img {
 }
 
 /* Bootstrap fixes */
+h1 .tooltip,
+h2 .tooltip,
+h3 .tooltip,
+h4 .tooltip,
+h5 .tooltip,
+h6 .tooltip {
+	font-size: 11px;
+}
+
 .dropdown-menu.typeahead {
 	z-index: 20000;
 }
