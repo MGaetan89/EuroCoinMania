@@ -314,6 +314,15 @@ class ExchangeController extends BaseController {
 
 		$em->flush();
 
+		$message = \Swift_Message::newInstance()
+			->setSubject($translator->trans('pm.title.new_exchange'))
+			->setFrom(array('EuroCoin Mania' => 'contact@eurocoin-mania.eu'))
+			->setTo($from->getEmail())
+			->setBody('text_content')
+			->addPart('html_content', 'text/html');
+
+		$this->get('mailer')->send($message);
+
 		$this->get('session')->getFlashBag()->add('success', 'coin.doubles.save_successfull');
 
 		return $this->redirect($this->generateUrl('exchange_show', array(
