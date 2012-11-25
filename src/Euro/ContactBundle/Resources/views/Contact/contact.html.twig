@@ -1,12 +1,10 @@
-{% extends '::base.html.twig' %}
+{% extends 'EuroPageBundle:Page:base.html.twig' %}
 
 {% block meta_description %}{{ 'contact.meta_description'|trans }}{% endblock %}
 
 {% block title %}{{ 'contact'|trans }}{% endblock %}
 
-{% block body %}
-<h2 class="page-header">{{ block('title') }}</h2>
-
+{% block content %}
 <form action="{{ path('contact') }}" class="form-centered" method="post">
 	{% if app.user %}
 		{% set disabled_attr = { 
