@@ -3,7 +3,7 @@ admin.restore_account: Restaurer mon compte
 administration: Administration
 and: et
 close: Fermer
-coin_data_provider: Tirage des pièces fournie par <a href="%path%" target="_blank">%name%</a>
+coin_data_provider: Tirage des pièces fourni par <a href="%path%" target="_blank">%name%</a>
 congratulation: Félicitation !
 error: Erreur !
 error.not_found: La page que vous souhaitez consulter n'existe pas.
