@@ -27,7 +27,6 @@ coin.exchange_request: Request these coins
 coin.exchange_suggest: Suggest these coins
 coin.image: Image
 coin.information: Information
-coin.manage: Coin management
 coin.mintage: Mintage
 coin.no_image: No image
 coin.no_mintage: No mintage

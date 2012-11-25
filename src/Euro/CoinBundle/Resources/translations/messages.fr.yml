@@ -27,7 +27,6 @@ coin.exchange_request: Demander ces pièces
 coin.exchange_suggest: Proposer ces pièces
 coin.image: Image
 coin.information: Informations
-coin.manage: Gestion de la pièce
 coin.mintage: Tirage
 coin.no_image: Aucune image
 coin.no_mintage: Aucun tirage
