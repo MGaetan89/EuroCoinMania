@@ -116,6 +116,15 @@ exchange.canceled: Votre échange a bien été annulé
 exchange.coins_requested: Pièces demandées
 exchange.coins_suggested: Pièces proposées
 exchange.direction: Sens de l'échange
+exchange.email.text.new_exchange: |
+    Bonjour,
+
+    Vous venez de recevoir une proposition d'échange de la part de %username%.
+    Vous pouvez le consulter en vous rendant à l'adresse suivante :
+        %path%
+
+    L'équipe d'EuroCoin Mania
+exchange.email.title.new_exchange: Vous avez reçu une nouvelle proposition d'échange
 exchange.id: Numéro
 exchange.list_all: Liste de tous vos échanges
 exchange.list_pending: Liste de vos échanges en cours

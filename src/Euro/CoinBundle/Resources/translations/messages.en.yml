@@ -116,6 +116,15 @@ exchange.canceled: You have canceled this exchange
 exchange.coins_requested: Requested coins
 exchange.coins_suggested: Suggested coins
 exchange.direction: Exchange direction
+exchange.email.text.new_exchange: |
+    Dear user,
+
+    You just received a new exchange proposition from %username%.
+    You can review this exchange by cliquing the following link:
+        %path%
+
+    EuroCoin Mania Team
+exchange.email.title.new_exchange: You have a new coins exchange waiting
 exchange.id: Number
 exchange.list_all: List of all your exchanges
 exchange.list_pending: List of your pending exchanges
