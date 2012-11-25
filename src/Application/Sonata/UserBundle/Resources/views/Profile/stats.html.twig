@@ -7,7 +7,12 @@
 			<li class="active"><a href="#global" data-toggle="tab">{{ 'user.stats.global'|trans }}</a></li>
 
 			{% for country in countries %}
-				<li><a href="#country-{{ country.id }}" data-toggle="tab">{{ macros.name(country) }}</a></li>
+				{% set name = macros.name(country) %}
+
+				<li><a href="#country-{{ country.id }}" data-toggle="tab">
+					<img alt="{{ name }}" rel="tooltip" src="{% path country.flag, 'mini' %}" title="{{ name }}" data-placement="right" />
+					{{ name }}
+				</a></li>
 			{% endfor %}
 		</ul>
 
@@ -85,7 +90,7 @@
 				{% set stat = countries_stats[country.id] %}
 
 				<div class="tab-pane" id="country-{{ country.id }}">
-					<h3 class="page-header">{{ 'user.stats.global.stats'|trans }}</h3>
+					<h3 class="page-header">{{ macros.name(country) }}</h3>
 
 					<dl>
 						{% set count, total = countries_user_stats[country.id].total_coins, stat.total_coins %}
