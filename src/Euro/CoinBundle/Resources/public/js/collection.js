@@ -61,8 +61,9 @@ $(function () {
 				}
 
 				$this.button('reset');
-				quantityElt.parent().next('[rel=popover]').popover('hide');
 			}
+
+			quantityElt.parent().next('[rel=popover]').popover('hide');
 		});
 	}).on('click', '[data-action=query-coin-info]', function () {
 		var $this = $(this).button('loading'), id = $this.parents('[data-coin]').data('coin');
