@@ -65,7 +65,7 @@ class CoinController extends BaseController {
 				throw $this->createNotFoundException($translator->trans('coin.not_found'));
 			}
 
-			if ($coin->getMemberTotal() > $quantity && $uc->getQuantity() > $quantity) {
+			if ($coin->getMemberTotal() >= $quantity && $uc->getQuantity() >= $quantity) {
 				$coin->removeUnit($quantity);
 				$uc->removeUnit($quantity);
 			}
@@ -190,7 +190,7 @@ class CoinController extends BaseController {
 				$totals = array_fill_keys($values, 0);
 				$user_coins = array();
 				if (!empty($base_coins)) {
-					$doctrine->getRepository('EuroCoinBundle:UserCoin')->findByCoinsForUser($user, $base_coins);
+					$user_coins = $doctrine->getRepository('EuroCoinBundle:UserCoin')->findByCoinsForUser($user, $base_coins);
 				}
 
 				unset($base_coins);
