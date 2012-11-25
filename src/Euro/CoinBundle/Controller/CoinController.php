@@ -188,7 +188,10 @@ class CoinController extends BaseController {
 
 			if ($user !== null) {
 				$totals = array_fill_keys($values, 0);
-				$user_coins = $doctrine->getRepository('EuroCoinBundle:UserCoin')->findByCoinsForUser($user, $base_coins);
+				$user_coins = array();
+				if (!empty($base_coins)) {
+					$doctrine->getRepository('EuroCoinBundle:UserCoin')->findByCoinsForUser($user, $base_coins);
+				}
 
 				unset($base_coins);
 
