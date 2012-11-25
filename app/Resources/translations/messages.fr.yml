@@ -28,7 +28,7 @@ stats.top_countries: Pays les plus possédés
 stats.total_amount: Montant total
 stats.total_coins: Nombre de pièces
 stats.total_unique: Total unique
-stats.total_users: <strong>%total%</strong> membre est inscrit sur le site|<strong>%total%</strong> membres sont inscrits sur le site
+stats.total_users: <strong>%total%</strong> membre est inscrit sur le site, dont|<strong>%total%</strong> membres sont inscrits sur le site, dont
 stats.unique_coins: Pièces uniques
 stats.user: Utilisateur
 stats.users: Utilisateurs

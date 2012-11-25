@@ -11,14 +11,12 @@
 	<div class="span6">
 		<h3 class="page-header">{{ 'stats.users'|trans }}</h3>
 
-		{{- 'stats.total_users'|transchoice(user_stats.total, { '%total%': user_stats.total|number_format })|raw -}}
-		{%- for gender, members in user_stats.gender -%}
-			{% if loop.first %}, {% endif %}
-
+		{{ 'stats.total_users'|transchoice(user_stats.total, { '%total%': user_stats.total|number_format })|raw -}}
+		{% for gender, members in user_stats.gender %}
 			{{ ('user.gender' ~ gender ~ '_count')|transchoice(members, { '%total%': members|number_format })|raw }}
 
 			{% if loop.length - loop.index == 1 %}{{ 'and'|trans }}{% elseif not loop.last %}, {% endif %}
-		{%- endfor -%}
+		{% endfor %}
 		.<br />
 
 		{{ 'stats.average_age'|trans({ '%age%': user_stats.age })|raw }}<br />
