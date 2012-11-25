@@ -9,7 +9,13 @@
 	{% endset %}
 
 	{% set empty_cell %}
-	<td style="text-align: center;">{{ 'coin.no_mintage'|trans }}</td>
+	<td>
+		{{ 'coin.no_mintage'|trans }}
+
+		<a class="pull-right" href="{{ path('contact', { subject: 'missing_coins' }) }}" rel="tooltip" title="{{ 'coin.missing_coin'|trans }}">
+			<i class="icon-bullhorn"></i>
+		</a>
+	</td>
 	{% endset %}
 
 	{% set hide_count = 0 %}
