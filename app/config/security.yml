@@ -38,7 +38,6 @@ security:
             form_login:
                 provider:       fos_userbundle
                 login_path:     /login
-                use_forward:    true
                 check_path:     /login_check
                 failure_path:   null
                 use_referer:    true
