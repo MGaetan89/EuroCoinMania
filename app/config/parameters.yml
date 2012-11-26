@@ -8,10 +8,10 @@ parameters:
     database_path:     ~
 
     mailer_transport:  mail
-    mailer_host:       ssl0.ovh.net
-    mailer_port:       465
+    mailer_host:       localhost
+    mailer_port:       25
     mailer_user:       contact@eurocoin-mania.eu
-    mailer_password:   9urD8mBt3P
+    mailer_password:   ~
     mailer_encryption: ssl
 
     locale:            en
