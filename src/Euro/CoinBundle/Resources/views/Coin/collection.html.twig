@@ -67,7 +67,7 @@
 								</div>
 
 								{% if app.user %}
-									<i class="icon-cog pull-right" rel="popover" title="{{ macros.coin(coin) }}" data-html="true" data-placement="left" data-content="{% include 'EuroCoinBundle:Coin:popover_actions.html.twig' with { coin: coin, has_coin: has_coin } %}"></i>
+									<i class="icon-cog pull-right" rel="popover" data-original-title="{{ macros.coin(coin)|e('html') }}" data-html="true" data-placement="left" data-content="{% include 'EuroCoinBundle:Coin:popover_actions.html.twig' with { coin: coin, has_coin: has_coin } %}"></i>
 								{% endif %}
 							</div>
 						</td>
