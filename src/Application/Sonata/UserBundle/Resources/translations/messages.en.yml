@@ -73,8 +73,6 @@ user.stats.country.value: Total value
 user.stats.country.value_distribution: %count% on %total%
 user.stats.country.year: Year %year%
 user.stats.global: General
-user.stats.global.coin_distribution: <strong>%country% :</strong> %count% coin on %total%|<strong>%country% :</strong> %count% coins on %total%
-user.stats.global.collection_distribution: Collection distribution
 user.stats.global.country_count: <a href="%path%">%country%</a> with <strong>%count%</strong> coin|<a href="%path%">%country%</a> with <strong>%count%</strong> coins
 user.stats.global.owned_countries: Owned countries
 user.stats.global.stats: Data

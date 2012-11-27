@@ -73,8 +73,6 @@ user.stats.country.value: Valeur enregistrée
 user.stats.country.value_distribution: %count% sur %total%
 user.stats.country.year: Année %year%
 user.stats.global: Général
-user.stats.global.coin_distribution: <strong>%country% :</strong> %count% pièce sur %total%|<strong>%country% :</strong> %count% pièces sur %total%
-user.stats.global.collection_distribution: Répartition de la collection
 user.stats.global.country_count: <a href="%path%">%country%</a> avec <strong>%count%</strong> pièce|<a href="%path%">%country%</a> avec <strong>%count%</strong> pièces
 user.stats.global.owned_countries: Pays possédés
 user.stats.global.stats: Quelques chiffres
