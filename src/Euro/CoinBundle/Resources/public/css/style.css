@@ -7,9 +7,8 @@ img {
 	vertical-align: text-top;
 }
 
-#map {
+svg {
 	height: 100%;
-	width: 100%;
 }
 
 .alert-warning {
