@@ -47,6 +47,10 @@
 	{% set locale = app.user.locale %}
 {% endif %}
 
+{% if app.user %}
+	{% set pm_count = app.user|has_pm %}
+{% endif %}
+
 <div class="navbar navbar-fixed-top">
 	<div class="navbar-inner">
 		<div class="container-fluid">
@@ -71,9 +75,8 @@
 				</ul>
 				<ul class="nav pull-right">
 					{% if app.user %}
-						{% set count = app.user|has_pm %}
-						{% if count %}
-							<li><a href="{{ path('pm_list') }}" rel="tooltip" title="{{ 'pm.unread_count'|transchoice(count, { '%count%': count }) }}" data-placement="bottom"><span class="badge badge-warning">{{ count }}</span></a></li>
+						{% if pm_count %}
+							<li><a href="{{ path('pm_list') }}" rel="tooltip" title="{{ 'pm.unread_count'|transchoice(pm_count, { '%count%': pm_count }) }}" data-placement="bottom"><span class="badge badge-warning">{{ pm_count }}</span></a></li>
 						{% endif %}
 
 						<li class="{{ macros.is_active(['pm_list', 'pm_list_archives', 'pm_read', 'show_profile', 'show_user_collection1', 'show_user_collection2', 'show_user_collection3', 'show_user_stats'], 'false') }} dropdown">
@@ -188,7 +191,13 @@
 									{% endif %}
 
 									<a href="{{ path('show_profile', { id: app.user.id }) }}">{{ 'user.profile'|trans }}</a> &bull;
-									<a href="{{ path('pm_list') }}">{{ 'pm.user_pm'|trans }}</a> &bull;
+									<a href="{{ path('pm_list') }}">
+										{% if pm_count > 0 %}
+											{{ 'pm.unread_count'|transchoice(pm_count, { '%count%': pm_count }) }}
+										{% else %}
+											{{ 'pm.user_pm'|trans }}
+										{% endif %}
+									</a> &bull;
 									<a href="{{ path('fos_user_security_logout') }}">{{ 'user.logout'|trans }}</a>
 							</p>
 						{% else %}
@@ -207,7 +216,7 @@
 								<a href="{{ path('contact') }}">{{ 'contact'|trans }}</a> &bull;
 								<a href="{{ path('page_copyright') }}">{{ 'copyright'|trans }}</a> &bull;
 								<a href="{{ path('page_links') }}">{{ 'links'|trans }}</a> &bull;
-								<a href="https://github.com/MGaetan89/Euro/wiki" target="_blank">{{ 'copyright.contribute_on_github'|trans }}</a>
+								<a href="https://github.com/MGaetan89/Euro/wiki" target="_blank">{{ 'copyright.contribute'|trans }}</a>
 						</p>
 					</div>
 					<div class="span3">
