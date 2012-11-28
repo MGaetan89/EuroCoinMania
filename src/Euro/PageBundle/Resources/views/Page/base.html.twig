@@ -8,14 +8,29 @@
 		<ul class="dropdown-menu" style="display: block; position: static;">
 			<li class="nav-header">{{ 'menu'|trans }}</li>
 
-			<li{{ macros.is_active(['page_links']) }}><a href="{{ path('page_links') }}">{{ 'links'|trans }}</a></li>
-			<li><a href="{{ path('sonata_news_archive') }}">{{ 'news.archives'|trans }}</a></li>
-			<li{{ macros.is_active(['contact']) }}><a href="{{ path('contact') }}">{{ 'contact'|trans }}</a></li>
-			<li{{ macros.is_active(['page_copyright']) }}><a href="{{ path('page_copyright') }}">{{ 'copyright'|trans }}</a></li>
+			<li{{ macros.is_active(['page_links']) }}><a href="{{ path('page_links') }}">
+				<i class="icon-chevron-right"></i>
+				{{ 'links'|trans }}
+			</a></li>
+			<li><a href="{{ path('sonata_news_archive') }}">
+				<i class="icon-chevron-right"></i>
+				{{ 'news.archives'|trans }}
+			</a></li>
+			<li{{ macros.is_active(['contact']) }}><a href="{{ path('contact') }}">
+				<i class="icon-chevron-right"></i>
+				{{ 'contact'|trans }}
+			</a></li>
+			<li{{ macros.is_active(['page_copyright']) }}><a href="{{ path('page_copyright') }}">
+				<i class="icon-chevron-right"></i>
+				{{ 'copyright'|trans }}
+			</a></li>
 
 			<li class="divider"></li>
 
-			<li><a href="https://github.com/MGaetan89/Euro/wiki" target="_blank">{{ 'copyright.contribute_on_github'|trans }}</a></li>
+			<li><a href="https://github.com/MGaetan89/Euro/wiki" target="_blank">
+				<i class="icon-chevron-right"></i>
+				{{ 'copyright.contribute'|trans }}
+			</a></li>
 		</ul>
 	</div>
 	<div class="span10">
