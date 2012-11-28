@@ -134,6 +134,7 @@ exchange.none_pending: You have no pending exchange
 exchange.not_found: This exchange does not exist
 exchange.not_intended: This exchange is not intended to you
 exchange.not_own: This exchange does not belong to you
+exchange.other_coins: Other coins
 exchange.proposed_by: Proposed by <a href="%path%">%username%</a>
 exchange.proposed_on: Proposed on
 exchange.read_conversation: Read the conversation

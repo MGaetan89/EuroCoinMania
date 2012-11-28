@@ -134,6 +134,7 @@ exchange.none_pending: Vous n'avez pas d'échange en cours
 exchange.not_found: Cet échange n'existe pas
 exchange.not_intended: Cet échange ne vous est pas destiné
 exchange.not_own: Cet échange ne vous appartient pas
+exchange.other_coins: Autres pièces
 exchange.proposed_by: Proposé par <a href="%path%">%username%</a>
 exchange.proposed_on: Proposé le
 exchange.read_conversation: Lire la conversation
