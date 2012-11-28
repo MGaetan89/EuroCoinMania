@@ -1,7 +1,7 @@
 {% set content %}{% spaceless %}
 <div class="input-append input-prepend">
 	<button class="btn btn-danger{% if not has_coin %} disabled" disabled="disabled{% endif %}" data-action="remove-coin" data-loading-text="{{ 'coin.remove'|trans }}">{{ 'coin.remove'|trans }}</button>
-	<input class="input-mini quantity" rel="tooltip" title="{{ 'coin.quantity'|trans }}" type="text" value="1" />
+	<input class="input-mini quantity" max="{{ coin.mintage }}" min="1" rel="tooltip" title="{{ 'coin.quantity'|trans }}" type="number" value="1" />
 	<button class="btn btn-success{% if coin.mintage == coin.membertotal %} disabled" disabled="disabled{% endif %}" data-action="add-coin" data-loading-text="{{ 'coin.add'|trans }}">{{ 'coin.add'|trans }}</button>
 </div>
 {% endspaceless %}{% endset %}
