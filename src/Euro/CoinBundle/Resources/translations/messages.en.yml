@@ -113,6 +113,8 @@ exchange.accepted: You have accepted this exchange
 exchange.actions: Actions
 exchange.cancel: Cancel
 exchange.canceled: You have canceled this exchange
+exchange.coins_asked: Coins requested by <a href="%path%">%username%</a>
+exchange.coins_proposed: Coins proposed to <a href="%path%">%username%</a>
 exchange.coins_requested: Requested coins
 exchange.coins_suggested: Suggested coins
 exchange.direction: Exchange direction

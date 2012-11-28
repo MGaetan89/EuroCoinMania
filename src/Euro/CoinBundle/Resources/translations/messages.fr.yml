@@ -113,6 +113,8 @@ exchange.accepted: Vous avez bien accepté cet échange
 exchange.actions: Actions
 exchange.cancel: Annuler
 exchange.canceled: Votre échange a bien été annulé
+exchange.coins_asked: Pièces demandées par <a href="%path%">%username%</a>
+exchange.coins_proposed: Pièces proposées à <a href="%path%">%username%</a>
 exchange.coins_requested: Pièces demandées
 exchange.coins_suggested: Pièces proposées
 exchange.direction: Sens de l'échange

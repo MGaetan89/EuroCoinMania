@@ -48,7 +48,7 @@
 					{% for coin in coins[exchange.id]['requested'] %}
 						<li{% if loop.index > 4 %} class="collapse hidden-{{ exchange.id }}-requested"{% endif %}>{{ macros.coin(coin) }}</li>
 
-						{% if loop.index == 4 %}
+						{% if loop.index == 4 and loop.length > 4 %}
 							<li><a href="#" data-toggle="collapse" data-target=".hidden-{{ exchange.id }}-requested">{{ 'exchange.other_coins'|trans }}</a></li>
 						{% endif %}
 					{% endfor %}
@@ -59,7 +59,7 @@
 					{% for coin in coins[exchange.id]['suggested'] %}
 						<li{% if loop.index > 4 %} class="collapse hidden-{{ exchange.id }}-suggested"{% endif %}>{{ macros.coin(coin) }}</li>
 
-						{% if loop.index == 4 %}
+						{% if loop.index == 4 and loop.length > 4 %}
 							<li><a href="#" data-toggle="collapse" data-target=".hidden-{{ exchange.id }}-suggested">{{ 'exchange.other_coins'|trans }}</a></li>
 						{% endif %}
 					{% endfor %}
