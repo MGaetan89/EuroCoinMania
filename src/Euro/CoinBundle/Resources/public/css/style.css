@@ -101,6 +101,8 @@ h4 .tooltip,
 h5 .tooltip,
 h6 .tooltip {
 	font-size: 11px;
+	font-weight: normal;
+	line-height: 20px;
 }
 
 .dropdown-menu.typeahead {

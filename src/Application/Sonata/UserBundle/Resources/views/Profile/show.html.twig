@@ -6,24 +6,24 @@
 	{{ 'user.information'|trans }}
 
 	<div class="pull-right">
-		<a class="btn btn-link" href="mailto: {{ user.email }}" rel="tooltip" target="_blank" title="{{ 'user.email'|trans }}" data-placement="left">
+		<a class="btn btn-link" href="mailto: {{ user.email }}" rel="tooltip" target="_blank" title="{{ 'user.email'|trans }}">
 			<img alt="{{ 'user.email'|trans }}" src="{{ asset('bundles/applicationsonatauser/images/email.png') }}" />
 		</a>
 
 		{% if user.facebookuid %}
-			<a class="btn btn-link" href="http://www.fb.me/{{ user.facebookuid }}" rel="tooltip" target="_blank" title="{{ 'user.facebook'|trans }}" data-placement="left">
+			<a class="btn btn-link" href="http://www.fb.me/{{ user.facebookuid }}" rel="tooltip" target="_blank" title="{{ 'user.facebook'|trans }}">
 				<img alt="{{ 'user.facebook'|trans }}" src="{{ asset('bundles/applicationsonatauser/images/facebook.png') }}" />
 			</a>
 		{% endif %}
 
 		{% if user.twitteruid %}
-			<a class="btn btn-link" href="http://www.twitter.com/{{ user.twitteruid }}" rel="tooltip" target="_blank" title="{{ 'user.twitter'|trans }}" data-placement="left">
+			<a class="btn btn-link" href="http://www.twitter.com/{{ user.twitteruid }}" rel="tooltip" target="_blank" title="{{ 'user.twitter'|trans }}">
 				<img alt="{{ 'user.twitter'|trans }}" src="{{ asset('bundles/applicationsonatauser/images/twitter.png') }}" />
 			</a>
 		{% endif %}
 
 		{% if user.gplusuid %}
-			<a class="btn btn-link" href="http://plus.google.com/{{ user.gplusuid }}" rel="tooltip" target="_blank" title="{{ 'user.google_plus'|trans }}" data-placement="left">
+			<a class="btn btn-link" href="http://plus.google.com/{{ user.gplusuid }}" rel="tooltip" target="_blank" title="{{ 'user.google_plus'|trans }}">
 				<img alt="{{ 'user.google_plus'|trans }}" src="{{ asset('bundles/applicationsonatauser/images/google_plus.png') }}" />
 			</a>
 		{% endif %}
@@ -72,7 +72,7 @@
 
 			{% if user.website %}
 				<dt>{{ 'user.website'|trans }}</dt>
-					<dd><a href="{{ user.website }}">{{ user.website }}</a></dd>
+					<dd><a href="{{ user.website }}" target="_blank">{{ user.website }}</a></dd>
 			{% endif %}
 		</dl>
 	</div>
