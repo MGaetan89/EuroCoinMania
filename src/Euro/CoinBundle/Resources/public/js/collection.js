@@ -1,7 +1,7 @@
 $(function () {
 	var body = $('body'),
 		modal = $('#coin-modal'),
-		placement = location.pathname.match('commemorative') ? 'left' : 'right',
+		placement = (location.pathname.match('commemorative') || location.pathname.match('collector')) ? 'left' : 'right',
 		quantityTotal = $('#quantity-total');
 
 	var text = '−';
