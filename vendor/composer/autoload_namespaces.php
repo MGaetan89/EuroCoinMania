@@ -40,6 +40,7 @@ return array(
     'JMS\\DiExtraBundle' => $vendorDir . '/jms/di-extra-bundle/',
     'JMS\\AopBundle' => $vendorDir . '/jms/aop-bundle/',
     'Imagine' => $vendorDir . '/imagine/Imagine/lib/',
+    'Google\\Authenticator' => $vendorDir . '/sonata-project/google-authenticator/lib/',
     'Gaufrette' => $vendorDir . '/knplabs/gaufrette/src/',
     'FOS\\UserBundle' => $vendorDir . '/friendsofsymfony/user-bundle/',
     'Exporter' => $vendorDir . '/sonata-project/exporter/lib/',
