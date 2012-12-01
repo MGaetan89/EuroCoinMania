@@ -1,7 +1,6 @@
 $(function () {
 	var body = $('body'),
 		modal = $('#coin-modal'),
-		placement = (location.pathname.match('commemorative') || location.pathname.match('collector')) ? 'left' : 'right',
 		quantityTotal = $('#quantity-total');
 
 	var text = '−';
@@ -77,7 +76,7 @@ $(function () {
 				$this.popover({
 					content: $(data).html(),
 					html: true,
-					placement: placement,
+					placement: 'left',
 					template: '<div class="popover"><div class="close" data-dismiss="alert">&times;</div><div class="arrow"></div><div class="popover-inner"><h3 class="popover-title"></h3><div class="popover-content"><p></p></div></div></div>'
 				}).popover('show').button('reset');
 			});
