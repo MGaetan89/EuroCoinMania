@@ -319,13 +319,13 @@ class ExchangeController extends BaseController {
 			'id' => $exchange->getId(),
 		));
 		$message = \Swift_Message::newInstance()
-			->setSubject($translator->trans('exchange.email.title.new_exchange', array(), null, $emailLocale))
+			->setSubject($translator->trans('exchange.email.title.new_exchange', array(), 'messages', $emailLocale))
 			->setFrom(array('contact@eurocoin-mania.eu' => 'EuroCoin Mania'))
 			->setTo($from->getEmail())
 			->setBody($translator->trans('exchange.email.text.new_exchange', array(
 				'path' => $exchangePath,
 				'username' => $user->getUsername(),
-			), null, $emailLocale));
+			), 'messages', $emailLocale));
 
 		$this->get('mailer')->send($message);
 
