@@ -1,43 +1,41 @@
 {% import "::macros.html.twig" as macros %}
 
 <div id="coin-info-{{ coin.id }}">
-	<div class="row-fluid">
-		{% if coin.image and coin.type == 1 %}
-			<div class="span2 zoomable">
+	{% if coin.image and coin.type == 1 %}
+		<div style="width: 300px;">
+			<div class="pull-left zoomable">
 				{% media coin.image, 'small' with { alt: coin.description, title: coin.description } %}
 			</div>
-		{% endif %}
-	{% if coin.type == 1 %}
-	</div>
-	<div class="row-fluid">
-		{% if coin.image and coin.type == 1 %}
-		<div class="span2">
-			<dl>
-		{% endif %}
+
+			<dl class="pull-right">
+	{% else %}
+		<dl class="dl-horizontal">
 	{% endif %}
 
-	{% if coin.type != 1 or not coin.image %}
-		<div class="span3">
-			<dl class="dl-horizontal">
-	{% endif %}
-				<dt>{{ 'coin.country'|trans }}</dt>
-					<dd>{{ macros.name(coin.country) }}</dd>
+			<dt>{{ 'coin.country'|trans }}</dt>
+				<dd>{{ macros.name(coin.country) }}</dd>
 
-				<dt>{{ 'coin.year'|trans }}</dt>
-					<dd>{{ macros.year(coin.year) }}</dd>
+			<dt>{{ 'coin.year'|trans }}</dt>
+				<dd>{{ macros.year(coin.year) }}</dd>
 
-				<dt>{{ 'coin.value'|trans }}</dt>
-					<dd>{{ macros.value(coin.value) }}</dd>
+			<dt>{{ 'coin.value'|trans }}</dt>
+				<dd>{{ macros.value(coin.value) }}</dd>
 
-				<dt>{{ 'coin.type'|trans }}</dt>
-					<dd>{{ ('coin.type' ~ coin.type)|trans }}</dd>
+			<dt>{{ 'coin.type'|trans }}</dt>
+				<dd>{{ ('coin.type' ~ coin.type)|trans }}</dd>
 
-				<dt>{{ 'coin.mintage'|trans }}</dt>
+			<dt>{{ 'coin.mintage'|trans }}</dt>
+				{% if coin.mintage > 0 %}
 					<dd>{{ coin.mintage|number_format }}</dd>
+				{% else %}
+					<dd>{{ 'coin.mintage_unknown'|trans }}</dd>
+				{% endif %}
 
-				<dt>{{ 'coin.registered_quantity'|trans }}</dt>
-					<dd>{{ coin.membertotal|number_format }}</dd>
-			</dl>
+			<dt>{{ 'coin.registered_quantity'|trans }}</dt>
+				<dd>{{ coin.membertotal|number_format }}</dd>
+		</dl>
+
+	{% if coin.image and coin.type == 1 %}
 		</div>
-	</div>
+	{% endif %}
 </div>

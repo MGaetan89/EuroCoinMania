@@ -28,6 +28,7 @@ coin.exchange_suggest: Proposer ces pièces
 coin.image: Image
 coin.information: Informations
 coin.mintage: Tirage
+coin.mintage_unknown: Tirage inconnu
 coin.missing_coin: Signaler une pièce manquante
 coin.no_image: Aucune image
 coin.no_mintage: Aucun tirage
