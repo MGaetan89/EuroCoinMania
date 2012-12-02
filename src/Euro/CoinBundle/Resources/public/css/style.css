@@ -1,5 +1,4 @@
 body {
-	padding-bottom: 60px;
 	padding-top: 50px;
 }
 
@@ -51,6 +50,13 @@ svg {
 
 .dropdown-menu li a {
 	white-space: normal;
+}
+
+.footer {
+	background-color: whiteSmoke;
+	border-top: 1px solid #E5E5E5;
+	margin-top: 30px;
+	padding: 30px 5px 15px 5px;
 }
 
 .form-centered {
