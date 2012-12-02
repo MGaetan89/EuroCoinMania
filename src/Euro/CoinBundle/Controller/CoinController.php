@@ -38,7 +38,8 @@ class CoinController extends BaseController {
 				throw $this->createNotFoundException($translator->trans('coin.not_found'));
 			}
 
-			if ($coin->getMemberTotal() + $quantity > $coin->getMintage()) {
+			$mintage = $coin->getMintage();
+			if ($mintage > 0 && $coin->getMemberTotal() + $quantity > $mintage) {
 				throw $this->createNotFoundException($translator->trans('coin.not_available'));
 			}
 
