@@ -24,7 +24,7 @@
 
 						<{{ tag_name }}><a href="{{ url('sonata_news_view', { permalink: sonata_news_permalink(post) }) }}">{{ post.title }}</a></{{ tag_name }}>
 
-						<p>{{ post.abstract|format_text('markdown')|raw }}</p>
+						{{ post.abstract|format_text('markdown')|raw }}
 						<p>
 							<span class="muted">{{ 'news.posted_by_on'|trans({ '%author%': post.author, '%date%': post.publicationDateStart|format_datetime, '%path%': path('show_profile', { id: post.author.id }) })|raw }}</span>
 

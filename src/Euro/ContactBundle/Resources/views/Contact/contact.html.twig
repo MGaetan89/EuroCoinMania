@@ -8,19 +8,19 @@
 <form action="{{ path('contact') }}" class="form-centered" method="post">
 	{% if app.user %}
 		{% set disabled_attr = { 
-			class: 'uneditable-input',
+			class: 'span12',
 			readonly: 'readonly'
 		} %}
 
 		{{ form_row(form.name, { attr: disabled_attr, label: 'contact.name'|trans, value: app.user.username }) }}
 		{{ form_row(form.email, { attr: disabled_attr, label: 'contact.email'|trans, value: app.user.email }) }}
 	{% else %}
-		{{ form_row(form.name, { label: 'contact.name'|trans }) }}
-		{{ form_row(form.email, { label: 'contact.email'|trans }) }}
+		{{ form_row(form.name, { attr: { class: 'span12' }, label: 'contact.name'|trans }) }}
+		{{ form_row(form.email, { attr: { class: 'span12' }, label: 'contact.email'|trans }) }}
 	{% endif %}
 
-	{{ form_row(form.subject, { label: 'contact.subject'|trans }) }}
-	{{ form_row(form.message, { attr: { rows: 6 }, label: 'contact.message'|trans }) }}
+	{{ form_row(form.subject, { attr: { class: 'span12' }, label: 'contact.subject'|trans }) }}
+	{{ form_row(form.message, { attr: { class: 'span12', rows: 6 }, label: 'contact.message'|trans }) }}
 
 	{{ form_rest(form) }}
 

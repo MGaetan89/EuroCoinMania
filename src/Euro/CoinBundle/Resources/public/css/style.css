@@ -63,8 +63,8 @@ svg {
 	background-color: #F5F5F5;
 	border: 1px solid #E5E5E5;
 	margin: 0 auto 20px;
-	max-width: 400px;
 	padding: 19px 29px 29px;
+	width: 50%;
     -webkit-border-radius: 5px;
 	-moz-border-radius: 5px;
 	border-radius: 5px;

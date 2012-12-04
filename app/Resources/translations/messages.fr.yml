@@ -10,7 +10,6 @@ error.not_found: La page que vous souhaitez consulter n'existe pas.
 information: Information !
 menu: Menu
 no_data: Aucune donnée
-personnal_menu: Menu personnel
 site_created_by: Site créé par <a href="%path%">%name%</a>
 site_description: Gérer votre collection de pièces en Euro et proposer des échanges aux autres utilisateurs.
 site_keywords: échange, euro, collection, collector, numismate, pièce, tirage
