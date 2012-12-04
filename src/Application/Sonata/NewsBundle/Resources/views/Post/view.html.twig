@@ -12,7 +12,7 @@
 		<ul class="dropdown-menu" style="display: block; position: static;">
 			<li class="nav-header">{{ 'news.information'|trans }}</li>
 
-			<li title="{{ 'news.author'|trans }}"><a href="{{ path('show_profile', { id: post.author.id }) }}"><i class="icon-pencil"></i> {{ post.author }}</a></li>
+			<li title="{{ 'news.author'|trans }}"><a href="{{ path('show_profile', { id: post.author.id }) }}" rel="author"><i class="icon-pencil"></i> {{ post.author }}</a></li>
 			<li title="{{ 'news.publication_date'|trans }}"><a><i class="icon-time"></i> {{ post.publicationDateStart|format_date }}</a></li>
 
 			<li class="divider"></li>
@@ -20,7 +20,7 @@
 			<li class="nav-header">{{ 'news.tags'|trans }}</li>
 
 			{% for tag in post.tags %}
-				<li><a href="{{ url('sonata_news_tag', { tag: tag.slug } ) }}"><i class="icon-tag"></i> {{ tag.name }}</a></li>
+				<li><a href="{{ url('sonata_news_tag', { tag: tag.slug } ) }}" rel="tag"><i class="icon-tag"></i> {{ tag.name }}</a></li>
 			{% endfor %}
 		</ul>
 	</div>

@@ -21,7 +21,7 @@
 			<p>
 				<strong>{{ 'news.tags'|trans }} :</strong>
 				{% for tag in post.tags %}
-					<a class="label" href="{{ url('sonata_news_tag', { tag: tag.slug }) }}">{{ tag.name }}</a>
+					<a class="label" href="{{ url('sonata_news_tag', { tag: tag.slug }) }}" rel="tag">{{ tag.name }}</a>
 				{% endfor %}
 			</p>
 			<p>
