@@ -17,7 +17,7 @@
 		<div class="span4">
 			<h4><a href="{{ url('sonata_news_view', { permalink: sonata_news_permalink(post) }) }}">{{ post.title }}</a></h4>
 
-			<p>{{ post.abstract|format_text('markdown')|raw }}</p>
+			{{ post.abstract|format_text('markdown')|raw }}
 			<p>
 				<strong>{{ 'news.tags'|trans }} :</strong>
 				{% for tag in post.tags %}
