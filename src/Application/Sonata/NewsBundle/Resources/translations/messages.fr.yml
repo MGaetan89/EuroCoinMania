@@ -20,7 +20,9 @@ edit.underline.symbol: S
 edit.underline.title: Souligné
 news: Actualités
 news.archives: Archives
-news.archives.meta_description: "Archives des news d'EuroCoin Mania correspondant au tag &laquo; %tag% &raquo;"
+news.archives.meta_description: Archives des news d'EuroCoin Mania
+news.archives_tag: "Archives pour &laquo; %tag% &raquo;"
+news.archives_tag.meta_description: "Archives des news d'EuroCoin Mania correspondant au tag &laquo; %tag% &raquo;"
 news.author: Auteur
 news.comment: Commentaire
 news.comment.add: Poster un commentaire

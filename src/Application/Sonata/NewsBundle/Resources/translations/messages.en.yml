@@ -20,7 +20,9 @@ edit.underline.symbol: U
 edit.underline.title: Underline
 news: News
 news.archives: Archives
-news.archives.meta_description: "EuroCoin Mania news archives for tag &laquo; %tag% &raquo;"
+news.archives.meta_description: EuroCoin Mania news archives
+news.archives_tag: "Archives for &laquo; %tag% &raquo;"
+news.archives_tag.meta_description: "EuroCoin Mania news archives for tag &laquo; %tag% &raquo;"
 news.author: Author
 news.comment: Comment
 news.comment.add: Post a comment

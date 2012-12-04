@@ -28,6 +28,12 @@
 	</thead>
 	<tbody>
 	{% set row_classes = ['info', 'success', 'warning', 'error'] %}
+	{% set status_icons = {
+		1: 'icon-refresh',
+		2: 'icon-ok',
+		3: 'icon-minus-sign',
+		4: 'icon-remove'
+	} %}
 	{% for exchange in exchanges %}
 		<tr class="{{ row_classes[exchange.status - 1] }}">
 			<td><a href="{{ path('exchange_show', { id: exchange.id }) }}">#{{ exchange.id }}</a></td>
@@ -67,7 +73,10 @@
 			</td>
 
 			{% if all %}
-				<td>{{ ('exchange.status' ~ exchange.status)|trans }}</td>
+				<td>
+					<i class="{{ status_icons[exchange.status] }}"></i>
+					{{ ('exchange.status' ~ exchange.status)|trans }}
+				</td>
 			{% else %}
 				<td>
 					<div class="btn-group">

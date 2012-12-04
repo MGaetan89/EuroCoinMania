@@ -1,10 +1,23 @@
 {% extends '::base.html.twig' %}
 
-{% block meta_description %}{{ 'news.archives.meta_description'|trans({ '%tag%': tag })|raw }}{% endblock %}
+{% block meta_description %}
+	{% if tag %}
+		{{ 'news.archives_tag.meta_description'|trans({ '%tag%': tag })|raw }}
+	{% else %}
+		{{ 'news.archives.meta_description'|trans }}
+	{% endif %}
+{% endblock %}
 
-{% block title %}{{ 'news.archives'|trans }}{% endblock %}
+{% block title %}
+	{% if tag %}
+		{{ 'news.archives_tag'|trans({ '%tag%': tag })|raw }}
+	{% else %}
+		{{ 'news.archives'|trans }}
+	{% endif %}
+{% endblock %}
 
 {% block body %}
+
 <h2 class="page-header">{{ block('title') }}</h2>
 
 <div class="row-fluid">
