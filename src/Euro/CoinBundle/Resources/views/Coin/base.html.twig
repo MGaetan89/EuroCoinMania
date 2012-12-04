@@ -19,7 +19,7 @@
 	{% set name = macros.name(current) %}
 
 	<h2 class="page-header">
-		<img alt="{{ name }}" src="{% path current.flag, 'big' %}" rel="tooltip" title="{{ name }}" data-placement="right" />
+		<img alt="{{ name }}" src="{% path current.flag, 'big' %}" title="{{ name }}" data-hover="tooltip" data-placement="right" />
 		{{ block('title') }}
 	</h2>
 
@@ -46,7 +46,7 @@
 
 					<li class="active">
 						<a href="{{ path('coin_collection' ~ type, { id: current.id, country: _name }) }}">
-							<img alt="{{ _name }}" src="{% path current.flag, 'mini' %}" rel="tooltip" title="{{ _name }}" data-placement="right" />
+							<img alt="{{ _name }}" src="{% path current.flag, 'mini' %}" title="{{ _name }}" data-hover="tooltip" data-placement="right" />
 							{{ _name }}
 						</a>
 					</li>
@@ -58,7 +58,7 @@
 
 						<li class="hide" data-action="popover" title="{{ _name }}" data-content="{% include 'EuroCoinBundle:Country:country_data.html.twig' with { country: country } %}">
 							<a href="{{ path('coin_collection' ~ type, { id: country.id, country: _name|e('url') }) }}">
-								<img alt="{{ _name }}" src="{% path country.flag, 'mini' %}" rel="tooltip" title="{{ _name }}" data-placement="right" />
+								<img alt="{{ _name }}" src="{% path country.flag, 'mini' %}" title="{{ _name }}" data-hover="tooltip" data-placement="right" />
 								{{ _name }}
 							</a>
 						</li>
@@ -120,7 +120,7 @@
 						{% endif %}
 
 						<li class="dropdown">
-							<a href="#" rel="tooltip" title="{{ 'year.filter_setting'|trans }}" data-toggle="dropdown" data-placement="top">
+							<a href="#" title="{{ 'year.filter_setting'|trans }}" data-hover="tooltip" data-toggle="dropdown" data-placement="top">
 								<i class="icon-wrench"></i> <b class="caret"></b>
 							</a>
 

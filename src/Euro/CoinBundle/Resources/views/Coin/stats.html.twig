@@ -35,7 +35,7 @@
 
 				<tr>
 					<td>
-						<img alt="{{ name }}" rel="tooltip" src="{{ asset('bundles/applicationsonatauser/images/' ~ country|lower ~ '.png') }}" title="{{ name }}" data-placement="right" />
+						<img alt="{{ name }}" src="{{ asset('bundles/applicationsonatauser/images/' ~ country|lower ~ '.png') }}" title="{{ name }}" data-hover="tooltip" data-placement="right" />
 
 						{% if countries[country] is defined %}<a href="{{ path('coin_collection1', { id: countries[country].id, country: name }) }}">{% endif %}
 							{{ name }}
@@ -63,7 +63,7 @@
 
 				<tr>
 					<td>
-						<img alt="{{ name }}" rel="tooltip" src="{% path country.flag, 'mini' %}" title="{{ name }}" data-placement="right" />
+						<img alt="{{ name }}" src="{% path country.flag, 'mini' %}" title="{{ name }}" data-hover="tooltip" data-placement="right" />
 
 						<a href="{{ path('coin_collection1', { id: country.id, country: name }) }}">
 							{{ name }}
@@ -94,7 +94,7 @@
 
 				<tr>
 					<td>
-						<img alt="{{ name }}" rel="tooltip" src="{% path country.flag, 'mini' %}" title="{{ name }}" data-placement="right" />
+						<img alt="{{ name }}" src="{% path country.flag, 'mini' %}" title="{{ name }}" data-hover="tooltip" data-placement="right" />
 
 						<a href="{{ path('coin_collection1', { id: country.id, country: name }) }}">
 							{{ name }}
@@ -139,7 +139,7 @@
 							} %}
 						{% endif %}
 
-						<img alt="{{ image.title }}" rel="tooltip" src="{{ image.src }}" title="{{ image.title }}" data-placement="right" />
+						<img alt="{{ image.title }}" src="{{ image.src }}" title="{{ image.title }}" data-hover="tooltip" data-placement="right" />
 
 						<a href="{{ path('show_user_collection1', { user_id: user.id }) }}">
 							{{ user.username }}
@@ -181,7 +181,7 @@
 							} %}
 						{% endif %}
 
-						<img alt="{{ image.title }}" rel="tooltip" src="{{ image.src }}" title="{{ image.title }}" data-placement="right" />
+						<img alt="{{ image.title }}" src="{{ image.src }}" title="{{ image.title }}" data-hover="tooltip" data-placement="right" />
 
 						<a href="{{ path('show_user_collection1', { user_id: user.id }) }}">
 							{{ user.username }}

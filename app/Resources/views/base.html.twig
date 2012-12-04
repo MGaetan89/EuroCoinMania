@@ -76,7 +76,7 @@
 				<ul class="nav pull-right">
 					{% if app.user %}
 						{% if pm_count %}
-							<li><a href="{{ path('pm_list') }}" rel="tooltip" title="{{ 'pm.unread_count'|transchoice(pm_count, { '%count%': pm_count }) }}" data-placement="bottom"><span class="badge badge-warning">{{ pm_count }}</span></a></li>
+							<li><a href="{{ path('pm_list') }}" title="{{ 'pm.unread_count'|transchoice(pm_count, { '%count%': pm_count }) }}" data-hover="tooltip" data-placement="bottom"><span class="badge badge-warning">{{ pm_count }}</span></a></li>
 						{% endif %}
 
 						<li class="{{ macros.is_active(['pm_list', 'pm_list_archives', 'pm_read', 'show_profile', 'show_user_collection1', 'show_user_collection2', 'show_user_collection3', 'show_user_stats'], 'false') }} dropdown">

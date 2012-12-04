@@ -10,7 +10,7 @@
 				{% set name = macros.name(country) %}
 
 				<li><a href="#country-{{ country.id }}" data-toggle="tab">
-					<img alt="{{ name }}" rel="tooltip" src="{% path country.flag, 'mini' %}" title="{{ name }}" data-placement="right" />
+					<img alt="{{ name }}" src="{% path country.flag, 'mini' %}" title="{{ name }}" data-hover="tooltip" data-placement="right" />
 					{{ name }}
 				</a></li>
 			{% endfor %}
@@ -85,7 +85,7 @@
 						<dt>{{ 'user.stats.country.coins'|trans }}</dt>
 							<dd>
 								<div class="progress">
-									<div class="bar" rel="tooltip" style="width: {{ count / total * 100 }}%;" title="{{ title }}">{{ '%.2f'|format(count / total * 100) }} %</div>
+									<div class="bar" style="width: {{ count / total * 100 }}%;" title="{{ title }}" data-hover="tooltip">{{ '%.2f'|format(count / total * 100) }} %</div>
 								</div>
 							</dd>
 
@@ -98,7 +98,7 @@
 						<dt>{{ 'user.stats.country.value'|trans }}</dt>
 							<dd>
 								<div class="progress">
-									<div class="bar" rel="tooltip" style="width: {{ count / total * 100 }}%;" title="{{ title }}">{{ macros.value(count) }}</div>
+									<div class="bar" style="width: {{ count / total * 100 }}%;" title="{{ title }}" data-hover="tooltip">{{ macros.value(count) }}</div>
 								</div>
 							</dd>
 
@@ -112,7 +112,7 @@
 							<dt>{{ 'user.stats.country.collectors'|trans }}</dt>
 								<dd>
 									<div class="progress">
-										<div class="bar" rel="tooltip" style="width: {{ count / total * 100 }}%;" title="{{ title }}">{{ '%.2f'|format(count / total * 100) }} %</div>
+										<div class="bar" style="width: {{ count / total * 100 }}%;" title="{{ title }}" data-hover="tooltip">{{ '%.2f'|format(count / total * 100) }} %</div>
 									</div>
 								</dd>
 						{% endif %}
@@ -127,7 +127,7 @@
 							<dt>{{ 'user.stats.country.commemoratives'|trans }}</dt>
 								<dd>
 									<div class="progress">
-										<div class="bar" rel="tooltip" style="width: {{ count / total * 100 }}%;" title="{{ title }}">{{ '%.2f'|format(count / total * 100) }} %</div>
+										<div class="bar" style="width: {{ count / total * 100 }}%;" title="{{ title }}" data-hover="tooltip">{{ '%.2f'|format(count / total * 100) }} %</div>
 									</div>
 								</dd>
 						{% endif %}
@@ -151,7 +151,7 @@
 
 								<dt>{{ 'user.stats.country.year'|trans({ '%year%': macros.year(year) })|raw }}</dt>
 									<dd>
-										<div class="progress" rel="tooltip" title="{{ title }}">
+										<div class="progress" title="{{ title }}" data-hover="tooltip">
 											<div class="bar bar-{{ cycle(classes, i) }}" style="width: {{ ratio }}%;">{{ ratio > 0 ? text : '' }}</div>
 
 											{% if ratio == 0 %}

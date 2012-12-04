@@ -12,7 +12,7 @@
 	<td>
 		{{ 'coin.no_mintage'|trans }}
 
-		<a class="pull-right" href="{{ path('contact', { subject: 'missing_coins' }) }}" rel="tooltip" title="{{ 'coin.missing_coin'|trans }}">
+		<a class="pull-right" href="{{ path('contact', { subject: 'missing_coins' }) }}" title="{{ 'coin.missing_coin'|trans }}" data-hover="tooltip">
 			<i class="icon-bullhorn"></i>
 		</a>
 	</td>
@@ -67,7 +67,7 @@
 								</div>
 
 								{% if app.user %}
-									<i class="icon-cog pull-right" rel="popover" data-original-title="{{ macros.coin(coin)|e('html') }}" data-html="true" data-placement="left" data-content="{% include 'EuroCoinBundle:Coin:popover_actions.html.twig' with { coin: coin, has_coin: has_coin } %}"></i>
+									<i class="icon-cog pull-right" data-hover="popover" data-original-title="{{ macros.coin(coin)|e('html') }}" data-html="true" data-placement="left" data-content="{% include 'EuroCoinBundle:Coin:popover_actions.html.twig' with { coin: coin, has_coin: has_coin } %}"></i>
 								{% endif %}
 							</div>
 						</td>
@@ -84,7 +84,7 @@
 			{% for value, total in totals %}
 				<th>
 					<span class="pull-left quantity">{{ total|number_format }}</span>
-					<span class="pull-right" rel="tooltip" title="{{ macros.value(total * value) }}" data-placement="left"><i class="icon-info-sign"></i></span>
+					<span class="pull-right" title="{{ macros.value(total * value) }}" data-hover="tooltip" data-placement="left"><i class="icon-info-sign"></i></span>
 				</th>
 			{% endfor %}
 		</tr>

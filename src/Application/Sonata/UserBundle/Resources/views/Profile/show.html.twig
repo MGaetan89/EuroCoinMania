@@ -6,24 +6,24 @@
 	{{ 'user.information'|trans }}
 
 	<div class="pull-right">
-		<a class="btn btn-link" href="mailto: {{ user.email }}" rel="tooltip" target="_blank" title="{{ 'user.email'|trans }}">
+		<a class="btn btn-link" href="mailto: {{ user.email }}" target="_blank" title="{{ 'user.email'|trans }}" data-hover="tooltip">
 			<img alt="{{ 'user.email'|trans }}" src="{{ asset('bundles/applicationsonatauser/images/email.png') }}" />
 		</a>
 
 		{% if user.facebookuid %}
-			<a class="btn btn-link" href="http://www.fb.me/{{ user.facebookuid }}" rel="tooltip" target="_blank" title="{{ 'user.facebook'|trans }}">
+			<a class="btn btn-link" href="http://www.fb.me/{{ user.facebookuid }}" target="_blank" title="{{ 'user.facebook'|trans }}" data-hover="tooltip">
 				<img alt="{{ 'user.facebook'|trans }}" src="{{ asset('bundles/applicationsonatauser/images/facebook.png') }}" />
 			</a>
 		{% endif %}
 
 		{% if user.twitteruid %}
-			<a class="btn btn-link" href="http://www.twitter.com/{{ user.twitteruid }}" rel="tooltip" target="_blank" title="{{ 'user.twitter'|trans }}">
+			<a class="btn btn-link" href="http://www.twitter.com/{{ user.twitteruid }}" target="_blank" title="{{ 'user.twitter'|trans }}" data-hover="tooltip">
 				<img alt="{{ 'user.twitter'|trans }}" src="{{ asset('bundles/applicationsonatauser/images/twitter.png') }}" />
 			</a>
 		{% endif %}
 
 		{% if user.gplusuid %}
-			<a class="btn btn-link" href="http://plus.google.com/{{ user.gplusuid }}" rel="tooltip" target="_blank" title="{{ 'user.google_plus'|trans }}">
+			<a class="btn btn-link" href="http://plus.google.com/{{ user.gplusuid }}" target="_blank" title="{{ 'user.google_plus'|trans }}" data-hover="tooltip">
 				<img alt="{{ 'user.google_plus'|trans }}" src="{{ asset('bundles/applicationsonatauser/images/google_plus.png') }}" />
 			</a>
 		{% endif %}
@@ -65,7 +65,7 @@
 
 				<dt>{{ 'user.country'|trans }}</dt>
 					<dd>
-						<img alt="{{ country }}" src="{{ asset('bundles/applicationsonatauser/images/' ~ user.country|lower ~ '.png') }}" rel="tooltip" title="{{ country }}" data-placement="right" />
+						<img alt="{{ country }}" src="{{ asset('bundles/applicationsonatauser/images/' ~ user.country|lower ~ '.png') }}" title="{{ country }}" data-hover="tooltip" data-placement="right" />
 						{{ country }}
 					</dd>
 			{% endif %}

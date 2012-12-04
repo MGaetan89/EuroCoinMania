@@ -32,7 +32,7 @@
 				<tr id="{{ country.nameiso }}-list">
 					<td>
 						<a href="{{ path('coin_collection1', { id: country.id, country: name }) }}">
-							<img alt="{{ name }}" rel="tooltip" src="{% path country.flag, 'mini' %}" title="{{ name }}" data-placement="right" />
+							<img alt="{{ name }}" src="{% path country.flag, 'mini' %}" title="{{ name }}" data-hover="tooltip" data-placement="right" />
 							{{ name }}
 						</a>
 					</td>

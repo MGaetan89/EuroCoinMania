@@ -12,7 +12,7 @@
 	<tr>
 		<td>{{ 'copyright.webmaster'|trans }}</td>
 		<td>
-			<img alt="{{ webmaster.username }}" src="{{ gravatar(webmaster.email, 16) }}" rel="tooltip" title="{{ webmaster.username }}" data-placement="right" />
+			<img alt="{{ webmaster.username }}" src="{{ gravatar(webmaster.email, 16) }}" title="{{ webmaster.username }}" data-hover="tooltip" data-placement="right" />
 			<a href="{{ path('show_profile', { id: webmaster.id }) }}">{{ webmaster.username }}</a>
 		</td>
 	</tr>
