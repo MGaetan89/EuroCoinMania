@@ -315,23 +315,24 @@ class ExchangeController extends BaseController {
 		$em->flush();
 
 		$emailLocale = $from->getLocale();
-		$exchangePath = $this->generateUrl('exchange_show', array(
-			'id' => $exchange->getId(),
-		));
 		$message = \Swift_Message::newInstance()
 			->setSubject($translator->trans('exchange.email.title.new_exchange', array(), 'messages', $emailLocale))
 			->setFrom(array('contact@eurocoin-mania.eu' => 'EuroCoin Mania'))
 			->setTo($from->getEmail())
 			->setBody($translator->trans('exchange.email.text.new_exchange', array(
-				'path' => $exchangePath,
-				'username' => $user->getUsername(),
+				'%path%' => $this->generateUrl('exchange_show', array(
+					'id' => $exchange->getId(),
+				), true),
+				'%username%' => $user->getUsername(),
 			), 'messages', $emailLocale));
 
 		$this->get('mailer')->send($message);
 
 		$this->get('session')->getFlashBag()->add('success', 'coin.doubles.save_successfull');
 
-		return $this->redirect($exchangePath);
+		return $this->redirect($this->generateUrl('exchange_show', array(
+					'id' => $exchange->getId(),
+				)));
 	}
 
 	public function showAction($id) {
