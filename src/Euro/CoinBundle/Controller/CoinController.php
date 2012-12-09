@@ -179,7 +179,12 @@ class CoinController extends BaseController {
 					}
 				}
 
-				list($coins, $values) = $this->_buildVars($base_coins);
+				$oder = 'desc';
+				if ($user) {
+					$order = $user->getCoinsSort();
+				}
+
+				list($coins, $values) = $this->_buildVars($base_coins, $order);
 
 				$coins = array_shift($coins);
 				$values = array_shift($values);

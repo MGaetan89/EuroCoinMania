@@ -25,12 +25,15 @@
 				<li class="divider"></li>
 			{% endif %}
 
-			<li{{ macros.is_active(['exchange_choose_user']) }}>
-				<a href="{{ path('exchange_choose_user') }}">
-					<i class="icon-chevron-right"></i> 
-					{{ 'exchange.new'|trans }}
-				</a>
-			</li>
+			{% if app.user.allowexchanges %}
+				<li{{ macros.is_active(['exchange_choose_user']) }}>
+					<a href="{{ path('exchange_choose_user') }}">
+						<i class="icon-chevron-right"></i> 
+						{{ 'exchange.new'|trans }}
+					</a>
+				</li>
+			{% endif %}
+
 			<li{{ macros.is_active(['exchange_list']) }}>
 				<a href="{{ path('exchange_list') }}">
 					<i class="icon-chevron-right"></i> 

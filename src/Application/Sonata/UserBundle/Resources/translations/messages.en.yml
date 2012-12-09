@@ -8,12 +8,21 @@ user.contact: Contact
 user.contact_pm: Contact
 user.country: Country
 user.current_password: Current password
+user.customize: Customize
+user.customize.allow_exchanges: Receive and propose coins exchanges
+user.customize.coins_sort: Sort order for coins value
+user.customize.coins_sort_ascending: Ascending sort
+user.customize.coins_sort_decending: Descending sort
+user.customize.saved: Your preferences have been saved
+user.customize.show_email: Show your e-mail address on your profile
+user.customize.submit: Submit
 user.date_of_birth: Date of birth
 user.edit_authentication: Change your login details
 user.edit_profile: Update your profile
 user.editing_authentication: Changing your login details
 user.editing_profile: Updating your profile
 user.email: E-mail address
+user.exchanges.disabled: You disabled the exchanges feature
 user.facebook: Facebook
 user.firstname: Firstname
 user.gender: Gender

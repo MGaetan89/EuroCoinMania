@@ -1,3 +1,7 @@
+user_customize:
+    pattern: /profile/customize
+    defaults: { _controller: ApplicationSonataUserBundle:Default:customize }
+
 show_profile:
     pattern:  /profile/{id}/show
     defaults: { _controller: ApplicationSonataUserBundle:Default:show }
@@ -36,3 +40,4 @@ users_query:
     defaults: { _controller: ApplicationSonataUserBundle:Default:query }
     requirements:
         _method: POST
+

@@ -2,9 +2,11 @@
 
 namespace Application\Sonata\UserBundle\Controller;
 
+use Application\Sonata\UserBundle\Form\Type\CustomizeType;
 use Euro\CoinBundle\Controller\BaseController;
 use Euro\CoinBundle\Entity\Coin;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Request;
 
 class DefaultController extends BaseController {
 
@@ -96,7 +98,7 @@ class DefaultController extends BaseController {
 					$country = reset($countries);
 				}
 			} else {
-				list($coins, $values) = $this->_buildVars($user_coins);
+				list($coins, $values) = $this->_buildVars($user_coins, $this->getUser()->getCoinsSort());
 
 				$country_name = $translator->trans((string) $country);
 
@@ -131,6 +133,35 @@ class DefaultController extends BaseController {
 					'current' => $country,
 					'uc' => $uc,
 					'user' => $user,
+				));
+	}
+
+	public function customizeAction(Request $request) {
+		$user = $this->getUser();
+		$default = array(
+			'allow_exchanges' => $user->getAllowExchanges(),
+			'coins_sort' => $user->getCoinsSort(),
+			'show_email' => $user->getShowEmail(),
+		);
+		$form = $this->createForm(new CustomizeType(), $default);
+
+		if ($request->isMethod('POST')) {
+			$form->bind($request);
+			$data = $form->getData();
+
+			foreach ($data as $method => $value) {
+				$method = 'set' . implode('', array_map('ucfirst', explode('_', $method)));
+
+				$user->$method($value);
+			}
+
+			$this->get('session')->getFlashBag()->add('success', 'user.customize.saved');
+
+			$this->getDoctrine()->getManager()->flush();
+		}
+
+		return $this->render('ApplicationSonataUserBundle:Profile:customize.html.twig', array(
+					'form' => $form->createView(),
 				));
 	}
 

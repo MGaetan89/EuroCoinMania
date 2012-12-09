@@ -130,7 +130,7 @@ class ExchangeController extends BaseController {
 			return $this->redirect($this->generateUrl('exchange_choose_user'));
 		}
 
-		list($coins, $values) = $this->_buildVars($user_coins);
+		list($coins, $values) = $this->_buildVars($user_coins, $user->getCoinsSort());
 
 		return $this->render('EuroCoinBundle:Exchange:coins_request.html.twig', array(
 					'all_values' => $values,
@@ -141,6 +141,15 @@ class ExchangeController extends BaseController {
 
 	public function chooseUserAction() {
 		$user = $this->getUser();
+
+		if (!$user->getAllowExchanges()) {
+			$flashBag = $this->get('session')->getFlashBag();
+			$flashBag->clear();
+			$flashBag->add('info', 'user.exchanges.disabled');
+
+			return $this->redirect($this->generateUrl('exchange_list'));
+		}
+
 		$users = $this->getDoctrine()->getRepository('EuroCoinBundle:UserCoin')->findDoublesForUser($user);
 
 		if (!$users) {
@@ -223,7 +232,7 @@ class ExchangeController extends BaseController {
 			throw $this->createNotFoundException($translator->trans('coin.doubles.user_no_doubles'));
 		}
 
-		list($coins, $values) = $this->_buildVars($user_coins);
+		list($coins, $values) = $this->_buildVars($user_coins, $user->getCoinsSort());
 
 		$total_requested = 0;
 		foreach ($from_coins as $uc) {

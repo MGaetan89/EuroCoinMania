@@ -60,6 +60,12 @@
 				{% else %}
 					<li class="divider">
 
+					<li{{ macros.is_active(['user_customize']) }}>
+						<a href="{{ path('user_customize') }}">
+							<i class="icon-chevron-right"></i>
+							{{ 'user.customize'|trans }}
+						</a>
+					</li>
 					<li{{ macros.is_active(['sonata_user_profile_edit']) }}>
 						<a href="{{ path('sonata_user_profile_edit') }}">
 							<i class="icon-chevron-right"></i>

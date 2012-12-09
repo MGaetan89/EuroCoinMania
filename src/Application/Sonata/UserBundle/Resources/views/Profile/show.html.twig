@@ -6,9 +6,11 @@
 	{{ 'user.information'|trans }}
 
 	<div class="pull-right">
+		{% if user.showemail or app.user.id == user.id %}
 		<a class="btn btn-link" href="mailto: {{ user.email }}" target="_blank" title="{{ 'user.email'|trans }}" data-hover="tooltip">
 			<img alt="{{ 'user.email'|trans }}" src="{{ asset('bundles/applicationsonatauser/images/email.png') }}" />
 		</a>
+		{% endif %}
 
 		{% if user.facebookuid %}
 			<a class="btn btn-link" href="http://www.fb.me/{{ user.facebookuid }}" target="_blank" title="{{ 'user.facebook'|trans }}" data-hover="tooltip">

@@ -20,9 +20,24 @@ class User extends BaseUser {
 	protected $id;
 
 	/**
-	 * @var string $country 
+	 * @var string $country
 	 */
 	protected $country;
+
+	/**
+	 * @var string $show_email
+	 */
+	protected $show_email = true;
+
+	/**
+	 * @var string $coins_sort
+	 */
+	protected $coins_sort = 'desc';
+
+	/**
+	 * @var string $allow_exchanges
+	 */
+	protected $allow_exchanges = true;
 
 	/**
 	 * Get id
@@ -54,4 +69,68 @@ class User extends BaseUser {
 		return $this->country;
 	}
 
+	/**
+	 * Set show_email
+	 *
+	 * @param string $show_email
+	 * @return User
+	 */
+	public function setShowEmail($show_email) {
+		$this->show_email = $show_email;
+
+		return $this;
+	}
+
+	/**
+	 * Get show_email
+	 *
+	 * @return string 
+	 */
+	public function getShowEmail() {
+		return $this->show_email;
+	}
+
+	/**
+	 * Set coins_sort
+	 *
+	 * @param string $coins_sort
+	 * @return User
+	 */
+	public function setCoinsSort($coins_sort) {
+		$this->coins_sort = $coins_sort;
+
+		return $this;
+	}
+
+	/**
+	 * Get coins_sort
+	 *
+	 * @return string 
+	 */
+	public function getCoinsSort() {
+		return $this->coins_sort;
+	}
+
+	/**
+	 * Set allow_exchanges
+	 *
+	 * @param string $allow_exchanges
+	 * @return User
+	 */
+	public function setAllowExchanges($allow_exchanges) {
+		$this->allow_exchanges = $allow_exchanges;
+
+		return $this;
+	}
+
+	/**
+	 * Get allow_exchanges
+	 *
+	 * @return string 
+	 */
+	public function getAllowExchanges() {
+		return $this->allow_exchanges;
+	}
+
 }
+

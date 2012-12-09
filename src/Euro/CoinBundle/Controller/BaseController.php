@@ -10,9 +10,10 @@ abstract class BaseController extends Controller {
 	/**
 	 * Build the lists of coins and values for each country in <var>$source</var>
 	 * @param array $source The list of coins as retrieve from the database
+	 * @param string $order Either 'ASC' or 'DESC' to sort the coins values
 	 * @return array The lists of coins and values
 	 */
-	protected function _buildVars(array $source) {
+	protected function _buildVars(array $source, $order) {
 		$coins = array();
 		$translator = $this->get('translator');
 		$values = array();
@@ -35,8 +36,13 @@ abstract class BaseController extends Controller {
 			}
 		}
 
+		$sortFct = 'rsort';
+		if (strtolower($order) == 'asc') {
+			$sortFct = 'sort';
+		}
+
 		foreach ($values as &$value) {
-			rsort($value);
+			$sortFct($value);
 		}
 
 		ksort($coins);
