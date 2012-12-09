@@ -106,27 +106,6 @@ h3 .tooltip,
 h4 .tooltip,
 h5 .tooltip,
 h6 .tooltip {
-	font-size: 11px;
-	font-weight: normal;
 	line-height: 20px;
-}
-
-.dropdown-menu.typeahead {
-	z-index: 20000;
-}
-
-.dropdown-menu .active:hover a,
-.dropdown-menu .active a {
-	color: #FFF;
-}
-
-.navbar-fixed-bottom a.dropdown-toggle .caret,
-.navbar-fixed-bottom a.dropdown-toggle:hover .caret {
-	border-bottom-color: #777;
-	border-top-color: #777;
-}
-
-.popover-content p {
-	font-size: 14px;
 }
 
