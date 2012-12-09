@@ -15,6 +15,9 @@ class Message {
 	const DIRECTION_FROM_TO = 0;
 	const DIRECTION_TO_FROM = 1;
 
+	const MESSAGE_READ = false;
+	const MESSAGE_NEW = true;
+
 	const TYPE_ANSWER = 0;
 	const TYPE_INFO = 1;
 	const TYPE_DANGER = 2;

@@ -85,6 +85,7 @@ class PrivateMessageController extends Controller {
 		$message->setContent('pm.text.conversation_closed');
 		$message->setType(Message::TYPE_INFO);
 		$message->setConversation($conversation);
+		$message->setNew(Message::MESSAGE_READ);
 
 		if ($conversation->getFromUser()->getId() === $user->getId()) {
 			$message->setDirection(Message::DIRECTION_FROM_TO);
@@ -147,7 +148,7 @@ class PrivateMessageController extends Controller {
 						($message->getDirection() == Message::DIRECTION_FROM_TO && $conversation->getToUser()->getId() === $user->getId()) ||
 						($message->getDirection() == Message::DIRECTION_TO_FROM && $conversation->getFromUser()->getId() === $user->getId())
 				) {
-					$message->setNew(false);
+					$message->setNew(Message::MESSAGE_READ);
 					$new_messages[] = $message->getId();
 				}
 			}
