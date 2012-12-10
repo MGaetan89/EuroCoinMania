@@ -109,3 +109,9 @@ h6 .tooltip {
 	line-height: 20px;
 }
 
+@media (max-width: 767px) {
+	body {
+		padding-top: 0;
+	}
+}
+
