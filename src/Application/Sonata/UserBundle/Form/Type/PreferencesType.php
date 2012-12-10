@@ -17,6 +17,7 @@ class PreferencesType extends AbstractType {
 						'asc' => 'user.preferences.coins_sort_ascending',
 						'desc' => 'user.preferences.coins_sort_decending',
 					),
+					'expanded' => true,
 					'label' => 'user.preferences.coins_sort',
 				))
 				->add('show_email', 'choice', array(
@@ -24,6 +25,7 @@ class PreferencesType extends AbstractType {
 						'1' => 'yes',
 						'0' => 'no',
 					),
+					'expanded' => true,
 					'label' => 'user.preferences.show_email',
 				))
 				->add('allow_exchanges', 'choice', array(
@@ -31,6 +33,7 @@ class PreferencesType extends AbstractType {
 						'1' => 'yes',
 						'0' => 'no',
 					),
+					'expanded' => true,
 					'label' => 'user.preferences.allow_exchanges',
 				))
 				->add('exchange_notification', 'choice', array(
@@ -38,6 +41,7 @@ class PreferencesType extends AbstractType {
 						'1' => 'yes',
 						'0' => 'no',
 					),
+					'expanded' => true,
 					'label' => 'user.preferences.exchange_notification',
 				));
 	}

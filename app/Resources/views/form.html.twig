@@ -18,6 +18,24 @@
 {% endspaceless %}
 {% endblock textarea_widget %}
 
+{% block choice_widget_expanded %}
+{% spaceless %}
+	{% for child in form %}
+		{{ form_widget(child) }}
+	{% endfor %}
+{% endspaceless %}
+{% endblock choice_widget_expanded %}
+
+{% block radio_widget %}
+{% spaceless %}
+	<label class="control-label inline radio">
+		<input type="radio" {{ block('widget_attributes') }}{% if value is defined %} value="{{ value }}"{% endif %}{% if checked %} checked="checked"{% endif %} />
+
+		{{ label|trans({}, translation_domain) }}
+	</label>
+{% endspaceless %}
+{% endblock radio_widget %}
+
 {% block form_label %}
 {% spaceless %}
 	{% set label_attr = label_attr|merge({ class: (label_attr.class|default('') ~ ' control-label')|trim }) %}
