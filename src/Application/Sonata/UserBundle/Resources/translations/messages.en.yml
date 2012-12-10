@@ -8,14 +8,15 @@ user.contact: Contact
 user.contact_pm: Contact
 user.country: Country
 user.current_password: Current password
-user.customize: Customize
-user.customize.allow_exchanges: Receive and propose coins exchanges
-user.customize.coins_sort: Sort order for coins value
-user.customize.coins_sort_ascending: Ascending sort
-user.customize.coins_sort_decending: Descending sort
-user.customize.saved: Your preferences have been saved
-user.customize.show_email: Show your e-mail address on your profile
-user.customize.submit: Submit
+user.preferences: Preferences
+user.preferences.allow_exchanges: Receive and propose coins exchanges
+user.preferences.coins_sort: Sort order for coins value
+user.preferences.coins_sort_ascending: Ascending sort
+user.preferences.coins_sort_decending: Descending sort
+user.preferences.exchange_notification: Receive an e-mail notification for each new exchange
+user.preferences.saved: Your preferences have been saved
+user.preferences.show_email: Show your e-mail address on your profile
+user.preferences.submit: Submit
 user.date_of_birth: Date of birth
 user.edit_authentication: Change your login details
 user.edit_profile: Update your profile

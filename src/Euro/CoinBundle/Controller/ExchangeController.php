@@ -323,19 +323,21 @@ class ExchangeController extends BaseController {
 
 		$em->flush();
 
-		$emailLocale = $from->getLocale();
-		$message = \Swift_Message::newInstance()
-			->setSubject($translator->trans('exchange.email.title.new_exchange', array(), 'messages', $emailLocale))
-			->setFrom(array('contact@eurocoin-mania.eu' => 'EuroCoin Mania'))
-			->setTo($from->getEmail())
-			->setBody($translator->trans('exchange.email.text.new_exchange', array(
-				'%path%' => $this->generateUrl('exchange_show', array(
-					'id' => $exchange->getId(),
-				), true),
-				'%username%' => $user->getUsername(),
-			), 'messages', $emailLocale));
+		if ($from->getExchangeNotification()) {
+			$emailLocale = $from->getLocale();
+			$message = \Swift_Message::newInstance()
+				->setSubject($translator->trans('exchange.email.title.new_exchange', array(), 'messages', $emailLocale))
+				->setFrom(array('contact@eurocoin-mania.eu' => 'EuroCoin Mania'))
+				->setTo($from->getEmail())
+				->setBody($translator->trans('exchange.email.text.new_exchange', array(
+					'%path%' => $this->generateUrl('exchange_show', array(
+						'id' => $exchange->getId(),
+					), true),
+					'%username%' => $user->getUsername(),
+				), 'messages', $emailLocale));
 
-		$this->get('mailer')->send($message);
+			$this->get('mailer')->send($message);
+		}
 
 		$this->get('session')->getFlashBag()->add('success', 'coin.doubles.save_successfull');
 

@@ -2,7 +2,7 @@
 
 namespace Application\Sonata\UserBundle\Controller;
 
-use Application\Sonata\UserBundle\Form\Type\CustomizeType;
+use Application\Sonata\UserBundle\Form\Type\PreferencesType;
 use Euro\CoinBundle\Controller\BaseController;
 use Euro\CoinBundle\Entity\Coin;
 use Symfony\Component\HttpFoundation\Response;
@@ -136,14 +136,15 @@ class DefaultController extends BaseController {
 				));
 	}
 
-	public function customizeAction(Request $request) {
+	public function preferencesAction(Request $request) {
 		$user = $this->getUser();
 		$default = array(
 			'allow_exchanges' => $user->getAllowExchanges(),
 			'coins_sort' => $user->getCoinsSort(),
+			'exchange_notification' => $user->getExchangeNotification(),
 			'show_email' => $user->getShowEmail(),
 		);
-		$form = $this->createForm(new CustomizeType(), $default);
+		$form = $this->createForm(new PreferencesType(), $default);
 
 		if ($request->isMethod('POST')) {
 			$form->bind($request);
@@ -155,12 +156,12 @@ class DefaultController extends BaseController {
 				$user->$method($value);
 			}
 
-			$this->get('session')->getFlashBag()->add('success', 'user.customize.saved');
+			$this->get('session')->getFlashBag()->add('success', 'user.preferences.saved');
 
 			$this->getDoctrine()->getManager()->flush();
 		}
 
-		return $this->render('ApplicationSonataUserBundle:Profile:customize.html.twig', array(
+		return $this->render('ApplicationSonataUserBundle:Profile:edit_preferences.html.twig', array(
 					'form' => $form->createView(),
 				));
 	}

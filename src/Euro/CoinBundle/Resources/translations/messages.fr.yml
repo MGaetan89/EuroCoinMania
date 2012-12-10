@@ -126,6 +126,8 @@ exchange.email.text.new_exchange: |
     Vous pouvez le consulter en vous rendant à l'adresse suivante :
         %path%
 
+	Ceci est un e-mail automatique de notification. Veuillez utiliser la messagerie sur le site pour communiquer avec %username%.
+
     L'équipe d'EuroCoin Mania
 exchange.email.title.new_exchange: Vous avez reçu une nouvelle proposition d'échange
 exchange.id: Numéro

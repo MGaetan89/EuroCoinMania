@@ -126,6 +126,8 @@ exchange.email.text.new_exchange: |
     You can review this exchange by cliquing the following link:
         %path%
 
+	This is an automatic e-mail notification. Please use the private messages on the website to discuss with %username%.
+
     EuroCoin Mania Team
 exchange.email.title.new_exchange: You have a new coins exchange waiting
 exchange.id: Number

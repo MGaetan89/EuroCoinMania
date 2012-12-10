@@ -40,6 +40,11 @@ class User extends BaseUser {
 	protected $allow_exchanges = true;
 
 	/**
+	 * @var string $exchange_notification
+	 */
+	protected $exchange_notification = true;
+
+	/**
 	 * Get id
 	 *
 	 * @return integer $id
@@ -130,6 +135,27 @@ class User extends BaseUser {
 	 */
 	public function getAllowExchanges() {
 		return $this->allow_exchanges;
+	}
+
+	/**
+	 * Set exchange_notification
+	 *
+	 * @param string $exchange_notification
+	 * @return User
+	 */
+	public function setExchangeNotification($exchange_notification) {
+		$this->exchange_notification = $exchange_notification;
+
+		return $this;
+	}
+
+	/**
+	 * Get exchange_notification
+	 *
+	 * @return string 
+	 */
+	public function getExchangeNotification() {
+		return $this->exchange_notification;
 	}
 
 }

@@ -5,7 +5,7 @@ namespace Application\Sonata\UserBundle\Form\Type;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 
-class CustomizeType extends AbstractType {
+class PreferencesType extends AbstractType {
 
 	/**
 	 * {@inheritdoc}
@@ -14,29 +14,36 @@ class CustomizeType extends AbstractType {
 		$builder
 				->add('coins_sort', 'choice', array(
 					'choices' => array(
-						'asc' => 'user.customize.coins_sort_ascending',
-						'desc' => 'user.customize.coins_sort_decending',
+						'asc' => 'user.preferences.coins_sort_ascending',
+						'desc' => 'user.preferences.coins_sort_decending',
 					),
-					'label' => 'user.customize.coins_sort',
+					'label' => 'user.preferences.coins_sort',
 				))
 				->add('show_email', 'choice', array(
 					'choices' => array(
 						'1' => 'yes',
 						'0' => 'no',
 					),
-					'label' => 'user.customize.show_email',
+					'label' => 'user.preferences.show_email',
 				))
 				->add('allow_exchanges', 'choice', array(
 					'choices' => array(
 						'1' => 'yes',
 						'0' => 'no',
 					),
-					'label' => 'user.customize.allow_exchanges',
+					'label' => 'user.preferences.allow_exchanges',
+				))
+				->add('exchange_notification', 'choice', array(
+					'choices' => array(
+						'1' => 'yes',
+						'0' => 'no',
+					),
+					'label' => 'user.preferences.exchange_notification',
 				));
 	}
 
 	public function getName() {
-		return 'application_sonata_user_customize';
+		return 'application_sonata_user_preferences';
 	}
 
 }

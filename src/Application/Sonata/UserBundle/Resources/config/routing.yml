@@ -1,6 +1,6 @@
-user_customize:
-    pattern: /profile/customize
-    defaults: { _controller: ApplicationSonataUserBundle:Default:customize }
+user_edit_preferences:
+    pattern: /profile/edit-preferences
+    defaults: { _controller: ApplicationSonataUserBundle:Default:preferences }
 
 show_profile:
     pattern:  /profile/{id}/show

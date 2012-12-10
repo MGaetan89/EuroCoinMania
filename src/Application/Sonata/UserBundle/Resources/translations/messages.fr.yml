@@ -8,14 +8,15 @@ user.contact: Contact
 user.contact_pm: Contacter
 user.country: Pays
 user.current_password: Mot de passe actuel
-user.customize: Personnaliser
-user.customize.allow_exchanges: Recevoir et proposer des échanges de pièces
-user.customize.coins_sort: Tri des valeurs des pièces
-user.customize.coins_sort_ascending: Tri croissant
-user.customize.coins_sort_decending: Tri décroissant
-user.customize.saved: Vos préférences ont bien été mises à jour
-user.customize.show_email: Afficher votre adresse e-mail sur votre profil
-user.customize.submit: Valider
+user.preferences: Préférences
+user.preferences.allow_exchanges: Recevoir et proposer des échanges de pièces
+user.preferences.coins_sort: Tri des valeurs des pièces
+user.preferences.coins_sort_ascending: Tri croissant
+user.preferences.coins_sort_decending: Tri décroissant
+user.preferences.exchange_notification: Recevoir un e-mail de notification pour chaque nouvel échange
+user.preferences.saved: Vos préférences ont bien été mises à jour
+user.preferences.show_email: Afficher votre adresse e-mail sur votre profil
+user.preferences.submit: Valider
 user.date_of_birth: Date de naissance
 user.edit_authentication: Modifier vos identifiants
 user.edit_profile: Editer votre profil
