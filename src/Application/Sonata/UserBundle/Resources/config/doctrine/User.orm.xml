@@ -13,6 +13,7 @@
 		<field column="coins_sort" length="4" name="coins_sort" nullable="true" type="string" />
 		<field column="allow_exchanges" name="allow_exchanges" nullable="true" type="boolean" />
 		<field column="exchange_notification" name="exchange_notification" nullable="true" type="boolean" />
+		<field column="public_profile" name="public_profile" nullable="true" type="boolean" />
 	</entity>
 </doctrine-mapping>
 

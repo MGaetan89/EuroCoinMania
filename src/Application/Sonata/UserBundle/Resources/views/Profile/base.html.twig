@@ -50,40 +50,42 @@
 					</a>
 				</li>
 
-				{% if app.user.id != user.id %}
-					<li>
-						<a href="{{ path('pm_write', { id: user.id, user: user.username }) }}">
-							<i class="icon-chevron-right"></i>
-							{{ 'user.contact_pm'|trans }}
-						</a>
-					</li>
-				{% else %}
-					<li class="divider">
+				{% if app.user is not null %}
+					{% if app.user.id != user.id %}
+						<li>
+							<a href="{{ path('pm_write', { id: user.id, user: user.username }) }}">
+								<i class="icon-chevron-right"></i>
+								{{ 'user.contact_pm'|trans }}
+							</a>
+						</li>
+					{% else %}
+						<li class="divider">
 
-					<li{{ macros.is_active(['user_edit_preferences']) }}>
-						<a href="{{ path('user_edit_preferences') }}">
-							<i class="icon-chevron-right"></i>
-							{{ 'user.preferences'|trans }}
-						</a>
-					</li>
-					<li{{ macros.is_active(['sonata_user_profile_edit']) }}>
-						<a href="{{ path('sonata_user_profile_edit') }}">
-							<i class="icon-chevron-right"></i>
-							{{ 'user.edit_profile'|trans }}
-						</a>
-					</li>
-					<li{{ macros.is_active(['sonata_user_profile_edit_authentication']) }}>
-						<a href="{{ path('sonata_user_profile_edit_authentication') }}">
-							<i class="icon-chevron-right"></i>
-							{{ 'user.edit_authentication'|trans }}
-						</a>
-					</li>
-					<li>
-						<a href="{{ path('fos_user_security_logout') }}">
-							<i class="icon-chevron-right"></i>
-							{{ 'user.logout'|trans }}
-						</a>
-					</li>
+						<li{{ macros.is_active(['user_edit_preferences']) }}>
+							<a href="{{ path('user_edit_preferences') }}">
+								<i class="icon-chevron-right"></i>
+								{{ 'user.preferences'|trans }}
+							</a>
+						</li>
+						<li{{ macros.is_active(['sonata_user_profile_edit']) }}>
+							<a href="{{ path('sonata_user_profile_edit') }}">
+								<i class="icon-chevron-right"></i>
+								{{ 'user.edit_profile'|trans }}
+							</a>
+						</li>
+						<li{{ macros.is_active(['sonata_user_profile_edit_authentication']) }}>
+							<a href="{{ path('sonata_user_profile_edit_authentication') }}">
+								<i class="icon-chevron-right"></i>
+								{{ 'user.edit_authentication'|trans }}
+							</a>
+						</li>
+						<li>
+							<a href="{{ path('fos_user_security_logout') }}">
+								<i class="icon-chevron-right"></i>
+								{{ 'user.logout'|trans }}
+							</a>
+						</li>
+					{% endif %}
 				{% endif %}
 			</ul>
 		</div>

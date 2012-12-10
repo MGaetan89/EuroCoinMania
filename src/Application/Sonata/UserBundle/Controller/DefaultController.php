@@ -5,25 +5,32 @@ namespace Application\Sonata\UserBundle\Controller;
 use Application\Sonata\UserBundle\Form\Type\PreferencesType;
 use Euro\CoinBundle\Controller\BaseController;
 use Euro\CoinBundle\Entity\Coin;
+use JMS\SecurityExtraBundle\Annotation\Secure;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 
 class DefaultController extends BaseController {
 
 	public function collectionAction($type, $country_id, $user_id) {
+		$base_user = $this->getUser();
+		$doctrine = $this->getDoctrine();
 		$flashBag = $this->get('session')->getFlashBag();
-		$user = $this->getUser();
-		if ($user->getId() != $user_id) {
-			$user = $this->getDoctrine()->getRepository('ApplicationSonataUserBundle:User')->find($user_id);
+		if (!$base_user || $base_user->getId() != $user_id) {
+			$user = $doctrine->getRepository('ApplicationSonataUserBundle:User')->find($user_id);
 
 			if (!$user) {
 				$flashBag->add('error', 'user.not_found');
 
 				return $this->redirect($this->generateUrl('welcome'));
 			}
+		} else {
+			$user = $base_user;
 		}
 
-		$doctrine = $this->getDoctrine();
+		if (!$base_user && !$user->getPublicProfile()) {
+			return $this->redirect($this->generateUrl('fos_user_security_login'));
+		}
+
 		$translator = $this->get('translator');
 
 		$coins = array();
@@ -98,7 +105,7 @@ class DefaultController extends BaseController {
 					$country = reset($countries);
 				}
 			} else {
-				list($coins, $values) = $this->_buildVars($user_coins, $this->getUser()->getCoinsSort());
+				list($coins, $values) = $this->_buildVars($user_coins, $user->getCoinsSort());
 
 				$country_name = $translator->trans((string) $country);
 
@@ -136,12 +143,16 @@ class DefaultController extends BaseController {
 				));
 	}
 
+	/**
+	 * @Secure(roles="ROLE_USER")
+	 */
 	public function preferencesAction(Request $request) {
 		$user = $this->getUser();
 		$default = array(
 			'allow_exchanges' => $user->getAllowExchanges(),
 			'coins_sort' => $user->getCoinsSort(),
 			'exchange_notification' => $user->getExchangeNotification(),
+			'public_profile' => $user->getPublicProfile(),
 			'show_email' => $user->getShowEmail(),
 		);
 		$form = $this->createForm(new PreferencesType(), $default);
@@ -166,6 +177,9 @@ class DefaultController extends BaseController {
 				));
 	}
 
+	/**
+	 * @Secure(roles="ROLE_USER")
+	 */
 	public function queryAction() {
 		$user = $this->getUser();
 		$query = strtolower($this->getRequest()->request->get('query'));
@@ -195,8 +209,8 @@ class DefaultController extends BaseController {
 	}
 
 	public function showAction($id) {
-		$user = $this->getUser();
-		if ($user->getId() != $id) {
+		$base_user = $this->getUser();
+		if (!$base_user || $base_user->getId() != $id) {
 			$user = $this->getDoctrine()->getRepository('ApplicationSonataUserBundle:User')->find($id);
 
 			if (!$user) {
@@ -204,6 +218,12 @@ class DefaultController extends BaseController {
 
 				return $this->redirect($this->generateUrl('welcome'));
 			}
+		} else {
+			$user = $base_user;
+		}
+
+		if (!$base_user && !$user->getPublicProfile()) {
+			return $this->redirect($this->generateUrl('fos_user_security_login'));
 		}
 
 		return $this->render('ApplicationSonataUserBundle:Profile:show.html.twig', array(
@@ -212,9 +232,9 @@ class DefaultController extends BaseController {
 	}
 
 	public function statsAction($id) {
-		$user = $this->getUser();
+		$base_user = $this->getUser();
 		$doctrine = $this->getDoctrine();
-		if ($user->getId() != $id) {
+		if (!$base_user || $base_user->getId() != $id) {
 			$user = $doctrine->getRepository('ApplicationSonataUserBundle:User')->find($id);
 
 			if (!$user) {
@@ -222,6 +242,12 @@ class DefaultController extends BaseController {
 
 				return $this->redirect($this->generateUrl('welcome'));
 			}
+		} else {
+			$user = $base_user;
+		}
+
+		if (!$base_user && !$user->getPublicProfile()) {
+			return $this->redirect($this->generateUrl('fos_user_security_login'));
 		}
 
 		$translator = $this->get('translator');

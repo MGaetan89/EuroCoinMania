@@ -14,6 +14,7 @@ user.preferences.coins_sort: Sort order for coins value
 user.preferences.coins_sort_ascending: Ascending sort
 user.preferences.coins_sort_decending: Descending sort
 user.preferences.exchange_notification: Receive an e-mail notification for each new exchange
+user.preferences.public_profile: Allow anonymous user to view your profile
 user.preferences.saved: Your preferences have been saved
 user.preferences.show_email: Show your e-mail address on your profile
 user.preferences.submit: Submit

@@ -45,6 +45,11 @@ class User extends BaseUser {
 	protected $exchange_notification = true;
 
 	/**
+	 * @var string $public_profile
+	 */
+	protected $public_profile = false;
+
+	/**
 	 * Get id
 	 *
 	 * @return integer $id
@@ -156,6 +161,27 @@ class User extends BaseUser {
 	 */
 	public function getExchangeNotification() {
 		return $this->exchange_notification;
+	}
+
+	/**
+	 * Set public_profile
+	 *
+	 * @param string $public_profile
+	 * @return User
+	 */
+	public function setPublicProfile($public_profile) {
+		$this->public_profile = $public_profile;
+
+		return $this;
+	}
+
+	/**
+	 * Get public_profile
+	 *
+	 * @return string 
+	 */
+	public function getPublicProfile() {
+		return $this->public_profile;
 	}
 
 }

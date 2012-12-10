@@ -43,6 +43,14 @@ class PreferencesType extends AbstractType {
 					),
 					'expanded' => true,
 					'label' => 'user.preferences.exchange_notification',
+				))
+				->add('public_profile', 'choice', array(
+					'choices' => array(
+						'1' => 'yes',
+						'0' => 'no',
+					),
+					'expanded' => true,
+					'label' => 'user.preferences.public_profile',
 				));
 	}
 
