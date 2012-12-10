@@ -12,7 +12,7 @@
 	{% endif %}
 
 	{% include 'ApplicationSonataNewsBundle:Post:editor.html.twig' with { target: 'euro_privatemessagebundle_conversationtype_message' } %}
-p
+
 	{{ form_row(form.message, { attr: { class: (user_id is defined) ? 'span6' : 'span3', rows: 6 }, label: 'pm.form.message' }) }}
 
 	{{ form_rest(form) }}
