@@ -77,7 +77,6 @@
 		<h3 class="page-header"><span class="pull-right">{{ 'twitter.tweets'|trans }}</span><br /></h3>
 
 		<a class="twitter-timeline" href="https://twitter.com/EuroCoinMania" data-widget-id="261550107017740288">{{ 'twitter.feed'|trans }}</a>
-		<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
 	</div>
 </div>
 
@@ -173,3 +172,8 @@
 	</div>
 </div>
 {% endblock %}
+
+{% block javascript %}
+<script type="text/javascript">!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+{% endblock %}
+
