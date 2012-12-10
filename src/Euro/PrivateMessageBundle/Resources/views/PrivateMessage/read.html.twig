@@ -74,7 +74,7 @@
 			<form action="{{ path('pm_answer_process', { id: pm.id }) }}" class="form-horizontal" id="answer-form" method="post">
 				{% include 'ApplicationSonataNewsBundle:Post:editor.html.twig' with { target: 'euro_privatemessagebundle_messagetype_content' } %}
 
-				{{ form_row(form.content, { label: 'pm.form.title' }) }}
+				{{ form_row(form.content, { attr: { class: 'span3', rows: 10 }, label: 'pm.form.title' }) }}
 
 				{{ form_rest(form) }}
 
