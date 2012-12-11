@@ -54,6 +54,7 @@ coins: %total% pièce|%total% pièces
 coins.differents: %total% différente|%total% différentes
 coins.requested_coins: Pièces demandées
 coins.suggested_coins: Pièces proposées
+countries: Pays
 countries.list: Liste des pays
 countries.list.meta_description: Liste des pays membres de la zone Euro
 country.coin1: 'Pièces &laquo; %country% &raquo;'
@@ -133,6 +134,7 @@ exchange.email.text.new_exchange: |
 
     L'équipe d'EuroCoin Mania
 exchange.email.title.new_exchange: Vous avez reçu une nouvelle proposition d'échange
+exchange.filter_coins: Filtrer
 exchange.id: Numéro
 exchange.list_all: Liste de tous vos échanges
 exchange.list_pending: Liste de vos échanges en cours

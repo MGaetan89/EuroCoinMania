@@ -21,6 +21,10 @@
 					{% else %}
 						{{ 'coins.suggested_coins'|trans }}
 					{% endif %}
+
+					<span class="pull-right" title="{{ 'exchange.filter_coins'|trans }}" data-hover="tooltip" data-toggle="collapse" data-target="#filters">
+						<i class="icon-filter"></i>
+					</span>
 				</li>
 				<li class="divider"></li>
 				<li class="nav-header pull-right">Total : <span>0</span> €</li>
@@ -49,6 +53,35 @@
 		{% set empty_cell %}
 		<td style="text-align: center;">{{ 'coin.unavailable'|trans }}</td>
 		{% endset %}
+
+		<div class="collapse" id="filters">
+			<ul class="breadcrumb">
+				<li class="muted">{{ 'countries'|trans }} <span class="divider">&nbsp;</span></li>
+
+				{% for country in all_countries %}
+					{% set name = macros.name(country) %}
+					<li>
+						{% spaceless %}
+						<a href="#">
+							<img alt="{{ name }}" src="{% path country.flag, 'mini' %}" title="{{ name }}" data-hover="tooltip" />
+						</a>
+						{% endspaceless %}
+						<span class="divider">&nbsp;</span>
+					</li>
+				{% endfor %}
+			</ul>
+
+			<ul class="breadcrumb">
+				<li class="muted">{{ 'years'|trans }} <span class="divider">&nbsp;</span></li>
+
+				{% for year in all_years %}
+					<li>
+						<a href="#">{{ macros.year(year) }}</a>
+						<span class="divider">&nbsp;</span>
+					</li>
+				{% endfor %}
+			</ul>
+		</div>
 
 		{% for country, years in coins %}
 			{% set _values, pos = all_values[country], 0 %}

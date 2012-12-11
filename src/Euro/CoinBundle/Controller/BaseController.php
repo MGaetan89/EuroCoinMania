@@ -15,24 +15,37 @@ abstract class BaseController extends Controller {
 	 */
 	protected function _buildVars(array $source, $order) {
 		$coins = array();
+		$countries = array();
 		$translator = $this->get('translator');
 		$values = array();
+		$years = array();
 
 		foreach ($source as $coin) {
 			if ($coin instanceof UserCoin) {
 				$coin = $coin->getCoin();
 			}
 
-			$country = $translator->trans((string) $coin->getCountry());
+			$country = $coin->getCountry();
+			$countryStr = $translator->trans((string) $country);
 			$value = (string) $coin->getValue()->getValue();
-			$year = (string) $coin->getYear();
+			$year = $coin->getYear();
+			$yearStr = (string) $year;
+			$yearShort = substr($yearStr, 0, 4);
 
-			$coins[$country][$year][$value] = $coin;
+			$coins[$countryStr][$yearStr][$value] = $coin;
 
-			if (!isset($values[$country])) {
-				$values[$country] = array($value);
-			} else if (!in_array($value, $values[$country])) {
-				$values[$country][] = $value;
+			if (!isset($countries[$countryStr])) {
+				$countries[$countryStr] = $country;
+			}
+
+			if (!isset($values[$countryStr])) {
+				$values[$countryStr] = array($value);
+			} else if (!in_array($value, $values[$countryStr])) {
+				$values[$countryStr][] = $value;
+			}
+
+			if (!isset($years[$yearShort])) {
+				$years[$yearShort] = $year;
 			}
 		}
 
@@ -46,8 +59,9 @@ abstract class BaseController extends Controller {
 		}
 
 		ksort($coins);
+		ksort($countries);
 
-		return array($coins, $values);
+		return array($coins, $values, $years, $countries);
 	}
 
 }

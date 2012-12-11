@@ -130,10 +130,12 @@ class ExchangeController extends BaseController {
 			return $this->redirect($this->generateUrl('exchange_choose_user'));
 		}
 
-		list($coins, $values) = $this->_buildVars($user_coins, $user->getCoinsSort());
+		list($coins, $values, $years, $countries) = $this->_buildVars($user_coins, $user->getCoinsSort());
 
 		return $this->render('EuroCoinBundle:Exchange:choose_coins.html.twig', array(
+					'all_countries' => $countries,
 					'all_values' => $values,
+					'all_years' => $years,
 					'coins' => $coins,
 					'from' => $from,
 					'type' => 'request',
@@ -233,7 +235,7 @@ class ExchangeController extends BaseController {
 			throw $this->createNotFoundException($translator->trans('coin.doubles.user_no_doubles'));
 		}
 
-		list($coins, $values) = $this->_buildVars($user_coins, $user->getCoinsSort());
+		list($coins, $values, $years, $countries) = $this->_buildVars($user_coins, $user->getCoinsSort());
 
 		$total_requested = 0;
 		foreach ($from_coins as $uc) {
@@ -243,10 +245,12 @@ class ExchangeController extends BaseController {
 		$this->getRequest()->getSession()->set('from_coins', $coins_id);
 
 		return $this->render('EuroCoinBundle:Exchange:choose_coins.html.twig', array(
+					'all_countries' => $countries,
 					'all_values' => $values,
+					'all_years' => $years,
+					'coins' => $coins,
 					'from' => $from,
 					'from_coins' => $from_coins,
-					'coins' => $coins,
 					'total_requested' => $total_requested,
 					'type' => 'suggest',
 				));

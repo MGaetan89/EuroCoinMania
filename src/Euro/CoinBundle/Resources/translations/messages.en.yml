@@ -54,6 +54,7 @@ coins: %total% coin|%total% coins
 coins.differents: %total% different|%total% differents
 coins.suggested_coins: Suggested coins
 coins.requested_coins: Requested coins
+countries: Countries
 countries.list: Country list
 countries.list.meta_description: List of member countries of the Euro zone
 country.coin1: 'Coins of &laquo; %country% &raquo;'
@@ -133,6 +134,7 @@ exchange.email.text.new_exchange: |
 
     EuroCoin Mania Team
 exchange.email.title.new_exchange: You have a new coins exchange waiting
+exchange.filter_coins: Filter
 exchange.id: Number
 exchange.list_all: List of all your exchanges
 exchange.list_pending: List of your pending exchanges

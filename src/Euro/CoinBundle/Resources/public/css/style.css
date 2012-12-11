@@ -99,6 +99,10 @@ svg {
 	margin-top: 7px;
 }
 
+#filters.collapse.in {
+	overflow: visible;
+}
+
 /* Bootstrap fixes */
 h1 .tooltip,
 h2 .tooltip,
@@ -106,6 +110,7 @@ h3 .tooltip,
 h4 .tooltip,
 h5 .tooltip,
 h6 .tooltip {
+	font-weight: normal;
 	line-height: 20px;
 }
 
