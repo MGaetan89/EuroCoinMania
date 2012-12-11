@@ -1,19 +1,49 @@
 {% extends '::base.html.twig' %}
 
-{% block title %}{{ from.username }} &rarr; {{ app.user.username }}{% endblock %}
+{% block title %}
+	{% if type == 'request' %}
+		{{ from.username }} &rarr; {{ app.user.username }}
+	{% else %}
+		{{ app.user.username }} &rarr; {{ from.username }}
+	{% endif %}
+{% endblock %}
 
 {% block body %}
 <h2 class="page-header">{{ block('title') }}</h2>
 
 <div class="row-fluid">
-	<div class="span3 well well-small" style="padding: 8px 0;">
-		<ul class="nav nav-list" id="coins_list">
-			<li class="nav-header">{{ 'coins.requested_coins'|trans }}</li>
-			<li class="divider"></li>
-			<li class="nav-header pull-right">Total : <span>0</span> €</li>
-		</ul>
+	<div class="span3">
+		<div class="well well-small" style="padding: 8px 0;">
+			<ul class="nav nav-list" id="coins_list">
+				<li class="nav-header">
+					{% if type == 'request' %}
+						{{ 'coins.requested_coins'|trans }}
+					{% else %}
+						{{ 'coins.suggested_coins'|trans }}
+					{% endif %}
+				</li>
+				<li class="divider"></li>
+				<li class="nav-header pull-right">Total : <span>0</span> €</li>
+			</ul>
 
-		<div class="clearfix"></div>
+			<div class="clearfix"></div>
+		</div>
+
+		{% if type == 'suggest' %}
+			<div class="well well-small" style="padding: 8px 0;">
+				<ul class="nav nav-list">
+					<li class="nav-header">{{ 'coins.requested_coins'|trans }}</li>
+					{% for uc in from_coins %}
+					{% set coin = uc.coin %}
+					<li><a>{{ macros.name(coin.country) }} {{ macros.year(coin.year) }} {{ macros.value(coin.value) }}</a></li>
+					{% endfor %}
+					<li class="divider"></li>
+					<li class="nav-header pull-right">Total : {{ macros.value(total_requested) }}</li>
+				</ul>
+
+				<div class="clearfix"></div>
+			</div>
+		{% endif %}
 	</div>
 	<div class="span9">
 		{% set empty_cell %}
@@ -68,10 +98,17 @@
 			</table>
 		{% endfor %}
 
-		<form action="{{ path('exchange_coins_suggest', { id: from.id, name: from.username }) }}" method="post">
+		{% set action = (type == 'request') ? 'exchange_coins_suggest' : 'exchange_save' %}
+		<form action="{{ path(action, { id: from.id, name: from.username }) }}" method="post">
 			<input id="coins" name="coins" type="hidden" value="" />
 
-			<button class="btn btn-primary disabled pull-right" disabled="disabled" id="exchange">{{ 'coin.exchange_request'|trans }}</button>
+			<button class="btn btn-primary disabled pull-right" disabled="disabled" id="exchange">
+				{% if type == 'request' %}
+					{{ 'coin.exchange_request'|trans }}
+				{% else %}
+					{{ 'coin.exchange_suggest'|trans }}
+				{% endif %}
+			</button>
 		</form>
 	</div>
 </div>

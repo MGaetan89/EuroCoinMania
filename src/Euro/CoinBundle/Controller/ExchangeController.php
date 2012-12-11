@@ -132,10 +132,11 @@ class ExchangeController extends BaseController {
 
 		list($coins, $values) = $this->_buildVars($user_coins, $user->getCoinsSort());
 
-		return $this->render('EuroCoinBundle:Exchange:coins_request.html.twig', array(
+		return $this->render('EuroCoinBundle:Exchange:choose_coins.html.twig', array(
 					'all_values' => $values,
 					'coins' => $coins,
 					'from' => $from,
+					'type' => 'request',
 				));
 	}
 
@@ -241,12 +242,13 @@ class ExchangeController extends BaseController {
 
 		$this->getRequest()->getSession()->set('from_coins', $coins_id);
 
-		return $this->render('EuroCoinBundle:Exchange:coins_suggest.html.twig', array(
+		return $this->render('EuroCoinBundle:Exchange:choose_coins.html.twig', array(
 					'all_values' => $values,
 					'from' => $from,
 					'from_coins' => $from_coins,
 					'coins' => $coins,
 					'total_requested' => $total_requested,
+					'type' => 'suggest',
 				));
 	}
 
