@@ -43,7 +43,10 @@ coin.total: Total
 coin.unavailable: Non disponible
 coin.type: Type
 coin.type1: Circulation
+coin.type1_prefix: CIR
 coin.type2: Commémorative
+coin.type2_prefix: COM
+coin.type3_prefix: COL
 coin.type3: Collector
 coin.value: Valeur
 coin.year: Année
