@@ -23,6 +23,32 @@
 				</li>
 
 				<li class="divider"></li>
+
+				{% if exchange.status == 1 %}
+					{% if exchange.fromuser.id == app.user.id %}
+						<li>
+							<a href="{{ path('exchange_cancel', { id: exchange.id }) }}">
+								<i class="icon-minus-sign"></i>
+								<strong class="text-warning">{{ 'exchange.cancel'|trans }}</strong>
+							</a>
+						</li>
+					{% else %}
+						<li>
+							<a href="{{ path('exchange_accept', { id: exchange.id }) }}">
+								<i class="icon-ok"></i>
+								<strong class="text-success">{{ 'exchange.accept'|trans }}</strong>
+							</a>
+						</li>
+						<li>
+							<a href="{{ path('exchange_refuse', { id: exchange.id }) }}">
+								<i class="icon-remove"></i>
+								<strong class="text-error">{{ 'exchange.refuse'|trans }}</strong>
+							</a>
+						</li>
+					{% endif %}
+
+					<li class="divider"></li>
+				{% endif %}
 			{% endif %}
 
 			{% if app.user.allowexchanges %}
