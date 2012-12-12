@@ -9,6 +9,8 @@
 {% endblock %}
 
 {% block body %}
+{% set has_filters = false %}
+
 <h2 class="page-header">{{ block('title') }}</h2>
 
 <div class="row-fluid">
@@ -22,9 +24,13 @@
 						{{ 'coins.suggested_coins'|trans }}
 					{% endif %}
 
-					<span class="pull-right" title="{{ 'exchange.filter_coins'|trans }}" data-hover="tooltip" data-toggle="collapse" data-target="#filters">
-						<i class="icon-filter"></i>
-					</span>
+					{% if all_countries|length > 1 or all_years|length > 1 %}
+						{% set has_filters = true %}
+
+						<span class="pull-right" title="{{ 'exchange.filter_coins'|trans }}" data-hover="tooltip" data-toggle="collapse" data-target="#filters">
+							<i class="icon-filter"></i>
+						</span>
+					{% endif %}
 				</li>
 				<li class="divider"></li>
 				<li class="nav-header pull-right">Total : <span>0</span> €</li>
@@ -54,40 +60,55 @@
 		<td style="text-align: center;">{{ 'coin.unavailable'|trans }}</td>
 		{% endset %}
 
-		<div class="collapse" id="filters">
-			<ul class="breadcrumb">
-				<li class="muted">{{ 'countries'|trans }} <span class="divider">&nbsp;</span></li>
+		{% if has_filters %}
+			<div class="collapse" id="filters">
+				{% if all_countries|length > 1 %}
+					<ul class="breadcrumb">
+						<li class="muted">
+							<a href="#" title="{{ 'exchange.filter_reset'|trans }}" data-action="reset-country-filter" data-hover="tooltip">&times;</a>
+							<span class="divider">&nbsp;</span>
+						</li>
+						<li class="muted">{{ 'countries'|trans }} <span class="divider">&nbsp;</span></li>
 
-				{% for country in all_countries %}
-					{% set name = macros.name(country) %}
-					<li>
-						{% spaceless %}
-						<a href="#">
-							<img alt="{{ name }}" src="{% path country.flag, 'mini' %}" title="{{ name }}" data-hover="tooltip" />
-						</a>
-						{% endspaceless %}
-						<span class="divider">&nbsp;</span>
-					</li>
-				{% endfor %}
-			</ul>
+						{% for country in all_countries %}
+							{% set name = macros.name(country) %}
 
-			<ul class="breadcrumb">
-				<li class="muted">{{ 'years'|trans }} <span class="divider">&nbsp;</span></li>
+							<li>
+								{% spaceless %}
+								<a href="#" title="{{ name }}" data-action="show-country" data-hover="tooltip" data-target=".country-{{ name }}">
+									<img alt="{{ name }}" src="{% path country.flag, 'mini' %}" />
+								</a>
+								{% endspaceless %}
+								<span class="divider">&nbsp;</span>
+							</li>
+						{% endfor %}
+					</ul>
+				{% endif %}
 
-				{% for year in all_years %}
-					<li>
-						<a href="#">{{ macros.year(year) }}</a>
-						<span class="divider">&nbsp;</span>
-					</li>
-				{% endfor %}
-			</ul>
-		</div>
+				{% if all_years|length > 1 %}
+					<ul class="breadcrumb">
+						<li class="muted">
+							<a href="#" title="{{ 'exchange.filter_reset'|trans }}" data-action="reset-year-filter" data-hover="tooltip">&times;</a>
+							<span class="divider">&nbsp;</span>
+						</li>
+						<li class="muted">{{ 'years'|trans }} <span class="divider">&nbsp;</span></li>
+
+						{% for year in all_years %}
+							<li>
+								<a href="#" data-action="show-year" data-target=".year-{{ year }}">{{ macros.year(year) }}</a>
+								<span class="divider">&nbsp;</span>
+							</li>
+						{% endfor %}
+					</ul>
+				{% endif %}
+			</div>
+		{% endif %}
 
 		{% for country, years in coins %}
 			{% set _values, pos = all_values[country], 0 %}
 
 			{% set header %}
-			<tr>
+			<tr class="table-header">
 				<th>{{ country }}</th>
 				{% for value in _values %}
 				<th>{{ macros.value(value) }}</th>
@@ -95,7 +116,7 @@
 			</tr>
 			{% endset %}
 
-			<table class="table table-bordered table-condensed table-hover table-striped">
+			<table class="country-{{ country }} filter-country table table-bordered table-condensed table-hover table-striped">
 			<tbody>
 				{{ header }}
 
@@ -104,7 +125,7 @@
 						{{ header }}
 					{% endif %}
 
-					<tr>
+					<tr class="year-{{ year[0:4] }} filter-year">
 						{% set has_year = false %}
 						{% for value in _values if values[value] is defined and not has_year %}
 							{% set has_year = true %}

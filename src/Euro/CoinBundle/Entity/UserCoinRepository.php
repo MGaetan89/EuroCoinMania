@@ -113,10 +113,12 @@ class UserCoinRepository extends EntityRepository {
 		$expr = $queryBuilder->expr();
 
 		return $queryBuilder
-						->select('uc, c, v, y, w')
+						->select('uc, c, ct, i, v, y, w')
 						->join('uc.coin', 'c')
+						->join('c.country', 'ct')
 						->join('c.value', 'v')
 						->join('c.year', 'y')
+						->leftJoin('c.image', 'i')
 						->leftJoin('y.workshop', 'w')
 						->where($expr->eq('uc.user', ':user'))
 						->andWhere($expr->gt('uc.quantity - uc.sharing', 1))
@@ -133,10 +135,12 @@ class UserCoinRepository extends EntityRepository {
 		$expr = $queryBuilder->expr();
 
 		return $queryBuilder
-						->select('uc, c, v, y, w')
+						->select('uc, c, ct, i, v, y, w')
 						->join('uc.coin', 'c')
+						->join('c.country', 'ct')
 						->join('c.value', 'v')
 						->join('c.year', 'y')
+						->leftJoin('c.image', 'i')
 						->leftJoin('y.workshop', 'w')
 						->where($expr->eq('uc.user', ':user'))
 						->andWhere($expr->gt('uc.quantity - uc.sharing', 1))

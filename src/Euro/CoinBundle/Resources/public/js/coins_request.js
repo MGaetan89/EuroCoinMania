@@ -48,4 +48,65 @@ $(function () {
 		$('button[data-coin=' + id + ']').button('toggle');
 		parent.detach();
 	});
+
+	var filters = {
+		country: null,
+		year: null,
+	}
+
+	function restore() {
+		$('[data-action=show-country]').css('opacity', .4);
+		$('[data-action=show-year]').css('font-weight', 'normal');
+
+		if (filters.country != null) {
+			$('[data-target="' + filters.country + '"]').css('opacity', 1);
+			$('.filter-country').hide().filter(filters.country).show();
+		} else {
+			$('.filter-country').show();
+		}
+
+		if (filters.year != null) {
+			$('[data-target="' + filters.year + '"]').css('font-weight', 'bold');
+			$('.filter-year').hide().filter(filters.year).show().nextAll('.table-header').hide();
+
+			$('table').each(function () {
+				var $this = $(this).find('tr');
+
+				if ($this.filter(':visible').size() == $this.filter('.table-header:visible').size()) {
+					$this.parents('table').hide();
+				}
+			});
+		} else {
+			$('.filter-year').show();
+		}
+
+		return false;
+	}
+
+	$('#filters').on('click', '[data-action=reset-country-filter]', function () {
+		filters.country = null;
+
+		return restore();
+	}).on('click', '[data-action=show-country]', function () {
+		if (filters.country == $(this).data('target')) {
+			filters.country = null;
+		} else {
+			filters.country = $(this).data('target');
+		}
+
+		return restore();
+	}).on('click', '[data-action=reset-year-filter]', function () {
+		filters.year = null;
+
+		return restore();
+	}).on('click', '[data-action=show-year]', function () {
+		if (filters.year == $(this).data('target')) {
+			filters.year = null;
+		} else {
+			filters.year = $(this).data('target');
+		}
+
+		return restore();
+	});
 });
+
