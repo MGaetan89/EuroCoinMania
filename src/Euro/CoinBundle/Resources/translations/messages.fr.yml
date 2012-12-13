@@ -54,7 +54,6 @@ coins: %total% pièce|%total% pièces
 coins.differents: %total% différente|%total% différentes
 coins.requested_coins: Pièces demandées
 coins.suggested_coins: Pièces proposées
-countries: Pays
 countries.list: Liste des pays
 countries.list.meta_description: Liste des pays membres de la zone Euro
 country.coin1: 'Pièces &laquo; %country% &raquo;'

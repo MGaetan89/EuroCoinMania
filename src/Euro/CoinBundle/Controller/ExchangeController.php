@@ -132,11 +132,17 @@ class ExchangeController extends BaseController {
 
 		list($coins, $values, $years, $countries) = $this->_buildVars($user_coins, $user->getCoinsSort());
 
+		$filter_values = array();
+		foreach ($values as $value) {
+			$filter_values = array_merge($filter_values, $value);
+		}
+
 		return $this->render('EuroCoinBundle:Exchange:choose_coins.html.twig', array(
 					'all_countries' => $countries,
 					'all_values' => $values,
 					'all_years' => $years,
 					'coins' => $coins,
+					'filter_values' => array_unique($filter_values),
 					'from' => $from,
 					'type' => 'request',
 				));

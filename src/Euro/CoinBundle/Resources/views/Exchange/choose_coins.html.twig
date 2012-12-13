@@ -24,7 +24,7 @@
 						{{ 'coins.suggested_coins'|trans }}
 					{% endif %}
 
-					{% if all_countries|length > 1 or all_years|length > 1 %}
+					{% if all_countries|length > 1 or filter_values|length > 1 or all_years|length > 1 %}
 						{% set has_filters = true %}
 
 						<span class="pull-right" title="{{ 'exchange.filter_coins'|trans }}" data-hover="tooltip" data-toggle="collapse" data-target="#filters">
@@ -44,8 +44,9 @@
 				<ul class="nav nav-list">
 					<li class="nav-header">{{ 'coins.requested_coins'|trans }}</li>
 					{% for uc in from_coins %}
-					{% set coin = uc.coin %}
-					<li><a>{{ macros.name(coin.country) }} {{ macros.year(coin.year) }} {{ macros.value(coin.value) }}</a></li>
+						{% set coin = uc.coin %}
+
+						<li><a>{{ macros.name(coin.country) }} {{ macros.year(coin.year) }} {{ macros.value(coin.value) }}</a></li>
 					{% endfor %}
 					<li class="divider"></li>
 					<li class="nav-header pull-right">Total : {{ macros.value(total_requested) }}</li>
@@ -56,10 +57,6 @@
 		{% endif %}
 	</div>
 	<div class="span9">
-		{% set empty_cell %}
-		<td style="text-align: center;">{{ 'coin.unavailable'|trans }}</td>
-		{% endset %}
-
 		{% if has_filters %}
 			<div class="collapse" id="filters">
 				{% if all_countries|length > 1 %}
@@ -68,7 +65,7 @@
 							<a class="muted" href="#" title="{{ 'exchange.filter_reset'|trans }}" data-action="reset-country-filter" data-hover="tooltip">&times;</a>
 							<span class="divider">&nbsp;</span>
 						</li>
-						<li class="muted">{{ 'countries'|trans }} <span class="divider">&nbsp;</span></li>
+						<li class="muted">{{ 'coin.country'|trans }} <span class="divider">&nbsp;</span></li>
 
 						{% for country in all_countries %}
 							{% set name = macros.name(country) %}
@@ -85,13 +82,30 @@
 					</ul>
 				{% endif %}
 
+				{% if filter_values|length > 1 %}
+					<ul class="breadcrumb">
+						<li class="muted">
+							<a class="muted" href="#" title="{{ 'exchange.filter_reset'|trans }}" data-action="reset-value-filter" data-hover="tooltip">&times;</a>
+							<span class="divider">&nbsp;</span>
+						</li>
+						<li class="muted">{{ 'coin.value'|trans }} <span class="divider">&nbsp;</span></li>
+
+						{% for value in filter_values %}
+							<li>
+								<a href="#" data-action="show-value" data-target=".value-{{ value|replace('.', '-') }}">{{ macros.value(value) }}</a>
+								<span class="divider">&nbsp;</span>
+							</li>
+						{% endfor %}
+					</ul>
+				{% endif %}
+
 				{% if all_years|length > 1 %}
 					<ul class="breadcrumb">
 						<li class="muted">
 							<a class="muted" href="#" title="{{ 'exchange.filter_reset'|trans }}" data-action="reset-year-filter" data-hover="tooltip">&times;</a>
 							<span class="divider">&nbsp;</span>
 						</li>
-						<li class="muted">{{ 'years'|trans }} <span class="divider">&nbsp;</span></li>
+						<li class="muted">{{ 'coin.year'|trans }} <span class="divider">&nbsp;</span></li>
 
 						{% for year in all_years %}
 							<li>
@@ -111,7 +125,7 @@
 			<tr class="table-header">
 				<th>{{ country }}</th>
 				{% for value in _values %}
-				<th>{{ macros.value(value) }}</th>
+				<th class="value-{{ value|replace('.', '-') }}">{{ macros.value(value) }}</th>
 				{% endfor %}
 			</tr>
 			{% endset %}
@@ -137,13 +151,13 @@
 							{% if values[value] is defined %}
 								{% set coin = values[value] %}
 
-								<td>
+								<td class="value-{{ value|replace('.', '-') }}">
 									<button class="btn btn-info btn-mini" data-coin="{{ coin.id }}" data-desc="{{ macros.coin(coin)|e('html') }}" data-toggle="button" data-value="{{ coin.value.value }}">
 										<i class="icon-white icon-ok"></i>
 									</button>
 								</td>
 							{% else %}
-								{{ empty_cell }}
+								<td class="value-{{ value|replace('.', '-') }}"></td>
 							{% endif %}
 						{% endfor %}
 					</tr>
