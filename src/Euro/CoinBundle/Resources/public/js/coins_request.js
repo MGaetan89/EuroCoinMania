@@ -55,10 +55,12 @@ $(function () {
 	}
 
 	function restore() {
-		$('[data-action=show-country]').css('opacity', .4);
+		$('[data-action=show-country]').css('opacity', 1);
 		$('[data-action=show-year]').css('font-weight', 'normal');
+		$('.table-header').show();
 
 		if (filters.country != null) {
+			$('[data-action=show-country]').css('opacity', .4);
 			$('[data-target="' + filters.country + '"]').css('opacity', 1);
 			$('.filter-country').hide().filter(filters.country).show();
 		} else {
@@ -67,18 +69,21 @@ $(function () {
 
 		if (filters.year != null) {
 			$('[data-target="' + filters.year + '"]').css('font-weight', 'bold');
-			$('.filter-year').hide().filter(filters.year).show().nextAll('.table-header').hide();
+			$('.table-header').hide();
+			$('.filter-year').hide().filter(filters.year).show().parents('table').find('.table-header:first').show();
 
 			$('table').each(function () {
-				var $this = $(this).find('tr');
+				var $this = $(this).find('tr:visible');
 
-				if ($this.filter(':visible').size() == $this.filter('.table-header:visible').size()) {
-					$this.parents('table').hide();
+				if ($this.size() == $this.filter('.table-header').size()) {
+					$(this).hide();
 				}
 			});
 		} else {
 			$('.filter-year').show();
 		}
+
+		$('#no-coins').toggle($('.filter-country:visible').size() == 0);
 
 		return false;
 	}
