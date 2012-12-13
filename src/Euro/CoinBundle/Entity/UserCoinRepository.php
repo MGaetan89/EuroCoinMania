@@ -108,7 +108,7 @@ class UserCoinRepository extends EntityRepository {
 						->getResult();
 	}
 
-	public function findDoublesFromUser(UserInterface $user) {
+	public function findDoublesFromUser(UserInterface $user, $type) {
 		$queryBuilder = $this->createQueryBuilder('uc');
 		$expr = $queryBuilder->expr();
 
@@ -122,15 +122,19 @@ class UserCoinRepository extends EntityRepository {
 						->leftJoin('y.workshop', 'w')
 						->where($expr->eq('uc.user', ':user'))
 						->andWhere($expr->gt('uc.quantity - uc.sharing', 1))
+						->andWhere($expr->eq('c.type', ':type'))
 						->orderBy('y.year', 'ASC')
 						->addOrderBy('w.short_name', 'ASC')
 						->addOrderBy('v.value', 'DESC')
-						->setParameter('user', $user)
+						->setParameters(array(
+							'type' => $type,
+							'user' => $user,
+						))
 						->getQuery()
 						->getResult();
 	}
 
-	public function findDoublesFromUserAndCoins(UserInterface $user, array $coins) {
+	public function findDoublesFromUserAndCoins(UserInterface $user, array $coins, $type) {
 		$queryBuilder = $this->createQueryBuilder('uc');
 		$expr = $queryBuilder->expr();
 
@@ -145,11 +149,13 @@ class UserCoinRepository extends EntityRepository {
 						->where($expr->eq('uc.user', ':user'))
 						->andWhere($expr->gt('uc.quantity - uc.sharing', 1))
 						->andWhere($expr->notIn('c.id', ':coins'))
+						->andWhere($expr->eq('c.type', ':type'))
 						->orderBy('y.year', 'ASC')
 						->addOrderBy('w.short_name', 'ASC')
 						->addOrderBy('v.value', 'DESC')
 						->setParameters(array(
 							'coins' => $coins,
+							'type' => $type,
 							'user' => $user,
 						))
 						->getQuery()

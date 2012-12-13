@@ -1,5 +1,9 @@
-{% macro coin(coin) %}
+{% macro coin(coin, prefix) %}
 {% spaceless %}
+	{% if prefix|default(false) %}
+		[<span title="{{ ('coin.type' ~ coin.type)|trans }}" data-hover="tooltip">{{ ('coin.type' ~ coin.type ~ '_prefix')|trans }}</span>]
+	{% endif %}
+
 	{{ _self.name(coin.country) }} {{ _self.year(coin.year) }} {{ _self.value(coin.value) }}
 {% endspaceless %}
 {% endmacro %}

@@ -109,9 +109,6 @@ $(function () {
 			table.toggle(table.find('tr:visible:not(.table-header)').length != 0);
 		});
 
-		// Display message if no coins match
-		$('#no-coins').toggle($('.filter-country:visible').size() == 0);
-
 		return false;
 	}
 

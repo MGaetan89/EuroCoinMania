@@ -32,11 +32,7 @@
 					<button class="btn btn-info btn-mini" title="{{ 'coin.information'|trans }}" data-action="query-coin-info" data-loading-text="?">?</button>
 				</span>
 
-				<span class="offset1">
-					[<span title="{{ ('coin.type' ~ coin.type)|trans }}" data-hover="tooltip">{{ ('coin.type' ~ coin.type ~ '_prefix')|trans }}</span>]
-
-					{{ macros.coin(coin) }}
-				</span>
+				<span class="offset1">{{ macros.coin(coin, true) }}</span>
 			{% endif %}
 		</td>
 		<td>
@@ -48,11 +44,7 @@
 					<button class="btn btn-info btn-mini" title="{{ 'coin.information'|trans }}" data-action="query-coin-info" data-loading-text="?">?</button>
 				</span>
 
-				<span class="offset1">
-					[<span title="{{ ('coin.type' ~ coin.type)|trans }}" data-hover="tooltip">{{ ('coin.type' ~ coin.type ~ '_prefix')|trans }}</span>]
-
-					{{ macros.coin(coin) }}
-				</span>
+				<span class="offset1">{{ macros.coin(coin, true) }}</span>
 			{% endif %}
 		</td>
 	</tr>

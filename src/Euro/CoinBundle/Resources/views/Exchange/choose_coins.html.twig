@@ -24,7 +24,7 @@
 						{{ 'coins.suggested_coins'|trans }}
 					{% endif %}
 
-					{% if all_countries|length > 1 or filter_values|length > 1 or all_years|length > 1 %}
+					{% if filters.countries|length > 1 or filters.values|length > 1 or filters.years|length > 1 %}
 						{% set has_filters = true %}
 
 						<span class="pull-right" title="{{ 'exchange.filter_coins'|trans }}" data-hover="tooltip" data-toggle="collapse" data-target="#filters">
@@ -44,9 +44,7 @@
 				<ul class="nav nav-list">
 					<li class="nav-header">{{ 'coins.requested_coins'|trans }}</li>
 					{% for uc in from_coins %}
-						{% set coin = uc.coin %}
-
-						<li><a>{{ macros.name(coin.country) }} {{ macros.year(coin.year) }} {{ macros.value(coin.value) }}</a></li>
+						<li><a>{{ macros.coin(uc.coin, true) }}</a></li>
 					{% endfor %}
 					<li class="divider"></li>
 					<li class="nav-header pull-right">Total : {{ macros.value(total_requested) }}</li>
@@ -59,7 +57,7 @@
 	<div class="span9">
 		{% if has_filters %}
 			<div class="collapse" id="filters">
-				{% if all_countries|length > 1 %}
+				{% if filters.countries|length > 1 %}
 					<ul class="breadcrumb">
 						<li class="muted">
 							<a class="muted" href="#" title="{{ 'exchange.filter_reset'|trans }}" data-action="reset-country-filter" data-hover="tooltip">&times;</a>
@@ -67,7 +65,7 @@
 						</li>
 						<li class="muted">{{ 'coin.country'|trans }} <span class="divider">&nbsp;</span></li>
 
-						{% for country in all_countries %}
+						{% for country in filters.countries %}
 							{% set name = macros.name(country) %}
 
 							<li>
@@ -82,7 +80,7 @@
 					</ul>
 				{% endif %}
 
-				{% if filter_values|length > 1 %}
+				{% if filters.values|length > 1 %}
 					<ul class="breadcrumb">
 						<li class="muted">
 							<a class="muted" href="#" title="{{ 'exchange.filter_reset'|trans }}" data-action="reset-value-filter" data-hover="tooltip">&times;</a>
@@ -90,7 +88,7 @@
 						</li>
 						<li class="muted">{{ 'coin.value'|trans }} <span class="divider">&nbsp;</span></li>
 
-						{% for value in filter_values %}
+						{% for value in filters.values %}
 							<li>
 								<a href="#" data-action="show-value" data-target=".value-{{ value|replace('.', '-') }}">{{ macros.value(value) }}</a>
 								<span class="divider">&nbsp;</span>
@@ -99,7 +97,7 @@
 					</ul>
 				{% endif %}
 
-				{% if all_years|length > 1 %}
+				{% if filters.years|length > 1 %}
 					<ul class="breadcrumb">
 						<li class="muted">
 							<a class="muted" href="#" title="{{ 'exchange.filter_reset'|trans }}" data-action="reset-year-filter" data-hover="tooltip">&times;</a>
@@ -107,7 +105,7 @@
 						</li>
 						<li class="muted">{{ 'coin.year'|trans }} <span class="divider">&nbsp;</span></li>
 
-						{% for year in all_years %}
+						{% for year in filters.years %}
 							<li>
 								<a href="#" data-action="show-year" data-target=".year-{{ year }}">{{ macros.year(year) }}</a>
 								<span class="divider">&nbsp;</span>
@@ -118,58 +116,95 @@
 			</div>
 		{% endif %}
 
-		{% for country, years in coins %}
-			{% set _values, pos = all_values[country], 0 %}
+		<div class="accordion">
+			{% if 1 in filters.types %}
+				<div class="accordion-group">
+					<div class="accordion-heading">
+						<a class="accordion-toggle" data-toggle="collapse" href="#type-circulation">{{ 'coin.type1'|trans }}</a>
+					</div>
+					<div class="accordion-body collapse in" id="type-circulation">
+						<div class="accordion-inner">
+							{% for country, years in coins.circulation %}
+								{% set _values = values.circulation[country] %}
 
-			{% set header %}
-			<tr class="table-header">
-				<th>{{ country }}</th>
-				{% for value in _values %}
-				<th class="value-{{ value|replace('.', '-') }}">{{ macros.value(value) }}</th>
-				{% endfor %}
-			</tr>
-			{% endset %}
+								{% set header %}
+								<tr class="table-header">
+									<th>{{ country }}</th>
+									{% for value in _values %}
+									<th class="value-{{ value|replace('.', '-') }}">{{ macros.value(value) }}</th>
+									{% endfor %}
+								</tr>
+								{% endset %}
 
-			<table class="country-{{ country }} filter-country table table-bordered table-condensed table-hover table-striped">
-			<tbody>
-				{{ header }}
+								<table class="country-{{ country }} filter-country table table-bordered table-condensed table-hover table-striped">
+								<tbody>
+									{{ header }}
 
-				{% for year, values in years %}
-					{% if loop.index0 > 0 and loop.index0 % 5 == 0 %}
-						{{ header }}
-					{% endif %}
+									{% for year, values in years %}
+										{% if loop.index0 > 0 and loop.index0 % 5 == 0 %}
+											{{ header }}
+										{% endif %}
 
-					<tr class="year-{{ year[0:4] }} filter-year">
-						{% set has_year = false %}
-						{% for value in _values if values[value] is defined and not has_year %}
-							{% set has_year = true %}
+										<tr class="year-{{ year[0:4] }} filter-year">
+											{% set has_year = false %}
+											{% for value in _values if values[value] is defined and not has_year %}
+												{% set has_year = true %}
 
-							<td>{{ macros.year(values[value].year) }}</td>
-						{% endfor %}
+												<td>{{ macros.year(values[value].year) }}</td>
+											{% endfor %}
 
-						{% for value in _values %}
-							{% if values[value] is defined %}
-								{% set coin = values[value] %}
+											{% for value in _values %}
+												{% if values[value] is defined %}
+													{% set coin = values[value] %}
 
-								<td class="value-{{ value|replace('.', '-') }}">
-									<button class="btn btn-info btn-mini" data-coin="{{ coin.id }}" data-desc="{{ macros.coin(coin)|e('html') }}" data-toggle="button" data-value="{{ coin.value.value }}">
-										<i class="icon-white icon-ok"></i>
-									</button>
-								</td>
-							{% else %}
-								<td class="value-{{ value|replace('.', '-') }}"></td>
-							{% endif %}
-						{% endfor %}
-					</tr>
-				{% endfor %}
-			</tbody>
-			</table>
-		{% endfor %}
-
-		<div class="alert alert-block hide" id="no-coins">
-			<h4>{{ 'warning'|trans }}</h4>
-
-			{{ 'exchange.filter_no_coins'|trans }}
+													<td class="value-{{ value|replace('.', '-') }}">
+														<button class="btn btn-info btn-mini" data-coin="{{ coin.id }}" data-desc="{{ macros.coin(coin, true)|e('html') }}" data-toggle="button" data-value="{{ coin.value.value }}">
+															<i class="icon-white icon-ok"></i>
+														</button>
+													</td>
+												{% else %}
+													<td class="value-{{ value|replace('.', '-') }}"></td>
+												{% endif %}
+											{% endfor %}
+										</tr>
+									{% endfor %}
+								</tbody>
+								</table>
+							{% endfor %}
+						</div>
+					</div>
+				</div>
+			{% endif %}
+			{% if 2 in filters.types %}
+				<div class="accordion-group">
+					<div class="accordion-heading">
+						<a class="accordion-toggle" data-toggle="collapse" href="#type-commemorative">{{ 'coin.type2'|trans }}</a>
+					</div>
+					<div class="accordion-body collapse" id="type-commemorative">
+						<div class="accordion-inner">
+							{% include 'EuroCoinBundle:Exchange:choose_coins_collector.html.twig' with {
+								source_coins: coins.commemorative,
+								source_values: values.commemorative
+							} %}
+						</div>
+					</div>
+				</div>
+			{% endif %}
+			{% if 3 in filters.types %}
+				<div class="accordion-group">
+					<div class="accordion-heading">
+						<a class="accordion-toggle" data-toggle="collapse" href="#type-collector">{{ 'coin.type3'|trans }}</a>
+					</div>
+					<div class="accordion-body collapse" id="type-collector">
+						<div class="accordion-inner">
+							{% include 'EuroCoinBundle:Exchange:choose_coins_collector.html.twig' with {
+								source_coins: coins.collector,
+								source_values: values.collector
+							} %}
+						</div>
+					</div>
+				</div>
+			{% endif %}
 		</div>
 
 		{% set action = (type == 'request') ? 'exchange_coins_suggest' : 'exchange_save' %}

@@ -2,6 +2,7 @@
 
 namespace Euro\CoinBundle\Controller;
 
+use Euro\CoinBundle\Entity\Coin;
 use Euro\CoinBundle\Entity\Exchange;
 use Euro\PrivateMessageBundle\Entity\Conversation;
 use Euro\PrivateMessageBundle\Entity\Message;
@@ -111,6 +112,7 @@ class ExchangeController extends BaseController {
 		$user = $this->getUser();
 		$doctrine = $this->getDoctrine();
 		$from = $doctrine->getRepository('ApplicationSonataUserBundle:User')->find($id);
+		$uc_repo = $doctrine->getRepository('EuroCoinBundle:UserCoin');
 
 		if (!$from || $user === $from) {
 			if (!$from) {
@@ -122,29 +124,72 @@ class ExchangeController extends BaseController {
 			return $this->redirect($this->generateUrl('exchange_choose_user'));
 		}
 
-		$user_coins = $doctrine->getRepository('EuroCoinBundle:UserCoin')->findDoublesFromUser($from);
+		$coin_types = array(
+			'circulation' => Coin::TYPE_CIRCULATION,
+			'commemorative' => Coin::TYPE_COMMEMORATIVE,
+			'collector' => Coin::TYPE_COLLECTOR,
+		);
+		$filter_types = array();
 
-		if (!$user_coins) {
+		foreach ($coin_types as $name => $type) {
+			${'uc_' . $name} = $uc_repo->findDoublesFromUser($from, $type);
+
+			if (count(${'uc_' . $name}) > 0) {
+				$filter_types[] = $type;
+			}
+		}
+
+		if (empty($filter_types)) {
 			$flashBag->add('error', 'coin.doubles.user_no_doubles');
 
 			return $this->redirect($this->generateUrl('exchange_choose_user'));
 		}
 
-		list($coins, $values, $years, $countries) = $this->_buildVars($user_coins, $user->getCoinsSort());
-
+		$filter_countries = array();
 		$filter_values = array();
-		foreach ($values as $value) {
-			$filter_values = array_merge($filter_values, $value);
+		$filter_years = array();
+		$values = array();
+		foreach (array_keys($coin_types) as $name) {
+			list(${'coins_' . $name}, ${'values_' . $name}, ${'years_' . $name}, ${'countries_' . $name}) = $this->_buildVars(${'uc_' . $name}, $user->getCoinsSort());
+
+			foreach (${'countries_' . $name} as $country) {
+				$country_id = $country->getId();
+				if (!isset($filter_countries[$country_id])) {
+					$filter_countries[$country_id] = $country;
+				}
+			}
+
+			foreach (${'values_' . $name} as $value) {
+				$filter_values = array_merge($filter_values, $value);
+			}
+
+			foreach (${'years_' . $name} as $year) {
+				$year_id = $year->getId();
+				if (!isset($filter_years[$year_id])) {
+					$filter_years[$year_id] = $year;
+				}
+			}
 		}
 
 		return $this->render('EuroCoinBundle:Exchange:choose_coins.html.twig', array(
-					'all_countries' => $countries,
-					'all_values' => $values,
-					'all_years' => $years,
-					'coins' => $coins,
-					'filter_values' => array_unique($filter_values),
+					'coins' => array(
+						'circulation' => $coins_circulation,
+						'commemorative' => $coins_commemorative,
+						'collector' => $coins_collector,
+					),
+					'filters' => array(
+						'countries' => $filter_countries,
+						'types' => $filter_types,
+						'values' => array_unique($filter_values),
+						'years' => $filter_years,
+					),
 					'from' => $from,
 					'type' => 'request',
+					'values' => array(
+						'circulation' => $values_circulation,
+						'commemorative' => $values_commemorative,
+						'collector' => $values_collector,
+					),
 				));
 	}
 
@@ -206,10 +251,12 @@ class ExchangeController extends BaseController {
 	}
 
 	public function proposeCoinsAction($id) {
+		$flashBag = $this->get('session')->getFlashBag();
 		$translator = $this->get('translator');
 		$user = $this->getUser();
 		$doctrine = $this->getDoctrine();
 		$from = $doctrine->getRepository('ApplicationSonataUserBundle:User')->find($id);
+		$uc_repo = $doctrine->getRepository('EuroCoinBundle:UserCoin');
 
 		if (!$from) {
 			throw $this->createNotFoundException($translator->trans('coin.doubles.user_not_found'));
@@ -235,13 +282,52 @@ class ExchangeController extends BaseController {
 			throw $this->createNotFoundException($translator->trans('coin.doubles.some_not_found'));
 		}
 
-		$user_coins = $doctrine->getRepository('EuroCoinBundle:UserCoin')->findDoublesFromUserAndCoins($user, $coins_id);
+		$coin_types = array(
+			'circulation' => Coin::TYPE_CIRCULATION,
+			'commemorative' => Coin::TYPE_COMMEMORATIVE,
+			'collector' => Coin::TYPE_COLLECTOR,
+		);
+		$filter_types = array();
 
-		if (!$user_coins) {
-			throw $this->createNotFoundException($translator->trans('coin.doubles.user_no_doubles'));
+		foreach ($coin_types as $name => $type) {
+			${'uc_' . $name} = $uc_repo->findDoublesFromUserAndCoins($user, $coins_id, $type);
+
+			if (count(${'uc_' . $name}) > 0) {
+				$filter_types[] = $type;
+			}
 		}
 
-		list($coins, $values, $years, $countries) = $this->_buildVars($user_coins, $user->getCoinsSort());
+		if (empty($filter_types)) {
+			$flashBag->add('error', 'coin.doubles.user_no_doubles');
+
+			return $this->redirect($this->generateUrl('exchange_choose_user'));
+		}
+
+		$filter_countries = array();
+		$filter_values = array();
+		$filter_years = array();
+		$values = array();
+		foreach (array_keys($coin_types) as $name) {
+			list(${'coins_' . $name}, ${'values_' . $name}, ${'years_' . $name}, ${'countries_' . $name}) = $this->_buildVars(${'uc_' . $name}, $user->getCoinsSort());
+
+			foreach (${'countries_' . $name} as $country) {
+				$country_id = $country->getId();
+				if (!isset($filter_countries[$country_id])) {
+					$filter_countries[$country_id] = $country;
+				}
+			}
+
+			foreach (${'values_' . $name} as $value) {
+				$filter_values = array_merge($filter_values, $value);
+			}
+
+			foreach (${'years_' . $name} as $year) {
+				$year_id = $year->getId();
+				if (!isset($filter_years[$year_id])) {
+					$filter_years[$year_id] = $year;
+				}
+			}
+		}
 
 		$total_requested = 0;
 		foreach ($from_coins as $uc) {
@@ -251,14 +337,26 @@ class ExchangeController extends BaseController {
 		$this->getRequest()->getSession()->set('from_coins', $coins_id);
 
 		return $this->render('EuroCoinBundle:Exchange:choose_coins.html.twig', array(
-					'all_countries' => $countries,
-					'all_values' => $values,
-					'all_years' => $years,
-					'coins' => $coins,
+					'coins' => array(
+						'circulation' => $coins_circulation,
+						'commemorative' => $coins_commemorative,
+						'collector' => $coins_collector,
+					),
+					'filters' => array(
+						'countries' => $filter_countries,
+						'types' => $filter_types,
+						'values' => array_unique($filter_values),
+						'years' => $filter_years,
+					),
 					'from' => $from,
 					'from_coins' => $from_coins,
 					'total_requested' => $total_requested,
 					'type' => 'suggest',
+					'values' => array(
+						'circulation' => $values_circulation,
+						'commemorative' => $values_commemorative,
+						'collector' => $values_collector,
+					),
 				));
 	}
 

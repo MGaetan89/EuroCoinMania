@@ -1,0 +1,42 @@
+{% for country, years in source_coins %}
+	{% set _values = source_values[country] %}
+
+	{% set header %}
+	<tr class="table-header">
+		<th>{{ 'coin.country'|trans }}</th>
+		<th>{{ 'coin.value'|trans }}</th>
+		<th>{{ 'coin.year'|trans }}</th>
+		<th>{{ 'coin.description'|trans }}</th>
+		<th>&nbsp;</th>
+	</tr>
+	{% endset %}
+
+	<table class="country-{{ country }} filter-country table table-bordered table-condensed table-hover table-striped">
+	<tbody>
+		{{ header }}
+
+		{% for year, values in years %}
+			{% if loop.index0 > 0 and loop.index0 % 5 == 0 %}
+				{{ header }}
+			{% endif %}
+
+			<tr class="year-{{ year[0:4] }} filter-year">
+				{% for value in _values %}
+					{% set coin = values[value] %}
+
+					<td>{{ macros.name(coin.country) }}</td>
+					<td>{{ macros.value(coin.value) }}</td>
+					<td>{{ macros.year(coin.year) }}</td>
+					<td>{{ coin.description }}</td>
+					<td>
+						<button class="btn btn-info btn-mini" data-coin="{{ coin.id }}" data-desc="{{ macros.coin(coin, true)|e('html') }}" data-toggle="button" data-value="{{ coin.value.value }}">
+							<i class="icon-white icon-ok"></i>
+						</button>
+					</td>
+				{% endfor %}
+			</tr>
+		{% endfor %}
+	</tbody>
+	</table>
+{% endfor %}
+
