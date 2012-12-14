@@ -1,3 +1,4 @@
+coin: Pièce
 coin.add: Ajouter
 coin.all_years: Toutes les années
 coin.circulation: Circulation
@@ -151,6 +152,10 @@ exchange.read_conversation: Lire la conversation
 exchange.received_by: Reçu par <a href="%path%">%username%</a>
 exchange.refuse: Refuser
 exchange.refused: L'échange a bien été refusé
+exchange.search_coins: Chercher des pièces
+exchange.search_coins_action: Chercher les pièces
+exchange.search_coins.add: Ajouter une pièce
+exchange.search_coins.remove: Retirer la pièce
 exchange.showing: Affichage d'un échange
 exchange.status: Statut
 exchange.status1: En cours

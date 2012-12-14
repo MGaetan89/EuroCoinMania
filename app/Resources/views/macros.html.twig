@@ -48,12 +48,16 @@
 {% endspaceless %}
 {% endmacro %}
 
-{% macro year(year) %}
+{% macro year(year, abbr) %}
 {% spaceless %}
 	{{ year.year }}
 
 	{% if year.workshop %}
-		<abbr title="{{ year.workshop.name }}" data-hover="tooltip">{{ year.workshop.shortname }}</abbr>
+		{% if abbr|default(1) == 1 %}
+			<abbr title="{{ year.workshop.name }}" data-hover="tooltip">{{ year.workshop.shortname }}</abbr>
+		{% else %}
+			{{ year.workshop.shortname }} - {{ year.workshop.name }}
+		{% endif %}
 	{% endif %}
 {% endspaceless %}
 {% endmacro %}

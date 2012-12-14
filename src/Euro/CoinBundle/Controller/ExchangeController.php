@@ -456,6 +456,30 @@ class ExchangeController extends BaseController {
 				)));
 	}
 
+	public function searchAction() {
+		$doctrine = $this->getDoctrine();
+		$translator = $this->get('translator');
+		$countries = $doctrine->getRepository('EuroCoinBundle:Country')->findAll();
+		$values = $doctrine->getRepository('EuroCoinBundle:Value')->findBy(array(), array(
+			'value' => 'ASC',
+		));
+		$years = $doctrine->getRepository('EuroCoinBundle:Year')->findAllSorted();
+
+		$collator = new \Collator($this->getRequest()->getLocale());
+		usort($countries, function ($a, $b) use ($collator, $translator) {
+					return $collator->compare($translator->trans((string) $a), $translator->trans((string) $b));
+				});
+
+		return $this->render('EuroCoinBundle:Exchange:search.html.twig', array(
+			'countries' => $countries,
+			'types' => array(
+				Coin::TYPE_CIRCULATION, Coin::TYPE_COMMEMORATIVE, Coin::TYPE_COLLECTOR,
+			),
+			'values' => $values,
+			'years' => $years,
+		));
+	}
+
 	public function showAction($id) {
 		$doctrine = $this->getDoctrine();
 		$exchange = $doctrine->getRepository('EuroCoinBundle:Exchange')->find($id);

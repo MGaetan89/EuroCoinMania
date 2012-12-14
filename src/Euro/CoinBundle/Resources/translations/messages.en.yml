@@ -1,3 +1,4 @@
+coin: Coin
 coin.add: Add
 coin.all_years: All years
 coin.circulation: Circulation
@@ -151,6 +152,10 @@ exchange.read_conversation: Read the conversation
 exchange.received_by: Received by <a href="%path%">%username%</a>
 exchange.refuse: Refuse
 exchange.refused: This exchange has been refused
+exchange.search_coins: Search coins
+exchange.search_coins_action: Search coins
+exchange.search_coins.add: Add a coin
+exchange.search_coins.remove: Remove coin
 exchange.showing: Viewing an exchange
 exchange.status: Status
 exchange.status1: Pending

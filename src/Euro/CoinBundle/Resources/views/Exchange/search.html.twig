@@ -1,0 +1,57 @@
+{% extends 'EuroCoinBundle:Exchange:base.html.twig' %}
+
+{% block title %}{{ 'exchange.search_coins'|trans }}{% endblock %}
+
+{% block content %}
+<form action="#" class="form-horizontal" method="post">
+	<div class="control-group" id="coin-model">
+		<label class="control-label">{{ 'coin'|trans }}</label>
+
+		<div class="controls controls-row">
+			<select class="span3">
+				<option>{{ 'coin.country'|trans }}</option>
+
+				{% for country in countries %}
+					<option value="{{ country.id }}">{{ macros.name(country) }}</option>
+				{% endfor %}
+			</select>
+			<select class="span3">
+				<option>{{ 'coin.type'|trans }}</option>
+
+				{% for type in types %}
+					<option value="{{ type }}">{{ ('coin.type' ~ type)|trans }}</option>
+				{% endfor %}
+			</select>
+			<select class="span2">
+				<option>{{ 'coin.year'|trans }}</option>
+
+				{% for year in years %}
+					<option value="{{ year.id }}">{{ macros.year(year, 0) }}</option>
+				{% endfor %}
+			</select>
+			<select class="span2">
+				<option>{{ 'coin.value'|trans }}</option>
+
+				{% for value in values %}
+					<option value="{{ value.id }}">{{ macros.value(value) }}</option>
+				{% endfor %}
+			</select>
+			<button class="btn btn-danger offset1" title="{{ 'exchange.search_coins.remove'|trans }}" data-action="remove-coin" data-hover="tooltip" data-placement="left">
+				<i class="icon-white icon-remove"></i>
+			</button>
+		</div>
+	</div>
+
+	<div class="form-actions">
+		<button class="btn btn-primary" type="submit">{{ 'exchange.search_coins_action'|trans }}</button>
+		<button class="btn pull-right" id="add-coin" title="{{ 'exchange.search_coins.add'|trans }}" type="submit" data-hover="tooltip" data-placement="left">
+			<i class="icon-plus"></i>
+		</button>
+	</div>
+</form>
+{% endblock %}
+
+{%block javascript %}
+<script src="{{ asset('bundles/eurocoin/js/coins_search.js') }}" type="text/javascript"></script>
+{% endblock %}
+

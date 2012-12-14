@@ -58,6 +58,12 @@
 						{{ 'exchange.new'|trans }}
 					</a>
 				</li>
+				<li{{ macros.is_active(['exchange_search_coins']) }}>
+					<a href="{{ path('exchange_search_coins') }}">
+						<i class="icon-chevron-right"></i> 
+						{{ 'exchange.search_coins'|trans }}
+					</a>
+				</li>
 			{% endif %}
 
 			<li{{ macros.is_active(['exchange_list']) }}>

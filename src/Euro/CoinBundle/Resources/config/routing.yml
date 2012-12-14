@@ -95,6 +95,10 @@ exchange_save:
         id: "\d+"
         _method: POST
 
+exchange_search_coins:
+    pattern: /exchange/search-coins
+    defaults: { _controller: EuroCoinBundle:Exchange:search }
+
 exchange_show:
     pattern: /exchange/{id}/show
     defaults: { _controller: EuroCoinBundle:Exchange:show }
