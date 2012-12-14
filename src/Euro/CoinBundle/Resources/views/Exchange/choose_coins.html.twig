@@ -117,101 +117,45 @@
 		{% endif %}
 
 		<div class="accordion">
-			{% if 1 in filters.types %}
+			{% set types = {
+				1: {
+					name: 'circulation',
+					twig: 'circulation'
+				},
+				2: {
+					name: 'commemorative',
+					twig: 'collector'
+				},
+				3: {
+					name: 'collector',
+					twig: 'collector'
+				}
+			} %}
+
+			{% for type in filters.types if types[type] is defined %}
 				<div class="accordion-group">
 					<div class="accordion-heading">
-						<a class="accordion-toggle" data-toggle="collapse" href="#type-circulation">{{ 'coin.type1'|trans }}</a>
+						<a class="accordion-toggle" data-toggle="collapse" href="#type-{{ types[type].name }}">
+							{{ ('coin.type' ~ type)|trans }}
+						</a>
 					</div>
-					<div class="accordion-body collapse in" id="type-circulation">
+					<div class="accordion-body collapse{% if loop.first %} in{% endif %}" id="type-{{ types[type].name }}">
 						<div class="accordion-inner">
-							{% for country, years in coins.circulation %}
-								{% set _values = values.circulation[country] %}
-
-								{% set header %}
-								<tr class="table-header">
-									<th>{{ country }}</th>
-									{% for value in _values %}
-									<th class="value-{{ value|replace('.', '-') }}">{{ macros.value(value) }}</th>
-									{% endfor %}
-								</tr>
-								{% endset %}
-
-								<table class="country-{{ country }} filter-country table table-bordered table-condensed table-hover table-striped">
-								<tbody>
-									{{ header }}
-
-									{% for year, values in years %}
-										{% if loop.index0 > 0 and loop.index0 % 5 == 0 %}
-											{{ header }}
-										{% endif %}
-
-										<tr class="year-{{ year[0:4] }} filter-year">
-											{% set has_year = false %}
-											{% for value in _values if values[value] is defined and not has_year %}
-												{% set has_year = true %}
-
-												<td>{{ macros.year(values[value].year) }}</td>
-											{% endfor %}
-
-											{% for value in _values %}
-												{% if values[value] is defined %}
-													{% set coin = values[value] %}
-
-													<td class="value-{{ value|replace('.', '-') }}">
-														<button class="btn btn-info btn-mini" data-coin="{{ coin.id }}" data-desc="{{ macros.coin(coin, true)|e('html') }}" data-toggle="button" data-value="{{ coin.value.value }}">
-															<i class="icon-white icon-ok"></i>
-														</button>
-													</td>
-												{% else %}
-													<td class="value-{{ value|replace('.', '-') }}"></td>
-												{% endif %}
-											{% endfor %}
-										</tr>
-									{% endfor %}
-								</tbody>
-								</table>
-							{% endfor %}
-						</div>
-					</div>
-				</div>
-			{% endif %}
-			{% if 2 in filters.types %}
-				<div class="accordion-group">
-					<div class="accordion-heading">
-						<a class="accordion-toggle" data-toggle="collapse" href="#type-commemorative">{{ 'coin.type2'|trans }}</a>
-					</div>
-					<div class="accordion-body collapse" id="type-commemorative">
-						<div class="accordion-inner">
-							{% include 'EuroCoinBundle:Exchange:choose_coins_collector.html.twig' with {
-								source_coins: coins.commemorative,
-								source_values: values.commemorative
+							{% include 'EuroCoinBundle:Exchange:choose_coins_' ~ types[type].twig ~ '.html.twig' with {
+								source_coins: coins[types[type].name],
+								source_values: values[types[type].name]
 							} %}
 						</div>
 					</div>
 				</div>
-			{% endif %}
-			{% if 3 in filters.types %}
-				<div class="accordion-group">
-					<div class="accordion-heading">
-						<a class="accordion-toggle" data-toggle="collapse" href="#type-collector">{{ 'coin.type3'|trans }}</a>
-					</div>
-					<div class="accordion-body collapse" id="type-collector">
-						<div class="accordion-inner">
-							{% include 'EuroCoinBundle:Exchange:choose_coins_collector.html.twig' with {
-								source_coins: coins.collector,
-								source_values: values.collector
-							} %}
-						</div>
-					</div>
-				</div>
-			{% endif %}
+			{% endfor %}
 		</div>
 
 		{% set action = (type == 'request') ? 'exchange_coins_suggest' : 'exchange_save' %}
 		<form action="{{ path(action, { id: from.id, name: from.username }) }}" method="post">
 			<input id="coins" name="coins" type="hidden" value="" />
 
-			<button class="btn btn-primary disabled pull-right" disabled="disabled" id="exchange">
+			<button class="btn btn-info disabled pull-right" disabled="disabled" id="exchange">
 				{% if type == 'request' %}
 					{{ 'coin.exchange_request'|trans }}
 				{% else %}
@@ -230,3 +174,4 @@
 {% block javascript %}
 <script src="{{ asset('bundles/eurocoin/js/coins_request.js') }}" type="text/javascript"></script>
 {% endblock %}
+
