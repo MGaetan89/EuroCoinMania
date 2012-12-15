@@ -155,6 +155,7 @@ exchange.refused: This exchange has been refused
 exchange.search_coins: Search coins
 exchange.search_coins_action: Search coins
 exchange.search_coins.add: Add a coin
+exchange.search_coins.no_results: No user have been found for your criteria
 exchange.search_coins.remove: Remove coin
 exchange.showing: Viewing an exchange
 exchange.status: Status

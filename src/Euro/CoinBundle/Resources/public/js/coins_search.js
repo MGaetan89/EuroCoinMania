@@ -11,6 +11,8 @@ $(function () {
 		if ($('.control-group').length > 1) {
 			$(this).parents('.control-group').remove();
 		}
+
+		return false;
 	});
 });
 

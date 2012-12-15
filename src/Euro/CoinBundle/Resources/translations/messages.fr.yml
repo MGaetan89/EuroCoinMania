@@ -155,6 +155,7 @@ exchange.refused: L'échange a bien été refusé
 exchange.search_coins: Chercher des pièces
 exchange.search_coins_action: Chercher les pièces
 exchange.search_coins.add: Ajouter une pièce
+exchange.search_coins.no_results: Aucun membre n'a été trouvé pour répondre à votre demande
 exchange.search_coins.remove: Retirer la pièce
 exchange.showing: Affichage d'un échange
 exchange.status: Statut

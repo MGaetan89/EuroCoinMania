@@ -162,6 +162,34 @@ class UserCoinRepository extends EntityRepository {
 						->getResult();
 	}
 
+	public function findForQuery(array $condition, UserInterface $user) {
+		$queryBuilder = $this->createQueryBuilder('uc');
+		$expr = $queryBuilder->expr();
+
+		$where = $expr->orX();
+		foreach ($condition as $coin) {
+			$current = $expr->andX();
+			foreach ($coin as $param => $value) {
+				$current->add($expr->eq('c.' . $param, $value));
+			}
+			$where->add($current);
+		}
+
+		return $queryBuilder
+						->select('uc, u')
+						->addSelect($expr->count('uc') . ' AS total')
+						->join('uc.coin', 'c')
+						->join('uc.user', 'u')
+						->where($expr->neq('uc.user', ':user'))
+						->andWhere($expr->gt('uc.quantity - uc.sharing', 1))
+						->andWhere($where)
+						->groupBy('uc.user')
+						->orderBy('total', 'DESC')
+						->setParameter('user', $user)
+						->getQuery()
+						->getResult();
+	}
+
 	public function findMostValuedCollections() {
 		$queryBuilder = $this->createQueryBuilder('uc');
 		$expr = $queryBuilder->expr();

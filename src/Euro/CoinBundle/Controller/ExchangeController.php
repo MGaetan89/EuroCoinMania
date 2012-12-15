@@ -6,6 +6,7 @@ use Euro\CoinBundle\Entity\Coin;
 use Euro\CoinBundle\Entity\Exchange;
 use Euro\PrivateMessageBundle\Entity\Conversation;
 use Euro\PrivateMessageBundle\Entity\Message;
+use Symfony\Component\HttpFoundation\Request;
 
 class ExchangeController extends BaseController {
 
@@ -456,7 +457,7 @@ class ExchangeController extends BaseController {
 				)));
 	}
 
-	public function searchAction() {
+	public function searchAction(Request $request) {
 		$doctrine = $this->getDoctrine();
 		$translator = $this->get('translator');
 		$countries = $doctrine->getRepository('EuroCoinBundle:Country')->findAll();
@@ -469,6 +470,31 @@ class ExchangeController extends BaseController {
 		usort($countries, function ($a, $b) use ($collator, $translator) {
 					return $collator->compare($translator->trans((string) $a), $translator->trans((string) $b));
 				});
+
+		if ($request->isMethod('POST')) {
+			$query = array(
+				'countries' => (array) $request->get('countries'),
+				'types' => (array) $request->get('types'),
+				'values' => (array) $request->get('values'),
+				'years' => (array) $request->get('years'),
+			);
+
+			$condition = array();
+			for ($i = 0, $n = count($query['countries']); $i < $n; $i++) {
+				$try = array_filter(array(
+					'country' => (int) $query['countries'][$i],
+					'type' => (int) $query['types'][$i],
+					'value' => (int) $query['values'][$i],
+					'year' => (int) $query['years'][$i],
+				));
+
+				if ($try) {
+					$condition[] = $try;
+				}
+			}
+
+			return $this->findUsers($condition);
+		}
 
 		return $this->render('EuroCoinBundle:Exchange:search.html.twig', array(
 			'countries' => $countries,
@@ -506,4 +532,19 @@ class ExchangeController extends BaseController {
 				));
 	}
 
+	private function findUsers(array $condition) {
+		$matches = $this->getDoctrine()->getRepository('EuroCoinBundle:UserCoin')->findForQuery($condition, $this->getUser());
+
+		if (!$matches) {
+			$this->get('session')->getFlashBag()->add('info', 'exchange.search_coins.no_results');
+
+			return $this->redirect($this->generateUrl('exchange_search_coins'));
+		}
+
+		return $this->render('EuroCoinBundle:Exchange:search_result.html.twig', array(
+					'matches' => $matches,
+				));
+	}
+
 }
+

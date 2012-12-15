@@ -3,34 +3,34 @@
 {% block title %}{{ 'exchange.search_coins'|trans }}{% endblock %}
 
 {% block content %}
-<form action="#" class="form-horizontal" method="post">
+<form action="{{ path('exchange_search_coins') }}" class="form-horizontal" method="post">
 	<div class="control-group" id="coin-model">
 		<label class="control-label">{{ 'coin'|trans }}</label>
 
 		<div class="controls controls-row">
-			<select class="span3">
-				<option>{{ 'coin.country'|trans }}</option>
+			<select class="span3" name="countries[]">
+				<option value="0">{{ 'coin.country'|trans }}</option>
 
 				{% for country in countries %}
 					<option value="{{ country.id }}">{{ macros.name(country) }}</option>
 				{% endfor %}
 			</select>
-			<select class="span3">
-				<option>{{ 'coin.type'|trans }}</option>
+			<select class="span3" name="types[]">
+				<option value="0">{{ 'coin.type'|trans }}</option>
 
 				{% for type in types %}
 					<option value="{{ type }}">{{ ('coin.type' ~ type)|trans }}</option>
 				{% endfor %}
 			</select>
-			<select class="span2">
-				<option>{{ 'coin.year'|trans }}</option>
+			<select class="span2" name="years[]">
+				<option value="0">{{ 'coin.year'|trans }}</option>
 
 				{% for year in years %}
 					<option value="{{ year.id }}">{{ macros.year(year, 0) }}</option>
 				{% endfor %}
 			</select>
-			<select class="span2">
-				<option>{{ 'coin.value'|trans }}</option>
+			<select class="span2" name="values[]">
+				<option value="0">{{ 'coin.value'|trans }}</option>
 
 				{% for value in values %}
 					<option value="{{ value.id }}">{{ macros.value(value) }}</option>
