@@ -11,15 +11,13 @@
 					<li class="nav-header">{{ 'exchange.search_coins.criteria'|trans }}</li>
 
 					{% for coin in condition %}
-						{% set type = coin['type']|default(1) %}
-
 						<li>
 							{% if coin['country'] is defined %}
 								{% set country_id = coin['country'] %}
 								{% set country = values['country'][country_id] %}
 								{% set name = macros.name(country) %}
 
-								<a href="{{ path('coin_collection' ~ type, { id: country_id, country: name }) }}">
+								<a href="{{ path('coin_collection' ~ coin['type']|default(1), { id: country_id, country: name }) }}">
 									<img alt="{{ name }}" src="{% path country.flag, 'mini' %}" title="{{ name }}" data-hover="tooltip" data-placement="right" />
 									{{ name }}
 								</a>
@@ -37,7 +35,9 @@
 								{{ macros.value(values['value'][value_id]) }}
 							{% endif %}
 
-							{{ ('coin.type' ~ type)|trans }}
+							{% if coin['type'] is defined %}
+								{{ ('coin.type' ~ coin['type'])|trans }}
+							{% endif %}
 						</li>
 					{% endfor %}
 				</ul>
