@@ -68,7 +68,7 @@
 					<li{{ macros.is_active(['coin_collection1', 'coin_collection2', 'coin_collection3']) }}><a href="{{ path('coin_collection1') }}">{{ 'coin.collection'|trans }}</a></li>
 
 					{% if app.user %}
-						<li{{ macros.is_active(['exchange_coins_request', 'exchange_coins_suggest', 'exchange_choose_user', 'exchange_list', 'exchange_list_all', 'exchange_show']) }}><a href="{{ path('exchange_list') }}">{{ 'exchanges'|trans }}</a></li>
+						<li{{ macros.is_active(['exchange_coins_request', 'exchange_coins_suggest', 'exchange_choose_user', 'exchange_list', 'exchange_list_all', 'exchange_search_coins', 'exchange_show']) }}><a href="{{ path('exchange_list') }}">{{ 'exchanges'|trans }}</a></li>
 					{% endif %}
 
 					<li{{ macros.is_active(['coin_stats']) }}><a href="{{ path('coin_stats') }}">{{ 'stats'|trans }}</a></li>
@@ -157,6 +157,7 @@
 						<strong>{{ 'exchanges'|trans }} &mdash;</strong>
 
 							<a href="{{ path('exchange_choose_user') }}">{{ 'exchange.new'|trans }}</a> &bull;
+							<a href="{{ path('exchange_search_coins') }}">{{ 'exchange.search_coins'|trans }}</a> &bull;
 							<a href="{{ path('exchange_list') }}">{{ 'exchanges.pending'|trans }}</a> &bull;
 							<a href="{{ path('exchange_list_all') }}">{{ 'exchanges.all'|trans }}</a>
 					</p>

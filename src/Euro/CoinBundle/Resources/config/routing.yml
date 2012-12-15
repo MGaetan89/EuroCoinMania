@@ -23,6 +23,12 @@ coin_collection3:
     requirements:
         id: "\d*"
 
+coin_find:
+    pattern: /coin/find
+    defaults : { _controller: EuroCoinBundle:Coin:find }
+    requirements:
+        _method: POST
+
 coin_get:
     pattern: /coin/{id}/get
     defaults: { _controller: EuroCoinBundle:Coin:get }

@@ -46,6 +46,38 @@ class CoinRepository extends EntityRepository {
 						->getResult();
 	}
 
+	public function findByParams(array $params) {
+		$queryBuilder = $this->createQueryBuilder('c');
+		$expr = $queryBuilder->expr();
+		$where = null;
+
+		if ($params) {
+			$where = $expr->andX();
+			foreach ($params as $name => $value) {
+				$where->add($expr->eq('c.' . $name, $value));
+			}
+		}
+
+		$queryBuilder
+			->select('c, ct, v, w, y')
+			->join('c.country', 'ct')
+			->join('c.value', 'v')
+			->join('c.year', 'y')
+			->leftJoin('y.workshop', 'w');
+
+		if ($where) {
+			$queryBuilder
+				->where($where);
+		}
+
+		return $queryBuilder
+			->orderBy('y.year', 'ASC')
+			->addOrderBy('w.short_name', 'ASC')
+			->addOrderby('v.value', 'ASC')
+			->getQuery()
+			->getResult();
+	}
+
 	public function findCoinById(array $ids) {
 		$queryBuidler = $this->createQueryBuilder('c');
 		$expr = $queryBuidler->expr();

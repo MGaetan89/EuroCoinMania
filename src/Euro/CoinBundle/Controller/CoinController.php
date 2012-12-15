@@ -4,6 +4,7 @@ namespace Euro\CoinBundle\Controller;
 
 use Euro\CoinBundle\Entity\Coin;
 use Euro\CoinBundle\Entity\UserCoin;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 class CoinController extends BaseController {
@@ -235,6 +236,43 @@ class CoinController extends BaseController {
 				));
 	}
 
+	public function findAction(Request $request) {
+		$params = array_filter(array(
+			'country' => $request->get('countries'),
+			'type' => $request->get('types'),
+			'value' => $request->get('values'),
+			'year' => $request->get('years'),
+		));
+
+		$matches = $this->getDoctrine()->getRepository('EuroCoinBundle:Coin')->findByParams($params);
+		$translator = $this->get('translator');
+
+		$results = array(
+			'countries' => array(),
+			'types' => array(),
+			'values' => array(),
+			'years' => array(),
+		);
+		foreach ($matches as $match) {
+			$country = $match->getCountry();
+			$type = $match->getType();
+			$value = $match->getValue();
+			$year = $match->getYear();
+
+			$results['countries'][ $country->getId() ] = $translator->trans((string) $country);
+			$results['types'][ $type ] = $translator->trans('coin.type' . $type);
+			$results['values'][ $value->getId() ] = (string) $value;
+			$results['years'][ $year->getId() ] = (string) $year;
+		}
+
+		asort($results['countries']);
+
+		$response = new Response(json_encode($results));
+		$response->headers->set('Content-Type', 'application/json');
+
+		return $response;
+	}
+
 	/**
 	 * Retrieve data for a given coin
 	 * @param integer $id The coin id
@@ -322,3 +360,4 @@ class CoinController extends BaseController {
 	}
 
 }
+

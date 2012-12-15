@@ -223,9 +223,10 @@ class ExchangeController extends BaseController {
 				));
 	}
 
-	public function chooseUserAction() {
-		$this->getRequest()->getSession()->set('coins_query', null);
-		$this->getRequest()->getSession()->set('from_coins', null);
+	public function chooseUserAction(Request $request) {
+		$session = $request->getSession();
+		$session->set('coins_query', null);
+		$session->set('from_coins', null);
 
 		$user = $this->getUser();
 
@@ -525,7 +526,7 @@ class ExchangeController extends BaseController {
 				}
 			}
 
-			$this->getRequest()->getSession()->set('coins_query', $condition);
+			$request->getSession()->set('coins_query', $condition);
 
 			return $this->findUsers($condition);
 		}
