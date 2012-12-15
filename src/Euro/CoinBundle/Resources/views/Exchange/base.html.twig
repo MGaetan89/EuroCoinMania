@@ -4,81 +4,122 @@
 <h2 class="page-header">{{ block('title') }}</h2>
 
 <div class="row-fluid">
-	<div class="dropdown span3">
-		<ul class="dropdown-menu" style="display: block; position: static; width: 90%;">
-			<li class="nav-header">{{ 'exchange.actions'|trans }}</li>
+	<div class="span3">
+		{% if condition is defined %}
+			<div class="well well-small" style="padding: 8px 0; width: 90%;">
+				<ul class="nav nav-list">
+					<li class="nav-header">{{ 'exchange.search_coins.criteria'|trans }}</li>
 
-			{% if app.request.get('_route') == 'exchange_show' %}
-				<li{{ macros.is_active(['exchange_show']) }}>
-					<a href="{{ path('exchange_show', { id: exchange.id }) }}">
-						<i class="icon-chevron-right"></i> 
-						{{ 'exchange.showing'|trans }}
-					</a>
-				</li>
-				<li>
-					<a href="{{ path('pm_read', { id: exchange.conversation.id, title: macros.slugify(exchange.conversation.title|trans) }) }}">
-						<i class="icon-chevron-right"></i> 
-						{{ 'exchange.read_conversation'|trans }}
-					</a>
-				</li>
+					{% for coin in condition %}
+						{% set type = coin['type']|default(1) %}
 
-				<li class="divider"></li>
+						<li>
+							{% if coin['country'] is defined %}
+								{% set country_id = coin['country'] %}
+								{% set country = values['country'][country_id] %}
+								{% set name = macros.name(country) %}
 
-				{% if exchange.status == 1 %}
-					{% if exchange.fromuser.id == app.user.id %}
-						<li>
-							<a href="{{ path('exchange_cancel', { id: exchange.id }) }}">
-								<i class="icon-minus-sign"></i>
-								<strong class="text-warning">{{ 'exchange.cancel'|trans }}</strong>
-							</a>
+								<a href="{{ path('coin_collection' ~ type, { id: country_id, country: name }) }}">
+									<img alt="{{ name }}" src="{% path country.flag, 'mini' %}" title="{{ name }}" data-hover="tooltip" data-placement="right" />
+									{{ name }}
+								</a>
+							{% endif %}
+
+							{% if coin['year'] is defined %}
+								{% set year_id = coin['year'] %}
+
+								{{ macros.year(values['year'][year_id]) }}
+							{% endif %}
+
+							{% if coin['value'] is defined %}
+								{% set value_id = coin['value'] %}
+
+								{{ macros.value(values['value'][value_id]) }}
+							{% endif %}
+
+							{{ ('coin.type' ~ type)|trans }}
 						</li>
-					{% else %}
-						<li>
-							<a href="{{ path('exchange_accept', { id: exchange.id }) }}">
-								<i class="icon-ok"></i>
-								<strong class="text-success">{{ 'exchange.accept'|trans }}</strong>
-							</a>
-						</li>
-						<li>
-							<a href="{{ path('exchange_refuse', { id: exchange.id }) }}">
-								<i class="icon-remove"></i>
-								<strong class="text-error">{{ 'exchange.refuse'|trans }}</strong>
-							</a>
-						</li>
-					{% endif %}
+					{% endfor %}
+				</ul>
+			</div>
+		{% endif %}
+
+		<div class="dropdown">
+			<ul class="dropdown-menu" style="display: block; position: static; width: 90%;">
+				<li class="nav-header">{{ 'exchange.actions'|trans }}</li>
+
+				{% if app.request.get('_route') == 'exchange_show' %}
+					<li{{ macros.is_active(['exchange_show']) }}>
+						<a href="{{ path('exchange_show', { id: exchange.id }) }}">
+							<i class="icon-chevron-right"></i> 
+							{{ 'exchange.showing'|trans }}
+						</a>
+					</li>
+					<li>
+						<a href="{{ path('pm_read', { id: exchange.conversation.id, title: macros.slugify(exchange.conversation.title|trans) }) }}">
+							<i class="icon-chevron-right"></i> 
+							{{ 'exchange.read_conversation'|trans }}
+						</a>
+					</li>
 
 					<li class="divider"></li>
+
+					{% if exchange.status == 1 %}
+						{% if exchange.fromuser.id == app.user.id %}
+							<li>
+								<a href="{{ path('exchange_cancel', { id: exchange.id }) }}">
+									<i class="icon-minus-sign"></i>
+									<strong class="text-warning">{{ 'exchange.cancel'|trans }}</strong>
+								</a>
+							</li>
+						{% else %}
+							<li>
+								<a href="{{ path('exchange_accept', { id: exchange.id }) }}">
+									<i class="icon-ok"></i>
+									<strong class="text-success">{{ 'exchange.accept'|trans }}</strong>
+								</a>
+							</li>
+							<li>
+								<a href="{{ path('exchange_refuse', { id: exchange.id }) }}">
+									<i class="icon-remove"></i>
+									<strong class="text-error">{{ 'exchange.refuse'|trans }}</strong>
+								</a>
+							</li>
+						{% endif %}
+
+						<li class="divider"></li>
+					{% endif %}
 				{% endif %}
-			{% endif %}
 
-			{% if app.user.allowexchanges %}
-				<li{{ macros.is_active(['exchange_choose_user']) }}>
-					<a href="{{ path('exchange_choose_user') }}">
+				{% if app.user.allowexchanges %}
+					<li{{ macros.is_active(['exchange_choose_user']) }}>
+						<a href="{{ path('exchange_choose_user') }}">
+							<i class="icon-chevron-right"></i> 
+							{{ 'exchange.new'|trans }}
+						</a>
+					</li>
+					<li{{ macros.is_active(['exchange_search_coins']) }}>
+						<a href="{{ path('exchange_search_coins') }}">
+							<i class="icon-chevron-right"></i> 
+							{{ 'exchange.search_coins'|trans }}
+						</a>
+					</li>
+				{% endif %}
+
+				<li{{ macros.is_active(['exchange_list']) }}>
+					<a href="{{ path('exchange_list') }}">
 						<i class="icon-chevron-right"></i> 
-						{{ 'exchange.new'|trans }}
+						{{ 'exchanges.pending'|trans }}
 					</a>
 				</li>
-				<li{{ macros.is_active(['exchange_search_coins']) }}>
-					<a href="{{ path('exchange_search_coins') }}">
+				<li{{ macros.is_active(['exchange_list_all']) }}>
+					<a href="{{ path('exchange_list_all') }}">
 						<i class="icon-chevron-right"></i> 
-						{{ 'exchange.search_coins'|trans }}
+						{{ 'exchanges.all'|trans }}
 					</a>
 				</li>
-			{% endif %}
-
-			<li{{ macros.is_active(['exchange_list']) }}>
-				<a href="{{ path('exchange_list') }}">
-					<i class="icon-chevron-right"></i> 
-					{{ 'exchanges.pending'|trans }}
-				</a>
-			</li>
-			<li{{ macros.is_active(['exchange_list_all']) }}>
-				<a href="{{ path('exchange_list_all') }}">
-					<i class="icon-chevron-right"></i> 
-					{{ 'exchanges.all'|trans }}
-				</a>
-			</li>
-		</ul>
+			</ul>
+		</div>
 	</div>
 	<div class="span9">{% block content %}{% endblock %}</div>
 </div>

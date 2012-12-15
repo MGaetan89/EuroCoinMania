@@ -1,7 +1,7 @@
 {% macro coin(coin, prefix) %}
 {% spaceless %}
 	{% if prefix|default(false) %}
-		[<span title="{{ ('coin.type' ~ coin.type)|trans }}" data-hover="tooltip">{{ ('coin.type' ~ coin.type ~ '_prefix')|trans }}</span>]
+		{{ _self.type(coin.type) }}
 	{% endif %}
 
 	{{ _self.name(coin.country) }} {{ _self.year(coin.year) }} {{ _self.value(coin.value) }}
@@ -35,6 +35,14 @@
 {% macro slugify(text) %}
 {% spaceless %}
 	{{ text|replace(' ', '-')|replace('\'', '-') }}
+{% endspaceless %}
+{% endmacro %}
+
+{% macro type(type) %}
+{% spaceless %}
+	{% set type = type.type|default(type) %}
+
+	[<span title="{{ ('coin.type' ~ type)|trans }}" data-hover="tooltip">{{ ('coin.type' ~ type ~ '_prefix')|trans }}</span>]
 {% endspaceless %}
 {% endmacro %}
 

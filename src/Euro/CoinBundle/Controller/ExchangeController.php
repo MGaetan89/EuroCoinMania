@@ -533,7 +533,8 @@ class ExchangeController extends BaseController {
 	}
 
 	private function findUsers(array $condition) {
-		$matches = $this->getDoctrine()->getRepository('EuroCoinBundle:UserCoin')->findForQuery($condition, $this->getUser());
+		$doctrine = $this->getDoctrine();
+		$matches = $doctrine->getRepository('EuroCoinBundle:UserCoin')->findForQuery($condition, $this->getUser());
 
 		if (!$matches) {
 			$this->get('session')->getFlashBag()->add('info', 'exchange.search_coins.no_results');
@@ -541,8 +542,33 @@ class ExchangeController extends BaseController {
 			return $this->redirect($this->generateUrl('exchange_search_coins'));
 		}
 
+		$values = array(
+			'country' => array(),
+			'value' => array(),
+			'year' => array(),
+		);
+		foreach ($condition as $coin) {
+			foreach ($coin as $param => $value) {
+				if ($param !== 'type') {
+					$values[$param][$value] = null;
+				}
+			}
+		}
+
+		$values = array_filter($values);
+
+		foreach ($values as $name => &$ids) {
+			$results = $doctrine->getRepository('EuroCoinBundle:' . ucfirst($name))->findById(array_keys($ids));
+
+			foreach ($results as $result) {
+				$ids[ $result->getId() ] = $result;
+			}
+		}
+
 		return $this->render('EuroCoinBundle:Exchange:search_result.html.twig', array(
+					'condition' => $condition,
 					'matches' => $matches,
+					'values' => $values,
 				));
 	}
 
