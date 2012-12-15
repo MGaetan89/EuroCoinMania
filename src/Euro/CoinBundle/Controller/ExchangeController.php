@@ -172,12 +172,41 @@ class ExchangeController extends BaseController {
 			}
 		}
 
+		$condition = $this->getRequest()->getSession()->get('coins_query');
+		$condition_values = array(
+			'country' => array(),
+			'value' => array(),
+			'year' => array(),
+		);
+
+		if ($condition) {
+			foreach ($condition as $coin) {
+				foreach ($coin as $param => $value) {
+					if ($param !== 'type') {
+						$condition_values[$param][$value] = null;
+					}
+				}
+			}
+
+			$condition_values = array_filter($condition_values);
+
+			foreach ($condition_values as $name => &$ids) {
+				$results = $doctrine->getRepository('EuroCoinBundle:' . ucfirst($name))->findById(array_keys($ids));
+
+				foreach ($results as $result) {
+					$ids[ $result->getId() ] = $result;
+				}
+			}
+		}
+
 		return $this->render('EuroCoinBundle:Exchange:choose_coins.html.twig', array(
 					'coins' => array(
 						'circulation' => $coins_circulation,
 						'commemorative' => $coins_commemorative,
 						'collector' => $coins_collector,
 					),
+					'condition' => $condition,
+					'condition_values' => $condition_values,
 					'filters' => array(
 						'countries' => $filter_countries,
 						'types' => $filter_types,
@@ -195,6 +224,9 @@ class ExchangeController extends BaseController {
 	}
 
 	public function chooseUserAction() {
+		$this->getRequest()->getSession()->set('coins_query', null);
+		$this->getRequest()->getSession()->set('from_coins', null);
+
 		$user = $this->getUser();
 
 		if (!$user->getAllowExchanges()) {
@@ -492,6 +524,8 @@ class ExchangeController extends BaseController {
 					$condition[] = $try;
 				}
 			}
+
+			$this->getRequest()->getSession()->set('coins_query', $condition);
 
 			return $this->findUsers($condition);
 		}

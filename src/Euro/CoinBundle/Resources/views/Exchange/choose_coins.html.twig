@@ -15,6 +15,45 @@
 
 <div class="row-fluid">
 	<div class="span3">
+		{% if type == 'request' and condition %}
+			<div class="well well-small" style="padding: 8px 0;">
+				<ul class="nav nav-list">
+					<li class="nav-header">{{ 'exchange.search_coins.criteria'|trans }}</li>
+
+					{% for coin in condition %}
+						<li>
+							{% if coin['country'] is defined %}
+								{% set country_id = coin['country'] %}
+								{% set country = condition_values['country'][country_id] %}
+								{% set name = macros.name(country) %}
+
+								<a href="{{ path('coin_collection' ~ coin['type']|default(1), { id: country_id, country: name }) }}">
+									<img alt="{{ name }}" src="{% path country.flag, 'mini' %}" title="{{ name }}" data-hover="tooltip" data-placement="right" />
+									{{ name }}
+								</a>
+							{% endif %}
+
+							{% if coin['year'] is defined %}
+								{% set year_id = coin['year'] %}
+
+								{{ macros.year(condition_values['year'][year_id]) }}
+							{% endif %}
+
+							{% if coin['value'] is defined %}
+								{% set value_id = coin['value'] %}
+
+								{{ macros.value(condition_values['value'][value_id]) }}
+							{% endif %}
+
+							{% if coin['type'] is defined %}
+								{{ ('coin.type' ~ coin['type'])|trans }}
+							{% endif %}
+						</li>
+					{% endfor %}
+				</ul>
+			</div>
+		{% endif %}
+
 		<div class="well well-small" style="padding: 8px 0;">
 			<ul class="nav nav-list" id="coins_list">
 				<li class="nav-header">
