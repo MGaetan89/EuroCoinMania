@@ -1,4 +1,5 @@
 user.account: My account
+user.all: All
 user.biography: Biography
 user.birthday_today: It's his birthday!
 user.birthday_todayf: It's her birthday!
@@ -43,6 +44,8 @@ user.login.meta_description: Log in to EuroCoin Mania to manage your collection
 user.login_action: Access my account
 user.login_required: You need to be logged in to see this page
 user.logout: Log out
+user.memberlist: Members list
+user.none: No member match your criteria
 user.not_allowed: You are not allowed to see this page
 user.not_found: This user does not exist
 user.optional_information: Optional information

@@ -2,6 +2,13 @@ user_edit_preferences:
     pattern: /profile/edit-preferences
     defaults: { _controller: ApplicationSonataUserBundle:Default:preferences }
 
+users_list:
+    pattern: /users/list/{page}/{letter}
+    defaults: { _controller: ApplicationSonataUserBundle:Default:list, letter: null, page: 1 }
+    requirements:
+        letter: "[a-zA-Z]|\#"
+        page: "\d+"
+
 show_profile:
     pattern:  /profile/{id}/show
     defaults: { _controller: ApplicationSonataUserBundle:Default:show }

@@ -1,4 +1,5 @@
 user.account: Mon compte
+user.all: Tous
 user.biography: Biographie
 user.birthday_today: C'est son anniversaire !
 user.birthday_todayf: C'est son anniversaire !
@@ -43,6 +44,8 @@ user.login.meta_description: Connectez-vous à EuroCoin Mania pour gérer votre 
 user.login_action: Accéder à mon compte
 user.login_required: Vous devez être connecté pour accéder à cette page
 user.logout: Déconnexion
+user.memberlist: Liste des membres
+user.none: Aucun membre ne correspond à votre requête
 user.not_allowed: Vous n'êtes pas autorisé à accéder à cette page
 user.not_found: L'utilisateur que vous avez demandé n'existe pas
 user.optional_information: Informations facultatives

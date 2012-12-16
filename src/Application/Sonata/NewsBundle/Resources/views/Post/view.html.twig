@@ -12,7 +12,7 @@
 		<ul class="dropdown-menu" style="display: block; position: static;">
 			<li class="nav-header">{{ 'news.information'|trans }}</li>
 
-			<li title="{{ 'news.author'|trans }}"><a href="{{ path('show_profile', { id: post.author.id }) }}" rel="author"><i class="icon-pencil"></i> {{ post.author }}</a></li>
+			<li title="{{ 'news.author'|trans }}"><a href="{{ path('show_profile', { id: post.author.id }) }}" rel="author{% if post.author.publicprofile %} nofollow{% endif %}"><i class="icon-pencil"></i> {{ post.author }}</a></li>
 			<li title="{{ 'news.publication_date'|trans }}"><a><i class="icon-time"></i> {{ post.publicationDateStart|format_date }}</a></li>
 
 			<li class="divider"></li>

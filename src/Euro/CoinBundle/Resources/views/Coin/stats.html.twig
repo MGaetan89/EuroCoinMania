@@ -141,7 +141,7 @@
 
 						<img alt="{{ image.title }}" src="{{ image.src }}" title="{{ image.title }}" data-hover="tooltip" data-placement="right" />
 
-						<a href="{{ path('show_user_collection1', { user_id: user.id }) }}">
+						<a href="{{ path('show_user_collection1', { user_id: user.id }) }}"{% if not user.publicprofile %} rel="nofollow"{% endif %}>
 							{{ user.username }}
 						</a>
 					</td>
@@ -183,7 +183,7 @@
 
 						<img alt="{{ image.title }}" src="{{ image.src }}" title="{{ image.title }}" data-hover="tooltip" data-placement="right" />
 
-						<a href="{{ path('show_user_collection1', { user_id: user.id }) }}">
+						<a href="{{ path('show_user_collection1', { user_id: user.id }) }}"{% if not user.publicprofile %} rel="nofollow"{% endif %}>
 							{{ user.username }}
 						</a>
 					</td>

@@ -7,12 +7,13 @@ use Doctrine\ORM\Query\ResultSetMapping;
 
 class UserRepository extends EntityRepository {
 
-	public function count() {
+	public function count($letter = null) {
 		$queryBuidler = $this->createQueryBuilder('u');
 		$expr = $queryBuidler->expr();
 
 		return $queryBuidler
 						->select($expr->count('u'))
+						->where($expr->like($expr->upper('u.username'), $expr->literal($letter . '%')))
 						->getQuery()
 						->getSingleScalarResult();
 	}
@@ -31,6 +32,37 @@ class UserRepository extends EntityRepository {
 				->getSingleResult();
 
 		return round($result['total'] / $result['count_date']);
+	}
+
+	public function findByLetter($letter, $from, $limit) {
+		$queryBuidler = $this->createQueryBuilder('u');
+		$expr = $queryBuidler->expr();
+
+		if ($letter !== '#') {
+			$cond = $expr->like($expr->upper('u.username'), $expr->literal($letter . '%'));
+		} else {
+			$cond = $expr->not($expr->between($expr->upper($expr->substring('u.username', 1, 1)), $expr->literal('A'), $expr->literal('Z')));
+		}
+
+		return $queryBuidler
+						->where($cond)
+						->orderBy('u.username', 'ASC')
+						->setFirstResult($from)
+						->setMaxResults($limit)
+						->getQuery()
+						->getResult();
+	}
+
+	public function findFirstLetters() {
+		$queryBuidler = $this->createQueryBuilder('u');
+		$expr = $queryBuidler->expr();
+
+		return $queryBuidler
+						->select($expr->upper($expr->substring('u.username', 1, 1)) . ' AS letter')
+						->groupBy('letter')
+						->orderBy('letter', 'ASC')
+						->getQuery()
+						->getResult();
 	}
 
 	public function findGendersStats() {

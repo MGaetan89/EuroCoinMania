@@ -11,6 +11,8 @@ use Symfony\Component\HttpFoundation\Request;
 
 class DefaultController extends BaseController {
 
+	const USER_PER_PAGE = 20;
+
 	public function collectionAction($type, $country_id, $user_id) {
 		$base_user = $this->getUser();
 		$doctrine = $this->getDoctrine();
@@ -141,6 +143,37 @@ class DefaultController extends BaseController {
 					'uc' => $uc,
 					'user' => $user,
 				));
+	}
+
+	public function listAction($letter, $page) {
+		if ($page < 1) {
+			$page = 1;
+		}
+
+		$letter = strtoupper($letter);
+		$user_repo = $this->getDoctrine()->getRepository('ApplicationSonataUserBundle:User');
+
+		$letters = $user_repo->findFirstLetters();
+		$total = $user_repo->count($letter);
+		$users = $user_repo->findByLetter($letter, self::USER_PER_PAGE * ($page - 1), self::USER_PER_PAGE);
+
+		foreach ($letters as &$dummy) {
+			if (!preg_match('`[a-z]`i', $dummy['letter'])) {
+				$dummy['letter'] = '#';
+			}
+		}
+
+		return $this->render('ApplicationSonataUserBundle:User:list.html.twig', array(
+			'letter' => array(
+				'all' => $letters,
+				'current' => $letter,
+			),
+			'page' => array(
+				'current' => $page,
+				'total' => ceil($total / self::USER_PER_PAGE),
+			),
+			'users' => $users,
+		));
 	}
 
 	/**

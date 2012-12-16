@@ -1,0 +1,109 @@
+{% extends '::base.html.twig' %}
+
+{% block title %}{{ 'user.memberlist'|trans }}{% endblock %}
+
+{% block body %}
+<h2 class="page-header">{{ block('title') }}</h2>
+
+<ul class="breadcrumb">
+	<li class="muted">{{ 'user.username'|trans }} <span class="divider">&nbsp;</span></li>
+
+	<li>
+		{% if not letter.current %}<strong>{% endif %}
+		<a href="{{ path('users_list') }}">{{ 'user.all'|trans }}</a>
+		{% if not letter.current %}</strong>{% endif %}
+
+		<span class="divider">&nbsp;</span>
+	</li>
+
+	{% for i in letter.all %}
+		{% set i = i.letter %}
+
+		<li>
+			{% if letter.current == i %}<strong>{% endif %}
+			<a href="{{ path('users_list', { letter: i }) }}">{{ i }}</a>
+			{% if letter.current == i %}</strong>{% endif %}
+
+			<span class="divider">&nbsp;</span>
+		</li>
+	{% endfor %}
+</ul>
+
+{% if users %}
+	<table class="table table-condensed table-hover table-striped">
+	<thead>
+		<tr>
+			<th>&nbsp;</th>
+			<th>{{ 'user.username'|trans }}</th>
+			<th>{{ 'user.registration_date'|trans }}</th>
+			<th>{{ 'user.country'|trans }}</th>
+			<th>{{ 'user.gender'|trans }}</th>
+			{% if app.user %}
+				<th>{{ 'user.contact_pm'|trans }}</th>
+			{% endif %}
+		</tr>
+	</thead>
+	<tbody>
+		{% for user in users %}
+			{% set country = user.country|country %}
+
+			<tr{% if app.user and app.user.id == user.id %} class="info"{% endif %}>
+				<td>
+					{% if gravatar_exists(user.email) %}
+						<a href="{{ path('show_profile', { id: user.id }) }}"{% if not user.publicprofile %} rel="nofollow"{% endif %}>
+							<img alt="{{ user.username }}" src="{{ gravatar(user.email, 25) }}" title="{{ user.username }}" />
+						</a>
+					{% else %}
+						&nbsp;
+					{% endif %}
+				</td>
+				<td style="vertical-align: middle;">
+					<a href="{{ path('show_profile', { id: user.id }) }}"{% if not user.publicprofile %} rel="nofollow"{% endif %}>
+						{{ user.username }}
+					</a>
+				</td>
+				<td style="vertical-align: middle;">{{ user.createdat|format_datetime }}</td>
+				<td style="vertical-align: middle;">
+					{% if country %}
+						<img alt="{{ country }}" src="{{ asset('bundles/applicationsonatauser/images/' ~ user.country|lower ~ '.png') }}" title="{{ country }}" data-hover="tooltip" />
+						{{ country }}
+					{% endif %}
+				</td>
+				<td style="vertical-align: middle;">
+					{% if user.gender %}
+						{{ ('user.gender' ~ user.gender)|trans }}
+					{% endif %}
+				</td>
+				{% if app.user %}
+					<td style="vertical-align: middle;">
+						{% if app.user.id != user.id %}
+						<a href="{{ path('pm_write', { id: user.id, user: user.username }) }}">
+							<i class="icon-envelope"></i>
+							{{ 'user.contact_pm'|trans }}
+						</a>
+						{% endif %}
+					</td>
+				{% endif %}
+			</tr>
+		{% endfor %}
+	</tbody>
+	</table>
+{% else %}
+	<div class="alert">{{ 'user.none'|trans }}</div>
+{% endif %}
+
+{% if page.total > 1 %}
+	<div class="pagination pagination-centered">
+		<ul>
+			{% for i in 1..page.total %}
+				{% if i == page.current %}
+					<li class="active"><span>{{ i }}</span></li>
+				{% else %}
+					<li><a href="{{ path('users_list', { page: i }) }}">{{ i }}</a></li>
+				{% endif %}
+			{% endfor %}
+		</ul>
+	</div>
+{% endif %}
+{% endblock %}
+

@@ -72,6 +72,7 @@
 					{% endif %}
 
 					<li{{ macros.is_active(['coin_stats']) }}><a href="{{ path('coin_stats') }}">{{ 'stats'|trans }}</a></li>
+					<li{{ macros.is_active(['users_list']) }}><a href="{{ path('users_list') }}">{{ 'user.memberlist'|trans }}</a></li>
 				</ul>
 				<ul class="nav pull-right">
 					{% if app.user %}
