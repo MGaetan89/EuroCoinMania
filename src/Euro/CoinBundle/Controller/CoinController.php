@@ -6,6 +6,7 @@ use Euro\CoinBundle\Entity\Coin;
 use Euro\CoinBundle\Entity\UserCoin;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Locale\Locale;
 
 class CoinController extends BaseController {
 
@@ -289,13 +290,12 @@ class CoinController extends BaseController {
 	 * @return Response 
 	 */
 	public function statsAction() {
+		$collator = new \Collator($this->getRequest()->getLocale());
 		$doctrine = $this->getDoctrine();
+		$translator = $this->get('translator');
 
 		// User stats
 		$user_repo = $doctrine->getRepository('ApplicationSonataUserBundle:User');
-		$countries = $user_repo->findFromStats();
-		$genders = $user_repo->findGendersStats();
-
 		$user_stats = array(
 			'age' => $user_repo->findAgeStats(),
 			'country' => array(),
@@ -303,19 +303,34 @@ class CoinController extends BaseController {
 			'total' => (int) $user_repo->count(),
 		);
 
-		foreach ($countries as $country) {
+		foreach ($user_repo->findFromStats() as $country) {
 			$user_stats['country'][$country['country']] = (int) $country['total'];
 		}
 
-		foreach ($genders as $gender) {
+		foreach ($user_repo->findGendersStats() as $gender) {
 			$user_stats['gender'][$gender['gender']] = (int) $gender['total'];
 		}
+
+		// Sort the countries by translated name
+		$countriesList = Locale::getDisplayCountries($this->getRequest()->getLocale());
+		uksort($user_stats['country'], function ($a, $b) use ($collator, $countriesList, $translator, $user_stats) {
+					$a_value = $user_stats['country'][$a];
+					$b_value = $user_stats['country'][$b];
+
+					if ($a_value != $b_value) {
+						return $b_value - $a_value;
+					}
+
+					$a_name = $countriesList[$a];
+					$b_name = $countriesList[$b];
+
+					return $collator->compare($a_name, $b_name);
+				});
 
 		// Euro Zone stats
 		$coin_repo = $doctrine->getRepository('EuroCoinBundle:Coin');
 		$coins = $coin_repo->findCoinsStats();
 		$countries = array();
-
 		$euro_stats = array(
 			'country' => array(),
 			'total_coins' => 0,
@@ -337,8 +352,6 @@ class CoinController extends BaseController {
 		$euro_stats['total_countries'] = count($countries);
 
 		// Sort the countries by translated name
-		$collator = new \Collator($this->getRequest()->getLocale());
-		$translator = $this->get('translator');
 		uasort($countries, function ($a, $b) use ($collator, $translator) {
 					$a_name = $translator->trans((string) $a);
 					$b_name = $translator->trans((string) $b);
