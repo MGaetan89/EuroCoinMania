@@ -113,6 +113,7 @@ country.name.spain: Spain
 country.name.vatican: Vatican
 country.none: No country is available for the moment.
 country.others: Others countries
+country.unspecified: Unspecified country
 exchange.accept: Accept
 exchange.accepted: You have accepted this exchange
 exchange.actions: Actions
