@@ -124,16 +124,42 @@ exchange.coins_proposed: Coins proposed to <a href="%path%">%username%</a>
 exchange.coins_requested: Requested coins
 exchange.coins_suggested: Suggested coins
 exchange.direction: Exchange direction
+exchange.email.html.new_exchange: |
+    Dear %to%,
+
+    You just received a new exchange proposition from <strong>%username%</strong>.
+    You can review this exchange by cliquing the following link:
+        <a href="%path%">%path%</a>
+
+    This user would like the following coins:
+
+        %coins_from%
+
+    And offer the coins below in exchange:
+
+        %coins_to%
+
+    This is an automatic e-mail notification. Please use the private messages on the website to discuss with <strong>%username%</strong>.
+
+    EuroCoin Mania
 exchange.email.text.new_exchange: |
-    Dear user,
+    Dear %to%,
 
     You just received a new exchange proposition from %username%.
     You can review this exchange by cliquing the following link:
         %path%
 
+    This user would like the following coins:
+
+        %coins_from%
+
+    And offer the coins below in exchange:
+
+        %coins_to%
+
     This is an automatic e-mail notification. Please use the private messages on the website to discuss with %username%.
 
-    EuroCoin Mania Team
+    EuroCoin Mania
 exchange.email.title.new_exchange: You have a new coins exchange waiting
 exchange.filter_coins: Filter
 exchange.filter_reset: Reset filter

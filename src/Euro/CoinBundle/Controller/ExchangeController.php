@@ -457,28 +457,44 @@ class ExchangeController extends BaseController {
 			'user' => $from,
 				));
 
+		$email_coins = array(
+			'from' => array(),
+			'to' => array(),
+		);
+
 		foreach ($from_coins as $uc) {
 			$uc->addExchange();
+
+			$email_coins['from'][] = $uc->getCoin();
 		}
 
 		foreach ($to_coins as $uc) {
 			$uc->addExchange();
+
+			$email_coins['to'][] = $uc->getCoin();
 		}
 
 		$em->flush();
 
 		if ($from->getExchangeNotification()) {
-			$emailLocale = $from->getLocale();
+			$params = array(
+				'coins' => array(
+					'from' => $email_coins['from'],
+					'to' => $email_coins['to'],
+				),
+				'locale' => $from->getLocale(),
+				'path' => $this->generateUrl('exchange_show', array(
+					'id' => $exchange->getId(),
+				), true),
+				'to' => $from->getUsername(),
+				'username' => $user->getUsername(),
+			);
 			$message = \Swift_Message::newInstance()
 				->setSubject($translator->trans('exchange.email.title.new_exchange', array(), 'messages', $emailLocale))
 				->setFrom(array('contact@eurocoin-mania.eu' => 'EuroCoin Mania'))
 				->setTo($from->getEmail())
-				->setBody($translator->trans('exchange.email.text.new_exchange', array(
-					'%path%' => $this->generateUrl('exchange_show', array(
-						'id' => $exchange->getId(),
-					), true),
-					'%username%' => $user->getUsername(),
-				), 'messages', $emailLocale));
+				->setBody($this->renderView('EuroCoinBundle:Exchange:mail/new_exchange.txt.twig', $params))
+				->addPart($this->renderView('EuroCoinBundle:Exchange:mail/new_exchange.html.twig', $params), 'text/html');
 
 			$this->get('mailer')->send($message);
 		}

@@ -124,16 +124,42 @@ exchange.coins_proposed: Pièces proposées à <a href="%path%">%username%</a>
 exchange.coins_requested: Pièces demandées
 exchange.coins_suggested: Pièces proposées
 exchange.direction: Sens de l'échange
+exchange.email.html.new_exchange: |
+    Bonjour %to%,
+
+    Vous venez de recevoir une proposition d'échange de la part de <strong>%username%</strong>.
+    Vous pouvez le consulter en vous rendant à l'adresse suivante :
+        <a href="%path%">%path%</a>
+
+    Cet utilisateur souhaiterait les pièces suivantes :
+
+        %coins_from%
+
+    Et vous propose les pièces ci-dessous :
+
+        %coins_to%
+
+    Ceci est un e-mail automatique de notification. Veuillez utiliser la messagerie sur le site pour communiquer avec <strong>%username%</strong>.
+
+    EuroCoin Mania
 exchange.email.text.new_exchange: |
-    Bonjour,
+    Bonjour %to%,
 
     Vous venez de recevoir une proposition d'échange de la part de %username%.
     Vous pouvez le consulter en vous rendant à l'adresse suivante :
         %path%
 
+    Cet utilisateur souhaiterait les pièces suivantes :
+
+        %coins_from%
+
+    Et vous propose les pièces ci-dessous :
+
+        %coins_to%
+
     Ceci est un e-mail automatique de notification. Veuillez utiliser la messagerie sur le site pour communiquer avec %username%.
 
-    L'équipe d'EuroCoin Mania
+    EuroCoin Mania
 exchange.email.title.new_exchange: Vous avez reçu une nouvelle proposition d'échange
 exchange.filter_coins: Filtrer
 exchange.filter_reset: Réinitialiser le filtre

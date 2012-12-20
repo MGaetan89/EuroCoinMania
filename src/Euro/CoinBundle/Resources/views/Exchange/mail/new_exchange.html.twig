@@ -1,0 +1,30 @@
+{% import '::macros.html.twig' as macros %}
+
+{% set coins_from %}
+{% spaceless %}
+	<ul>
+		{% for coin in coins.from %}
+			<li>{{ macros.coin(coin) }}</li>
+		{% endfor %}
+	</ul>
+{% endspaceless %}
+{% endset %}
+
+{% set coins_to %}
+{% spaceless %}
+	<ul>
+		{% for coin in coins.to %}
+			<li>{{ macros.coin(coin) }}</li>
+		{% endfor %}
+	</ul>
+{% endspaceless %}
+{% endset %}
+
+{{ 'exchange.email.html.new_exchange'|trans({
+	'%coins_from%': coins_from,
+	'%coins_to%': coins_to,
+	'%path%': path,
+	'%to%': to,
+	'%username%': username
+})|raw }}
+
