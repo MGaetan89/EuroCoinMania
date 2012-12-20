@@ -509,12 +509,12 @@ abstract class Kernel implements KernelInterface, TerminableInterface
     protected $classes;
     protected $errorReportingLevel;
 
-    const VERSION         = '2.1.4';
-    const VERSION_ID      = '20104';
+    const VERSION         = '2.1.6-DEV';
+    const VERSION_ID      = '20106';
     const MAJOR_VERSION   = '2';
     const MINOR_VERSION   = '1';
-    const RELEASE_VERSION = '4';
-    const EXTRA_VERSION   = '';
+    const RELEASE_VERSION = '6';
+    const EXTRA_VERSION   = 'DEV';
 
     
     public function __construct($environment, $debug)
@@ -1247,7 +1247,7 @@ abstract class Bundle extends ContainerAware implements BundleInterface
     
     public function registerCommands(Application $application)
     {
-        if (!$dir = realpath($this->getPath().'/Command')) {
+        if (!is_dir($dir = $this->getPath().'/Command')) {
             return;
         }
 
@@ -1628,7 +1628,12 @@ class HttpKernel extends BaseHttpKernel
 
         $request = $this->container->get('request');
 
-                if (0 === strpos($controller, '/')) {
+                if (0 === strpos($controller, 'http://') || 0 === strpos($controller, 'https://')) {
+            $subRequest = Request::create($controller, 'get', array(), $request->cookies->all(), array(), $request->server->all());
+            if ($session = $request->getSession()) {
+                $subRequest->setSession($session);
+            }
+        } elseif (0 === strpos($controller, '/')) {
             $subRequest = Request::create($request->getUriForPath($controller), 'get', array(), $request->cookies->all(), array(), $request->server->all());
             if ($session = $request->getSession()) {
                 $subRequest->setSession($session);
