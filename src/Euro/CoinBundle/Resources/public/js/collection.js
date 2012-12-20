@@ -1,9 +1,9 @@
 $(function () {
 	var body = $('body'),
 		modal = $('#coin-modal'),
-		quantityTotal = $('#quantity-total');
+		quantityTotal = $('#quantity-total'),
+		text = '−';
 
-	var text = '−';
 	$('[data-action=hide-items]').on('click', function () {
 		var $this = $(this);
 
@@ -87,9 +87,9 @@ $(function () {
 	});
 
 	$('body').on('click', '.zoomable img', function () {
-		var $this = $(this);
+		var $this = $(this), img = modal.css('display', 'table').find('img');
 
-		modal.css('display', 'table').find('img').attr({
+		img.data('loader', img.attr('src')).attr({
 			alt: $this.attr('alt'),
 			src: $this.attr('src').replace('_small', '_big'),
 			title: $this.attr('title')
@@ -97,7 +97,9 @@ $(function () {
 	});
 
 	modal.on('click', '.btn', function () {
-		modal.hide();
+		var img = modal.hide().find('img');
+
+		img.attr('src', img.data('loader'));
 	});
 
 	$('#customize_filter').on('submit', function () {
