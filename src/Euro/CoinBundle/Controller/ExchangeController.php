@@ -133,7 +133,7 @@ class ExchangeController extends BaseController {
 		$filter_types = array();
 
 		foreach ($coin_types as $name => $type) {
-			${'uc_' . $name} = $uc_repo->findDoublesFromUser($from, $type);
+			${'uc_' . $name} = $uc_repo->findDoublesFromUser($from, $user, $type);
 
 			if (count(${'uc_' . $name}) > 0) {
 				$filter_types[] = $type;
@@ -324,7 +324,7 @@ class ExchangeController extends BaseController {
 		$filter_types = array();
 
 		foreach ($coin_types as $name => $type) {
-			${'uc_' . $name} = $uc_repo->findDoublesFromUserAndCoins($user, $coins_id, $type);
+			${'uc_' . $name} = $uc_repo->findDoublesFromUserAndCoins($from, $user, $coins_id, $type);
 
 			if (count(${'uc_' . $name}) > 0) {
 				$filter_types[] = $type;

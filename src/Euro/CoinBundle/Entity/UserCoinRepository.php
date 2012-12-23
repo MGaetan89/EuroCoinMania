@@ -3,6 +3,7 @@
 namespace Euro\CoinBundle\Entity;
 
 use Doctrine\ORM\EntityRepository;
+use Doctrine\ORM\Query\ResultSetMapping;
 use Sonata\UserBundle\Model\UserInterface;
 
 /**
@@ -97,7 +98,11 @@ class UserCoinRepository extends EntityRepository {
 						->select($expr->countDistinct('uc') . ' AS total')
 						->addSelect('u.id, u.username, u.email')
 						->join('uc.user', 'u')
-						->where($expr->neq('uc.user', ':user'))
+						->leftJoin('Euro\CoinBundle\Entity\UserCoin', 'uc2', 'WITH', $expr->andX(
+							$expr->eq('uc2.user', ':user'),
+							$expr->eq('uc2.coin', 'uc.coin')
+						))
+						->where($expr->isNull('uc2.user'))
 						->andWhere($expr->gt('uc.quantity - uc.sharing', 1))
 						->andWhere($expr->eq('u.allow_exchanges', 1))
 						->groupBy('u.id')
@@ -108,25 +113,31 @@ class UserCoinRepository extends EntityRepository {
 						->getResult();
 	}
 
-	public function findDoublesFromUser(UserInterface $user, $type) {
+	public function findDoublesFromUser(UserInterface $from, UserInterface $user, $type) {
 		$queryBuilder = $this->createQueryBuilder('uc');
 		$expr = $queryBuilder->expr();
 
 		return $queryBuilder
-						->select('uc, c, ct, i, v, y, w')
+						->select('uc, c, ct, f, v, y, w')
 						->join('uc.coin', 'c')
 						->join('c.country', 'ct')
 						->join('c.value', 'v')
 						->join('c.year', 'y')
-						->leftJoin('c.image', 'i')
+						->leftJoin('ct.flag', 'f')
 						->leftJoin('y.workshop', 'w')
-						->where($expr->eq('uc.user', ':user'))
+						->leftJoin('Euro\CoinBundle\Entity\UserCoin', 'uc2', 'WITH', $expr->andX(
+							$expr->eq('uc2.user', ':user'),
+							$expr->eq('uc2.coin', 'uc.coin')
+						))
+						->where($expr->isNull('uc2.user'))
+						->andWhere($expr->eq('uc.user', ':from'))
 						->andWhere($expr->gt('uc.quantity - uc.sharing', 1))
 						->andWhere($expr->eq('c.type', ':type'))
 						->orderBy('y.year', 'ASC')
 						->addOrderBy('w.short_name', 'ASC')
 						->addOrderBy('v.value', 'DESC')
 						->setParameters(array(
+							'from' => $from,
 							'type' => $type,
 							'user' => $user,
 						))
@@ -134,19 +145,24 @@ class UserCoinRepository extends EntityRepository {
 						->getResult();
 	}
 
-	public function findDoublesFromUserAndCoins(UserInterface $user, array $coins, $type) {
+	public function findDoublesFromUserAndCoins(UserInterface $from, UserInterface $user, array $coins, $type) {
 		$queryBuilder = $this->createQueryBuilder('uc');
 		$expr = $queryBuilder->expr();
 
 		return $queryBuilder
-						->select('uc, c, ct, i, v, y, w')
+						->select('uc, c, ct, f, v, y, w')
 						->join('uc.coin', 'c')
 						->join('c.country', 'ct')
 						->join('c.value', 'v')
 						->join('c.year', 'y')
-						->leftJoin('c.image', 'i')
+						->leftJoin('ct.flag', 'f')
 						->leftJoin('y.workshop', 'w')
-						->where($expr->eq('uc.user', ':user'))
+						->leftJoin('Euro\CoinBundle\Entity\UserCoin', 'uc2', 'WITH', $expr->andX(
+							$expr->eq('uc2.user', ':from'),
+							$expr->eq('uc2.coin', 'uc.coin')
+						))
+						->where($expr->isNull('uc2.user'))
+						->andWhere($expr->eq('uc.user', ':user'))
 						->andWhere($expr->gt('uc.quantity - uc.sharing', 1))
 						->andWhere($expr->notIn('c.id', ':coins'))
 						->andWhere($expr->eq('c.type', ':type'))
@@ -155,6 +171,7 @@ class UserCoinRepository extends EntityRepository {
 						->addOrderBy('v.value', 'DESC')
 						->setParameters(array(
 							'coins' => $coins,
+							'from' => $from,
 							'type' => $type,
 							'user' => $user,
 						))
