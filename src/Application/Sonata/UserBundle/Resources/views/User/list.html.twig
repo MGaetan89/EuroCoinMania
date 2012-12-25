@@ -61,6 +61,20 @@
 					<a href="{{ path('show_profile', { id: user.id }) }}"{% if not user.publicprofile %} rel="nofollow"{% endif %}>
 						{{ user.username }}
 					</a>
+
+					{% if user.allowexchanges %}
+						{% if app.user.id != user.id %}
+							<a href="{{ path('exchange_coins_request', { id: user.id, name: user.username }) }}">
+						{% endif %}
+
+							<span class="pull-right" title="{{ 'user.allow_exchanges'|trans }}" data-hover="tooltip">
+								<i class="icon-refresh"></i>
+							</span>
+
+						{% if app.user.id != user.id %}
+							</a>
+						{% endif %}
+					{% endif %}
 				</td>
 				<td style="vertical-align: middle;">{{ user.createdat|format_datetime }}</td>
 				<td style="vertical-align: middle;">
