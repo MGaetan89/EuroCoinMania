@@ -33,14 +33,9 @@ class CountryController extends Controller {
 
 		$countries_js = array();
 		foreach ($countries as $country) {
-			$name = $translator->trans((string) $country);
 			$countries_js[] = array(
-				'name' => $name,
+				'name' => $translator->trans((string) $country),
 				'nameiso' => $country->getNameIso(),
-				'path' => $this->generateUrl('coin_collection1', array(
-					'country' => $name,
-					'id' => $country->getId(),
-				)),
 			);
 		}
 

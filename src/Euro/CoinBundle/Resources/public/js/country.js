@@ -1,39 +1,23 @@
-$(function () {
-	var color = {
-		from: '#0044CC',
-		to: '#006DCC'
-	}, map = $('#map'), countries = map.data('countries');
+var mapElt = document.getElementById('map'),
+	countries = JSON.parse(mapElt.getAttribute('data-countries')),
+	data = [];
 
-	$.get(map.attr('src'), function (data) {
-		map.replaceWith($(data).find('svg').attr('id', map.attr('id')));
-		map = $('#map');
+for (var i in countries) {
+	var country = countries[i];
 
-		$('table tbody').on('mouseenter', 'tr', function () {
-			var id = $(this).attr('id').substr(0, 2);
+	data.push([ country.nameiso, country.name ]);
+}
 
-			$('#' + id).css('fill', color.from);
-		}).on('mouseleave', 'tr', function () {
-			var id = $(this).attr('id').substr(0, 2);
+google.load('visualization', '1', { packages: ['geochart'] });
+google.setOnLoadCallback(function () {
+	var size = parseInt(window.getComputedStyle(mapElt, null).getPropertyValue('width')) - 20,
+		map = new google.visualization.GeoChart(mapElt);
 
-			$('#' + id).css('fill', color.to);
-		});
-
-		function hoverIn() {
-			$('#' + this.id + '-list').addClass('success');
-		}
-
-		function hoverOut() {
-			$('#' + this.id + '-list').removeClass('success');
-		}
-
-		$.each(countries, function (index, country) {
-			map
-				.find('#' + country.nameiso)
-				.attr('title', country.name)
-				.hover(hoverIn, hoverOut)
-				.on('click', function () {
-					location.href = country.path;
-				});
-		});
+	map.draw(google.visualization.arrayToDataTable(data), {
+		backgroundColor: { fill: '#C4E3F3' },
+		height: size * .624,
+		region: '150',
+		width: size
 	});
 });
+

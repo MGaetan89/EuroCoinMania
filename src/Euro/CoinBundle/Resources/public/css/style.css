@@ -6,10 +6,6 @@ img {
 	vertical-align: text-top;
 }
 
-svg {
-	height: 100%;
-}
-
 .alert-warning {
 	background-color: #FCF8E3;
 	border-color: #fBEED5;
