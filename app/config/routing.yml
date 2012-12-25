@@ -62,7 +62,7 @@ sonata_user:
     resource: '@SonataUserBundle/Resources/config/routing/admin_security.xml'
     prefix: /admin
 
-news:
+sonata_news:
     resource: '@SonataNewsBundle/Resources/config/routing/news.xml'
     prefix: /news
 
@@ -70,3 +70,4 @@ news:
 #_internal:
 #    resource: "@FrameworkBundle/Resources/config/routing/internal.xml"
 #    prefix:   /_internal
+

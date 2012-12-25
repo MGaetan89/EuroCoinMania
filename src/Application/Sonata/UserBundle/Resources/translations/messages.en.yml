@@ -75,6 +75,7 @@ user.request_password: Request password
 user.request_password.meta_description: Request a new password if you can not access your account
 user.request_password.submit: Request your password
 user.request_password.username: Username or e-mail address
+user.request_password_reset: Reset password
 user.show_collection: Collection
 user.show_profile: Profile
 user.show_stats: Statistics

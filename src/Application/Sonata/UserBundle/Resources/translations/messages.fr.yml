@@ -75,6 +75,7 @@ user.request_password: Demande de mot de passe
 user.request_password.meta_description: Demandez un nouveau mot de passe si vous ne parvez plus à accéder à votre compte
 user.request_password.submit: Demander votre mot de passe
 user.request_password.username: Nom d'utilisateur ou adresse e-mail
+user.request_password_reset: Réinitialisation du mot de passe
 user.show_collection: Collection
 user.show_profile: Profil
 user.show_stats: Statistiques

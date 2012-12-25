@@ -2,7 +2,7 @@
 	{% set error = invalid_username is defined %}
 
 	<div class="control-group{% if error %} error{% endif %}">
-		<label class="control-label" for="username">{{ 'user.request_password.username'|trans }}</label>
+		<label class="control-label" for="username">{{ 'user.request_password.username'|trans }} *</label>
 		<div class="controls">
 			<input id="username" name="username" type="text" />
 

@@ -1,3 +1,9 @@
+fos_user_profile_show:
+    pattern:  /profile
+    defaults: { _controller: SonataUserBundle:Profile:show }
+    requirements:
+        _method: GET
+
 user_edit_preferences:
     pattern: /profile/edit-preferences
     defaults: { _controller: ApplicationSonataUserBundle:Default:preferences }
