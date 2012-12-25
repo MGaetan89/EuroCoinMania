@@ -10,10 +10,12 @@
 		{% if posts|length > 0 %}
 			<div class="row-fluid">
 				{% set tag_name = 'h3' %}
+
 				<div class="span12 well">
 					{% for post in posts %}
 						{% if loop.index0 > 0 %}
 							{% set tag_name = 'h4' %}
+
 							{% if loop.index0 - 1 > 0 and (loop.index0 - 1) % 2 == 0 %}
 								</div>
 								<div class="row-fluid">
@@ -25,11 +27,13 @@
 						<{{ tag_name }}><a href="{{ url('sonata_news_view', { permalink: sonata_news_permalink(post) }) }}">{{ post.title }}</a></{{ tag_name }}>
 
 						{{ post.abstract|format_text('markdown')|raw }}
+
 						<p>
 							<span class="muted">{{ 'news.posted_by_on'|trans({ '%author%': post.author, '%date%': post.publicationDateStart|format_datetime, '%path%': path('show_profile', { id: post.author.id }) })|raw }}</span>
 
 							{% if post.commentsCount > 0 %}
 								{% set comment_count = 'news.comments.count'|transchoice(post.commentsCount, { '%count%': post.commentsCount }) %}
+
 								{% if loop.index0 > 0 %}
 									<span class="badge pull-right" title="{{ comment_count }}" data-hover="tooltip">{{ post.commentsCount }}</span>
 								{% else %}
@@ -45,30 +49,6 @@
 					{% endif %}
 				{% endfor %}
 			</div>
-		{% elseif total_posts == 1 %}
-			{% for post in posts %}
-				<div class="well">
-					<h2>
-						<a href="{{ url('sonata_news_view', { permalink: sonata_news_permalink(post) }) }}">
-							{{ post.title }}
-						</a>
-					</h2>
-
-					<p>{{ post.abstract|format_text('markdown')|raw }}</p>
-
-					<p>
-						<span class="muted">
-							{{ 'news.posted_by_on'|trans({ '%author%': post.author, '%date%': post.publicationDateStart|format_datetime, '%path%': path('show_profile', { id: post.author.id }) })|raw }}
-						</span>
-
-						{% if post.commentsCount > 0 %}
-							<span class="label pull-right">
-								{{ 'news.comments.count'|transchoice(post.commentsCount, { '%count%': post.commentsCount }) }}
-							</span>
-						{% endif %}
-					</p>
-				</div>
-			{% endfor %}
 		{% else %}
 			<div class="alert">{{ 'news.none'|trans }}</div>
 		{% endif %}

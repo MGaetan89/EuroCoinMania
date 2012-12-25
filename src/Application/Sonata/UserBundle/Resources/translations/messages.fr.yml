@@ -10,16 +10,6 @@ user.contact: Contact
 user.contact_pm: Contacter
 user.country: Pays
 user.current_password: Mot de passe actuel
-user.preferences: Préférences
-user.preferences.allow_exchanges: Recevoir et proposer des échanges de pièces
-user.preferences.coins_sort: Tri des valeurs des pièces
-user.preferences.coins_sort_ascending: Tri croissant
-user.preferences.coins_sort_decending: Tri décroissant
-user.preferences.exchange_notification: Recevoir un e-mail de notification pour chaque nouvel échange
-user.preferences.public_profile: Autoriser les visiteurs à consulter votre profil
-user.preferences.saved: Vos préférences ont bien été mises à jour
-user.preferences.show_email: Afficher votre adresse e-mail sur votre profil
-user.preferences.submit: Valider
 user.date_of_birth: Date de naissance
 user.edit_authentication: Modifier vos identifiants
 user.edit_profile: Editer votre profil
@@ -46,14 +36,24 @@ user.login_action: Accéder à mon compte
 user.login_required: Vous devez être connecté pour accéder à cette page
 user.logout: Déconnexion
 user.memberlist: Liste des membres
+user.more_information: Informations complémentaires
 user.none: Aucun membre ne correspond à votre requête
 user.not_allowed: Vous n'êtes pas autorisé à accéder à cette page
 user.not_found: L'utilisateur que vous avez demandé n'existe pas
-user.optional_information: Informations facultatives
 user.password: Mot de passe
 user.password_forgotten: Mot de passe oublié
 user.password_verification: Confirmation
 user.phone: Téléphone
+user.preferences: Préférences
+user.preferences.allow_exchanges: Recevoir et proposer des échanges de pièces
+user.preferences.coins_sort: Tri des valeurs des pièces
+user.preferences.coins_sort_ascending: Tri croissant
+user.preferences.coins_sort_decending: Tri décroissant
+user.preferences.exchange_notification: Recevoir un e-mail de notification pour chaque nouvel échange
+user.preferences.public_profile: Autoriser les visiteurs à consulter votre profil
+user.preferences.saved: Vos préférences ont bien été mises à jour
+user.preferences.show_email: Afficher votre adresse e-mail sur votre profil
+user.preferences.submit: Valider
 user.profile: Mon profil
 user.register: Inscription
 user.register.meta_description: Inscrivez-vous à EuroCoin Mania pour profiter de fonctionnalités exclusives

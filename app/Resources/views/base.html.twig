@@ -102,8 +102,8 @@
 							</ul>
 						</li>
 					{% else %}
-						<li{{ macros.is_active(['fos_user_security_login']) }}><a href="#modal-login" data-toggle="modal">{{ 'user.login'|trans }}</a></li>
-						<li{{ macros.is_active(['fos_user_registration_register']) }}><a href="#modal-register" data-toggle="modal">{{ 'user.register'|trans }}</a></li>
+						<li{{ macros.is_active(['fos_user_security_login']) }}><a href="{{ path('fos_user_security_login') }}" data-toggle="modal">{{ 'user.login'|trans }}</a></li>
+						<li{{ macros.is_active(['fos_user_registration_register']) }}><a href="{{ path('fos_user_registration_register') }}" data-toggle="modal">{{ 'user.register'|trans }}</a></li>
 					{% endif %}
 				</ul>
 			</div>
@@ -220,47 +220,6 @@
 		</div>
 	</div>
 </div>
-
-{% if not app.user %}
-	{% if route != 'fos_user_security_login' %}
-		<div class="fade hide modal" id="modal-login" tabindex="-1">
-			<div class="modal-header">
-				<button class="close" type="button" data-dismiss="modal">×</button>
-
-				<h3>{{ 'user.login'|trans }}</h3>
-			</div>
-			<div class="modal-body">
-				{% render 'FOSUserBundle:Security:login' %}
-			</div>
-		</div>
-	{% endif %}
-
-	{% if route != 'fos_user_registration_register' %}
-		<div class="fade hide modal" id="modal-register" tabindex="-1">
-			<div class="modal-header">
-				<button class="close" type="button" data-dismiss="modal">×</button>
-
-				<h3>{{ 'user.register'|trans }}</h3>
-			</div>
-			<div class="modal-body">
-				<ul class="nav nav-pills">
-					<li><a href="#information" data-toggle="pill">{{ 'user.register_info'|trans }}</a></li>
-					<li class="active"><a href="#form" data-toggle="pill">{{ 'user.register_form'|trans }}</a></li>
-				</ul>
-
-				<div class="tab-content">
-					<div class="tab-pane" id="information">
-						{{ 'user.register_explain'|trans|raw }}
-					</div>
-
-					<div class="tab-pane active" id="form">
-						{% render 'FOSUserBundle:Registration:register' %}
-					</div>
-				</div>
-			</div>
-		</div>
-	{% endif %}
-{% endif %}
 
 <div id="fb-root"></div>
 <script type="text/javascript">!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src='//connect.facebook.net/fr_FR/all.js#xfbml=1&appId=303118733036336';fjs.parentNode.insertBefore(js,fjs);}}(document,'script','facebook-jssdk');</script>
