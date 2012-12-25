@@ -3,7 +3,6 @@
 namespace Euro\CoinBundle\Entity;
 
 use Doctrine\ORM\EntityRepository;
-use Doctrine\ORM\Query\ResultSetMapping;
 use Sonata\UserBundle\Model\UserInterface;
 
 /**
