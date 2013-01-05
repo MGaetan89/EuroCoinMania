@@ -99,6 +99,19 @@ img {
 	overflow: visible;
 }
 
+#map {
+	overflow: hidden;
+	padding: 0;
+}
+
+#map path {
+	stroke: #E3E3E3;
+}
+
+#map svg {
+	margin-left: -100px;
+}
+
 /* Bootstrap fixes */
 h1 .tooltip,
 h2 .tooltip,
