@@ -176,15 +176,17 @@
 								{% else %}
 									{{ 'pm.user_pm'|trans }}
 								{% endif %}
-							</a> &bull;
+							</a> &bull; &bull;
+							<a href="{{ path('users_list') }}">{{ 'user.memberlist'|trans }}</a>
 							<a href="{{ path('fos_user_security_logout') }}">{{ 'user.logout'|trans }}</a>
 					</p>
 				{% else %}
 					<p>
 						<strong>{{ 'user.account'|trans }} &mdash;</strong>
 
-						<a href="{{ path('fos_user_security_login') }}" rel="nofollow">{{ 'user.login'|trans }}</a> &bull;
-						<a href="{{ path('fos_user_registration_register') }}" rel="nofollow">{{ 'user.register'|trans }}</a>
+							<a href="{{ path('fos_user_security_login') }}" rel="nofollow">{{ 'user.login'|trans }}</a> &bull;
+							<a href="{{ path('fos_user_registration_register') }}" rel="nofollow">{{ 'user.register'|trans }}</a> &bull;
+							<a href="{{ path('users_list') }}">{{ 'user.memberlist'|trans }}</a>
 					</p>
 				{% endif %}
 

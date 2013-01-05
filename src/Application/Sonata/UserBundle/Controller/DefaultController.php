@@ -160,6 +160,8 @@ class DefaultController extends BaseController {
 		foreach ($letters as &$dummy) {
 			if (!preg_match('`[a-z]`i', $dummy['letter'])) {
 				$dummy['letter'] = '#';
+
+				break;
 			}
 		}
 
