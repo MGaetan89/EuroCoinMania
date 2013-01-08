@@ -31,6 +31,13 @@
 									<img alt="{{ name }}" src="{% path country.flag, 'mini' %}" title="{{ name }}" data-hover="tooltip" data-placement="right" />
 									{{ name }}
 								</a>
+							{% else %}
+								<a>
+									{% set name = 'country.unspecified'|trans %}
+
+									<img alt="{{ name }}" src="{{ asset('bundles/applicationsonatauser/images/eu.png') }}" title="{{ name }}" data-hover="tooltip" data-placement="right" />
+									{{ name }}
+								</a>
 							{% endif %}
 
 							{% if coin['year'] is defined %}
