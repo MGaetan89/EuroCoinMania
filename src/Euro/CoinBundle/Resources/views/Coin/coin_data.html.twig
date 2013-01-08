@@ -33,6 +33,11 @@
 
 			<dt>{{ 'coin.registered_quantity'|trans }}</dt>
 				<dd>{{ coin.membertotal|number_format }}</dd>
+
+			{% if coin.description %}
+				<dt>{{ 'coin.description'|trans }}</dt>
+					<dd>{{ coin.description|format_text('markdown')|raw }}</dd>
+			{% endif %}
 		</dl>
 
 	{% if coin.image and coin.type == 1 %}
