@@ -62,19 +62,19 @@ exchange_cancel:
     defaults: { _controller: EuroCoinBundle:Exchange:acceptCancelRefuse, type: 'cancel' }
     requirements:
         id: "\d+"
-        
+
 exchange_choose_user:
-    pattern: /exchange/new/step-1/users
+    pattern: /exchange/new/step-1/choose-user
     defaults: { _controller: EuroCoinBundle:Exchange:chooseUser }
 
 exchange_coins_request:
-    pattern: /exchange/new/step-2/coins/request/{id}/{name}
+    pattern: /exchange/new/step-2/request-coins/{id}/{name}
     defaults: { _controller: EuroCoinBundle:Exchange:chooseCoins }
     requirements:
         id: "\d+"
 
 exchange_coins_suggest:
-    pattern: /exchange/new/step-3/coins/suggest/{id}/{name}
+    pattern: /exchange/new/step-3/suggest-coins/{id}/{name}
     defaults: { _controller: EuroCoinBundle:Exchange:proposeCoins }
     requirements:
         id: "\d+"
