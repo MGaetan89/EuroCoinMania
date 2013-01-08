@@ -125,11 +125,10 @@ exchange.coins_requested: Requested coins
 exchange.coins_suggested: Suggested coins
 exchange.direction: Exchange direction
 exchange.email.html.new_exchange: |
-    Dear %to%,
+    Dear %to%,<br /><br />
 
-    You just received a new exchange proposition from <strong>%username%</strong>.
-    You can review this exchange by cliquing the following link:
-        <a href="%path%">%path%</a>
+    You just received a new exchange proposition from <strong>%username%</strong>.<br />
+    You can review this exchange by <a href="%path%">cliquing here</a>.<br /><br />
 
     This user would like the following coins:
 
@@ -139,7 +138,7 @@ exchange.email.html.new_exchange: |
 
         %coins_to%
 
-    This is an automatic e-mail notification. Please use the private messages on the website to discuss with <strong>%username%</strong>.
+    This is an automatic e-mail notification. Please use the private messages on the website to discuss with <strong>%username%</strong>.<br /><br />
 
     EuroCoin Mania
 exchange.email.text.new_exchange: |
