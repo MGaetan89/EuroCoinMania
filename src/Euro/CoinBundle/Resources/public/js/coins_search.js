@@ -27,7 +27,7 @@ $(function () {
 			countries: selects.countries.val(),
 			types: selects.types.val(),
 			values: selects.values.val(),
-			years: selects.years.val(),
+			years: selects.years.val()
 		};
 
 		$.post('/coin/find', params, function (data) {
@@ -45,4 +45,3 @@ $(function () {
 		});
 	});
 });
-

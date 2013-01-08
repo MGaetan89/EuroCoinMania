@@ -13,7 +13,6 @@ use Sonata\NewsBundle\Document\BaseCategory;
  * @author <yourname> <youremail>
  */
 class Category extends BaseCategory {
-
 	/**
 	 * @var integer $id
 	 */

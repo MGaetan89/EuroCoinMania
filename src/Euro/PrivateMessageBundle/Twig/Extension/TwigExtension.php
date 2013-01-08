@@ -6,7 +6,6 @@ use Sonata\UserBundle\Model\UserInterface;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
 class TwigExtension extends \Twig_Extension {
-
 	private $doctrine;
 
 	public function __construct(RegistryInterface $doctrine) {

@@ -20,7 +20,7 @@ class ProfileType extends AbstractType {
 				->add('lastname', null, array('required' => false))
 				->add('dateOfBirth', 'birthday', array(
 					'required' => false,
-					'years' => range(date('Y') - 100,  date('Y')),
+					'years' => range(date('Y') - 100, date('Y')),
 				))
 				->add('gender', 'choice', array(
 					'choices' => array(

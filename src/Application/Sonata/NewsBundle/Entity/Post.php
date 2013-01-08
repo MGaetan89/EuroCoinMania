@@ -13,7 +13,6 @@ use Sonata\NewsBundle\Entity\BasePost;
  * @author <yourname> <youremail>
  */
 class Post extends BasePost {
-
 	/**
 	 * @var integer $id
 	 */

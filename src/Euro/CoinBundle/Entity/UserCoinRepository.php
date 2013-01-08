@@ -98,9 +98,8 @@ class UserCoinRepository extends EntityRepository {
 						->addSelect('u.id, u.username, u.email')
 						->join('uc.user', 'u')
 						->leftJoin('Euro\CoinBundle\Entity\UserCoin', 'uc2', 'WITH', $expr->andX(
-							$expr->eq('uc2.user', ':user'),
-							$expr->eq('uc2.coin', 'uc.coin')
-						))
+										$expr->eq('uc2.user', ':user'), $expr->eq('uc2.coin', 'uc.coin')
+								))
 						->where($expr->isNull('uc2.user'))
 						->andWhere($expr->gt('uc.quantity - uc.sharing', 1))
 						->andWhere($expr->eq('u.allow_exchanges', 1))
@@ -125,9 +124,8 @@ class UserCoinRepository extends EntityRepository {
 						->leftJoin('ct.flag', 'f')
 						->leftJoin('y.workshop', 'w')
 						->leftJoin('Euro\CoinBundle\Entity\UserCoin', 'uc2', 'WITH', $expr->andX(
-							$expr->eq('uc2.user', ':user'),
-							$expr->eq('uc2.coin', 'uc.coin')
-						))
+										$expr->eq('uc2.user', ':user'), $expr->eq('uc2.coin', 'uc.coin')
+								))
 						->where($expr->isNull('uc2.user'))
 						->andWhere($expr->eq('uc.user', ':from'))
 						->andWhere($expr->gt('uc.quantity - uc.sharing', 1))
@@ -157,9 +155,8 @@ class UserCoinRepository extends EntityRepository {
 						->leftJoin('ct.flag', 'f')
 						->leftJoin('y.workshop', 'w')
 						->leftJoin('Euro\CoinBundle\Entity\UserCoin', 'uc2', 'WITH', $expr->andX(
-							$expr->eq('uc2.user', ':from'),
-							$expr->eq('uc2.coin', 'uc.coin')
-						))
+										$expr->eq('uc2.user', ':from'), $expr->eq('uc2.coin', 'uc.coin')
+								))
 						->where($expr->isNull('uc2.user'))
 						->andWhere($expr->eq('uc.user', ':user'))
 						->andWhere($expr->gt('uc.quantity - uc.sharing', 1))

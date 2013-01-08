@@ -13,7 +13,6 @@ use Sonata\UserBundle\Entity\BaseUser;
  * @author <yourname> <youremail>
  */
 class User extends BaseUser {
-
 	/**
 	 * @var integer $id
 	 */
@@ -73,7 +72,7 @@ class User extends BaseUser {
 	/**
 	 * Get country
 	 *
-	 * @return string 
+	 * @return string
 	 */
 	public function getCountry() {
 		return $this->country;
@@ -94,7 +93,7 @@ class User extends BaseUser {
 	/**
 	 * Get show_email
 	 *
-	 * @return string 
+	 * @return string
 	 */
 	public function getShowEmail() {
 		return $this->show_email;
@@ -115,7 +114,7 @@ class User extends BaseUser {
 	/**
 	 * Get coins_sort
 	 *
-	 * @return string 
+	 * @return string
 	 */
 	public function getCoinsSort() {
 		return $this->coins_sort;
@@ -136,7 +135,7 @@ class User extends BaseUser {
 	/**
 	 * Get allow_exchanges
 	 *
-	 * @return string 
+	 * @return string
 	 */
 	public function getAllowExchanges() {
 		return $this->allow_exchanges;
@@ -157,7 +156,7 @@ class User extends BaseUser {
 	/**
 	 * Get exchange_notification
 	 *
-	 * @return string 
+	 * @return string
 	 */
 	public function getExchangeNotification() {
 		return $this->exchange_notification;
@@ -178,11 +177,10 @@ class User extends BaseUser {
 	/**
 	 * Get public_profile
 	 *
-	 * @return string 
+	 * @return string
 	 */
 	public function getPublicProfile() {
 		return $this->public_profile;
 	}
 
 }
-

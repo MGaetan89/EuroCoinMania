@@ -11,13 +11,10 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Entity(repositoryClass="Euro\PrivateMessageBundle\Entity\MessageRepository")
  */
 class Message {
-
 	const DIRECTION_FROM_TO = 0;
 	const DIRECTION_TO_FROM = 1;
-
 	const MESSAGE_READ = false;
 	const MESSAGE_NEW = true;
-
 	const TYPE_ANSWER = 0;
 	const TYPE_INFO = 1;
 	const TYPE_DANGER = 2;
@@ -86,7 +83,7 @@ class Message {
 	/**
 	 * Get id
 	 *
-	 * @return integer 
+	 * @return integer
 	 */
 	public function getId() {
 		return $this->id;
@@ -107,7 +104,7 @@ class Message {
 	/**
 	 * Get date
 	 *
-	 * @return \DateTime 
+	 * @return \DateTime
 	 */
 	public function getDate() {
 		return $this->date;
@@ -128,7 +125,7 @@ class Message {
 	/**
 	 * Get content
 	 *
-	 * @return string 
+	 * @return string
 	 */
 	public function getContent() {
 		return $this->content;
@@ -149,7 +146,7 @@ class Message {
 	/**
 	 * Get direction
 	 *
-	 * @return boolean 
+	 * @return boolean
 	 */
 	public function getDirection() {
 		return $this->direction;
@@ -170,7 +167,7 @@ class Message {
 	/**
 	 * Get new
 	 *
-	 * @return boolean 
+	 * @return boolean
 	 */
 	public function isNew() {
 		return $this->new;
@@ -191,7 +188,7 @@ class Message {
 	/**
 	 * Get type
 	 *
-	 * @return smallint 
+	 * @return smallint
 	 */
 	public function getType() {
 		return $this->type;

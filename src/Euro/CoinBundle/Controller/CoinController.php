@@ -9,7 +9,6 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Locale\Locale;
 
 class CoinController extends BaseController {
-
 	const YEAR_RANGE_SIZE = 7;
 
 	/**
@@ -18,7 +17,7 @@ class CoinController extends BaseController {
 	 * @param string $type The action to perform (either 'add' or 'remove')
 	 * @param integer $quantity The number of coins to add or remove
 	 * @return Response
-	 * @throws Symfony\Component\HttpKernel\Exception\NotFoundHttpException 
+	 * @throws Symfony\Component\HttpKernel\Exception\NotFoundHttpException
 	 */
 	public function addRemoveAction($id, $type, $quantity) {
 		$translator = $this->get('translator');
@@ -84,7 +83,7 @@ class CoinController extends BaseController {
 	 * @param integer $id The country id for the collection to display
 	 * @param integer $type The type of collection to show
 	 * @param integer $year The year to display
-	 * @return Response 
+	 * @return Response
 	 */
 	public function collectionAction($id, $type, $year) {
 		$doctrine = $this->getDoctrine();
@@ -181,7 +180,7 @@ class CoinController extends BaseController {
 					}
 				}
 
-				$oder = 'desc';
+				$order = 'desc';
 				if ($user) {
 					$order = $user->getCoinsSort();
 				}
@@ -243,7 +242,7 @@ class CoinController extends BaseController {
 			'type' => $request->get('types'),
 			'value' => $request->get('values'),
 			'year' => $request->get('years'),
-		));
+				));
 
 		$matches = $this->getDoctrine()->getRepository('EuroCoinBundle:Coin')->findByParams($params);
 		$translator = $this->get('translator');
@@ -260,10 +259,10 @@ class CoinController extends BaseController {
 			$value = $match->getValue();
 			$year = $match->getYear();
 
-			$results['countries'][ $country->getId() ] = $translator->trans((string) $country);
-			$results['types'][ $type ] = $translator->trans('coin.type' . $type);
-			$results['values'][ $value->getId() ] = (string) $value;
-			$results['years'][ $year->getId() ] = (string) $year;
+			$results['countries'][$country->getId()] = $translator->trans((string) $country);
+			$results['types'][$type] = $translator->trans('coin.type' . $type);
+			$results['values'][$value->getId()] = (string) $value;
+			$results['years'][$year->getId()] = (string) $year;
 		}
 
 		asort($results['countries']);
@@ -277,7 +276,7 @@ class CoinController extends BaseController {
 	/**
 	 * Retrieve data for a given coin
 	 * @param integer $id The coin id
-	 * @return Response 
+	 * @return Response
 	 */
 	public function getAction($id) {
 		return $this->render('EuroCoinBundle:Coin:coin_data.html.twig', array(
@@ -287,7 +286,7 @@ class CoinController extends BaseController {
 
 	/**
 	 * Compute various stats about the whole site
-	 * @return Response 
+	 * @return Response
 	 */
 	public function statsAction() {
 		$collator = new \Collator($this->getRequest()->getLocale());
@@ -373,4 +372,3 @@ class CoinController extends BaseController {
 	}
 
 }
-

@@ -10,7 +10,6 @@ use Sonata\AdminBundle\Show\ShowMapper;
 use Sonata\AdminBundle\Validator\ErrorElement;
 
 class CountryAdmin extends Admin {
-
 	protected $translationDomain = 'CountryAdmin';
 
 	protected function configureDatagridFilters(DatagridMapper $filter) {
@@ -60,15 +59,15 @@ class CountryAdmin extends Admin {
 	public function validate(ErrorElement $errorElement, $object) {
 		$errorElement
 				->with('name')
-					->assertMaxLength(array('limit' => 25))
+				->assertMaxLength(array('limit' => 25))
 				->end()
 				->with('name_iso')
-					->assertMinLength(array('limit' => 2))
-					->assertMaxLength(array('limit' => 2))
+				->assertMinLength(array('limit' => 2))
+				->assertMaxLength(array('limit' => 2))
 				->end()
 				->with('former_currency_iso')
-					->assertMinLength(array('limit' => 3))
-					->assertMaxLength(array('limit' => 3))
+				->assertMinLength(array('limit' => 3))
+				->assertMaxLength(array('limit' => 3))
 				->end();
 	}
 

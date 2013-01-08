@@ -13,7 +13,6 @@ use Sonata\NewsBundle\Entity\BaseTag;
  * @author <yourname> <youremail>
  */
 class Tag extends BaseTag {
-
 	/**
 	 * @var integer $id
 	 */

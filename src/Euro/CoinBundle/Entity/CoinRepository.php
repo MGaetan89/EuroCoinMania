@@ -59,23 +59,23 @@ class CoinRepository extends EntityRepository {
 		}
 
 		$queryBuilder
-			->select('c, ct, v, w, y')
-			->join('c.country', 'ct')
-			->join('c.value', 'v')
-			->join('c.year', 'y')
-			->leftJoin('y.workshop', 'w');
+				->select('c, ct, v, w, y')
+				->join('c.country', 'ct')
+				->join('c.value', 'v')
+				->join('c.year', 'y')
+				->leftJoin('y.workshop', 'w');
 
 		if ($where) {
 			$queryBuilder
-				->where($where);
+					->where($where);
 		}
 
 		return $queryBuilder
-			->orderBy('y.year', 'ASC')
-			->addOrderBy('w.short_name', 'ASC')
-			->addOrderby('v.value', 'ASC')
-			->getQuery()
-			->getResult();
+						->orderBy('y.year', 'ASC')
+						->addOrderBy('w.short_name', 'ASC')
+						->addOrderby('v.value', 'ASC')
+						->getQuery()
+						->getResult();
 	}
 
 	public function findCoinById(array $ids) {

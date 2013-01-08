@@ -13,7 +13,6 @@ use Sonata\NewsBundle\Document\BaseComment;
  * @author <yourname> <youremail>
  */
 class Comment extends BaseComment {
-
 	/**
 	 * @var integer $id
 	 */

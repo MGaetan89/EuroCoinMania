@@ -10,7 +10,6 @@ use Sonata\AdminBundle\Show\ShowMapper;
 use Sonata\AdminBundle\Validator\ErrorElement;
 
 class YearAdmin extends Admin {
-
 	protected $translationDomain = 'YearAdmin';
 
 	protected function configureDatagridFilters(DatagridMapper $filter) {
@@ -50,8 +49,8 @@ class YearAdmin extends Admin {
 	public function validate(ErrorElement $errorElement, $object) {
 		$errorElement
 				->with('year')
-					->assertMin(array('limit' => 1999))
-					->assertMax(array('limit' => date('Y')))
+				->assertMin(array('limit' => 1999))
+				->assertMax(array('limit' => date('Y')))
 				->end();
 	}
 

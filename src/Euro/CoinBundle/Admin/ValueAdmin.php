@@ -10,7 +10,6 @@ use Sonata\AdminBundle\Show\ShowMapper;
 use Sonata\AdminBundle\Validator\ErrorElement;
 
 class ValueAdmin extends Admin {
-
 	protected $translationDomain = 'ValueAdmin';
 
 	protected function configureDatagridFilters(DatagridMapper $filter) {

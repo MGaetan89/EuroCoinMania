@@ -11,7 +11,6 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Entity(repositoryClass="Euro\CoinBundle\Entity\YearRepository")
  */
 class Year {
-
 	/**
 	 * @var integer $id
 	 *
@@ -45,7 +44,7 @@ class Year {
 	/**
 	 * Get id
 	 *
-	 * @return integer 
+	 * @return integer
 	 */
 	public function getId() {
 		return $this->id;
@@ -66,7 +65,7 @@ class Year {
 	/**
 	 * Get year
 	 *
-	 * @return integer 
+	 * @return integer
 	 */
 	public function getYear() {
 		return $this->year;

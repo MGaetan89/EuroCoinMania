@@ -13,7 +13,6 @@ use Sonata\UserBundle\Entity\BaseGroup;
  * @author <yourname> <youremail>
  */
 class Group extends BaseGroup {
-
 	/**
 	 * @var integer $id
 	 */

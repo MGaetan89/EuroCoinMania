@@ -194,7 +194,7 @@ class ExchangeController extends BaseController {
 				$results = $doctrine->getRepository('EuroCoinBundle:' . ucfirst($name))->findById(array_keys($ids));
 
 				foreach ($results as $result) {
-					$ids[ $result->getId() ] = $result;
+					$ids[$result->getId()] = $result;
 				}
 			}
 		}
@@ -485,16 +485,16 @@ class ExchangeController extends BaseController {
 				'locale' => $from->getLocale(),
 				'path' => $this->generateUrl('exchange_show', array(
 					'id' => $exchange->getId(),
-				), true),
+						), true),
 				'to' => $from->getUsername(),
 				'username' => $user->getUsername(),
 			);
 			$message = \Swift_Message::newInstance()
-				->setSubject($translator->trans('exchange.email.title.new_exchange', array(), 'messages', $emailLocale))
-				->setFrom(array('contact@eurocoin-mania.eu' => 'EuroCoin Mania'))
-				->setTo($from->getEmail())
-				->setBody($this->renderView('EuroCoinBundle:Exchange:mail/new_exchange.txt.twig', $params))
-				->addPart($this->renderView('EuroCoinBundle:Exchange:mail/new_exchange.html.twig', $params), 'text/html');
+					->setSubject($translator->trans('exchange.email.title.new_exchange', array(), 'messages', $emailLocale))
+					->setFrom(array('contact@eurocoin-mania.eu' => 'EuroCoin Mania'))
+					->setTo($from->getEmail())
+					->setBody($this->renderView('EuroCoinBundle:Exchange:mail/new_exchange.txt.twig', $params))
+					->addPart($this->renderView('EuroCoinBundle:Exchange:mail/new_exchange.html.twig', $params), 'text/html');
 
 			$this->get('mailer')->send($message);
 		}
@@ -502,8 +502,8 @@ class ExchangeController extends BaseController {
 		$this->get('session')->getFlashBag()->add('success', 'coin.doubles.save_successfull');
 
 		return $this->redirect($this->generateUrl('exchange_show', array(
-					'id' => $exchange->getId(),
-				)));
+							'id' => $exchange->getId(),
+						)));
 	}
 
 	public function searchAction(Request $request) {
@@ -512,7 +512,7 @@ class ExchangeController extends BaseController {
 		$countries = $doctrine->getRepository('EuroCoinBundle:Country')->findAll();
 		$values = $doctrine->getRepository('EuroCoinBundle:Value')->findBy(array(), array(
 			'value' => 'ASC',
-		));
+				));
 		$years = $doctrine->getRepository('EuroCoinBundle:Year')->findAllSorted();
 
 		$collator = new \Collator($this->getRequest()->getLocale());
@@ -535,7 +535,7 @@ class ExchangeController extends BaseController {
 					'type' => (int) $query['types'][$i],
 					'value' => (int) $query['values'][$i],
 					'year' => (int) $query['years'][$i],
-				));
+						));
 
 				if ($try) {
 					$condition[] = $try;
@@ -548,13 +548,13 @@ class ExchangeController extends BaseController {
 		}
 
 		return $this->render('EuroCoinBundle:Exchange:search.html.twig', array(
-			'countries' => $countries,
-			'types' => array(
-				Coin::TYPE_CIRCULATION, Coin::TYPE_COMMEMORATIVE, Coin::TYPE_COLLECTOR,
-			),
-			'values' => $values,
-			'years' => $years,
-		));
+					'countries' => $countries,
+					'types' => array(
+						Coin::TYPE_CIRCULATION, Coin::TYPE_COMMEMORATIVE, Coin::TYPE_COLLECTOR,
+					),
+					'values' => $values,
+					'years' => $years,
+				));
 	}
 
 	public function showAction($id) {
@@ -612,7 +612,7 @@ class ExchangeController extends BaseController {
 			$results = $doctrine->getRepository('EuroCoinBundle:' . ucfirst($name))->findById(array_keys($ids));
 
 			foreach ($results as $result) {
-				$ids[ $result->getId() ] = $result;
+				$ids[$result->getId()] = $result;
 			}
 		}
 
@@ -624,4 +624,3 @@ class ExchangeController extends BaseController {
 	}
 
 }
-

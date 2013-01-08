@@ -11,7 +11,6 @@ use Sonata\AdminBundle\Show\ShowMapper;
 use Sonata\AdminBundle\Validator\ErrorElement;
 
 class CoinAdmin extends Admin {
-
 	protected $translationDomain = 'CoinAdmin';
 
 	protected function configureDatagridFilters(DatagridMapper $filter) {

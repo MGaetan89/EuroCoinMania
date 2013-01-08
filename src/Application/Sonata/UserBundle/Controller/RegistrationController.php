@@ -16,7 +16,7 @@ class RegistrationController extends BaseController {
 	public function confirmedAction() {
 		$user = $this->container->get('security.context')->getToken()->getUser();
 
-        if (is_object($user) && $user instanceof UserInterface) {
+		if (is_object($user) && $user instanceof UserInterface) {
 			$this->container->get('session')->getFlashBag()->add('success', 'user.registration_success');
 		}
 

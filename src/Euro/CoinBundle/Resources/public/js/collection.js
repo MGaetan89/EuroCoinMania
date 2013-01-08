@@ -1,8 +1,8 @@
 $(function () {
 	var body = $('body'),
-		modal = $('#coin-modal'),
-		quantityTotal = $('#quantity-total'),
-		text = '−';
+	modal = $('#coin-modal'),
+	quantityTotal = $('#quantity-total'),
+	text = '−';
 
 	$('[data-action=hide-items]').on('click', function () {
 		var $this = $(this);
@@ -21,11 +21,11 @@ $(function () {
 
 	$('table').on('click', '[data-action=add-coin], [data-action=remove-coin]', function () {
 		var $this = $(this),
-			action = $this.data('action').split('-')[0],
-			id = $this.parents('[data-coin]').data('coin'),
-			quantityInput = $this.siblings('.quantity'),
-			quantity = parseInt(quantityInput.val()),
-			quantityElt = $('#quantity-' + id);
+		action = $this.data('action').split('-')[0],
+		id = $this.parents('[data-coin]').data('coin'),
+		quantityInput = $this.siblings('.quantity'),
+		quantity = parseInt(quantityInput.val()),
+		quantityElt = $('#quantity-' + id);
 
 		if (isNaN(quantity) || quantity <= 0) {
 			// Display error message
@@ -45,8 +45,8 @@ $(function () {
 			}
 
 			var index = quantityElt.text(newQuantity).parents('td').index(),
-				total = quantityTotal.find('th:eq(' + index + ') .quantity'),
-				oldTotal = parseInt(total.text().replace(/[^0-9]/g, ''));
+			total = quantityTotal.find('th:eq(' + index + ') .quantity'),
+			oldTotal = parseInt(total.text().replace(/[^0-9]/g, ''));
 
 			if (action == 'add') {
 				total.text(oldTotal + quantity);
@@ -83,7 +83,7 @@ $(function () {
 		}
 	}).on('click', 'i[data-action=toggle-collection]', function () {
 		$(this).toggleClass('icon-minus icon-plus')
-			.parents('tr').nextUntil('.values', 'tr').slideToggle();
+		.parents('tr').nextUntil('.values', 'tr').slideToggle();
 	});
 
 	$('body').on('click', '.zoomable img', function () {

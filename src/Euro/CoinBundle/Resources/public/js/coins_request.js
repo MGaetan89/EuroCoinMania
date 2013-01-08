@@ -52,7 +52,7 @@ $(function () {
 	var filters = {
 		country: null,
 		value: null,
-		year: null,
+		year: null
 	}
 
 	function restore() {
@@ -120,7 +120,7 @@ $(function () {
 		return restore();
 	}).on('click', '[data-action^=show-]', function () {
 		var $this = $(this), target = $this.data('target'),
-			filter = $this.data('action').match(/show-([a-z]+)/)[1];
+		filter = $this.data('action').match(/show-([a-z]+)/)[1];
 
 		if (filters[filter] == target) {
 			filters[filter] = null;
@@ -131,4 +131,3 @@ $(function () {
 		return restore();
 	});
 });
-

@@ -13,5 +13,5 @@ use Sonata\NewsBundle\Document\BasePostRepository;
  * @author <yourname> <youremail>
  */
 class PostRepository extends BasePostRepository {
-	
+
 }

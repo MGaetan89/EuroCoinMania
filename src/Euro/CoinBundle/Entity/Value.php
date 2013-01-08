@@ -11,7 +11,6 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Entity(repositoryClass="Euro\CoinBundle\Entity\ValueRepository")
  */
 class Value {
-
 	/**
 	 * @var integer $id
 	 *
@@ -35,7 +34,7 @@ class Value {
 	/**
 	 * Get id
 	 *
-	 * @return integer 
+	 * @return integer
 	 */
 	public function getId() {
 		return $this->id;
@@ -56,7 +55,7 @@ class Value {
 	/**
 	 * Get value
 	 *
-	 * @return float 
+	 * @return float
 	 */
 	public function getValue() {
 		return $this->value;

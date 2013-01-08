@@ -13,7 +13,6 @@ use Euro\PrivateMessageBundle\Entity\Conversation;
  * @ORM\Entity(repositoryClass="Euro\CoinBundle\Entity\ExchangeRepository")
  */
 class Exchange {
-
 	const STATUS_PENDING = 1;
 	const STATUS_ACCEPTED = 2;
 	const STATUS_CANCELED = 3;
@@ -87,7 +86,7 @@ class Exchange {
 	/**
 	 * Get id
 	 *
-	 * @return integer 
+	 * @return integer
 	 */
 	public function getId() {
 		return $this->id;
@@ -108,7 +107,7 @@ class Exchange {
 	/**
 	 * Get date
 	 *
-	 * @return \DateTime 
+	 * @return \DateTime
 	 */
 	public function getDate() {
 		return $this->date;
@@ -129,7 +128,7 @@ class Exchange {
 	/**
 	 * Get status
 	 *
-	 * @return integer 
+	 * @return integer
 	 */
 	public function getStatus() {
 		return $this->status;
@@ -150,7 +149,7 @@ class Exchange {
 	/**
 	 * Get from_user
 	 *
-	 * @return User 
+	 * @return User
 	 */
 	public function getFromUser() {
 		return $this->from_user;
@@ -171,7 +170,7 @@ class Exchange {
 	/**
 	 * Get to_user
 	 *
-	 * @return User 
+	 * @return User
 	 */
 	public function getToUser() {
 		return $this->to_user;
@@ -192,7 +191,7 @@ class Exchange {
 	/**
 	 * Get coins_requested
 	 *
-	 * @return array 
+	 * @return array
 	 */
 	public function getCoinsRequested() {
 		return $this->coins_requested;
@@ -213,7 +212,7 @@ class Exchange {
 	/**
 	 * Get coins_suggested
 	 *
-	 * @return array 
+	 * @return array
 	 */
 	public function getCoinsSuggested() {
 		return $this->coins_suggested;
@@ -234,7 +233,7 @@ class Exchange {
 	/**
 	 * Get conversation
 	 *
-	 * @return Conversation 
+	 * @return Conversation
 	 */
 	public function getConversation() {
 		return $this->conversation;

@@ -12,7 +12,6 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Entity(repositoryClass="Euro\CoinBundle\Entity\CountryRepository")
  */
 class Country {
-
 	/**
 	 * @var integer $id
 	 *
@@ -70,7 +69,7 @@ class Country {
 	/**
 	 * Get id
 	 *
-	 * @return integer 
+	 * @return integer
 	 */
 	public function getId() {
 		return $this->id;
@@ -91,7 +90,7 @@ class Country {
 	/**
 	 * Get name
 	 *
-	 * @return string 
+	 * @return string
 	 */
 	public function getName() {
 		return $this->name;
@@ -112,7 +111,7 @@ class Country {
 	/**
 	 * Get name_iso
 	 *
-	 * @return string 
+	 * @return string
 	 */
 	public function getNameIso() {
 		return $this->name_iso;
@@ -133,7 +132,7 @@ class Country {
 	/**
 	 * Get join_date
 	 *
-	 * @return \DateTime 
+	 * @return \DateTime
 	 */
 	public function getJoinDate() {
 		return $this->join_date;
@@ -154,7 +153,7 @@ class Country {
 	/**
 	 * Get former_currency_iso
 	 *
-	 * @return string 
+	 * @return string
 	 */
 	public function getFormerCurrencyIso() {
 		return $this->former_currency_iso;
@@ -175,7 +174,7 @@ class Country {
 	/**
 	 * Get exchange_rate
 	 *
-	 * @return float 
+	 * @return float
 	 */
 	public function getExchangeRate() {
 		return $this->exchange_rate;

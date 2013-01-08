@@ -12,7 +12,6 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Entity(repositoryClass="Euro\CoinBundle\Entity\CoinRepository")
  */
 class Coin {
-
 	const TYPE_CIRCULATION = 1;
 	const TYPE_COMMEMORATIVE = 2;
 	const TYPE_COLLECTOR = 3;
@@ -81,7 +80,7 @@ class Coin {
 	/**
 	 * Get id
 	 *
-	 * @return integer 
+	 * @return integer
 	 */
 	public function getId() {
 		return $this->id;
@@ -102,7 +101,7 @@ class Coin {
 	/**
 	 * Get type
 	 *
-	 * @return integer 
+	 * @return integer
 	 */
 	public function getType() {
 		return $this->type;
@@ -111,7 +110,7 @@ class Coin {
 	/**
 	 * Get types
 	 *
-	 * @return array 
+	 * @return array
 	 */
 	public static function getTypes() {
 		return array(
@@ -136,7 +135,7 @@ class Coin {
 	/**
 	 * Get description
 	 *
-	 * @return string 
+	 * @return string
 	 */
 	public function getDescription() {
 		return $this->description;
@@ -157,7 +156,7 @@ class Coin {
 	/**
 	 * Get mintage
 	 *
-	 * @return integer 
+	 * @return integer
 	 */
 	public function getMintage() {
 		return $this->mintage;
@@ -200,7 +199,7 @@ class Coin {
 	/**
 	 * Get member_total
 	 *
-	 * @return integer 
+	 * @return integer
 	 */
 	public function getMemberTotal() {
 		return $this->member_total;

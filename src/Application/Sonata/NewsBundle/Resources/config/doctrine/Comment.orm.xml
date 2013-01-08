@@ -8,14 +8,14 @@
             xml mapping          : http://www.doctrine-project.org/projects/orm/2.0/docs/reference/xml-mapping/en
             association mapping  : http://www.doctrine-project.org/projects/orm/2.0/docs/reference/association-mapping/en
     -->
-    <entity
-        name="Application\Sonata\NewsBundle\Entity\Comment"
-        table="news__comment"
-        repository-class="Doctrine\ORM\EntityRepository">
+	<entity
+		name="Application\Sonata\NewsBundle\Entity\Comment"
+		table="news__comment"
+		repository-class="Doctrine\ORM\EntityRepository">
 
-        <id name="id" type="integer" column="id">
-            <generator strategy="AUTO"/>
-        </id>
+		<id name="id" type="integer" column="id">
+			<generator strategy="AUTO"/>
+		</id>
 
-    </entity>
+	</entity>
 </doctrine-mapping>

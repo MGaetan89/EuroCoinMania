@@ -14,7 +14,6 @@ use Euro\CoinBundle\Entity\Exchange;
  * @ORM\Entity(repositoryClass="Euro\PrivateMessageBundle\Entity\ConversationRepository")
  */
 class Conversation {
-
 	/**
 	 * @var integer $id
 	 *
@@ -77,7 +76,7 @@ class Conversation {
 	/**
 	 * Get id
 	 *
-	 * @return integer 
+	 * @return integer
 	 */
 	public function getId() {
 		return $this->id;
@@ -140,7 +139,7 @@ class Conversation {
 	/**
 	 * Get title
 	 *
-	 * @return string 
+	 * @return string
 	 */
 	public function getTitle() {
 		return $this->title;
@@ -161,7 +160,7 @@ class Conversation {
 	/**
 	 * Get open
 	 *
-	 * @return boolean 
+	 * @return boolean
 	 */
 	public function isOpen() {
 		return $this->open;
@@ -212,7 +211,7 @@ class Conversation {
 	/**
 	 * Get messages
 	 *
-	 * @return ArrayCollection 
+	 * @return ArrayCollection
 	 */
 	public function getMessages() {
 		return $this->messages;

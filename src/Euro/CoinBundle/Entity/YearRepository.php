@@ -11,6 +11,7 @@ use Doctrine\ORM\EntityRepository;
  * repository methods below.
  */
 class YearRepository extends EntityRepository {
+
 	public function findAllSorted() {
 		$queryBuidler = $this->createQueryBuilder('y');
 		$expr = $queryBuidler->expr();
@@ -23,4 +24,5 @@ class YearRepository extends EntityRepository {
 						->getQuery()
 						->getResult();
 	}
+
 }

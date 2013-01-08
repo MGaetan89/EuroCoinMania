@@ -11,7 +11,6 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Entity(repositoryClass="Euro\CoinBundle\Entity\WorkshopRepository")
  */
 class Workshop {
-
 	/**
 	 * @var integer $id
 	 *
@@ -42,7 +41,7 @@ class Workshop {
 	/**
 	 * Get id
 	 *
-	 * @return integer 
+	 * @return integer
 	 */
 	public function getId() {
 		return $this->id;
@@ -63,7 +62,7 @@ class Workshop {
 	/**
 	 * Get short_name
 	 *
-	 * @return string 
+	 * @return string
 	 */
 	public function getShortName() {
 		return $this->short_name;
@@ -84,7 +83,7 @@ class Workshop {
 	/**
 	 * Get name
 	 *
-	 * @return string 
+	 * @return string
 	 */
 	public function getName() {
 		return $this->name;

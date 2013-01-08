@@ -10,7 +10,6 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 
 class DefaultController extends BaseController {
-
 	const USER_PER_PAGE = 20;
 
 	public function collectionAction($type, $country_id, $user_id) {
@@ -166,16 +165,16 @@ class DefaultController extends BaseController {
 		}
 
 		return $this->render('ApplicationSonataUserBundle:User:list.html.twig', array(
-			'letter' => array(
-				'all' => $letters,
-				'current' => $letter,
-			),
-			'page' => array(
-				'current' => $page,
-				'total' => ceil($total / self::USER_PER_PAGE),
-			),
-			'users' => $users,
-		));
+					'letter' => array(
+						'all' => $letters,
+						'current' => $letter,
+					),
+					'page' => array(
+						'current' => $page,
+						'total' => ceil($total / self::USER_PER_PAGE),
+					),
+					'users' => $users,
+				));
 	}
 
 	/**

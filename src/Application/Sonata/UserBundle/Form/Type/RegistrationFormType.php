@@ -14,20 +14,20 @@ class RegistrationFormType extends BaseType {
 		parent::buildForm($builder, $options);
 
 		$builder
-			->add('firstname', null, array('required' => false))
-			->add('lastname', null, array('required' => false))
-			->add('dateOfBirth', 'birthday', array(
-				'required' => false,
-				'years' => range(date('Y') - 100,  date('Y')),
-			))
-			->add('gender', 'choice', array(
-				'choices' => array(
-					'f' => 'user.genderf',
-					'm' => 'user.genderm',
-				),
-				'required' => false,
-			))
-			->add('country', 'country', array('required' => false));
+				->add('firstname', null, array('required' => false))
+				->add('lastname', null, array('required' => false))
+				->add('dateOfBirth', 'birthday', array(
+					'required' => false,
+					'years' => range(date('Y') - 100, date('Y')),
+				))
+				->add('gender', 'choice', array(
+					'choices' => array(
+						'f' => 'user.genderf',
+						'm' => 'user.genderm',
+					),
+					'required' => false,
+				))
+				->add('country', 'country', array('required' => false));
 	}
 
 	public function getName() {
@@ -35,4 +35,3 @@ class RegistrationFormType extends BaseType {
 	}
 
 }
-
