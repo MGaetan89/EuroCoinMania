@@ -1,6 +1,8 @@
 {% extends 'EuroPrivateMessageBundle:PrivateMessage:base.html.twig' %}
 
 {% block content %}
+<a class="btn btn-primary pull-right" href="{{ path('pm_write') }}">{{ 'pm.write'|trans }}</a>
+
 {% include 'EuroPrivateMessageBundle:PrivateMessage:write_content.html.twig' %}
 {% endblock %}
 
