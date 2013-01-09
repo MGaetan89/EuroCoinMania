@@ -4,24 +4,40 @@
 
 {% block title %}{{ pm.title|trans }}{% endblock %}
 
-{% block content %}
-{% set authors = [ pm.fromuser, pm.touser ] %}
-
+{% block buttons %}
 {% if pm.open or pm.exchange %}
 	<div class="btn-group pull-right">
 		{% if pm.open %}
-			<a class="btn btn-primary" href="#modal-answer" data-toggle="modal">{{ 'pm.answer'|trans }}</a>
+			<a class="btn btn-primary" href="#modal-answer" data-toggle="modal">
+				<i class="icon-white icon-pencil"></i>
+				{{ 'pm.answer'|trans }}
+			</a>
 		{% endif %}
 
 		{% if pm.exchange %}
-			<a class="btn" href="{{ path('exchange_show', { id: pm.exchange.id }) }}">{{ 'pm.show_exchange'|trans }}</a>
+			<a class="btn" href="{{ path('exchange_show', { id: pm.exchange.id }) }}">
+				<i class="icon-share"></i>
+				{{ 'pm.show_exchange'|trans }}
+			</a>
 		{% endif %}
 
 		{% if pm.open and (not pm.exchange or pm.exchange.status != 1) %}
-			<a class="btn" href="{{ path('pm_close', { id: pm.id, title: macros.slugify(pm.title|trans) }) }}">{{ 'pm.close'|trans }}</a>
+			<a class="btn" href="{{ path('pm_close', { id: pm.id, title: macros.slugify(pm.title|trans) }) }}">
+				<i class="icon-remove"></i>
+				{{ 'pm.close'|trans }}
+			</a>
 		{% endif %}
 	</div>
+
+	<br style="clear: both;" />
 {% endif %}
+{% endblock %}
+
+{% block content %}
+{% set authors = [ pm.fromuser, pm.touser ] %}
+
+{{ block('buttons') }}
+{% if block('buttons') %}<br />{% endif %}
 
 {% for message in messages %}
 	{% set from, to = authors[message.direction * 1], authors[(message.direction + 1) % 2] %}
@@ -76,6 +92,8 @@
 		{% endif %}
 	</div>
 {% endfor %}
+
+{{ block('buttons') }}
 {% endblock %}
 
 {% if pm.open %}
