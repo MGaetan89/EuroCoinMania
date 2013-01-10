@@ -1,8 +1,8 @@
 $(function () {
 	var body = $('body'),
-	modal = $('#coin-modal'),
-	quantityTotal = $('#quantity-total'),
-	text = '−';
+		modal = $('#coin-modal'),
+		quantityTotal = $('#quantity-total'),
+		text = '−';
 
 	$('[data-action=hide-items]').on('click', function () {
 		var $this = $(this);
@@ -21,11 +21,11 @@ $(function () {
 
 	$('table').on('click', '[data-action=add-coin], [data-action=remove-coin]', function () {
 		var $this = $(this),
-		action = $this.data('action').split('-')[0],
-		id = $this.parents('[data-coin]').data('coin'),
-		quantityInput = $this.siblings('.quantity'),
-		quantity = parseInt(quantityInput.val()),
-		quantityElt = $('#quantity-' + id);
+			action = $this.data('action').split('-')[0],
+			id = $this.parents('[data-coin]').data('coin'),
+			quantityInput = $this.siblings('.quantity'),
+			quantity = parseInt(quantityInput.val()),
+			quantityElt = $('#quantity-' + id);
 
 		if (isNaN(quantity) || quantity <= 0) {
 			// Display error message
@@ -71,22 +71,21 @@ $(function () {
 			$this.button('reset');
 		} else {
 			$.post('/coin/' + id + '/get', function (data) {
-				data = $(data).hide().appendTo(body);
+				data = $($.trim(data)).hide().appendTo(body);
 
 				$this.popover({
 					content: $(data).html(),
 					html: true,
 					placement: 'left',
-					template: '<div class="popover"><div class="close" data-dismiss="alert">&times;</div><div class="arrow"></div><div class="popover-inner"><h3 class="popover-title"></h3><div class="popover-content"><p></p></div></div></div>'
+					template: '<div class="popover"><div class="close" data-dismiss="alert">&times;</div><div class="arrow"></div><div class="popover-inner"><h3 class="popover-title"></h3><div class="popover-content"></div></div></div>'
 				}).popover('show').button('reset');
 			});
 		}
 	}).on('click', 'i[data-action=toggle-collection]', function () {
-		$(this).toggleClass('icon-minus icon-plus')
-		.parents('tr').nextUntil('.values', 'tr').slideToggle();
+		$(this).toggleClass('icon-minus icon-plus').parents('tr').nextUntil('.values', 'tr').slideToggle();
 	});
 
-	$('body').on('click', '.zoomable img', function () {
+	body.on('click', '.zoomable img', function () {
 		var $this = $(this), img = modal.css('display', 'table').find('img');
 
 		img.data('loader', img.attr('src')).attr({
@@ -110,13 +109,9 @@ $(function () {
 		}
 
 		if (from == to) {
-			to = undefined;
-		}
-
-		if (to) {
-			location.href = $this.attr('action').replace('FROM..TO', from + '..' + to);
-		} else {
 			location.href = $this.attr('action').replace('FROM..TO', from);
+		} else {
+			location.href = $this.attr('action').replace('FROM..TO', from + '..' + to);
 		}
 
 		return false;

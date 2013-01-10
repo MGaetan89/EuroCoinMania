@@ -29,13 +29,14 @@ $(function () {
 			return that.value.substring(that.selectionStart, that.selectionEnd);
 		},
 		insertAtCaret: function(text){
-			var that = (typeof this[0].name !== 'undefined') ? this[0] : this;
+			var that = (typeof this[0].name !== 'undefined') ? this[0] : this,
+				agent = navigator.userAgent.toLowerCase();
 
-			if ($.browser.msie) {
+			if (/msie/.test(agent)) {
 				that.focus();
 
 				document.selection.createRange().text = text;
-			} else if ($.browser.mozilla || $.browser.webkit) {
+			} else if (/firefox/.test(agent) || /webkit/.test(agent)) {
 				that.value = that.value.substring(0, that.selectionStart) + text + that.value.substring(that.selectionEnd);
 			} else {
 				that.value += text;
