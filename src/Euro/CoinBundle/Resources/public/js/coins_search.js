@@ -14,21 +14,23 @@ $(function () {
 
 		return false;
 	}).on('change', 'select', function () {
-		var $this = $(this), container = $this.parent();
+		var $this = $(this),
+			container = $this.parent(),
+			siblings = container.find('select'),
+			selects = {
+				countries: container.find('[name="countries[]"]'),
+				types: container.find('[name="types[]"]'),
+				values: container.find('[name="values[]"]'),
+				years: container.find('[name="years[]"]')
+			},
+			params = {
+				countries: selects.countries.val(),
+				types: selects.types.val(),
+				values: selects.values.val(),
+				years: selects.years.val()
+			};
 
-		var selects = {
-			countries: container.find('[name="countries[]"]'),
-			types: container.find('[name="types[]"]'),
-			values: container.find('[name="values[]"]'),
-			years: container.find('[name="years[]"]')
-		};
-
-		var params = {
-			countries: selects.countries.val(),
-			types: selects.types.val(),
-			values: selects.values.val(),
-			years: selects.years.val()
-		};
+		siblings.prop('disabled', true);
 
 		$.post('/coin/find', params, function (data) {
 			$.each(data, function (name, values) {
@@ -42,6 +44,8 @@ $(function () {
 
 				select.val(params[name]);
 			});
+
+			siblings.prop('disabled', false);
 		});
 	});
 });
