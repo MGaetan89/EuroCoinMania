@@ -6,6 +6,14 @@ img {
 	vertical-align: text-top;
 }
 
+td.error {
+	background-color: #F2DEDE;
+}
+
+td.error:hover {
+	background-color: #EBCCCC;
+}
+
 .alert-warning {
 	background-color: #FCF8E3;
 	border-color: #fBEED5;

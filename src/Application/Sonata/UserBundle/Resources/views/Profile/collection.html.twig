@@ -43,8 +43,7 @@
 				{% for value in all_values %}
 					{% if values[value] is defined %}
 						{% set coin = values[value] %}
-						{% set has_coin = uc[coin.id] is defined %}
-						{% set quantity = has_coin ? uc[coin.id].quantity : 0 %}
+						{% set quantity = (uc[coin.id] is defined) ? uc[coin.id].quantity : 0 %}
 
 						<td>
 							<div class="btn-toolbar" data-coin="{{ coin.id }}">

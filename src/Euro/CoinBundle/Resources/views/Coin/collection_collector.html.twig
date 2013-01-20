@@ -21,7 +21,11 @@
 	</thead>
 	<tbody>
 	{% for coin in coins %}
-		<tr>
+		{% if app.user %}
+			{% set has_coin = uc[coin.id] is defined %}
+		{% endif %}
+
+		<tr class="coin{% if not has_coin %} error{% endif %}">
 			<td class="zoomable">
 				{% if coin.image %}
 					{% media coin.image, 'small' with { alt: coin.description, title: coin.description } %}
@@ -36,10 +40,6 @@
 				<div class="btn-toolbar" data-coin="{{ coin.id }}">
 					<div class="btn-group pull-left">
 						<button class="btn btn-mini btn-info" title="{{ 'coin.information'|trans }}" data-action="query-coin-info" data-loading-text="?">?</button>
-
-						{% if app.user %}
-							{% set has_coin = uc[coin.id] is defined %}
-						{% endif %}
 
 						{% if app.user %}
 							<button class="btn btn-mini disabled" disabled="disabled" id="quantity-{{ coin.id }}" title="{{ 'coin.self_quantity'|trans }}">{{ has_coin ? uc[coin.id].quantity|number_format : 0 }}</button>

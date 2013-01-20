@@ -19,7 +19,7 @@
 	{% set hide_count = 0 %}
 	{% set year_range = constant('Euro\\CoinBundle\\Controller\\CoinController::YEAR_RANGE_SIZE') %}
 
-	<table class="table table-bordered table-condensed table-hover table-striped">
+	<table class="table table-bordered table-condensed">
 	<tbody>
 		<tr>
 			<th><i class="icon-minus" data-action="toggle-collection"></i></th>
@@ -52,7 +52,7 @@
 							{% set has_coin = uc[coin.id] is defined %}
 						{% endif %}
 
-						<td>
+						<td class="coin{% if not has_coin %} error{% endif %}">
 							<div class="btn-toolbar" data-coin="{{ coin.id }}">
 								<div class="btn-group pull-left">
 									<button class="btn btn-mini btn-info" title="{{ 'coin.information'|trans }}" data-action="query-coin-info" data-loading-text="?">?</button>

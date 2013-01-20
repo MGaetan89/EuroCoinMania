@@ -57,9 +57,12 @@ $(function () {
 			if (newQuantity > 0) {
 				if (action === 'add') {
 					$this.siblings('[data-action=remove-coin]').button('reset');
+					$this.parents('.coin').removeClass('error');
 				}
 
 				$this.button('reset');
+			} else if (newQuantity == 0) {
+				$this.parents('.coin').addClass('error');
 			}
 
 			quantityElt.parent().next('[data-hover=popover]').popover('hide');
