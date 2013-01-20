@@ -1,0 +1,129 @@
+{% import '::macros.html.twig' as macros %}
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<link href="{{ asset('favicon.png') }}" rel="icon" type="image/png" />
+	<link href="{{ asset('favicon.ico') }}" rel="shortcut icon" type="image/x-icon" />
+
+	<link href="{{ asset('bundles/eurocoin/css/bootstrap.css') }}" rel="stylesheet" type="text/css" />
+	<link href="{{ asset('bundles/eurocoin/css/bootstrap-responsive.css') }}" rel="stylesheet" type="text/css" />
+
+	<meta charset="UTF-8" />
+	<meta name="description" content="{% block meta_description %}{{ 'site_description'|trans }}{% endblock %}" />
+	<meta name="keywords" content="{{ 'site_keywords'|trans }}" />
+	<meta name="robots" content="index, follow" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+	<style type="text/css">
+	body {
+		margin: 20px;
+	}
+
+	.text-center {
+		text-align: center !important;
+	}
+	</style>
+
+	<title>{{ 'exchange.print'|trans }} &bull; {{ 'sitename'|trans }}</title>
+</head>
+<body>
+<h3>{{ exchange.fromuser.username }} &hArr; {{ exchange.touser.username }}</h3>
+
+<dl class="dl-horizontal">
+	<dt>{{ 'exchange.date'|trans }}</dt>
+		<dd>{{ exchange.date|format_datetime }}</dd>
+
+	<dt>{{ 'exchange.status'|trans }}</dt>
+		<dd>{{ ('exchange.status' ~ exchange.status ~ '.long')|trans }}</dd>
+</dl>
+
+<table class="table table-condensed table-striped" style="width: 21cm;">
+<thead>
+	<tr>
+		<th class="text-center" colspan="2" style="width: 50%;">{{ 'exchange.coins_asked'|trans({ '%path%': path('show_profile', { id: exchange.fromuser.id }), '%username%': exchange.fromuser.username })|striptags }}</th>
+		<th class="text-center" colspan="2" style="border-left: 3px double #DDD; width: 50%;">{{ 'exchange.coins_proposed'|trans({ '%path%': path('show_profile', { id: exchange.touser.id }), '%username%': exchange.touser.username })|striptags }}</th>
+	</tr>
+	<tr>
+		<th class="text-center">
+			{% if exchange.fromuser.id == app.user.id %}
+				{{ 'exchange.coin.received'|trans }}
+			{% else %}
+				{{ 'exchange.coin.sent'|trans }}
+			{% endif %}
+		</th>
+		<th class="text-center">{{ 'coin'|trans }}</th>
+		<th class="text-center" style="border-left: 3px double #DDD;">
+			{% if exchange.fromuser.id == app.user.id %}
+				{{ 'exchange.coin.sent'|trans }}
+			{% else %}
+				{{ 'exchange.coin.received'|trans }}
+			{% endif %}
+		</th>
+		<th class="text-center">{{ 'coin'|trans }}</th>
+	</tr>
+</thead>
+<tbody>
+	{% set _coins = counts.requested > counts.suggested ? coins.requested : coins.suggested %}
+	{% set total_requested, total_suggested = 0, 0 %}
+
+	{% for index in _coins|keys %}
+		<tr>
+			<td class="text-center">
+				{% if coins.requested[index] is defined %}
+					<input type="checkbox" />
+				{% endif %}
+			</td>
+			<td>
+				{% if coins.requested[index] is defined %}
+					{% set coin = coins.requested[index] %}
+					{% set total_requested = total_requested + coin.value.value %}
+
+					{{ macros.coin(coin, true)|striptags }}
+
+					{% if coin.description %}
+						<blockquote>{{ coin.description }}</blockquote>
+					{% endif %}
+				{% endif %}
+			</td>
+			<td class="text-center" style="border-left: 3px double #DDD;">
+				{% if coins.suggested[index] is defined %}
+					<input type="checkbox" />
+				{% endif %}
+			</td>
+			<td>
+				{% if coins.suggested[index] is defined %}
+					{% set coin = coins.suggested[index] %}
+					{% set total_suggested = total_suggested + coin.value.value %}
+
+					{{ macros.coin(coin, true)|striptags }}
+
+					{% if coin.description %}
+						<blockquote>{{ coin.description }}</blockquote>
+					{% endif %}
+				{% endif %}
+			</td>
+		</tr>
+	{% endfor %}
+</tbody>
+<tfoot>
+	<tr>
+		<th>&nbsp;</th>
+		<th class="text-center">{{ 'exchange.total_count'|transchoice(counts.requested, { '%sum%': macros.value(total_requested), '%count%': counts.requested }) }}</th>
+		<th style="border-left: 3px double #DDD;">&nbsp;</th>
+		<th class="text-center">{{ 'exchange.total_count'|transchoice(counts.suggested, { '%sum%': macros.value(total_suggested), '%count%': counts.suggested }) }}</th>
+	</tr>
+</tfoot>
+</table>
+
+<div class="text-center" style="width: 21cm;">
+	<strong>{{ 'sitename'|trans }} :</strong>
+	<a>{{ url('exchange_show', { id: exchange.id }) }}</a>
+</div>
+
+<script type="text/javascript">
+window.print();
+</script>
+</body>
+</html>
+

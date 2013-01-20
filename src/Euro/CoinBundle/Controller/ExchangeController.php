@@ -284,6 +284,10 @@ class ExchangeController extends BaseController {
 				));
 	}
 
+	public function printAction($id) {
+		return $this->render('EuroCoinBundle:Exchange:print.html.twig', $this->getExchange($id));
+	}
+
 	public function proposeCoinsAction($id) {
 		$flashBag = $this->get('session')->getFlashBag();
 		$translator = $this->get('translator');
@@ -558,29 +562,7 @@ class ExchangeController extends BaseController {
 	}
 
 	public function showAction($id) {
-		$doctrine = $this->getDoctrine();
-		$exchange = $doctrine->getRepository('EuroCoinBundle:Exchange')->find($id);
-
-		if (!$exchange) {
-			$this->get('session')->getFlashBag()->add('info', 'exchange.not_found');
-
-			return $this->redirect($this->generateUrl('exchange_list'));
-		}
-
-		$coin_repo = $doctrine->getRepository('EuroCoinBundle:Coin');
-		$coins = array(
-			'requested' => $coin_repo->findCoinById($exchange->getCoinsRequested()),
-			'suggested' => $coin_repo->findCoinById($exchange->getCoinsSuggested()),
-		);
-
-		return $this->render('EuroCoinBundle:Exchange:show.html.twig', array(
-					'coins' => $coins,
-					'counts' => array(
-						'requested' => count($coins['requested']),
-						'suggested' => count($coins['suggested']),
-					),
-					'exchange' => $exchange,
-				));
+		return $this->render('EuroCoinBundle:Exchange:show.html.twig', $this->getExchange($id));
 	}
 
 	private function findUsers(array $condition) {
@@ -621,6 +603,32 @@ class ExchangeController extends BaseController {
 					'matches' => $matches,
 					'values' => $values,
 				));
+	}
+
+	private function getExchange($id) {
+		$doctrine = $this->getDoctrine();
+		$exchange = $doctrine->getRepository('EuroCoinBundle:Exchange')->find($id);
+
+		if (!$exchange) {
+			$this->get('session')->getFlashBag()->add('info', 'exchange.not_found');
+
+			return $this->redirect($this->generateUrl('exchange_list'));
+		}
+
+		$coin_repo = $doctrine->getRepository('EuroCoinBundle:Coin');
+		$coins = array(
+			'requested' => $coin_repo->findCoinById($exchange->getCoinsRequested()),
+			'suggested' => $coin_repo->findCoinById($exchange->getCoinsSuggested()),
+		);
+
+		return array(
+			'coins' => $coins,
+			'counts' => array(
+				'requested' => count($coins['requested']),
+				'suggested' => count($coins['suggested']),
+			),
+			'exchange' => $exchange,
+		);
 	}
 
 }

@@ -119,10 +119,13 @@ exchange.accepted: Vous avez bien accepté cet échange
 exchange.actions: Actions
 exchange.cancel: Annuler
 exchange.canceled: Votre échange a bien été annulé
+exchange.coin.received: Reçue
+exchange.coin.sent: Envoyée
 exchange.coins_asked: Pièces demandées par <a href="%path%">%username%</a>
 exchange.coins_proposed: Pièces proposées à <a href="%path%">%username%</a>
 exchange.coins_requested: Pièces demandées
 exchange.coins_suggested: Pièces proposées
+exchange.date: Date de l'échange
 exchange.direction: Sens de l'échange
 exchange.email.html.new_exchange: |
     Bonjour %to%,<br /><br />
@@ -172,6 +175,7 @@ exchange.not_found: Cet échange n'existe pas
 exchange.not_intended: Cet échange ne vous est pas destiné
 exchange.not_own: Cet échange ne vous appartient pas
 exchange.other_coins: Autres pièces
+exchange.print: Imprimer l'échange
 exchange.proposed_by: Proposé par <a href="%path%">%username%</a>
 exchange.proposed_on: Proposé le
 exchange.read_conversation: Lire la conversation

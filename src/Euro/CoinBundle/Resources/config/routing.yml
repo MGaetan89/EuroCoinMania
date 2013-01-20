@@ -88,6 +88,12 @@ exchange_list_all:
     pattern: /exchanges/all
     defaults: { _controller: EuroCoinBundle:Exchange:list, all: true }
 
+exchange_print:
+    pattern: /exchange/{id}/print
+    defaults: { _controller: EuroCoinBundle:Exchange:print }
+    requirements:
+        id: "\d+"
+
 exchange_refuse:
     pattern: /exchange/{id}/refuse
     defaults: { _controller: EuroCoinBundle:Exchange:acceptCancelRefuse, type: 'refuse' }

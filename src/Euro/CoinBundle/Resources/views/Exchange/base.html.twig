@@ -58,14 +58,20 @@
 				{% if app.request.get('_route') == 'exchange_show' %}
 					<li{{ macros.is_active(['exchange_show']) }}>
 						<a href="{{ path('exchange_show', { id: exchange.id }) }}">
-							<i class="icon-chevron-right"></i> 
+							<i class="icon-share"></i> 
 							{{ 'exchange.showing'|trans }}
 						</a>
 					</li>
 					<li>
 						<a href="{{ path('pm_read', { id: exchange.conversation.id, title: macros.slugify(exchange.conversation.title|trans) }) }}">
-							<i class="icon-chevron-right"></i> 
+							<i class="icon-comment"></i> 
 							{{ 'exchange.read_conversation'|trans }}
+						</a>
+					</li>
+					<li>
+						<a href="{{ path('exchange_print', { id: exchange.id }) }}" target="_blank">
+							<i class="icon-print"></i>
+							{{ 'exchange.print'|trans }}
 						</a>
 					</li>
 

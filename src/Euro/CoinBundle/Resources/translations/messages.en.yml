@@ -119,10 +119,13 @@ exchange.accepted: You have accepted this exchange
 exchange.actions: Actions
 exchange.cancel: Cancel
 exchange.canceled: You have canceled this exchange
+exchange.coin.received: Received
+exchange.coin.sent: Sent
 exchange.coins_asked: Coins requested by <a href="%path%">%username%</a>
 exchange.coins_proposed: Coins proposed to <a href="%path%">%username%</a>
 exchange.coins_requested: Requested coins
 exchange.coins_suggested: Suggested coins
+exchange.date: Exchange date
 exchange.direction: Exchange direction
 exchange.email.html.new_exchange: |
     Dear %to%,<br /><br />
@@ -172,6 +175,7 @@ exchange.not_found: This exchange does not exist
 exchange.not_intended: This exchange is not intended to you
 exchange.not_own: This exchange does not belong to you
 exchange.other_coins: Other coins
+exchange.print: Print the exchange
 exchange.proposed_by: Proposed by <a href="%path%">%username%</a>
 exchange.proposed_on: Proposed on
 exchange.read_conversation: Read the conversation
