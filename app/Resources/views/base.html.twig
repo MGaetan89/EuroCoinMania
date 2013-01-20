@@ -157,8 +157,11 @@
 					<p>
 						<strong>{{ 'exchanges'|trans }} &mdash;</strong>
 
-							<a href="{{ path('exchange_choose_user') }}">{{ 'exchange.new'|trans }}</a> &bull;
-							<a href="{{ path('exchange_search_coins') }}">{{ 'exchange.search_coins'|trans }}</a> &bull;
+							{% if app.user.allowexchanges %}
+								<a href="{{ path('exchange_choose_user') }}">{{ 'exchange.new'|trans }}</a> &bull;
+								<a href="{{ path('exchange_search_coins') }}">{{ 'exchange.search_coins'|trans }}</a> &bull;
+							{% endif %}
+
 							<a href="{{ path('exchange_list') }}">{{ 'exchanges.pending'|trans }}</a> &bull;
 							<a href="{{ path('exchange_list_all') }}">{{ 'exchanges.all'|trans }}</a>
 					</p>
