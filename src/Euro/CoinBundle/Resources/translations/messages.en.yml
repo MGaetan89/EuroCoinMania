@@ -199,6 +199,7 @@ exchange.status3.long: This exchange has been canceled
 exchange.status4: Refused
 exchange.status4.long: This exchange has been refused
 exchange.total_count: %sum% with %count% coin|%sum% with %count% coins
+exchange.view_online: View this exchange online
 exchanges: Exchanges
 exchanges.pending: Pending exchanges
 exchanges.all: All your exchanges

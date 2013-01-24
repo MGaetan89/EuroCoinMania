@@ -199,6 +199,7 @@ exchange.status3.long: Cet échange a été annulé
 exchange.status4: Refusé
 exchange.status4.long: Cet échange a été refusé
 exchange.total_count: %sum% en %count% pièce|%sum% en %count% pièces
+exchange.view_online: Voir cet échange sur le site
 exchanges: Echanges
 exchanges.all: Tous vos échanges
 exchanges.pending: Echanges en cours

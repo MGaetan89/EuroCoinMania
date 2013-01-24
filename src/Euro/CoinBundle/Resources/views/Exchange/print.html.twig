@@ -38,28 +38,36 @@
 		<dd>{{ ('exchange.status' ~ exchange.status ~ '.long')|trans }}</dd>
 </dl>
 
+{% set checkboxes = exchange.status == 2 %}
 <table class="table table-condensed table-striped" style="width: 21cm;">
 <thead>
 	<tr>
-		<th class="text-center" colspan="2" style="width: 50%;">{{ 'exchange.coins_asked'|trans({ '%path%': path('show_profile', { id: exchange.fromuser.id }), '%username%': exchange.fromuser.username })|striptags }}</th>
-		<th class="text-center" colspan="2" style="border-left: 3px double #DDD; width: 50%;">{{ 'exchange.coins_proposed'|trans({ '%path%': path('show_profile', { id: exchange.touser.id }), '%username%': exchange.touser.username })|striptags }}</th>
+		<th class="text-center"{% if checkboxes %} colspan="2"{% endif %} style="width: 50%;">{{ 'exchange.coins_asked'|trans({ '%path%': path('show_profile', { id: exchange.fromuser.id }), '%username%': exchange.fromuser.username })|striptags }}</th>
+		<th class="text-center"{% if checkboxes %} colspan="2"{% endif %} style="border-left: 3px double #DDD; width: 50%;">{{ 'exchange.coins_proposed'|trans({ '%path%': path('show_profile', { id: exchange.touser.id }), '%username%': exchange.touser.username })|striptags }}</th>
 	</tr>
 	<tr>
-		<th class="text-center">
-			{% if exchange.fromuser.id == app.user.id %}
-				{{ 'exchange.coin.received'|trans }}
-			{% else %}
-				{{ 'exchange.coin.sent'|trans }}
-			{% endif %}
-		</th>
-		<th class="text-center">{{ 'coin'|trans }}</th>
-		<th class="text-center" style="border-left: 3px double #DDD;">
-			{% if exchange.fromuser.id == app.user.id %}
-				{{ 'exchange.coin.sent'|trans }}
-			{% else %}
-				{{ 'exchange.coin.received'|trans }}
-			{% endif %}
-		</th>
+		{% if checkboxes %}
+			<th class="text-center">
+				{% if exchange.fromuser.id == app.user.id %}
+					{{ 'exchange.coin.received'|trans }}
+				{% else %}
+					{{ 'exchange.coin.sent'|trans }}
+				{% endif %}
+			</th>
+		{% endif %}
+
+		<th class="text-center" style="border-right: 3px double #DDD;">{{ 'coin'|trans }}</th>
+
+		{% if checkboxes %}
+			<th class="text-center">
+				{% if exchange.fromuser.id == app.user.id %}
+					{{ 'exchange.coin.sent'|trans }}
+				{% else %}
+					{{ 'exchange.coin.received'|trans }}
+				{% endif %}
+			</th>
+		{% endif %}
+
 		<th class="text-center">{{ 'coin'|trans }}</th>
 	</tr>
 </thead>
@@ -69,12 +77,15 @@
 
 	{% for index in _coins|keys %}
 		<tr>
-			<td class="text-center">
-				{% if coins.requested[index] is defined %}
-					<input type="checkbox" />
-				{% endif %}
-			</td>
-			<td>
+			{% if checkboxes %}
+				<td class="text-center">
+					{% if coins.requested[index] is defined %}
+						<input type="checkbox" />
+					{% endif %}
+				</td>
+			{% endif %}
+
+			<td style="border-right: 3px double #DDD;">
 				{% if coins.requested[index] is defined %}
 					{% set coin = coins.requested[index] %}
 					{% set total_requested = total_requested + coin.value.value %}
@@ -86,11 +97,15 @@
 					{% endif %}
 				{% endif %}
 			</td>
-			<td class="text-center" style="border-left: 3px double #DDD;">
-				{% if coins.suggested[index] is defined %}
-					<input type="checkbox" />
-				{% endif %}
-			</td>
+
+			{% if checkboxes %}
+				<td class="text-center">
+					{% if coins.suggested[index] is defined %}
+						<input type="checkbox" />
+					{% endif %}
+				</td>
+			{% endif %}
+
 			<td>
 				{% if coins.suggested[index] is defined %}
 					{% set coin = coins.suggested[index] %}
@@ -108,16 +123,16 @@
 </tbody>
 <tfoot>
 	<tr>
-		<th>&nbsp;</th>
-		<th class="text-center">{{ 'exchange.total_count'|transchoice(counts.requested, { '%sum%': macros.value(total_requested), '%count%': counts.requested }) }}</th>
-		<th style="border-left: 3px double #DDD;">&nbsp;</th>
+		{% if checkboxes %}<th>&nbsp;</th>{% endif %}
+		<th class="text-center" style="border-right: 3px double #DDD;">{{ 'exchange.total_count'|transchoice(counts.requested, { '%sum%': macros.value(total_requested), '%count%': counts.requested }) }}</th>
+		{% if checkboxes %}<th>&nbsp;</th>{% endif %}
 		<th class="text-center">{{ 'exchange.total_count'|transchoice(counts.suggested, { '%sum%': macros.value(total_suggested), '%count%': counts.suggested }) }}</th>
 	</tr>
 </tfoot>
 </table>
 
 <div class="text-center" style="width: 21cm;">
-	<strong>{{ 'sitename'|trans }} :</strong>
+	<strong>{{ 'exchange.view_online'|trans }} :</strong>
 	<a>{{ url('exchange_show', { id: exchange.id }) }}</a>
 </div>
 
