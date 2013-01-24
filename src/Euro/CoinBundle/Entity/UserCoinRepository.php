@@ -195,6 +195,7 @@ class UserCoinRepository extends EntityRepository {
 						->join('uc.user', 'u')
 						->where($expr->neq('uc.user', ':user'))
 						->andWhere($expr->gt('uc.quantity - uc.sharing', 1))
+						->andWhere($expr->eq('u.allow_exchanges', 0))
 						->andWhere($where)
 						->groupBy('uc.user')
 						->orderBy('total', 'DESC')
