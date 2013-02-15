@@ -82,7 +82,7 @@
 					<ul class="breadcrumb">
 						<li class="muted">{{ 'years'|trans }} <span class="divider">&nbsp;</span></li>
 
-						{% set std_filter = false %}
+						{% set base_route, std_filter = app.request.get('_route'), false %}
 						{% for year in years %}
 							{% set year_text = year.from %}
 							{% set year_url = year.from %}
@@ -97,12 +97,26 @@
 
 									<strong>
 								{% endif %}
-									<a href="{{ path(app.request.get('_route'), { id: current.id, country: name, year: year_url }) }}">{{ year_text }}</a>
+									<a href="{{ path(base_route, { id: current.id, country: name, year: year_url }) }}">{{ year_text }}</a>
 
 									<span class="divider">&nbsp;</span>
 								{% if year_url == current_year %}</strong>{% endif %}
 							</li>
 						{% endfor %}
+
+						{% set year_url = years[0].from ~ '..' ~ years[years|length - 1].to %}
+
+						<li>
+							{% if year_url == current_year %}
+								{% set std_filter = true %}
+
+								<strong>
+							{% endif %}
+								<a href="{{ path(base_route, { id: current.id, country: name, year: year_url }) }}">{{ 'years.all'|trans }}</a>
+
+								<span class="divider">&nbsp;</span>
+							{% if year_url == current_year %}</strong>{% endif %}
+						</li>
 
 						{% if not std_filter %}
 							{% set year_text = year[0] %}
@@ -112,7 +126,7 @@
 
 							<li>
 								<strong>
-									<a href="{{ path(app.request.get('_route'), { id: current.id, country: name, year: current_year }) }}">{{ year_text }}</a>
+									<a href="{{ path(base_route, { id: current.id, country: name, year: current_year }) }}">{{ year_text }}</a>
 
 									<span class="divider">&nbsp;</span>
 								</strong>
@@ -127,7 +141,7 @@
 							<ul class="dropdown-menu">
 								<li class="nav-header">{{ 'years.filter'|trans }}</li>
 								<li>
-									<form action="{{ url(app.request.get('_route'), { id: current.id, country: name, year: 'FROM..TO' }) }}" id="customize_filter">
+									<form action="{{ url(base_route, { id: current.id, country: name, year: 'FROM..TO' }) }}" id="customize_filter">
 										<div class="offset1">
 											<input class="span5" name="from" placeholder="{{ 'year.filter_from'|trans }}" type="text" />
 											<input class="span5" name="to" placeholder="{{ 'year.filter_to'|trans }}" type="text" />

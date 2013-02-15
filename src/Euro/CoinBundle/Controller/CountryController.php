@@ -3,6 +3,7 @@
 namespace Euro\CoinBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
 
 class CountryController extends Controller {
 
@@ -10,13 +11,12 @@ class CountryController extends Controller {
 	 * List all the countries
 	 * @return \Symfony\Component\HttpFoundation\Response 
 	 */
-	public function listAction() {
-		$repository = $this->getDoctrine()->getRepository('EuroCoinBundle:Country');
+	public function listAction(Request $request) {
+		$countries = $this->getDoctrine()->getRepository('EuroCoinBundle:Country')->findAll();
 		$translator = $this->get('translator');
-		$countries = $repository->findAll();
 
 		// Sort the countries by translated name
-		$collator = new \Collator($this->getRequest()->getLocale());
+		$collator = new \Collator($request->getLocale());
 		usort($countries, function ($a, $b) use ($collator, $translator) {
 					$a_date = $a->getJoinDate();
 					$b_date = $b->getJoinDate();
@@ -25,10 +25,10 @@ class CountryController extends Controller {
 						return ($a_date < $b_date) ? -1 : 1;
 					}
 
-					$a_name = $translator->trans((string) $a);
-					$b_name = $translator->trans((string) $b);
-
-					return $collator->compare($a_name, $b_name);
+					return $collator->compare(
+						$translator->trans((string) $a),
+						$translator->trans((string) $b)
+					);
 				});
 
 		$countries_js = array();

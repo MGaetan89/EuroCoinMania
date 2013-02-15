@@ -141,7 +141,7 @@ exchange.email.html.new_exchange: |
 
         %coins_to%
 
-    This is an automatic e-mail notification. Please use the private messages on the website to discuss with <strong>%username%</strong>.<br /><br />
+    This is an automatic e-mail notification. Please use the private message tool on the website to discuss with <strong>%username%</strong>.<br /><br />
 
     EuroCoin Mania
 exchange.email.text.new_exchange: |
@@ -159,7 +159,7 @@ exchange.email.text.new_exchange: |
 
         %coins_to%
 
-    This is an automatic e-mail notification. Please use the private messages on the website to discuss with %username%.
+    This is an automatic e-mail notification. Please use the private message tool on the website to discuss with %username%.
 
     EuroCoin Mania
 exchange.email.title.new_exchange: You have a new coins exchange waiting
@@ -210,4 +210,5 @@ year.filter_setting: Setting
 year.filter_to: To
 user.coin_not_found: You do not own this coin yet
 years: Years
+years.all: All years
 years.filter: Filter by years

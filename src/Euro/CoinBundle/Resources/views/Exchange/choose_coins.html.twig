@@ -198,16 +198,30 @@
 		</div>
 
 		{% set action = (type == 'request') ? 'exchange_coins_suggest' : 'exchange_save' %}
-		<form action="{{ path(action, { id: from.id, name: from.username }) }}" method="post">
+		<form action="{{ path(action, { id: from.id, name: from.username }) }}" class="form-horizontal" method="post">
 			<input id="coins" name="coins" type="hidden" value="" />
 
-			<button class="btn btn-info disabled pull-right" disabled="disabled" id="exchange">
-				{% if type == 'request' %}
-					{{ 'coin.exchange_request'|trans }}
-				{% else %}
-					{{ 'coin.exchange_suggest'|trans }}
-				{% endif %}
-			</button>
+			{% if type == 'suggest' %}
+				<div class="control-group">
+					<label class="control-label" for="exchange_message">Message</label>
+
+					<div class="controls">
+						<textarea class="span12" id="exchange_message" name="exchange_message" rows="5"></textarea>
+					</div>
+				</div>
+			{% endif %}
+
+			<div class="control-group">
+				<div class="controls">
+					<button class="btn btn-info disabled pull-right" disabled="disabled" id="exchange">
+						{% if type == 'request' %}
+							{{ 'coin.exchange_request'|trans }}
+						{% else %}
+							{{ 'coin.exchange_suggest'|trans }}
+						{% endif %}
+					</button>
+				</div>
+			</div>
 		</form>
 	</div>
 </div>

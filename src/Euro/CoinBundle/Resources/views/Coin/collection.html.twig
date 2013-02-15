@@ -47,12 +47,9 @@
 				{% for value in all_values %}
 					{% if values[value] is defined %}
 						{% set coin = values[value] %}
+						{% set has_coin = uc[coin.id] is defined %}
 
-						{% if app.user %}
-							{% set has_coin = uc[coin.id] is defined %}
-						{% endif %}
-
-						<td class="coin{% if not has_coin %} error{% endif %}">
+						<td class="coin{% if app.user and not has_coin %} error{% endif %}">
 							<div class="btn-toolbar" data-coin="{{ coin.id }}">
 								<div class="btn-group pull-left">
 									<button class="btn btn-mini btn-info" title="{{ 'coin.information'|trans }}" data-action="query-coin-info" data-loading-text="?">?</button>

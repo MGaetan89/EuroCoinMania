@@ -81,16 +81,16 @@ class DefaultController extends BaseController {
 			// Sort the countries by translated name
 			$collator = new \Collator($this->getRequest()->getLocale());
 			usort($countries, function ($a, $b) use ($collator, &$country, $country_id, $translator) {
-						$a_name = $translator->trans((string) $a);
-						$b_name = $translator->trans((string) $b);
-
 						if ($country_id == $a->getId()) {
 							$country = $a;
 						} else if ($country_id == $b->getId()) {
 							$country = $b;
 						}
 
-						return $collator->compare($a_name, $b_name);
+						return $collator->compare(
+							$translator->trans((string) $a),
+							$translator->trans((string) $b)
+						);
 					});
 
 			if ($type != Coin::TYPE_CIRCULATION) {
@@ -185,6 +185,7 @@ class DefaultController extends BaseController {
 		$default = array(
 			'allow_exchanges' => $user->getAllowExchanges(),
 			'coins_sort' => $user->getCoinsSort(),
+			'conversation_notification' => $user->getConversationNotification(),
 			'exchange_notification' => $user->getExchangeNotification(),
 			'public_profile' => $user->getPublicProfile(),
 			'show_email' => $user->getShowEmail(),
@@ -214,9 +215,9 @@ class DefaultController extends BaseController {
 	/**
 	 * @Secure(roles="ROLE_USER")
 	 */
-	public function queryAction() {
+	public function queryAction(Request $request) {
 		$user = $this->getUser();
-		$query = strtolower($this->getRequest()->request->get('query'));
+		$query = strtolower($request->request->get('query'));
 
 		$queryBuilder = $this->getDoctrine()->getEntityManager()->createQueryBuilder();
 		$expr = $queryBuilder->expr();
@@ -265,7 +266,7 @@ class DefaultController extends BaseController {
 				));
 	}
 
-	public function statsAction($id) {
+	public function statsAction($id, Request $request) {
 		$base_user = $this->getUser();
 		$doctrine = $this->getDoctrine();
 		if (!$base_user || $base_user->getId() != $id) {
@@ -423,19 +424,19 @@ class DefaultController extends BaseController {
 			}
 
 			// Sort the countries by translated name
-			$collator = new \Collator($this->getRequest()->getLocale());
+			$collator = new \Collator($request->getLocale());
 			usort($global['countries'], function ($a, $b) use ($collator, $translator) {
-						$a_name = $translator->trans((string) $a);
-						$b_name = $translator->trans((string) $b);
-
-						return $collator->compare($a_name, $b_name);
+						return $collator->compare(
+							$translator->trans((string) $a),
+							$translator->trans((string) $b)
+						);
 					});
 
 			usort($countries, function ($a, $b) use ($collator, $translator) {
-						$a_name = $translator->trans((string) $a);
-						$b_name = $translator->trans((string) $b);
-
-						return $collator->compare($a_name, $b_name);
+						return $collator->compare(
+							$translator->trans((string) $a),
+							$translator->trans((string) $b)
+						);
 					});
 		}
 

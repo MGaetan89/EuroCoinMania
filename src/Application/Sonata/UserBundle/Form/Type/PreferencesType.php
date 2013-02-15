@@ -36,6 +36,14 @@ class PreferencesType extends AbstractType {
 					'expanded' => true,
 					'label' => 'user.preferences.allow_exchanges',
 				))
+				->add('conversation_notification', 'choice', array(
+					'choices' => array(
+						'1' => 'yes',
+						'0' => 'no',
+					),
+					'expanded' => true,
+					'label' => 'user.preferences.conversation_notification',
+				))
 				->add('exchange_notification', 'choice', array(
 					'choices' => array(
 						'1' => 'yes',

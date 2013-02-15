@@ -16,7 +16,7 @@
 						{% if loop.index0 > 0 %}
 							{% set tag_name = 'h4' %}
 
-							{% if loop.index0 - 1 > 0 and (loop.index0 - 1) % 2 == 0 %}
+							{% if loop.index0 > 1 and (loop.index0 - 1) % 2 == 0 %}
 								</div>
 								<div class="row-fluid">
 							{% endif %}
@@ -88,8 +88,8 @@
 		<ul class="nav nav-list">
 			<li class="nav-header">{{ 'stats.biggest_collections'|trans }}</li>
 
-			{% for user in stats.biggest_collections %}
-				{% set user, total, total_uniques = user[0].user, user.total, user.total_uniques %}
+			{% for user in stats.collection %}
+				{% set user, total, total_uniques = user[0].user, user.total_coins, user.total_unique_coins %}
 
 				<li><a class="clearfix" href="{{ path('show_user_collection1', { user_id: user.id }) }}"{% if not user.publicprofile %} rel="nofollow"{% endif %}>
 					<span class="pull-left">
@@ -123,8 +123,8 @@
 		<ul class="nav nav-list">
 			<li class="nav-header">{{ 'stats.most_valued_collections'|trans }}</li>
 
-			{% for user in stats.most_valued_collections %}
-				{% set user, total = user[0].user, user.total %}
+			{% for user in stats.collection %}
+				{% set user, total = user[0].user, user.total_value %}
 
 				<li><a class="clearfix" href="{{ path('show_user_collection1', { user_id: user.id }) }}"{% if not user.publicprofile %} rel="nofollow"{% endif %}>
 					<span class="pull-left">

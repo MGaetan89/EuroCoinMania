@@ -5,4 +5,6 @@ $(function () {
 	}).tooltip({
 		selector: '[data-hover=tooltip]'
 	});
+
+	$('#stats-carousel').carousel();
 });

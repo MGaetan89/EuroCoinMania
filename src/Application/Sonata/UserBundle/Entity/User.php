@@ -44,6 +44,11 @@ class User extends BaseUser {
 	protected $exchange_notification = true;
 
 	/**
+	 * @var string $conversation_notification
+	 */
+	protected $conversation_notification = true;
+
+	/**
 	 * @var string $public_profile
 	 */
 	protected $public_profile = false;
@@ -160,6 +165,27 @@ class User extends BaseUser {
 	 */
 	public function getExchangeNotification() {
 		return $this->exchange_notification;
+	}
+
+	/**
+	 * Set conversation_notification
+	 *
+	 * @param string $conversation_notification
+	 * @return User
+	 */
+	public function setConversationNotification($conversation_notification) {
+		$this->conversation_notification = $conversation_notification;
+
+		return $this;
+	}
+
+	/**
+	 * Get conversation_notification
+	 *
+	 * @return string
+	 */
+	public function getConversationNotification() {
+		return $this->conversation_notification;
 	}
 
 	/**

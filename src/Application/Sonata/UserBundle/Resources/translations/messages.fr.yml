@@ -49,6 +49,7 @@ user.preferences.allow_exchanges: Recevoir et proposer des échanges de pièces
 user.preferences.coins_sort: Tri des valeurs des pièces
 user.preferences.coins_sort_ascending: Tri croissant
 user.preferences.coins_sort_decending: Tri décroissant
+user.preferences.conversation_notification: Recevoir un e-mail de notification pour chaque nouveau message
 user.preferences.exchange_notification: Recevoir un e-mail de notification pour chaque nouvel échange
 user.preferences.public_profile: Autoriser les visiteurs à consulter votre profil
 user.preferences.saved: Vos préférences ont bien été mises à jour

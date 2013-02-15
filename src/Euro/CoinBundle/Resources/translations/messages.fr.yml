@@ -210,4 +210,5 @@ year.filter_interval: '%from% à %to%'
 year.filter_setting: Paramètre
 year.filter_to: Fin
 years: Années
+years.all: Toutes les années
 years.filter: 'Filtre par années'

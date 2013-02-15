@@ -34,8 +34,12 @@ class PrivateMessageController extends Controller {
 			if ($form->isValid()) {
 				if ($conversation->getFromUser()->getId() === $user->getId()) {
 					$message->setDirection(Message::DIRECTION_FROM_TO);
+					$from_user = $conversation->getFromUser();
+					$to_user = $conversation->getToUser();
 				} else {
 					$message->setDirection(Message::DIRECTION_TO_FROM);
+					$from_user = $conversation->getToUser();
+					$to_user = $conversation->getFromUser();
 				}
 
 				$message->setConversation($conversation);
@@ -43,6 +47,27 @@ class PrivateMessageController extends Controller {
 				$em = $this->getDoctrine()->getManager();
 				$em->persist($message);
 				$em->flush();
+
+				if ($to_user->getConversationNotification()) {
+					$params = array(
+						'%content%' => $content,
+						'%locale%' => $to_user->getLocale(),
+						'%path%' => $this->generateUrl('pm_read', array(
+							'id' => $conversation->getId(),
+							'title' => $conversation->getTitle(),
+						), true),
+						'%to%' => $to_user->getUsername(),
+						'%username%' => $from_user->getUsername(),
+					);
+					$message = \Swift_Message::newInstance()
+							->setSubject($translator->trans('pm.email.title.new_message', array(), 'messages', $params['%locale%']))
+							->setFrom(array('contact@eurocoin-mania.eu' => 'EuroCoin Mania'))
+							->setTo($to_user->getEmail())
+							->setBody($translator->trans('pm.email.html.new_message', $params, 'messages', $params['%locale%']))
+							->addPart($translator->trans('pm.email.text.new_message', $params, 'messages', $params['%locale%']), 'text/html');
+
+					$this->get('mailer')->send($message);
+				}
 
 				return $this->redirect($this->generateUrl('pm_read', array(
 									'id' => $conversation->getId(),
@@ -230,6 +255,27 @@ class PrivateMessageController extends Controller {
 				$em->persist($conversation);
 				$em->persist($message);
 				$em->flush();
+
+				if ($to_user->getConversationNotification()) {
+					$params = array(
+						'%content%' => $content,
+						'%locale%' => $to_user->getLocale(),
+						'%path%' => $this->generateUrl('pm_read', array(
+							'id' => $conversation->getId(),
+							'title' => $title,
+						), true),
+						'%to%' => $to_user->getUsername(),
+						'%username%' => $user->getUsername(),
+					);
+					$message = \Swift_Message::newInstance()
+							->setSubject($translator->trans('pm.email.title.new_message', array(), 'messages', $params['%locale%']))
+							->setFrom(array('contact@eurocoin-mania.eu' => 'EuroCoin Mania'))
+							->setTo($to_user->getEmail())
+							->setBody($translator->trans('pm.email.html.new_message', $params, 'messages', $params['%locale%']))
+							->addPart($translator->trans('pm.email.text.new_message', $params, 'messages', $params['%locale%']), 'text/html');
+
+					$this->get('mailer')->send($message);
+				}
 
 				return $this->redirect($this->generateUrl('pm_read', array(
 									'id' => $conversation->getId(),

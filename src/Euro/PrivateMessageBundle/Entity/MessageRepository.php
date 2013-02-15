@@ -41,6 +41,7 @@ class MessageRepository extends EntityRepository {
 						->join('m.conversation', 'c')
 						->where($expr->eq('m.conversation', ':conversation'))
 						->orderBy('m.date', 'DESC')
+						->addOrderBy('m.id', 'DESC')
 						->setParameter('conversation', $id)
 						->getQuery()
 						->getResult();

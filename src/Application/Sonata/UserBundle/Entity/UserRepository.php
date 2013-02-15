@@ -13,7 +13,7 @@ class UserRepository extends EntityRepository {
 
 		return $queryBuidler
 						->select($expr->count('u'))
-						->where($expr->like($expr->upper('u.username'), $expr->literal($letter . '%')))
+						->where($expr->like($expr->upper('u.username'), $expr->literal(strtoupper($letter) . '%')))
 						->getQuery()
 						->getSingleScalarResult();
 	}
@@ -39,7 +39,7 @@ class UserRepository extends EntityRepository {
 		$expr = $queryBuidler->expr();
 
 		if ($letter !== '#') {
-			$cond = $expr->like($expr->upper('u.username'), $expr->literal($letter . '%'));
+			$cond = $expr->like($expr->upper('u.username'), $expr->literal(strtoupper($letter) . '%'));
 		} else {
 			$cond = $expr->not($expr->between($expr->upper($expr->substring('u.username', 1, 1)), $expr->literal('A'), $expr->literal('Z')));
 		}
@@ -71,7 +71,7 @@ class UserRepository extends EntityRepository {
 
 		return $queryBuidler
 						->select($expr->count('u.id') . ' AS total, u.gender')
-						->where($expr->neq('u.gender', "''"))
+						->where($expr->isNotNull('u.gender'))
 						->groupBy('u.gender')
 						->orderBy('total', 'DESC')
 						->addOrderBy('u.gender', 'ASC')

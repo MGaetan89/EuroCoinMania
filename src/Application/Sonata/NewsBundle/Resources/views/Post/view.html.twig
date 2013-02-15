@@ -39,7 +39,7 @@
 				{{ post.content|raw }}
 			</div>
 			<div class="tab-pane" id="comments">
-				{% render 'SonataNewsBundle:Post:comments' with { postId: post.id} %}
+				{% render 'SonataNewsBundle:Post:comments' with { postId: post.id } %}
 
 				{% if post.iscommentable %}
 					{% render 'SonataNewsBundle:Post:addCommentForm' with {

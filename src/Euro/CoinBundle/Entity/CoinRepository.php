@@ -128,12 +128,11 @@ class CoinRepository extends EntityRepository {
 		$expr = $queryBuidler->expr();
 
 		return $queryBuidler
-						->select('c, ct, f')
-						->addSelect('SUM(c.member_total) AS total')
+						->select('c, ct, f, SUM(c.member_total) AS total')
 						->join('c.country', 'ct')
 						->join('ct.flag', 'f')
+						->where($expr->gt('c.member_total', 0))
 						->groupBy('ct.id')
-						->having($expr->gt('total', 0))
 						->orderBy('total', 'DESC')
 						->setMaxResults(10)
 						->getQuery()

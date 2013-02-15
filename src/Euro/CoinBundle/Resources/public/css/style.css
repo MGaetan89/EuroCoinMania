@@ -120,6 +120,17 @@ td.error:hover {
 	margin-left: -100px;
 }
 
+#stats-carousel {
+	margin-left: -20px;
+	margin-right: -20px;
+}
+
+#stats-carousel .carousel-caption {
+	background-color: transparent;
+	padding-left: 100px;
+	position: relative;
+}
+
 /* Bootstrap fixes */
 h1 .tooltip,
 h2 .tooltip,

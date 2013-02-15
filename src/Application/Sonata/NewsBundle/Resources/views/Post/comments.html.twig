@@ -14,13 +14,13 @@
 	</thead>
 	<tbody>
 		{% for comment in comments %}
-		<tr>
-			<td>
-				<i class="icon-time" title="{{ comment.createdAt|format_datetime }}"></i>
-				{{ comment.name }}
-			</td>
-			<td>{{ comment.message|format_text('markdown')|raw }}</td>
-		</tr>
+			<tr>
+				<td>
+					<i class="icon-time" title="{{ comment.createdAt|format_datetime }}"></i>
+					{{ comment.name }}
+				</td>
+				<td>{{ comment.message|format_text('markdown')|raw }}</td>
+			</tr>
 		{% endfor %}
 	</tbody>
 	</table>

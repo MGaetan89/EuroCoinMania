@@ -398,7 +398,7 @@ class ExchangeController extends BaseController {
 				));
 	}
 
-	public function saveAction($id) {
+	public function saveAction($id, Request $request) {
 		$translator = $this->get('translator');
 		$user = $this->getUser();
 		$doctrine = $this->getDoctrine();
@@ -412,7 +412,7 @@ class ExchangeController extends BaseController {
 			throw $this->createNotFoundException($translator->trans('coin.doubles.no_self_exchange'));
 		}
 
-		$coins_id = explode(',', $this->getRequest()->request->get('coins'));
+		$coins_id = explode(',', $request->request->get('coins'));
 		$coins_id = array_map('intval', $coins_id);
 
 		if (!$coins_id) {
@@ -448,12 +448,24 @@ class ExchangeController extends BaseController {
 		$message->setType(Message::TYPE_INFO);
 		$message->setConversation($conversation);
 
+		$conversation->addMessage($message);
+
 		$em = $doctrine->getManager();
 		$em->persist($conversation);
 		$em->persist($message);
 		$em->persist($exchange);
 
-		$conversation->addMessage($message);
+		$message_text = $request->request->get('exchange_message');
+		if ($message_text) {
+			$message2 = new Message();
+			$message2->setContent($message_text);
+			$message2->setConversation($conversation);
+
+			$conversation->addMessage($message2);
+
+			$em->persist($message2);
+		}
+
 		$exchange->setConversation($conversation);
 
 		$from_coins = $doctrine->getRepository('EuroCoinBundle:UserCoin')->findBy(array(
@@ -489,12 +501,12 @@ class ExchangeController extends BaseController {
 				'locale' => $from->getLocale(),
 				'path' => $this->generateUrl('exchange_show', array(
 					'id' => $exchange->getId(),
-						), true),
+				), true),
 				'to' => $from->getUsername(),
 				'username' => $user->getUsername(),
 			);
 			$message = \Swift_Message::newInstance()
-					->setSubject($translator->trans('exchange.email.title.new_exchange', array(), 'messages', $emailLocale))
+					->setSubject($translator->trans('exchange.email.title.new_exchange', array(), 'messages', $params['locale']))
 					->setFrom(array('contact@eurocoin-mania.eu' => 'EuroCoin Mania'))
 					->setTo($from->getEmail())
 					->setBody($this->renderView('EuroCoinBundle:Exchange:mail/new_exchange.txt.twig', $params))

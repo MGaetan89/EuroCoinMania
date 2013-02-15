@@ -4,6 +4,30 @@ pm.answer_add: Post a reply
 pm.close: Close the discussion
 pm.closed_success: The conversation has been closed
 pm.correspondent: Recipient
+pm.email.html.new_message: |
+    Dear %to%,<br /><br />
+
+    <strong>%username%</strong> just sent you a new message.<br />
+    You can read it by <a href="%path%">cliquing here</a>.<br /><br />
+
+    <blockquote>%content%</blockquote>
+
+    This is an automatic e-mail notification. Please use the private message tool on the website to answer to <strong>%username%</strong>.<br /><br />
+
+    EuroCoin Mania
+pm.email.text.new_message: |
+    Dear %to%,
+
+    %username% just sent you a new message.
+    You can read it by cliquing the following link:
+    	%path%
+
+    "%content%"
+
+    This is an automatic e-mail notification. Please use the private message tool on the website to answer to %username%.
+
+    EuroCoin Mania
+pm.email.title.new_message: You received a new private message
 pm.folder_empty: This folder does not contain any message
 pm.folders: Folders
 pm.folders.inbox: Inbox
