@@ -1,0 +1,12 @@
+# Composer
+/installer
+/composer.phar
+/composer.lock
+/vendor
+
+# PHPUnit
+/phpunit.xml
+/report
+
+# ApiGen
+/api
