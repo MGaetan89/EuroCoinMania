@@ -362,10 +362,11 @@ class CoinController extends BaseController {
 		$uc_repo = $doctrine->getRepository('EuroCoinBundle:UserCoin');
 
 		return $this->render('EuroCoinBundle:Coin:stats.html.twig', array(
-					'collection_stats' => $uc_repo->findCollectionStats(),
+					'biggest_collection_stats' => $uc_repo->findBiggestCollectionStats(),
 					'countries' => $countries,
 					'country_stats' => $coin_repo->findTopCountries(),
 					'euro_stats' => $euro_stats,
+					'most_value_collection_stats' => $uc_repo->findMostValuedCollectionStats(),
 					'user_stats' => $user_stats,
 				));
 	}

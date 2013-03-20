@@ -14,6 +14,7 @@ namespace Monolog\Handler;
 use Monolog\Logger;
 use Monolog\Formatter\LineFormatter;
 
+
 /**
  * Logs to syslog service.
  *

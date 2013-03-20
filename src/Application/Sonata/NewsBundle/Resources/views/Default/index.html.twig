@@ -88,7 +88,7 @@
 		<ul class="nav nav-list">
 			<li class="nav-header">{{ 'stats.biggest_collections'|trans }}</li>
 
-			{% for user in stats.collection %}
+			{% for user in stats.biggest_collection %}
 				{% set user, total, total_uniques = user[0].user, user.total_coins, user.total_unique_coins %}
 
 				<li><a class="clearfix" href="{{ path('show_user_collection1', { user_id: user.id }) }}"{% if not user.publicprofile %} rel="nofollow"{% endif %}>
@@ -109,8 +109,7 @@
 						{{ user.username }}
 					</span>
 					<span class="pull-right">
-						{{ 'coins'|transchoice(total, { '%total%': total|number_format }) }}
-						({{ 'coins.differents'|transchoice(total_uniques, { '%total%': total_uniques|number_format }) }})
+						{{ 'coins.differents'|transchoice(total_uniques, { '%total%': total_uniques|number_format }) }}
 					</span>
 				</a></li>
 			{% else %}
@@ -123,8 +122,8 @@
 		<ul class="nav nav-list">
 			<li class="nav-header">{{ 'stats.most_valued_collections'|trans }}</li>
 
-			{% for user in stats.collection %}
-				{% set user, total = user[0].user, user.total_value %}
+			{% for user in stats.most_valued_collection %}
+				{% set user, total = user[0].user, user.total_unique_value %}
 
 				<li><a class="clearfix" href="{{ path('show_user_collection1', { user_id: user.id }) }}"{% if not user.publicprofile %} rel="nofollow"{% endif %}>
 					<span class="pull-left">

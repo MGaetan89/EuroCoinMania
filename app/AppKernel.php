@@ -22,6 +22,7 @@ class AppKernel extends Kernel {
 
 			// Installed bundles
 			new FOS\UserBundle\FOSUserBundle(),
+			new Ivory\CKEditorBundle\IvoryCKEditorBundle(),
 			new Knp\Bundle\MarkdownBundle\KnpMarkdownBundle(),
 			new Knp\Bundle\MenuBundle\KnpMenuBundle(),
 			new Ornicar\GravatarBundle\OrnicarGravatarBundle(),
@@ -33,6 +34,7 @@ class AppKernel extends Kernel {
 			new Sonata\FormatterBundle\SonataFormatterBundle(),
 			new Sonata\IntlBundle\SonataIntlBundle(),
 			new Sonata\jQueryBundle\SonatajQueryBundle(),
+			new Sonata\MarkItUpBundle\SonataMarkItUpBundle(),
 			new Sonata\MediaBundle\SonataMediaBundle(),
 			new Sonata\NewsBundle\SonataNewsBundle(),
 			new Sonata\UserBundle\SonataUserBundle('FOSUserBundle'),

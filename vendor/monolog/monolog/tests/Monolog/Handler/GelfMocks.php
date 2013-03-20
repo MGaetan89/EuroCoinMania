@@ -23,3 +23,4 @@ class MockMessagePublisher extends MessagePublisher
 
     public $lastMessage = null;
 }
+

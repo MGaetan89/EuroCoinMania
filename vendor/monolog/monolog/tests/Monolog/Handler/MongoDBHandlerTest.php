@@ -16,14 +16,6 @@ use Monolog\Logger;
 
 class MongoDBHandlerTest extends TestCase
 {
-    /**
-     * @expectedException InvalidArgumentException
-     */
-    public function testConstructorShouldThrowExceptionForInvalidMongo()
-    {
-        new MongoDBHandler(new \stdClass(), 'DB', 'Collection');
-    }
-
     public function testHandle()
     {
         $mongo = $this->getMock('Mongo', array('selectCollection'));

@@ -143,12 +143,12 @@
 		<thead>
 			<tr>
 				<th>{{ 'stats.user'|trans }}</th>
-				<th>{{ 'stats.total_coins'|trans }}</th>
 				<th>{{ 'stats.unique_coins'|trans }}</th>
+				<th>{{ 'stats.total_coins'|trans }}</th>
 			</tr>
 		</thead>
 		<tbody>
-			{% for user in collection_stats %}
+			{% for user in biggest_collection_stats %}
 				{% set user, total, total_uniques = user[0].user, user.total_coins, user.total_unique_coins %}
 
 				<tr>
@@ -171,8 +171,8 @@
 							{{ user.username }}
 						</a>
 					</td>
-					<td>{{ 'coins'|transchoice(total, { '%total%': total|number_format }) }}</td>
 					<td>{{ 'coins.differents'|transchoice(total_uniques, { '%total%': total_uniques|number_format }) }}</td>
+					<td>{{ 'coins'|transchoice(total, { '%total%': total|number_format }) }}</td>
 				</tr>
 			{% endfor %}
 		</tbody>
@@ -185,12 +185,12 @@
 		<thead>
 			<tr>
 				<th>{{ 'stats.user'|trans }}</th>
-				<th>{{ 'stats.total_amount'|trans }}</th>
 				<th>{{ 'stats.total_unique'|trans }}</th>
+				<th>{{ 'stats.total_amount'|trans }}</th>
 			</tr>
 		</thead>
 		<tbody>
-			{% for user in collection_stats %}
+			{% for user in most_value_collection_stats %}
 				{% set user, total, total_unique = user[0].user, user.total_value, user.total_unique_value %}
 
 				<tr>
@@ -213,8 +213,8 @@
 							{{ user.username }}
 						</a>
 					</td>
-					<td>{{ macros.value(total) }}</td>
 					<td>{{ macros.value(total_unique) }}</td>
+					<td>{{ macros.value(total) }}</td>
 				</tr>
 			{% endfor %}
 		</tbody>
