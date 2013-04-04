@@ -45,22 +45,52 @@ class IvoryCKEditorExtension extends Extension
     protected function register(array $config, ContainerBuilder $container)
     {
         $loader = new XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
-
-        foreach (array('form', 'twig') as $service) {
+        foreach (array('helper', 'form') as $service) {
             $loader->load($service.'.xml');
         }
 
-        $container->setParameter('twig.form.resources', array_merge(
-            $container->getParameter('twig.form.resources'),
-            array('IvoryCKEditorBundle:Form:ckeditor_widget.html.twig')
-        ));
+        $this->registerResources($container);
 
-        if (!empty($config['configs'])) {
-            $this->registerConfigs($config, $container);
+        $container->setParameter('ivory_ck_editor.form.type.enable', $config['enable']);
+        $container->setParameter('ivory_ck_editor.form.type.base_path', $config['base_path']);
+        $container->setParameter('ivory_ck_editor.form.type.js_path', $config['js_path']);
+
+        if ($config['enable']) {
+            if (!empty($config['configs'])) {
+                $this->registerConfigs($config, $container);
+            }
+
+            if (!empty($config['plugins'])) {
+                $this->registerPlugins($config, $container);
+            }
+        }
+    }
+
+    /**
+     * Registers the form resources for the PHP & Twig templating engines.
+     *
+     * @param \Symfony\Component\DependencyInjection\ContainerBuilder $container The container.
+     */
+    protected function registerResources(ContainerBuilder $container)
+    {
+        $templatingEngines = $container->getParameter('templating.engines');
+
+        if (in_array('php', $templatingEngines)) {
+            $container->setParameter('templating.helper.form.resources', array_merge(
+                $container->hasParameter('templating.helper.form.resources')
+                    ? $container->getParameter('templating.helper.form.resources')
+                    : array(),
+                array('IvoryCKEditorBundle:Form')
+            ));
         }
 
-        if (!empty($config['plugins'])) {
-            $this->registerPlugins($config, $container);
+        if (in_array('twig', $templatingEngines)) {
+            $container->setParameter('twig.form.resources', array_merge(
+                $container->hasParameter('twig.form.resources')
+                    ? $container->getParameter('twig.form.resources')
+                    : array(),
+                array('IvoryCKEditorBundle:Form:ckeditor_widget.html.twig')
+            ));
         }
     }
 

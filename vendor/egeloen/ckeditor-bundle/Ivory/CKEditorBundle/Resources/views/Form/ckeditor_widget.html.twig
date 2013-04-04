@@ -1,26 +1,23 @@
-{% form_theme form _self %}
-
 {% block ckeditor_widget %}
-{% spaceless %}
     <textarea {{ block('widget_attributes') }}>{{ value }}</textarea>
 
-    <script type="text/javascript">
-        var CKEDITOR_BASEPATH = '{{ asset('bundles/ivoryckeditor/') | trim_asset_version }}';
-    </script>
+    {% if enable %}
+        <script type="text/javascript">
+            var CKEDITOR_BASEPATH = '{{ base_path }}';
+        </script>
 
-    <script type="text/javascript" src="{{ asset('bundles/ivoryckeditor/ckeditor.js') }}"></script>
+        <script type="text/javascript" src="{{ js_path }}"></script>
 
-    <script type="text/javascript">
-        var instance = CKEDITOR.instances['{{ id }}'];
-        if (instance) {
-            instance.destroy(true);
-        }
+        <script type="text/javascript">
+            if (CKEDITOR.instances['{{ id }}']) {
+                delete CKEDITOR.instances['{{ id }}'];
+            }
 
-        {% for pluginName, plugin in plugins %}
-            CKEDITOR.plugins.addExternal('{{ pluginName }}', '{{ asset(plugin.path) | trim_asset_version }}', '{{ plugin.filename }}');
-        {% endfor %}
+            {% for plugin_name, plugin in plugins %}
+                CKEDITOR.plugins.addExternal('{{ plugin_name }}', '{{ plugin.path }}', '{{ plugin.filename }}');
+            {% endfor %}
 
-        CKEDITOR.replace("{{ id }}"{% if config is not empty %}, {{ config | json_encode | raw }}{% endif %});
-    </script>
-{% endspaceless %}
+            CKEDITOR.replace('{{ id }}', {{ config | raw }});
+        </script>
+    {% endif %}
 {% endblock %}

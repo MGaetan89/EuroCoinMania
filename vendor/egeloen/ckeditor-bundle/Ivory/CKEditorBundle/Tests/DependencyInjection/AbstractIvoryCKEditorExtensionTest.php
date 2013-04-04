@@ -12,7 +12,8 @@
 namespace Ivory\CKEditorBundle\Tests\DependencyInjection;
 
 use Ivory\CKEditorBundle\DependencyInjection\IvoryCKEditorExtension,
-    Symfony\Component\DependencyInjection\ContainerBuilder;
+    Symfony\Component\DependencyInjection\ContainerBuilder,
+    Symfony\Component\DependencyInjection\Scope;
 
 /**
  * Abstract Ivory CKEditor extension test.
@@ -24,6 +25,9 @@ abstract class AbstractIvoryCKEditorExtensionTest extends \PHPUnit_Framework_Tes
     /** @var \Symfony\Component\DependencyInjection\ContainerBuilder */
     protected $container;
 
+    /** @var \Symfony\Component\Templating\Helper\CoreAssetsHelper */
+    protected $assetsHelperMock;
+
     /** @var \Symfony\Component\Routing\RouterInterface */
     protected $routerMock;
 
@@ -32,11 +36,21 @@ abstract class AbstractIvoryCKEditorExtensionTest extends \PHPUnit_Framework_Tes
      */
     protected function setUp()
     {
+        $this->assetsHelperMock = $this->getMockBuilder('Symfony\Component\Templating\Helper\CoreAssetsHelper')
+            ->disableOriginalConstructor()
+            ->getMock();
+
         $this->routerMock = $this->getMock('Symfony\Component\Routing\RouterInterface');
 
         $this->container = new ContainerBuilder();
-        $this->container->setParameter('twig.form.resources', array());
+
+        $this->container->addScope(new Scope('request'));
+
+        $this->container->set('templating.helper.assets', $this->assetsHelperMock);
         $this->container->set('router', $this->routerMock);
+
+        $this->container->setParameter('templating.engines', array('php', 'twig'));
+
         $this->container->registerExtension($extension = new IvoryCKEditorExtension());
         $this->container->loadFromExtension($extension->getAlias());
     }
@@ -46,6 +60,7 @@ abstract class AbstractIvoryCKEditorExtensionTest extends \PHPUnit_Framework_Tes
      */
     protected function tearDown()
     {
+        unset($this->assetsHelperMock);
         unset($this->routerMock);
         unset($this->container);
     }
@@ -62,34 +77,64 @@ abstract class AbstractIvoryCKEditorExtensionTest extends \PHPUnit_Framework_Tes
     {
         $this->container->compile();
 
+        $this->container->enterScope('request');
+
         $this->assertInstanceOf(
             'Ivory\CKEditorBundle\Form\Type\CKEditorType',
-            $this->container->get('form.type.ckeditor')
+            $this->container->get('ivory_ck_editor.form.type')
+        );
+
+        $this->container->leaveScope('request');
+    }
+
+    public function testAssetsVersionTrimer()
+    {
+        $this->container->compile();
+
+        $this->assertInstanceOf(
+            'Ivory\CKEditorBundle\Helper\AssetsVersionTrimerHelper',
+            $this->container->get('ivory_ck_editor.helper.assets_version_trimer')
         );
     }
 
-    /**
-     * This test checks if the ckeditor widget is weel add to the available form twig ressources but it does not work
-     * (Anyway, I have checked in a Symfony SE & all works fine).
-     *
-     * With my test bootstrap (see setUp), in a first time, the widget is well added but in a second time, it is
-     * override by the default value. Maybe someone with a better understood of the DI component can solve it :)
-     */
     public function testTwigResources()
     {
-//        // FIXME
-//        $this->container->compile();
-//
-//        $this->assertTrue(in_array(
-//            'IvoryCKEditorBundle:Form:ckeditor_widget.html.twig',
-//            $this->container->getParameter('twig.form.resources'))
-//        );
+        $this->container->compile();
+
+        $this->assertTrue(in_array(
+            'IvoryCKEditorBundle:Form:ckeditor_widget.html.twig',
+            $this->container->getParameter('twig.form.resources'))
+        );
+    }
+
+    public function testPhpResources()
+    {
+        $this->container->compile();
+
+        $this->assertTrue(in_array(
+            'IvoryCKEditorBundle:Form',
+            $this->container->getParameter('templating.helper.form.resources'))
+        );
+    }
+
+    public function testDisable()
+    {
+        $this->loadConfiguration($this->container, 'disable');
+        $this->container->compile();
+
+        $this->container->enterScope('request');
+
+        $this->assertFalse($this->container->get('ivory_ck_editor.form.type')->isEnable());
+
+        $this->container->leaveScope('request');
     }
 
     public function testSingleConfiguration()
     {
         $this->loadConfiguration($this->container, 'single_configuration');
         $this->container->compile();
+
+        $this->container->enterScope('request');
 
         $configManager = $this->container->get('ivory_ck_editor.config_manager');
 
@@ -107,12 +152,16 @@ abstract class AbstractIvoryCKEditorExtensionTest extends \PHPUnit_Framework_Tes
         );
 
         $this->assertSame($expected, $configManager->getConfigs());
+
+        $this->container->leaveScope('request');
     }
 
     public function testMultipleConfiguration()
     {
         $this->loadConfiguration($this->container, 'multiple_configuration');
         $this->container->compile();
+
+        $this->container->enterScope('request');
 
         $configManager = $this->container->get('ivory_ck_editor.config_manager');
 
@@ -138,6 +187,8 @@ abstract class AbstractIvoryCKEditorExtensionTest extends \PHPUnit_Framework_Tes
         );
 
         $this->assertSame($expected, $configManager->getConfigs());
+
+        $this->container->leaveScope('request');
     }
 
     public function testPlugins()
@@ -145,14 +196,39 @@ abstract class AbstractIvoryCKEditorExtensionTest extends \PHPUnit_Framework_Tes
         $this->loadConfiguration($this->container, 'plugins');
         $this->container->compile();
 
+        $this->container->enterScope('request');
+
+        $this->assetsHelperMock
+            ->expects($this->once())
+            ->method('getUrl')
+            ->with($this->equalTo('/my/path'), $this->equalTo(null))
+            ->will($this->returnValue('/my/rewritten/path'));
+
         $pluginManager = $this->container->get('ivory_ck_editor.plugin_manager');
 
         $expected = array('wordcount' => array(
-            'path'     => '/my/path',
+            'path'     => '/my/rewritten/path',
             'filename' => 'plugin.js',
         ));
 
         $this->assertSame($expected, $pluginManager->getPlugins());
+
+        $this->container->leaveScope('request');
+    }
+
+    public function testCustomPaths()
+    {
+        $this->loadConfiguration($this->container, 'custom_paths');
+        $this->container->compile();
+
+        $this->container->enterScope('request');
+
+        $ckEditorType = $this->container->get('ivory_ck_editor.form.type');
+
+        $this->assertSame('foo', $ckEditorType->getBasePath());
+        $this->assertSame('foo/ckeditor.js', $ckEditorType->getJsPath());
+
+        $this->container->leaveScope('request');
     }
 
     /**

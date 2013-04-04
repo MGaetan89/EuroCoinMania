@@ -107,4 +107,46 @@ $builder->add('field', 'ckeditor', array(
 ));
 ```
 
-Enjoy!
+## Fallback to textarea for testing purpose
+
+Sometime you don't want to use the CKEditor widget but a simple textarea (e.g testing purpose). As CKEditor uses an
+iframe to render the widget, it can be difficult to automate something on it. To disable CKEditor and fallback on the
+parent widget (textarea), simply disable it in your configuration file or in your widget:
+
+```
+# app/config/config_test.yml
+ivory_ck_editor:
+    enable: false
+```
+
+``` php
+$builder->add('field', 'ckeditor', array('enable' => false));
+```
+
+## Use your own CKEditor version
+
+The bundle is shipped with the latest CKEditor 4 full release. If you don't want to use it, the bundle allows you to
+use your own by defining it in your configuration file or in your widget.
+
+First of all, you need to download & extract your version in the web directory. For that, you have 2 possibilities:
+
+  - Directly put it in the web directory (`/web/ckeditor/` for example).
+  - Put it in the `/Resources/public/` directory of any of your bundles.
+
+Then, register it:
+
+```
+# app/config/config.yml
+ivory_ck_editor:
+    base_path: "ckeditor"
+    js_path:   "ckeditor/ckeditor.js"
+```
+
+``` php
+$builder->add('field', 'ckeditor', array(
+    'base_path' => 'ckeditor',
+    'js_path'   => 'ckeditor/ckeditor.js',
+));
+```
+
+**Each path is relative to the web directory**

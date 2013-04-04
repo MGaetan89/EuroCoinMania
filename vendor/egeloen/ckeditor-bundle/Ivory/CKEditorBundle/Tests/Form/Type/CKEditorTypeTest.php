@@ -12,36 +12,60 @@
 namespace Ivory\CKEditorBundle\Tests\Form\Type;
 
 use Ivory\CKEditorBundle\Form\Type\CKEditorType,
-    Ivory\CKEditorBundle\Model\ConfigManager,
-    Ivory\CKEditorBundle\Model\PluginManager,
-    Symfony\Component\Form\Tests\Extension\Core\Type\TypeTestCase;
+    Symfony\Component\Form\Forms;
 
 /**
- * CKEditor type test
+ * CKEditor type test.
  *
  * @author GeLo <geloen.eric@gmail.com>
  */
-class CKEditorTypeTest extends TypeTestCase
+class CKEditorTypeTest extends \PHPUnit_Framework_TestCase
 {
+    /** @var \Symfony\Component\Form\FormFactoryInterface */
+    protected $factory;
+
+    /** @var \Ivory\CKEditorBundle\Form\Type\CKEditorType */
+    protected $ckEditorType;
+
     /** @var \Ivory\CKEditorBundle\Model\ConfigManager */
-    protected $configManager;
+    protected $configManagerMock;
 
     /** @var \Ivory\CKEditorBundle\Model\PluginManager */
-    protected $pluginManager;
+    protected $pluginManagerMock;
+
+    /** @var \Symfony\Component\Templating\Helper\CoreAssetsHelper */
+    protected $assetsHelperMock;
+
+    /** @var \Ivory\CKEditorBundle\Helper\AssetsVersionTrimerHelper */
+    protected $assetsVersionTrimerHelperMock;
 
     /**
      * {@inheritdooc}
      */
     protected function setUp()
     {
-        parent::setUp();
+        $this->configManagerMock = $this->getMock('Ivory\CKEditorBundle\Model\ConfigManagerInterface');
+        $this->pluginManagerMock = $this->getMock('Ivory\CKEditorBundle\Model\PluginManagerInterface');
 
-        $routerMock = $this->getMock('Symfony\Component\Routing\RouterInterface');
-        $this->configManager = new ConfigManager($routerMock);
+        $this->assetsHelperMock = $this->getMockBuilder('Symfony\Component\Templating\Helper\CoreAssetsHelper')
+            ->disableOriginalConstructor()
+            ->getMock();
 
-        $this->pluginManager = new PluginManager();
+        $this->assetsVersionTrimerHelperMock = $this->getMock('Ivory\CKEditorBundle\Helper\AssetsVersionTrimerHelper');
 
-        $this->factory->addType(new CKEditorType($this->configManager, $this->pluginManager));
+        $this->ckEditorType = new CKEditorType(
+            true,
+            'bundles/ckeditor/',
+            'bundles/ckeditor/ckeditor.js',
+            $this->configManagerMock,
+            $this->pluginManagerMock,
+            $this->assetsHelperMock,
+            $this->assetsVersionTrimerHelperMock
+        );
+
+        $this->factory = Forms::createFormFactoryBuilder()
+            ->addType($this->ckEditorType)
+            ->getFormFactory();
     }
 
     /**
@@ -49,17 +73,32 @@ class CKEditorTypeTest extends TypeTestCase
      */
     protected function tearDown()
     {
-        unset($this->configManager);
-        unset($this->pluginManager);
+        unset($this->assetsVersionTrimerHelperMock);
+        unset($this->assetsHelperMock);
+        unset($this->configManagerMock);
+        unset($this->pluginManagerMock);
+        unset($this->ckEditorType);
+        unset($this->factory);
+    }
+
+    public function testInitialState()
+    {
+        $this->assertTrue($this->ckEditorType->isEnable());
+        $this->assertSame('bundles/ckeditor/', $this->ckEditorType->getBasePath());
+        $this->assertSame('bundles/ckeditor/ckeditor.js', $this->ckEditorType->getJsPath());
+        $this->assertSame($this->configManagerMock, $this->ckEditorType->getConfigManager());
+        $this->assertSame($this->pluginManagerMock, $this->ckEditorType->getPluginManager());
+        $this->assertSame($this->assetsHelperMock, $this->ckEditorType->getAssetsHelper());
+        $this->assertSame($this->assetsVersionTrimerHelperMock, $this->ckEditorType->getAssetsVersionTrimerHelper());
     }
 
     public function testDefaultRequired()
     {
         $form = $this->factory->create('ckeditor');
         $view = $form->createView();
-        $required = $view->get('required');
 
-        $this->assertFalse($required);
+        $this->assertArrayHasKey('required', $view->vars);
+        $this->assertFalse($view->vars['required']);
     }
 
     /**
@@ -74,12 +113,69 @@ class CKEditorTypeTest extends TypeTestCase
         $this->factory->create('ckeditor', null, array('required' => true));
     }
 
+    public function testBaseAndJsPathWithConfiguredValues()
+    {
+        $this->assetsHelperMock
+            ->expects($this->any())
+            ->method('getUrl')
+            ->will($this->returnValueMap(array(
+                array('bundles/ckeditor/', null, '/bundles/ckeditor/?v=1'),
+                array('bundles/ckeditor/ckeditor.js', null, '/bundles/ckeditor/ckeditor.js?v=1')
+            )));
+
+        $this->assetsVersionTrimerHelperMock
+            ->expects($this->once())
+            ->method('trim')
+            ->with($this->equalTo('/bundles/ckeditor/?v=1'))
+            ->will($this->returnValue('/bundles/ckeditor/'));
+
+        $form = $this->factory->create('ckeditor');
+        $view = $form->createView();
+
+        $this->assertArrayHasKey('base_path', $view->vars);
+        $this->assertSame('/bundles/ckeditor/', $view->vars['base_path']);
+
+        $this->assertArrayHasKey('js_path', $view->vars);
+        $this->assertSame('/bundles/ckeditor/ckeditor.js?v=1', $view->vars['js_path']);
+    }
+
+    public function testBaseAndJsPathWithConfiguredAndExplicitValues()
+    {
+        $this->assetsHelperMock
+            ->expects($this->any())
+            ->method('getUrl')
+            ->will($this->returnValueMap(array(
+                array('foo/', null, '/foo/?v=1'),
+                array('foo/ckeditor.js', null, '/foo/ckeditor.js?v=1')
+            )));
+
+        $this->assetsVersionTrimerHelperMock
+            ->expects($this->once())
+            ->method('trim')
+            ->with($this->equalTo('/foo/?v=1'))
+            ->will($this->returnValue('/foo/'));
+
+        $form = $this->factory->create('ckeditor', null, array(
+            'base_path' => 'foo/',
+            'js_path'   => 'foo/ckeditor.js',
+        ));
+
+        $view = $form->createView();
+
+        $this->assertArrayHasKey('base_path', $view->vars);
+        $this->assertSame('/foo/', $view->vars['base_path']);
+
+        $this->assertArrayHasKey('js_path', $view->vars);
+        $this->assertSame('/foo/ckeditor.js?v=1', $view->vars['js_path']);
+    }
+
     public function testDefaultConfig()
     {
         $form = $this->factory->create('ckeditor');
         $view = $form->createView();
 
-        $this->assertEmpty($view->get('config'));
+        $this->assertArrayHasKey('config', $view->vars);
+        $this->assertEmpty(json_decode($view->vars['config'], true));
     }
 
     public function testConfigWithExplicitConfig()
@@ -91,10 +187,22 @@ class CKEditorTypeTest extends TypeTestCase
             ),
         );
 
+        $this->configManagerMock
+            ->expects($this->once())
+            ->method('setConfig')
+            ->with($this->anything(), $this->equalTo($options['config']));
+
+        $this->configManagerMock
+            ->expects($this->once())
+            ->method('getConfig')
+            ->with($this->anything())
+            ->will($this->returnValue($options['config']));
+
         $form = $this->factory->create('ckeditor', null, $options);
         $view = $form->createView();
 
-        $this->assertSame($options['config'], $view->get('config'));
+        $this->assertArrayHasKey('config', $view->vars);
+        $this->assertSame($options['config'], json_decode($view->vars['config'], true));
     }
 
     public function testConfigWithConfiguredConfig()
@@ -104,12 +212,22 @@ class CKEditorTypeTest extends TypeTestCase
             'ui_color' => '#ffffff',
         );
 
-        $this->configManager->setConfig('default', $config);
+        $this->configManagerMock
+            ->expects($this->once())
+            ->method('mergeConfig')
+            ->with($this->equalTo('default'), $this->equalTo(array()));
+
+        $this->configManagerMock
+            ->expects($this->once())
+            ->method('getConfig')
+            ->with('default')
+            ->will($this->returnValue($config));
 
         $form = $this->factory->create('ckeditor', null, array('config_name' => 'default'));
         $view = $form->createView();
 
-        $this->assertSame($config, $view->get('config'));
+        $this->assertArrayHasKey('config', $view->vars);
+        $this->assertSame($config, json_decode($view->vars['config'], true));
     }
 
     public function testConfigWithExplicitAndConfiguredConfig()
@@ -121,7 +239,16 @@ class CKEditorTypeTest extends TypeTestCase
 
         $explicitConfig = array('ui_color' => '#000000');
 
-        $this->configManager->setConfig('default', $configuredConfig);
+        $this->configManagerMock
+            ->expects($this->once())
+            ->method('mergeConfig')
+            ->with($this->equalTo('default'), $this->equalTo($explicitConfig));
+
+        $this->configManagerMock
+            ->expects($this->once())
+            ->method('getConfig')
+            ->with('default')
+            ->will($this->returnValue(array_merge($configuredConfig, $explicitConfig)));
 
         $form = $this->factory->create('ckeditor', null, array(
             'config_name' => 'default',
@@ -130,7 +257,8 @@ class CKEditorTypeTest extends TypeTestCase
 
         $view = $form->createView();
 
-        $this->assertSame(array_merge($configuredConfig, $explicitConfig), $view->get('config'));
+        $this->assertArrayHasKey('config', $view->vars);
+        $this->assertSame(array_merge($configuredConfig, $explicitConfig), json_decode($view->vars['config'], true));
     }
 
     public function testDefaultPlugins()
@@ -138,54 +266,141 @@ class CKEditorTypeTest extends TypeTestCase
         $form = $this->factory->create('ckeditor');
         $view = $form->createView();
 
-        $this->assertEmpty($view->get('plugins'));
+        $this->assertArrayHasKey('plugins', $view->vars);
+        $this->assertEmpty($view->vars['plugins']);
     }
 
     public function testPluginsWithExplicitPlugins()
     {
-        $plugins = $plugins = array('wordcount' => array(
-            'path'     => '/my/path',
-            'filename' => 'plugin.js',
-        ));
+        $plugins = array(
+            'wordcount' => array(
+                'path'     => '/my/path',
+                'filename' => 'plugin.js',
+            ),
+        );
+
+        $this->pluginManagerMock
+            ->expects($this->once())
+            ->method('setPlugins')
+            ->with($this->equalTo($plugins));
+
+        $this->pluginManagerMock
+            ->expects($this->once())
+            ->method('getPlugins')
+            ->will($this->returnValue($plugins));
 
         $form = $this->factory->create('ckeditor', null, array('plugins' => $plugins));
+
         $view = $form->createView();
 
-        $this->assertSame($plugins, $view->get('plugins'));
+        $this->assertArrayHasKey('plugins', $view->vars);
+        $this->assertSame($plugins, $view->vars['plugins']);
     }
 
     public function testPluginsWithConfiguredPlugins()
     {
-        $plugins = array('wordcount' => array(
-            'path'     => '/my/path',
-            'filename' => 'plugin.js',
-        ));
+        $plugins = array(
+            'wordcount' => array(
+                'path'     => '/my/path',
+                'filename' => 'plugin.js',
+            ),
+        );
 
-        $this->pluginManager->setPlugins($plugins);
+        $this->pluginManagerMock
+            ->expects($this->once())
+            ->method('getPlugins')
+            ->will($this->returnValue($plugins));
 
         $form = $this->factory->create('ckeditor');
         $view = $form->createView();
 
-        $this->assertSame($plugins, $view->get('plugins'));
+        $this->assertArrayHasKey('plugins', $view->vars);
+        $this->assertSame($plugins, $view->vars['plugins']);
     }
 
     public function testPluginsWithConfiguredAndExplicitPlugins()
     {
-        $configuredPlugins = array('wordcount' => array(
-            'path'     => '/my/path',
-            'filename' => 'plugin.js',
-        ));
+        $configuredPlugins = array(
+            'wordcount' => array(
+                'path'     => '/my/explicit/path',
+                'filename' => 'plugin.js',
+            ),
+        );
 
-        $explicitPlugins = array('autogrow' => array(
-            'path'     => '/my/path',
-            'filename' => 'plugin.js',
-        ));
+        $explicitPlugins = array(
+            'autogrow' => array(
+                'path'     => '/my/configured/path',
+                'filename' => 'plugin.js',
+            ),
+        );
 
-        $this->pluginManager->setPlugins($configuredPlugins);
+        $this->pluginManagerMock
+            ->expects($this->once())
+            ->method('setPlugins')
+            ->with($this->equalTo($explicitPlugins));
+
+        $this->pluginManagerMock
+            ->expects($this->once())
+            ->method('getPlugins')
+            ->will($this->returnValue(array_merge($explicitPlugins, $configuredPlugins)));
 
         $form = $this->factory->create('ckeditor', null, array('plugins' => $explicitPlugins));
         $view = $form->createView();
 
-        $this->assertSame(array_merge($configuredPlugins, $explicitPlugins), $view->get('plugins'));
+        $this->assertArrayHasKey('plugins', $view->vars);
+        $this->assertSame(array_merge($explicitPlugins, $configuredPlugins), $view->vars['plugins']);
+    }
+
+    public function testConfiguredDisable()
+    {
+        $this->ckEditorType->isEnable(false);
+
+        $options = array(
+            'config' => array(
+                'toolbar'  => array('foo' => 'bar'),
+                'ui_color' => '#ffffff',
+            ),
+            'plugins' => array(
+                'wordcount' => array(
+                    'path'     => '/my/path',
+                    'filename' => 'plugin.js',
+                ),
+            ),
+        );
+
+        $form = $this->factory->create('ckeditor', null, $options);
+        $view = $form->createView();
+
+        $this->assertArrayHasKey('enable', $view->vars);
+        $this->assertFalse($view->vars['enable']);
+
+        $this->assertArrayNotHasKey('config', $view->vars);
+        $this->assertArrayNotHasKey('plugins', $view->vars);
+    }
+
+    public function testExplicitDisable()
+    {
+        $options = array(
+            'enable' => false,
+            'config' => array(
+                'toolbar'  => array('foo' => 'bar'),
+                'ui_color' => '#ffffff',
+            ),
+            'plugins' => array(
+                'wordcount' => array(
+                    'path'     => '/my/path',
+                    'filename' => 'plugin.js',
+                ),
+            ),
+        );
+
+        $form = $this->factory->create('ckeditor', null, $options);
+        $view = $form->createView();
+
+        $this->assertArrayHasKey('enable', $view->vars);
+        $this->assertFalse($view->vars['enable']);
+
+        $this->assertArrayNotHasKey('config', $view->vars);
+        $this->assertArrayNotHasKey('plugins', $view->vars);
     }
 }

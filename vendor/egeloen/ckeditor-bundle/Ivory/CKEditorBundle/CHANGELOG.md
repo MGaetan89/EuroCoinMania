@@ -1,5 +1,19 @@
 # CHANGELOG
 
+### 1.1.3 - 2.1.3 (2013-03-18)
+
+ * 464fd64 - Add PHP templating engine support
+ * eb7c407 - Remove trim asset version twig extension & use the service instead
+ * 3634c65 - Allow to use custom CKEditor versions
+ * cca336a - Extract assets version trim logic in a dedicated service
+ * 2093bcb - [Type] Allow to disable CKEditor at the widget level
+ * c1a89c3 - [PluginManager] Refactor to handle assets support
+ * 4250a92 - [ConfigManager] Fix contentsCss if the application does not live at the root of the host
+ * a2384c7 - Fix CKEditor destruction when it is loaded multiple times by AJAX (Sonata compatibility)
+ * de8073f - Upgrade CKEditor to 4.0.2
+ * 861d418 - Allow to disable ckeditor widget for testing purpose
+ * ec29bfb - [Build] Add bash script to sync stable CKEditor release
+
 ### 1.1.2 - 2.1.2 (2013-02-19)
 
  * a6b1556 - Add plugins support
