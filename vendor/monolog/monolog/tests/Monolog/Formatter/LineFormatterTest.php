@@ -86,11 +86,25 @@ class LineFormatterTest extends \PHPUnit_Framework_TestCase
             'extra' => array('foo' => new TestFoo, 'bar' => new TestBar, 'baz' => array(), 'res' => fopen('php://memory', 'rb')),
             'message' => 'foobar',
         ));
-        if (version_compare(PHP_VERSION, '5.4.0', '>=')) {
-            $this->assertEquals('['.date('Y-m-d').'] meh.ERROR: foobar [] {"foo":"[object] (Monolog\\\\Formatter\\\\TestFoo: {\\"foo\\":\\"foo\\"})","bar":"[object] (Monolog\\\\Formatter\\\\TestBar: {})","baz":[],"res":"[resource]"}'."\n", $message);
-        } else {
-            $this->assertEquals('['.date('Y-m-d').'] meh.ERROR: foobar [] {"foo":"[object] (Monolog\\Formatter\\TestFoo: {"foo":"foo"})","bar":"[object] (Monolog\\Formatter\\TestBar: {})","baz":[],"res":"[resource]"}'."\n", $message);
-        }
+
+        $this->assertEquals('['.date('Y-m-d').'] meh.ERROR: foobar [] {"foo":"[object] (Monolog\\\\Formatter\\\\TestFoo: {\\"foo\\":\\"foo\\"})","bar":"[object] (Monolog\\\\Formatter\\\\TestBar: {})","baz":[],"res":"[resource]"}'."\n", $message);
+    }
+
+    public function testDefFormatWithException()
+    {
+        $formatter = new LineFormatter(null, 'Y-m-d');
+        $message = $formatter->format(array(
+            'level_name' => 'CRITICAL',
+            'channel' => 'core',
+            'context' => array('exception' => new \RuntimeException('Foo')),
+            'datetime' => new \DateTime,
+            'extra' => array(),
+            'message' => 'foobar',
+        ));
+
+        $path = str_replace('\\/', '/', json_encode(__FILE__));
+
+        $this->assertEquals('['.date('Y-m-d').'] core.CRITICAL: foobar {"exception":"[object] (RuntimeException: Foo at '.substr($path, 1, -1).':'.(__LINE__-8).')"} []'."\n", $message);
     }
 
     public function testBatchFormat()

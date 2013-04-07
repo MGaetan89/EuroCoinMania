@@ -1,6 +1,8 @@
 sonata_admin:
     title: Administration
     title_logo: /favicon.png
+    templates:
+        layout:  SonataAdminBundle::layout.html.twig
     dashboard:
         blocks:
             - { position: left,  type: sonata.admin.block.admin_list, settings: { groups: [Collection, sonata_media] } }
