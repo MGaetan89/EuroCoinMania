@@ -7,7 +7,7 @@
 		{{ form_errors(form) }}
 	</div>
 {% endspaceless %}
-{% endblock form_widget_simple %}
+{% endblock %}
 
 {% block textarea_widget %}
 {% spaceless %}
@@ -16,7 +16,17 @@
 		{{ form_errors(form) }}
 	</div>
 {% endspaceless %}
-{% endblock textarea_widget %}
+{% endblock %}
+
+{% block choice_widget %}
+{% spaceless %}
+	{% if expanded %}
+		{{ block('choice_widget_expanded') }}
+	{% else %}
+		{{ block('choice_widget_collapsed') }}
+	{% endif %}
+{% endspaceless %}
+{% endblock %}
 
 {% block choice_widget_expanded %}
 {% spaceless %}
@@ -24,7 +34,7 @@
 		{{ form_widget(child) }}
 	{% endfor %}
 {% endspaceless %}
-{% endblock choice_widget_expanded %}
+{% endblock %}
 
 {% block radio_widget %}
 {% spaceless %}
@@ -34,7 +44,7 @@
 		{{ label|trans({}, translation_domain) }}
 	</label>
 {% endspaceless %}
-{% endblock radio_widget %}
+{% endblock %}
 
 {% block form_label %}
 {% spaceless %}
@@ -60,7 +70,7 @@
 		{% endif %}
 	</label>
 {% endspaceless %}
-{% endblock form_label %}
+{% endblock %}
 
 {% block form_row %}
 {% spaceless %}
@@ -69,7 +79,7 @@
 		{{ form_widget(form) }}
 	</div>
 {% endspaceless %}
-{% endblock form_row %}
+{% endblock %}
 
 {% block date_widget %}
 {% spaceless %}
@@ -89,7 +99,7 @@
 		{{ form_errors(form) }}
 	</div>
 {% endspaceless %}
-{% endblock date_widget %}
+{% endblock %}
 
 {% block form_errors %}
 {% spaceless %}
@@ -107,4 +117,7 @@
 		</span>
 	{% endif %}
 {% endspaceless %}
-{% endblock form_errors %}
+{% endblock %}
+
+{% block field_row %}{{ block('form_row') }}{% endblock %}
+
