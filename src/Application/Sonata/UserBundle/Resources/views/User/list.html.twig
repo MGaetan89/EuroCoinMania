@@ -63,7 +63,7 @@
 					</a>
 
 					{% if user.allowexchanges %}
-						{% if app.user and app.user.id != user.id %}
+						{% if app.user and app.user.id != user.id and app.user.allowexchanges %}
 							<a href="{{ path('exchange_coins_request', { id: user.id, name: user.username }) }}">
 						{% endif %}
 
@@ -71,7 +71,7 @@
 								<i class="icon-refresh"></i>
 							</span>
 
-						{% if app.user and app.user.id != user.id %}
+						{% if app.user and app.user.id != user.id and app.user.allowexchanges %}
 							</a>
 						{% endif %}
 					{% endif %}
@@ -91,10 +91,15 @@
 				{% if app.user %}
 					<td style="vertical-align: middle;">
 						{% if app.user.id != user.id %}
-						<a href="{{ path('pm_write', { id: user.id, user: user.username }) }}">
-							<i class="icon-envelope"></i>
-							{{ 'user.contact_pm'|trans }}
-						</a>
+							<a href="{{ path('pm_write', { id: user.id, user: user.username }) }}">
+								<i class="icon-envelope"></i>
+								{{ 'user.contact_pm'|trans }}
+							</a>
+						{% else %}
+							<span title="{{ 'pm.not_self'|trans }}" data-hover="tooltip">
+								<i class="icon-envelope"></i>
+								{{ 'user.contact_pm'|trans }}
+							</span>
 						{% endif %}
 					</td>
 				{% endif %}
