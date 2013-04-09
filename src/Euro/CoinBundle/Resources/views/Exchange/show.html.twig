@@ -32,7 +32,13 @@
 					<button class="btn btn-info btn-mini" title="{{ 'coin.information'|trans }}" data-action="query-coin-info" data-loading-text="?">?</button>
 				</span>
 
-				<span class="offset1">{{ macros.coin(coin, true) }}</span>
+				<span class="offset1">
+					{{ macros.coin(coin, true) }}
+				</span>
+
+				{% if coin.description %}
+					<blockquote style="margin-bottom: 0;">{{ coin.description }}</blockquote>
+				{% endif %}
 			{% endif %}
 		</td>
 		<td>
@@ -45,6 +51,10 @@
 				</span>
 
 				<span class="offset1">{{ macros.coin(coin, true) }}</span>
+
+				{% if coin.description %}
+					<blockquote style="margin-bottom: 0;">{{ coin.description }}</blockquote>
+				{% endif %}
 			{% endif %}
 		</td>
 	</tr>
