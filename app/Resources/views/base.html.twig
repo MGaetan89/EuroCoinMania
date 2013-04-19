@@ -27,7 +27,7 @@
 		{{ 'sitename'|trans }}
 	</title>
 
-	{% if app.environment == 'prod' %}
+	{% if app.environment == 'prod' && !app.debug %}
 		<script type="text/javascript">
 		var _gaq = _gaq || [];
 		_gaq.push(['_setAccount', 'UA-34775644-1']);
