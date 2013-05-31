@@ -2,22 +2,6 @@ comment.author.email: E-mail address
 comment.author.name: Name
 comment.author.website: Website
 comment.message: Message
-edit.bold.symbol: B
-edit.bold.title: Bold
-edit.image.symbol: ~
-edit.image.title: Image
-edit.italic.symbol: I
-edit.italic.title: Italic
-edit.link.symbol: ~
-edit.link.title: Link
-edit.list.symbol: '- &hellip;'
-edit.list.title: List
-edit.list-ordered.symbol: '1. &hellip;'
-edit.list-ordered.title: Ordered list
-edit.separator.symbol: '&ndash;'
-edit.separator.title: Horizontal separator
-edit.underline.symbol: U
-edit.underline.title: Underline
 news: News
 news.archives: Archives
 news.archives.meta_description: EuroCoin Mania news archives

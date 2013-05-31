@@ -16,8 +16,6 @@
 		{{ form_row(form.url, { label: 'comment.author.website'|trans }) }}
 	{% endif %}
 
-	{% include 'ApplicationSonataNewsBundle:Post:editor.html.twig' with { target: 'comment_message' } %}
-
 	{{ form_row(form.message, { attr: { class: 'span7', rows: 6 }, label: 'comment.message'|trans }) }}
 
 	{{ form_rest(form) }}

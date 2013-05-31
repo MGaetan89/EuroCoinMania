@@ -1,12 +1,38 @@
 {% extends 'EuroPrivateMessageBundle:PrivateMessage:base.html.twig' %}
 
 {% block content %}
-<a class="btn btn-primary pull-right" href="{{ path('pm_write') }}">{{ 'pm.write'|trans }}</a>
+<form action="{{ path('pm_write_process') }}" class="form-horizontal" id="write-form" method="post">
+	{% if user_id is defined and user_id != '' %}
+		{{ form_row(form.to_user, { label: 'pm.form.to_user', attr: {
+			class: 'uneditable-input',
+			'data-id': user_id,
+			readonly: 'readonly'
+		}, value: user_name }) }}
+	{% else %}
+		{{ form_row(form.to_user, { label: 'pm.form.to_user' }) }}
+	{% endif %}
 
-{% include 'EuroPrivateMessageBundle:PrivateMessage:write_content.html.twig' %}
+	{{ form_row(form.title, { label: 'pm.form.title' }) }}
+
+	{{ form_row(form.contentFormatter) }}
+	{{ form_row(form.content, { attr: { class: (user_id is defined) ? 'span6' : 'span3' }, label: 'pm.form.message' }) }}
+
+	{{ form_rest(form) }}
+
+	<div class="form-actions">
+		<button class="btn btn-primary" type="submit">{{ 'pm.send'|trans }}</button>
+		<button class="btn" data-dismiss="modal">{{ 'close'|trans }}</button>
+	</div>
+</form>
 {% endblock %}
 
 {% block javascript %}
 <script src="{{ asset('bundles/applicationsonatanews/js/editor.js') }}" type="text/javascript"></script>
 <script src="{{ asset('bundles/europrivatemessage/js/write_pm.js') }}" type="text/javascript"></script>
+
+<script src="{{ asset('bundles/ivoryckeditor/ckeditor.js') }}" type="text/javascript"></script>
+<script src="{{ asset('bundles/sonatamarkitup/markitup/markitup/jquery.markitup.js') }}" type="text/javascript"></script>
+<script src="{{ asset('bundles/sonatamarkitup/markitup/markitup/sets/markdown/set.js') }}" type="text/javascript"></script>
+<script src="{{ asset('bundles/sonatamarkitup/markitup/markitup/sets/html/set.js') }}" type="text/javascript"></script>
+<script src="{{ asset('bundles/sonatamarkitup/markitup/markitup/sets/textile/set.js') }}" type="text/javascript"></script>
 {% endblock %}
