@@ -35,6 +35,11 @@ class ProfileType extends AbstractType {
 				->add('facebookuid', null, array('required' => false))
 				->add('twitteruid', null, array('required' => false))
 				->add('gplusuid', null, array('required' => false))
+				->add('contentFormatter', 'sonata_formatter_type_selector', array(
+					'source' => 'biography',
+					'target' => 'biography',
+					'virtual'=> true
+				))
 				->add('biography', 'textarea', array('required' => false));
 	}
 
