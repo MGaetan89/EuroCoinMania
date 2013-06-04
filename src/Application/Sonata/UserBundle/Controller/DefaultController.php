@@ -177,10 +177,11 @@ class DefaultController extends BaseController {
 				));
 	}
 
-	/**
-	 * @Secure(roles="ROLE_USER")
-	 */
 	public function preferencesAction(Request $request) {
+		if (!$this->get('security.context')->isGranted('ROLE_ADMIN')) {
+			throw new AccessDeniedException();
+		}
+
 		$user = $this->getUser();
 		$default = array(
 			'allow_exchanges' => $user->getAllowExchanges(),
@@ -212,10 +213,11 @@ class DefaultController extends BaseController {
 				));
 	}
 
-	/**
-	 * @Secure(roles="ROLE_USER")
-	 */
 	public function queryAction(Request $request) {
+		if (!$this->get('security.context')->isGranted('ROLE_ADMIN')) {
+			throw new AccessDeniedException();
+		}
+
 		$user = $this->getUser();
 		$query = strtolower($request->request->get('query'));
 
