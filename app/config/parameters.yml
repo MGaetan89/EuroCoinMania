@@ -1,18 +1,14 @@
+# This file is auto-generated during the composer install
 parameters:
-    database_driver:   pdo_mysql
-    database_host:     127.0.0.1
-    database_port:     ~
-    database_name:     eurocoinsite
-    database_user:     root
-    database_password: ~
-    database_path:     ~
-
-    mailer_transport:  mail
-    mailer_host:       localhost
-    mailer_port:       25
-    mailer_user:       contact@eurocoin-mania.eu
-    mailer_password:   ~
-    mailer_encryption: ssl
-
-    locale:            en
-    secret:            d6103a76bf071c49945ae4d9fd69e98fc
+    database_driver: pdo_mysql
+    database_host: 127.0.0.1
+    database_port: null
+    database_name: eurocoinsite
+    database_user: root
+    database_password: null
+    mailer_transport: mail
+    mailer_host: localhost
+    mailer_user: contact@eurocoin-mania.eu
+    mailer_password: null
+    locale: en
+    secret: d6103a76bf071c49945ae4d9fd69e98fc

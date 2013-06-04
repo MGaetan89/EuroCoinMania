@@ -8,17 +8,14 @@ class AppKernel extends Kernel {
 	public function registerBundles() {
 		$bundles = array(
 			// Default bundles
-			new Symfony\Bundle\AsseticBundle\AsseticBundle(),
 			new Symfony\Bundle\FrameworkBundle\FrameworkBundle(),
-			new Symfony\Bundle\MonologBundle\MonologBundle(),
 			new Symfony\Bundle\SecurityBundle\SecurityBundle(),
-			new Symfony\Bundle\SwiftmailerBundle\SwiftmailerBundle(),
 			new Symfony\Bundle\TwigBundle\TwigBundle(),
+			new Symfony\Bundle\MonologBundle\MonologBundle(),
+			new Symfony\Bundle\SwiftmailerBundle\SwiftmailerBundle(),
+			new Symfony\Bundle\AsseticBundle\AsseticBundle(),
 			new Doctrine\Bundle\DoctrineBundle\DoctrineBundle(),
 			new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
-			new JMS\AopBundle\JMSAopBundle(),
-			new JMS\DiExtraBundle\JMSDiExtraBundle($this),
-			new JMS\SecurityExtraBundle\JMSSecurityExtraBundle(),
 
 			// Installed bundles
 			new FOS\UserBundle\FOSUserBundle(),
