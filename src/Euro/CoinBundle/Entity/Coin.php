@@ -78,6 +78,13 @@ class Coin {
 	private $image;
 
 	/**
+	 * @var boolean $active
+	 *
+	 * @ORM\Column(name="active", type="boolean")
+	 */
+	private $active;
+
+	/**
 	 * Get id
 	 *
 	 * @return integer
@@ -284,5 +291,25 @@ class Coin {
 	public function getImage() {
 		return $this->image;
 	}
+
+	/**
+	 * Set active
+	 *
+	 * @param boolean $active
+	 */
+	public function setActive($active) {
+		$this->active = $active;
+
+		return $this;
+	}
+	
+	/**
+	 * Get active
+	 *
+	 * @return boolean
+	 */
+	 public function isActive() {
+	 	return $this->active;
+	 }
 
 }
