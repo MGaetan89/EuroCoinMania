@@ -76,6 +76,7 @@ country.currency.germany: German Mark
 country.currency.greece: Greek drachma
 country.currency.ireland: Irish pound
 country.currency.italy: Italian lira
+country.currency.latvia: Latvian lats
 country.currency.luxembourg: Luxembourgish franc
 country.currency.malta: Maltese lira
 country.currency.monaco: Monegasque franc
@@ -101,6 +102,7 @@ country.name.germany: Germany
 country.name.greece: Greece
 country.name.ireland: Ireland
 country.name.italy: Italy
+country.name.latvia: Latvia
 country.name.luxembourg: Luxembourg
 country.name.malta: Malta
 country.name.monaco: Monaco
