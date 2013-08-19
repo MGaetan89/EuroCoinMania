@@ -67,7 +67,7 @@ class ConfigManagerTest extends \PHPUnit_Framework_TestCase
      *
      * @return array The valid filebrowsers keys.
      */
-    static public function filebrowserProvider()
+    public static function filebrowserProvider()
     {
         return array(
             array('Browse'),
@@ -85,6 +85,7 @@ class ConfigManagerTest extends \PHPUnit_Framework_TestCase
         $this->assertSame($this->assetsHelperMock, $this->configManager->getAssetsHelper());
         $this->assertSame($this->assetsVersionTrimerHelperMock, $this->configManager->getAssetsVersionTrimerHelper());
         $this->assertSame($this->routerMock, $this->configManager->getRouter());
+        $this->assertNull($this->configManager->getDefaultConfig());
         $this->assertFalse($this->configManager->hasConfigs());
         $this->assertEmpty($this->configManager->getConfigs());
     }
@@ -100,9 +101,11 @@ class ConfigManagerTest extends \PHPUnit_Framework_TestCase
             $this->assetsHelperMock,
             $this->assetsVersionTrimerHelperMock,
             $this->routerMock,
-            $configs
+            $configs,
+            'foo'
         );
 
+        $this->assertSame('foo', $this->configManager->getDefaultConfig());
         $this->assertTrue($this->configManager->hasConfigs());
         $this->assertSame($configs, $this->configManager->getConfigs());
     }
@@ -121,6 +124,21 @@ class ConfigManagerTest extends \PHPUnit_Framework_TestCase
         $this->configManager->mergeConfig('foo', $config2 = array('foo' => 'baz'));
 
         $this->assertSame(array_merge($config1, $config2), $this->configManager->getConfig('foo'));
+    }
+
+    public function testDefaultCOnfig()
+    {
+        $this->configManager->setConfig('foo', array('foo' => 'bar'));
+        $this->configManager->setDefaultConfig('foo');
+    }
+
+    /**
+     * @expectedException \Ivory\CKEditorBundle\Exception\ConfigManagerException
+     * @expectedExceptionMessage The CKEditor config "foo" does not exist.
+     */
+    public function testDefaultConfigWithInvalidValue()
+    {
+        $this->configManager->setDefaultConfig('foo');
     }
 
     public function testConfigContentsCssWithString()
@@ -147,18 +165,12 @@ class ConfigManagerTest extends \PHPUnit_Framework_TestCase
         $this->assetsHelperMock
             ->expects($this->any())
             ->method('getUrl')
-            ->will($this->returnValueMap(array(
-                array('foo', null, 'foo1'),
-                array('bar', null, 'bar1'),
-            )));
+            ->will($this->returnValueMap(array(array('foo', null, 'foo1'), array('bar', null, 'bar1'))));
 
         $this->assetsVersionTrimerHelperMock
             ->expects($this->any())
             ->method('trim')
-            ->will($this->returnValueMap(array(
-                array('foo1', 'baz1'),
-                array('bar1', 'baz2'),
-            )));
+            ->will($this->returnValueMap(array(array('foo1', 'baz1'), array('bar1', 'baz2'))));
 
         $this->configManager->setConfig('foo', array('contentsCss' => array('foo', 'bar')));
 
@@ -180,11 +192,14 @@ class ConfigManagerTest extends \PHPUnit_Framework_TestCase
             )
             ->will($this->returnValue('browse_url'));
 
-        $this->configManager->setConfig('foo', array(
-            'filebrowser'.$filebrowser.'Route'           => 'browse_route',
-            'filebrowser'.$filebrowser.'RouteParameters' => array('foo' => 'bar'),
-            'filebrowser'.$filebrowser.'RouteAbsolute'   => true
-        ));
+        $this->configManager->setConfig(
+            'foo',
+            array(
+                'filebrowser'.$filebrowser.'Route'           => 'browse_route',
+                'filebrowser'.$filebrowser.'RouteParameters' => array('foo' => 'bar'),
+                'filebrowser'.$filebrowser.'RouteAbsolute'   => true,
+            )
+        );
 
         $this->assertSame(
             array('filebrowser'.$filebrowser.'Url' => 'browse_url'),

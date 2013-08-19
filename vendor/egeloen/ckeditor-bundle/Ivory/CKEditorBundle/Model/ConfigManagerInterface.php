@@ -19,25 +19,39 @@ namespace Ivory\CKEditorBundle\Model;
 interface ConfigManagerInterface
 {
     /**
+     * Gets the default configuration name.
+     *
+     * @return string The default configuration name.
+     */
+    public function getDefaultConfig();
+
+    /**
+     * Sets the default configuration name.
+     *
+     * @param string $defaultConfig The default configuration name.
+     */
+    public function setDefaultConfig($defaultConfig);
+
+    /**
      * Checks if the CKEditor configs exists.
      *
      * @return boolean TRUE if the CKEditor configs exists else FALSE.
      */
-    function hasConfigs();
+    public function hasConfigs();
 
     /**
      * Gets the CKEditor configs.
      *
      * @return array The CKEditor configs.
      */
-    function getConfigs();
+    public function getConfigs();
 
     /**
      * Sets the CKEditor configs.
      *
      * @param array $configs The CKEditor configs.
      */
-    function setConfigs(array $configs);
+    public function setConfigs(array $configs);
 
     /**
      * Checks if a specific CKEditor config exists.
@@ -46,7 +60,7 @@ interface ConfigManagerInterface
      *
      * @return boolean TRUE if the CKEditor config exists else FALSE.
      */
-    function hasConfig($name);
+    public function hasConfig($name);
 
     /**
      * Gets a specific CKEditor config.
@@ -55,7 +69,7 @@ interface ConfigManagerInterface
      *
      * @return array The CKEditor config.
      */
-    function getConfig($name);
+    public function getConfig($name);
 
     /**
      * Sets a CKEditor config.
@@ -63,7 +77,7 @@ interface ConfigManagerInterface
      * @param string $name   The CKEditor config name.
      * @param array  $config The CKEditor config.
      */
-    function setConfig($name, array $config);
+    public function setConfig($name, array $config);
 
     /**
      * Merges a CKEditor config.
@@ -71,5 +85,5 @@ interface ConfigManagerInterface
      * @param string $name   The CKEditor config name.
      * @param array  $config The CKEditor config.
      */
-    function mergeConfig($name, array $config);
+    public function mergeConfig($name, array $config);
 }

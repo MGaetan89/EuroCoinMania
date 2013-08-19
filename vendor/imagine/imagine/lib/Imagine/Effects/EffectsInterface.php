@@ -50,11 +50,20 @@ interface EffectsInterface
     /**
      * Colorize the image
      *
-     * @param Color             $color
+     * @param Color $color
      *
      * @return EffectsInterface
      *
      * @throws RuntimeException
      */
     public function colorize(Color $color);
+
+    /**
+     * Sharpens the image
+     *
+     * @return EffectsInterface
+     *
+     * @throws RuntimeException
+     */
+    public function sharpen();
 }

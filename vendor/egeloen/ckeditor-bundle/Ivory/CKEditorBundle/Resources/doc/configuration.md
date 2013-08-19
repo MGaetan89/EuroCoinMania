@@ -13,7 +13,7 @@ ivory_ck_editor:
     configs:
         my_config:
             toolbar:                [ [ "Source", "-", "Save" ], "/", [ "Anchor" ], "/", [ "Maximize" ] ]
-            ui_color:               "#000000"
+            uiColor:                "#000000"
             filebrowserUploadRoute: "my_route"
             extraPlugins:           "wordcount"
             # ...
@@ -32,8 +32,18 @@ If you want to override some parts of the defined config, you can still use the 
 ``` php
 $builder->add('field', 'ckeditor', array(
     'config_name' => 'my_config',
-    'config'      => array('ui_color' => '#ffffff'),
+    'config'      => array('uiColor' => '#ffffff'),
 ));
+```
+
+If you want to define globally your configuration, you can use the `default_config` node:
+
+``` yaml
+ivory_ck_editor:
+    default_config: my_config
+    configs:
+        my_config:
+            # ...
 ```
 
 ## Advanced configuration
@@ -46,16 +56,16 @@ separate node & reuse them:
 ivory_ck_editor:
     configs:
         my_config_1:
-            toolbar:  "my_toolbar_1"
-            ui_color: "#000000"
+            toolbar: "my_toolbar_1"
+            uiColor: "#000000"
             # ...
         my_config_2:
-            toolbar:  "my_toolbar_2"
-            ui_color: "#ffffff"
+            toolbar: "my_toolbar_2"
+            uiColor: "#ffffff"
             # ...
         my_config_2:
-            toolbar:  "my_toolbar_1"
-            ui_color: "#cccccc"
+            toolbar: "my_toolbar_1"
+            uiColor: "#cccccc"
     toolbars:
         configs:
             my_toolbar_1: [ [ "Source", "-", "Save" ], "/", [ "Anchor" ], "/", [ "Maximize" ] ]
@@ -69,12 +79,12 @@ define a group of items in a separate node & then, inject them in your toolbar b
 ivory_ck_editor:
     configs:
         my_config_1:
-            toolbar:  "my_toolbar_1"
-            ui_color: "#000000"
+            toolbar: "my_toolbar_1"
+            uiColor: "#000000"
             # ...
         my_config_2:
-            toolbar:  "my_toolbar_2"
-            ui_color: "#ffffff"
+            toolbar: "my_toolbar_2"
+            uiColor: "#ffffff"
             # ...
     toolbars:
         configs:

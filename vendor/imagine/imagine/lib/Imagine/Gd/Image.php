@@ -55,6 +55,16 @@ final class Image implements ImageInterface
     }
 
     /**
+     * Returns Gd resource
+     *
+     * @return resource
+     */
+    public function getGdResource()
+    {
+        return $this->resource;
+    }
+
+    /**
      * {@inheritdoc}
      */
     final public function copy()
@@ -138,8 +148,12 @@ final class Image implements ImageInterface
     /**
      * {@inheritdoc}
      */
-    final public function resize(BoxInterface $size)
+    final public function resize(BoxInterface $size, $filter = ImageInterface::FILTER_UNDEFINED)
     {
+        if (ImageInterface::FILTER_UNDEFINED !== $filter) {
+            throw new InvalidArgumentException('Unsupported filter type, GD only supports ImageInterface::FILTER_UNDEFINED filter');
+        }
+
         $width  = $size->getWidth();
         $height = $size->getHeight();
 
@@ -299,15 +313,19 @@ final class Image implements ImageInterface
             throw new InvalidArgumentException('Invalid mode specified');
         }
 
-        $width  = $size->getWidth();
-        $height = $size->getHeight();
-
         $ratios = array(
-            $width / imagesx($this->resource),
-            $height / imagesy($this->resource)
+            $size->getWidth() / imagesx($this->resource),
+            $size->getHeight() / imagesy($this->resource)
         );
 
+        $imageSize = $this->getSize();
         $thumbnail = $this->copy();
+
+        // if target width is larger than image width
+        // AND target height is longer than image height
+        if ($size->contains($imageSize)) {
+            return $thumbnail;
+        }
 
         if ($mode === ImageInterface::THUMBNAIL_INSET) {
             $ratio = min($ratios);
@@ -315,14 +333,28 @@ final class Image implements ImageInterface
             $ratio = max($ratios);
         }
 
-        $thumbnailSize = $thumbnail->getSize()->scale($ratio);
-        $thumbnail->resize($thumbnailSize);
-
         if ($mode === ImageInterface::THUMBNAIL_OUTBOUND) {
+            if (!$imageSize->contains($size)) {
+                $size = new Box(
+                    min($imageSize->getWidth(), $size->getWidth()),
+                    min($imageSize->getHeight(), $size->getHeight())
+                );
+            } else {
+                $imageSize = $thumbnail->getSize()->scale($ratio);
+                $thumbnail->resize($imageSize);
+            }
             $thumbnail->crop(new Point(
-                max(0, round(($thumbnailSize->getWidth() - $width) / 2)),
-                max(0, round(($thumbnailSize->getHeight() - $height) / 2))
+                max(0, round(($imageSize->getWidth() - $size->getWidth()) / 2)),
+                max(0, round(($imageSize->getHeight() - $size->getHeight()) / 2))
             ), $size);
+        } else {
+            if (!$imageSize->contains($size)) {
+                $imageSize = $imageSize->scale($ratio);
+                $thumbnail->resize($imageSize);
+            } else {
+                $imageSize = $thumbnail->getSize()->scale($ratio);
+                $thumbnail->resize($imageSize);
+            }
         }
 
         return $thumbnail;
@@ -481,6 +513,27 @@ final class Image implements ImageInterface
     }
 
     /**
+     * {@inheritdoc}
+     **/
+    public function interlace($scheme)
+    {
+        static $supportedInterlaceSchemes = array(
+            ImageInterface::INTERLACE_NONE      => 0,
+            ImageInterface::INTERLACE_LINE      => 1,
+            ImageInterface::INTERLACE_PLANE     => 1,
+            ImageInterface::INTERLACE_PARTITION => 1,
+        );
+
+        if (!array_key_exists($scheme, $supportedInterlaceSchemes)) {
+            throw new InvalidArgumentException('Unsupported interlace type');
+        }
+
+        imageinterlace($this->resource, $supportedInterlaceSchemes[$scheme]);
+
+        return $this;
+    }
+
+    /**
      * Internal
      *
      * Performs save or show operation using one of GD's image... functions
@@ -629,7 +682,7 @@ final class Image implements ImageInterface
 
     private function setExceptionHandler()
     {
-        set_error_handler(function($errno, $errstr, $errfile, $errline, array $errcontext) {
+        set_error_handler(function($errno, $errstr, $errfile, $errline) {
 
             if (0 === error_reporting()) {
                 return;

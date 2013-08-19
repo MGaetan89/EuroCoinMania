@@ -11,10 +11,10 @@
 
 namespace Ivory\CKEditorBundle\Model;
 
-use Ivory\CKEditorBundle\Exception\ConfigManagerException,
-    Ivory\CKEditorBundle\Helper\AssetsVersionTrimerHelper,
-    Symfony\Component\Routing\RouterInterface,
-    Symfony\Component\Templating\Helper\CoreAssetsHelper;
+use Ivory\CKEditorBundle\Exception\ConfigManagerException;
+use Ivory\CKEditorBundle\Helper\AssetsVersionTrimerHelper;
+use Symfony\Component\Routing\RouterInterface;
+use Symfony\Component\Templating\Helper\CoreAssetsHelper;
 
 /**
  * {@inheritdoc}
@@ -32,6 +32,9 @@ class ConfigManager implements ConfigManagerInterface
     /** @var \Symfony\Component\Routing\RouterInterface */
     protected $router;
 
+    /** @var string */
+    protected $defaultConfig;
+
     /** @var array */
     protected $configs;
 
@@ -39,21 +42,26 @@ class ConfigManager implements ConfigManagerInterface
      * Creates a CKEditor config manager.
      *
      * @param \Symfony\Component\Templating\Helper\CoreAssetsHelper  $assetsHelper              The assets helper.
-     * @param \Ivory\CKEditorBundle\Helper\AssetsVersionTrimerHelper $assetsVersionTrimerHelper The assets version trimer helper.
+     * @param \Ivory\CKEditorBundle\Helper\AssetsVersionTrimerHelper $assetsVersionTrimerHelper The version trimer.
      * @param \Symfony\Component\Routing\RouterInterface             $router                    The router.
      * @param array                                                  $configs                   The CKEditor configs.
+     * @param string                                                 $defaultConfig             The default config name.
      */
     public function __construct(
         CoreAssetsHelper $assetsHelper,
         AssetsVersionTrimerHelper $assetsVersionTrimerHelper,
         RouterInterface $router,
-        array $configs = array()
-    )
-    {
+        array $configs = array(),
+        $defaultConfig = null
+    ) {
         $this->setAssetsHelper($assetsHelper);
         $this->setAssetsVersionTrimerHelper($assetsVersionTrimerHelper);
         $this->setRouter($router);
         $this->setConfigs($configs);
+
+        if ($defaultConfig !== null) {
+            $this->setDefaultConfig($defaultConfig);
+        }
     }
 
     /**
@@ -89,7 +97,7 @@ class ConfigManager implements ConfigManagerInterface
     /**
      * Sets the assets version trimer helper.
      *
-     * @param \Ivory\CKEditorBundle\Helper\AssetsVersionTrimerHelper $assetsVersionTrimerHelper The assets version trimer helper.
+     * @param \Ivory\CKEditorBundle\Helper\AssetsVersionTrimerHelper $assetsVersionTrimerHelper The version trimer.
      */
     public function setAssetsVersionTrimerHelper(AssetsVersionTrimerHelper $assetsVersionTrimerHelper)
     {
@@ -114,6 +122,26 @@ class ConfigManager implements ConfigManagerInterface
     public function setRouter(RouterInterface $router)
     {
         $this->router = $router;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getDefaultConfig()
+    {
+        return $this->defaultConfig;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setDefaultConfig($defaultConfig)
+    {
+        if (!$this->hasConfig($defaultConfig)) {
+            throw ConfigManagerException::configDoesNotExist($defaultConfig);
+        }
+
+        $this->defaultConfig = $defaultConfig;
     }
 
     /**

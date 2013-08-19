@@ -14,7 +14,6 @@ namespace Imagine\Gmagick;
 use Imagine\Exception\OutOfBoundsException;
 use Imagine\Exception\InvalidArgumentException;
 use Imagine\Exception\RuntimeException;
-use Imagine\Gmagick\Imagine;
 use Imagine\Image\ImageInterface;
 use Imagine\Image\Box;
 use Imagine\Image\BoxInterface;
@@ -26,7 +25,7 @@ use Imagine\Image\PointInterface;
 /**
  * Image implementation using the Gmagick PHP extension
  */
-class Image implements ImageInterface
+final class Image implements ImageInterface
 {
     /**
      * @var \Gmagick
@@ -57,6 +56,16 @@ class Image implements ImageInterface
             $this->gmagick->clear();
             $this->gmagick->destroy();
         }
+    }
+
+    /**
+     * Returns gmagick instance
+     *
+     * @return Gmagick
+     */
+    public function getGmagick()
+    {
+        return $this->gmagick;
     }
 
     /**
@@ -176,21 +185,42 @@ class Image implements ImageInterface
             );
         }
 
-        $this->flatten();
-
         return $this;
     }
 
     /**
      * {@inheritdoc}
      */
-    public function resize(BoxInterface $size)
+    public function resize(BoxInterface $size, $filter = ImageInterface::FILTER_UNDEFINED)
     {
+        static $supportedFilters = array(
+            ImageInterface::FILTER_UNDEFINED => \Gmagick::FILTER_UNDEFINED,
+            ImageInterface::FILTER_BESSEL    => \Gmagick::FILTER_BESSEL,
+            ImageInterface::FILTER_BLACKMAN  => \Gmagick::FILTER_BLACKMAN,
+            ImageInterface::FILTER_BOX       => \Gmagick::FILTER_BOX,
+            ImageInterface::FILTER_CATROM    => \Gmagick::FILTER_CATROM,
+            ImageInterface::FILTER_CUBIC     => \Gmagick::FILTER_CUBIC,
+            ImageInterface::FILTER_GAUSSIAN  => \Gmagick::FILTER_GAUSSIAN,
+            ImageInterface::FILTER_HANNING   => \Gmagick::FILTER_HANNING,
+            ImageInterface::FILTER_HAMMING   => \Gmagick::FILTER_HAMMING,
+            ImageInterface::FILTER_HERMITE   => \Gmagick::FILTER_HERMITE,
+            ImageInterface::FILTER_LANCZOS   => \Gmagick::FILTER_LANCZOS,
+            ImageInterface::FILTER_MITCHELL  => \Gmagick::FILTER_MITCHELL,
+            ImageInterface::FILTER_POINT     => \Gmagick::FILTER_POINT,
+            ImageInterface::FILTER_QUADRATIC => \Gmagick::FILTER_QUADRATIC,
+            ImageInterface::FILTER_SINC      => \Gmagick::FILTER_SINC,
+            ImageInterface::FILTER_TRIANGLE  => \Gmagick::FILTER_TRIANGLE
+        );
+
+        if (!array_key_exists($filter, $supportedFilters)) {
+            throw new InvalidArgumentException('Unsupported filter type');
+        }
+
         try {
             $this->gmagick->resizeimage(
                 $size->getWidth(),
                 $size->getHeight(),
-                \Gmagick::FILTER_UNDEFINED,
+                $supportedFilters[$filter],
                 1
             );
         } catch (\GmagickException $e) {
@@ -258,20 +288,9 @@ class Image implements ImageInterface
     public function save($path, array $options = array())
     {
         try {
-            if (isset($options['format'])) {
-                $this->gmagick->setimageformat($options['format']);
-            }
-
-            $this->layers()->merge();
-            $this->applyImageOptions($this->gmagick, $options);
-
-            // flatten only if image has multiple layers
-            if ((!isset($options['flatten']) || $options['flatten'] === true)
-                && count($this->layers()) > 1) {
-                $this->flatten();
-            }
-
-            $this->gmagick->writeimage($path);
+            $this->prepareOutput($options);
+            $allFrames = !isset($options['animated']) || false === $options['animated'];
+            $this->gmagick->writeimage($path, $allFrames);
         } catch (\GmagickException $e) {
             throw new RuntimeException(
                 'Save operation failed', $e->getCode(), $e
@@ -298,15 +317,45 @@ class Image implements ImageInterface
     public function get($format, array $options = array())
     {
         try {
-            $this->applyImageOptions($this->gmagick, $options);
-            $this->gmagick->setimageformat($format);
+            $options["format"] = $format;
+            $this->prepareOutput($options);
         } catch (\GmagickException $e) {
             throw new RuntimeException(
-                'Show operation failed', $e->getCode(), $e
+                'Get operation failed', $e->getCode(), $e
             );
         }
 
-        return (string) $this->gmagick;
+        return $this->gmagick->getimagesblob();
+    }
+
+    /**
+     * @param array $options
+     */
+    private function prepareOutput(array $options)
+    {
+        if (isset($options['format'])) {
+            $this->gmagick->setimageformat($options['format']);
+        }
+
+        if (isset($options['animated']) && true === $options['animated']) {
+
+            $format = isset($options['format']) ? $options['format'] : 'gif';
+            $delay = isset($options['animated.delay']) ? $options['animated.delay'] : 800;
+            $loops = isset($options['animated.loops']) ? $options['animated.loops'] : 0;
+
+            $options['flatten'] = false;
+
+            $this->layers->animate($format, $delay, $loops);
+        } else {
+            $this->layers->merge();
+        }
+        $this->applyImageOptions($this->gmagick, $options);
+
+        // flatten only if image has multiple layers
+        if ((!isset($options['flatten']) || $options['flatten'] === true)
+            && count($this->layers) > 1) {
+            $this->flatten();
+        }
     }
 
     /**
@@ -327,7 +376,23 @@ class Image implements ImageInterface
             throw new InvalidArgumentException('Invalid mode specified');
         }
 
+        $imageSize = $this->getSize();
         $thumbnail = $this->copy();
+
+        // if target width is larger than image width
+        // AND target height is longer than image height
+        if ($size->contains($imageSize)) {
+            return $thumbnail;
+        }
+
+        // if target width is larger than image width
+        // OR target height is longer than image height
+        if (!$imageSize->contains($size)) {
+            $size = new Box(
+                min($imageSize->getWidth(), $size->getWidth()),
+                min($imageSize->getHeight(), $size->getHeight())
+            );
+        }
 
         try {
             if ($mode === ImageInterface::THUMBNAIL_INSET) {
@@ -483,7 +548,7 @@ class Image implements ImageInterface
         return array_map(
             function(\GmagickPixel $pixel) {
                 $info = $pixel->getColor(true);
-                $opacity = isset($infos['a']) ? $info['a'] : 0;
+                $opacity = isset($info['a']) ? $info['a'] : 0;
 
                 return new Color(
                     array(
@@ -538,6 +603,26 @@ class Image implements ImageInterface
         return $this->layers;
     }
 
+    /**
+     * {@inheritdoc}
+     **/
+    public function interlace($scheme)
+    {
+        static $supportedInterlaceSchemes = array(
+            ImageInterface::INTERLACE_NONE      => \Gmagick::INTERLACE_NO,
+            ImageInterface::INTERLACE_LINE      => \Gmagick::INTERLACE_LINE,
+            ImageInterface::INTERLACE_PLANE     => \Gmagick::INTERLACE_PLANE,
+            ImageInterface::INTERLACE_PARTITION => \Gmagick::INTERLACE_PARTITION,
+        );
+
+        if (!array_key_exists($scheme, $supportedInterlaceSchemes)) {
+            throw new InvalidArgumentException('Unsupported interlace type');
+        }
+
+        $this->gmagick->setInterlaceScheme($supportedInterlaceSchemes[$scheme]);
+
+        return $this;
+    }
 
     /**
      * Internal

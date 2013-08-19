@@ -11,8 +11,8 @@
 
 namespace Ivory\CKEditorBundle\Tests\Form\Type;
 
-use Ivory\CKEditorBundle\Form\Type\CKEditorType,
-    Symfony\Component\Form\Forms;
+use Ivory\CKEditorBundle\Form\Type\CKEditorType;
+use Symfony\Component\Form\Forms;
 
 /**
  * CKEditor type test.
@@ -92,36 +92,19 @@ class CKEditorTypeTest extends \PHPUnit_Framework_TestCase
         $this->assertSame($this->assetsVersionTrimerHelperMock, $this->ckEditorType->getAssetsVersionTrimerHelper());
     }
 
-    public function testDefaultRequired()
-    {
-        $form = $this->factory->create('ckeditor');
-        $view = $form->createView();
-
-        $this->assertArrayHasKey('required', $view->vars);
-        $this->assertFalse($view->vars['required']);
-    }
-
-    /**
-     * There is a know bug in CKEditor which makes it unusable with the required HTML5 placeholder.
-     *
-     * @link http://dev.ckeditor.com/ticket/8031.
-     *
-     * @expectedException \Symfony\Component\OptionsResolver\Exception\InvalidOptionsException
-     */
-    public function testRequired()
-    {
-        $this->factory->create('ckeditor', null, array('required' => true));
-    }
-
     public function testBaseAndJsPathWithConfiguredValues()
     {
         $this->assetsHelperMock
             ->expects($this->any())
             ->method('getUrl')
-            ->will($this->returnValueMap(array(
-                array('bundles/ckeditor/', null, '/bundles/ckeditor/?v=1'),
-                array('bundles/ckeditor/ckeditor.js', null, '/bundles/ckeditor/ckeditor.js?v=1')
-            )));
+            ->will(
+                $this->returnValueMap(
+                    array(
+                        array('bundles/ckeditor/', null, '/bundles/ckeditor/?v=1'),
+                        array('bundles/ckeditor/ckeditor.js', null, '/bundles/ckeditor/ckeditor.js?v=1')
+                    )
+                )
+            );
 
         $this->assetsVersionTrimerHelperMock
             ->expects($this->once())
@@ -144,10 +127,14 @@ class CKEditorTypeTest extends \PHPUnit_Framework_TestCase
         $this->assetsHelperMock
             ->expects($this->any())
             ->method('getUrl')
-            ->will($this->returnValueMap(array(
-                array('foo/', null, '/foo/?v=1'),
-                array('foo/ckeditor.js', null, '/foo/ckeditor.js?v=1')
-            )));
+            ->will(
+                $this->returnValueMap(
+                    array(
+                        array('foo/', null, '/foo/?v=1'),
+                        array('foo/ckeditor.js', null, '/foo/ckeditor.js?v=1')
+                    )
+                )
+            );
 
         $this->assetsVersionTrimerHelperMock
             ->expects($this->once())
@@ -155,10 +142,11 @@ class CKEditorTypeTest extends \PHPUnit_Framework_TestCase
             ->with($this->equalTo('/foo/?v=1'))
             ->will($this->returnValue('/foo/'));
 
-        $form = $this->factory->create('ckeditor', null, array(
-            'base_path' => 'foo/',
-            'js_path'   => 'foo/ckeditor.js',
-        ));
+        $form = $this->factory->create(
+            'ckeditor',
+            null,
+            array('base_path' => 'foo/', 'js_path' => 'foo/ckeditor.js')
+        );
 
         $view = $form->createView();
 
@@ -182,8 +170,8 @@ class CKEditorTypeTest extends \PHPUnit_Framework_TestCase
     {
         $options = array(
             'config' => array(
-                'toolbar'  => array('foo' => 'bar'),
-                'ui_color' => '#ffffff',
+                'toolbar' => array('foo' => 'bar'),
+                'uiColor' => '#ffffff',
             ),
         );
 
@@ -208,8 +196,8 @@ class CKEditorTypeTest extends \PHPUnit_Framework_TestCase
     public function testConfigWithConfiguredConfig()
     {
         $config = array(
-            'toolbar'  => 'default',
-            'ui_color' => '#ffffff',
+            'toolbar' => 'default',
+            'uiColor' => '#ffffff',
         );
 
         $this->configManagerMock
@@ -230,14 +218,44 @@ class CKEditorTypeTest extends \PHPUnit_Framework_TestCase
         $this->assertSame($config, json_decode($view->vars['config'], true));
     }
 
+    public function testConfigWithDefaultConfiguredConfig()
+    {
+        $options = array(
+            'toolbar' => array('foo' => 'bar'),
+            'uiColor' => '#ffffff',
+        );
+
+        $this->configManagerMock
+            ->expects($this->once())
+            ->method('getDefaultConfig')
+            ->will($this->returnValue('config'));
+
+        $this->configManagerMock
+            ->expects($this->once())
+            ->method('mergeConfig')
+            ->with($this->equalTo('config'), $this->equalTo(array()));
+
+        $this->configManagerMock
+            ->expects($this->once())
+            ->method('getConfig')
+            ->with('config')
+            ->will($this->returnValue($options));
+
+        $form = $this->factory->create('ckeditor');
+        $view = $form->createView();
+
+        $this->assertArrayHasKey('config', $view->vars);
+        $this->assertSame($options, json_decode($view->vars['config'], true));
+    }
+
     public function testConfigWithExplicitAndConfiguredConfig()
     {
         $configuredConfig = array(
-            'toolbar'  => 'default',
-            'ui_color' => '#ffffff',
+            'toolbar' => 'default',
+            'uiColor' => '#ffffff',
         );
 
-        $explicitConfig = array('ui_color' => '#000000');
+        $explicitConfig = array('uiColor' => '#000000');
 
         $this->configManagerMock
             ->expects($this->once())
@@ -250,10 +268,11 @@ class CKEditorTypeTest extends \PHPUnit_Framework_TestCase
             ->with('default')
             ->will($this->returnValue(array_merge($configuredConfig, $explicitConfig)));
 
-        $form = $this->factory->create('ckeditor', null, array(
-            'config_name' => 'default',
-            'config'      => $explicitConfig,
-        ));
+        $form = $this->factory->create(
+            'ckeditor',
+            null,
+            array('config_name' => 'default', 'config' => $explicitConfig)
+        );
 
         $view = $form->createView();
 
@@ -357,8 +376,8 @@ class CKEditorTypeTest extends \PHPUnit_Framework_TestCase
 
         $options = array(
             'config' => array(
-                'toolbar'  => array('foo' => 'bar'),
-                'ui_color' => '#ffffff',
+                'toolbar' => array('foo' => 'bar'),
+                'uiColor' => '#ffffff',
             ),
             'plugins' => array(
                 'wordcount' => array(
@@ -383,8 +402,8 @@ class CKEditorTypeTest extends \PHPUnit_Framework_TestCase
         $options = array(
             'enable' => false,
             'config' => array(
-                'toolbar'  => array('foo' => 'bar'),
-                'ui_color' => '#ffffff',
+                'toolbar' => array('foo' => 'bar'),
+                'uiColor' => '#ffffff',
             ),
             'plugins' => array(
                 'wordcount' => array(

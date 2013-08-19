@@ -11,9 +11,9 @@
 
 namespace Ivory\CKEditorBundle\Tests\DependencyInjection;
 
-use Ivory\CKEditorBundle\DependencyInjection\IvoryCKEditorExtension,
-    Symfony\Component\DependencyInjection\ContainerBuilder,
-    Symfony\Component\DependencyInjection\Scope;
+use Ivory\CKEditorBundle\DependencyInjection\IvoryCKEditorExtension;
+use Symfony\Component\DependencyInjection\ContainerBuilder;
+use Symfony\Component\DependencyInjection\Scope;
 
 /**
  * Abstract Ivory CKEditor extension test.
@@ -101,9 +101,11 @@ abstract class AbstractIvoryCKEditorExtensionTest extends \PHPUnit_Framework_Tes
     {
         $this->container->compile();
 
-        $this->assertTrue(in_array(
-            'IvoryCKEditorBundle:Form:ckeditor_widget.html.twig',
-            $this->container->getParameter('twig.form.resources'))
+        $this->assertTrue(
+            in_array(
+                'IvoryCKEditorBundle:Form:ckeditor_widget.html.twig',
+                $this->container->getParameter('twig.form.resources')
+            )
         );
     }
 
@@ -111,9 +113,8 @@ abstract class AbstractIvoryCKEditorExtensionTest extends \PHPUnit_Framework_Tes
     {
         $this->container->compile();
 
-        $this->assertTrue(in_array(
-            'IvoryCKEditorBundle:Form',
-            $this->container->getParameter('templating.helper.form.resources'))
+        $this->assertTrue(
+            in_array('IvoryCKEditorBundle:Form', $this->container->getParameter('templating.helper.form.resources'))
         );
     }
 
@@ -147,10 +148,11 @@ abstract class AbstractIvoryCKEditorExtensionTest extends \PHPUnit_Framework_Tes
                     '/',
                     array('Maximize'),
                 ),
-                'ui_color' => '#000000',
+                'uiColor' => '#000000',
             ),
         );
 
+        $this->assertSame('default', $configManager->getDefaultConfig());
         $this->assertSame($expected, $configManager->getConfigs());
 
         $this->container->leaveScope('request');
@@ -174,7 +176,7 @@ abstract class AbstractIvoryCKEditorExtensionTest extends \PHPUnit_Framework_Tes
                     '/',
                     array('Maximize'),
                 ),
-                'ui_color' => '#000000',
+                'uiColor' => '#000000',
             ),
             'custom' => array(
                 'toolbar' => array(
@@ -182,10 +184,11 @@ abstract class AbstractIvoryCKEditorExtensionTest extends \PHPUnit_Framework_Tes
                     '/',
                     array('Anchor'),
                 ),
-                'ui_color' => '#ffffff',
+                'uiColor' => '#ffffff',
             ),
         );
 
+        $this->assertSame('default', $configManager->getDefaultConfig());
         $this->assertSame($expected, $configManager->getConfigs());
 
         $this->container->leaveScope('request');
@@ -229,6 +232,16 @@ abstract class AbstractIvoryCKEditorExtensionTest extends \PHPUnit_Framework_Tes
         $this->assertSame('foo/ckeditor.js', $ckEditorType->getJsPath());
 
         $this->container->leaveScope('request');
+    }
+
+    /**
+     * @expectedException \Ivory\CKEditorBundle\Exception\DependencyInjectionException
+     * @expectedExceptionMessage The default config "bar" does not exist.
+     */
+    public function testInvalidDefaultConfig()
+    {
+        $this->loadConfiguration($this->container, 'invalid_default_config');
+        $this->container->compile();
     }
 
     /**

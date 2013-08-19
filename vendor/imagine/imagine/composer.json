@@ -1,5 +1,5 @@
 {
-  "name": "imagine/Imagine",
+  "name": "imagine/imagine",
   "description": "Image processing for PHP 5.3",
   "keywords": [
     "image manipulation",
@@ -24,6 +24,11 @@
   },
   "require-dev": {
     "sami/sami": "dev-master"
+  },
+  "suggest": {
+    "ext-gd": "to use the GD implementation",
+    "ext-imagick": "to use the Imagick implementation",
+    "ext-gmagick": "to use the Gmagick implementation"
   },
   "autoload": {
     "psr-0": {

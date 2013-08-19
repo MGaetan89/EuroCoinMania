@@ -11,8 +11,8 @@
 
 namespace Ivory\CKEditorBundle\DependencyInjection;
 
-use Symfony\Component\Config\Definition\Builder\TreeBuilder,
-    Symfony\Component\Config\Definition\ConfigurationInterface;
+use Symfony\Component\Config\Definition\Builder\TreeBuilder;
+use Symfony\Component\Config\Definition\ConfigurationInterface;
 
 /**
  * Ivory CKEditor configuration.
@@ -34,6 +34,7 @@ class Configuration implements ConfigurationInterface
                 ->booleanNode('enable')->defaultTrue()->end()
                 ->scalarNode('base_path')->defaultValue('bundles/ivoryckeditor/')->end()
                 ->scalarNode('js_path')->defaultValue('bundles/ivoryckeditor/ckeditor.js')->end()
+                ->scalarNode('default_config')->end()
                 ->arrayNode('configs')
                     ->useAttributeAsKey('name')
                     ->prototype('array')
