@@ -49,6 +49,7 @@ coin.type2: Commémorative
 coin.type2_prefix: COM
 coin.type3_prefix: COL
 coin.type3: Collector
+coin.validating: 'Pièce en validation&hellip;'
 coin.value: Valeur
 coin.year: Année
 coins: %total% pièce|%total% pièces

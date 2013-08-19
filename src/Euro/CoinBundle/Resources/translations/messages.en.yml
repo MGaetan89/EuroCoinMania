@@ -49,6 +49,7 @@ coin.type2_prefix: COM
 coin.type3: Collector
 coin.type3_prefix: COL
 coin.unavailable: Unavailable
+coin.validating: 'Coin in validation &hellip;'
 coin.value: Value
 coin.year: Year
 coins: %total% coin|%total% coins

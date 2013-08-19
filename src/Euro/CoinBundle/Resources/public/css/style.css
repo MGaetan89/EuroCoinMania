@@ -14,6 +14,14 @@ td.error:hover {
 	background-color: #EBCCCC;
 }
 
+td.info {
+	background-color: #D9EDF7;
+}
+
+td.info:hover {
+	background-color: #C4E3F3;
+}
+
 .alert-warning {
 	background-color: #FCF8E3;
 	border-color: #fBEED5;

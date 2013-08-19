@@ -47,25 +47,32 @@
 				{% for value in all_values %}
 					{% if values[value] is defined %}
 						{% set coin = values[value] %}
-						{% set has_coin = uc[coin.id] is defined %}
 
-						<td class="coin{% if app.user and not has_coin %} error{% endif %}">
-							<div class="btn-toolbar" data-coin="{{ coin.id }}">
-								<div class="btn-group pull-left">
-									<button class="btn btn-mini btn-info" title="{{ 'coin.information'|trans }}" data-action="query-coin-info" data-loading-text="?">?</button>
+						{% if coin.active %}
+							{% set has_coin = uc[coin.id] is defined %}
+
+							<td class="coin{% if app.user and not has_coin %} error{% endif %}">
+								<div class="btn-toolbar" data-coin="{{ coin.id }}">
+									<div class="btn-group pull-left">
+										<button class="btn btn-mini btn-info" title="{{ 'coin.information'|trans }}" data-action="query-coin-info" data-loading-text="?">?</button>
+
+										{% if app.user %}
+											<button class="btn btn-mini disabled" disabled="disabled" id="quantity-{{ coin.id }}" title="{{ 'coin.self_quantity'|trans }}">{{ has_coin ? uc[coin.id].quantity|number_format : 0 }}</button>
+										{% else %}
+											<button class="btn btn-mini disabled" disabled="disabled" id="quantity-{{ coin.id }}" title="{{ 'coin.mintage'|trans }}">{{ coin.mintage|number_format }}</button>
+										{% endif %}
+									</div>
 
 									{% if app.user %}
-										<button class="btn btn-mini disabled" disabled="disabled" id="quantity-{{ coin.id }}" title="{{ 'coin.self_quantity'|trans }}">{{ has_coin ? uc[coin.id].quantity|number_format : 0 }}</button>
-									{% else %}
-										<button class="btn btn-mini disabled" disabled="disabled" id="quantity-{{ coin.id }}" title="{{ 'coin.mintage'|trans }}">{{ coin.mintage|number_format }}</button>
+										<i class="icon-cog pull-right" data-hover="popover" data-original-title="{{ macros.coin(coin)|e('html') }}" data-content="{% include 'EuroCoinBundle:Coin:popover_actions.html.twig' with { coin: coin, has_coin: has_coin } %}"></i>
 									{% endif %}
 								</div>
-
-								{% if app.user %}
-									<i class="icon-cog pull-right" data-hover="popover" data-original-title="{{ macros.coin(coin)|e('html') }}" data-content="{% include 'EuroCoinBundle:Coin:popover_actions.html.twig' with { coin: coin, has_coin: has_coin } %}"></i>
-								{% endif %}
-							</div>
-						</td>
+							</td>
+						{% else %}
+							<td class="coin info">
+								<i class="icon-refresh pull-right" title="{{ 'coin.validating'|trans }}" data-hover="tooltip" data-html="true"></i>
+							</td>
+						{% endif %}
 					{% else %}
 						{{ empty_cell }}
 					{% endif %}
