@@ -66,6 +66,7 @@ country.coin2_from_to: 'Pièces commémoratives &laquo; %country% &raquo; de %fr
 country.coin3: 'Pièces collectors &laquo; %country% &raquo;'
 country.coin3_from: 'Pièces collectors &laquo; %country% &raquo; de %from%'
 country.coin3_from_to: 'Pièces collectors &laquo; %country% &raquo; de %from% à %to%'
+country.currency.andorra: Franc français
 country.currency.austria: Schilling autrichien
 country.currency.belgium: Franc belge
 country.currency.cyprus: Livre chypriote
@@ -92,6 +93,7 @@ country.exchange_rate: Taux de change
 country.former_currency: Ancienne monnaie
 country.join_date: Date d'adoption
 country.name: Nom
+country.name.andorra: Andorre
 country.name.austria: Autriche
 country.name.belgium: Belgique
 country.name.cyprus: Chypre

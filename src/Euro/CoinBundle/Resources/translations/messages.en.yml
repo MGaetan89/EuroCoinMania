@@ -66,6 +66,7 @@ country.coin3_from: 'Collectos coins of &laquo; %country% &raquo; from %from%'
 country.coin1_from_to: 'Coins of &laquo; %country% &raquo; from %from% to %to%'
 country.coin2_from_to: 'Commemoratives coins of &laquo; %country% &raquo; from %from% to %to%'
 country.coin3_from_to: 'Collectos coins of &laquo; %country% &raquo; from %from% to %to%'
+country.currency.andorra: French franc
 country.currency.austria: Austrian schilling
 country.currency.belgium: Belgian franc
 country.currency.cyprus: Cypriot pound
@@ -92,6 +93,7 @@ country.exchange_rate: Exchange rate
 country.former_currency: Former currency
 country.join_date: Adoption date
 country.name: Name
+country.name.andorra: Andorra
 country.name.austria: Austria
 country.name.belgium: Belgium
 country.name.cyprus: Cyprus
