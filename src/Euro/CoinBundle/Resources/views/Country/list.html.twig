@@ -27,16 +27,10 @@
 					{% set base, name = macros.value(1), macros.name(country) %}
 					<tr id="{{ country.nameiso }}-list">
 						<td>
-							{% if date(country.joindate) <= date() %}
-								<a href="{{ path('coin_collection1', { id: country.id, country: name }) }}">
-							{% endif %}
-
-							<img alt="{{ name }}" src="{% path country.flag, 'mini' %}" title="{{ name }}" data-hover="tooltip" data-placement="right" />
-							{{ name }}
-
-							{% if date(country.joindate) <= date() %}
-								</a>
-							{% endif %}
+							<a href="{{ path('coin_collection1', { id: country.id, country: name }) }}">
+								<img alt="{{ name }}" src="{% path country.flag, 'mini' %}" title="{{ name }}" data-hover="tooltip" data-placement="right" />
+								{{ name }}
+							</a>
 						</td>
 						<td>{{ country.joindate|format_date }}</td>
 						<td>
