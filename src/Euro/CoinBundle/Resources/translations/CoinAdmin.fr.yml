@@ -4,10 +4,12 @@ breadcrumb.link_coin_edit: Modification d'une pièce
 breadcrumb.link_coin_list: Liste des pièces
 breadcrumb.link_coin_show: Affichage d'une pièce
 euro_coin.menu_coin: Pièce
+filter.label_active: Active
 filter.label_country: Pays
 filter.label_type: Type
 filter.label_value: Valeur
 filter.label_year: Année
+form.label_active: Active
 form.label_country: Pays
 form.label_description: Description
 form.label_image: Image
@@ -16,11 +18,13 @@ form.label_type: Type
 form.label_value: Valeur
 form.label_year: Année
 list.label__action: Actions
+list.label_active: Active
 list.label_coin: Pièce
 list.label_description: Description
 list.label_image: Image
 list.label_mintage: Quantité tirée — enregistrée
 list.label_type: Type
+show.label_active: Active
 show.label_coin: Pièce
 show.label_description: Description
 show.label_image: Image

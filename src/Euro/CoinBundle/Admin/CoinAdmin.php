@@ -23,7 +23,8 @@ class CoinAdmin extends Admin {
 						'choices' => Coin::getTypes()
 					),
 					'field_type' => 'choice',
-				));
+				))
+				->add('active');
 	}
 
 	protected function configureFormFields(FormMapper $form) {
@@ -36,6 +37,7 @@ class CoinAdmin extends Admin {
 				->end()
 				->with('Options', array('collapsed' => true))
 				->add('type', 'sonata_type_translatable_choice', array('choices' => Coin::getTypes()))
+				->add('active', null, array('required' => false, 'attr' => array('checked' => true)))
 				->add('description', null, array('required' => false))
 				->add('image', 'sonata_type_model_list', array(
 					'required' => false
@@ -52,7 +54,7 @@ class CoinAdmin extends Admin {
 				->add('type', null, array('template' => 'EuroCoinBundle:Admin:Coin/list_type.html.twig'))
 				->add('description')
 				->add('mintage', null, array('template' => 'EuroCoinBundle:Admin:Coin/list_mintage.html.twig'))
-				->add('image')
+				->add('active', null, array('editable' => true))
 				->add('_action', 'actions', array(
 					'actions' => array(
 						'view' => array(),
@@ -66,6 +68,7 @@ class CoinAdmin extends Admin {
 		$show
 				->add('coin', null, array('template' => 'EuroCoinBundle:Admin:Coin/show_coin.html.twig'))
 				->add('type', null, array('template' => 'EuroCoinBundle:Admin:Coin/show_type.html.twig'))
+				->add('active')
 				->add('description')
 				->add('mintage', null, array('template' => 'EuroCoinBundle:Admin:Coin/show_mintage.html.twig'))
 				->add('image');
