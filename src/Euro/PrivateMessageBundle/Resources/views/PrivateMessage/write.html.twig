@@ -14,7 +14,6 @@
 
 	{{ form_row(form.title, { label: 'pm.form.title' }) }}
 
-	{{ form_row(form.contentFormatter) }}
 	{{ form_row(form.content, { attr: { class: (user_id is defined) ? 'span6' : 'span3' }, label: 'pm.form.message' }) }}
 
 	{{ form_rest(form) }}

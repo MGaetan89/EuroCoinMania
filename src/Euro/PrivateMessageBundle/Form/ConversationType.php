@@ -12,11 +12,12 @@ class ConversationType extends AbstractType {
 		$builder
 				->add('to_user', 'text', array('virtual' => true))
 				->add('title')
-				->add('contentFormatter', 'sonata_formatter_type_selector', array(
-					'source' => 'content',
-					'target' => 'content'
-				))
-				->add('content', 'textarea');
+				->add('content', 'sonata_formatter_type', array(
+					'event_dispatcher' => $builder->getEventDispatcher(),
+					'format_field'   => 'formatter',
+					'source_field'   => 'rawContent',
+					'target_field'   => 'content'
+				));
 	}
 
 	public function setDefaultOptions(OptionsResolverInterface $resolver) {

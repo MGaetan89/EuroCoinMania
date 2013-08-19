@@ -105,8 +105,7 @@
 			<h3>{{ 'pm.answer_add'|trans }}</h3>
 		</div>
 		<div class="modal-body">
-			<form action="{{ path('pm_answer_process', { id: pm.id }) }}" class="form-horizontal" id="answer-form" method="post">
-				{{ form_row(form.contentFormatter) }}
+			<form action="{{ path('pm_answer_process', { id: pm.id }) }}" id="answer-form" method="post">
 				{{ form_row(form.content, { attr: { class: 'span3', rows: 10 }, label: 'pm.form.title' }) }}
 
 				{{ form_rest(form) }}

@@ -1,5 +1,12 @@
 sonata_formatter:
     formatters:
+        richhtml:
+            service: sonata.formatter.text.raw
+            extensions:
+                - sonata.formatter.twig.control_flow
+                - sonata.formatter.twig.gist
+                - sonata.media.formatter.twig
+
         markdown:
             service: sonata.formatter.text.markdown
             extensions:
@@ -15,13 +22,6 @@ sonata_formatter:
                 - sonata.media.formatter.twig
 
         rawhtml:
-            service: sonata.formatter.text.raw
-            extensions:
-                - sonata.formatter.twig.control_flow
-                - sonata.formatter.twig.gist
-                - sonata.media.formatter.twig
-
-        richhtml:
             service: sonata.formatter.text.raw
             extensions:
                 - sonata.formatter.twig.control_flow

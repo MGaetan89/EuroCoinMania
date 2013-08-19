@@ -20,7 +20,6 @@
 	{% endif %}
 
 	{{ form_row(form.subject, { attr: { class: 'span12' }, label: 'contact.subject'|trans }) }}
-	{{ form_row(form.contentFormatter) }}
 	{{ form_row(form.message, { attr: { class: 'span12', rows: 6 }, label: 'contact.message'|trans }) }}
 
 	{{ form_rest(form) }}

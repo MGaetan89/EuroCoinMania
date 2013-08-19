@@ -10,11 +10,12 @@ class MessageType extends AbstractType {
 
 	public function buildForm(FormBuilderInterface $builder, array $options) {
 		$builder
-				->add('contentFormatter', 'sonata_formatter_type_selector', array(
-					'source' => 'content',
-					'target' => 'content'
-				))
-				->add('content', 'textarea');
+				->add('content', 'sonata_formatter_type', array(
+					'event_dispatcher' => $builder->getEventDispatcher(),
+					'format_field'   => 'formatter',
+					'source_field'   => 'rawContent',
+					'target_field'   => 'content'
+				));
 	}
 
 	public function setDefaultOptions(OptionsResolverInterface $resolver) {
