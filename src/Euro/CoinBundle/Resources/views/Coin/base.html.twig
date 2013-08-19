@@ -105,6 +105,9 @@
 						{% endfor %}
 
 						{% set year_url = years[0].from ~ '..' ~ years[years|length - 1].to %}
+						{% if year_url == years[0].from ~ '..' %}
+							{% set year_url = year_url ~ years[years|length - 1].from %}
+						{% endif %}
 
 						<li>
 							{% if year_url == current_year %}
