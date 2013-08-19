@@ -1,0 +1,76 @@
+{% block sonata_formatter_type_widget %}
+	<div{% if app.request.get('_route')[:6] != 'admin_' %} class="hide"{% endif %} style="margin-bottom: 5px;">
+		{{ form_widget(form.children[format_field]) }}
+		<i>{{ "please_select_format_method"|trans({}, "SonataFormatterBundle") }}</i>
+	</div>
+
+	{{ form_widget(form.children[source_field]) }}
+
+	<script type="text/javascript">
+	var {{ source_id }}_rich_instance = false;
+
+	jQuery(document).ready(function() {
+		// This code requires CKEDITOR and jQuery MarkItUp
+		if (typeof CKEDITOR === 'undefined' || jQuery().markItUp == undefined) {
+			return;
+		}
+
+		jQuery('#{{ form.children[format_field].vars.id }}').change(function() {
+			var elms = jQuery('#{{ form.children[source_field].vars.id }}');
+			elms.markItUpRemove();
+
+			if ({{ source_id }}_rich_instance) {
+				{{ source_id }}_rich_instance.destroy();
+			}
+
+			var val = jQuery(this).val();
+			var appendClass = val;
+
+			switch(val) {
+				case 'textile':
+					elms.markItUp(markitup_sonataTextileSettings);
+					break;
+
+				case 'markdown':
+					elms.markItUp(markitup_sonataMarkdownSettings);
+					break;
+
+				case 'bbcode':
+					elms.markItUp(markitup_sonataBBCodeSettings);
+					break;
+
+				case 'rawhtml':
+					elms.markItUp(markitup_sonataHtmlSettings);
+					appendClass = 'html';
+					break;
+
+				case 'richhtml':
+					{{ source_id }}_rich_instance = CKEDITOR.replace('{{ form.children[source_field].vars.id }}', {
+						toolbar: [
+							[ 'Bold','Italic','Underline',
+							'-', 'Cut','Copy','Paste','PasteText','PasteFromWord',
+							'-','Undo','Redo',
+							'-', 'NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'Blockquote',
+							'-', 'Image', 'Link','Unlink'
+							], [ 'Maximize', 'Source' ]
+						]
+					});
+					break;
+			}
+
+			var parent = elms.parents('div.markItUp');
+
+			if (parent) {
+				for (name in ['textile', 'markdown', 'bbcode', 'rawhtml', 'richhtml', 'rawhtml']) {
+					parent.removeClass(name)
+				}
+
+				parent.addClass(appendClass);
+			}
+		});
+
+		jQuery('#{{ form.children[format_field].vars.id }}').trigger('change');
+	});
+	</script>
+{% endblock %}
+
