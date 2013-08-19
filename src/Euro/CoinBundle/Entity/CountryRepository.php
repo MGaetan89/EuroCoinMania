@@ -19,6 +19,7 @@ class CountryRepository extends EntityRepository {
 						->select('c, f')
 						->join('c.flag', 'f')
 						->orderBy('c.join_date', 'ASC')
+						->where('c.join_date < CURRENT_DATE()')
 						->getQuery()
 						->getResult();
 	}
