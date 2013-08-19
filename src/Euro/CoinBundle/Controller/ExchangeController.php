@@ -172,6 +172,13 @@ class ExchangeController extends BaseController {
 			}
 		}
 
+		$filter_values = array_unique($filter_values);
+		if ($user->getCoinsSort() === 'desc') {
+			rsort($filter_values);
+		} else {
+			sort($filter_values);
+		}
+
 		$condition = $this->getRequest()->getSession()->get('coins_query');
 		$condition_values = array(
 			'country' => array(),
@@ -210,7 +217,7 @@ class ExchangeController extends BaseController {
 					'filters' => array(
 						'countries' => $filter_countries,
 						'types' => $filter_types,
-						'values' => array_unique($filter_values),
+						'values' => $filter_values,
 						'years' => $filter_years,
 					),
 					'from' => $from,
