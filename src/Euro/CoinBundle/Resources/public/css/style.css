@@ -94,6 +94,12 @@ td.error:hover {
 	width: 500px;
 }
 
+.modal {
+	left: 0;
+	margin-left: 10%;
+	width: 80%;
+}
+
 .popover {
 	width: auto;
 }
