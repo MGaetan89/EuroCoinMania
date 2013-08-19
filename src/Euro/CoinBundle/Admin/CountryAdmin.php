@@ -24,7 +24,7 @@ class CountryAdmin extends Admin {
 		$form
 				->add('name')
 				->add('name_iso')
-				->add('join_date', null, array('years' => range(1999, date('Y'))))
+				->add('join_date', null, array('years' => range(1999, date('Y') + 5)))
 				->add('former_currency_iso')
 				->add('exchange_rate')
 				->add('flag', 'sonata_type_model_list', array(
