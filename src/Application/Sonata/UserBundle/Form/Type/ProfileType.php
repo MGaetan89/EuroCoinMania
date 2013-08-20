@@ -38,10 +38,10 @@ class ProfileType extends AbstractType {
 				/*
 				->add('biography', 'sonata_formatter_type', array(
 					'event_dispatcher' => $builder->getEventDispatcher(),
-					'format_field'   => 'formatter',
-					'source_field'   => 'rawBiography',
-					'target_field'   => 'biography',
-					'required'       => false
+					'format_field' => 'formatter',
+					'source_field' => 'rawBiography',
+					'target_field' => 'biography',
+					'required' => false
 				));
 				*/
 				->add('biography', 'textarea', array('required' => false));

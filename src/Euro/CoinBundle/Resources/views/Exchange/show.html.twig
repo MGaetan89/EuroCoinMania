@@ -12,6 +12,10 @@
 </div>
 
 <table class="table table-hover table-striped">
+<colgroup>
+	<col width="50%" />
+	<col width="50%" />
+</colgroup>
 <thead>
 	<tr>
 		<th>{{ 'exchange.coins_asked'|trans({ '%path%': path('show_profile', { id: exchange.fromuser.id }), '%username%': exchange.fromuser.username })|raw }}</th>
@@ -37,7 +41,7 @@
 				</span>
 
 				{% if coin.description %}
-					<blockquote style="margin-bottom: 0;">{{ coin.description }}</blockquote>
+					<blockquote class="offset1" style="margin-bottom: 0;">{{ coin.description }}</blockquote>
 				{% endif %}
 			{% endif %}
 		</td>
@@ -53,7 +57,7 @@
 				<span class="offset1">{{ macros.coin(coin, true) }}</span>
 
 				{% if coin.description %}
-					<blockquote style="margin-bottom: 0;">{{ coin.description }}</blockquote>
+					<blockquote class="offset1" style="margin-bottom: 0;">{{ coin.description }}</blockquote>
 				{% endif %}
 			{% endif %}
 		</td>

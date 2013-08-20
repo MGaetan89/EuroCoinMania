@@ -14,9 +14,9 @@ class ConversationType extends AbstractType {
 				->add('title')
 				->add('content', 'sonata_formatter_type', array(
 					'event_dispatcher' => $builder->getEventDispatcher(),
-					'format_field'   => 'formatter',
-					'source_field'   => 'rawContent',
-					'target_field'   => 'content'
+					'format_field' => 'formatter',
+					'source_field' => 'rawContent',
+					'target_field' => 'content'
 				));
 	}
 
