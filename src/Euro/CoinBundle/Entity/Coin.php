@@ -85,6 +85,14 @@ class Coin {
 	private $active;
 
 	/**
+	 * @var User $submitter
+	 *
+	 * @ORM\ManyToOne(targetEntity="Application\Sonata\UserBundle\Entity\User")
+	 * @ORM\JoinColumn(name="submitter_id", referencedColumnName="id")
+	 */
+	private $submitter;
+
+	/**
 	 * Get id
 	 *
 	 * @return integer
@@ -311,5 +319,25 @@ class Coin {
 	 public function isActive() {
 	 	return $this->active;
 	 }
+
+	/**
+	 * Set submitter
+	 *
+	 * @param User $submitter
+	 */
+	public function setSubmitter(User $submitter) {
+		$this->submitter = $submitter;
+
+		return $this;
+	}
+
+	/**
+	 * Get submitter
+	 *
+	 * @return User
+	 */
+	public function getSubmitter() {
+		return $this->submitter;
+	}
 
 }
