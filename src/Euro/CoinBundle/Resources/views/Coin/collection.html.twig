@@ -19,6 +19,7 @@
 		</tr>
 
 		{% for year, values in coins %}
+			{% set year_id = 0 %}
 			{% if loop.index0 > 0 and loop.index0 % year_range == 0 %}
 				{% set hide_count = year_range %}
 
@@ -32,8 +33,10 @@
 				{% set has_year = false %}
 				{% for value in all_values if values[value] is defined and not has_year %}
 					{% set has_year = true %}
+					{% set year = macros.year(values[value].year) %}
+					{% set year_id = values[value].year.id %}
 
-					<td>{{ macros.year(values[value].year) }}</td>
+					<td>{{ year }}</td>
 				{% endfor %}
 
 				{% for value in all_values %}
@@ -72,26 +75,27 @@
 							</a>
 
 							<div class="fade hide modal" id="modal-report-{{ loop.index }}" tabindex="-1" style="margin-left: 20%; width: 60%;">
-									<div class="modal-header">
-										<button class="close" type="button" data-dismiss="modal">×</button>
+								<div class="modal-header">
+									<button class="close" type="button" data-dismiss="modal">×</button>
 
-										<h3>Proposer une nouvelle pièce</h3>
-									</div>
-									<div class="modal-body">
-										<div class="row-fluid">
-											<div class="span6">
-												<dl class="dl-horizontal">
-													<dt>{{ 'coin.country'|trans }}</dt>
-														<dd>{{ macros.name(current) }}</dd>
+									<h3>Proposer une nouvelle pièce</h3>
+								</div>
+								<div class="modal-body">
+									<div class="row-fluid">
+										<div class="span6">
+											<dl class="dl-horizontal">
+												<dt>{{ 'coin.country'|trans }}</dt>
+													<dd>{{ macros.name(current) }}</dd>
 
-													<dt>{{ 'coin.year'|trans }}</dt>
-														<dd>{{ year }}</dd>
+												<dt>{{ 'coin.year'|trans }}</dt>
+													<dd>{{ year }}</dd>
 
-													<dt>{{ 'coin.value'|trans }}</dt>
-														<dd>{{ macros.value(value) }}</dd>
-												</dl>
-											</div>
-											<div class="span6">
+												<dt>{{ 'coin.value'|trans }}</dt>
+													<dd>{{ macros.value(value) }}</dd>
+											</dl>
+										</div>
+										<div class="span6">
+											<form action="#" id="report-form-{{ loop.index }}" method="post">
 												<div class="control-group">
 													<label class="control-label" for="mintage">{{ 'coin.mintage'|trans }}</label>
 													<div class="controls">
@@ -99,13 +103,18 @@
 													</div>
 												</div>
 												<div class="form-actions">
+													<input name="country_id" type="hidden" value="{{ current.id }}" />
+													<input name="value" type="hidden" value="{{ value }}" />
+													<input name="year_id" type="hidden" value="{{ year_id }}" />
+
 													<button class="btn btn-primary" type="submit">Proposer</button>
 													<button class="btn" type="button" data-dismiss="modal">Fermer</button>
 												</div>
-											</div>
+											</form>
 										</div>
 									</div>
 								</div>
+							</div>
 						</td>
 					{% endif %}
 				{% endfor %}
@@ -125,4 +134,23 @@
 	</tfoot>
 	</table>
 {% endif %}
+{% endblock %}
+
+{% block javascript %}
+<script type="text/javascript">
+$(function () {
+	$('form[id^=report-form-]').on('submit', function (e) {
+		e.preventDefault();
+
+		var json = {};
+		var formData = $(this).serializeArray();
+		for (var i = 0; i < formData.length; ++i) {
+			json[formData[i].name] = formData[i].value;
+		}
+
+		// Send AJAX request
+		// Refresh page
+	});
+});
+</script>
 {% endblock %}
