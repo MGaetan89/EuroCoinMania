@@ -170,7 +170,6 @@ exchange.email.text.new_exchange: |
 exchange.email.title.new_exchange: You have a new coins exchange waiting
 exchange.filter_coins: Filter
 exchange.filter_reset: Reset filter
-exchange.id: Number
 exchange.list_all: List of all your exchanges
 exchange.list_pending: List of your pending exchanges
 exchange.new: New exchange

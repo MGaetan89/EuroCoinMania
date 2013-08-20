@@ -170,7 +170,6 @@ exchange.email.text.new_exchange: |
 exchange.email.title.new_exchange: Vous avez reçu une nouvelle proposition d'échange
 exchange.filter_coins: Filtrer
 exchange.filter_reset: Réinitialiser le filtre
-exchange.id: Numéro
 exchange.list_all: Liste de tous vos échanges
 exchange.list_pending: Liste de vos échanges en cours
 exchange.new: Nouvel échange
