@@ -193,6 +193,7 @@ exchange.search_coins.add: Ajouter une pièce
 exchange.search_coins.criteria: Critères de recherche
 exchange.search_coins.no_results: Aucun membre n'a été trouvé pour répondre à votre demande
 exchange.search_coins.remove: Retirer la pièce
+exchange.show: Afficher cet échange
 exchange.showing: Affichage d'un échange
 exchange.status: Statut
 exchange.status1: En cours

@@ -193,6 +193,7 @@ exchange.search_coins.add: Add a coin
 exchange.search_coins.criteria: Search criteria
 exchange.search_coins.no_results: No user have been found for your criteria
 exchange.search_coins.remove: Remove coin
+exchange.show: Show this exchange
 exchange.showing: Viewing an exchange
 exchange.status: Status
 exchange.status1: Pending
