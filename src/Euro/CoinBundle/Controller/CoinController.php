@@ -285,20 +285,71 @@ class CoinController extends BaseController {
 	}
 
 	public function proposeNewAction(Request $request) {
+		$translator = $this->get('translator');
+
+		if (!($user = $this->getUser())) {
+			throw $this->createNotFoundException($translator->trans('user.login_required'));
+		}
+
 		$doctrine = $this->getDoctrine();
+		$flashBag = $this->get('session')->getFlashBag();
 		$country = $doctrine->getRepository('EuroCoinBundle:Country')->find((int) $request->get('country_id'));
 		$value = $doctrine->getRepository('EuroCoinBundle:Value')->findOneByValue($request->get('value'));
 		$year = $doctrine->getRepository('EuroCoinBundle:Year')->find((int) $request->get('year_id'));
 		$mintage = (int) $request->get('mintage');
 		$message = $request->get('message');
+		$type = (int) $request->get('type');
 
-		return new Response(json_encode(array(
-			'country' => $country->getId(),
-			'value' => $value->getId(),
-			'year' => $year->getId(),
-			'mintage' => $mintage,
-			'message' => $message,
-		)));
+		if ($country === null || $value === null || $year === null) {
+			$flashBag->add('error', 'coin.propose_new.wrong_parameters');
+
+			return $this->redirect('coin_collection' . $type, array(
+				'id' => $country->getId(),
+				'country' => $translator->trans('country.name.' . $country->getName()),
+				'year' => $year->getYear(),
+			));
+		}
+
+		if ($mintage < 0) {
+			$mintage = 0;
+		}
+
+		$coin = $doctrine->getRepository('EuroCoinBundle:Coin')->findOneBy(array(
+			'country' => $country,
+			'value' => $value,
+			'year' => $year,
+		));
+
+		if ($coin === null) {
+			$coin = new Coin();
+			$coin->setCountry($country);
+			$coin->setValue($value);
+			$coin->setYear($year);
+			$coin->etType(/* Set type */);
+			$coin->setMintage($mintage);
+			$coin->setActive(false);
+			$coin->setSubmitter($user);
+
+			$em = $doctrine->getManager();
+			$em->persist($coin);
+			$em->flush();
+
+			$flashBag->add('success', 'coin.propose_new.coin_in_validation');
+
+			return $this->redirect('coin_collection' . $type, array(
+				'id' => $country->getId(),
+				'country' => $translator->trans('country.name.' . $country->getName()),
+				'year' => $year->getYear(),
+			));
+		}
+
+		$flashBag->add('error', 'coin.propose_new.coin_exists');
+
+		return $this->redirect('coin_collection' . $type, array(
+			'id' => $country->getId(),
+			'country' => $translator->trans('country.name.' . $country->getName()),
+			'year' => $year->getYear(),
+		));
 	}
 
 	/**
