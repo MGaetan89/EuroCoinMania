@@ -37,12 +37,15 @@ coin.none: Aucune pièce n'a été enregistré pour ce pays.
 coin.not_available: La pièce que vous recherchez n'est plus disponible
 coin.not_found: La pièce que vous recherchez n'existe pas
 coin.propose_new.close: Fermer
+coin.propose_new.coin_exists: La pièce que vous souhaitiez ajouter existe déjà
+coin.propose_new.coin_in_validation: La pièce est maintenant est attente de validation par un administrateur
 coin.propose_new.message: Message
 coin.propose_new.message_help: Un message facultatif pour l'administrateur
 coin.propose_new.mintage_help: Laissez 0 (zéro) si inconnu
 coin.propose_new.propose: Proposer la pièce
 coin.propose_new.notice: La pièce que vous souhaitez ajouter ne sera visible que lorsque l'administrateur du site l'aura validé.
 coin.propose_new.title: Proposer une nouvelle pièce
+coin.propose_new.wrong_parameters: Les paramètres que vous avez indiqué ne sont pas valides
 coin.quantity: Quantité
 coin.registered_quantity: Total enregistré
 coin.remove: Retirer

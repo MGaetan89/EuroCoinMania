@@ -28,7 +28,9 @@ $(function () {
 			data[formData[i].name] = formData[i].value;
 		}
 
-		$.post('/coin/propose', data);
+		$.post('/coin/propose', data, function () {
+			document.location.reload(true);
+		});
 	});
 
 	$('table').on('click', '[data-action=add-coin], [data-action=remove-coin]', function () {

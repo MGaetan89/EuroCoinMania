@@ -303,11 +303,7 @@ class CoinController extends BaseController {
 		if ($country === null || $value === null || $year === null) {
 			$flashBag->add('error', 'coin.propose_new.wrong_parameters');
 
-			return $this->redirect('coin_collection' . $type, array(
-				'id' => $country->getId(),
-				'country' => $translator->trans('country.name.' . $country->getName()),
-				'year' => $year->getYear(),
-			));
+			return new Response();
 		}
 
 		if ($mintage < 0) {
@@ -325,8 +321,9 @@ class CoinController extends BaseController {
 			$coin->setCountry($country);
 			$coin->setValue($value);
 			$coin->setYear($year);
-			$coin->etType(/* Set type */);
+			$coin->setType($type);
 			$coin->setMintage($mintage);
+			$coin->setMemberTotal(0);
 			$coin->setActive(false);
 			$coin->setSubmitter($user);
 
@@ -334,22 +331,16 @@ class CoinController extends BaseController {
 			$em->persist($coin);
 			$em->flush();
 
+			// Send e-mail notification to admin
+
 			$flashBag->add('success', 'coin.propose_new.coin_in_validation');
 
-			return $this->redirect('coin_collection' . $type, array(
-				'id' => $country->getId(),
-				'country' => $translator->trans('country.name.' . $country->getName()),
-				'year' => $year->getYear(),
-			));
+			return new Response();
 		}
 
 		$flashBag->add('error', 'coin.propose_new.coin_exists');
 
-		return $this->redirect('coin_collection' . $type, array(
-			'id' => $country->getId(),
-			'country' => $translator->trans('country.name.' . $country->getName()),
-			'year' => $year->getYear(),
-		));
+		return new Response();
 	}
 
 	/**
