@@ -317,6 +317,7 @@ class CoinController extends BaseController {
 		));
 
 		if ($coin === null) {
+			// Create the coin
 			$coin = new Coin();
 			$coin->setCountry($country);
 			$coin->setValue($value);
@@ -332,6 +333,22 @@ class CoinController extends BaseController {
 			$em->flush();
 
 			// Send e-mail notification to admin
+			$contentModelSuffix = ($message == '') ? '' : '_message';
+			$content = $translator->trans('coin.propose_new.email_text' . $contentModelSuffix, array(
+				'message' => $message,
+				'path' => $this->generateUrl('show_profile', array(
+					'id' => $user->getId(),
+				), true),
+				'user' => $user->getUsername(),
+			));
+
+			$message = \Swift_Message::newInstance()
+					->setSubject($translator->trans('coin.propose_new.email_title'))
+					->setFrom($user->getEmail())
+					->setTo('contact@eurocoin-mania.eu')
+					->setBody($content);
+
+			$this->get('mailer')->send($message);
 
 			$flashBag->add('success', 'coin.propose_new.coin_in_validation');
 

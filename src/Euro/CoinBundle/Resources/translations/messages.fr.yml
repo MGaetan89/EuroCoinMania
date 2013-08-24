@@ -39,6 +39,9 @@ coin.not_found: La pièce que vous recherchez n'existe pas
 coin.propose_new.close: Fermer
 coin.propose_new.coin_exists: La pièce que vous souhaitiez ajouter existe déjà
 coin.propose_new.coin_in_validation: La pièce est maintenant est attente de validation par un administrateur
+coin.propose_new.email_text: Une nouvelle pièce a été proposée par <a href="%path%">%user%</a>.
+coin.propose_new.email_text_message: Une nouvelle pièce a été proposée par <a href="%path%">%user%</a> avec le message suivant : <blockquote>%message%</blockquote>
+coin.propose_new.email_title: Une nouvelle pièce a été proposée
 coin.propose_new.message: Message
 coin.propose_new.message_help: Un message facultatif pour l'administrateur
 coin.propose_new.mintage_help: Laissez 0 (zéro) si inconnu
