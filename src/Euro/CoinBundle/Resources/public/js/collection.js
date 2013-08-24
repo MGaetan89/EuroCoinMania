@@ -19,6 +19,18 @@ $(function () {
 		trigger: 'hover'
 	});
 
+	$('form[id^=report-form-]').on('submit', function (e) {
+		e.preventDefault();
+
+		var data = {};
+		var formData = $(this).serializeArray();
+		for (var i = 0; i < formData.length; ++i) {
+			data[formData[i].name] = formData[i].value;
+		}
+
+		$.post('/coin/propose', data);
+	});
+
 	$('table').on('click', '[data-action=add-coin], [data-action=remove-coin]', function () {
 		var $this = $(this),
 			action = $this.data('action').split('-')[0],

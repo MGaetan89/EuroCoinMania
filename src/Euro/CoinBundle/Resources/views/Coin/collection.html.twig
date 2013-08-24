@@ -114,6 +114,7 @@
 												</div>
 												<div class="form-actions">
 													<input name="country_id" type="hidden" value="{{ current.id }}" />
+													<input name="type" type="hidden" value="{{ type }}" />
 													<input name="value" type="hidden" value="{{ value }}" />
 													<input name="year_id" type="hidden" value="{{ year_id }}" />
 
@@ -144,26 +145,4 @@
 	</tfoot>
 	</table>
 {% endif %}
-{% endblock %}
-
-{% block javascript %}
-<script type="text/javascript">
-$(function () {
-	$('form[id^=report-form-]').on('submit', function (e) {
-		e.preventDefault();
-
-		var data = {};
-		var formData = $(this).serializeArray();
-		for (var i = 0; i < formData.length; ++i) {
-			data[formData[i].name] = formData[i].value;
-		}
-
-		$.post('{{ path('coin_propose_new') }}', data, function (result) {
-			console.log(result);
-		});
-
-		// Refresh page
-	});
-});
-</script>
 {% endblock %}
