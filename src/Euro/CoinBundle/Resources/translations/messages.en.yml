@@ -36,6 +36,13 @@ coin.no_mintage: No mintage
 coin.none: No coins have been registered for this country.
 coin.not_available: The coin you requested is no longer available
 coin.not_found: The coin you requested does not exist
+coin.propose_new.close: Close
+coin.propose_new.message: Message
+coin.propose_new.message_help: An optional message for the administrator
+coin.propose_new.mintage_help: Leave 0 (zero) when unknown
+coin.propose_new.propose: Suggest the coin
+coin.propose_new.notice: The coin you are about to suggest will only be visible once the administrator has approved it.
+coin.propose_new.title: Propose a new coin
 coin.quantity: Quantity
 coin.registered_quantity: Total registered
 coin.remove: Remove

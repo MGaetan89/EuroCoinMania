@@ -78,11 +78,13 @@
 								<div class="modal-header">
 									<button class="close" type="button" data-dismiss="modal">×</button>
 
-									<h3>Proposer une nouvelle pièce</h3>
+									<h3>{{ 'coin.propose_new.title'|trans }}</h3>
 								</div>
 								<div class="modal-body">
 									<div class="row-fluid">
-										<div class="span6">
+										<div class="span5">
+											<p>{{ 'coin.propose_new.notice'|trans }}</p>
+
 											<dl class="dl-horizontal">
 												<dt>{{ 'coin.country'|trans }}</dt>
 													<dd>{{ macros.name(current) }}</dd>
@@ -94,12 +96,20 @@
 													<dd>{{ macros.value(value) }}</dd>
 											</dl>
 										</div>
-										<div class="span6">
+										<div class="offset1 span6">
 											<form action="#" id="report-form-{{ loop.index }}" method="post">
 												<div class="control-group">
 													<label class="control-label" for="mintage">{{ 'coin.mintage'|trans }}</label>
 													<div class="controls">
 														<input id="mintage" min="0" name="mintage" type="number" value="0" />
+														<span class="help-block">{{ 'coin.propose_new.mintage_help'|trans }}</span>
+													</div>
+												</div>
+												<div class="control-group">
+													<label class="control-label" for="message">{{ 'coin.propose_new.message'|trans }}</label>
+													<div class="controls">
+														<textarea id="message" name="message"></textarea>
+														<span class="help-block">{{ 'coin.propose_new.message_help'|trans }}</span>
 													</div>
 												</div>
 												<div class="form-actions">
@@ -107,8 +117,8 @@
 													<input name="value" type="hidden" value="{{ value }}" />
 													<input name="year_id" type="hidden" value="{{ year_id }}" />
 
-													<button class="btn btn-primary" type="submit">Proposer</button>
-													<button class="btn" type="button" data-dismiss="modal">Fermer</button>
+													<button class="btn btn-primary" type="submit">{{ 'coin.propose_new.propose'|trans }}</button>
+													<button class="btn" type="button" data-dismiss="modal">{{ 'coin.propose_new.close'|trans }}</button>
 												</div>
 											</form>
 										</div>
