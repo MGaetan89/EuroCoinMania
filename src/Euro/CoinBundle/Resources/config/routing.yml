@@ -36,6 +36,12 @@ coin_get:
         id: "\d+"
         _method: POST
 
+coin_propose_new:
+    pattern: /coin/propose
+    defaults: { _controller: EuroCoinBundle:Coin:proposeNew }
+    requirements:
+        _methods: POST
+
 coin_remove:
     pattern: /coin/{id}/remove/{quantity}
     defaults: { _controller: EuroCoinBundle:Coin:addRemove, type: remove }

@@ -152,13 +152,16 @@ $(function () {
 	$('form[id^=report-form-]').on('submit', function (e) {
 		e.preventDefault();
 
-		var json = {};
+		var data = {};
 		var formData = $(this).serializeArray();
 		for (var i = 0; i < formData.length; ++i) {
-			json[formData[i].name] = formData[i].value;
+			data[formData[i].name] = formData[i].value;
 		}
 
-		// Send AJAX request
+		$.post('{{ path('coin_propose_new') }}', data, function (result) {
+			console.log(result);
+		});
+
 		// Refresh page
 	});
 });

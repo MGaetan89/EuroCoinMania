@@ -85,14 +85,14 @@ class CoinController extends BaseController {
 	 * @param integer $year The year to display
 	 * @return Response
 	 */
-	public function collectionAction($id, $type, $year) {
+	public function collectionAction($id, $type, $year, Request $request) {
 		$doctrine = $this->getDoctrine();
 		$translator = $this->get('translator');
 		$countries = $doctrine->getRepository('EuroCoinBundle:Country')->findAll();
 		$country = null;
 
 		// Sort the countries by translated name
-		$collator = new \Collator($this->getRequest()->getLocale());
+		$collator = new \Collator($request->getLocale());
 		usort($countries, function ($a, $b) use ($collator, &$country, $id, $translator) {
 					$a_name = $translator->trans((string) $a);
 					$b_name = $translator->trans((string) $b);
@@ -284,12 +284,29 @@ class CoinController extends BaseController {
 				));
 	}
 
+	public function proposeNewAction(Request $request) {
+		$doctrine = $this->getDoctrine();
+		$country = $doctrine->getRepository('EuroCoinBundle:Country')->find((int) $request->get('country_id'));
+		$value = $doctrine->getRepository('EuroCoinBundle:Value')->findOneByValue($request->get('value'));
+		$year = $doctrine->getRepository('EuroCoinBundle:Year')->find((int) $request->get('year_id'));
+		$mintage = (int) $request->get('mintage');
+		$message = $request->get('message');
+
+		return new Response(json_encode(array(
+			'country' => $country->getId(),
+			'value' => $value->getId(),
+			'year' => $year->getId(),
+			'mintage' => $mintage,
+			'message' => $message,
+		)));
+	}
+
 	/**
 	 * Compute various stats about the whole site
 	 * @return Response
 	 */
-	public function statsAction() {
-		$collator = new \Collator($this->getRequest()->getLocale());
+	public function statsAction(Request $request) {
+		$collator = new \Collator($request->getLocale());
 		$doctrine = $this->getDoctrine();
 		$translator = $this->get('translator');
 
@@ -311,7 +328,7 @@ class CoinController extends BaseController {
 		}
 
 		// Sort the countries by translated name
-		$countriesList = Locale::getDisplayCountries($this->getRequest()->getLocale());
+		$countriesList = Locale::getDisplayCountries($request->getLocale());
 		uksort($user_stats['country'], function ($a, $b) use ($collator, $countriesList, $translator, $user_stats) {
 					$a_value = $user_stats['country'][$a];
 					$b_value = $user_stats['country'][$b];
