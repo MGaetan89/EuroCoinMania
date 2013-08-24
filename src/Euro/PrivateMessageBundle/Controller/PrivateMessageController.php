@@ -63,8 +63,8 @@ class PrivateMessageController extends Controller {
 							->setSubject($translator->trans('pm.email.title.new_message', array(), 'messages', $params['%locale%']))
 							->setFrom(array('contact@eurocoin-mania.eu' => 'EuroCoin Mania'))
 							->setTo($to_user->getEmail())
-							->setBody($translator->trans('pm.email.html.new_message', $params, 'messages', $params['%locale%']))
-							->addPart($translator->trans('pm.email.text.new_message', $params, 'messages', $params['%locale%']), 'text/html');
+							->setBody($translator->trans('pm.email.text.new_message', $params, 'messages', $params['%locale%']))
+							->addPart($translator->trans('pm.email.html.new_message', $params, 'messages', $params['%locale%']), 'text/html');
 
 					$this->get('mailer')->send($message);
 				}
@@ -271,8 +271,8 @@ class PrivateMessageController extends Controller {
 							->setSubject($translator->trans('pm.email.title.new_message', array(), 'messages', $params['%locale%']))
 							->setFrom(array('contact@eurocoin-mania.eu' => 'EuroCoin Mania'))
 							->setTo($to_user->getEmail())
-							->setBody($translator->trans('pm.email.html.new_message', $params, 'messages', $params['%locale%']))
-							->addPart($translator->trans('pm.email.text.new_message', $params, 'messages', $params['%locale%']), 'text/html');
+							->setBody($translator->trans('pm.email.text.new_message', $params, 'messages', $params['%locale%']))
+							->addPart($translator->trans('pm.email.html.new_message', $params, 'messages', $params['%locale%']), 'text/html');
 
 					$this->get('mailer')->send($message);
 				}
