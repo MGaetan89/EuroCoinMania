@@ -3,6 +3,7 @@
 namespace Euro\CoinBundle\Entity;
 
 use Application\Sonata\MediaBundle\Entity\Media;
+use Application\Sonata\UserBundle\Entity\User;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
