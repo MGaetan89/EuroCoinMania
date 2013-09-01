@@ -57,12 +57,12 @@
 
 			<blockquote>
 				{% for birthday in birthdays %}
-					<a href="{{ path('show_profile', { id: birthday.id }) }}">{{ birthday.username }}</a>
+					<a href="{{ path('show_profile', { id: birthday.id }) }}"{% if not latest_user.publicprofile %} rel="nofollow"{% endif %}>
+						{{ birthday.username }}
+					</a>
 					({{ ('now'|date('Y') - birthday.dateOfBirth|date('Y')) }} years old)<br />
 				{% endfor %}
 			</blockquote>
-		{% else %}
-			No birthday today.
 		{% endif %}
 
 		{% if upcoming_birthdays|length > 0 %}
@@ -70,8 +70,10 @@
 
 			<blockquote>
 				{% for birthday in upcoming_birthdays %}
-					<a href="{{ path('show_profile', { id: birthday.id }) }}">{{ birthday.username }}</a>
-					({{ birthday.dateOfBirth|format_date() }})<br />
+					<a href="{{ path('show_profile', { id: birthday.id }) }}"{% if not latest_user.publicprofile %} rel="nofollow"{% endif %}>
+						{{ birthday.username }}
+					</a>
+					({{ birthday.dateOfBirth|format_date('d MMMM', 'fr') }})<br />
 				{% endfor %}
 			</blockquote>
 		{% else %}
