@@ -7,201 +7,21 @@
 {% block body %}
 <h2 class="page-header">{{ block('title') }}</h2>
 
-<div class="row-fluid">
-	<div class="span6">
-		<h3 class="page-header">{{ 'stats.users'|trans }}</h3>
+<ul class="nav nav-tabs">
+	<li class="active"><a href="#members" data-toggle="tab">{{ 'stats.cat_members'|trans }}</a></li>
+	<li><a href="#countries" data-toggle="tab">{{ 'stats.cat_countries'|trans }}</a></li>
+	<li><a href="#collections" data-toggle="tab">{{ 'stats.cat_collections'|trans }}</a></li>
+</ul>
 
-		{{ 'stats.total_users'|transchoice(user_stats.total, { '%total%': user_stats.total|number_format })|raw -}}
-		{% for gender, members in user_stats.gender %}
-			{{ ('user.gender' ~ gender ~ '_count')|transchoice(members, { '%total%': members|number_format })|raw }}
-
-			{% if loop.length - loop.index == 1 %}{{ 'and'|trans }}{% elseif not loop.last %}, {% endif %}
-		{% endfor %}
-		.<br />
-
-		{{ 'stats.average_age'|trans({ '%age%': user_stats.age })|raw }}<br />
-		{{ 'stats.users_from'|trans }}
-
-		<table class="table table-condensed table-hover table-striped">
-		<thead>
-			<tr>
-				<th>{{ 'stats.country'|trans }}</th>
-				<th>{{ 'stats.registered_members'|trans }}</th>
-			</tr>
-		</thead>
-		<tbody>
-			{% for country, members in user_stats.country %}
-				{% set name = country|country %}
-
-				<tr>
-					<td>
-						<img alt="{{ name }}" src="{{ asset('bundles/applicationsonatauser/images/' ~ country|lower ~ '.png') }}" title="{{ name }}" data-hover="tooltip" data-placement="right" />
-
-						{% if countries[country] is defined %}<a href="{{ path('coin_collection1', { id: countries[country].id, country: name }) }}">{% endif %}
-							{{ name }}
-						{% if countries[country] is defined %}</a>{% endif %}
-					</td>
-					<td>{{ members|number_format }}</td>
-				</tr>
-			{% endfor %}
-		</tbody>
-		</table>
-
-		<h3 class="page-header">{{ 'stats.top_countries'|trans }}</h3>
-
-		<div class="hidden-phone" id="chart_top_countries"></div>
-
-		<table class="table table-condensed table-hover table-striped visible-phone">
-		<thead>
-			<tr>
-				<th>{{ 'stats.country'|trans }}</th>
-				<th>{{ 'stats.total_coins'|trans }}</th>
-			</tr>
-		</thead>
-		<tbody>
-			{% for country in country_stats %}
-				{% set country, total = country[0].country, country.total %}
-				{% set name = macros.name(country) %}
-
-				<tr>
-					<td>
-						<img alt="{{ name }}" src="{% path country.flag, 'mini' %}" title="{{ name }}" data-hover="tooltip" data-placement="right" />
-
-						<a href="{{ path('coin_collection1', { id: country.id, country: name }) }}">
-							{{ name }}
-						</a>
-					</td>
-					<td>{{ 'coins'|transchoice(total, { '%total%': total|number_format }) }}</td>
-				</tr>
-			{% endfor %}
-		</tbody>
-		</table>
+<div class="tab-content">
+	<div class="tab-pane active" id="members">
+		{% include 'EuroCoinBundle:Coin:stats_members.html.twig' %}
 	</div>
-	<div class="span6">
-		<h3 class="page-header">{{ 'stats.country'|trans }}</h3>
-
-		{{ 'stats.coins_repartition'|trans({ '%total_coins%': euro_stats.total_coins|number_format, '%total_countries%': euro_stats.total_countries|number_format })|raw }}
-
-		<div class="hidden-phone" id="chart_unique_coins"></div>
-		<div class="hidden-phone" id="chart_minted_coins"></div>
-
-		<table class="table table-condensed table-hover table-striped visible-phone">
-		<thead>
-			<tr>
-				<th>{{ 'stats.country'|trans }}</th>
-				<th>{{ 'stats.unique_coins'|trans }}</th>
-				<th>{{ 'stats.minted_coins'|trans }}</th>
-			</tr>
-		</thead>
-		<tbody>
-			{% for country in countries %}
-				{% set name = macros.name(country) %}
-
-				<tr>
-					<td>
-						<img alt="{{ name }}" src="{% path country.flag, 'mini' %}" title="{{ name }}" data-hover="tooltip" data-placement="right" />
-
-						<a href="{{ path('coin_collection1', { id: country.id, country: name }) }}">
-							{{ name }}
-						</a>
-					</td>
-					<td>{{ 'coins'|transchoice(euro_stats.country[country.id].total, { '%total%': euro_stats.country[country.id].total|number_format }) }}</td>
-					<td>{{ 'coins'|transchoice(euro_stats.country[country.id].mintage, { '%total%': euro_stats.country[country.id].mintage|number_format }) }}</td>
-				</tr>
-			{% endfor %}
-		</tbody>
-		</table>
+	<div class="tab-pane" id="countries">
+		{% include 'EuroCoinBundle:Coin:stats_countries.html.twig' %}
 	</div>
-</div>
-
-<div class="row-fluid">
-	<div class="span6">
-		<h3 class="page-header">{{ 'stats.biggest_collections'|trans }}</h3>
-
-		<div class="hidden-phone" id="chart_biggest_collections"></div>
-
-		<table class="table table-condensed table-hover table-striped visible-phone">
-		<thead>
-			<tr>
-				<th>{{ 'stats.user'|trans }}</th>
-				<th>{{ 'stats.unique_coins'|trans }}</th>
-				<th>{{ 'stats.total_coins'|trans }}</th>
-			</tr>
-		</thead>
-		<tbody>
-			{% for user in biggest_collection_stats %}
-				{% set user, total, total_uniques = user[0].user, user.total_coins, user.total_unique_coins %}
-
-				<tr>
-					<td>
-						{% if user.country %}
-							{% set image = {
-								src: asset('bundles/applicationsonatauser/images/' ~ user.country|lower ~ '.png'),
-								title: user.country|country
-							} %}
-						{% else %}
-							{% set image = {
-								src: gravatar(user.email, 16),
-								title: user.username
-							} %}
-						{% endif %}
-
-						<img alt="{{ image.title }}" src="{{ image.src }}" title="{{ image.title }}" data-hover="tooltip" data-placement="right" />
-
-						<a href="{{ path('show_user_collection1', { user_id: user.id }) }}"{% if not user.publicprofile %} rel="nofollow"{% endif %}>
-							{{ user.username }}
-						</a>
-					</td>
-					<td>{{ 'coins.differents'|transchoice(total_uniques, { '%total%': total_uniques|number_format }) }}</td>
-					<td>{{ 'coins'|transchoice(total, { '%total%': total|number_format }) }}</td>
-				</tr>
-			{% endfor %}
-		</tbody>
-		</table>
-	</div>
-	<div class="span6">
-		<h3 class="page-header">{{ 'stats.most_valued_collections'|trans }}</h3>
-
-		<div class="hidden-phone" id="chart_most_valued_collections"></div>
-
-		<table class="table table-condensed table-hover table-striped visible-phone">
-		<thead>
-			<tr>
-				<th>{{ 'stats.user'|trans }}</th>
-				<th>{{ 'stats.total_unique'|trans }}</th>
-				<th>{{ 'stats.total_amount'|trans }}</th>
-			</tr>
-		</thead>
-		<tbody>
-			{% for user in most_value_collection_stats %}
-				{% set user, total, total_unique = user[0].user, user.total_value, user.total_unique_value %}
-
-				<tr>
-					<td>
-						{% if user.country %}
-							{% set image = {
-								src: asset('bundles/applicationsonatauser/images/' ~ user.country|lower ~ '.png'),
-								title: user.country|country
-							} %}
-						{% else %}
-							{% set image = {
-								src: gravatar(user.email, 16),
-								title: user.username
-							} %}
-						{% endif %}
-
-						<img alt="{{ image.title }}" src="{{ image.src }}" title="{{ image.title }}" data-hover="tooltip" data-placement="right" />
-
-						<a href="{{ path('show_user_collection1', { user_id: user.id }) }}"{% if not user.publicprofile %} rel="nofollow"{% endif %}>
-							{{ user.username }}
-						</a>
-					</td>
-					<td>{{ macros.value(total_unique) }}</td>
-					<td>{{ macros.value(total) }}</td>
-				</tr>
-			{% endfor %}
-		</tbody>
-		</table>
+	<div class="tab-pane" id="collections">
+		{% include 'EuroCoinBundle:Coin:stats_collections.html.twig' %}
 	</div>
 </div>
 {% endblock %}
@@ -242,7 +62,8 @@ $(function () {
 		},
 		xAxis: {
 			categories: [
-				{%- for country in countries -%}
+				{%- for country in country_stats -%}
+					{%- set country = country[0].country -%}
 					{%- set name = macros.name(country) -%}
 					'<img alt="{{ name }}" src="{% path country.flag, 'mini' %}" title="{{ name }}" data-hover="tooltip" data-placement="top" />'
 					{%- if not loop.last %}, {% endif -%}
@@ -258,7 +79,7 @@ $(function () {
 					'<span style="color: ' + this.series.color + ';">{{ 'stats.total_coins'|trans }} :</span> ' +
 					'<b>' + Highcharts.numberFormat(this.y, 0) + '</b>';
 			},
-			useHTML: true,
+			useHTML: true
 		},
 		series: [{
 			data: [
@@ -285,7 +106,7 @@ $(function () {
 		},
 		tooltip: {
 			formatter: tooltipFormatter,
-			useHTML: true,
+			useHTML: true
 		},
 		series: [{
 			name: '{{ 'stats.unique_coins'|trans }}',
@@ -313,7 +134,7 @@ $(function () {
 		},
 		tooltip: {
 			formatter: tooltipFormatter,
-			useHTML: true,
+			useHTML: true
 		},
 		series: [{
 			name: '{{ 'stats.minted_coins'|trans }}',
@@ -338,8 +159,7 @@ $(function () {
 				{%- endfor -%}
 			],
 			labels: {
-				rotation: -45,
-				useHTML: true
+				rotation: -45
 			}
 		},
 		legend: {
@@ -347,6 +167,9 @@ $(function () {
 		},
 		tooltip: {
 			shared: true
+		},
+		title: {
+			text: ' '
 		},
 		series: [{
 			name: '{{ 'stats.unique_coins'|trans }}',
@@ -379,8 +202,7 @@ $(function () {
 				{%- endfor -%}
 			],
 			labels: {
-				rotation: -45,
-				useHTML: true
+				rotation: -45
 			}
 		},
 		legend: {
@@ -390,6 +212,9 @@ $(function () {
 			pointFormat: '<span style="color: {series.color};">{series.name}</span>: <b>{point.y:.2f} &euro;</b><br/>',
 			shared: true,
 			useHTML: true
+		},
+		title: {
+			text: ' '
 		},
 		series: [{
 			name: '{{ 'stats.total_unique'|trans }}',

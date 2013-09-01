@@ -1,0 +1,95 @@
+<h3 class="page-header">{{ 'stats.biggest_collections'|trans }}</h3>
+
+<div class="row-fluid">
+	<div class="span6">
+		<table class="table table-condensed table-hover table-striped">
+		<thead>
+			<tr>
+				<th>{{ 'stats.user'|trans }}</th>
+				<th>{{ 'stats.unique_coins'|trans }}</th>
+				<th>{{ 'stats.total_coins'|trans }}</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for user in biggest_collection_stats %}
+				{% set user, total, total_uniques = user[0].user, user.total_coins, user.total_unique_coins %}
+
+				<tr>
+					<td>
+						{% if user.country %}
+							{% set image = {
+								src: asset('bundles/applicationsonatauser/images/' ~ user.country|lower ~ '.png'),
+								title: user.country|country
+							} %}
+						{% else %}
+							{% set image = {
+								src: gravatar(user.email, 16),
+								title: user.username
+							} %}
+						{% endif %}
+
+						<img alt="{{ image.title }}" src="{{ image.src }}" title="{{ image.title }}" data-hover="tooltip" data-placement="right" />
+
+						<a href="{{ path('show_user_collection1', { user_id: user.id }) }}"{% if not user.publicprofile %} rel="nofollow"{% endif %}>
+							{{ user.username }}
+						</a>
+					</td>
+					<td>{{ 'coins.differents'|transchoice(total_uniques, { '%total%': total_uniques|number_format }) }}</td>
+					<td>{{ 'coins'|transchoice(total, { '%total%': total|number_format }) }}</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+		</table>
+	</div>
+	<div class="span6">
+		<div id="chart_biggest_collections"></div>
+	</div>
+</div>
+
+<h3 class="page-header">{{ 'stats.most_valued_collections'|trans }}</h3>
+
+<div class="row-fluid">
+	<div class="span6">
+		<table class="table table-condensed table-hover table-striped">
+		<thead>
+			<tr>
+				<th>{{ 'stats.user'|trans }}</th>
+				<th>{{ 'stats.total_unique'|trans }}</th>
+				<th>{{ 'stats.total_amount'|trans }}</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for user in most_value_collection_stats %}
+				{% set user, total, total_unique = user[0].user, user.total_value, user.total_unique_value %}
+
+				<tr>
+					<td>
+						{% if user.country %}
+							{% set image = {
+								src: asset('bundles/applicationsonatauser/images/' ~ user.country|lower ~ '.png'),
+								title: user.country|country
+							} %}
+						{% else %}
+							{% set image = {
+								src: gravatar(user.email, 16),
+								title: user.username
+							} %}
+						{% endif %}
+
+						<img alt="{{ image.title }}" src="{{ image.src }}" title="{{ image.title }}" data-hover="tooltip" data-placement="right" />
+
+						<a href="{{ path('show_user_collection1', { user_id: user.id }) }}"{% if not user.publicprofile %} rel="nofollow"{% endif %}>
+							{{ user.username }}
+						</a>
+					</td>
+					<td>{{ macros.value(total_unique) }}</td>
+					<td>{{ macros.value(total) }}</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+		</table>
+	</div>
+	<div class="span6">
+		<div id="chart_most_valued_collections"></div>
+	</div>
+</div>

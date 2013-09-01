@@ -1,0 +1,81 @@
+<div class="row-fluid">
+	<div class="span6">
+		{{ 'stats.total_users'|transchoice(user_stats.total, { '%total%': user_stats.total|number_format })|raw }}
+
+		{% for gender, members in user_stats.gender %}
+			{{ ('user.gender' ~ gender ~ '_count')|transchoice(members, { '%total%': members|number_format })|raw -}}
+
+			{% if loop.length - loop.index == 1 %}&nbsp;{{ 'and'|trans }}
+			{% elseif loop.last %}.
+			{% elseif not loop.last %},&nbsp;{% endif %}
+		{%- endfor -%}<br />
+
+		{{ 'stats.last_member'|trans({
+			'%link_attr%': (latest_user.publicprofile) ? '' : ' rel="nofollow"',
+			'%path%': path('show_profile', { id: latest_user.id }),
+			'%username%': latest_user.username
+		})|raw }}<br />
+
+		{{ 'stats.average_age'|trans({ '%age%': user_stats.age })|raw }}<br />
+
+		{{ 'stats.users_from'|trans }}
+
+		<table class="table table-condensed table-hover table-striped">
+		<thead>
+			<tr>
+				<th>{{ 'stats.country'|trans }}</th>
+				<th>{{ 'stats.registered_members'|trans }}</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for country, members in user_stats.country %}
+				{% set name = country|country %}
+
+				<tr>
+					<td>
+						<img alt="{{ name }}" src="{{ asset('bundles/applicationsonatauser/images/' ~ country|lower ~ '.png') }}" title="{{ name }}" data-hover="tooltip" data-placement="right" />
+
+						{% if countries[country] is defined %}
+							<a href="{{ path('coin_collection1', { id: countries[country].id, country: name }) }}">
+						{% endif %}
+
+						{{ name }}
+
+						{% if countries[country] is defined %}
+							</a>
+						{% endif %}
+					</td>
+					<td>{{ members|number_format }}</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+		</table>
+	</div>
+	<div class="span6">
+		{% if birthdays|length > 0 %}
+			{{ birthdays|length }} birthdays today:
+
+			<blockquote>
+				{% for birthday in birthdays %}
+					<a href="{{ path('show_profile', { id: birthday.id }) }}">{{ birthday.username }}</a>
+					({{ ('now'|date('Y') - birthday.dateOfBirth|date('Y')) }} years old)<br />
+				{% endfor %}
+			</blockquote>
+		{% else %}
+			No birthday today.
+		{% endif %}
+
+		{% if upcoming_birthdays|length > 0 %}
+			{{ upcoming_birthdays|length }} birthdays in the upcoming week:
+
+			<blockquote>
+				{% for birthday in upcoming_birthdays %}
+					<a href="{{ path('show_profile', { id: birthday.id }) }}">{{ birthday.username }}</a>
+					({{ birthday.dateOfBirth|format_date() }})<br />
+				{% endfor %}
+			</blockquote>
+		{% else %}
+			No birthday in the upcoming week.
+		{% endif %}
+	</div>
+</div>

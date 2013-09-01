@@ -18,8 +18,12 @@ sitename: EuroCoin Mania
 stats: Statistiques
 stats.average_age: La moyenne d'âge est de <strong>%age%</strong> ans.
 stats.biggest_collections: Plus grandes collections
+stats.cat_collections: Collections
+stats.cat_countries: Pays
+stats.cat_members: Membres
 stats.coins_repartition: '<strong>%total_coins%</strong> pièces différentes réparties parmi <strong>%total_countries%</strong> pays de la façon suivante :'
 stats.country: Pays
+stats.last_member: 'Le dernier membre inscrit est <a href="%path%"%link_attr%>%username%</a>.'
 stats.meta_description: Statistiques concernant EuroCoin Mania
 stats.minted_coins: Pièces imprimées
 stats.most_valued_collections: Collections ayant le plus de valeur
@@ -31,7 +35,6 @@ stats.total_unique: Total unique
 stats.total_users: <strong>%total%</strong> membre est inscrit sur le site, dont|<strong>%total%</strong> membres sont inscrits sur le site, dont
 stats.unique_coins: Pièces uniques
 stats.user: Utilisateur
-stats.users: Utilisateurs
 stats.users_from: 'Nos utilisateurs viennent en majorité des pays suivants :'
 yes: Oui
 

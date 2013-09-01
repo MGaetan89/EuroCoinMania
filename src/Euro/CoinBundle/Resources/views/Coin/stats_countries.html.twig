@@ -1,0 +1,73 @@
+<h3 class="page-header">{{ 'stats.country'|trans }}</h3>
+
+<p>{{ 'stats.coins_repartition'|trans({ '%total_coins%': euro_stats.total_coins|number_format, '%total_countries%': euro_stats.total_countries|number_format })|raw }}</p>
+
+<div class="row-fluid">
+	<div class="span6">
+		<table class="table table-hover table-stripeds">
+		<thead>
+			<tr>
+				<th>{{ 'stats.country'|trans }}</th>
+				<th>{{ 'stats.unique_coins'|trans }}</th>
+				<th>{{ 'stats.minted_coins'|trans }}</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for country in countries %}
+				{% set name = macros.name(country) %}
+
+				<tr>
+					<td>
+						<img alt="{{ name }}" src="{% path country.flag, 'mini' %}" title="{{ name }}" data-hover="tooltip" data-placement="right" />
+
+						<a href="{{ path('coin_collection1', { id: country.id, country: name }) }}">
+							{{ name }}
+						</a>
+					</td>
+					<td>{{ 'coins'|transchoice(euro_stats.country[country.id].total, { '%total%': euro_stats.country[country.id].total|number_format }) }}</td>
+					<td>{{ 'coins'|transchoice(euro_stats.country[country.id].mintage, { '%total%': euro_stats.country[country.id].mintage|number_format }) }}</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+		</table>
+	</div>
+	<div class="span6">
+		<div id="chart_unique_coins"></div>
+		<div id="chart_minted_coins"></div>
+	</div>
+</div>
+
+<h3 class="page-header">{{ 'stats.top_countries'|trans }}</h3>
+
+<div class="row-fluid">
+	<div class="span6">
+		<table class="table table-hover table-striped">
+		<thead>
+			<tr>
+				<th>{{ 'stats.country'|trans }}</th>
+				<th>{{ 'stats.total_coins'|trans }}</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for country in country_stats %}
+				{% set country, total = country[0].country, country.total %}
+				{% set name = macros.name(country) %}
+
+				<tr>
+					<td>
+						<img alt="{{ name }}" src="{% path country.flag, 'mini' %}" title="{{ name }}" data-hover="tooltip" data-placement="right" />
+
+						<a href="{{ path('coin_collection1', { id: country.id, country: name }) }}">
+							{{ name }}
+						</a>
+					</td>
+					<td>{{ 'coins'|transchoice(total, { '%total%': total|number_format }) }}</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+		</table>
+	</div>
+	<div class="span6">
+		<div id="chart_top_countries"></div>
+	</div>
+</div>

@@ -439,10 +439,13 @@ class CoinController extends BaseController {
 
 		return $this->render('EuroCoinBundle:Coin:stats.html.twig', array(
 					'biggest_collection_stats' => $uc_repo->findBiggestCollectionStats(),
+					'birthdays' => $user_repo->findTodayBirthdays(),
 					'countries' => $countries,
 					'country_stats' => $coin_repo->findTopCountries(),
 					'euro_stats' => $euro_stats,
+					'latest_user' => $user_repo->findLatestUser()[0],
 					'most_value_collection_stats' => $uc_repo->findMostValuedCollectionStats(),
+					'upcoming_birthdays' => $user_repo->findUpcomingBirthdays(),
 					'user_stats' => $user_stats,
 				));
 	}

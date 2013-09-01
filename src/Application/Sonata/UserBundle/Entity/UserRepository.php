@@ -94,4 +94,36 @@ class UserRepository extends EntityRepository {
 						->getResult();
 	}
 
+	public function findLatestUser() {
+		$queryBuilder = $this->createQueryBuilder('u');
+
+		return $queryBuilder
+						->orderBy('u.createdAt', 'DESC')
+						->setMaxResults(1)
+						->getQuery()
+						->getResult();
+	}
+
+	public function findTodayBirthdays() {
+		$queryBuilder = $this->createQueryBuilder('u');
+		$expr = $queryBuilder->expr();
+
+		return $queryBuilder
+						->where($expr->like('u.dateOfBirth', $expr->literal('____-' . date('m') . '-' . date('d') . '%')))
+						->orderBy('u.username')
+						->getQuery()
+						->getResult();
+	}
+
+	public function findUpcomingBirthdays() {
+		$queryBuilder = $this->createQueryBuilder('u');
+		$expr = $queryBuilder->expr();
+
+		return $queryBuilder
+						->where($expr->isNotNull('u.dateOfBirth'))
+						->orderBy('u.username')
+						->getQuery()
+						->getResult();
+	}
+
 }
