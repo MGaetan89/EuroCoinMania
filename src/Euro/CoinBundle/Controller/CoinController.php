@@ -3,6 +3,7 @@
 namespace Euro\CoinBundle\Controller;
 
 use Euro\CoinBundle\Entity\Coin;
+use Euro\CoinBundle\Entity\Exchange;
 use Euro\CoinBundle\Entity\UserCoin;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -434,8 +435,30 @@ class CoinController extends BaseController {
 					return $collator->compare($a_name, $b_name);
 				});
 
-		// Collection stats
+		// Collections stats
 		$uc_repo = $doctrine->getRepository('EuroCoinBundle:UserCoin');
+
+		// Exchanges stats
+		$exchanges_repo = $doctrine->getRepository('EuroCoinBundle:Exchange');
+		$user_exchanges = $exchanges_repo->findUserExchangesStats();
+		$user_exchanges_stats = array();
+
+		foreach ($user_exchanges as $user_exchange) {
+			$_user = $user_exchange[0]->getFromUser();
+			$_userId = $_user->getId();
+
+			if (!isset($user_exchanges_stats[$_userId])) {
+				$user_exchanges_stats[$_userId] = array(
+					'user' => $_user,
+					Exchange::STATUS_PENDING => 0,
+					Exchange::STATUS_ACCEPTED => 0,
+					Exchange::STATUS_CANCELED => 0,
+					Exchange::STATUS_REFUSED => 0,
+				);
+			}
+
+			$user_exchanges_stats[$_userId][$user_exchange[0]->getStatus()] = (int) $user_exchange['total'];
+		}
 
 		return $this->render('EuroCoinBundle:Coin:stats.html.twig', array(
 					'biggest_collection_stats' => $uc_repo->findBiggestCollectionStats(),
@@ -443,9 +466,11 @@ class CoinController extends BaseController {
 					'countries' => $countries,
 					'country_stats' => $coin_repo->findTopCountries(),
 					'euro_stats' => $euro_stats,
+					'exchanges' => $exchanges_repo->findExchangesStats(),
 					'latest_user' => $user_repo->findLatestUser()[0],
 					'most_value_collection_stats' => $uc_repo->findMostValuedCollectionStats(),
 					'upcoming_birthdays' => $user_repo->findUpcomingBirthdays(),
+					'user_exchanges' => $user_exchanges_stats,
 					'user_stats' => $user_stats,
 				));
 	}

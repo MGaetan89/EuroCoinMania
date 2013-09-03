@@ -23,6 +23,7 @@ stats.cat_countries: Pays
 stats.cat_members: Membres
 stats.coins_repartition: '<strong>%total_coins%</strong> pièces différentes réparties parmi <strong>%total_countries%</strong> pays de la façon suivante :'
 stats.country: Pays
+stats.exchanges: Echanges
 stats.last_member: 'Le dernier membre inscrit est <a href="%path%"%link_attr%>%username%</a>.'
 stats.meta_description: Statistiques concernant EuroCoin Mania
 stats.minted_coins: Pièces imprimées

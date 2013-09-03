@@ -8,13 +8,14 @@
 <h2 class="page-header">{{ block('title') }}</h2>
 
 <ul class="nav nav-tabs">
-	<li class="active"><a href="#members" data-toggle="tab">{{ 'stats.cat_members'|trans }}</a></li>
+	<li><a href="#members" data-toggle="tab">{{ 'stats.cat_members'|trans }}</a></li>
 	<li><a href="#countries" data-toggle="tab">{{ 'stats.cat_countries'|trans }}</a></li>
 	<li><a href="#collections" data-toggle="tab">{{ 'stats.cat_collections'|trans }}</a></li>
+	<li class="active"><a href="#exchanged" data-toggle="tab">{{ 'stats.exchanges'|trans }}</a></li>
 </ul>
 
 <div class="tab-content">
-	<div class="tab-pane active" id="members">
+	<div class="tab-pane" id="members">
 		{% include 'EuroCoinBundle:Coin:stats_members.html.twig' %}
 	</div>
 	<div class="tab-pane" id="countries">
@@ -22,6 +23,9 @@
 	</div>
 	<div class="tab-pane" id="collections">
 		{% include 'EuroCoinBundle:Coin:stats_collections.html.twig' %}
+	</div>
+	<div class="tab-pane active" id="exchanged">
+		{% include 'EuroCoinBundle:Coin:stats_exchanges.html.twig' %}
 	</div>
 </div>
 {% endblock %}
@@ -234,6 +238,35 @@ $(function () {
 			]
 		}]
 	}));
+
+	$('#chart_exchanges').highcharts({
+		title: {
+			text: 'Exchanges between members'
+		},
+		plotOptions: {
+			pie: {
+				allowPointSelect: true,
+				cursor: 'pointer',
+				dataLabels: {
+					enabled: true,
+					color: '#000000',
+					format: '<b>{point.name}:</b> {point.y}'
+				}
+			}
+		},
+		tooltip: {
+			enabled: false
+		},
+		series: [{
+			type: 'pie',
+			data: [
+				{%- for exchange in exchanges -%}
+					['{{ ('exchange.status' ~ exchange.status)|trans }}', {{ exchange.total }}]
+					{%- if not loop.last %}, {% endif -%}
+				{% endfor -%}
+			]
+		}]
+	});
 });
 </script>
 {% endblock %}

@@ -28,6 +28,19 @@ class ExchangeRepository extends EntityRepository {
 						->getSingleResult();
 	}
 
+	public function findExchangesStats() {
+		$queryBuilder = $this->createQueryBuilder('s');
+		$expr = $queryBuilder->expr();
+
+		return $queryBuilder
+						->select($expr->count('s.id') . ' AS total')
+						->addSelect('s.status')
+						->groupBy('s.status')
+						->orderBy('s.status')
+						->getQuery()
+						->getResult();
+	}
+
 	public function findForUser(UserInterface $user, $all) {
 		$queryBuilder = $this->createQueryBuilder('s');
 		$expr = $queryBuilder->expr();
@@ -50,6 +63,20 @@ class ExchangeRepository extends EntityRepository {
 
 		return $queryBuilder->addOrderBy('s.date', 'DESC')
 						->setParameter('user', $user)
+						->getQuery()
+						->getResult();
+	}
+
+	public function findUserExchangesStats() {
+		$queryBuilder = $this->createQueryBuilder('s');
+		$expr = $queryBuilder->expr();
+
+		return $queryBuilder
+						->select('s')
+						->addSelect($expr->count('s.id') . ' AS total')
+						->groupBy('s.from_user')
+						->addGroupBy('s.status')
+						->setMaxResults(10)
 						->getQuery()
 						->getResult();
 	}

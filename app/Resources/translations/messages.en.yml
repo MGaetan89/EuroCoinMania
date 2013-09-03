@@ -23,6 +23,7 @@ stats.cat_countries: Countries
 stats.cat_members: Members
 stats.coins_repartition: '<strong>%total_coins%</strong> different coins splitted between <strong>%total_countries%</strong> countries as follow:'
 stats.country: Country
+stats.exchanges: Exchanges
 stats.last_member: 'The latest registered member is <a href="%path%"%link_attr%>%username%</a>.'
 stats.meta_description: Statistics about EuroCoin Mania
 stats.minted_coins: Minted coins
