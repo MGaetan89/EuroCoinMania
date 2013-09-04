@@ -449,6 +449,7 @@ class CoinController extends BaseController {
 
 			if (!isset($user_exchanges_stats[$_userId])) {
 				$user_exchanges_stats[$_userId] = array(
+					'total' => 0,
 					'user' => $_user,
 					Exchange::STATUS_PENDING => 0,
 					Exchange::STATUS_ACCEPTED => 0,
@@ -458,7 +459,20 @@ class CoinController extends BaseController {
 			}
 
 			$user_exchanges_stats[$_userId][$user_exchange[0]->getStatus()] = (int) $user_exchange['total'];
+			$user_exchanges_stats[$_userId]['total'] += (int) $user_exchange['total'];
 		}
+
+		uasort($user_exchanges_stats, function ($a, $b) {
+			if ($a['total'] < $b['total']) {
+				return 1;
+			}
+
+			if ($a['total'] > $b['total']) {
+				return -1;
+			}
+
+			return strcmp($a['user']->getUsername(), $b['user']->getUsername());
+		});
 
 		return $this->render('EuroCoinBundle:Coin:stats.html.twig', array(
 					'biggest_collection_stats' => $uc_repo->findBiggestCollectionStats(),

@@ -8,14 +8,15 @@
 <h2 class="page-header">{{ block('title') }}</h2>
 
 <ul class="nav nav-tabs">
-	<li><a href="#members" data-toggle="tab">{{ 'stats.cat_members'|trans }}</a></li>
+	<li class="active"><a href="#members" data-toggle="tab">{{ 'stats.cat_members'|trans }}</a></li>
 	<li><a href="#countries" data-toggle="tab">{{ 'stats.cat_countries'|trans }}</a></li>
 	<li><a href="#collections" data-toggle="tab">{{ 'stats.cat_collections'|trans }}</a></li>
-	<li class="active"><a href="#exchanged" data-toggle="tab">{{ 'stats.exchanges'|trans }}</a></li>
+	<li><a href="#exchanges" data-toggle="tab">{{ 'stats.exchanges'|trans }}</a></li>
+	<li><a href="#coins" data-toggle="tab">Coins</a></li>
 </ul>
 
 <div class="tab-content">
-	<div class="tab-pane" id="members">
+	<div class="active tab-pane" id="members">
 		{% include 'EuroCoinBundle:Coin:stats_members.html.twig' %}
 	</div>
 	<div class="tab-pane" id="countries">
@@ -24,8 +25,14 @@
 	<div class="tab-pane" id="collections">
 		{% include 'EuroCoinBundle:Coin:stats_collections.html.twig' %}
 	</div>
-	<div class="tab-pane active" id="exchanged">
+	<div class="tab-pane" id="exchanges">
 		{% include 'EuroCoinBundle:Coin:stats_exchanges.html.twig' %}
+	</div>
+	<div class="tab-pane" id="coins">
+		<ul>
+			<li>Most owned coins</li>
+			<li>Least owned coins</li>
+		</ul>
 	</div>
 </div>
 {% endblock %}
@@ -239,10 +246,47 @@ $(function () {
 		}]
 	}));
 
-	$('#chart_exchanges').highcharts({
-		title: {
-			text: 'Exchanges between members'
+	$('#chart_user_exchanges').highcharts($.extend(defaultOptions, {
+		chart: {
+			type: 'column'
 		},
+		xAxis: {
+			categories: [
+				{%- for exchange in user_exchanges -%}
+					'{{- exchange.user.username -}}'
+					{%- if not loop.last %}, {% endif -%}
+				{%- endfor -%}
+			],
+			labels: {
+				rotation: -45
+			}
+		},
+		tooltip: {
+			pointFormat: '<span style="color: {series.color};">{series.name}</span>: <b>{point.y}</b> ({point.percentage:.0f} %)<br />',
+			shared: true
+		},
+		plotOptions: {
+			column: {
+				stacking: 'percent'
+			}
+		},
+		series: [
+			{%- for i in 1..4 -%}
+				{
+					name: '{{ ('exchange.status' ~ i)|trans }}',
+					data: [
+						{%- for exchange in user_exchanges -%}
+							{{ exchange[i] }}
+							{%- if not loop.last -%}, {% endif -%}
+						{%- endfor -%}
+					]
+				}
+				{%- if not loop.last %}, {% endif -%}
+			{%- endfor -%}
+		]
+	}));
+
+	$('#chart_exchanges').highcharts($.extend(defaultOptions, {
 		plotOptions: {
 			pie: {
 				allowPointSelect: true,
@@ -266,7 +310,7 @@ $(function () {
 				{% endfor -%}
 			]
 		}]
-	});
+	}));
 });
 </script>
 {% endblock %}

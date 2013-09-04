@@ -70,12 +70,33 @@ class ExchangeRepository extends EntityRepository {
 	public function findUserExchangesStats() {
 		$queryBuilder = $this->createQueryBuilder('s');
 		$expr = $queryBuilder->expr();
+		$results = $this->findUserExchangesIds();
+		$userIds = array();
+
+		foreach ($results as $result) {
+			$userIds[] = $result['id'];
+		}
 
 		return $queryBuilder
 						->select('s')
 						->addSelect($expr->count('s.id') . ' AS total')
+						->where($expr->in('s.from_user', $userIds))
 						->groupBy('s.from_user')
 						->addGroupBy('s.status')
+						->getQuery()
+						->getResult();
+	}
+
+	private function findUserExchangesIds() {
+		$queryBuilder = $this->createQueryBuilder('s');
+		$expr = $queryBuilder->expr();
+
+		return $queryBuilder
+						->select('u.id')
+						->addSelect($expr->count('s.id') . ' AS total')
+						->join('s.from_user', 'u')
+						->groupBy('s.from_user')
+						->orderBy('total', 'DESC')
 						->setMaxResults(10)
 						->getQuery()
 						->getResult();

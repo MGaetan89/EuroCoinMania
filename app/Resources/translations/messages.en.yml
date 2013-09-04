@@ -24,12 +24,15 @@ stats.cat_members: Members
 stats.coins_repartition: '<strong>%total_coins%</strong> different coins splitted between <strong>%total_countries%</strong> countries as follow:'
 stats.country: Country
 stats.exchanges: Exchanges
+stats.exchanges_repartition: Exchanges repartition between members
+stats.exchanges_status: Status of the proposed exchanges
 stats.last_member: 'The latest registered member is <a href="%path%"%link_attr%>%username%</a>.'
 stats.meta_description: Statistics about EuroCoin Mania
 stats.minted_coins: Minted coins
 stats.most_valued_collections: Most valued collections
 stats.registered_members: Registered members
 stats.top_countries: Most owned countries
+stats.total: Total
 stats.total_amount: Total amount
 stats.total_coins: Number of coins
 stats.total_unique: Total unique
