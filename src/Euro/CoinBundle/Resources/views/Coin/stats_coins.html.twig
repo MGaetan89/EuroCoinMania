@@ -1,0 +1,91 @@
+<div class="row-fluid">
+	<div class="span6">
+		<h3 class="page-header">{{ 'stats.most_owned_coins'|trans }}</h3>
+
+		<ul class="nav nav-pills">
+			<li class="active"><a href="#most-owned-quantity" data-toggle="pill">{{ 'stats.quantity'|trans }}</a></li>
+			<li><a href="#most-owned-members" data-toggle="pill">{{ 'stats.number_of_members'|trans }}</a></li>
+		</ul>
+
+		<div class="tab-content">
+			<div class="tab-pane active" id="most-owned-quantity">
+				{% for coin in most_owned_coins_quantity %}
+					<div class="media">
+						{% if coin.image %}
+							{% media coin.image, 'small' with {
+								alt: coin.description,
+								class: 'media-object pull-left',
+								title: coin.description
+							} %}
+						{% else %}
+							<p class="media-object pull-left" style="width: 140px;"></p>
+						{% endif %}
+
+						<div class="media-body">
+							<h4 class="media-heading">{{ macros.coin(coin) }}</h4>
+
+							<blockquote>
+								{{ coin.description }}
+
+								<small>
+									{{ 'stats.number_of_coins'|transchoice(coin.memberTotal, {
+										'%total%': coin.memberTotal|number_format
+									}) }}
+								</small>
+							</blockquote>
+						</div>
+					</div>
+				{% endfor %}
+			</div>
+
+			<div class="tab-pane" id="most-owned-members">
+				Show list
+			</div>
+		</div>
+	</div>
+	<div class="span6">
+		<h3 class="page-header">{{ 'stats.least_owned_coins'|trans }}</h3>
+
+		<ul class="nav nav-pills">
+			<li class="active"><a href="#least-owned-quantity" data-toggle="pill">{{ 'stats.quantity'|trans }}</a></li>
+			<li><a href="#least-owned-members" data-toggle="pill">{{ 'stats.number_of_members'|trans }}</a></li>
+		</ul>
+
+		<div class="tab-content">
+			<div class="tab-pane active" id="least-owned-quantity">
+				{% for coin in least_owned_coins_quantity %}
+					<div class="media">
+						{% if coin.image %}
+							{% media coin.image, 'small' with {
+								alt: coin.description,
+								class: 'media-object pull-left',
+								title: coin.description
+							} %}
+						{% else %}
+							<p class="media-object pull-left" style="width: 140px;"></p>
+						{% endif %}
+
+						<div class="media-body">
+							<h4 class="media-heading">{{ macros.coin(coin) }}</h4>
+
+							<blockquote>
+								{{ coin.description }}
+
+								<small>
+									{{ 'stats.number_of_coins'|transchoice(coin.memberTotal, {
+										'%total%': coin.memberTotal|number_format
+									}) }}
+								</small>
+							</blockquote>
+						</div>
+					</div>
+				{% endfor %}
+			</div>
+
+			<div class="tab-pane" id="least-owned-members">
+				Show list
+			</div>
+		</div>
+	</div>
+</div>
+

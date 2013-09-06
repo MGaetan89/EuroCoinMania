@@ -482,6 +482,8 @@ class CoinController extends BaseController {
 					'euro_stats' => $euro_stats,
 					'exchanges' => $exchanges_repo->findExchangesStats(),
 					'latest_user' => $user_repo->findLatestUser()[0],
+					'least_owned_coins_quantity' => $coin_repo->findLeastOwnedCoinsQuantity(),
+					'most_owned_coins_quantity' => $coin_repo->findMostOwnedCoinsQuantity(),
 					'most_value_collection_stats' => $uc_repo->findMostValuedCollectionStats(),
 					'upcoming_birthdays' => $user_repo->findUpcomingBirthdays(),
 					'user_exchanges' => $user_exchanges_stats,

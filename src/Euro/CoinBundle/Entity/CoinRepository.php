@@ -12,21 +12,6 @@ use Doctrine\ORM\EntityRepository;
  */
 class CoinRepository extends EntityRepository {
 
-	public function findCoinsStats() {
-		$queryBuidler = $this->createQueryBuilder('c');
-		$expr = $queryBuidler->expr();
-
-		return $queryBuidler
-						->select('c, ct, f')
-						->addSelect($expr->count('c') . ' AS total')
-						->addSelect('SUM(c.mintage) AS mintage')
-						->join('c.country', 'ct')
-						->join('ct.flag', 'f')
-						->groupBy('c.country')
-						->getQuery()
-						->getResult();
-	}
-
 	public function findByCountry(array $countries) {
 		$queryBuidler = $this->createQueryBuilder('c');
 		$expr = $queryBuidler->expr();
@@ -119,6 +104,51 @@ class CoinRepository extends EntityRepository {
 							'year_from' => $year[0],
 							'year_to' => isset($year[1]) ? $year[1] : $year[0],
 						))
+						->getQuery()
+						->getResult();
+	}
+
+	public function findCoinsStats() {
+		$queryBuidler = $this->createQueryBuilder('c');
+		$expr = $queryBuidler->expr();
+
+		return $queryBuidler
+						->select('c, ct, f')
+						->addSelect($expr->count('c') . ' AS total')
+						->addSelect('SUM(c.mintage) AS mintage')
+						->join('c.country', 'ct')
+						->join('ct.flag', 'f')
+						->groupBy('c.country')
+						->getQuery()
+						->getResult();
+	}
+
+	public function findLeastOwnedCoinsQuantity() {
+		$queryBuilder = $this->createQueryBuilder('c');
+
+		return $queryBuilder
+						->select('c, ct, i, v, y')
+						->join('c.country', 'ct')
+						->join('c.value', 'v')
+						->join('c.year', 'y')
+						->leftJoin('c.image', 'i')
+						->orderBy('c.member_total', 'ASC')
+						->setMaxResults(10)
+						->getQuery()
+						->getResult();
+	}
+
+	public function findMostOwnedCoinsQuantity() {
+		$queryBuilder = $this->createQueryBuilder('c');
+
+		return $queryBuilder
+						->select('c, ct, i, v, y')
+						->join('c.country', 'ct')
+						->join('c.value', 'v')
+						->join('c.year', 'y')
+						->leftJoin('c.image', 'i')
+						->orderBy('c.member_total', 'DESC')
+						->setMaxResults(10)
 						->getQuery()
 						->getResult();
 	}

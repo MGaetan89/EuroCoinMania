@@ -27,9 +27,14 @@ stats.exchanges: Exchanges
 stats.exchanges_repartition: Exchanges repartition between members
 stats.exchanges_status: Status of the proposed exchanges
 stats.last_member: 'The latest registered member is <a href="%path%"%link_attr%>%username%</a>.'
+stats.least_owned_coins: Least owned coins
 stats.meta_description: Statistics about EuroCoin Mania
 stats.minted_coins: Minted coins
+stats.most_owned_coins: Most owned coins
 stats.most_valued_collections: Most valued collections
+stats.number_of_coins: %total% coin|%total% coins
+stats.number_of_members: Number of members
+stats.quantity: Quantity
 stats.registered_members: Registered members
 stats.top_countries: Most owned countries
 stats.total: Total
