@@ -8,15 +8,15 @@
 <h2 class="page-header">{{ block('title') }}</h2>
 
 <ul class="nav nav-tabs">
-	<li><a href="#members" data-toggle="tab">{{ 'stats.cat_members'|trans }}</a></li>
+	<li class="active"><a href="#members" data-toggle="tab">{{ 'stats.cat_members'|trans }}</a></li>
 	<li><a href="#countries" data-toggle="tab">{{ 'stats.cat_countries'|trans }}</a></li>
 	<li><a href="#collections" data-toggle="tab">{{ 'stats.cat_collections'|trans }}</a></li>
 	<li><a href="#exchanges" data-toggle="tab">{{ 'stats.exchanges'|trans }}</a></li>
-	<li class="active"><a href="#coins" data-toggle="tab">Coins</a></li>
+	<li><a href="#coins" data-toggle="tab">Coins</a></li>
 </ul>
 
 <div class="tab-content">
-	<div class="tab-pane" id="members">
+	<div class="active tab-pane" id="members">
 		{% include 'EuroCoinBundle:Coin:stats_members.html.twig' %}
 	</div>
 	<div class="tab-pane" id="countries">
@@ -28,7 +28,7 @@
 	<div class="tab-pane" id="exchanges">
 		{% include 'EuroCoinBundle:Coin:stats_exchanges.html.twig' %}
 	</div>
-	<div class="active tab-pane" id="coins">
+	<div class="tab-pane" id="coins">
 		{% include 'EuroCoinBundle:Coin:stats_coins.html.twig' %}
 	</div>
 </div>

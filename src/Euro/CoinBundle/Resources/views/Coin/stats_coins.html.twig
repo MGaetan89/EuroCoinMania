@@ -39,7 +39,35 @@
 			</div>
 
 			<div class="tab-pane" id="most-owned-members">
-				Show list
+				{% for coin in most_owned_coins_members %}
+					{% set coin, total = coin[0].coin, coin.total %}
+
+					<div class="media">
+						{% if coin.image %}
+							{% media coin.image, 'small' with {
+								alt: coin.description,
+								class: 'media-object pull-left',
+								title: coin.description
+							} %}
+						{% else %}
+							<p class="media-object pull-left" style="width: 140px;"></p>
+						{% endif %}
+
+						<div class="media-body">
+							<h4 class="media-heading">{{ macros.coin(coin) }}</h4>
+
+							<blockquote>
+								{{ coin.description }}
+
+								<small>
+									{{ 'stats.number_of_member'|transchoice(total, {
+										'%total%': total|number_format
+									}) }}
+								</small>
+							</blockquote>
+						</div>
+					</div>
+				{% endfor %}
 			</div>
 		</div>
 	</div>
@@ -83,7 +111,35 @@
 			</div>
 
 			<div class="tab-pane" id="least-owned-members">
-				Show list
+				{% for coin in least_owned_coins_members %}
+					{% set coin, total = coin[0].coin, coin.total %}
+
+					<div class="media">
+						{% if coin.image %}
+							{% media coin.image, 'small' with {
+								alt: coin.description,
+								class: 'media-object pull-left',
+								title: coin.description
+							} %}
+						{% else %}
+							<p class="media-object pull-left" style="width: 140px;"></p>
+						{% endif %}
+
+						<div class="media-body">
+							<h4 class="media-heading">{{ macros.coin(coin) }}</h4>
+
+							<blockquote>
+								{{ coin.description }}
+
+								<small>
+									{{ 'stats.number_of_member'|transchoice(total, {
+										'%total%': total|number_format
+									}) }}
+								</small>
+							</blockquote>
+						</div>
+					</div>
+				{% endfor %}
 			</div>
 		</div>
 	</div>

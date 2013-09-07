@@ -31,6 +31,36 @@ class UserCoinRepository extends EntityRepository {
 						->getResult();
 	}
 
+	public function findLeastOwnedCoins() {
+		$queryBuilder = $this->createQueryBuilder('uc');
+		$expr = $queryBuilder->expr();
+
+		return $queryBuilder
+						->select('uc, c')
+						->addSelect($expr->count('uc.user') . ' AS total')
+						->join('uc.coin', 'c')
+						->groupBy('uc.coin')
+						->orderBy('total', 'ASC')
+						->setMaxResults(10)
+						->getQuery()
+						->getResult();
+	}
+
+	public function findMostOwnedCoins() {
+		$queryBuilder = $this->createQueryBuilder('uc');
+		$expr = $queryBuilder->expr();
+
+		return $queryBuilder
+						->select('uc, c')
+						->addSelect($expr->count('uc.user') . ' AS total')
+						->join('uc.coin', 'c')
+						->groupBy('uc.coin')
+						->orderBy('total', 'DESC')
+						->setMaxResults(10)
+						->getQuery()
+						->getResult();
+	}
+
 	public function findMostValuedCollectionStats() {
 		$queryBuilder = $this->createQueryBuilder('uc');
 		$expr = $queryBuilder->expr();

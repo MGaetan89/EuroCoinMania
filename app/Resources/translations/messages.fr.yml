@@ -33,6 +33,7 @@ stats.minted_coins: Pièces imprimées
 stats.most_owned_coins: Pièces les plus possédées
 stats.most_valued_collections: Collections ayant le plus de valeur
 stats.number_of_coins: %total% pièce|%total% pièces
+stats.number_of_member: %total% membre|%total% membres
 stats.number_of_members: Nombre de membres
 stats.quantity: Quantité
 stats.registered_members: Membres inscrits

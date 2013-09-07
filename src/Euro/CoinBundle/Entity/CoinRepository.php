@@ -123,7 +123,7 @@ class CoinRepository extends EntityRepository {
 						->getResult();
 	}
 
-	public function findLeastOwnedCoinsQuantity() {
+	public function findLeastOwnedCoins() {
 		$queryBuilder = $this->createQueryBuilder('c');
 
 		return $queryBuilder
@@ -138,7 +138,7 @@ class CoinRepository extends EntityRepository {
 						->getResult();
 	}
 
-	public function findMostOwnedCoinsQuantity() {
+	public function findMostOwnedCoins() {
 		$queryBuilder = $this->createQueryBuilder('c');
 
 		return $queryBuilder

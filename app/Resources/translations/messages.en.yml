@@ -33,6 +33,7 @@ stats.minted_coins: Minted coins
 stats.most_owned_coins: Most owned coins
 stats.most_valued_collections: Most valued collections
 stats.number_of_coins: %total% coin|%total% coins
+stats.number_of_member: %total% member|%total% members
 stats.number_of_members: Number of members
 stats.quantity: Quantity
 stats.registered_members: Registered members
