@@ -1,5 +1,11 @@
 # CHANGELOG
 
+### 1.1.7 - 2.1.7 (????-??-??)
+
+ * 4a37ad8 - [Doc] SonataMedia integration
+ * a94df4f - [DependencyInjection] Introduce built-in toolbars (basic, standard, full)
+ * bcae378 - [Doc] Fix FMElfinderBundle integration example
+
 ### 1.1.6 - 2.1.6 (2013-08-22)
 
  * 992c7df - [Form] Simplify default configuration handling
