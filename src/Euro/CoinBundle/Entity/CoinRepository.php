@@ -125,6 +125,7 @@ class CoinRepository extends EntityRepository {
 
 	public function findLeastOwnedCoins() {
 		$queryBuilder = $this->createQueryBuilder('c');
+		$expr = $queryBuilder->expr();
 
 		return $queryBuilder
 						->select('c, ct, i, v, y')
@@ -132,6 +133,7 @@ class CoinRepository extends EntityRepository {
 						->join('c.value', 'v')
 						->join('c.year', 'y')
 						->leftJoin('c.image', 'i')
+						->where($expr->gt('c.member_total', 0))
 						->orderBy('c.member_total', 'ASC')
 						->setMaxResults(10)
 						->getQuery()

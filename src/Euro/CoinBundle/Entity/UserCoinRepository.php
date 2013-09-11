@@ -39,6 +39,7 @@ class UserCoinRepository extends EntityRepository {
 						->select('uc, c')
 						->addSelect($expr->count('uc.user') . ' AS total')
 						->join('uc.coin', 'c')
+						->where($expr->gt('uc.quantity', 0))
 						->groupBy('uc.coin')
 						->orderBy('total', 'ASC')
 						->setMaxResults(10)
