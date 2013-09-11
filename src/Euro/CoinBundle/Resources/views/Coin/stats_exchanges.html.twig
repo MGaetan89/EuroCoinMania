@@ -1,4 +1,4 @@
-<h3 class="page-header">{{ 'stats.exchanges_repartition'|trans }}</h3>
+<h3 class="page-header">{{ 'stats.proposed_exchanges_by_member'|trans }}</h3>
 
 <div class="row-fluid">
 	<div class="span6">
@@ -6,11 +6,11 @@
 			<thead>
 				<tr>
 					<th>{{ 'user.username'|trans }}</th>
-					<th>{{ 'stats.total'|trans }}</th>
-					<th>{{ 'exchange.status1'|trans }}</th>
 					<th>{{ 'exchange.status2'|trans }}</th>
+					<th>{{ 'exchange.status1'|trans }}</th>
 					<th>{{ 'exchange.status3'|trans }}</th>
 					<th>{{ 'exchange.status4'|trans }}</th>
+					<th>{{ 'stats.total'|trans }}</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -23,11 +23,11 @@
 								{{- user.username -}}
 							</a>
 						</td>
-						<td><strong>{{ exchange.total }}</strong></td>
+						<td><strong>{{ exchange[2] }}</strong></td>
 						<td>{{ exchange[1] }}</td>
-						<td>{{ exchange[2] }}</td>
 						<td>{{ exchange[3] }}</td>
 						<td>{{ exchange[4] }}</td>
+						<td>{{ exchange.total }}</td>
 					</tr>
 				{% endfor %}
 			</tbody>

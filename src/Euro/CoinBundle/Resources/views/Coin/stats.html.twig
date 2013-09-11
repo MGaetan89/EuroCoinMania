@@ -291,7 +291,7 @@ $(function () {
 				dataLabels: {
 					enabled: true,
 					color: '#000000',
-					format: '<b>{point.name}:</b> {point.y}'
+					format: '<b>{point.name}:</b> {point.y}  ({point.percentage:.0f} %)'
 				}
 			}
 		},
@@ -302,7 +302,17 @@ $(function () {
 			type: 'pie',
 			data: [
 				{%- for exchange in exchanges -%}
-					['{{ ('exchange.status' ~ exchange.status)|trans }}', {{ exchange.total }}]
+					{%- if exchange.status == 2 -%}
+						{
+							name: '{{ 'exchange.status2'|trans }}',
+							y: {{ exchange.total }},
+							sliced: true,
+							selected: true
+						}
+					{%- else -%}
+						['{{ ('exchange.status' ~ exchange.status)|trans }}', {{ exchange.total }}]
+					{%- endif -%}
+
 					{%- if not loop.last %}, {% endif -%}
 				{% endfor -%}
 			]

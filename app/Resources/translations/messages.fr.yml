@@ -24,7 +24,6 @@ stats.cat_members: Membres
 stats.coins_repartition: '<strong>%total_coins%</strong> pièces différentes réparties parmi <strong>%total_countries%</strong> pays de la façon suivante :'
 stats.country: Pays
 stats.exchanges: Echanges
-stats.exchanges_repartition: Répartition des échanges entre les membres
 stats.exchanges_status: Statut des échanges proposés
 stats.last_member: 'Le dernier membre inscrit est <a href="%path%"%link_attr%>%username%</a>.'
 stats.least_owned_coins: Pièces les moins possédées
@@ -35,6 +34,7 @@ stats.most_valued_collections: Collections ayant le plus de valeur
 stats.number_of_coins: %total% pièce|%total% pièces
 stats.number_of_member: %total% membre|%total% membres
 stats.number_of_members: Nombre de membres
+stats.proposed_exchanges_by_member: Nombre d'échanges proposés par membre
 stats.quantity: Quantité
 stats.registered_members: Membres inscrits
 stats.top_countries: Pays les plus possédés

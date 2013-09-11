@@ -463,14 +463,52 @@ class CoinController extends BaseController {
 		}
 
 		uasort($user_exchanges_stats, function ($a, $b) {
-			if ($a['total'] < $b['total']) {
+			// First accepted exchanges
+			if ($a[Exchange::STATUS_ACCEPTED] < $b[Exchange::STATUS_ACCEPTED]) {
 				return 1;
 			}
 
-			if ($a['total'] > $b['total']) {
+			if ($a[Exchange::STATUS_ACCEPTED] > $b[Exchange::STATUS_ACCEPTED]) {
 				return -1;
 			}
 
+			// Then pending exchanges
+			if ($a[Exchange::STATUS_PENDING] < $b[Exchange::STATUS_PENDING]) {
+				return 1;
+			}
+
+			if ($a[Exchange::STATUS_PENDING] > $b[Exchange::STATUS_PENDING]) {
+				return -1;
+			}
+
+			// Then canceled exchanges against refused exchanges
+			if ($a[Exchange::STATUS_CANCELED] < $b[Exchange::STATUS_REFUSED]) {
+				return -1;
+			}
+
+			if ($a[Exchange::STATUS_CANCELED] > $b[Exchange::STATUS_REFUSED]) {
+				return 1;
+			}
+
+			// Then canceled exchanges
+			if ($a[Exchange::STATUS_CANCELED] < $b[Exchange::STATUS_CANCELED]) {
+				return 1;
+			}
+
+			if ($a[Exchange::STATUS_CANCELED] > $b[Exchange::STATUS_CANCELED]) {
+				return -1;
+			}
+
+			// Then refused exchanges only
+			if ($a[Exchange::STATUS_REFUSED] < $b[Exchange::STATUS_REFUSED]) {
+				return -1;
+			}
+
+			if ($a[Exchange::STATUS_REFUSED] > $b[Exchange::STATUS_REFUSED]) {
+				return 1;
+			}
+
+			// Finally the username
 			return strcmp($a['user']->getUsername(), $b['user']->getUsername());
 		});
 
