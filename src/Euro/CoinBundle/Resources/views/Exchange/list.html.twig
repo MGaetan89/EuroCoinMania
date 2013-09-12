@@ -13,6 +13,10 @@
 	<table class="table table-bordered table-hover table-striped">
 	<thead>
 		<tr>
+			{% if all %}
+				<th>#</th>
+			{% endif %}
+
 			<th>{{ 'exchange.direction'|trans }}</th>
 			<th>{{ 'exchange.proposed_on'|trans }}</th>
 			<th>{{ 'exchange.coins_requested'|trans }}</th>
@@ -35,6 +39,12 @@
 	} %}
 	{% for exchange in exchanges %}
 		<tr class="{{ row_classes[exchange.status - 1] }}">
+			{% if all %}
+				<td>
+					<a class="btn" href="{{ path('exchange_show', { id: exchange.id }) }}" title="{{ 'exchange.show'|trans }}"><i class="icon-eye-open"></i></a>
+				</td>
+			{% endif %}
+
 			<td>
 				{% if exchange.fromuser.id == app.user.id %}<strong>{% endif %}
 					<a href="{{ path('show_profile', { id: exchange.fromuser.id }) }}">{{ exchange.fromuser.username }}</a>
