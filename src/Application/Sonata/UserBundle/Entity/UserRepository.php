@@ -116,14 +116,21 @@ class UserRepository extends EntityRepository {
 	}
 
 	public function findUpcomingBirthdays() {
-		$queryBuilder = $this->createQueryBuilder('u');
-		$expr = $queryBuilder->expr();
+		$rsm = new ResultSetMapping();
+		$rsm->addScalarResult('id', 'id', 'integer');
+		$rsm->addScalarResult('username', 'username', 'string');
+		$rsm->addScalarResult('public_profile', 'publicprofile', 'boolean');
+		$rsm->addScalarResult('date_of_birth', 'dateOfBirth', 'datetime');
 
-		return $queryBuilder
-						->where($expr->isNotNull('u.dateOfBirth'))
-						->orderBy('u.username')
-						->getQuery()
-						->getResult();
+		return $this->getEntityManager()
+				->createNativeQuery('
+					SELECT u.id, u.username, u.public_profile, u.date_of_birth
+					FROM fos_user__user u
+					WHERE DAYOFYEAR(curdate()) <= dayofyear(u.date_of_birth) AND DAYOFYEAR(curdate()) + 7 >= dayofyear(u.date_of_birth)
+					ORDER BY MONTH(u.date_of_birth), DAY(u.date_of_birth)
+					LIMIT 10
+					', $rsm)
+				->getResult();
 	}
 
 }
