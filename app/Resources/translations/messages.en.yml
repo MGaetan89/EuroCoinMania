@@ -16,8 +16,12 @@ site_description: Manage your Euro coin collection and suggest exchanges to the 
 site_keywords: euro, exchange, coin, collection, collector, mintage, numismatist, share
 sitename: EuroCoin Mania
 stats: Statistics
+stats.age: %age% years old
 stats.average_age: The average age is <strong>%age%</strong> years old.
 stats.biggest_collections: Biggest collections
+stats.birthdays_today: <strong>%total%</strong> birthday today:|<strong>%total%</strong> birthdays today:
+stats.birthdays_upcoming: <strong>%total%</strong> upcoming birthday:|<strong>%total%</strong> upcoming birthdays:
+stats.birthdays_upcoming_none: No upcoming birthdays
 stats.cat_collections: Collections
 stats.cat_countries: Countries
 stats.cat_members: Members

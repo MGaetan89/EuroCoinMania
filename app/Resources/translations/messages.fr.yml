@@ -16,8 +16,12 @@ site_description: Gérer votre collection de pièces en Euro et proposer des éc
 site_keywords: échange, euro, collection, collector, numismate, pièce, tirage
 sitename: EuroCoin Mania
 stats: Statistiques
+stats.age: %age% ans
 stats.average_age: La moyenne d'âge est de <strong>%age%</strong> ans.
 stats.biggest_collections: Plus grandes collections
+stats.birthdays_today: <strong>%total%</strong> anniversaire aujourd'hui :|<strong>%total%</strong> anniversaires aujourd'hui :
+stats.birthdays_upcoming: <strong>%total%</strong> anniversaire à venir :|<strong>%total%</strong> anniversaires à venir :
+stats.birthdays_upcoming_none: Aucun anniversaire à venir
 stats.cat_collections: Collections
 stats.cat_countries: Pays
 stats.cat_members: Membres

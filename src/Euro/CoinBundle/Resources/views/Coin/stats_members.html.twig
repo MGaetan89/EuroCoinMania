@@ -53,20 +53,24 @@
 	</div>
 	<div class="span6">
 		{% if birthdays|length > 0 %}
-			{{ birthdays|length }} birthdays today:
+			{{ 'stats.birthdays_today'|transchoice(birthdays|length, {
+				'%total%': birthdays|length
+			})|raw }}
 
 			<blockquote>
 				{% for birthday in birthdays %}
 					<a href="{{ path('show_profile', { id: birthday.id }) }}"{% if not birthday.publicprofile %} rel="nofollow"{% endif %}>
 						{{- birthday.username -}}
 					</a>
-					({{ ('now'|date('Y') - birthday.dateOfBirth|date('Y')) }} years old)<br />
+					({{ 'stats.age'|trans({ '%age%': ('now'|date('Y') - birthday.dateOfBirth|date('Y')) }) }})<br />
 				{% endfor %}
 			</blockquote>
 		{% endif %}
 
 		{% if upcoming_birthdays|length > 0 %}
-			{{ upcoming_birthdays|length }} birthdays in the upcoming week:
+			{{ 'stats.birthdays_upcoming'|transchoice(upcoming_birthdays|length, {
+				'%total%': upcoming_birthdays|length
+			})|raw }}
 
 			<blockquote>
 				{% for birthday in upcoming_birthdays %}
@@ -76,8 +80,8 @@
 					({{ birthday.dateOfBirth|format_date('d MMMM') }})<br />
 				{% endfor %}
 			</blockquote>
-		{% else %}
-			No birthday in the upcoming week.
+		{% elseif birthdays|length == 0 %}
+			{{ 'stats.birthdays_upcoming_none'|trans }}
 		{% endif %}
 	</div>
 </div>
