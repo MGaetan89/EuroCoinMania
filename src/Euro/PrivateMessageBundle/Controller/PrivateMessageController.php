@@ -54,7 +54,7 @@ class PrivateMessageController extends Controller {
 						'%locale%' => $to_user->getLocale(),
 						'%path%' => $this->generateUrl('pm_read', array(
 							'id' => $conversation->getId(),
-							'title' => $conversation->getTitle(),
+							'title' => $translator->trans($conversation->getTitle()),
 						), true),
 						'%to%' => $to_user->getUsername(),
 						'%username%' => $from_user->getUsername(),
