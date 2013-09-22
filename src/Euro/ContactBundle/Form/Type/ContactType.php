@@ -21,16 +21,7 @@ class ContactType extends AbstractType {
 						'other' => 'contact.subject.other',
 					)
 				))
-				/*
-				->add('message', 'sonata_formatter_type', array(
-					'event_dispatcher' => $builder->getEventDispatcher(),
-					'format_field'   => 'formatter',
-					'source_field'   => 'rawMessage',
-					'target_field'   => 'message'
-				));
-				/*/
 				->add('message', 'textarea');
-				//*/
 	}
 
 	public function getName() {
