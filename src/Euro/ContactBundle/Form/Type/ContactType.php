@@ -28,8 +28,9 @@ class ContactType extends AbstractType {
 					'source_field'   => 'rawMessage',
 					'target_field'   => 'message'
 				));
-				*/
+				/*/
 				->add('message', 'textarea');
+				//*/
 	}
 
 	public function getName() {
