@@ -16,7 +16,7 @@
 </ul>
 
 <div class="tab-content">
-	<div class="active tab-pane" id="members">
+	<div class="tab-pane active" id="members">
 		{% include 'EuroCoinBundle:Coin:stats_members.html.twig' %}
 	</div>
 	<div class="tab-pane" id="countries">
@@ -41,7 +41,7 @@ $(function () {
 	var categories = [
 		{%- for country in countries -%}
 			{%- set name = macros.name(country) -%}
-			'<img alt="{{ name }}" src="{% path country.flag, 'mini' %}" title="{{ name }}" data-hover="tooltip" data-placement="right" />'
+			'<img alt="{{ name }}" src="{% path country.flag, 'mini' %}" title="{{ name }}" style="margin-right: 20px;" data-hover="tooltip" data-placement="right" />'
 			{%- if not loop.last %}, {% endif -%}
 		{%- endfor -%}
 	];
