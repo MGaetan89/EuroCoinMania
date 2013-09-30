@@ -21,7 +21,7 @@ class YearAdmin extends Admin {
 	protected function configureFormFields(FormMapper $form) {
 		$form
 				->add('year', null, array('attr' => array(
-						'max' => date('Y'),
+						'max' => date('Y') + 5,
 						'min' => 1999,
 						)))
 				->add('workshop', 'sonata_type_model', array('required' => false));
