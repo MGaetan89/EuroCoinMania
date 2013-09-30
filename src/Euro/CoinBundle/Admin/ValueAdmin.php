@@ -27,7 +27,7 @@ class ValueAdmin extends Admin {
 				->addIdentifier('value', null, array('template' => 'EuroCoinBundle:Admin:Value/list_value.html.twig'))
 				->add('_action', 'actions', array(
 					'actions' => array(
-						'view' => array(),
+						'show' => array(),
 						'edit' => array(),
 						'delete' => array(),
 					),
