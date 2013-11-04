@@ -29,7 +29,7 @@ class WorkshopAdmin extends Admin {
 				->addIdentifier('name', null, array('template' => 'EuroCoinBundle:Admin:Workshop/list_name.html.twig'))
 				->add('_action', 'actions', array(
 					'actions' => array(
-						'view' => array(),
+						'show' => array(),
 						'edit' => array(),
 						'delete' => array(),
 					),

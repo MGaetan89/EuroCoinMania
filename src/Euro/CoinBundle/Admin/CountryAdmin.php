@@ -42,7 +42,7 @@ class CountryAdmin extends Admin {
 				->add('exchange_rate', null, array('template' => 'EuroCoinBundle:Admin:Country/list_exchange_rate.html.twig'))
 				->add('_action', 'actions', array(
 					'actions' => array(
-						'view' => array(),
+						'show' => array(),
 						'edit' => array(),
 						'delete' => array(),
 					),

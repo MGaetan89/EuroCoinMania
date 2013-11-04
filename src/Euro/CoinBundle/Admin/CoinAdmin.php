@@ -57,7 +57,7 @@ class CoinAdmin extends Admin {
 				->add('active', null, array('editable' => true))
 				->add('_action', 'actions', array(
 					'actions' => array(
-						'view' => array(),
+						'show' => array(),
 						'edit' => array(),
 						'delete' => array(),
 					),
