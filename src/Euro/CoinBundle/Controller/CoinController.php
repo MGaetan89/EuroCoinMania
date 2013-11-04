@@ -336,11 +336,11 @@ class CoinController extends BaseController {
 			// Send e-mail notification to admin
 			$contentModelSuffix = ($message == '') ? '' : '_message';
 			$content = $translator->trans('coin.propose_new.email_text' . $contentModelSuffix, array(
-				'message' => $message,
-				'path' => $this->generateUrl('show_profile', array(
+				'%message%' => $message,
+				'%path%' => $this->generateUrl('show_profile', array(
 					'id' => $user->getId(),
 				), true),
-				'user' => $user->getUsername(),
+				'%user%' => $user->getUsername(),
 			));
 
 			$message = \Swift_Message::newInstance()
