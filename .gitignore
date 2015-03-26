@@ -1,4 +1,4 @@
-nbproject/
+.idea/
 app/cache/
 app/config/parameters.yml
 app/logs/
@@ -9,4 +9,4 @@ composer.phar
 rsync-exclude
 sitemap.xml
 update
-
+vendor/
