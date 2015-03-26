@@ -20,12 +20,16 @@ version 0.4.
 
     {
         "require": {
-            "imagine/imagine": "~0.4.0"
+            "imagine/imagine": "~0.5.0"
         }
     }
 
-Update the dependencies using composer.phar and use Imagine :
+Install the dependencies using composer.phar and use Imagine :
 
+.. code-block:: none
+
+    php composer.phar install
+    
 .. code-block:: php
 
     <?php
@@ -107,10 +111,10 @@ You can also specify the filter you want as second argument :
    // resize with lanczos filter
    $image->resize(new Box(15, 25), ImageInterface::FILTER_LANCZOS);
 
-Available filters are ImageInterface::FILTER_* constants.
+Available filters are ``ImageInterface::FILTER_*`` constants.
 
 .. NOTE::
-   GD only supports ImageInterface::RESIZE_UNDEFINED filter.
+   GD only supports ``ImageInterface::RESIZE_UNDEFINED`` filter.
 
 Create New Images
 +++++++++++++++++
@@ -130,14 +134,15 @@ You can optionally specify the fill color for the new image, which defaults to o
 
    <?php
 
+   $palette = new Imagine\Image\Palette\RGB();
    $size  = new Imagine\Image\Box(400, 300);
-   $color = new Imagine\Image\Color('000', 100);
+   $color = $palette->color('#000', 100);
    $image = $imagine->create($size, $color);
 
 Save Images
 +++++++++++
 
-Images are saved given a path and options.
+Images are saved given a path and optionally options.
 
 The following example opens a Jpg image and saves it as Png format :
 
@@ -152,10 +157,13 @@ The following example opens a Jpg image and saves it as Png format :
 
 Three options groups are currently supported : quality, resolution and flatten.
 
+.. TIP::
+   Default values are 75 for Jpeg quality, 7 for Png compression level and 72 dpi for x/y-resolution.
+
 .. NOTE::
    GD does not support resolution options group
 
-The following example opens a Jpg image and saves it with its quality set to 50.
+The following example demonstrates the basic quality settings.
 
 .. code-block:: php
 
@@ -163,10 +171,9 @@ The following example opens a Jpg image and saves it with its quality set to 50.
 
    $imagine = new Imagine\Imagick\Imagine();
 
-   $imagine->open('/path/to/image.jpg')->save('/path/to/image.jpg', array('quality' => 50));
-
-.. TIP::
-   Default values are 75 for Jpeg quality and 72 dpi for x/y-resolution.
+   $imagine->open('/path/to/image.jpg')
+      ->save('/path/to/image.jpg', array('jpeg_quality' => 50)) // from 0 to 100
+      ->save('/path/to/image.png', array('png_compression_level' => 9)); // from 0 to 9
 
 The following example opens a Jpg image and saves it with it with 150 dpi horizontal resolution and 120 dpi vertical resolution.
 
@@ -182,14 +189,15 @@ The following example opens a Jpg image and saves it with it with 150 dpi horizo
        'resolution-units' => ImageInterface::RESOLUTION_PIXELSPERINCH,
        'resolution-x' => 150,
        'resolution-y' => 120,
+       'resampling-filter' => ImageInterface::FILTER_LANCZOS,
    );
 
    $imagine->open('/path/to/image.jpg')->save('/path/to/image.jpg', $options);
 
-.. TIP::
+.. NOTE::
    You **MUST** provide a unit system when setting resolution values.
    There are two available unit systems for resolution : ``ImageInterface::RESOLUTION_PIXELSPERINCH`` and ``ImageInterface::RESOLUTION_PIXELSPERCENTIMETER``.
-`
+
 The flatten option is used when dealing with multi-layers images (see the
 `layers <layers>`_ section for information). Image are saved flatten by default,
 you can avoid this by explicitly set this option to ``false`` when saving :
@@ -225,42 +233,70 @@ Of course, you can combine options :
        'resolution-units' => ImageInterface::RESOLUTION_PIXELSPERINCH,
        'resolution-x' => 300,
        'resolution-y' => 300,
-       'quality' => 100,
+       'jpeg_quality' => 100,
    );
 
    $imagine->open('/path/to/image.jpg')->save('/path/to/image.jpg', $options);
 
-Color Class
+Show Images
 +++++++++++
 
-Color is a class in Imagine, which takes two arguments in its constructor: the RGB color code and a transparency percentage. The following examples are equivalent ways of defining a fully-transparent white color.
+Images are shown (i.e. outputs the image content) given a format and optionally options.
+
+The following example shows a Jpg image:
 
 .. code-block:: php
 
    <?php
 
-   $white = new Imagine\Image\Color('fff', 100);
-   $white = new Imagine\Image\Color('ffffff', 100);
-   $white = new Imagine\Image\Color('#fff', 100);
-   $white = new Imagine\Image\Color('#ffffff', 100);
-   $white = new Imagine\Image\Color(0xFFFFFF, 100);
-   $white = new Imagine\Image\Color(array(255, 255, 255), 100);
+   $imagine = new Imagine\Imagick\Imagine();
 
-After you have instantiated a color, you can easily get its Red, Green, Blue and Alpha (transparency) values:
+   $imagine->open('/path/to/image.jpg')
+      ->show('jpg');
+
+.. NOTE::
+   This will send a "Content-type" header.
+
+It supports the same options groups as for the save method.
+
+For example:
 
 .. code-block:: php
 
    <?php
 
-   var_dump(array(
-      'R' => $white->getRed(),
-      'G' => $white->getGreen(),
-      'B' => $white->getBlue(),
-      'A' => $white->getAlpha()
-   ));
+   $imagine = new Imagine\Imagick\Imagine();
+
+   $options = array(
+      'resolution-units' => ImageInterface::RESOLUTION_PIXELSPERINCH,
+      'resolution-x' => 300,
+      'resolution-y' => 300,
+      'jpeg_quality' => 100,
+   );
+
+   $imagine->open('/path/to/image.jpg')
+      ->show('jpg', $options);
 
 Advanced Examples
 -----------------
+
+Image Watermarking
+++++++++++++++++++
+
+Here is a simple way to add a watermark to an image :
+
+.. code-block:: php
+
+    <?php
+
+    $watermark = $imagine->open('/my/watermark.png');
+    $image     = $imagine->open('/path/to/image.jpg');
+    $size      = $image->getSize();
+    $wSize     = $watermark->getSize();
+
+    $bottomRight = new Imagine\Image\Point($size->getWidth() - $wSize->getWidth(), $size->getHeight() - $wSize->getHeight());
+
+    $image->paste($watermark, $bottomRight);
 
 An Image Collage
 ++++++++++++++++
@@ -328,17 +364,17 @@ Image Reflection Filter
            $canvas     = new Imagine\Image\Box($size->getWidth(), $size->getHeight() * 2);
            $reflection = $image->copy()
                ->flipVertically()
-               ->applyMask($this->getTransparencyMask($size))
+               ->applyMask($this->getTransparencyMask($image->palette(), $size))
            ;
 
-           return $this->imagine->create($canvas, new Imagine\Image\Color('fff', 100))
+           return $this->imagine->create($canvas, $image->palette()->color('fff', 100))
                ->paste($image, new Imagine\Image\Point(0, 0))
                ->paste($reflection, new Imagine\Image\Point(0, $size->getHeight()));
        }
 
-       private function getTransparencyMask(Imagine\Image\BoxInterface $size)
+       private function getTransparencyMask(Imagine\Image\Palette\PaletteInterface $palette, Imagine\Image\BoxInterface $size)
        {
-           $white = new Imagine\Image\Color('fff');
+           $white = $palette->color('fff');
            $fill  = new Imagine\Image\Fill\Gradient\Vertical(
                $size->getHeight(),
                $white->darken(127),

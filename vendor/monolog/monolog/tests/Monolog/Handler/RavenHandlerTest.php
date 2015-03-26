@@ -14,7 +14,6 @@ namespace Monolog\Handler;
 use Monolog\TestCase;
 use Monolog\Logger;
 use Monolog\Formatter\LineFormatter;
-use Monolog\Handler\RavenHandler;
 
 class RavenHandlerTest extends TestCase
 {
@@ -74,6 +73,38 @@ class RavenHandlerTest extends TestCase
         $this->assertContains($record['message'], $ravenClient->lastData['message']);
     }
 
+    public function testTag()
+    {
+        $ravenClient = $this->getRavenClient();
+        $handler = $this->getHandler($ravenClient);
+
+        $tags = array(1, 2, 'foo');
+        $record = $this->getRecord(Logger::INFO, "test", array('tags' => $tags));
+        $handler->handle($record);
+
+        $this->assertEquals($tags, $ravenClient->lastData['tags']);
+    }
+
+    public function testUserContext()
+    {
+        $ravenClient = $this->getRavenClient();
+        $handler = $this->getHandler($ravenClient);
+
+        $user = array(
+            'id' => '123',
+            'email' => 'test@test.com'
+        );
+        $record = $this->getRecord(Logger::INFO, "test", array('user' => $user));
+
+        $handler->handle($record);
+        $this->assertEquals($user, $ravenClient->context->user);
+
+        $secondRecord = $this->getRecord(Logger::INFO, "test without user");
+
+        $handler->handle($secondRecord);
+        $this->assertNull($ravenClient->context->user);
+    }
+
     public function testException()
     {
         $ravenClient = $this->getRavenClient();
@@ -92,12 +123,16 @@ class RavenHandlerTest extends TestCase
     public function testHandleBatch()
     {
         $records = $this->getMultipleRecords();
+        $records[] = $this->getRecord(Logger::WARNING, 'warning');
+        $records[] = $this->getRecord(Logger::WARNING, 'warning');
 
         $logFormatter = $this->getMock('Monolog\\Formatter\\FormatterInterface');
         $logFormatter->expects($this->once())->method('formatBatch');
 
         $formatter = $this->getMock('Monolog\\Formatter\\FormatterInterface');
-        $formatter->expects($this->once())->method('format');
+        $formatter->expects($this->once())->method('format')->with($this->callback(function ($record) {
+            return $record['level'] == 400;
+        }));
 
         $handler = $this->getHandler($this->getRavenClient());
         $handler->setBatchFormatter($logFormatter);

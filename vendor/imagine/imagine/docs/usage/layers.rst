@@ -14,10 +14,10 @@ Imagine is a fluent API to use Imagick, Gmagick or GD driver. These drivers
 do not handle all multi-layers formats equally. For example :
 
  * PSD format should be flatten before being saved. (libraries would split it
- into different files),
+   into different files),
  * animated gif must not be flatten otherwise the animation would be lost.
  * Tiff files should be split in multiple files or the result might be a pile
- of HD and thumbnail
+   of HD and thumbnail
  * GD does not support layers.
 
 You have to run tests against the formats you are using and their support by
@@ -128,6 +128,26 @@ example :
 Animated gif frame manipulation
 -------------------------------
 
+Resizing an animated cats.gif file :
+
+.. code-block:: php
+
+    <?php
+    $image = $imagine->open('cats.gif');
+
+    $image->layers()->coalesce();
+    foreach ($image->layers() as $frame) {
+        $frame->resize(new Box(100, 100));
+    }
+
+    $image->save('resized-cats.gif', array('animated' => true));
+
+The layers (frames) should be coalesced so that they are all in line with each other.
+Otherwise you may end up with strange artifacts due to how animated GIFs *can* work.
+Without going into too much detail, think of it as each frame being a patch to the previous one.
+Also note that not the image, but each frame is resized. This again has to do with
+how animated GIFs work. Not every frame has to be the full image.
+
 The following example extract all frames of the cats.gif file :
 
 .. code-block:: php
@@ -150,7 +170,7 @@ This one adds some text on frames :
     $i = 0;
     foreach ($image->layers() as $layer) {
         $layer->draw()
-              ->text($i, new Font('coolfont.ttf', 12, new Color('white')), new Point(10, 10));
+              ->text($i, new Font('coolfont.ttf', 12, $image->palette()->color('white')), new Point(10, 10));
         $i++;
     }
 

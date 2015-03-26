@@ -20,18 +20,19 @@ class AppKernel extends Kernel {
 			// Installed bundles
 			new FOS\UserBundle\FOSUserBundle(),
 			new Ivory\CKEditorBundle\IvoryCKEditorBundle(),
+			new JMS\SerializerBundle\JMSSerializerBundle(),
 			new Knp\Bundle\MarkdownBundle\KnpMarkdownBundle(),
 			new Knp\Bundle\MenuBundle\KnpMenuBundle(),
 			new Ornicar\GravatarBundle\OrnicarGravatarBundle(),
 			new Sonata\AdminBundle\SonataAdminBundle(),
 			new Sonata\BlockBundle\SonataBlockBundle(),
 			new Sonata\CacheBundle\SonataCacheBundle(),
+			new Sonata\ClassificationBundle\SonataClassificationBundle(),
+			new Sonata\CoreBundle\SonataCoreBundle(),
 			new Sonata\DoctrineORMAdminBundle\SonataDoctrineORMAdminBundle(),
 			new Sonata\EasyExtendsBundle\SonataEasyExtendsBundle(),
 			new Sonata\FormatterBundle\SonataFormatterBundle(),
 			new Sonata\IntlBundle\SonataIntlBundle(),
-			new Sonata\jQueryBundle\SonatajQueryBundle(),
-			new Sonata\MarkItUpBundle\SonataMarkItUpBundle(),
 			new Sonata\MediaBundle\SonataMediaBundle(),
 			new Sonata\NewsBundle\SonataNewsBundle(),
 			new Sonata\UserBundle\SonataUserBundle('FOSUserBundle'),
@@ -58,5 +59,4 @@ class AppKernel extends Kernel {
 	public function registerContainerConfiguration(LoaderInterface $loader) {
 		$loader->load(__DIR__ . '/config/config_' . $this->getEnvironment() . '.yml');
 	}
-
 }

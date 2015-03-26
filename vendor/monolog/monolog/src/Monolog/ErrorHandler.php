@@ -72,7 +72,7 @@ class ErrorHandler
     public function registerExceptionHandler($level = null, $callPrevious = true)
     {
         $prev = set_exception_handler(array($this, 'handleException'));
-        $this->uncaughtExceptionLevel = $level === null ? LogLevel::ERROR : $level;
+        $this->uncaughtExceptionLevel = $level;
         if ($callPrevious && $prev) {
             $this->previousExceptionHandler = $prev;
         }
@@ -92,7 +92,7 @@ class ErrorHandler
         register_shutdown_function(array($this, 'handleFatalError'));
 
         $this->reservedMemory = str_repeat(' ', 1024 * $reservedMemorySize);
-        $this->fatalLevel = $level === null ? LogLevel::ALERT : $level;
+        $this->fatalLevel = $level;
     }
 
     protected function defaultErrorLevelMap()
@@ -121,7 +121,11 @@ class ErrorHandler
      */
     public function handleException(\Exception $e)
     {
-        $this->logger->log($this->uncaughtExceptionLevel, 'Uncaught exception', array('exception' => $e));
+        $this->logger->log(
+            $this->uncaughtExceptionLevel === null ? LogLevel::ERROR : $this->uncaughtExceptionLevel,
+            sprintf('Uncaught Exception %s: "%s" at %s line %s', get_class($e), $e->getMessage(), $e->getFile(), $e->getLine()),
+            array('exception' => $e)
+        );
 
         if ($this->previousExceptionHandler) {
             call_user_func($this->previousExceptionHandler, $e);
@@ -138,7 +142,7 @@ class ErrorHandler
         }
 
         $level = isset($this->errorLevelMap[$code]) ? $this->errorLevelMap[$code] : LogLevel::CRITICAL;
-        $this->logger->log($level, self::codeToString($code).': '.$message, array('file' => $file, 'line' => $line));
+        $this->logger->log($level, self::codeToString($code).': '.$message, array('code' => $code, 'message' => $message, 'file' => $file, 'line' => $line));
 
         if ($this->previousErrorHandler === true) {
             return false;
@@ -157,9 +161,9 @@ class ErrorHandler
         $lastError = error_get_last();
         if ($lastError && in_array($lastError['type'], self::$fatalErrors)) {
             $this->logger->log(
-                $this->fatalLevel,
+                $this->fatalLevel === null ? LogLevel::ALERT : $this->fatalLevel,
                 'Fatal Error ('.self::codeToString($lastError['type']).'): '.$lastError['message'],
-                array('file' => $lastError['file'], 'line' => $lastError['line'])
+                array('code' => $lastError['type'], 'message' => $lastError['message'], 'file' => $lastError['file'], 'line' => $lastError['line'])
             );
         }
     }

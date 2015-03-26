@@ -8,14 +8,14 @@
             xml mapping          : http://www.doctrine-project.org/projects/orm/2.0/docs/reference/xml-mapping/en
             association mapping  : http://www.doctrine-project.org/projects/orm/2.0/docs/reference/association-mapping/en
     -->
-	<entity
-		name="Application\Sonata\MediaBundle\Entity\GalleryHasMedia"
-		table="media__gallery_media"
-	>
+    <entity
+        name="Application\Sonata\MediaBundle\Entity\GalleryHasMedia"
+        table="media__gallery_media"
+        >
 
-		<id name="id" type="integer" column="id">
-			<generator strategy="AUTO"/>
-		</id>
+        <id name="id" type="integer" column="id">
+            <generator strategy="AUTO"/>
+        </id>
 
-	</entity>
+    </entity>
 </doctrine-mapping>

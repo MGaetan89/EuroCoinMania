@@ -65,10 +65,12 @@ Usage:
    :maxdepth: 3
 
    usage/introduction
+   usage/metadata
    usage/coordinates
    usage/drawing
-   usage/effects
+   usage/colors
    usage/layers
+   usage/effects
    usage/filters
    usage/exceptions
 

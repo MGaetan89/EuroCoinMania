@@ -1,7 +1,5 @@
 <?php
 
-namespace Imagine\Test\Filter;
-
 /*
  * This file is part of the Imagine package.
  *
@@ -11,9 +9,12 @@ namespace Imagine\Test\Filter;
  * file that was distributed with this source code.
  */
 
+namespace Imagine\Test\Filter;
+
+use Imagine\Filter\FilterInterface;
 use Imagine\Filter\Transformation;
 use Imagine\Image\Box;
-use Imagine\Image\Color;
+use Imagine\Image\ImageInterface;
 use Imagine\Image\Point;
 use Imagine\Image\ManipulatorInterface;
 
@@ -51,7 +52,7 @@ class TransformationTest extends FilterTestCase
         $size       = new Box(50, 50);
         $resize     = new Box(200, 200);
         $angle      = 90;
-        $background = new Color('fff');
+        $background = $this->getPalette()->color('fff');
 
         $image->expects($this->once())
             ->method('resize')
@@ -127,5 +128,49 @@ class TransformationTest extends FilterTestCase
         $transformation1->paste($transformation2->apply($img2), $start)
             ->show('png')
             ->apply($img1);
+    }
+
+    public function testFilterSorting()
+    {
+        $filter1 = new TestFilter();
+        $filter2 = new TestFilter();
+        $filter3 = new TestFilter();
+
+        $transformation1 = new Transformation();
+        $transformation1
+            ->add($filter1, 5)
+            ->add($filter2, -3)
+            ->add($filter3);
+
+        $expected1 = array(
+            $filter2,
+            $filter3,
+            $filter1,
+        );
+
+        $transformation2 = new Transformation();
+        $transformation2
+            ->add($filter1)
+            ->add($filter2)
+            ->add($filter3);
+
+        $expected2 = array(
+            $filter1,
+            $filter2,
+            $filter3,
+        );
+
+        $this->assertSame($expected1, $transformation1->getFilters());
+        $this->assertSame($expected2, $transformation2->getFilters());
+    }
+}
+
+class TestFilter implements FilterInterface
+{
+    /**
+     * {@inheritdoc}
+     */
+    public function apply(ImageInterface $image)
+    {
     }
 }

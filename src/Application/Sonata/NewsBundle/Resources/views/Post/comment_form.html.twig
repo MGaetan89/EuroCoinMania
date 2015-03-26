@@ -1,26 +1,26 @@
 <h4>{{ 'news.comment.add'|trans }}</h4>
 
 <form action="{{ url('sonata_news_add_comment', { id: post_id }) }}" class="form-horizontal" method="post">
-	{% if app.user %}
-		{% set disabled_attr = { 
-			class: 'uneditable-input',
-			readonly: 'readonly'
-		} %}
+    {% if app.user %}
+        {% set disabled_attr = {
+        class: 'uneditable-input',
+        readonly: 'readonly'
+        } %}
 
-		{{ form_row(form.name, { attr: disabled_attr, label: 'comment.author.name'|trans, value: app.user.username }) }}
-		{{ form_row(form.email, { attr: disabled_attr, label: 'comment.author.email'|trans, value: app.user.email }) }}
-		{{ form_row(form.url, { attr: disabled_attr, label: 'comment.author.website'|trans, value: app.user.website }) }}
-	{% else %}
-		{{ form_row(form.name, { label: 'comment.author.name'|trans }) }}
-		{{ form_row(form.email, { label: 'comment.author.email'|trans }) }}
-		{{ form_row(form.url, { label: 'comment.author.website'|trans }) }}
-	{% endif %}
+        {{ form_row(form.name, { attr: disabled_attr, label: 'comment.author.name'|trans, value: app.user.username }) }}
+        {{ form_row(form.email, { attr: disabled_attr, label: 'comment.author.email'|trans, value: app.user.email }) }}
+        {{ form_row(form.url, { attr: disabled_attr, label: 'comment.author.website'|trans, value: app.user.website }) }}
+    {% else %}
+        {{ form_row(form.name, { label: 'comment.author.name'|trans }) }}
+        {{ form_row(form.email, { label: 'comment.author.email'|trans }) }}
+        {{ form_row(form.url, { label: 'comment.author.website'|trans }) }}
+    {% endif %}
 
-	{{ form_row(form.message, { attr: { class: 'span7', rows: 6 }, label: 'comment.message'|trans }) }}
+    {{ form_row(form.message, { attr: { class: 'span7', rows: 6 }, label: 'comment.message'|trans }) }}
 
-	{{ form_rest(form) }}
+    {{ form_rest(form) }}
 
-	<div class="form-actions">
-		<button class="btn btn-primary" type="submit">{{ 'news.comment.post'|trans }}</button>
-	</div>
+    <div class="form-actions">
+        <button class="btn btn-primary" type="submit">{{ 'news.comment.post'|trans }}</button>
+    </div>
 </form>

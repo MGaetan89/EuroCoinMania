@@ -14,8 +14,10 @@ namespace Imagine\Test\Gmagick;
 use Imagine\Gmagick\Layers;
 use Imagine\Gmagick\Image;
 use Imagine\Gmagick\Imagine;
+use Imagine\Image\Metadata\MetadataBag;
 use Imagine\Test\Image\AbstractLayersTest;
 use Imagine\Image\ImageInterface;
+use Imagine\Image\Palette\RGB;
 
 class LayersTest extends AbstractLayersTest
 {
@@ -30,38 +32,34 @@ class LayersTest extends AbstractLayersTest
 
     public function testCount()
     {
-        $resource = $this->getMockBuilder('\Gmagick')
-            ->disableOriginalConstructor()
-            ->getMock();
+        $palette = new RGB();
+        $resource = $this->getMock('\Gmagick');
 
         $resource->expects($this->once())
             ->method('getnumberimages')
             ->will($this->returnValue(42));
 
-        $layers = new Layers(new Image($resource), $resource);
+        $layers = new Layers(new Image($resource, $palette, new MetadataBag()), $palette, $resource);
 
         $this->assertCount(42, $layers);
     }
 
     public function testGetLayer()
     {
-        $resource = $this->getMockBuilder('\Gmagick')
-            ->disableOriginalConstructor()
-            ->getMock();
+        $palette = new RGB();
+        $resource = $this->getMock('\Gmagick');
 
         $resource->expects($this->any())
             ->method('getnumberimages')
             ->will($this->returnValue(2));
 
-        $layer = $this->getMockBuilder('\Gmagick')
-            ->disableOriginalConstructor()
-            ->getMock();
+        $layer = $this->getMock('\Gmagick');
 
         $resource->expects($this->any())
             ->method('getimage')
             ->will($this->returnValue($layer));
 
-        $layers = new Layers(new Image($resource), $resource);
+        $layers = new Layers(new Image($resource, $palette, new MetadataBag()), $palette, $resource);
 
         foreach ($layers as $layer) {
             $this->assertInstanceOf('Imagine\Image\ImageInterface', $layer);
@@ -76,9 +74,9 @@ class LayersTest extends AbstractLayersTest
     public function getImage($path = null)
     {
         if ($path) {
-            return new Image(new \Gmagick($path));
+            return new Image(new \Gmagick($path), new RGB(), new MetadataBag());
         } else {
-            return new Image(new \Gmagick());
+            return new Image(new \Gmagick(), new RGB(), new MetadataBag());
         }
     }
 
@@ -89,7 +87,7 @@ class LayersTest extends AbstractLayersTest
 
     public function getLayers(ImageInterface $image, $resource)
     {
-        return new Layers($image, $resource);
+        return new Layers($image, $resource, new MetadataBag());
     }
 
     protected function assertLayersEquals($expected, $actual)

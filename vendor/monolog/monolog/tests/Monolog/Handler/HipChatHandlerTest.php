@@ -20,7 +20,6 @@ use Monolog\Logger;
  */
 class HipChatHandlerTest extends TestCase
 {
-
     private $res;
     private $handler;
 
@@ -32,6 +31,18 @@ class HipChatHandlerTest extends TestCase
         $content = fread($this->res, 1024);
 
         $this->assertRegexp('/POST \/v1\/rooms\/message\?format=json&auth_token=.* HTTP\/1.1\\r\\nHost: api.hipchat.com\\r\\nContent-Type: application\/x-www-form-urlencoded\\r\\nContent-Length: \d{2,4}\\r\\n\\r\\n/', $content);
+
+        return $content;
+    }
+
+    public function testWriteCustomHostHeader()
+    {
+        $this->createHandler('myToken', 'room1', 'Monolog', false, 'hipchat.foo.bar');
+        $this->handler->handle($this->getRecord(Logger::CRITICAL, 'test1'));
+        fseek($this->res, 0);
+        $content = fread($this->res, 1024);
+
+        $this->assertRegexp('/POST \/v1\/rooms\/message\?format=json&auth_token=.* HTTP\/1.1\\r\\nHost: hipchat.foo.bar\\r\\nContent-Type: application\/x-www-form-urlencoded\\r\\nContent-Length: \d{2,4}\\r\\n\\r\\n/', $content);
 
         return $content;
     }
@@ -81,9 +92,58 @@ class HipChatHandlerTest extends TestCase
         );
     }
 
-    private function createHandler($token = 'myToken', $room = 'room1', $name = 'Monolog', $notify = false)
+    /**
+     * @dataProvider provideBatchRecords
+     */
+    public function testHandleBatch($records, $expectedColor)
     {
-        $constructorArgs = array($token, $room, $name, $notify, Logger::DEBUG);
+        $this->createHandler();
+
+        $this->handler->handleBatch($records);
+
+        fseek($this->res, 0);
+        $content = fread($this->res, 1024);
+
+        $this->assertRegexp('/color='.$expectedColor.'/', $content);
+    }
+
+    public function provideBatchRecords()
+    {
+        return array(
+            array(
+                array(
+                    array('level' => Logger::WARNING, 'message' => 'Oh bugger!', 'level_name' => 'warning', 'datetime' => new \DateTime()),
+                    array('level' => Logger::NOTICE, 'message' => 'Something noticeable happened.', 'level_name' => 'notice', 'datetime' => new \DateTime()),
+                    array('level' => Logger::CRITICAL, 'message' => 'Everything is broken!', 'level_name' => 'critical', 'datetime' => new \DateTime())
+                ),
+                'red',
+            ),
+            array(
+                array(
+                    array('level' => Logger::WARNING, 'message' => 'Oh bugger!', 'level_name' => 'warning', 'datetime' => new \DateTime()),
+                    array('level' => Logger::NOTICE, 'message' => 'Something noticeable happened.', 'level_name' => 'notice', 'datetime' => new \DateTime()),
+                ),
+                'yellow',
+            ),
+            array(
+                array(
+                    array('level' => Logger::DEBUG, 'message' => 'Just debugging.', 'level_name' => 'debug', 'datetime' => new \DateTime()),
+                    array('level' => Logger::NOTICE, 'message' => 'Something noticeable happened.', 'level_name' => 'notice', 'datetime' => new \DateTime()),
+                ),
+                'green',
+            ),
+            array(
+                array(
+                    array('level' => Logger::DEBUG, 'message' => 'Just debugging.', 'level_name' => 'debug', 'datetime' => new \DateTime()),
+                ),
+                'gray',
+            ),
+        );
+    }
+
+    private function createHandler($token = 'myToken', $room = 'room1', $name = 'Monolog', $notify = false, $host = 'api.hipchat.com')
+    {
+        $constructorArgs = array($token, $room, $name, $notify, Logger::DEBUG, true, true, 'text', $host);
         $this->res = fopen('php://memory', 'a');
         $this->handler = $this->getMock(
             '\Monolog\Handler\HipChatHandler',
@@ -106,5 +166,13 @@ class HipChatHandlerTest extends TestCase
             ->will($this->returnValue(true));
 
         $this->handler->setFormatter($this->getIdentityFormatter());
+    }
+
+    /**
+     * @expectedException InvalidArgumentException
+     */
+    public function testCreateWithTooLongName()
+    {
+        $hipChatHandler = new \Monolog\Handler\HipChatHandler('token', 'room', 'SixteenCharsHere');
     }
 }

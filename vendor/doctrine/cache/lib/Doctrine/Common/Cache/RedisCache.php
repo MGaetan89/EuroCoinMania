@@ -82,6 +82,7 @@ class RedisCache extends CacheProvider
         if ($lifeTime > 0) {
             return $this->redis->setex($id, $lifeTime, $data);
         }
+
         return $this->redis->set($id, $data);
     }
 
@@ -90,7 +91,7 @@ class RedisCache extends CacheProvider
      */
     protected function doDelete($id)
     {
-        return $this->redis->delete($id);
+        return $this->redis->delete($id) > 0;
     }
 
     /**
@@ -125,6 +126,9 @@ class RedisCache extends CacheProvider
      */
     protected function getSerializerValue()
     {
+        if (defined('HHVM_VERSION')) {
+            return Redis::SERIALIZER_PHP;
+        }
         return defined('Redis::SERIALIZER_IGBINARY') ? Redis::SERIALIZER_IGBINARY : Redis::SERIALIZER_PHP;
     }
 }

@@ -28,7 +28,7 @@ class DocLexerTest extends \PHPUnit_Framework_TestCase
     public function testScannerTokenizesDocBlockWhitConstants()
     {
         $lexer      = new DocLexer();
-        $docblock   = '@AnnotationWithConstants(PHP_EOL, ClassWithConstants::SOME_VALUE, \Doctrine\Tests\Common\Annotations\Fixtures\IntefaceWithConstants::SOME_VALUE)';
+        $docblock   = '@AnnotationWithConstants(PHP_EOL, ClassWithConstants::SOME_VALUE, ClassWithConstants::CONSTANT_, ClassWithConstants::CONST_ANT3, \Doctrine\Tests\Common\Annotations\Fixtures\IntefaceWithConstants::SOME_VALUE)';
 
         $tokens = array (
             array(
@@ -67,13 +67,33 @@ class DocLexerTest extends \PHPUnit_Framework_TestCase
                 'type'      => DocLexer::T_COMMA,
             ),
             array(
-                'value'     => '\\Doctrine\\Tests\\Common\\Annotations\\Fixtures\\IntefaceWithConstants::SOME_VALUE',
+                'value'     => 'ClassWithConstants::CONSTANT_',
                 'position'  => 66,
                 'type'      => DocLexer::T_IDENTIFIER,
             ),
             array(
+                'value'     => ',',
+                'position'  => 95,
+                'type'      => DocLexer::T_COMMA,
+            ),
+            array(
+                'value'     => 'ClassWithConstants::CONST_ANT3',
+                'position'  => 97,
+                'type'      => DocLexer::T_IDENTIFIER,
+            ),
+            array(
+                'value'     => ',',
+                'position'  => 127,
+                'type'      => DocLexer::T_COMMA,
+            ),
+            array(
+                'value'     => '\\Doctrine\\Tests\\Common\\Annotations\\Fixtures\\IntefaceWithConstants::SOME_VALUE',
+                'position'  => 129,
+                'type'      => DocLexer::T_IDENTIFIER,
+            ),
+            array(
                 'value'     => ')',
-                'position'  => 143,
+                'position'  => 206,
                 'type'      => DocLexer::T_CLOSE_PARENTHESIS,
             )
 
@@ -134,4 +154,64 @@ class DocLexerTest extends \PHPUnit_Framework_TestCase
         $this->assertFalse($lexer->moveNext());
     }
 
+    /**
+     * @group 44
+     */
+    public function testWithinDoubleQuotesVeryVeryLongStringWillNotOverflowPregSplitStackLimit()
+    {
+        $lexer = new DocLexer();
+
+        $lexer->setInput('"' . str_repeat('.', 20240) . '"');
+
+        $this->assertInternalType('array', $lexer->glimpse());
+    }
+
+    /**
+     * @group 44
+     */
+    public function testRecognizesDoubleQuotesEscapeSequence()
+    {
+        $lexer    = new DocLexer();
+        $docblock = '@Foo("""' . "\n" . '""")';
+
+        $tokens = array (
+            array(
+                'value'     => '@',
+                'position'  => 0,
+                'type'      => DocLexer::T_AT,
+            ),
+            array(
+                'value'     => 'Foo',
+                'position'  => 1,
+                'type'      => DocLexer::T_IDENTIFIER,
+            ),
+            array(
+                'value'     => '(',
+                'position'  => 4,
+                'type'      => DocLexer::T_OPEN_PARENTHESIS,
+            ),
+            array(
+                'value'     => "\"\n\"",
+                'position'  => 5,
+                'type'      => DocLexer::T_STRING,
+            ),
+            array(
+                'value'     => ')',
+                'position'  => 12,
+                'type'      => DocLexer::T_CLOSE_PARENTHESIS,
+            ),
+        );
+
+        $lexer->setInput($docblock);
+
+        foreach ($tokens as $expected) {
+            $lexer->moveNext();
+            $lookahead = $lexer->lookahead;
+            $this->assertEquals($expected['value'],    $lookahead['value']);
+            $this->assertEquals($expected['type'],     $lookahead['type']);
+            $this->assertEquals($expected['position'], $lookahead['position']);
+        }
+
+        $this->assertFalse($lexer->moveNext());
+    }
 }
